@@ -8,6 +8,7 @@ const checked=new Set();
 try {
  const page=await browser.newPage();
  await page.goto(base+'/studio',{waitUntil:'domcontentloaded'});
+ await page.getByRole('button',{name:'Continue to editor'}).click();
  const frame=page.frameLocator('iframe[title="Bộ lập trình VEXcode GO"]');
  await frame.locator('.studio-toolbar-actions').waitFor({timeout:60000});
  async function checkImages(){
@@ -30,6 +31,7 @@ try {
  await frame.getByRole('button',{name:'Cancel',exact:true}).last().click();
  for(const name of ['Tutorials','Builds']){
   await page.goto(base+'/studio',{waitUntil:'domcontentloaded'});
+  await page.getByRole('button',{name:'Continue to editor'}).click();
   await frame.locator('.studio-toolbar-actions').waitFor({timeout:60000});
   await frame.getByRole('button',{name,exact:true}).click();
   await page.waitForTimeout(700);

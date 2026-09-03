@@ -4,6 +4,7 @@ const browser=await chromium.launch({channel:'chrome',headless:true});
 try {
  const page=await browser.newPage({viewport:{width:1440,height:960}});
  await page.goto('http://localhost:3100/studio',{waitUntil:'domcontentloaded'});
+ await page.getByRole('button',{name:'Continue to editor'}).click();
  await page.locator('iframe[title="Bộ lập trình VEXcode GO"]').waitFor();
  const frame=await page.locator('iframe[title="Bộ lập trình VEXcode GO"]').elementHandle().then(e=>e.contentFrame());
  await frame.locator('.studio-toolbar-actions').waitFor({timeout:60000});

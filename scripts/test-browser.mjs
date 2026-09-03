@@ -10,6 +10,7 @@ try {
  await page.goto('http://localhost:3100/',{waitUntil:'domcontentloaded'});
  await page.screenshot({path:'artifacts/landing-desktop.png',fullPage:true});
  await page.getByRole('link',{name:/Bắt đầu lập trình/}).click();
+ await page.getByRole('button',{name:'Continue to editor'}).click();
  await page.getByText('Bộ soạn thảo đã sẵn sàng',{exact:true}).waitFor({timeout:60000});
  const frame=page.frames().find(f=>f.url().includes('/editor/index.html'));
  await page.waitForTimeout(10000);
