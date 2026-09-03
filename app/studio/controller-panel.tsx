@@ -16,6 +16,17 @@ export default function ControllerPanel({ frame, open, dockVisible, onHideDock, 
   const [notice,setNotice]=useState('Create a function with My Blocks → Make a Block, then add a binding.');
   const [loaded,setLoaded]=useState(false);
   const [pressed,setPressed]=useState<string[]>([]);
+  const [flashed,setFlashed]=useState<string[]>([]);
+  const flashTimers=useRef(new Map<string,ReturnType<typeof setTimeout>>());
+  const flash=useCallback((key:string)=>{
+    clearTimeout(flashTimers.current.get(key));
+    setFlashed(keys=>[...new Set([...keys,key])]);
+    flashTimers.current.set(key,setTimeout(()=>{
+      setFlashed(keys=>keys.filter(k=>k!==key));
+      flashTimers.current.delete(key);
+    },500));
+  },[]);
+  useEffect(()=>{const timers=flashTimers.current;return()=>{timers.forEach(clearTimeout);timers.clear();};},[]);
   const sequence=useRef(0);
   const send=useCallback((action: string, payload: Record<string,unknown> = {})=>{
     const id=++sequence.current;
@@ -29,10 +40,11 @@ export default function ControllerPanel({ frame, open, dockVisible, onHideDock, 
   useEffect(()=>{if(loaded)try{localStorage.setItem(storageKey,JSON.stringify(bindings));}catch{setNotice('Browser storage is unavailable. Keep this page open to retain bindings.');}},[bindings,loaded]);
   useEffect(()=>{send('keys',{keys:bindings.filter(b=>state.functions.some(f=>f.signature===b.signature)).map(b=>b.key)});},[bindings,state.functions,send]);
   const run=useCallback((binding: Binding)=>{
+    flash(binding.key||binding.id);
     if(!enabled){setNotice('Enable controls first.');return;}
     if(!state.functions.some(fn=>fn.signature===binding.signature)){setNotice('The assigned function is missing. Choose a My Block in Setup.');return;}
     send('run',{signature:binding.signature,args:binding.args});
-  },[enabled,send,state.functions]);
+  },[enabled,send,state.functions,flash]);
   useEffect(()=>{
     const key=(code:string)=>{
       if(!enabled)return;
@@ -50,6 +62,7 @@ export default function ControllerPanel({ frame, open, dockVisible, onHideDock, 
         else if(data.result?.stopped)setNotice('Stop requested.');
       }
       if(data?.type==='vex-controller-key'){
+        if(data.down)flash(data.code);
         setPressed(keys=>data.down?[...new Set([...keys,data.code])]:keys.filter(k=>k!==data.code));
         if(data.down)key(data.code);
       }
@@ -58,6 +71,7 @@ export default function ControllerPanel({ frame, open, dockVisible, onHideDock, 
     const onKey=(event:KeyboardEvent)=>{
       if(event.repeat||event.ctrlKey||event.metaKey||event.altKey||(event.target as HTMLElement)?.closest?.('input,textarea,select,[contenteditable="true"]'))return;
       if(event.code==='Escape'||bindings.some(b=>b.key===event.code)){
+        flash(event.code);
         event.preventDefault();setPressed(keys=>[...new Set([...keys,event.code])]);key(event.code);
       }
     };
@@ -66,7 +80,7 @@ export default function ControllerPanel({ frame, open, dockVisible, onHideDock, 
     const visibility=()=>{if(document.hidden){setPressed([]);send('stop');setEnabled(false);send('enable',{enabled:false});}};
     window.addEventListener('message',receive);window.addEventListener('keydown',onKey);window.addEventListener('keyup',onKeyUp);window.addEventListener('blur',suspend);document.addEventListener('visibilitychange',visibility);
     return()=>{window.removeEventListener('message',receive);window.removeEventListener('keydown',onKey);window.removeEventListener('keyup',onKeyUp);window.removeEventListener('blur',suspend);document.removeEventListener('visibilitychange',visibility);};
-  },[bindings,enabled,frame,run,send]);
+  },[bindings,enabled,frame,run,send,flash]);
   const update=(id:string,patch:Partial<Binding>)=>setBindings(items=>items.map(b=>b.id===id?{...b,...patch}:b));
   function addBinding(){
     if(bindings.length>=24){setNotice('You can assign up to 24 controls.');return;}
@@ -99,13 +113,13 @@ export default function ControllerPanel({ frame, open, dockVisible, onHideDock, 
         </section>;
       })}
       <button className="add-binding" onClick={addBinding}>+ Add control</button><p className="storage-note">Bindings are saved in this browser. After opening another project, check the assigned functions.</p>
-    </>:<><p className="controller-intro">Enable controls, then press a key or tap a button. Each press runs its assigned function once.</p><div className="control-pad">{bindings.map(b=><button key={b.id} disabled={!enabled||!state.connected||state.running||!state.functions.some(f=>f.signature===b.signature)} onClick={()=>run(b)}><kbd>{keyLabel(b.key)||'Tap'}</kbd><strong>{b.label||b.signature||'Unassigned'}</strong></button>)}</div>{!bindings.length&&<p className="controller-empty">Add your first control in Setup.</p>}<p className="storage-note">One function runs at a time. Press Stop before switching away from a function that keeps running.</p></>}
+    </>:<><p className="controller-intro">Enable controls, then press a key or tap a button. Each press runs its assigned function once.</p><div className="control-pad">{bindings.map(b=><button key={b.id} className={`${pressed.includes(b.key)?'is-pressed':''} ${flashed.includes(b.key||b.id)?'is-activated':''}`} disabled={!enabled||!state.connected||state.running||!state.functions.some(f=>f.signature===b.signature)} onClick={()=>run(b)}><kbd>{keyLabel(b.key)||'Tap'}</kbd><strong>{b.label||b.signature||'Unassigned'}</strong></button>)}</div>{!bindings.length&&<p className="controller-empty">Add your first control in Setup.</p>}<p className="storage-note">One function runs at a time. Press Stop before switching away from a function that keeps running.</p></>}
     </div>
     <div className="controller-bottom"><label className="enable-controls"><input type="checkbox" checked={enabled} onChange={e=>{setEnabled(e.target.checked);send('enable',{enabled:e.target.checked});setNotice(e.target.checked?'Controls enabled. Escape stops the robot.':'Controls disabled.');}}/>Enable controls</label><button className="stop-control" onClick={()=>send('stop')}>■ Stop <kbd>Esc</kbd></button><p role="status">{notice}</p></div>
   </aside>
   {dockVisible&&assigned.length>0&&<nav className="controller-dock" aria-label="Assigned control keys">
     <div className="dock-tools"><button onClick={onOpen} title="Edit key bindings">⌨ Setup</button><button className={enabled?'dock-enabled':''} onClick={toggleEnabled}>{enabled?'● Enabled':'○ Enable'}</button></div>
-    <div className="dock-keys">{assigned.map(b=><button key={b.id} className={`dock-key ${pressed.includes(b.key)?'is-pressed':''}`} aria-label={`${keyLabel(b.key)}: ${b.label||b.signature}`} title={`${b.signature} · ${enabled?'Press to run':'Enable controls to run'}`} onPointerDown={e=>{e.currentTarget.setPointerCapture(e.pointerId);setPressed(keys=>[...new Set([...keys,b.key])]);}} onPointerUp={()=>setPressed(keys=>keys.filter(k=>k!==b.key))} onPointerCancel={()=>setPressed(keys=>keys.filter(k=>k!==b.key))} onLostPointerCapture={()=>setPressed(keys=>keys.filter(k=>k!==b.key))} onClick={()=>run(b)}><kbd>{keyLabel(b.key)}</kbd><span>{b.label||b.signature}</span></button>)}</div>
+    <div className="dock-keys">{assigned.map(b=><button key={b.id} className={`dock-key ${pressed.includes(b.key)?'is-pressed':''} ${flashed.includes(b.key)?'is-activated':''}`} aria-label={`${keyLabel(b.key)}: ${b.label||b.signature}`} title={`${b.signature} · ${enabled?'Press to run':'Enable controls to run'}`} onPointerDown={e=>{e.currentTarget.setPointerCapture(e.pointerId);setPressed(keys=>[...new Set([...keys,b.key])]);}} onPointerUp={()=>setPressed(keys=>keys.filter(k=>k!==b.key))} onPointerCancel={()=>setPressed(keys=>keys.filter(k=>k!==b.key))} onLostPointerCapture={()=>setPressed(keys=>keys.filter(k=>k!==b.key))} onClick={()=>run(b)}><kbd>{keyLabel(b.key)}</kbd><span>{b.label||b.signature}</span></button>)}</div>
     <button className="dock-stop" onClick={()=>{send('stop');setPressed([]);}}>■ Stop<kbd>Esc</kbd></button>
     <button className="dock-hide" onClick={onHideDock} aria-label="Hide dock" title="Hide dock — show again with Dock in the toolbar">⌄</button>
     <p className="dock-notice" role="status">{notice}</p>
