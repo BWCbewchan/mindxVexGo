@@ -1,0 +1,15 @@
+{
+  "name": "mindx-vex-go-web",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "prepare:editor": "node scripts/prepare-editor.mjs",
+    "dev": "next dev --hostname 0.0.0.0 --port 3100",
+    "build": "next build",
+    "start": "next start --hostname 0.0.0.0 --port 3100",
+    "typecheck": "tsc --noEmit",
+    "test:browser": "node scripts/test-browser.mjs"
+  },
+  "dependencies": { "next": "16.3.4", "react": "19.2.0", "react-dom": "19.2.0" },
+  "devDependencies": { "@types/node": "^22.0.0", "@types/react": "^19.0.0", "@types/react-dom": "^19.0.0", "typescript": "^5.9.0", "@playwright/test": "^1.58.0" }
+}

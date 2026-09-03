@@ -1,0 +1,255 @@
+{
+  "tutorials": [
+    {
+      "thumb": "GO_Tutorial_gettingStarted.jpg",
+      "mov": "VEXGO_GettingStarted",
+      "description": "Getting started",
+      "filter": "",
+      "placeholder": false,
+      "vimeo": "460235777",
+      "proglang": ["blocks"]
+    },
+    {
+      "thumb": "GO_Tutorial_robotDriving.png",
+      "mov": "VEXGO_DrivingYourRobot",
+      "description": "Driving Your Robot",
+      "filter": "",
+      "placeholder": false,
+      "vimeo": "479977467",
+      "proglang": ["blocks"]
+    },
+    {
+      "thumb": "GO_Tutorial_robotTurning.png",
+      "mov": "VEXGO_TurningYourRobot",
+      "description": "Turning Your Robot",
+      "filter": "",
+      "placeholder": false,
+      "vimeo": "479978281",
+      "proglang": ["blocks"]
+    },
+    {
+      "thumb": "GO_Tutorial_connect-to-your-robot.jpg",
+      "mov": "VEXGO_ConnectingToYourRobot",
+      "description": "Connecting To Your Robot",
+      "filter": "",
+      "placeholder": false,
+      "vimeo": "459156785",
+      "proglang": ["blocks"]
+    },
+    {
+      "thumb": "GO_Tutorial_robotConfig.jpg",
+      "mov": "VEXGO_RobotConfiguration_V2",
+      "description": "Configuring Your Robot",
+      "filter": "",
+      "placeholder": false,
+      "vimeo": "460252151",
+      "proglang": ["blocks"]
+    },
+    {
+      "thumb": "GO_Tutorial_movingBlocks.jpg",
+      "mov": "VEXGO_MovingRemovingBlocks",
+      "description": "Moving and Removing Blocks",
+      "filter": "",
+      "placeholder": false,
+      "vimeo": "459156894",
+      "proglang": ["blocks"]
+    },
+    {
+      "thumb": "GO_Tutorial_startProject.png",
+      "mov": "VEXGO_StartingAProject",
+      "description": "Starting a Project",
+      "filter": "",
+      "placeholder": false,
+      "vimeo": "460252474",
+      "proglang": ["blocks"]
+    },
+    {
+      "thumb": "GO_Tutorial_nameAndSave.png",
+      "mov": "VEXGO_NamingandSavingProjects_iPad",
+      "description": "Naming and Saving Your Project (iPad)",
+      "filter": "",
+      "placeholder": false,
+      "platform": ["iOS"],
+      "vimeo": "459157133",
+      "proglang": ["blocks"]
+    },
+    {
+      "thumb": "GO_Tutorial_nameAndSave.png",
+      "mov": "VEXGO_NamingandSavingProjects_Chromebook",
+      "description": "Naming and Saving Your Project (Chromebook)",
+      "filter": "",
+      "placeholder": false,
+      "platform": ["ChromeOS"],
+      "vimeo": "459156974",
+      "proglang": ["blocks"]
+    },
+    {
+      "thumb": "GO_Tutorial_nameAndSave.png",
+      "mov": "VEXGO_NamingandSavingChromeBrowser",
+      "description": "Naming and Saving Your Project (Chrome Browser)",
+      "filter": "",
+      "placeholder": false,
+      "platform": ["browser"],
+      "proglang": ["blocks"],
+      "vimeo": "479916916"
+    },
+    {
+      "thumb": "GO_Tutorial_nameAndSave.png",
+      "mov": "VEXGO_NamingSavingAndroid",
+      "description": "Naming and Saving Your Project (Android)",
+      "filter": "",
+      "placeholder": false,
+      "platform": ["Android"],
+      "vimeo": "460274745",
+      "proglang": ["blocks"]
+    },
+    {
+      "thumb": "GO_Tutorial_openingProjects.png",
+      "mov": "VEXGO_LoadingProjectsChromeBrowser",
+      "description": "Loading Your Project (Chrome Browser)",
+      "filter": "",
+      "placeholder": false,
+      "platform": ["browser"],
+      "proglang": ["blocks"],
+      "vimeo": "479919640"
+    },
+    {
+      "thumb": "GO_Tutorial_openingProjects.png",
+      "mov": "VEXGO_OpeningProjectsAndroid",
+      "description": "Loading Your Project (Android)",
+      "filter": "",
+      "placeholder": false,
+      "platform": ["Android"],
+      "proglang": ["blocks"],
+      "vimeo": "479919803"
+    },
+    {
+      "thumb": "GO_Tutorial_openingProjects.png",
+      "mov": "VEXGO_OpeningProjectsChromebook",
+      "description": "Loading Your Project (Chromebook)",
+      "filter": "",
+      "placeholder": false,
+      "platform": ["ChromeOS"],
+      "proglang": ["blocks"],
+      "vimeo": "479919649"
+    },
+    {
+      "thumb": "GO_Tutorial_openingProjects.png",
+      "mov": "VEXGO_OpeningProjectsiPad",
+      "description": "Opening a Project (iPad)",
+      "filter": "",
+      "placeholder": false,
+      "platform": ["iOS"],
+      "proglang": ["blocks"],
+      "vimeo": "479977616"
+    },
+    {
+      "thumb": "GO_Tutorial_remoteControl.png",
+      "mov": "VEXGO_RemoteControl",
+      "description": "Remote Control",
+      "filter": "",
+      "placeholder": false,
+      "vimeo": "460252325",
+      "proglang": ["blocks"]
+    },
+    {
+      "thumb": "GO_Tutorial_pseudocode.png",
+      "mov": "VEXGO_Pseudocode",
+      "description": "Pseudocode",
+      "filter": "",
+      "placeholder": false,
+      "proglang": ["blocks"],
+      "vimeo": "479977771"
+    },
+    {
+      "thumb": "GO_Tutorial_sequencing.png",
+      "mov": "VEXGO_Sequencing",
+      "description": "Sequencing",
+      "filter": "",
+      "placeholder": false,
+      "proglang": ["blocks"],
+      "vimeo": "479977952"
+    },
+    {
+      "thumb": "Tutorial_myBlocks_v2.jpg",
+      "mov": "VEXGO_MyBlocks",
+      "description": "My Blocks",
+      "filter": "",
+      "placeholder": false,
+      "proglang": ["blocks"],
+      "vimeo": "479919842"
+    },
+    {
+      "thumb": "GO_Tutorial_stepThroughProject.png",
+      "mov": "VEXGO_SteppingThroughAProject",
+      "description": "Stepping Through Blocks",
+      "filter": "",
+      "placeholder": false,
+      "proglang": ["blocks"],
+      "vimeo": "479916362"
+    },
+    {
+      "thumb": "GO_Tutorial_usingExamples.png",
+      "mov": "VEXGO_UsingExamples",
+      "description": "Using Examples",
+      "filter": "",
+      "placeholder": false,
+      "proglang": ["blocks"],
+      "vimeo": "479916211"
+    },
+    {
+      "thumb": "Tutorial_usingHelp.jpg",
+      "mov": "VEXGO_UsingHelp",
+      "description": "Using Help",
+      "filter": "",
+      "placeholder": false,
+      "proglang": ["blocks"],
+      "vimeo": "479919541"
+    },
+    {
+      "thumb": "GO_Tutorial_waitUntilTrue.png",
+      "mov": "VEXGO_WaitUntilTrue",
+      "description": "Wait Until True",
+      "filter": "",
+      "placeholder": false,
+      "proglang": ["blocks"],
+      "vimeo": "479916579"
+    },
+    {
+      "thumb": "GO_Tutorial_detectingColors.png",
+      "mov": "VEXGO_DetectingColors",
+      "description": "Detecting Colors",
+      "filter": "",
+      "placeholder": false,
+      "vimeo": "574981495",
+      "proglang": ["blocks"]
+    },
+    {
+      "thumb": "GO_Tutorial_detectingObjects.png",
+      "mov": "VEXGO_DetectingObjects",
+      "description": "Detecting Objects",
+      "filter": "",
+      "placeholder": false,
+      "vimeo": "574981630",
+      "proglang": ["blocks"]
+    },
+    {
+      "thumb": "GO_Tutorial_movingDisks.png",
+      "mov": "VEXGO_MovingDisks",
+      "description": "Moving Disks",
+      "filter": "",
+      "placeholder": false,
+      "vimeo": "574981937",
+      "proglang": ["blocks"]
+    },
+    {
+      "thumb": "GO_Tutorial_pressingLEDBumper.png",
+      "mov": "VEXGO_PressingLEDBumper",
+      "description": "Pressing LED Bumper",
+      "filter": "",
+      "placeholder": false,
+      "vimeo": "574982070",
+      "proglang": ["blocks"]
+    }
+  ]
+}

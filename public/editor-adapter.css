@@ -1,0 +1,40 @@
+html, body { overscroll-behavior: none; }
+@media(max-width:700px){
+  .topmenu{flex-wrap:wrap;height:auto;min-height:94px;align-content:start;font-size:13px;padding:0!important;}
+  .topmenu>.group{height:46px;min-width:0;}
+  .topmenu>.group:first-child{flex:1;}
+  .topmenu #workbook_name_group{flex:0 1 auto;}
+  .topmenu #topmenu_right_group{width:100%;height:44px;justify-content:flex-end;border-top:1px solid #ffffff35;}
+  .topmenu .toolbar_btn{min-height:40px;}
+  .project_name_wrapper .project_name_ticker{width:95px;}
+  .project_name_wrapper .project_icon_wrapper{width:18px;}
+  .topmenu .toolbar_btn.app_logo.GO_color .icon_wrapper{width:35px;}
+  .topmenu .toolbar_btn.tool_tutorial,.topmenu .toolbar_btn.tool_activity{padding:0 3px;}
+  .tutorial_window{left:8px!important;top:110px!important;width:calc(100vw - 16px)!important;max-height:calc(100dvh - 125px);}
+  .tutorial_window iframe{width:100%;height:auto;aspect-ratio:16/9;}
+  .tutorial_window .handle{height:48px;}
+  .window{max-width:calc(100vw - 20px)!important;min-width:0!important;max-height:calc(100dvh - 20px);overflow:auto;}
+  .whatsnew_image{max-width:45px;}
+  .body_wrapper{min-height:0;min-width:0;}
+}
+@media(max-width:360px){.project_name_wrapper .project_name_ticker{width:65px}.topmenu .toolbar_btn.tool_file{padding:0 7px}}
+/* A single editor toolbar also hosts the Next.js shell actions. */
+.topmenu .app_logo{display:none!important}
+.studio-home{display:inline-flex;align-items:center;align-self:stretch;padding:0 12px;color:white!important;text-decoration:none;font-family:Arial,sans-serif;font-size:15px;font-weight:700;white-space:nowrap}
+.studio-toolbar-actions{display:inline-flex;align-items:center;gap:5px;margin-left:8px;padding:0 8px;border-left:1px solid #ffffff45}
+.studio-toolbar-button{background:#ffffff15;border:1px solid #ffffff60;border-radius:5px;color:white;min-height:36px;padding:6px 9px;font-size:12px;white-space:nowrap;cursor:pointer}
+.studio-toolbar-button:hover,.studio-toolbar-button[aria-expanded=true]{background:#ffffff35}
+.studio-toolbar-button:focus-visible,.studio-home:focus-visible{outline:2px solid white;outline-offset:2px}
+@media(max-width:1150px){.topmenu{flex-wrap:wrap;height:auto;min-height:94px;align-content:start}.topmenu>.group{min-width:0;height:46px}.topmenu>#topmenu_right_group{width:100%;justify-content:flex-end;border-top:1px solid #ffffff35}}
+@media(max-width:700px){.studio-home{padding:0 6px;font-size:12px}.studio-toolbar-actions{gap:3px;padding:0 4px;margin-left:4px}.studio-toolbar-button{font-size:11px;padding:5px;min-height:36px}.topmenu #topmenu_right_group{height:auto;min-height:44px;flex-wrap:wrap}.topmenu #topmenu_right_group .toolbar_btn{min-width:35px!important;padding-left:3px!important;padding-right:3px!important}.topmenu #topmenu_right_group .icon_caption{font-size:8px}.topmenu #topmenu_right_group .bar_divider{margin:0 3px}}
+@media(max-width:700px){
+ .topmenu #topmenu_right_group{flex-wrap:nowrap;justify-content:space-between;height:48px;min-height:48px}
+ .topmenu #topmenu_right_group>.input_container{flex-shrink:0}
+ .topmenu #topmenu_right_group .toolbar_btn{min-width:27px!important;width:27px;padding:0!important}
+ .topmenu #topmenu_right_group .toolbar_btn .icon_wrapper{min-width:0;width:26px}
+ .topmenu #topmenu_right_group .toolbar_btn .icon{height:16px!important}
+ .topmenu #topmenu_right_group .icon_caption{font-size:7px}
+ .topmenu #topmenu_right_group .bar_divider{margin:0 1px}
+ .studio-toolbar-actions{margin-left:2px;padding:0 3px;gap:2px;flex-shrink:0}
+ .studio-toolbar-button{font-size:10px;padding:4px;min-height:34px}
+}

@@ -1,0 +1,554 @@
+
+type BlockGeneratorFunction = (block: Blockly.Block) => string | [string, number];
+type BlocksGenerator = Blockly.Generator & 
+  {
+    [key: string]: BlockGeneratorFunction | number
+  };
+
+
+interface BlocklyPythonGeneratorExt {
+  /**
+   * Order for atomic operations: 0 "" ...
+   */
+  ORDER_ATOMIC: number;
+  /**
+   * Order for collections: tuples, lists, dictionaries
+   */
+  ORDER_COLLECTION: number;
+  /**
+   * Order for string conversion: `expression...`
+   */
+  ORDER_STRING_CONVERSION: number;
+  /**
+   * Order for member operations: . []
+   */
+  ORDER_MEMBER: number;
+  /**
+   * Order for function calls: ()
+   */
+  ORDER_FUNCTION_CALL: number;
+  /**
+   * Order for subscript operations: **
+   */
+  ORDER_EXPONENTIATION: number;
+  /**
+   * Order for unary plus operations: + -
+   */
+  ORDER_UNARY_SIGN: number;
+  /**
+   * Order for bitwise not operations: ~
+   */
+  ORDER_BITWISE_NOT: number;
+  /**
+   * Order for multiplication type operators: * / // %
+   */
+  ORDER_MULTIPLICATIVE: number;
+  /**
+   * Order for addition type operations: + -
+   */
+  ORDER_ADDITIVE: number;
+  /**
+   * Order for bitwise shift operations: << >>
+   */
+  ORDER_BITWISE_SHIFT: number;
+  /**
+   * Order for bitwise and operations: &
+   */
+  ORDER_BITWISE_AND: number;
+  /**
+   * Order for bitwise xor operations: ^
+   */
+  ORDER_BITWISE_XOR: number;
+  /**
+   * Order for bitwise or operations: |
+   */
+  ORDER_BITWISE_OR: number;
+  /**
+   * Order for relational comparison operations: in, not in, is, is not, <, <=, >, >= <>, !=, ==
+   */
+  ORDER_RELATIONAL: number;
+  /**
+   * Order for logical not operations: not
+   */
+  ORDER_LOGICAL_NOT: number;
+  /**
+   * Order for logical and operations: and
+   */
+  ORDER_LOGICAL_AND: number;
+  /**
+   * Order for logical or operations: or
+   */
+  ORDER_LOGICAL_OR: number;
+  /**
+   * Order for ternary conditional operations: if else
+   */
+  ORDER_CONDITIONAL: number;
+  /**
+   * Order for lambda operations: lambda
+   */
+  ORDER_LAMBDA: number;
+  /**
+   * Order for anything else... 
+   */
+  ORDER_NONE: number;
+
+  /**
+   * string to add for starting RC generated task
+   */
+  RC_TASK_START: string;
+
+  /**
+   * string to add for stoping RC generated task
+   */
+  RC_TASK_STOP: string;
+
+  /**
+   * string to add for calibrating the drivetrain
+   */
+  DRIVETRAIN_CALIBRATE: string;
+
+  /**
+   * string to add to int main before any events get setup/registered
+   */
+  preEventRegistration: string;
+
+  /**
+   * string to add to int main after any events get setup/registered
+   */
+  postEventRegistration: string;
+
+  [index: string]: any | BlockGeneratorFunction;
+}
+
+interface BlocklyJavaScriptGeneratorExt {
+  /**
+   * Order of operation ENUMs.
+   * https://developer.mozilla.org/en/JavaScript/Reference/Operators/Operator_Precedence
+   */
+  ORDER_ATOMIC: number;
+  ORDER_NEW: number;
+  ORDER_MEMBER: number;
+  ORDER_FUNCTION_CALL: number;
+  ORDER_INCREMENT: number;
+  ORDER_DECREMENT: number;
+  ORDER_BITWISE_NOT: number;    
+  ORDER_UNARY_PLUS: number;     
+  ORDER_UNARY_NEGATION: number; 
+  ORDER_LOGICAL_NOT: number;    
+  ORDER_TYPEOF: number;         
+  ORDER_VOID: number;           
+  ORDER_DELETE: number;        
+  ORDER_AWAIT: number;          
+  ORDER_EXPONENTIATION: number; 
+  ORDER_MULTIPLICATION: number; 
+  ORDER_DIVISION: number;       
+  ORDER_MODULUS: number;        
+  ORDER_SUBTRACTION: number;    
+  ORDER_ADDITION: number;       
+  ORDER_BITWISE_SHIFT: number;  
+  ORDER_RELATIONAL: number;      
+  ORDER_INSTANCEOF: number;     
+  ORDER_EQUALITY: number;       
+  ORDER_BITWISE_XOR: number;    
+  ORDER_BITWISE_OR: number;     
+  ORDER_LOGICAL_AND: number;    
+  ORDER_LOGICAL_OR: number;     
+  ORDER_CONDITIONAL: number;    
+  ORDER_ASSIGNMENT: number;     
+  ORDER_COMMA: number;          
+  ORDER_NONE: number;           
+
+  /**
+   * List of outer-inner pairings that do NOT require parentheses.
+   * @type {!Array.<!Array.<number>>}
+   */
+  ORDER_OVERRIDES: number[][];
+
+  /**
+   * A string that represents the statement prefix.
+   * @type {string}
+   */
+  STATEMENT_PREFIX: string;
+
+  /**
+   * string to add to int main before any events get setup/registered
+   */
+  preEventRegistration: string;
+
+  /**
+   * string to add to int main after any events get setup/registered
+   */
+  postEventRegistration: string;
+
+  [index: string]: any | BlockGeneratorFunction;
+}
+
+interface BlocklyCPPGeneratorExt {
+  /**
+    * Order for atomic operations: 0 "" ...
+    */
+  ORDER_ATOMIC: number;
+  /**
+    * Order for scope resolution operations: ::
+    */
+  ORDER_SCOPE_RESOLUTION: number;
+  /**
+    * Order for member operations: . ->
+    */
+  ORDER_MEMBER: number;
+  /**
+    * Order for function calls: ()
+    */
+  ORDER_FUNCTION_CALL: number;
+  /**
+    * Order for subscript operations: []
+    */
+  ORDER_SUBSCRIPT: number;
+  /**
+    * Order for functional cast operations: type() type{}
+    */
+  ORDER_FUNCTIONAL_CAST: number;
+  /**
+    * Order for increment operations: ++
+    */
+  ORDER_INCREMENT: number;
+  /**
+    * Order for decrement operations: --
+    */
+  ORDER_DECREMENT: number;
+  /**
+    * Order for unary plus operations: +
+    */
+  ORDER_UNARY_PLUS: number;
+  /**
+    * Order for unary negation operations: -
+    */
+  ORDER_UNARY_NEGATION: number;
+  /**
+    * Order for logical not operations: !
+    */
+  ORDER_LOGICAL_NOT: number;
+  /**
+    * Order for bitwise not operations: ~
+    */
+  ORDER_BITWISE_NOT: number;
+  /**
+    * Order for C-style cast operations: (type)
+    */
+  ORDER_C_CAST: number;
+  /**
+    * Order for indirection operations: *a
+    */
+  ORDER_INDIRECTION: number;
+  /**
+    * Order for address-of operations: &a
+    */
+  ORDER_ADDRESS_OF: number;
+  /**
+    * Order for sizeof operations: sizeof
+    */
+  ORDER_SIZE_OF: number;
+  /**
+    * Order for dynamic memory allocations operations: new a[]
+    */
+  ORDER_DYNAMIC_MEM_ALLOC: number;
+  /**
+    * Order for dynamic memory deallocation operations: delete a[]
+    */
+  ORDER_DYNAMIC_MEM_DEALLOC: number;
+  /**
+    * Order for pointer operations: .* ->*
+    */
+  ORDER_POINTER: number;
+  /**
+    * Order for multiplication operations: *
+    */
+  ORDER_MULTIPLICATION: number;
+  /**
+    * Order for division operations: /
+    */
+  ORDER_DIVISION: number;
+  /**
+    * Order for modulus operations: %
+    */
+  ORDER_MODULUS: number;
+  /**
+    * Order for addition operations: +
+    */
+  ORDER_ADDITION: number;
+  /**
+    * Order for subtraction operations: -
+    */
+  ORDER_SUBTRACTION: number;
+  /**
+    * Order for bitwise shift operations: << >>
+    */
+  ORDER_BITWISE_SHIFT: number;
+  /**
+    * Order for three way comparison operations: <=>
+    */
+  ORDER_THREE_WAY_COMP: number;
+  /**
+    * Order for relational comparison operations: < <= > >=
+    */
+  ORDER_RELATIONAL: number;
+  /**
+    * Order for equality operations: == !=
+    */
+  ORDER_EQUALITY: number;
+  /**
+    * Order for bitwise and operations: &
+    */
+  ORDER_BITWISE_AND: number;
+  /**
+    * Order for bitwise xor operations: ^
+    */
+  ORDER_BITWISE_XOR: number;
+  /**
+    * Order for bitwise or operations: |
+    */
+  ORDER_BITWISE_OR: number;
+  /**
+    * Order for logical and operations: &&
+    */
+  ORDER_LOGICAL_AND: number;
+  /**
+    * Order for logical or operations: ||
+    */
+  ORDER_LOGICAL_OR: number;
+  /**
+    * Order for ternary conditional operations: ?:
+    */
+  ORDER_CONDITIONAL: number;
+  /**
+    * Order for throw operations: throw
+    */
+  ORDER_THROW: number;
+  /**
+    * Order for direct assignement operations: =
+    */
+  ORDER_ASSIGNMENT: number;
+  /**
+    * Order for comma operations: ,
+    */
+  ORDER_COMMA: number;
+  /**
+    * Order for anything else... 
+    */
+  ORDER_NONE: number;
+
+  /**
+    * string to add for starting RC generated task
+    */
+  RC_TASK_START: string;
+
+  /**
+    * string to add for stoping RC generated task
+    */
+  RC_TASK_STOP: string;
+
+  /**
+    * string to add for calibrating the drivetrain
+    */
+  DRIVETRAIN_CALIBRATE: string;
+
+  /**
+    * string to add to int main before any events get setup/registered
+    */
+  preEventRegistration: string;
+
+  /**
+    * string to add to int main after any events get setup/registered
+    */
+  postEventRegistration: string;
+
+  
+  /**
+    * Initialise the database of variable names.
+    * @param {!Blockly.Workspace} workspace Workspace to generate code from.
+    */
+  init(workspace: Blockly.Workspace): void;
+
+  /**
+    * Prepend the generated code with the variable definitions.
+    * @param {string} code Generated code.
+    * @return {string} Completed code.
+    */
+  finish(code: string): string;
+
+  /**
+    * Naked values are top-level blocks with outputs that aren't plugged into
+    * anything.  A trailing semicolon is needed to make this legal.
+    * @param {string} line Line of generated code.
+    * @return {string} Legal line of code.
+    */
+  scrubNakedValue(line: string): string;
+
+  /**
+    * Encode a string as a properly escaped JavaScript string, complete with
+    * quotes.
+    * @param {string} string Text to encode.
+    * @return {string} JavaScript string.
+    * @private
+    */
+  quote_(string: string): string;
+
+  /**
+    * Common tasks for generating JavaScript from blocks.
+    * Handles comments for the specified block and any connected value blocks.
+    * Calls any statements following this block.
+    * @param {!Blockly.Block} block The current block.
+    * @param {string} code The JavaScript code created for this block.
+    * @return {string} JavaScript code with comments and subsequent blocks added.
+    * @private
+    */
+  scrub_(block: Blockly.Block, code: string): string;
+
+  /**
+    * Gets a property and adjusts the value while taking into account indexing.
+    * @param {!Blockly.Block} block The block.
+    * @param {string} atId The property ID of the element to get.
+    * @param {number=} opt_delta Value to add.
+    * @param {boolean=} opt_negate Whether to negate the value.
+    * @param {number=} opt_order The highest order acting on this value.
+    * @return {string|number}
+    */
+  getAdjusted(block: Blockly.Block, atId: string, opt_delta?: number, opt_negate?: boolean, opt_order?: number): string|number;
+
+  /**
+    * Generate code representing the statement.  Indent the code.
+    * @param {!Blockly.Block} block The block containing the input.
+    * @param {string} name The name of the input.
+    * @return {string} Generated code or '' if no blocks are connected.
+    */
+  eventStackToCode(block: Blockly.Block): string;
+
+  /**
+    * add a driver event to the generated code
+    * @param block The block starting the stack.
+    * @param name the name of the event
+    * @param branch the branch code for the event
+    * @param eventSetter the code called to tell the event to call the function
+    */
+  addDriverEventFunction(block: Blockly.Block, name: string, branch: string, eventSetter: string): void;
+  /**
+    * add a auton event to the generated code
+    * @param block The block starting the stack.
+    * @param name the name of the event
+    * @param branch the branch code for the event
+    * @param eventSetter the code called to tell the event to call the function
+    */
+  addAutonFunction(block: Blockly.Block, name: string, branch: string, eventSetter: string): void;
+  /**
+    * add a system (hardware) event to the generated code
+    * @param block The block starting the stack.
+    * @param name the name of the event
+    * @param branch the branch code for the event
+    * @param eventSetter the code called to tell the event to call the function
+    */
+  addSystemEventFunction(block: Blockly.Block, name: string, branch: string, eventSetter: string): void;
+
+  /**
+    * add a system (hardware) event to the generated code
+    * @param block The block starting the stack.
+    * @param name the name of the event
+    * @param branch the branch code for the event
+    * @param eventSetter the code called to tell the event to call the function
+    * @param arg the argument of the event
+    */
+  addSystemEventArgumentFunction(block: Blockly.Block, name: string, branch: string, eventSetter: string, arg: number): void;
+  
+  addUserEventFunction(block: Blockly.Block, id: string, branch: string, eventSetter: string): void;
+
+  [index: string]: any | BlockGeneratorFunction;
+}
+
+declare module Blockly {
+
+  interface BlocklyOptions {
+    toolbox?: HTMLElement | string;
+    readOnly?: boolean;
+    trashcan?: boolean;
+    maxInstances?: {[type: string]: number;};
+    maxTrashcanContents?: number;
+    collapse?: boolean;
+    comments?: boolean;
+    disable?: boolean;
+    sounds?: boolean;
+    rtl?: boolean;
+    horizontalLayout?: boolean;
+    toolboxPosition?: string;
+    css?: boolean;
+    oneBasedIndex?: boolean;
+    media?: string;
+    theme?: Blockly.Theme | BlocklyThemeOptions;
+    // RM Code Start
+    monitor?: boolean;
+    // RM Code End
+    move?: {
+      scrollbars?: boolean;
+      drag?: boolean;
+      wheel?: boolean;
+    };
+    grid?: {
+      spacing?: number;
+      colour?: string;
+      length?: number;
+      snap?: boolean;
+    };
+    zoom?: {
+      controls?: boolean;
+      wheel?: boolean;
+      startScale?: number;
+      maxScale?: number;
+      minScale?: number;
+      scaleSpeed?: number;
+      pinch?: boolean;
+    };
+    renderer?: string;
+    keyMap?: {[type: string]: Blockly.Action;};
+    parentWorkspace?: Blockly.WorkspaceSvg;
+  }
+
+  interface BlocklyThemeOptions {
+    base?: string;
+    blockStyles?: {[blocks: string]: Blockly.Theme.BlockStyle;};
+    categoryStyles?: {[category: string]: Blockly.Theme.CategoryStyle;};
+    componentStyles?: {[component: string]: any;};
+    fontStyle?: Blockly.Theme.FontStyle;
+    startHats?: boolean;
+  }
+
+  /**
+   * Set the Blockly locale.
+   * Note: this method is only available in the npm release of Blockly.
+   * @param {!Object} msg An object of Blockly message strings in the desired
+   *     language.
+   */
+  function setLocale(msg: {[key: string]: string;}): void;
+
+  var Themes: { [key: string]: Blockly.Theme };
+
+}
+
+declare module Blockly.utils {
+  interface Metrics {
+    viewHeight: number;
+    viewWidth: number;
+    contentHeight: number;
+    contentWidth: number;
+    viewTop: number;
+    viewLeft: number;
+    contentTop: number;
+    contentLeft: number;
+    absoluteTop: number;
+    absoluteLeft: number;
+    svgHeight?: number;
+    svgWidth?: number;
+    toolboxWidth?: number;
+    toolboxHeight?: number;
+    flyoutWidth?: number;
+    flyoutHeight?: number;
+    toolboxPosition?: number;
+  }
+}

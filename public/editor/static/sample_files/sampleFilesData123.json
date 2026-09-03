@@ -1,0 +1,394 @@
+{
+  "blocks": [
+    {
+      "name": "Avoiding Obstacles",
+      "filter_primary": "sensing",
+      "filter_secondary": "",
+      "fileImageName": "123_Sensing_avoidingObstacles.png",
+      "file": {
+        "mode": "Blocks",
+        "workspace": "<xml xmlns=\"http://www.w3.org/1999/xhtml\"><variables><variable type=\"\" id=\"U`9aA+=)r+L1tzA.)-qi\" islocal=\"false\" iscloud=\"false\" arraylength=\"0\" arraywidth=\"0\">myVariable</variable></variables><comment id=\"V=~V-r.N$#(h,Jyl(fZf\" x=\"892\" y=\"-5\" h=\"280\" w=\"304\">Project: Avoiding Obstacles \n\nDescription: This example project has the 123 Robot move until it detects an obstacle (for example, the wall on a VEX 123 field). \n\nWhen the Eye Sensor detects an obstacle, the 123 Robot will stop, drive in reverse, and then turn right. If no obstacle is detected, the 123 Robot will drive forward.</comment><block type=\"123_events_when_started\" id=\".NsXwU_L.OuU1l7Sho$F\" deletable=\"false\" x=\"30\" y=\"30\"><next><block type=\"123_other_comment\" id=\"#sS7c3J#sW`.z)8RS1F^\"><value name=\"COMMENT\"><shadow type=\"comment_text\" id=\"dUN|UtTXNDyZ0]?ieW_t\"><field name=\"comment\">A forever loop allows the Eye Sensor to continuously check for obstacles </field></shadow></value><next><block type=\"123_control_forever\" id=\"+XY4b@CQp4QpXIR.})pM\"><statement name=\"SUBSTACK\"><block type=\"123_other_comment\" id=\"4)KgaCw9suh485Z*s^:U\"><value name=\"COMMENT\"><shadow type=\"comment_text\" id=\"P`y+Az0/{BxWiL-BxcN#\"><field name=\"comment\">If the Eye Sensor detects an obstacle, the blocks in the if branch will run </field></shadow></value><next><block type=\"123_control_if_then_else\" id=\"e@nc2og*2O[f+b3rs#;[\"><value name=\"CONDITION\"><block type=\"123_sensing_near_object\" id=\"bR#vU(Z?VN,)6ZcA{PkU\"></block></value><statement name=\"SUBSTACK\"><block type=\"123_drivetrain_drive_for\" id=\"}A9O_lW=?;MdK1a[qsb[\"><field name=\"DIRECTION\">rev</field><field name=\"UNITS\">step</field><value name=\"AMOUNT\"><shadow type=\"math_number\" id=\"}H8Vo;~D(X}QF8Jp-)us\"><field name=\"NUM\">1</field></shadow></value><next><block type=\"123_drivetrain_turn_for\" id=\"OvvO4X|m}i710:EGxUnF\"><field name=\"TURNDIRECTION\">right</field><value name=\"AMOUNT\"><shadow type=\"math_number\" id=\"l__CJ=bZ2P2qdk`7X%lf\"><field name=\"NUM\">90</field></shadow></value></block></next></block></statement><statement name=\"SUBSTACK2\"><block type=\"123_other_comment\" id=\"}lwV^q7Hg7S?SKUx.!Dt\"><value name=\"COMMENT\"><shadow type=\"comment_text\" id=\"G+e{Fa(YWK~g(3^19}8;\"><field name=\"comment\">If the Eye Sensor does not detect an obstacle, the 123 Robot will drive forward </field></shadow></value><next><block type=\"123_drivetrain_drive\" id=\"C|Zh9Q$r.)QzXSgW%1$t\"><field name=\"DIRECTION\">fwd</field></block></next></block></statement></block></next></block></statement></block></next></block></next></block></xml>",
+        "rconfig": [],
+        "slot": 0,
+        "platform": "123",
+        "sdkVersion": "",
+        "appVersion": "",
+        "fileFormat": "1.0.0",
+        "icon": "",
+        "cppStatus": "true",
+        "checkboxes": "",
+        "monitorList": {
+          "sensorList": [],
+          "variableList": [],
+          "complexVarList": []
+        }
+      }
+    },
+    {
+      "name": "Displaying Colors",
+      "filter_primary": "sensing",
+      "filter_secondary": "",
+      "fileImageName": "123_Sensing_displayingColors.png",
+      "file": {
+        "mode": "Blocks",
+        "workspace": "<xml xmlns=\"http://www.w3.org/1999/xhtml\"><variables><variable type=\"\" id=\"U`9aA+=)r+L1tzA.)-qi\" islocal=\"false\" iscloud=\"false\" arraylength=\"0\" arraywidth=\"0\">myVariable</variable></variables><comment id=\"wnBO3gW|/!.i3^LokV)p\" x=\"551\" y=\"341\" h=\"233\" w=\"366\">Project: Displaying Colors\n\nDescription: This example project has the VEX 123 Robot display the color that is detected by the Eye Sensor.\n\nIf red is detected, no color is displayed on the 123 Robot.</comment><block type=\"123_events_when_started\" id=\".NsXwU_L.OuU1l7Sho$F\" deletable=\"false\" x=\"70\" y=\"110\"><next><block type=\"123_other_comment\" id=\"_cAH.8fz)-o[*CuL5_XC\"><value name=\"COMMENT\"><shadow type=\"comment_text\" id=\"R`2sHrnUDFn@d)J33%3^\"><field name=\"comment\">Use a forever loop so the Eye Sensor always looks for a color</field></shadow></value><next><block type=\"123_control_forever\" id=\"7rf8]@#@2lQ7b64Dj/q$\"><statement name=\"SUBSTACK\"><block type=\"123_other_comment\" id=\"YX9dSt#`Mt4lZ=-8;`?k\"><value name=\"COMMENT\"><shadow type=\"comment_text\" id=\"(_C1DH$Xr^RNT/c+)D*E\"><field name=\"comment\">The Eye Sensor looks for the color green</field></shadow></value><next><block type=\"123_other_comment\" id=\"}/n]To=I{ahFt@SO~`Ml\"><value name=\"COMMENT\"><shadow type=\"comment_text\" id=\"Nf`3mS;#yJo?#nh1w!;g\"><field name=\"comment\">If green is detected, glow the 123 Robot green</field></shadow></value><next><block type=\"123_control_if_then\" id=\"]9-3ii:82oW)S~Yd1:R/\"><value name=\"CONDITION\"><block type=\"123_sensing_eye_detect\" id=\"dNJ3rv[g/{~tn}NGe;2:\"><field name=\"COLORS\">green</field></block></value><statement name=\"SUBSTACK\"><block type=\"123_looks_glow\" id=\"Ir3f5m{%L(KB`7%Kyls-\"><field name=\"COLOR\">green</field></block></statement><next><block type=\"123_other_comment\" id=\"mGZQ3syPfdj%eeA4`Muq\"><value name=\"COMMENT\"><shadow type=\"comment_text\" id=\")=mxHY_#Iz1I).b5hs.a\"><field name=\"comment\">The Eye Sensor looks for the color blue</field></shadow></value><next><block type=\"123_other_comment\" id=\"N{GhIX%xNh07-y[AGfLs\"><value name=\"COMMENT\"><shadow type=\"comment_text\" id=\"T8cQ;mpEZu:(xS8-W61V\"><field name=\"comment\">If blue is detected, glow the 123 Robot blue</field></shadow></value><next><block type=\"123_control_if_then\" id=\"7{9{nnBBHCjc,ALoKm??\"><value name=\"CONDITION\"><block type=\"123_sensing_eye_detect\" id=\"2G77alCoqbq`9P2nhj2_\"><field name=\"COLORS\">blue</field></block></value><statement name=\"SUBSTACK\"><block type=\"123_looks_glow\" id=\"v-ed@6/y/H!]npV@_#m]\"><field name=\"COLOR\">blue</field></block></statement><next><block type=\"123_other_comment\" id=\"tq*LY_%}4pXNQV_:Yn1L\"><value name=\"COMMENT\"><shadow type=\"comment_text\" id=\"HZHJRCrz=5j54:fO%}O9\"><field name=\"comment\">The Eye Sensor looks for the color red</field></shadow></value><next><block type=\"123_other_comment\" id=\"xDs@u[sW9(]j7Nj0{#/*\"><value name=\"COMMENT\"><shadow type=\"comment_text\" id=\"AqP)T9o${~YWTUaU(q*]\"><field name=\"comment\">If red is detected, don't display a color on the 123 Robot</field></shadow></value><next><block type=\"123_control_if_then\" id=\"|0MhL|1_4Z_WZLf`c.nW\"><value name=\"CONDITION\"><block type=\"123_sensing_eye_detect\" id=\"~Xn;yr$O~`d6{`!JSx+7\"><field name=\"COLORS\">red</field></block></value><statement name=\"SUBSTACK\"><block type=\"123_looks_glow\" id=\"nD+^=[.+sxdS(TuEy}0b\"><field name=\"COLOR\">off</field></block></statement></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></statement></block></next></block></next></block></xml>",
+        "rconfig": [],
+        "slot": 0,
+        "platform": "123",
+        "sdkVersion": "",
+        "appVersion": "",
+        "fileFormat": "1.0.0",
+        "icon": "",
+        "cppStatus": "true",
+        "checkboxes": "",
+        "monitorList": {
+          "sensorList": [],
+          "variableList": [],
+          "complexVarList": []
+        }
+      }
+    },
+    {
+      "name": "Drive Until Crash",
+      "filter_primary": "sensing",
+      "filter_secondary": "",
+      "fileImageName": "123_Sensing_driveUntilCrash.png",
+      "file": {
+        "mode": "Blocks",
+        "workspace": "<xml xmlns=\"http://www.w3.org/1999/xhtml\"><variables><variable type=\"\" id=\"U`9aA+=)r+L1tzA.)-qi\" islocal=\"false\" iscloud=\"false\" arraylength=\"0\" arraywidth=\"0\">myVariable</variable></variables><comment id=\"54JghjiW?@fJZ(!A,eB1\" x=\"567\" y=\"95\" h=\"240\" w=\"335\">Project: Drive Until Crash \n\nDescription: The 123 Robot will drive forward until it detects a crash. Then, the 123 Robot will drive in reverse for one step and act crazy.  </comment><block type=\"123_events_when_started\" id=\".NsXwU_L.OuU1l7Sho$F\" deletable=\"false\" x=\"70\" y=\"110\"><next><block type=\"123_drivetrain_drive\" id=\"9-Yl+}JI0UWjp-O3UFmX\"><field name=\"DIRECTION\">fwd</field><next><block type=\"123_other_comment\" id=\"S=:cEV{8@+r]0ih617hL\"><value name=\"COMMENT\"><shadow type=\"comment_text\" id=\"d%W/##JZ,mg_6,_5:o;m\"><field name=\"comment\">The 'wait until' block waits for a crash to be detected</field></shadow></value><next><block type=\"123_control_wait_until\" id=\"uxd8AQRnCfWaHoo]+t?~\"><value name=\"CONDITION\"><block type=\"123_sensing_crash\" id=\"q8%A1}m=MSN;9Dj5S~={\"></block></value><next><block type=\"123_drivetrain_drive_for\" id=\"gg;T?BEr53^Sa^Nejx=T\"><field name=\"DIRECTION\">rev</field><field name=\"UNITS\">step</field><value name=\"AMOUNT\"><shadow type=\"math_number\" id=\"rNIjz@]fMb67GL:mWa?b\"><field name=\"NUM\">1</field></shadow></value><next><block type=\"123_act_act\" id=\"x9=G3g:X`7#mS!onyYW4\"><field name=\"ACT\">crazy</field></block></next></block></next></block></next></block></next></block></next></block></xml>",
+        "rconfig": [],
+        "slot": 0,
+        "platform": "123",
+        "sdkVersion": "",
+        "appVersion": "",
+        "fileFormat": "1.0.0",
+        "icon": "",
+        "cppStatus": "true",
+        "checkboxes": "",
+        "monitorList": {
+          "sensorList": [],
+          "variableList": [],
+          "complexVarList": []
+        }
+      }
+    },
+    {
+      "name": "Drivetrain Moves and Turns",
+      "filter_primary": "drivetrain",
+      "filter_secondary": "",
+      "fileImageName": "123_Drivetrain_movesAndTurns.png",
+      "file": {
+        "mode": "Blocks",
+        "workspace": "<xml xmlns=\"http://www.w3.org/1999/xhtml\"><variables><variable type=\"\" id=\"U`9aA+=)r+L1tzA.)-qi\" islocal=\"false\" iscloud=\"false\" arraylength=\"0\" arraywidth=\"0\">myVariable</variable></variables><comment id=\"t9w-+SwnUdY_]_5fcguM\" x=\"518\" y=\"277\" h=\"219\" w=\"394\">Project: Drivetrain Moves and Turns\n\nDescription: This example project uses the Drivetrain blocks to drive and turn the 123 Robot in different directions. \n\nOpen the Monitor Console to see the 123 Robot's velocity and heading while it moves.</comment><block type=\"123_events_when_started\" id=\".NsXwU_L.OuU1l7Sho$F\" deletable=\"false\" x=\"70\" y=\"110\"><next><block type=\"123_other_comment\" id=\"0M3.Z1DfkG9wl2U7iMEk\"><value name=\"COMMENT\"><shadow type=\"comment_text\" id=\"#Wg1qPXt~nn!%Gz,EI(v\"><field name=\"comment\">Set the drive heading of the 123 Robot to zero before beginning</field></shadow></value><next><block type=\"123_drivetrain_set_drive_heading\" id=\"rQ:2G]1I|*%YY?,Y_}_R\"><value name=\"HEADING\"><shadow type=\"math_number\" id=\"qAdM!;MvaSx$Is[)S!^;\"><field name=\"NUM\">0</field></shadow></value><next><block type=\"123_other_comment\" id=\"rC3n(I=8*XVa7+zLXzA`\"><value name=\"COMMENT\"><shadow type=\"comment_text\" id=\"~GgYBSj$~Bp7wszU?,21\"><field name=\"comment\">Drive forward and turn right </field></shadow></value><next><block type=\"123_drivetrain_drive_for\" id=\"NMWHu62-HZ+llHU(vYZ!\"><field name=\"DIRECTION\">fwd</field><field name=\"UNITS\">step</field><value name=\"AMOUNT\"><shadow type=\"math_number\" id=\"a3,-t278yK{mW@nB!RWD\"><field name=\"NUM\">1</field></shadow></value><next><block type=\"123_drivetrain_turn_for\" id=\"`7xLX.]+iPY;U_E=d=bc\"><field name=\"TURNDIRECTION\">right</field><value name=\"AMOUNT\"><shadow type=\"math_number\" id=\"Y8S6Q9S2^c*!|+Xzjt)O\"><field name=\"NUM\">90</field></shadow></value><next><block type=\"123_other_comment\" id=\"xd=W8km9.;HffbNGM8*T\"><value name=\"COMMENT\"><shadow type=\"comment_text\" id=\"4P]r{~@Q#uKHu)GIsQM3\"><field name=\"comment\">Drive forward and turn left</field></shadow></value><next><block type=\"123_drivetrain_drive_for\" id=\"Ml.1g8hxrkcmS*YP(yqX\"><field name=\"DIRECTION\">fwd</field><field name=\"UNITS\">step</field><value name=\"AMOUNT\"><shadow type=\"math_number\" id=\"UPkg90:vix1$.Mq6+MKd\"><field name=\"NUM\">1</field></shadow></value><next><block type=\"123_drivetrain_turn_for\" id=\"r!C^OLYdxjyS$iYlZ~4:\"><field name=\"TURNDIRECTION\">left</field><value name=\"AMOUNT\"><shadow type=\"math_number\" id=\",qqC8XjUfT{KG?@2y$S@\"><field name=\"NUM\">90</field></shadow></value><next><block type=\"123_other_comment\" id=\"0T6$uJi~sES@vS#w`i5w\"><value name=\"COMMENT\"><shadow type=\"comment_text\" id=\"%[ca~OfhwDD~sbzPS~W2\"><field name=\"comment\">Drive reverse and turn left</field></shadow></value><next><block type=\"123_drivetrain_drive_for\" id=\"#aQruE6K89G]/xq1+]pq\"><field name=\"DIRECTION\">rev</field><field name=\"UNITS\">step</field><value name=\"AMOUNT\"><shadow type=\"math_number\" id=\"`1pPnK!(jxw6kbHqu1VZ\"><field name=\"NUM\">1</field></shadow></value><next><block type=\"123_drivetrain_turn_for\" id=\"#=*GYg_3sVkV-ZfPw3kf\"><field name=\"TURNDIRECTION\">left</field><value name=\"AMOUNT\"><shadow type=\"math_number\" id=\"Q*wGc~t_F30|4d.Pzq]H\"><field name=\"NUM\">90</field></shadow></value><next><block type=\"123_other_comment\" id=\"Wi@e9s|ba0*A/gEHeRW}\"><value name=\"COMMENT\"><shadow type=\"comment_text\" id=\"eUS%0]Cq[G~dJ^?Dxi;{\"><field name=\"comment\">Drive forward and turn right </field></shadow></value><next><block type=\"123_drivetrain_drive_for\" id=\"9v5kk54#JhfA8oG|)F.1\"><field name=\"DIRECTION\">fwd</field><field name=\"UNITS\">step</field><value name=\"AMOUNT\"><shadow type=\"math_number\" id=\"#9m}2-0q_x=Oqg#x?^ZC\"><field name=\"NUM\">1</field></shadow></value><next><block type=\"123_drivetrain_turn_for\" id=\".lu[7^4_8E7.hP9p%/NQ\"><field name=\"TURNDIRECTION\">right</field><value name=\"AMOUNT\"><shadow type=\"math_number\" id=\"^B~60=JYZ(leJ;R3.)Gv\"><field name=\"NUM\">90</field></shadow></value></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></xml>",
+        "rconfig": [],
+        "slot": 0,
+        "platform": "123",
+        "sdkVersion": "",
+        "appVersion": "",
+        "fileFormat": "1.0.0",
+        "icon": "",
+        "cppStatus": "true",
+        "checkboxes": "123_sensing_drive_heading 123_sensing_drive_velocity",
+        "monitorList": {
+          "sensorList": [
+            "drivetrainDriveHeading",
+            "drivetrainDriveVelocity"
+          ],
+          "variableList": [],
+          "complexVarList": []
+        }
+      }
+    },
+    {
+      "name": "Move Until Dark Line",
+      "filter_primary": "sensing",
+      "filter_secondary": "",
+      "fileImageName": "123_Sensing_moveUntilDarkLine.png",
+      "file": {
+        "mode": "Blocks",
+        "workspace": "<xml xmlns=\"http://www.w3.org/1999/xhtml\"><variables><variable type=\"\" id=\"U`9aA+=)r+L1tzA.)-qi\" islocal=\"false\" iscloud=\"false\" arraylength=\"0\" arraywidth=\"0\">myVariable</variable></variables><comment id=\"F+5fF/(g2$}O,@b#GE{(\" x=\"438\" y=\"94\" h=\"173\" w=\"417\">Project: Move Until Dark Line \n\nDescription: In this example project, the 123 Robot will move forward until the Line Sensor detects a line.  Then, the robot will stop and play the doorbell sound.  \n\n</comment><block type=\"123_events_when_started\" id=\".NsXwU_L.OuU1l7Sho$F\" deletable=\"false\" x=\"-30\" y=\"110\"><next><block type=\"123_other_comment\" id=\"j4)?3Z^Ku-,@lV7mEvcd\"><value name=\"COMMENT\"><shadow type=\"comment_text\" id=\"S3GA*?rspv4VfY[StH4`\"><field name=\"comment\">Drive forward until the Line Sensor detects a line</field></shadow></value><next><block type=\"123_drivetrain_drive_until\" id=\"][64xW:~;2mlx~u6O(U5\"><field name=\"DIRECTION\">fwd</field><field name=\"OBSTACLES\">line</field><next><block type=\"123_sounds_play_sound\" id=\"fv7j#h%A;d[UIuU6n7T]\"><field name=\"SOUND\">doorbell</field></block></next></block></next></block></next></block></xml>",
+        "rconfig": [],
+        "slot": 0,
+        "platform": "123",
+        "sdkVersion": "",
+        "appVersion": "",
+        "fileFormat": "1.0.0",
+        "icon": "",
+        "cppStatus": "true",
+        "checkboxes": "",
+        "monitorList": {
+          "sensorList": [],
+          "variableList": [],
+          "complexVarList": []
+        }
+      }
+    },
+    {
+      "name": "Organizing Code",
+      "filter_primary": "myblocks",
+      "filter_secondary": "",
+      "fileImageName": "123_MyBlocks_organizingCode.png",
+      "file": {
+        "mode": "Blocks",
+        "workspace": "<xml xmlns=\"http://www.w3.org/1999/xhtml\"><variables><variable type=\"\" id=\"U`9aA+=)r+L1tzA.)-qi\" islocal=\"false\" iscloud=\"false\" arraylength=\"0\" arraywidth=\"0\">myVariable</variable></variables><comment id=\"nu(mf.hN2gVrqGYl~:3P\" x=\"608\" y=\"164\" h=\"175\" w=\"244\">Project: Organizing Code\n\nDescription: This example project shows how to create and use myBlocks.\n</comment><block type=\"123_events_when_started\" id=\".NsXwU_L.OuU1l7Sho$F\" deletable=\"false\" x=\"10\" y=\"-130\"><next><block type=\"123_looks_glow\" id=\"rgr_LgFX5$vEq$%Wq=_s\"><field name=\"COLOR\">blue</field><next><block type=\"123_control_wait\" id=\"v}wv-/o}1id|xND/Lj=m\"><value name=\"DURATION\"><shadow type=\"math_positive_number\" id=\"D=!CC6H?avu0iS(0?KAJ\"><field name=\"NUM\">3</field></shadow></value><next><block type=\"123_other_comment\" id=\"duqVLYlXQDrUwr11dVJj\"><value name=\"COMMENT\"><shadow type=\"comment_text\" id=\"]nbh_puv6yF!;;:7;R*f\"><field name=\"comment\">myBlocks are \"called\"</field></shadow></value><next><block type=\"procedures_call\" id=\"@h/+2K9J_tp;[[$#5|xd\"><mutation proccode=\"myBlock1\" proceduredefid=\"=JK[)N5ht3aSXf(U@mqq\" argumentids=\"[]\" warp=\"false\"></mutation><next><block type=\"procedures_call\" id=\"$#//H6brU7WRCM^YWY7A\"><mutation proccode=\"myBlock2\" proceduredefid=\"PZ{Vc**!:293nyoL5Bv7\" argumentids=\"[]\" warp=\"false\"></mutation><next><block type=\"procedures_call\" id=\"6UZpH@C!t#X7_7$J.i.E\"><mutation proccode=\"myBlock1\" proceduredefid=\"=JK[)N5ht3aSXf(U@mqq\" argumentids=\"[]\" warp=\"false\"></mutation></block></next></block></next></block></next></block></next></block></next></block></next></block><block type=\"procedures_definition\" id=\"Hw2-4Wl?([`XVt|?m?Tb\" x=\"390\" y=\"-130\"><statement name=\"custom_block\"><shadow type=\"procedures_prototype\" id=\"=JK[)N5ht3aSXf(U@mqq\"><mutation proccode=\"myBlock1\" proceduredefid=\"=JK[)N5ht3aSXf(U@mqq\" argumentids=\"[]\" argumentnames=\"[]\" argumentdefaults=\"[]\" argumenttypes=\"[]\" warp=\"false\"></mutation></shadow></statement><next><block type=\"123_other_comment\" id=\"i3rMzutXs+n+i%6-:)=5\"><value name=\"COMMENT\"><shadow type=\"comment_text\" id=\"OSkq9%hIn13,t-6Lt$1w\"><field name=\"comment\">myBlocks are created with the define block</field></shadow></value><next><block type=\"123_other_comment\" id=\"H6i{c]yDvdau)|Wq3H(Z\"><value name=\"COMMENT\"><shadow type=\"comment_text\" id=\"ug6@zQ%+H%)nn}tXefR{\"><field name=\"comment\">The contents of the myBlocks are created here</field></shadow></value><next><block type=\"123_looks_glow\" id=\"*Y/i*MsMc/eZ}p5!Bh3N\"><field name=\"COLOR\">green</field><next><block type=\"123_control_wait\" id=\"/Z~:-YR*/I{m0.]@g,8;\"><value name=\"DURATION\"><shadow type=\"math_positive_number\" id=\"dYwJ/nzMtb-jABdW[I|Y\"><field name=\"NUM\">3</field></shadow></value></block></next></block></next></block></next></block></next></block><block type=\"procedures_definition\" id=\"FEP^))0O)+p,J_8e18EF\" x=\"10\" y=\"270\"><statement name=\"custom_block\"><shadow type=\"procedures_prototype\" id=\"PZ{Vc**!:293nyoL5Bv7\"><mutation proccode=\"myBlock2\" proceduredefid=\"PZ{Vc**!:293nyoL5Bv7\" argumentids=\"[]\" argumentnames=\"[]\" argumentdefaults=\"[]\" argumenttypes=\"[]\" warp=\"false\"></mutation></shadow></statement><next><block type=\"123_other_comment\" id=\"`*weAp{^am$E+Wf}j{fq\"><value name=\"COMMENT\"><shadow type=\"comment_text\" id=\"^s`X%*DGM@|1aTyyUGES\"><field name=\"comment\">Multiple myBlocks can be defined within the same project </field></shadow></value><next><block type=\"123_looks_glow\" id=\";Pi-j)=.V0=wm4I]Gvfx\"><field name=\"COLOR\">off</field><next><block type=\"123_sounds_play_sound\" id=\"={!+YhIt%sfOSQG+3yr!\"><field name=\"SOUND\">honk</field><next><block type=\"123_control_wait\" id=\"1wRXeQOJ{t2rcL}xT~(1\"><value name=\"DURATION\"><shadow type=\"math_positive_number\" id=\"72#A5p=Sj[[:ImUUIrK0\"><field name=\"NUM\">3</field></shadow></value></block></next></block></next></block></next></block></next></block></xml>",
+        "rconfig": [],
+        "slot": 0,
+        "platform": "123",
+        "sdkVersion": "",
+        "appVersion": "",
+        "fileFormat": "1.0.0",
+        "icon": "",
+        "cppStatus": "true",
+        "checkboxes": "",
+        "monitorList": {
+          "sensorList": [],
+          "variableList": [],
+          "complexVarList": []
+        }
+      }
+    },
+    {
+      "name": "Play Sounds",
+      "filter_primary": "sound",
+      "filter_secondary": "",
+      "fileImageName": "123_Sound_playSounds.png",
+      "file": {
+        "mode": "Blocks",
+        "workspace": "<xml xmlns=\"http://www.w3.org/1999/xhtml\"><variables><variable type=\"\" id=\"U`9aA+=)r+L1tzA.)-qi\" islocal=\"false\" iscloud=\"false\" arraylength=\"0\" arraywidth=\"0\">myVariable</variable></variables><comment id=\"NJ,*%;zVxq%X[.*QnjF4\" x=\"479\" y=\"123\" h=\"159\" w=\"358\">Project: Play Sounds \n\nDescription: This example project uses a Repeat Loop to play the different sounds of the 123 Robot.  </comment><block type=\"123_events_when_started\" id=\".NsXwU_L.OuU1l7Sho$F\" deletable=\"false\" x=\"70\" y=\"110\"><next><block type=\"123_other_comment\" id=\"I4~4rDbp_$C;oqS2cj$u\"><value name=\"COMMENT\"><shadow type=\"comment_text\" id=\"93b$H9::{W(kNlMHcO}0\"><field name=\"comment\">Repeat each of the sounds 5 times </field></shadow></value><next><block type=\"123_control_repeat\" id=\"lK`ZYN)}9nh7J_K:P*-C\"><value name=\"TIMES\"><shadow type=\"math_whole_number\" id=\"61gbo?s[/RH##~q8[8U6\"><field name=\"NUM\">5</field></shadow></value><statement name=\"SUBSTACK\"><block type=\"123_sounds_play_sound\" id=\"$h|k,!A-8()?-{_mv4?#\"><field name=\"SOUND\">honk</field><next><block type=\"123_control_wait\" id=\"9mYwX^=x:xbPMeqR-_Zj\"><value name=\"DURATION\"><shadow type=\"math_positive_number\" id=\"#zPqZ!0lJ^ea?Li;hDZc\"><field name=\"NUM\">1</field></shadow></value><next><block type=\"123_sounds_play_sound\" id=\"YSo=WDgo(BsWJ4Ge*K@H\"><field name=\"SOUND\">doorbell</field><next><block type=\"123_control_wait\" id=\"4gQokiZ8P7P6Ba1CvIU7\"><value name=\"DURATION\"><shadow type=\"math_positive_number\" id=\"na]YTRqk2Bu%?;){vIrn\"><field name=\"NUM\">1</field></shadow></value><next><block type=\"123_sounds_play_sound\" id=\"q$8aq=CZzy`OOiNxpWfv\"><field name=\"SOUND\">crash</field><next><block type=\"123_control_wait\" id=\":OkMos*Oa3cK~vwIT[7Y\"><value name=\"DURATION\"><shadow type=\"math_positive_number\" id=\"+!XF/0S0N6}Z43xyvSxE\"><field name=\"NUM\">1</field></shadow></value></block></next></block></next></block></next></block></next></block></next></block></statement></block></next></block></next></block></xml>",
+        "rconfig": [],
+        "slot": 0,
+        "platform": "123",
+        "sdkVersion": "",
+        "appVersion": "",
+        "fileFormat": "1.0.0",
+        "icon": "",
+        "cppStatus": "true",
+        "checkboxes": "",
+        "monitorList": {
+          "sensorList": [],
+          "variableList": [],
+          "complexVarList": []
+        }
+      }
+    },
+    {
+      "name": "Printing Text",
+      "filter_primary": "looks",
+      "filter_secondary": "",
+      "fileImageName": "123_Looks_printingText.png",
+      "file": {
+        "mode": "Blocks",
+        "workspace": "<xml xmlns=\"http://www.w3.org/1999/xhtml\"><variables><variable type=\"\" id=\"U`9aA+=)r+L1tzA.)-qi\" islocal=\"false\" iscloud=\"false\" arraylength=\"0\" arraywidth=\"0\">myVariable</variable></variables><comment id=\";u-TJ1]PwqZjiC.q}F[~\" x=\"84\" y=\"124\" h=\"176\" w=\"315\">Project: Printing Text\n\nDescription: This example project will show how to print text to the Print Console.</comment><block type=\"123_events_when_started\" id=\".NsXwU_L.OuU1l7Sho$F\" deletable=\"false\" x=\"-430\" y=\"30\"><next><block type=\"123_looks_clear_all_rows\" id=\"2}2hNNZQm,Q`X.RAaDrv\"><next><block type=\"123_other_comment\" id=\"z}$u,atSQtL|-*y7sews\"><value name=\"COMMENT\"><shadow type=\"comment_text\" id=\"px32iFB)I#]2Z*RzJp)Q\"><field name=\"comment\">Print a single line of text </field></shadow></value><next><block type=\"123_other_comment\" id=\"g%xW3jvt7UNMbqre#VXK\"><value name=\"COMMENT\"><shadow type=\"comment_text\" id=\"8VPEL9j%VuFGvF:Up[Z9\"><field name=\"comment\">Selecting the arrow will move the cursor to the next line</field></shadow></value><next><block type=\"123_looks_print\" id=\"CRDS`By-FZYj=iN0A4S$\"><field name=\"andsetcursortonextrow_mutator\">TRUE</field><value name=\"DATA\"><shadow type=\"text\" id=\"pt_El;vhM%u%e?+U5XLW\"><field name=\"TEXT\">Single line of text</field></shadow></value><next><block type=\"123_other_comment\" id=\"/Xz$v/K`y3,A`/3@!o(Q\"><value name=\"COMMENT\"><shadow type=\"comment_text\" id=\"4m_jeG_EyopW0}?e:P}_\"><field name=\"comment\">Print the text and remove it </field></shadow></value><next><block type=\"123_looks_print\" id=\"4lu5*:wg3h=GSB,dzxTO\"><field name=\"andsetcursortonextrow_mutator\">FALSE</field><value name=\"DATA\"><shadow type=\"text\" id=\"@=9vF]pUPNzLR4HLv0{?\"><field name=\"TEXT\">This text will clear in 3 seconds</field></shadow></value><next><block type=\"123_other_comment\" id=\"J7)zLvbJ=@4}Ti,7WgLf\"><value name=\"COMMENT\"><shadow type=\"comment_text\" id=\"^W*]}T+i3Hpif^`-PKG]\"><field name=\"comment\">Move the cursor down to the next line</field></shadow></value><next><block type=\"123_looks_next_row\" id=\"@GzTZEDI:PeTb4gn_S.`\"><next><block type=\"123_control_wait\" id=\"3%:7Ak$a4!(VT*doQy!M\"><value name=\"DURATION\"><shadow type=\"math_positive_number\" id=\"o=tpx-D%=9oNuR`Vejnc\"><field name=\"NUM\">3</field></shadow></value><next><block type=\"123_looks_clear_all_rows\" id=\"_!I{B4PlK3X-%a8zzOtx\"><next><block type=\"123_other_comment\" id=\"Z};(J3U-aU,ZLGD]TZIz\"><value name=\"COMMENT\"><shadow type=\"comment_text\" id=\"$%a#P%HmNBgJ,aVQhNda\"><field name=\"comment\">Change the color of the text </field></shadow></value><next><block type=\"123_looks_set_print_color\" id=\"5W;J-!3Ibz(l{V/0x*CB\"><field name=\"COLORS\">red</field><next><block type=\"123_looks_print\" id=\"63}DHiBuyDC^gA*$v0X_\"><field name=\"andsetcursortonextrow_mutator\">FALSE</field><value name=\"DATA\"><shadow type=\"text\" id=\"ARmiJJvdasruVfny-+j@\"><field name=\"TEXT\">Red</field></shadow></value></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></xml>",
+        "rconfig": [],
+        "slot": 0,
+        "platform": "123",
+        "sdkVersion": "20210520.18.00.00",
+        "appVersion": "2.0.8",
+        "fileFormat": "1.0.0",
+        "icon": "",
+        "cppStatus": "true",
+        "checkboxes": "",
+        "monitorList": {
+          "sensorList": [],
+          "variableList": [],
+          "complexVarList": []
+        }
+      }
+    },
+    {
+      "name": "Printing Values",
+      "filter_primary": "looks",
+      "filter_secondary": "",
+      "fileImageName": "123_Looks_printingValues.png",
+      "file": {
+        "mode": "Blocks",
+        "workspace": "<xml xmlns=\"http://www.w3.org/1999/xhtml\"><variables><variable type=\"\" id=\"U`9aA+=)r+L1tzA.)-qi\" islocal=\"false\" iscloud=\"false\" arraylength=\"0\" arraywidth=\"0\">myVariable</variable></variables><comment id=\"#GBd4!Y!{9FoLeW16%jP\" x=\"463\" y=\"243\" h=\"159\" w=\"348\">Project: Printing Values\n\nDescription: This example project will print the values of the timer to the Print Console.\n</comment><block type=\"123_events_when_started\" id=\".NsXwU_L.OuU1l7Sho$F\" deletable=\"false\" x=\"-70\" y=\"70\"><next><block type=\"123_other_comment\" id=\"pOUS_vZbW[$.T?Lnc*4!\"><value name=\"COMMENT\"><shadow type=\"comment_text\" id=\"aMfP,/V!g#8Nm@Ab)`Jl\"><field name=\"comment\">Set the precision of the printed timer value to 1 decimal place</field></shadow></value><next><block type=\"123_looks_set_print_precision\" id=\"Jq]=,6I4frik`8/iu/Gr\"><field name=\"PRECISION\">1</field><next><block type=\"123_control_forever\" id=\"4FhdPuFpMr|AB*4vTI5K\"><statement name=\"SUBSTACK\"><block type=\"123_other_comment\" id=\"U4fAPZ/]l{=m;7um/*|K\"><value name=\"COMMENT\"><shadow type=\"comment_text\" id=\"$opTa@Yw|1n)lZ`Tg0*_\"><field name=\"comment\">Each iteration of the loop will clear the Print Console</field></shadow></value><next><block type=\"123_looks_clear_all_rows\" id=\"#4Ex!51ts_7X_iBqN%*P\"><next><block type=\"123_other_comment\" id=\"V$~Zd%nZYKbFCymw8{2?\"><value name=\"COMMENT\"><shadow type=\"comment_text\" id=\":L}I@*uDnu;(#^lRA[rZ\"><field name=\"comment\">Print the label and the value of the timer</field></shadow></value><next><block type=\"123_looks_print\" id=\"+@Y$rBm`h_xtgNb*(.g%\"><value name=\"DATA\"><shadow type=\"text\" id=\"sg@wEg@;S((?y]:LT0XE\"><field name=\"TEXT\">Timer (Seconds): </field></shadow></value><next><block type=\"123_looks_print\" id=\"w0CI1|.^;D(]#*)MY%Tl\"><value name=\"DATA\"><shadow type=\"text\" id=\"A@kGqOQ02H3U[/3;;L(a\"><field name=\"TEXT\">Hello</field></shadow><block type=\"123_sensing_timer_value\" id=\"m10.1rzq/dWc:`i3y0~3\"></block></value><next><block type=\"123_control_wait\" id=\"EI8XkK3PqpavY8u%MnGd\"><value name=\"DURATION\"><shadow type=\"math_positive_number\" id=\"e0:1.PA1=p/r`%-k[`RG\"><field name=\"NUM\">0.1</field></shadow></value></block></next></block></next></block></next></block></next></block></next></block></statement></block></next></block></next></block></next></block></xml>",
+        "rconfig": [],
+        "slot": 0,
+        "platform": "123",
+        "sdkVersion": "",
+        "appVersion": "",
+        "fileFormat": "1.0.0",
+        "icon": "",
+        "cppStatus": "true",
+        "checkboxes": "",
+        "monitorList": {
+          "sensorList": [],
+          "variableList": [],
+          "complexVarList": []
+        }
+      }
+    },
+    {
+      "name": "Showing Emotions",
+      "filter_primary": "actions",
+      "filter_secondary": "",
+      "fileImageName": "123_Actions_showingEmotions.png",
+      "file": {
+        "mode": "Blocks",
+        "workspace": "<xml xmlns=\"http://www.w3.org/1999/xhtml\"><variables></variables><comment id=\"[=:~~hHU@%#m+z+k0[jp\" x=\"457\" y=\"260\" h=\"188\" w=\"328\">Project: Showing Emotions\n\nDescription: This example uses a Repeat Loop to show each of the actions: act sad, act happy, and act crazy.  </comment><block type=\"123_events_when_started\" id=\".NsXwU_L.OuU1l7Sho$F\" deletable=\"false\" x=\"70\" y=\"110\"><next><block type=\"123_other_comment\" id=\"EMmRF[o8%6Xcum{,u`uc\"><value name=\"COMMENT\"><shadow type=\"comment_text\" id=\"8D}4.b(HZB(-q53ElDE%\"><field name=\"comment\">Repeat each of the action blocks 5 times</field></shadow></value><next><block type=\"123_control_repeat\" id=\"-VjiSEg+VVF?W2mna2_l\"><value name=\"TIMES\"><shadow type=\"math_whole_number\" id=\"1UC-ZVL?~cq07llm@s7f\"><field name=\"NUM\">5</field></shadow></value><statement name=\"SUBSTACK\"><block type=\"123_act_act\" id=\"/IP[BA$EJ)a0{Vn%dtWx\"><field name=\"ACT\">sad</field><next><block type=\"123_control_wait\" id=\"-U$FTP]WwtIc2vFDbA7V\"><value name=\"DURATION\"><shadow type=\"math_positive_number\" id=\"3KL;-pBZ$UHpYxT*~V,d\"><field name=\"NUM\">1</field></shadow></value><next><block type=\"123_act_act\" id=\"F1jAzHvy1MH2Ev/?Sn9Z\"><field name=\"ACT\">happy</field><next><block type=\"123_control_wait\" id=\"=2bK5yv2[4WkLm6h7xND\"><value name=\"DURATION\"><shadow type=\"math_positive_number\" id=\"49}AE.Eo6$(?bWdM3*DJ\"><field name=\"NUM\">1</field></shadow></value><next><block type=\"123_act_act\" id=\"A4^]6hy=Ug/%Yb1HRhmJ\"><field name=\"ACT\">crazy</field><next><block type=\"123_control_wait\" id=\"V(X2kFvt?T(bWTF8=dn6\"><value name=\"DURATION\"><shadow type=\"math_positive_number\" id=\"P79O?iUhSROAg|:.v(*.\"><field name=\"NUM\">1</field></shadow></value></block></next></block></next></block></next></block></next></block></next></block></statement></block></next></block></next></block></xml>",
+        "rconfig": [],
+        "slot": 0,
+        "platform": "123",
+        "sdkVersion": "20210316.11.00.00",
+        "appVersion": "2.0.8",
+        "fileFormat": "1.0.0",
+        "icon": "",
+        "cppStatus": "true",
+        "checkboxes": "",
+        "monitorList": {
+          "sensorList": [],
+          "variableList": [],
+          "complexVarList": []
+        }
+      }
+    },
+    {
+      "name": "Storing Values",
+      "filter_primary": "variables",
+      "filter_secondary": "",
+      "fileImageName": "123_Variables_storingValues.png",
+      "file": {
+        "mode": "Blocks",
+        "workspace": "<xml xmlns=\"http://www.w3.org/1999/xhtml\"><variables><variable type=\"\" id=\"U`9aA+=)r+L1tzA.)-qi\" islocal=\"false\" iscloud=\"false\" arraylength=\"0\" arraywidth=\"0\">myVariable</variable><variable type=\"\" id=\"cNl?=kGG;U7ixe_JubE^\" islocal=\"false\" iscloud=\"false\" arraylength=\"0\" arraywidth=\"0\">distanceToTravel</variable><variable type=\"\" id=\";YJW/*DAbK*[@KQ*_F4?\" islocal=\"false\" iscloud=\"false\" arraylength=\"0\" arraywidth=\"0\">angleToTurn</variable></variables><comment id=\"rE*rFqhhCMA0ENg`bpbG\" x=\"458\" y=\"240\" h=\"182\" w=\"325\">Project: Storing Values\n\nDescription: This project example will show how variables can be used to store values for later use.</comment><block type=\"123_events_when_started\" id=\".NsXwU_L.OuU1l7Sho$F\" deletable=\"false\" x=\"-70\" y=\"50\"><next><block type=\"123_other_comment\" id=\"sB/m;n_Knb]KY(`r5{CS\"><value name=\"COMMENT\"><shadow type=\"comment_text\" id=\"J7Vo`6$3I}R..}JL[wkQ\"><field name=\"comment\">Variables can be used to set values that can be used later in the project</field></shadow></value><next><block type=\"123_variables_set_variable\" id=\"G5w11XU1XSVbeS#D[PuU\"><field name=\"VARIABLE\" id=\"cNl?=kGG;U7ixe_JubE^\" variabletype=\"\">distanceToTravel</field><value name=\"VALUE\"><shadow type=\"math_number\" id=\"k(}J3jh_`Qe?KC}=F[iM\"><field name=\"NUM\">1</field></shadow></value><next><block type=\"123_variables_set_variable\" id=\"t6T!JH+Qt2L=fHQ97-b0\"><field name=\"VARIABLE\" id=\";YJW/*DAbK*[@KQ*_F4?\" variabletype=\"\">angleToTurn</field><value name=\"VALUE\"><shadow type=\"math_number\" id=\"uP,h12bMDq+ih^g9@dZ.\"><field name=\"NUM\">90</field></shadow></value><next><block type=\"123_drivetrain_drive_for\" id=\"5Gp[]gc3`#n%Mio7=gX@\"><field name=\"DIRECTION\">fwd</field><field name=\"UNITS\">step</field><value name=\"AMOUNT\"><shadow type=\"math_number\" id=\"oq[K}*C2O8^wt.b#L$Ls\"><field name=\"NUM\">1</field></shadow><block type=\"123_variables_variable\" id=\"`C6)^V{5O7E,7COpVKaq\"><field name=\"VARIABLE\" id=\"cNl?=kGG;U7ixe_JubE^\" variabletype=\"\">distanceToTravel</field></block></value><next><block type=\"123_drivetrain_turn_for\" id=\"P(;)_2Ug+rrY`Eu$=gw5\"><field name=\"TURNDIRECTION\">right</field><value name=\"AMOUNT\"><shadow type=\"math_number\" id=\"335;9G`gwEOYdi^U|x@X\"><field name=\"NUM\">90</field></shadow><block type=\"123_variables_variable\" id=\"-N{+g4bVccV:u,Fa.MV`\"><field name=\"VARIABLE\" id=\";YJW/*DAbK*[@KQ*_F4?\" variabletype=\"\">angleToTurn</field></block></value><next><block type=\"123_other_comment\" id=\"]muF$(.5Gg)rxgU(=T,I\"><value name=\"COMMENT\"><shadow type=\"comment_text\" id=\"%]:KD].}QufuDc1oO6Y#\"><field name=\"comment\">Variables can be changed at any point in your project</field></shadow></value><next><block type=\"123_variables_set_variable\" id=\"y}y{%}od/pQ_*b-%h.]8\"><field name=\"VARIABLE\" id=\"cNl?=kGG;U7ixe_JubE^\" variabletype=\"\">distanceToTravel</field><value name=\"VALUE\"><shadow type=\"math_number\" id=\"w0DE#:=+!X{iia?DtIa$\"><field name=\"NUM\">2</field></shadow></value><next><block type=\"123_variables_set_variable\" id=\"y]7PcB#_We6f}XB)}XY{\"><field name=\"VARIABLE\" id=\";YJW/*DAbK*[@KQ*_F4?\" variabletype=\"\">angleToTurn</field><value name=\"VALUE\"><shadow type=\"math_number\" id=\"YLR4axCBtt=%F8!E!_nV\"><field name=\"NUM\">180</field></shadow></value><next><block type=\"123_drivetrain_drive_for\" id=\"LZW.t{}FVrRMEN4tRTKm\"><field name=\"DIRECTION\">fwd</field><field name=\"UNITS\">step</field><value name=\"AMOUNT\"><shadow type=\"math_number\" id=\"(Mj1|J;_QkXMW`aFVPl}\"><field name=\"NUM\">1</field></shadow><block type=\"123_variables_variable\" id=\"G9D8[FCjp?(Wg6XZ3nSI\"><field name=\"VARIABLE\" id=\"cNl?=kGG;U7ixe_JubE^\" variabletype=\"\">distanceToTravel</field></block></value><next><block type=\"123_drivetrain_turn_for\" id=\"66n,7}:]an!s`~?7p5mB\"><field name=\"TURNDIRECTION\">right</field><value name=\"AMOUNT\"><shadow type=\"math_number\" id=\"Flz}MK1Mm:fz6Zm:K5xv\"><field name=\"NUM\">90</field></shadow><block type=\"123_variables_variable\" id=\"F4l00EBP-GrE+j6kVx-Z\"><field name=\"VARIABLE\" id=\";YJW/*DAbK*[@KQ*_F4?\" variabletype=\"\">angleToTurn</field></block></value><next><block type=\"123_other_comment\" id=\"Ef9dj5{g5IN##I)+OW7]\"><value name=\"COMMENT\"><shadow type=\"comment_text\" id=\"Ao5?[ZefqPAYL^2pO2WA\"><field name=\"comment\">Number values can also be used to increment variables</field></shadow></value><next><block type=\"123_variables_change_variable\" id=\"yT7};EkKeky,Te|p)toe\"><field name=\"VARIABLE\" id=\"cNl?=kGG;U7ixe_JubE^\" variabletype=\"\">distanceToTravel</field><value name=\"VALUE\"><shadow type=\"math_number\" id=\"N;{u0r1yN#{llw*(FOii\"><field name=\"NUM\">1</field></shadow></value><next><block type=\"123_variables_change_variable\" id=\"BBULBw.P9NwF@;^+#Cl{\"><field name=\"VARIABLE\" id=\";YJW/*DAbK*[@KQ*_F4?\" variabletype=\"\">angleToTurn</field><value name=\"VALUE\"><shadow type=\"math_number\" id=\"wNNy/Akl/6@+bP-hy6Rn\"><field name=\"NUM\">90</field></shadow></value><next><block type=\"123_drivetrain_drive_for\" id=\"%YSaPKGEy4L5tq0^d~Hw\"><field name=\"DIRECTION\">fwd</field><field name=\"UNITS\">step</field><value name=\"AMOUNT\"><shadow type=\"math_number\" id=\"Z}kJU]*[$?p:ky9s6QC1\"><field name=\"NUM\">1</field></shadow><block type=\"123_variables_variable\" id=\"T*oc8|-+e+t*IOw.baoT\"><field name=\"VARIABLE\" id=\"cNl?=kGG;U7ixe_JubE^\" variabletype=\"\">distanceToTravel</field></block></value><next><block type=\"123_drivetrain_turn_for\" id=\"9/RFn{2|g^OzVs!w`y(E\"><field name=\"TURNDIRECTION\">right</field><value name=\"AMOUNT\"><shadow type=\"math_number\" id=\"X+qN39tZ[siHeE%E:;13\"><field name=\"NUM\">90</field></shadow><block type=\"123_variables_variable\" id=\"Z9]g;3c!;qaQuz$J`+kK\"><field name=\"VARIABLE\" id=\";YJW/*DAbK*[@KQ*_F4?\" variabletype=\"\">angleToTurn</field></block></value></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></xml>",
+        "rconfig": [],
+        "slot": 0,
+        "platform": "123",
+        "sdkVersion": "",
+        "appVersion": "",
+        "fileFormat": "1.0.0",
+        "icon": "",
+        "cppStatus": "true",
+        "checkboxes": "",
+        "monitorList": {
+          "sensorList": [],
+          "variableList": [],
+          "complexVarList": []
+        }
+      }
+    },
+    {
+      "name": "Turning Accurately",
+      "filter_primary": "drivetrain",
+      "filter_secondary": "",
+      "fileImageName": "123_Drivetrain_turningAccurately.png",
+      "file": {
+        "mode": "Blocks",
+        "workspace": "<xml xmlns=\"http://www.w3.org/1999/xhtml\"><variables><variable type=\"\" id=\"U`9aA+=)r+L1tzA.)-qi\" islocal=\"false\" iscloud=\"false\" arraylength=\"0\" arraywidth=\"0\">myVariable</variable></variables><comment id=\"9#YXooZ(C6c]2a~:?7jj\" x=\"471\" y=\"120\" h=\"219\" w=\"386\">Project: Turning Accurately \n\nDescription: The example project will show how to use different Drivetrain turning commands to control the 123 Robot.</comment><block type=\"123_events_when_started\" id=\".NsXwU_L.OuU1l7Sho$F\" deletable=\"false\" x=\"-70\" y=\"-10\"><next><block type=\"123_other_comment\" id=\"1r7}AvUykczdBcbtWSx3\"><value name=\"COMMENT\"><shadow type=\"comment_text\" id=\"^z(:lKTZ*$m|rqu?n}Hh\"><field name=\"comment\">A non-waiting block. Therefore, the 123 Robot will turn for 4 seconds and then stop</field></shadow></value><next><block type=\"123_drivetrain_turn\" id=\"0l!L$XW(8~Ri+4/vg=f|\"><field name=\"TURNDIRECTION\">right</field><next><block type=\"123_control_wait\" id=\"SBL,ZBOMXd%H+v`s0YO8\"><value name=\"DURATION\"><shadow type=\"math_positive_number\" id=\"(TtK]2b[v/hixqp$[N7Z\"><field name=\"NUM\">4</field></shadow></value><next><block type=\"123_drivetrain_stop_driving\" id=\"S1Cz!tT12L;!i%6y`U@~\"><next><block type=\"123_other_comment\" id=\"!mf.,lH}Q_[yxM[a=g$R\"><value name=\"COMMENT\"><shadow type=\"comment_text\" id=\"P;l^h-$f[q[}4^;^C3G2\"><field name=\"comment\">A brief delay to observe the result of the turning action </field></shadow></value><next><block type=\"123_control_wait\" id=\"RFBlr+v0D|8P}uip]5cB\"><value name=\"DURATION\"><shadow type=\"math_positive_number\" id=\"49Q(!jHYqX~-@A0{UID$\"><field name=\"NUM\">1</field></shadow></value><next><block type=\"123_other_comment\" id=\"+28.8oQ`6m,+P;an:(KW\"><value name=\"COMMENT\"><shadow type=\"comment_text\" id=\"V)ZO1R8rxX{Ft?^H1~No\"><field name=\"comment\">(current position of the 123 Robot + the number of degrees)</field></shadow></value><next><block type=\"123_drivetrain_turn_for\" id=\"{QcGS@k|70N0oV+q/j6b\"><field name=\"TURNDIRECTION\">left</field><value name=\"AMOUNT\"><shadow type=\"math_number\" id=\":R.rkV.?YD-hfo`ra8,=\"><field name=\"NUM\">180</field></shadow></value><next><block type=\"123_control_wait\" id=\"hd6)|.fgGdTNHc|*n5:/\"><value name=\"DURATION\"><shadow type=\"math_positive_number\" id=\"G=d6an~gWpzB,1A^|#m@\"><field name=\"NUM\">1</field></shadow></value><next><block type=\"123_other_comment\" id=\"0/gWq4fv8KV,.(!t4.Zq\"><value name=\"COMMENT\"><shadow type=\"comment_text\" id=\"8`O;GLQ)Ph=6G#=L3hF$\"><field name=\"comment\">A 'Turn to' block moves the robot to an exact heading with the use of the built-in gyro sensor </field></shadow></value><next><block type=\"123_other_comment\" id=\"?ANrO+8oqKqK;d62:AB:\"><value name=\"COMMENT\"><shadow type=\"comment_text\" id=\"X8)QE]AnIH)P~OLTFz%[\"><field name=\"comment\">The block will result in the robot turning to a heading value of zero</field></shadow></value><next><block type=\"123_other_comment\" id=\"I`+-+!dppd`^Am)M[S)u\"><value name=\"COMMENT\"><shadow type=\"comment_text\" id=\"pR`,dC7`F5Nf*U}=bR9e\"><field name=\"comment\">and will determine the fastest direction to turn </field></shadow></value><next><block type=\"123_drivetrain_turn_to_heading\" id=\"y1J-~:*_gNJGGvwwj]jf\"><value name=\"HEADING\"><shadow type=\"math_number\" id=\"FEpe$eL;qQ;Ee+|qwV~7\"><field name=\"NUM\">0</field></shadow></value></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></xml>",
+        "rconfig": [],
+        "slot": 0,
+        "platform": "123",
+        "sdkVersion": "",
+        "appVersion": "",
+        "fileFormat": "1.0.0",
+        "icon": "",
+        "cppStatus": "true",
+        "checkboxes": "",
+        "monitorList": {
+          "sensorList": [],
+          "variableList": [],
+          "complexVarList": []
+        }
+      }
+    },
+    {
+      "name": "Using Math",
+      "filter_primary": "operators",
+      "filter_secondary": "",
+      "fileImageName": "123_Operators_usingMath.png",
+      "file": {
+        "mode": "Blocks",
+        "workspace": "<xml xmlns=\"http://www.w3.org/1999/xhtml\"><variables><variable type=\"\" id=\"U`9aA+=)r+L1tzA.)-qi\" islocal=\"false\" iscloud=\"false\" arraylength=\"0\" arraywidth=\"0\">myVariable</variable></variables><comment id=\"s4|Kl._a5!0Ei{5I9n,T\" x=\"530\" y=\"230\" h=\"185\" w=\"369\">Project: Using Math\n\nDescription: The 123 Robot will use the math operator blocks to drive forward 4 steps and turn right for 90 degrees.</comment><block type=\"123_events_when_started\" id=\".NsXwU_L.OuU1l7Sho$F\" deletable=\"false\" x=\"70\" y=\"110\"><next><block type=\"123_other_comment\" id=\".mOaf0*8JsUj,qN=G}(c\"><value name=\"COMMENT\"><shadow type=\"comment_text\" id=\"WZ~u)O`Fzb-DQwr/J!cy\"><field name=\"comment\">Drive forward and turn while using the operator blocks </field></shadow></value><next><block type=\"123_drivetrain_drive_for\" id=\"MrW+Du=Jr8%}A?zQ`@tS\"><field name=\"DIRECTION\">fwd</field><field name=\"UNITS\">step</field><value name=\"AMOUNT\"><shadow type=\"math_number\" id=\"FS41z[s}x$W!e4`E.w)^\"><field name=\"NUM\">1</field></shadow><block type=\"123_operator_multiply\" id=\"3ECQfJB`~oENMqR3@7)E\"><value name=\"NUM1\"><shadow type=\"math_number\" id=\"F0LxJXZpbqlu=-+gzf4t\"><field name=\"NUM\">2</field></shadow></value><value name=\"NUM2\"><shadow type=\"math_number\" id=\"p{*XuxA!/vaH(XJWJ?_x\"><field name=\"NUM\">2</field></shadow></value></block></value><next><block type=\"123_control_wait\" id=\"T38Q^e^xPen%xrZ04*Kb\"><value name=\"DURATION\"><shadow type=\"math_positive_number\" id=\"vs_FF#(ZDS1bp{B3dc!i\"><field name=\"NUM\">3</field></shadow></value><next><block type=\"123_drivetrain_turn_for\" id=\"G/gZtD06k)0K|;;4.K47\"><field name=\"TURNDIRECTION\">right</field><value name=\"AMOUNT\"><shadow type=\"math_number\" id=\"Z=%?zf]|Pw#[ZzuEzv!X\"><field name=\"NUM\">90</field></shadow><block type=\"123_operator_divide\" id=\"KZ+K#b5FNQL*Hp2_0;(y\"><value name=\"NUM1\"><shadow type=\"math_number\" id=\"T[lt*TNFrZ*x(yofg|m{\"><field name=\"NUM\">180</field></shadow></value><value name=\"NUM2\"><shadow type=\"math_number\" id=\"GeqX+TWi@74e8!y/)w8H\"><field name=\"NUM\">2</field></shadow></value></block></value></block></next></block></next></block></next></block></next></block></xml>",
+        "rconfig": [],
+        "slot": 0,
+        "platform": "123",
+        "sdkVersion": "",
+        "appVersion": "",
+        "fileFormat": "1.0.0",
+        "icon": "",
+        "cppStatus": "true",
+        "checkboxes": "",
+        "monitorList": {
+          "sensorList": [],
+          "variableList": [],
+          "complexVarList": []
+        }
+      }
+    },
+    {
+      "name": "Wait Until Push",
+      "filter_primary": "control",
+      "filter_secondary": "",
+      "fileImageName": "123_Control_waitUntilPush.png",
+      "file": {
+        "mode": "Blocks",
+        "workspace": "<xml xmlns=\"http://www.w3.org/1999/xhtml\"><variables><variable type=\"\" id=\"U`9aA+=)r+L1tzA.)-qi\" islocal=\"false\" iscloud=\"false\" arraylength=\"0\" arraywidth=\"0\">myVariable</variable></variables><comment id=\"D{ec|MNFmf(71wo2dyql\" x=\"507\" y=\"234\" h=\"209\" w=\"430\">Project: Wait Until Push\n\nDescription: When starting this example project, the 123 Robot will not move until the Move button is pressed .  Once pressed, the robot will move forward for 3 steps (225 mm).</comment><block type=\"123_events_when_started\" id=\".NsXwU_L.OuU1l7Sho$F\" deletable=\"false\" x=\"70\" y=\"110\"><next><block type=\"123_other_comment\" id=\"(vU/rFVXEe[7qfj:%Ggq\"><value name=\"COMMENT\"><shadow type=\"comment_text\" id=\"s#JoOAoL$Ll8yaW5o9PE\"><field name=\"comment\">Press the button on the 123 Robot to begin movement </field></shadow></value><next><block type=\"123_control_wait_until\" id=\"Lnk%CO1x38X;@@[V@!V!\"><value name=\"CONDITION\"><block type=\"123_sensing_brain_button_pressed\" id=\"=Eb2t;(vSi{h]I|R_9aE\"><field name=\"BUTTONS\">movePressed</field></block></value><next><block type=\"123_drivetrain_drive_for\" id=\"UZ*!d}g?l}|2?WK+%p+o\"><field name=\"DIRECTION\">fwd</field><field name=\"UNITS\">step</field><value name=\"AMOUNT\"><shadow type=\"math_number\" id=\"5A$bCuhaPgxg7T~O,yl}\"><field name=\"NUM\">3</field></shadow></value></block></next></block></next></block></next></block></xml>",
+        "rconfig": [],
+        "slot": 0,
+        "platform": "123",
+        "sdkVersion": "",
+        "appVersion": "",
+        "fileFormat": "1.0.0",
+        "icon": "",
+        "cppStatus": "true",
+        "checkboxes": "",
+        "monitorList": {
+          "sensorList": [],
+          "variableList": [],
+          "complexVarList": []
+        }
+      }
+    },
+    {
+      "name": "Waiting Between Commands",
+      "filter_primary": "control",
+      "filter_secondary": "",
+      "fileImageName": "123_Control_waitingBetweenCommands.png",
+      "file": {
+        "mode": "Blocks",
+        "workspace": "<xml xmlns=\"http://www.w3.org/1999/xhtml\"><variables><variable type=\"\" id=\"U`9aA+=)r+L1tzA.)-qi\" islocal=\"false\" iscloud=\"false\" arraylength=\"0\" arraywidth=\"0\">myVariable</variable></variables><comment id=\"oAl0K|K)*7E!j~[{6Kw6\" x=\"539\" y=\"195\" h=\"198\" w=\"329\">Project: Waiting Between Commands\n\nDescription: This example project will show how to use the ‘Wait” block to control project flow.</comment><block type=\"123_events_when_started\" id=\".NsXwU_L.OuU1l7Sho$F\" deletable=\"false\" x=\"-10\" y=\"90\"><next><block type=\"123_other_comment\" id=\"%qmX[kt.jknnclaww%4A\"><value name=\"COMMENT\"><shadow type=\"comment_text\" id=\"aP%?F]0JeBV$%UjB=@$A\"><field name=\"comment\">Non-waiting block drives the robot forward for 2 seconds</field></shadow></value><next><block type=\"123_drivetrain_drive\" id=\"/C]@e)=[|XYP#[Ed_$^L\"><field name=\"DIRECTION\">fwd</field><next><block type=\"123_control_wait\" id=\"`1*iNZ9|*BFBBk9BUMPG\"><value name=\"DURATION\"><shadow type=\"math_positive_number\" id=\"NhX*AaB!1vO11wUE)5~K\"><field name=\"NUM\">2</field></shadow></value><next><block type=\"123_drivetrain_stop_driving\" id=\"}zCAipP/5MhT)rJSaZbk\"><next><block type=\"123_control_wait\" id=\"f$nsqY/`hh+3D(;=c~FC\"><value name=\"DURATION\"><shadow type=\"math_positive_number\" id=\"8XjHx@VjoD|GDPgeM/6}\"><field name=\"NUM\">3</field></shadow></value><next><block type=\"123_other_comment\" id=\"uTXTt{AgXEDp]:cLEm*y\"><value name=\"COMMENT\"><shadow type=\"comment_text\" id=\"htHTMGhmV/zvb[5R3qz[\"><field name=\"comment\">'Turn for' is a waiting block</field></shadow></value><next><block type=\"123_other_comment\" id=\"`g!Ou$Joe+c:M97D2rAD\"><value name=\"COMMENT\"><shadow type=\"comment_text\" id=\"_FwR*9x#I7IvC[@7Bj*#\"><field name=\"comment\">As a result, the robot will turn for 90 degrees before doing anything else</field></shadow></value><next><block type=\"123_drivetrain_turn_for\" id=\"+UP7Ic=Az;)IOHOsP7ol\"><field name=\"TURNDIRECTION\">right</field><value name=\"AMOUNT\"><shadow type=\"math_number\" id=\"Jt4o3]w4#Kw.rCY2`+;|\"><field name=\"NUM\">90</field></shadow></value><next><block type=\"123_control_wait\" id=\"-{ScQrbl,|=S6m6[CEf3\"><value name=\"DURATION\"><shadow type=\"math_positive_number\" id=\"K.G+uEwX}=7K6Kzbr9*R\"><field name=\"NUM\">0.5</field></shadow></value><next><block type=\"123_other_comment\" id=\"2CJ(ZX*?l-$82Do73LkA\"><value name=\"COMMENT\"><shadow type=\"comment_text\" id=\"k?W-+W-|MO3XrHSbE(}`\"><field name=\"comment\">'Drive for' is a waiting block</field></shadow></value><next><block type=\"123_other_comment\" id=\"I4zZF~#qVTaZq{^WU0pI\"><value name=\"COMMENT\"><shadow type=\"comment_text\" id=\"2@$5lck?lBLaC~Ge-Guh\"><field name=\"comment\">As a result, the robot will drive forward for 2 steps before doing anything else</field></shadow></value><next><block type=\"123_drivetrain_drive_for\" id=\"3)OA_%IAfhGURr0c9XLx\"><field name=\"DIRECTION\">fwd</field><field name=\"UNITS\">step</field><value name=\"AMOUNT\"><shadow type=\"math_number\" id=\"b}hQ=?^kaelZpC?T`gp~\"><field name=\"NUM\">2</field></shadow></value></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></next></block></xml>",
+        "rconfig": [],
+        "slot": 0,
+        "platform": "123",
+        "sdkVersion": "",
+        "appVersion": "",
+        "fileFormat": "1.0.0",
+        "icon": "",
+        "cppStatus": "true",
+        "checkboxes": "",
+        "monitorList": {
+          "sensorList": [],
+          "variableList": [],
+          "complexVarList": []
+        }
+      }
+    },
+    {
+      "name": "While Loops",
+      "filter_primary": "control",
+      "filter_secondary": "",
+      "fileImageName": "123_Control_whileLoops.png",
+      "file": {
+        "mode": "Blocks",
+        "workspace": "<xml xmlns=\"http://www.w3.org/1999/xhtml\"><variables><variable type=\"\" id=\"U`9aA+=)r+L1tzA.)-qi\" islocal=\"false\" iscloud=\"false\" arraylength=\"0\" arraywidth=\"0\">myVariable</variable></variables><comment id=\"4Hlnebf28sI(bKF0XT/#\" x=\"492\" y=\"91\" h=\"285\" w=\"410\">Project: While Loops\n\nDescription: This example project uses a While Loop to have the 123 Robot drive forward for 3 seconds.  While the condition is true (the timer value is less than 3 seconds), the robot will drive forward.\n\nWhen the condition is no longer true, the project flow will leave the While Loop and the Stop Driving block will end the 123 Robot's movements.  \n</comment><block type=\"123_events_when_started\" id=\".NsXwU_L.OuU1l7Sho$F\" deletable=\"false\" x=\"-10\" y=\"90\"><next><block type=\"123_other_comment\" id=\"z8krI^1AsaJX/]2H((5m\"><value name=\"COMMENT\"><shadow type=\"comment_text\" id=\"k9NYP*FM!#rBQAH_BB@e\"><field name=\"comment\">Reset the timer</field></shadow></value><next><block type=\"123_sensing_reset_timer\" id=\"%6,Lb92zMCmew+Hj)u^w\"><next><block type=\"123_other_comment\" id=\"5X;6Tz__xvWFJRP#4X2T\"><value name=\"COMMENT\"><shadow type=\"comment_text\" id=\"#Tff-83Y|Pb/W`v::ZpZ\"><field name=\"comment\">While the value in the timer is less than 3 seconds.....</field></shadow></value><next><block type=\"123_control_while\" id=\"kpR#g%.7vAN)fmX{hc].\"><value name=\"CONDITION\"><block type=\"123_operator_less_than\" id=\"I8;/N3(zY8RotT57YF2k\"><value name=\"OPERAND1\"><shadow type=\"math_number\" id=\"w5Pzt/e#k5zbhlh?r[D{\"><field name=\"NUM\"></field></shadow><block type=\"123_sensing_timer_value\" id=\"qrP45;9,B+0Fp){tP1=H\"></block></value><value name=\"OPERAND2\"><shadow type=\"math_number\" id=\"DbsMK-A`?qnlm~~+MMi@\"><field name=\"NUM\">3</field></shadow></value></block></value><statement name=\"SUBSTACK\"><block type=\"123_drivetrain_drive\" id=\"/AZ{WG6*c:CEmzVcox2-\"><field name=\"DIRECTION\">fwd</field><next><block type=\"123_other_comment\" id=\"JSHs,v$NG|pEULmu3#RY\"><value name=\"COMMENT\"><shadow type=\"comment_text\" id=\"7$M-vOV~JG*;Lk/j*I=B\"><field name=\"comment\">the 123 Robot will drive forward</field></shadow></value></block></next></block></statement><next><block type=\"123_other_comment\" id=\"]{Tz]68^$v#:l*LZ`@eP\"><value name=\"COMMENT\"><shadow type=\"comment_text\" id=\"senfooSP]IIl(_vx$XQU\"><field name=\"comment\">When the while loop ends, the robot will stop driving</field></shadow></value><next><block type=\"123_drivetrain_stop_driving\" id=\"4oaZ0$I:IiLA(Q$@WrA;\"></block></next></block></next></block></next></block></next></block></next></block></next></block></xml>",
+        "rconfig": [],
+        "slot": 0,
+        "platform": "123",
+        "sdkVersion": "",
+        "appVersion": "",
+        "fileFormat": "1.0.0",
+        "icon": "",
+        "cppStatus": "true",
+        "checkboxes": "123_sensing_timer_value",
+        "monitorList": {
+          "sensorList": [
+            "timerValue"
+          ],
+          "variableList": [],
+          "complexVarList": []
+        }
+      }
+    }
+  ],
+  "python": []
+}

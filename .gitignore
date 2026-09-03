@@ -1,0 +1,10 @@
+node_modules/
+.next/
+apk-extracted/
+*.apk
+*.tsbuildinfo
+artifacts/
+*.log
+.env
+.env.*
+!.env.example

@@ -1,0 +1,54 @@
+import { chromium } from 'playwright';
+import assert from 'node:assert/strict';
+import fs from 'node:fs/promises';
+await fs.mkdir('artifacts',{recursive:true});
+const browser=await chromium.launch({channel:'chrome',headless:true});
+const context=await browser.newContext({viewport:{width:1440,height:960},locale:'vi-VN',acceptDownloads:true});
+const page=await context.newPage();
+const errors=[];page.on('pageerror',e=>errors.push(e.message));
+try {
+ await page.goto('http://localhost:3100/',{waitUntil:'domcontentloaded'});
+ await page.screenshot({path:'artifacts/landing-desktop.png',fullPage:true});
+ await page.getByRole('link',{name:/Bắt đầu lập trình/}).click();
+ await page.getByText('Bộ soạn thảo đã sẵn sàng',{exact:true}).waitFor({timeout:60000});
+ const frame=page.frames().find(f=>f.url().includes('/editor/index.html'));
+ await page.waitForTimeout(10000);
+ for(let i=0;i<4;i++) {
+  const close=frame.getByRole('button',{name:/^close$/i});
+  if(await close.count() && await close.last().isVisible())await close.last().click();
+ }
+ assert.equal(await frame.locator('.language_selector, #languageGlobeIcon').count(),0,'Language selector must be removed');
+ assert.equal(await frame.locator('html').getAttribute('lang'),'en');
+ assert.ok(await frame.getByRole('button',{name:'File',exact:true}).isVisible(),'Editor must use English on Vietnamese browser');
+ const before=await frame.locator('.blocklyWorkspace > .blocklyBlockCanvas > .blocklyDraggable').count();
+ const block=frame.locator('.blocklyFlyout .blocklyDraggable').first();
+ const box=await block.boundingBox();
+ assert.ok(box,'Flyout block exists');
+ await page.mouse.move(box.x+25,box.y+20);
+ await page.mouse.down();
+ await page.mouse.move(box.x+420,box.y+80,{steps:30});
+ await page.mouse.up();
+ await page.waitForTimeout(500);
+ const after=await frame.locator('.blocklyWorkspace > .blocklyBlockCanvas > .blocklyDraggable').count();
+ console.log('BLOCK COUNTS',before,after);
+ assert.ok(after>before,'Dragging must create a workspace block');
+ await frame.getByRole('button',{name:'File',exact:true}).click();
+ const downloadEvent=page.waitForEvent('download',{timeout:15000});
+ await frame.getByText('Save To Your Device',{exact:true}).click();
+ const download=await downloadEvent;
+ const projectPath='artifacts/roundtrip.gox';
+ await download.saveAs(projectPath);
+ const content=await fs.readFile(projectPath,'utf8');
+ assert.ok(content.length>100,'Saved project must have data');
+ console.log('PROJECT',download.suggestedFilename(),content.slice(0,100));
+ await frame.getByRole('button',{name:'File',exact:true}).click();
+ const chooserEvent=page.waitForEvent('filechooser');
+ await frame.getByText('Load From Your Device',{exact:true}).click();
+ const chooser=await chooserEvent;
+ await chooser.setFiles(projectPath);
+ await page.waitForTimeout(3000);
+ console.log('AFTER IMPORT',(await frame.locator('body').innerText()).slice(-1200));
+ await page.screenshot({path:'artifacts/verified-studio-desktop.png',fullPage:true});
+ assert.equal(errors.length,0,errors.join('\n'));
+ console.log('PASS: English-only editor, real block drag, project download and upload.');
+} finally { await browser.close(); }

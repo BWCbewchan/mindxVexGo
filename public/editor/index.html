@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" href="./static/img/icons/vexfavicon.ico" type="image/x-icon">
+
+        <!-- GOOGLE ANALYTICS HERE -->
+
+        <!-- preload fonts -->
+        <link rel="preload" href="./static/fonts/NotoSans-Regular.woff2" as="font" crossorigin="anonymous">
+        <link rel="preload" href="./fonts/roboto.ttf" as="font" crossorigin="anonymous">
+        <link rel="preload" href="./static/fonts/NotoSans-Bold.woff2" as="font" crossorigin="anonymous">
+
+        <link href="./dist/static/css/ui.css" rel="stylesheet">
+        <link href="style/global.css" rel="stylesheet">
+
+        <link href="style/PrismStyles/prism-vex-py.css" rel="stylesheet">
+
+        <script src="lib/@vexcode/blockly/blockly_compressed.js"></script>
+        <script src="lib/@vexcode/blockly/blocks_compressed.js"></script>
+        <script src="lib/@vexcode/blockly/cpp_compressed.js"></script>
+        <script src="lib/@vexcode/blockly/javascript_compressed.js"></script>
+        <script src="lib/@vexcode/blockly/python_compressed.js"></script>
+        <script src="lib/@vexcode/blockly/msg/js/en.js"></script>
+
+
+        <script src="./lib/require.js"></script>
+        <!-- Zip.js -->
+        <script type="text/javascript" src="./lib/zipjs/zip.js"></script>
+        <script type="text/javascript" src="./lib/zipjs/inflate.js"></script>
+        <script type="text/javascript" src="./lib/zipjs/deflate.js"></script>
+
+        <title>VEXcode GO · mindX</title><link rel="stylesheet" href="/editor-adapter.css">
+
+    </head>
+    <body>
+        <div id="app"></div>
+
+        <!-- Dependencies -->
+        <script src="lib/react/umd/react.development.js"></script>
+        <script src="lib/react-dom/umd/react-dom.development.js"></script>
+
+        <!-- Main -->
+        <script src="dist/main.bundle.js"></script>
+
+        <!-- File Sys hidden dom elements -->
+        <input id="NWSAVEAS" type="file" nwsaveas style="display:none" accept />
+        <input id="NWOPEN" type="file" style="display:none" accept />
+    <script src="/controller-bridge.js"></script><script src="/editor-adapter.js"></script></body>
+</html>
