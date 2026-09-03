@@ -24,10 +24,10 @@ try{
  const blocks=editor.locator('.studio-function-running');
  assert.ok(await blocks.count()>=2);
  const highlightedText=await blocks.allTextContents();
- assert.ok(highlightedText.some(text=>text.includes('CONTROL_BODY')));
+ assert.ok(highlightedText.some(text=>text.replace(/\s/g,' ').includes('drive forward')));
  assert.ok(highlightedText.every(text=>!text.includes('START_SENTINEL')));
- const style=await editor.locator('.studio-function-running > .blocklyPath').first().evaluate(e=>({stroke:getComputedStyle(e).stroke,width:getComputedStyle(e).strokeWidth}));
- assert.deepEqual(style,{stroke:'rgb(57, 231, 95)',width:'4px'});
+ const style=await editor.locator('.studio-function-running > .blocklyPath').first().evaluate(e=>({stroke:getComputedStyle(e).stroke,fill:getComputedStyle(e).fill,width:getComputedStyle(e).strokeWidth}));
+ assert.deepEqual(style,{stroke:'rgb(21, 155, 55)',fill:'rgb(72, 214, 107)',width:'4px'});
  await page.screenshot({path:'artifacts/function-green-border.png'});
  await editor.evaluate(()=>window.finishTestFunction());
  await blocks.first().waitFor({state:'detached'});

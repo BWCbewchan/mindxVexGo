@@ -24,7 +24,7 @@
     clearFunctionHighlight();
     const definition=workspace()?.getAllBlocks(false).find(block=>block.type==='procedures_definition'&&block.getInputTargetBlock('custom_block')?.mutationToDom().getAttribute('proccode')===signature);
     if(!definition)return;
-    highlighted=definition.getDescendants(false).map(block=>block.getSvgRoot?.()).filter(Boolean);
+    highlighted=[definition,definition.getInputTargetBlock('custom_block')].map(block=>block?.getSvgRoot?.()).filter(Boolean);
     highlighted.forEach(root=>root.classList.add('studio-function-running'));
     highlightStarted=Date.now();
   }
