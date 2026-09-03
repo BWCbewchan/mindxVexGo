@@ -6,6 +6,7 @@ type Binding = { id: string; key: string; label: string; signature: string; args
 type State = { functions: MyBlock[]; connected: boolean; running: boolean };
 const storageKey = 'mindx-go-controller-v1';
 const keyLabel = (key: string) => ({ArrowUp:'↑',ArrowDown:'↓',ArrowLeft:'←',ArrowRight:'→',Space:'Space'}[key] || key.replace(/^(Key|Digit)/,''));
+const keyChoices=[...'ABCDEFGHIJKLMNOPQRSTUVWXYZ'].map(k=>'Key'+k).concat([...'0123456789'].map(k=>'Digit'+k),['ArrowUp','ArrowDown','ArrowLeft','ArrowRight','Space']);
 
 export default function ControllerPanel({ frame, open, dockVisible, onHideDock, onClose, onOpen }: {frame: RefObject<HTMLIFrameElement | null>; open: boolean; dockVisible: boolean; onHideDock: () => void; onClose: () => void; onOpen: () => void}) {
   const [state,setState]=useState<State>({functions:[],connected:false,running:false});
@@ -93,6 +94,7 @@ export default function ControllerPanel({ frame, open, dockVisible, onHideDock, 
             if(bindings.some(b=>b.id!==binding.id&&b.key===e.code)){setNotice('That key is already assigned. Choose another key.');return;}
             update(binding.id,{key:e.code});setNotice('Key assigned: '+keyLabel(e.code));
           }}/></label></div>
+          <label>Choose a key (touch devices)<select aria-label={`Choose key ${index+1}`} value={binding.key} onChange={e=>{update(binding.id,{key:e.target.value});setNotice('Key assigned: '+keyLabel(e.target.value));}}><option value="">Select a key</option>{binding.key&&!keyChoices.includes(binding.key)&&<option value={binding.key}>{keyLabel(binding.key)}</option>}{keyChoices.map(key=><option key={key} value={key} disabled={bindings.some(b=>b.id!==binding.id&&b.key===key)}>{keyLabel(key)}</option>)}</select></label>
           {fn?.args.map((arg,i)=><label key={i}>{arg.name}{arg.type==='boolean'?<select value={String(binding.args[i]??false)} onChange={e=>{const args=[...binding.args];args[i]=e.target.value==='true';update(binding.id,{args});}}><option value="false">False</option><option value="true">True</option></select>:<input type={arg.type==='number'?'number':'text'} value={String(binding.args[i]??'')} onChange={e=>{const args=[...binding.args];args[i]=e.target.value;update(binding.id,{args});}}/>}</label>)}
         </section>;
       })}

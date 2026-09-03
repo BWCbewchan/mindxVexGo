@@ -1,6 +1,13 @@
 (function () {
   let toolbarState = {controls:false,help:false,dock:true};
   const post = data => window.parent.postMessage(data, location.origin);
+  document.addEventListener('click',event=>{
+    if(!event.target.closest?.('.brain_button'))return;
+    if(!window.isSecureContext || typeof navigator.bluetooth?.requestDevice !== 'function'){
+      event.preventDefault();event.stopImmediatePropagation();
+      post({type:'vex-toolbar-action',action:'permissions'});
+    }
+  },true);
   function syncToolbar() {
     const toolbar = document.querySelector('.topmenu');
     if (!toolbar) return;

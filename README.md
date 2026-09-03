@@ -34,6 +34,9 @@ are omitted from the toolbar. Editing is available on desktop and mobile;
 robot connectivity requires Web Bluetooth and a secure context (HTTPS or
 localhost). Physical robot execution has not been verified.
 
+See [the device compatibility matrix](docs/compatibility.md) for tested browser
+layouts, connection limits, and local verification commands.
+
 ## Editor adaptations
 
 `scripts/prepare-editor.mjs` reproduces the vendor bundle adaptations from

@@ -7,11 +7,11 @@ const context=await browser.newContext({viewport:{width:1440,height:960},locale:
 const page=await context.newPage();
 const errors=[];page.on('pageerror',e=>errors.push(e.message));
 try {
- await page.goto('http://localhost:3100/',{waitUntil:'domcontentloaded'});
+ await page.goto((process.env.TEST_BASE_URL||'http://localhost:3102')+'/',{waitUntil:'domcontentloaded'});
  await page.screenshot({path:'artifacts/landing-desktop.png',fullPage:true});
- await page.getByRole('link',{name:/Bắt đầu lập trình/}).click();
+ await page.getByRole('link',{name:/Start programming/}).click();
  await page.getByRole('button',{name:'Continue to editor'}).click();
- await page.getByText('Bộ soạn thảo đã sẵn sàng',{exact:true}).waitFor({timeout:60000});
+ await page.getByText('Editor ready',{exact:true}).waitFor({timeout:60000});
  const frame=page.frames().find(f=>f.url().includes('/editor/index.html'));
  await page.waitForTimeout(10000);
  for(let i=0;i<4;i++) {

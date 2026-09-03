@@ -61,10 +61,17 @@
     next.appendChild(call);start.appendChild(next);xml.appendChild(start);
     const clone = new B.Workspace();
     const prefix = B.JavaScript.STATEMENT_PREFIX;
+    const textGenerator = B.JavaScript.text;
     B.Events.disable();
     try {
       B.Xml.domToWorkspace(xml,clone);
       B.JavaScript.STATEMENT_PREFIX = null;
+      // The APK generator changes quote delimiters without escaping double
+      // quotes. Serialize text safely, including control arguments and bodies.
+      B.JavaScript.text = block => [JSON.stringify(block.getFieldValue('TEXT')), B.JavaScript.ORDER_ATOMIC];
+      // Headless blocks lack the rendered hat shape. The vendor's scrub_
+      // otherwise appends the next stack AGAIN after the function definition.
+      clone.getTopBlocks(false).filter(block=>block.type==='procedures_definition'||block.type==='go_events_when_started').forEach(block=>{block.isHatBlock=()=>true;});
       // Headless blocks have no rendered hat shape, so the vendor's
       // workspaceToCode would skip their entry point. Generate it explicitly.
       B.JavaScript.init(clone);
@@ -73,7 +80,7 @@
       B.JavaScript.blockToCode(entry);
       const generated = B.JavaScript.finish('');
       return codeGen.genGOClasses() + '\nvar console_precision = 0;\n' + codeGen.genGOConstructors() + config.getDeviceDefaults() + generated;
-    } finally { clone.dispose(); B.JavaScript.STATEMENT_PREFIX = prefix; B.Events.enable(); }
+    } finally { clone.dispose(); B.JavaScript.STATEMENT_PREFIX = prefix; B.JavaScript.text = textGenerator; B.Events.enable(); }
   }
   async function runFunction(signature,args) {
     if(!enabled)throw new Error('Enable controls first.');

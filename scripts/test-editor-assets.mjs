@@ -9,7 +9,7 @@ try {
  const page=await browser.newPage();
  await page.goto(base+'/studio',{waitUntil:'domcontentloaded'});
  await page.getByRole('button',{name:'Continue to editor'}).click();
- const frame=page.frameLocator('iframe[title="Bộ lập trình VEXcode GO"]');
+ const frame=page.frameLocator('iframe[title="VEXcode GO editor"]');
  await frame.locator('.studio-toolbar-actions').waitFor({timeout:60000});
  async function checkImages(){
   const urls=await frame.locator('img,image').evaluateAll(elements=>elements.map(e=>e.currentSrc||e.getAttribute('src')||e.getAttribute('href')||e.getAttribute('xlink:href')).filter(Boolean).map(src=>new URL(src,document.baseURI).href));

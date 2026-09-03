@@ -8,7 +8,9 @@ if (!process.argv.includes('--patch-only')) await fs.cp(source, target, { recurs
 let html = await fs.readFile(path.join(source, 'index.html'), 'utf8');
 html = html.replace('width=device-width, user-scalable=no', 'width=device-width, initial-scale=1');
 html = html.replace('<html>', '<html lang="en">');
+html = html.replace('<head>', '<head><script src="/editor-bootstrap.js"></script>');
 html = html.replace('<!-- TITLE HERE -->', '<title>VEXcode GO · mindX</title><link rel="stylesheet" href="/editor-adapter.css">');
+html = html.replace('react/umd/react.development.js', 'react/umd/react.production.min.js').replace('react-dom/umd/react-dom.development.js', 'react-dom/umd/react-dom.production.min.js');
 html = html.replace('</body>', '<script src="/controller-bridge.js"></script><script src="/editor-adapter.js"></script></body>');
 await fs.writeFile(path.join(target, 'index.html'), html);
 let bundle = await fs.readFile(path.join(source, 'dist/main.bundle.js'), 'utf8');
@@ -31,6 +33,9 @@ function replaceOnce(before, after) {
   bundle = bundle.replace(before, after);
 }
 replaceOnce('__webpack_require__.p = "dist/";', '__webpack_require__.p = "dist/"; window.__vexStudioRequire = __webpack_require__;');
+replaceOnce('// check for ChromeOS compatibility\n              if (_platformInfo__WEBPACK_IMPORTED_MODULE_43__["OSisAndroid"]) {', '// Check native app permissions only inside the APK, never Android browsers.\n              if (_platformInfo__WEBPACK_IMPORTED_MODULE_43__["PlatformIsAndroid"]) {');
+replaceOnce('mainWorkspace.getToolbox().HtmlDiv.contains(targetNode)', '(mainWorkspace.getToolbox() && mainWorkspace.getToolbox().HtmlDiv.contains(targetNode))');
+replaceOnce('if (mainWorkspace.options.readOnly) {', 'if (!mainWorkspace || mainWorkspace.options.readOnly || !mainWorkspace.getToolbox()) {');
 // Omit these toolbar buttons from React's render tree in the web edition.
 for (const icon of ['share', 'feedback']) {
   const button = 'react__WEBPACK_IMPORTED_MODULE_1__["createElement"](_widget_ToolBarButton__WEBPACK_IMPORTED_MODULE_33__["ToolBarButton"], {\n        svgComp: _widget_SVGIcons__WEBPACK_IMPORTED_MODULE_7__["IconPresets"].' + icon + ',';
@@ -70,4 +75,11 @@ patchHardware('_this.initWebBLE();', 'if (!navigator.bluetooth) return _this;\n 
 patchHardware('value: function getConnectionState() {', 'value: function getConnectionState() {\n      if (!navigator.bluetooth) return _types_HWEnums__WEBPACK_IMPORTED_MODULE_1__["BrainConnectionState"].Disconnected;');
 patchHardware('value: function _openConnection() {', 'value: function _openConnection() {\n      if (!navigator.bluetooth) return Promise.reject(new Error("Web Bluetooth is unavailable in this browser."));');
 await fs.writeFile(path.join(target,hardwareChunk),hardware);
+// An iPad keyboard workaround runs after the field can already be disposed.
+const blocklyPath = 'lib/@vexcode/blockly/blockly_compressed.js';
+let blockly = await fs.readFile(path.join(source, blocklyPath), 'utf8');
+const inputTimer = 'var b=function(c){console.log("this.htmlInput_.style.display:",this.htmlInput_.style.display,c);this.htmlInput_.style.display=c}';
+if (blockly.split(inputTimer).length !== 2) throw new Error('Unexpected iPad input timer patch');
+blockly = blockly.replace(inputTimer, 'var b=function(c){if(this.htmlInput_)this.htmlInput_.style.display=c}');
+await fs.writeFile(path.join(target, blocklyPath), blockly);
 console.log('Prepared original VEXcode GO web assets:', target);
