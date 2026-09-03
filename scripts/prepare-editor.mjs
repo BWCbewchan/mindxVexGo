@@ -12,6 +12,11 @@ html = html.replace('<!-- TITLE HERE -->', '<title>VEXcode GO · mindX</title><l
 html = html.replace('</body>', '<script src="/controller-bridge.js"></script><script src="/editor-adapter.js"></script></body>');
 await fs.writeFile(path.join(target, 'index.html'), html);
 let bundle = await fs.readFile(path.join(source, 'dist/main.bundle.js'), 'utf8');
+// Serve workspace and Make-a-Block media from committed public assets.
+// Preserve directory depth for Blockly's ../../../../static image paths.
+const legacyMedia = '"node_modules/@vexcode/blockly/media/"';
+if (bundle.split(legacyMedia).length !== 3) throw new Error('Unexpected Blockly media configuration');
+bundle = bundle.replaceAll(legacyMedia, '"/editor/lib/@vexcode/blockly/media/"');
 // The original browser warning is a non-dismissible overlay on all phones.
 // Keep the warning in the console; the Next.js shell reports real capabilities.
 // This only changes the compatibility notice, not hardware or license checks.
