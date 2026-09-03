@@ -14,6 +14,20 @@
   const workspace = () => controllers.getCurrentMainController()?.blocklyWorkspace;
   const connected = () => !!hw && hw.getConnectionState() === hardware.BrainConnectionState.Connected;
   const post = data => window.parent.postMessage(data, location.origin);
+  let highlighted = [], highlightTimer = null, highlightStarted = 0;
+  function clearFunctionHighlight() {
+    clearTimeout(highlightTimer);
+    highlighted.forEach(root=>root.classList.remove('studio-function-running'));
+    highlighted = [];
+  }
+  function highlightFunction(signature) {
+    clearFunctionHighlight();
+    const definition=workspace()?.getAllBlocks(false).find(block=>block.type==='procedures_definition'&&block.getInputTargetBlock('custom_block')?.mutationToDom().getAttribute('proccode')===signature);
+    if(!definition)return;
+    highlighted=definition.getDescendants(false).map(block=>block.getSvgRoot?.()).filter(Boolean);
+    highlighted.forEach(root=>root.classList.add('studio-function-running'));
+    highlightStarted=Date.now();
+  }
   function functions() {
     const ws = workspace();
     if (!ws) return [];
@@ -91,16 +105,24 @@
       const code = compileFunction(signature,args);
       interpreter.setProgram(code);
       interpreter.setVarNames(controllers.javascriptVariableNames());
+      highlightFunction(signature);
       interpreter.run();
       return {signature};
-    } finally { pending = false; }
+    } catch(error) { clearFunctionHighlight(); throw error; }
+    finally { pending = false; }
   }
   function stop() {
     stopUntil = Date.now()+500;
     if(interpreter.isRunning) interpreter.stop();
+    clearFunctionHighlight();
     return {stopped:true};
   }
-  interpreter.on('onStop',()=>{stopUntil=Date.now()+500;});
+  interpreter.on('onStop',()=>{
+    stopUntil=Date.now()+500;
+    // Keep very short calls visible, while long calls stay outlined until done.
+    clearTimeout(highlightTimer);
+    highlightTimer=setTimeout(clearFunctionHighlight,Math.max(0,600-(Date.now()-highlightStarted)));
+  });
   window.VexStudio = Object.freeze({functions,compileFunction,runFunction,stop,snapshot:()=>({functions:functions(),connected:connected(),running:interpreter.isRunning})});
   window.addEventListener('message',async event => {
     if(event.origin !== location.origin || event.source !== window.parent || event.data?.type !== 'vex-controller')return;
@@ -130,6 +152,7 @@
   let last = '', mobileInitialized = false;
   setInterval(()=>{
     if(!workspace())return;
+    if(!connected()&&highlighted.length)clearFunctionHighlight();
     const mobile = innerWidth <= 700;
     if(mobile !== mobileInitialized){controllers.getCurrentMainController().setAutoCollapse(mobile);mobileInitialized=mobile;}
     const state={type:'vex-controller-state',functions:functions(),connected:connected(),running:interpreter.isRunning};

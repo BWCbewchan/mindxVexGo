@@ -1,4 +1,5 @@
 html, body { overscroll-behavior: none; overflow: clip; }
+.studio-function-running > .blocklyPath{stroke:#39e75f!important;stroke-width:4px!important;stroke-opacity:1!important;filter:drop-shadow(0 0 3px #19c943)!important}
 /* Toolbox scrolling must leave room for the fixed collapse switch. */
 .blockly_wrapper .injectionDiv > .blocklyToolboxDiv{height:calc(100% - 50px)!important;box-sizing:border-box}
 .modal_wrapper{position:fixed}
