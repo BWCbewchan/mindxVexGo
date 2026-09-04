@@ -8,7 +8,7 @@ const storageKey = 'mindx-go-controller-v1';
 const keyLabel = (key: string) => ({ArrowUp:'↑',ArrowDown:'↓',ArrowLeft:'←',ArrowRight:'→',Space:'Space'}[key] || key.replace(/^(Key|Digit)/,''));
 const keyChoices=[...'ABCDEFGHIJKLMNOPQRSTUVWXYZ'].map(k=>'Key'+k).concat([...'0123456789'].map(k=>'Digit'+k),['ArrowUp','ArrowDown','ArrowLeft','ArrowRight','Space']);
 
-export default function ControllerPanel({ frame, open, dockVisible, onHideDock, onClose, onOpen }: {frame: RefObject<HTMLIFrameElement | null>; open: boolean; dockVisible: boolean; onHideDock: () => void; onClose: () => void; onOpen: () => void}) {
+export default function ControllerPanel({ frame, open, dockVisible, onHideDock, onClose, onOpen, onOpenMovement }: {frame: RefObject<HTMLIFrameElement | null>; open: boolean; dockVisible: boolean; onHideDock: () => void; onClose: () => void; onOpen: () => void; onOpenMovement: () => void}) {
   const [state,setState]=useState<State>({functions:[],connected:false,running:false});
   const [bindings,setBindings]=useState<Binding[]>([]);
   const [enabled,setEnabled]=useState(false);
@@ -48,6 +48,7 @@ export default function ControllerPanel({ frame, open, dockVisible, onHideDock, 
         if(!data.ok)setNotice(data.error);
         else if(data.result?.functions)setState(data.result);
         else if(data.result?.signature)setNotice('Running: '+data.result.signature);
+        else if(data.result?.checked)setNotice('Code compiled successfully: '+data.result.checked+'. Connect a Brain and enable controls to run.');
         else if(data.result?.stopped)setNotice('Stop requested.');
       }
       if(data?.type==='vex-controller-key'){
@@ -80,7 +81,7 @@ export default function ControllerPanel({ frame, open, dockVisible, onHideDock, 
     <div className="controller-title"><div><span className="eyebrow">MY BLOCKS → YOUR CONTROLS</span><h2>Custom controller</h2></div><button onClick={onClose} aria-label="Close controller">×</button></div>
     <div className="controller-tabs"><button className={tab==='setup'?'selected':''} onClick={()=>setTab('setup')}>1. Setup</button><button className={tab==='play'?'selected':''} onClick={()=>setTab('play')}>2. Control pad</button></div>
     <div className="controller-connection"><span className={state.connected?'live-dot':'offline-dot'}/>{state.connected?'Brain connected':'No Brain connected'}<span>{state.running?'Running':'Ready'}</span></div>
-    <div className="controller-content">
+    <button className="movement-open" onClick={onOpenMovement}>Robot movement · mm / °</button><div className="controller-content">
     {tab==='setup'?<>
       <p className="controller-intro">Assign a key or touch button to a function created with <strong>Make a Block</strong>. No <strong>when started</strong> connection is needed.</p>
       {!state.functions.length&&<div className="controller-empty">No My Blocks yet.<br/>In the editor, open <strong>My Blocks</strong> and choose <strong>Make a Block</strong>. Add your commands under its definition.</div>}
@@ -97,6 +98,7 @@ export default function ControllerPanel({ frame, open, dockVisible, onHideDock, 
           }}/></label></div>
           <label>Choose a key (touch devices)<select aria-label={`Choose key ${index+1}`} value={binding.key} onChange={e=>{update(binding.id,{key:e.target.value});setNotice('Key assigned: '+keyLabel(e.target.value));}}><option value="">Select a key</option>{binding.key&&!keyChoices.includes(binding.key)&&<option value={binding.key}>{keyLabel(binding.key)}</option>}{keyChoices.map(key=><option key={key} value={key} disabled={bindings.some(b=>b.id!==binding.id&&b.key===key)}>{keyLabel(key)}</option>)}</select></label>
           {fn?.args.map((arg,i)=><label key={i}>{arg.name}{arg.type==='boolean'?<select value={String(binding.args[i]??false)} onChange={e=>{const args=[...binding.args];args[i]=e.target.value==='true';update(binding.id,{args});}}><option value="false">False</option><option value="true">True</option></select>:<input type={arg.type==='number'?'number':'text'} value={String(binding.args[i]??'')} onChange={e=>{const args=[...binding.args];args[i]=e.target.value;update(binding.id,{args});}}/>}</label>)}
+          <button className="check-code" disabled={!fn||state.running} onClick={()=>{setNotice('Checking code…');send('check',{signature:binding.signature,args:binding.args});}}>Check code</button>
         </section>;
       })}
       <button className="add-binding" onClick={addBinding}>+ Add control</button><p className="storage-note">Bindings are saved in this browser. After opening another project, check the assigned functions.</p>

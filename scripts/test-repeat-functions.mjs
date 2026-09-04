@@ -1,10 +1,10 @@
-import {chromium} from 'playwright';
+import {chromium,devices} from 'playwright';
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 const base=process.env.TEST_BASE_URL||'http://localhost:3103';
 const browser=await chromium.launch({channel:'chrome',headless:true});
 try{
- const page=await browser.newPage();
+ const page=await browser.newPage(process.argv.includes('--android')?devices['Pixel 7']:{});
  // Keep the real interpreter and completion loop; stub only robot setup/I/O.
  let bridge=await fs.readFile('public/controller-bridge.js','utf8');
  bridge=bridge.replace(/const connected = [^\r\n]+;/,`const connected = () => true;

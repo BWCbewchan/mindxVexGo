@@ -1,4 +1,4 @@
-import {chromium} from 'playwright';
+import {chromium,devices} from 'playwright';
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 import vm from 'node:vm';
@@ -11,8 +11,10 @@ fixture.workspace=fixture.workspace
  .replace('argumentdefaults="[]"','argumentdefaults="[0,false,&quot;&quot;]"')
  .replace('argumenttypes="[]"','argumenttypes="[&quot;n&quot;,&quot;b&quot;,&quot;s&quot;]"');
 const browser=await chromium.launch({channel:'chrome',headless:true});
+// An unused invalid hardware function must not prevent this pure function compiling.
+fixture.workspace=fixture.workspace.replace('</xml>', '<block type="procedures_definition" x="400" y="200"><statement name="custom_block"><shadow type="procedures_prototype"><mutation proccode="unused drive" argumentids="[]" argumentnames="[]" argumentdefaults="[]" warp="false"></mutation></shadow></statement><next><block type="go_drivetrain_drive"><field name="DIRECTION">fwd</field></block></next></block></xml>');
 try{
- const page=await browser.newPage();
+ const page=await browser.newPage(process.argv.includes('--android')?devices['Pixel 7']:{});
  await page.goto(base+'/studio');
  await page.getByRole('button',{name:'Continue to editor'}).click();
  const editor=await page.locator('iframe').elementHandle().then(e=>e.contentFrame());
@@ -41,5 +43,11 @@ try{
  await page.evaluate(()=>document.querySelector('iframe').contentWindow.postMessage({type:'vex-controller',id:999,action:'enable',enabled:true},location.origin));
  await assert.rejects(editor.evaluate(()=>window.VexStudio.runFunction('set values %n %b %s',[])),/Connect a VEX GO Brain/);
  assert.deepEqual(await editor.evaluate(()=>window.VexStudio.functions()),functions);
+ await assert.rejects(editor.evaluate(()=>window.VexStudio.compileFunction('unused drive',[])),/drivetrain configured/);
+ await editor.getByRole('button',{name:'⌨ Controls',exact:true}).click();
+ await page.getByRole('button',{name:'+ Add control',exact:true}).click();
+ await page.getByRole('combobox',{name:'Function 1',exact:true}).selectOption('set values %n %b %s');
+ await page.getByRole('button',{name:'Check code',exact:true}).click();
+ await page.getByText(/Code compiled successfully:/).first().waitFor();
  console.log('PASS: numeric/boolean/text arguments, quote escaping, single execution, no normal start stack, validation, disabled/disconnected guards, function definitions preserved.');
 }finally{await browser.close();}

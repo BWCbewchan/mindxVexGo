@@ -11,7 +11,7 @@ html = html.replace('<html>', '<html lang="en">');
 html = html.replace('<head>', '<head><script src="/editor-bootstrap.js"></script>');
 html = html.replace('<!-- TITLE HERE -->', '<title>VEXcode GO · mindX</title><link rel="stylesheet" href="/editor-adapter.css">');
 html = html.replace('react/umd/react.development.js', 'react/umd/react.production.min.js').replace('react-dom/umd/react-dom.development.js', 'react-dom/umd/react-dom.production.min.js');
-html = html.replace('</body>', '<script src="/controller-bridge.js"></script><script src="/editor-adapter.js"></script></body>');
+html = html.replace('</body>', '<script src="/robot-movement.js"></script><script src="/controller-bridge.js"></script><script src="/editor-adapter.js"></script></body>');
 await fs.writeFile(path.join(target, 'index.html'), html);
 let bundle = await fs.readFile(path.join(source, 'dist/main.bundle.js'), 'utf8');
 // Serve workspace and Make-a-Block media from committed public assets.

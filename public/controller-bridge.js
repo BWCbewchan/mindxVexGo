@@ -14,6 +14,23 @@
   const workspace = () => controllers.getCurrentMainController()?.blocklyWorkspace;
   const connected = () => !!hw && hw.getConnectionState() === hardware.BrainConnectionState.Connected;
   const post = data => window.parent.postMessage(data, location.origin);
+  if (typeof window.createRobotMovement === 'function') {
+  const movement = window.createRobotMovement();
+  const movementEvents = requireModule('./src/GlobalEventSystem.ts');
+  movementEvents.on('HWInterface.GOStatusUpdate', (_sensors, status) => {
+    if (!connected()) return;
+    const constructor = config.getJSConstructorList().join('\n').match(/new Drivetrain\(\s*(\d+)\s*,\s*(\d+)\s*,\s*([\d.]+)\s*\)/);
+    const drive = constructor && Number(constructor[3]) > 0
+      ? { left: Number(constructor[1]), right: Number(constructor[2]), ratio: Number(constructor[3]) } : null;
+    movement.sample(status?.ports, drive, Date.now());
+  });
+  setInterval(() => post(movement.state(connected(), Date.now())), 250);
+  window.addEventListener('message', event => {
+    if (event.origin !== location.origin || (event.source !== window.parent && event.source !== window) || event.data?.type !== 'vex-movement-reset') return;
+    movement.reset();
+    post(movement.state(connected(), Date.now()));
+  });
+  }
   // Use the full vendor project format, including the robot configuration.
   (function setupAutosave(){
     const manager=requireModule('./src/FileSys/ProjectManager.ts');
@@ -102,11 +119,25 @@
     const names = JSON.parse(mutation.getAttribute('argumentnames') || '[]');
     const ids = JSON.parse(mutation.getAttribute('argumentids') || '[]');
     const types = signature.match(/%[snb]/g) || [];
+    const required=new Set();
+    function includeDefinition(definition){
+      if(required.has(definition.id))return;
+      required.add(definition.id);
+      definition.getDescendants(false).filter(block=>block.type==='procedures_call').forEach(call=>{
+        const calledSignature=call.mutationToDom().getAttribute('proccode');
+        const dependency=ws.getAllBlocks(false).find(block=>block.type==='procedures_definition'&&block.getInputTargetBlock('custom_block')?.mutationToDom().getAttribute('proccode')===calledSignature);
+        if(!dependency)throw new Error('My Block not found: '+calledSignature);
+        includeDefinition(dependency);
+      });
+    }
+    includeDefinition(selected);
     const original = B.Xml.workspaceToDom(ws);
     const xml = original.cloneNode(true);
-    // Only definitions and variables are copied. Existing when-started stacks
+    // Only required definitions and variables are copied. Unrelated My Blocks
+    // may have incomplete device settings and must not break this call.
+    // Existing when-started stacks
     // and disconnected blocks are never executed or changed by a control.
-    [...xml.children].forEach(node => { if(node.tagName.toLowerCase() !== 'variables' && node.getAttribute('type') !== 'procedures_definition') node.remove(); });
+    [...xml.children].forEach(node => { if(node.tagName.toLowerCase() !== 'variables' && !required.has(node.getAttribute('id'))) node.remove(); });
     const element = name => xml.ownerDocument.createElement(name);
     const start = element('block');start.setAttribute('type','go_events_when_started');
     const next = element('next'), call = element('block');call.setAttribute('type','procedures_call');
@@ -152,8 +183,10 @@
     if(!connected())throw new Error('Connect a VEX GO Brain before running a function.');
     if(pending || interpreter.isRunning || Date.now() < stopUntil)throw new Error('A function is running or stopping. Wait, or press Stop.');
     pending = true;
+    let phase='Compilation';
     try {
       const code = compileFunction(signature,args);
+      phase='Starting function';
       interpreter.setProgram(code);
       interpreter.setVarNames(controllers.javascriptVariableNames());
       highlightFunction(signature);
@@ -161,7 +194,7 @@
       controllerDeviceActive=true;
       interpreter.run();
       return {signature};
-    } catch(error) { controllerRun=false;clearFunctionHighlight(); throw error; }
+    } catch(error) { controllerRun=false;clearFunctionHighlight(); throw new Error(phase+' failed: '+(error?.message||String(error))); }
     finally { pending = false; }
   }
   function stop() {
@@ -190,6 +223,14 @@
       if(action === 'enable') { enabled = event.data.enabled === true; if(!enabled)stop(); result={enabled}; }
       else if(action === 'keys') { assignedKeys = new Set(Array.isArray(event.data.keys)?event.data.keys.filter(k=>typeof k==='string'):[]); result={}; }
       else if(action === 'run')result=await runFunction(signature,args);
+      else if(action === 'check'){
+        if(interpreter.isRunning)throw new Error('Wait for the running function to finish before checking code.');
+        try{
+          const code=compileFunction(signature,args);
+          requireModule('./node_modules/@rm-vca/js-interpreter/dist/index.js').acorn.parse(code);
+          result={checked:signature};
+        }catch(error){throw new Error('Compilation failed: '+(error?.message||String(error)));}
+      }
       else if(action === 'stop')result=stop();
       else if(action === 'snapshot')result=window.VexStudio.snapshot();
       else throw new Error('Unknown controller action.');
