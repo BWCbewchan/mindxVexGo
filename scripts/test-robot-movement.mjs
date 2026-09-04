@@ -60,6 +60,22 @@ try {
   assert.match(await page.getByTestId('movement-turn').innerText(), /90/);
   const box = await panel.boundingBox();
   assert.ok(box.x >= 0 && box.x + box.width <= page.viewportSize().width);
+  const handle = page.getByRole('heading', { name: 'Move robot movement window' });
+  const handleBox = await handle.boundingBox();
+  await page.mouse.move(handleBox.x + 30, handleBox.y + 15);
+  await page.mouse.down();
+  await page.mouse.move(handleBox.x + 60, handleBox.y + 65, { steps: 6 });
+  await page.mouse.up();
+  const moved = await panel.boundingBox();
+  assert.ok(moved.y > box.y + 20, 'dragging the title moves the window');
+  await handle.focus();
+  await page.keyboard.press('ArrowUp');
+  assert.ok((await panel.boundingBox()).y < moved.y, 'arrow keys move the focused title');
+  await page.setViewportSize({ width: 360, height: 600 });
+  await page.waitForFunction(() => {
+    const panel = document.querySelector('.robot-movement').getBoundingClientRect();
+    return panel.x >= 0 && panel.right <= innerWidth && panel.bottom <= innerHeight;
+  });
   await page.screenshot({ path: `artifacts/robot-movement-${iphone ? 'iphone' : 'android'}.png` });
   await page.getByRole('button', { name: 'Reset measurements' }).click();
   await page.waitForFunction(() => document.querySelector('[data-testid="movement-distance"]').textContent.trim() === '0 mm');
