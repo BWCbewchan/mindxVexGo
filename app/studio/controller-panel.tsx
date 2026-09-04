@@ -27,6 +27,9 @@ export default function ControllerPanel({ frame, open, dockVisible, onHideDock, 
     return ()=>{send('enable',{enabled:false});};
   },[send]);
   useEffect(()=>{if(loaded)try{localStorage.setItem(storageKey,JSON.stringify(bindings));}catch{setNotice('Browser storage is unavailable. Keep this page open to retain bindings.');}},[bindings,loaded]);
+  useEffect(()=>{
+    if(loaded)frame.current?.contentWindow?.dispatchEvent(new CustomEvent('vex-bindings-changed',{detail:bindings}));
+  },[bindings,loaded,frame]);
   useEffect(()=>{send('keys',{keys:bindings.filter(b=>state.functions.some(f=>f.signature===b.signature)).map(b=>b.key)});},[bindings,state.functions,send]);
   const run=useCallback((binding: Binding)=>{
     if(state.running)return;
@@ -41,8 +44,14 @@ export default function ControllerPanel({ frame, open, dockVisible, onHideDock, 
       const binding=bindings.find(b=>b.key===code);if(binding)run(binding);
     };
     const receive=(event:MessageEvent)=>{
-      if(event.origin!==location.origin||event.source!==frame.current?.contentWindow)return;
+      const selfReportedImport=event.source===window&&event.data?.type==='vex-project-bindings';
+      if(event.origin!==location.origin||(event.source!==frame.current?.contentWindow&&!selfReportedImport))return;
       const data=event.data;
+      if(data?.type==='vex-project-bindings'&&Array.isArray(data.bindings)){
+        setBindings(data.bindings);setEnabled(false);setPressed([]);
+        send('enable',{enabled:false});
+        setNotice('Controller settings loaded from project. Enable controls when ready.');
+      }
       if(data?.type==='vex-controller-state')setState(data);
       if(data?.type==='vex-controller-result'){
         if(!data.ok)setNotice(data.error);

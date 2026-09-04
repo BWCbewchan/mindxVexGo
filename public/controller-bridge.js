@@ -36,6 +36,45 @@
     const manager=requireModule('./src/FileSys/ProjectManager.ts');
     const project=manager.currentProject;
     if(!project){setTimeout(setupAutosave,100);return;}
+    const bindingKey='mindx-go-controller-v1';
+    const sanitizeBindings=value=>Array.isArray(value)?value.filter(b=>b&&typeof b.id==='string'&&typeof b.key==='string'&&typeof b.signature==='string'&&typeof b.label==='string'&&Array.isArray(b.args)).slice(0,24).map(b=>({id:b.id.slice(0,100),key:b.key.slice(0,40),signature:b.signature.slice(0,1000),label:b.label.slice(0,36),args:b.args.slice(0,100).map(a=>typeof a==='boolean'?a:String(a??'').slice(0,10000))})):[];
+    let projectBindings=[];
+    try{projectBindings=sanitizeBindings(JSON.parse(localStorage.getItem(bindingKey)||'[]'));}catch{}
+    window.addEventListener('vex-bindings-changed',event=>{projectBindings=sanitizeBindings(event.detail);});
+    const restoreBindings=value=>{
+      projectBindings=sanitizeBindings(value);
+      try{localStorage.setItem(bindingKey,JSON.stringify(projectBindings));}catch{}
+      post({type:'vex-project-bindings',bindings:projectBindings});
+    };
+    const attachBindings=()=>{
+      const data=project.projectData;
+      if(!data||data.__studioBindingsAttached)return;
+      const serialize=data.getFileContentString.bind(data);
+      data.getFileContentString=()=>{
+        const result=JSON.parse(serialize());
+        result.mindxController={version:1,bindings:projectBindings};
+        return JSON.stringify(result);
+      };
+      data.__studioBindingsAttached=true;
+    };
+    const loadProject=project.loadProjectData.bind(project);
+    project.loadProjectData=async function(content,...args){
+      const previous=project.projectData;
+      const metadata=JSON.parse(content).mindxController;
+      const result=await loadProject(content,...args);
+      if(project.projectData!==previous){
+        restoreBindings(metadata?.version===1?metadata.bindings:[]);
+        attachBindings();
+      }
+      return result;
+    };
+    attachBindings();
+    manager.projectLoadEvent.registerCallback(attachBindings);
+    // Startup restoration can finish before this bridge is installed.
+    try{
+      const saved=JSON.parse(localStorage.getItem('projectDataGO')||'null');
+      if(saved?.mindxController?.version===1)restoreBindings(saved.mindxController.bindings);
+    }catch{}
     const save=project.saveWorkspaceToStorage.bind(project);
     let loaded=!!workspace()&&!!project.projectData,lastSaved='',status='Waiting for editor',savedAt=null;
     const report=()=>document.dispatchEvent(new CustomEvent('vex-autosave-state',{detail:{enabled:window.__vexAutoSaveEnabled!==false,status,savedAt}}));
