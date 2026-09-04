@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "field": {
+    "name": "First journey",
+    "width": 1200,
+    "height": 1200,
+    "start": {
+      "x": 200,
+      "y": 600,
+      "heading": 90
+    },
+    "goal": {
+      "x": 900,
+      "y": 600,
+      "radius": 70
+    },
+    "walls": []
+  }
+}

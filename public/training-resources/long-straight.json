@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "field": {
+    "name": "The long straight",
+    "width": 2000,
+    "height": 800,
+    "start": {
+      "x": 100,
+      "y": 400,
+      "heading": 90
+    },
+    "goal": {
+      "x": 1850,
+      "y": 400,
+      "radius": 50
+    },
+    "walls": []
+  }
+}

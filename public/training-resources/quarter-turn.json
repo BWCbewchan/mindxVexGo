@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "field": {
+    "name": "Quarter turn",
+    "width": 1000,
+    "height": 1000,
+    "start": {
+      "x": 150,
+      "y": 850,
+      "heading": 0
+    },
+    "goal": {
+      "x": 850,
+      "y": 150,
+      "radius": 60
+    },
+    "walls": [
+      {
+        "x": 400,
+        "y": 400,
+        "width": 350,
+        "height": 350
+      }
+    ]
+  }
+}

@@ -12,7 +12,7 @@
   let hw = null, enabled = false, pending = false, stopUntil = 0, assignedKeys = new Set();
   hardware.getInterface().then(value => { hw = value; }).catch(console.error);
   const workspace = () => controllers.getCurrentMainController()?.blocklyWorkspace;
-  const connected = () => !!hw && hw.getConnectionState() === hardware.BrainConnectionState.Connected;
+  const connected = () => !!window.VexTraining || (!!hw && hw.getConnectionState() === hardware.BrainConnectionState.Connected);
   const post = data => window.parent.postMessage(data, location.origin);
   if (typeof window.createRobotMovement === 'function') {
   const movement = window.createRobotMovement();
@@ -150,6 +150,7 @@
     }).filter(Boolean);
   }
   function compileFunction(signature, values = []) {
+    window.VexTraining?.prepare();
     const ws = workspace();
     if (!ws) throw new Error('The editor is still loading.');
     const selected = ws.getAllBlocks(false).find(block => block.type === 'procedures_definition' && block.getInputTargetBlock('custom_block')?.mutationToDom().getAttribute('proccode') === signature);
@@ -200,6 +201,7 @@
     B.Events.disable();
     try {
       B.Xml.domToWorkspace(xml,clone);
+      window.VexTraining?.validate(clone);
       B.JavaScript.STATEMENT_PREFIX = null;
       // The APK generator changes quote delimiters without escaping double
       // quotes. Serialize text safely, including control arguments and bodies.
@@ -214,11 +216,13 @@
       const entry=clone.getTopBlocks(false).find(block=>block.type==='go_events_when_started');
       B.JavaScript.blockToCode(entry);
       const generated = B.JavaScript.finish('');
+      if(window.VexTraining)return generated;
       return codeGen.genGOClasses() + '\nvar console_precision = 0;\n' + codeGen.genGOConstructors() + config.getDeviceDefaults() + generated;
     } finally { clone.dispose(); B.JavaScript.STATEMENT_PREFIX = prefix; B.JavaScript.text = textGenerator; B.Events.enable(); }
   }
   async function runFunction(signature,args) {
     if(!enabled)throw new Error('Enable controls first.');
+    if(window.VexTraining)return window.VexTraining.runFunction(signature,args);
     if(!connected())throw new Error('Connect a VEX GO Brain before running a function.');
     if(pending || interpreter.isRunning || Date.now() < stopUntil)throw new Error('A function is running or stopping. Wait, or press Stop.');
     pending = true;
@@ -237,6 +241,7 @@
     finally { pending = false; }
   }
   function stop() {
+    if(window.VexTraining){window.VexTraining.stop();return {stopped:true};}
     stopUntil = Date.now()+500;
     if(interpreter.isRunning||controllerDeviceActive) interpreter.stop();
     clearFunctionHighlight();
@@ -253,7 +258,7 @@
     clearTimeout(highlightTimer);
     highlightTimer=setTimeout(clearFunctionHighlight,Math.max(0,600-(Date.now()-highlightStarted)));
   });
-  window.VexStudio = Object.freeze({functions,compileFunction,runFunction,stop,snapshot:()=>({functions:functions(),connected:connected(),running:interpreter.isRunning||pending||Date.now()<stopUntil})});
+  window.VexStudio = Object.freeze({functions,compileFunction,runFunction,stop,snapshot:()=>({functions:functions(),connected:connected(),running:!!window.VexTraining?.running||interpreter.isRunning||pending||Date.now()<stopUntil})});
   window.addEventListener('message',async event => {
     if(event.origin !== location.origin || event.source !== window.parent || event.data?.type !== 'vex-controller')return;
     const {id,action,signature,args} = event.data;
@@ -293,7 +298,7 @@
     if(!connected()&&highlighted.length)clearFunctionHighlight();
     const mobile = innerWidth <= 700;
     if(mobile !== mobileInitialized){controllers.getCurrentMainController().setAutoCollapse(mobile);mobileInitialized=mobile;}
-    const state={type:'vex-controller-state',functions:functions(),connected:connected(),running:interpreter.isRunning||pending||Date.now()<stopUntil};
+    const state={type:'vex-controller-state',functions:functions(),connected:connected(),running:!!window.VexTraining?.running||interpreter.isRunning||pending||Date.now()<stopUntil};
     const serialized=JSON.stringify(state);if(serialized!==last){post(state);last=serialized;}
   },500);
 })();

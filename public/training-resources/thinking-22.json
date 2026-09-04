@@ -1,0 +1,46 @@
+{
+  "version": 1,
+  "field": {
+    "name": "Return-point memory",
+    "width": 1800,
+    "height": 1600,
+    "start": {
+      "x": 200,
+      "y": 200,
+      "heading": 90
+    },
+    "goal": {
+      "x": 1400,
+      "y": 200,
+      "radius": 45
+    },
+    "walls": [],
+    "checkpoints": [
+      {
+        "x": 700,
+        "y": 200,
+        "radius": 45
+      },
+      {
+        "x": 1100,
+        "y": 650,
+        "radius": 45
+      },
+      {
+        "x": 700,
+        "y": 1100,
+        "radius": 45
+      },
+      {
+        "x": 300,
+        "y": 650,
+        "radius": 45
+      },
+      {
+        "x": 700,
+        "y": 200,
+        "radius": 45
+      }
+    ]
+  }
+}

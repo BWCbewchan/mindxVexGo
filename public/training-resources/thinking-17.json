@@ -1,0 +1,46 @@
+{
+  "version": 1,
+  "field": {
+    "name": "Short-long rhythm",
+    "width": 1800,
+    "height": 1600,
+    "start": {
+      "x": 200,
+      "y": 200,
+      "heading": 90
+    },
+    "goal": {
+      "x": 1250,
+      "y": 1400,
+      "radius": 45
+    },
+    "walls": [],
+    "checkpoints": [
+      {
+        "x": 350,
+        "y": 200,
+        "radius": 45
+      },
+      {
+        "x": 350,
+        "y": 800,
+        "radius": 45
+      },
+      {
+        "x": 500,
+        "y": 800,
+        "radius": 45
+      },
+      {
+        "x": 500,
+        "y": 1400,
+        "radius": 45
+      },
+      {
+        "x": 650,
+        "y": 1400,
+        "radius": 45
+      }
+    ]
+  }
+}

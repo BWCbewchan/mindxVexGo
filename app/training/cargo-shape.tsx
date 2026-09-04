@@ -1,0 +1,3 @@
+import type {Cargo} from './field-model';
+import {fieldColor} from './field-model';
+export default function CargoShape({color,shape='square',x=0,y=0,width=40,height=40}:{color:string;shape?:Cargo['shape'];x?:number;y?:number;width?:number;height?:number}){const paint={fill:fieldColor(color),stroke:'white',strokeWidth:3};return <g transform={`translate(${x} ${y}) scale(${width/40} ${height/40})`}>{shape==='circle'?<circle r="20" {...paint}/>:shape==='triangle'?<polygon points="0,-20 20,20 -20,20" {...paint}/>:shape==='hexagon'?<polygon points="-10,-20 10,-20 20,0 10,20 -10,20 -20,0" {...paint}/>:<rect x="-20" y="-20" width="40" height="40" {...paint}/>}</g>;}

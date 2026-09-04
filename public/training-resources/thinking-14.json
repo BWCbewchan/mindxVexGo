@@ -1,0 +1,51 @@
+{
+  "version": 1,
+  "field": {
+    "name": "Zigzag inspection",
+    "width": 1800,
+    "height": 1600,
+    "start": {
+      "x": 200,
+      "y": 200,
+      "heading": 90
+    },
+    "goal": {
+      "x": 1500,
+      "y": 1000,
+      "radius": 45
+    },
+    "walls": [],
+    "checkpoints": [
+      {
+        "x": 450,
+        "y": 200,
+        "radius": 45
+      },
+      {
+        "x": 450,
+        "y": 1000,
+        "radius": 45
+      },
+      {
+        "x": 800,
+        "y": 1000,
+        "radius": 45
+      },
+      {
+        "x": 800,
+        "y": 200,
+        "radius": 45
+      },
+      {
+        "x": 1150,
+        "y": 200,
+        "radius": 45
+      },
+      {
+        "x": 1150,
+        "y": 1000,
+        "radius": 45
+      }
+    ]
+  }
+}

@@ -1,0 +1,1 @@
+export default function RobotIcon({x=0,y=0,heading=0,size=90}:{x?:number;y?:number;heading?:number;size?:number}){return <g transform={`translate(${x} ${y}) rotate(${heading})`}><image href="/training-robot.png" x={-size/2} y={-size/2} width={size} height={size} preserveAspectRatio="xMidYMid meet"/></g>;}

@@ -1,0 +1,46 @@
+{
+  "version": 1,
+  "field": {
+    "name": "Out and back",
+    "width": 1800,
+    "height": 1600,
+    "start": {
+      "x": 200,
+      "y": 200,
+      "heading": 90
+    },
+    "goal": {
+      "x": 200,
+      "y": 200,
+      "radius": 45
+    },
+    "walls": [],
+    "checkpoints": [
+      {
+        "x": 600,
+        "y": 200,
+        "radius": 45
+      },
+      {
+        "x": 600,
+        "y": 800,
+        "radius": 45
+      },
+      {
+        "x": 1200,
+        "y": 800,
+        "radius": 45
+      },
+      {
+        "x": 600,
+        "y": 800,
+        "radius": 45
+      },
+      {
+        "x": 600,
+        "y": 200,
+        "radius": 45
+      }
+    ]
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "field": {
+    "name": "Inspection before delivery",
+    "width": 1800,
+    "height": 1600,
+    "start": {
+      "x": 200,
+      "y": 200,
+      "heading": 90
+    },
+    "goal": {
+      "x": 1500,
+      "y": 1300,
+      "radius": 70
+    },
+    "walls": [],
+    "blocks": [
+      {
+        "id": "parcel-0",
+        "x": 450,
+        "y": 300,
+        "color": "red"
+      }
+    ],
+    "zones": [
+      {
+        "x": 1350,
+        "y": 300,
+        "radius": 110,
+        "color": "red"
+      }
+    ],
+    "checkpoints": [
+      {
+        "x": 500,
+        "y": 1100,
+        "radius": 55
+      },
+      {
+        "x": 1100,
+        "y": 1100,
+        "radius": 55
+      }
+    ]
+  }
+}

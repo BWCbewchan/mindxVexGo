@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "field": {
+    "name": "Find the passage",
+    "width": 1200,
+    "height": 1200,
+    "start": {
+      "x": 180,
+      "y": 1050,
+      "heading": 0
+    },
+    "goal": {
+      "x": 1000,
+      "y": 200,
+      "radius": 70
+    },
+    "walls": [
+      {
+        "x": 0,
+        "y": 450,
+        "width": 850,
+        "height": 120
+      },
+      {
+        "x": 350,
+        "y": 800,
+        "width": 850,
+        "height": 120
+      }
+    ]
+  }
+}

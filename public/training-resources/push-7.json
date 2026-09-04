@@ -1,0 +1,49 @@
+{
+  "version": 1,
+  "field": {
+    "name": "Warehouse corridor",
+    "width": 1600,
+    "height": 1400,
+    "start": {
+      "x": 200,
+      "y": 600,
+      "heading": 90
+    },
+    "goal": {
+      "x": 1400,
+      "y": 1200,
+      "radius": 70
+    },
+    "walls": [
+      {
+        "x": 350,
+        "y": 350,
+        "width": 1050,
+        "height": 100
+      },
+      {
+        "x": 350,
+        "y": 750,
+        "width": 1050,
+        "height": 100
+      }
+    ],
+    "blocks": [
+      {
+        "id": "push-box-0",
+        "x": 500,
+        "y": 600,
+        "color": "red",
+        "pushable": true
+      }
+    ],
+    "zones": [
+      {
+        "x": 1250,
+        "y": 600,
+        "color": "red",
+        "radius": 85
+      }
+    ]
+  }
+}

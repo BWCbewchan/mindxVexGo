@@ -1,0 +1,51 @@
+{
+  "version": 1,
+  "field": {
+    "name": "Symmetry workshop",
+    "width": 1800,
+    "height": 1600,
+    "start": {
+      "x": 200,
+      "y": 200,
+      "heading": 90
+    },
+    "goal": {
+      "x": 1400,
+      "y": 600,
+      "radius": 45
+    },
+    "walls": [],
+    "checkpoints": [
+      {
+        "x": 500,
+        "y": 200,
+        "radius": 45
+      },
+      {
+        "x": 500,
+        "y": 600,
+        "radius": 45
+      },
+      {
+        "x": 800,
+        "y": 600,
+        "radius": 45
+      },
+      {
+        "x": 800,
+        "y": 1000,
+        "radius": 45
+      },
+      {
+        "x": 1100,
+        "y": 1000,
+        "radius": 45
+      },
+      {
+        "x": 1100,
+        "y": 600,
+        "radius": 45
+      }
+    ]
+  }
+}

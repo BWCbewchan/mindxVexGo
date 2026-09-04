@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "field": {
+    "name": "First push",
+    "width": 1600,
+    "height": 1400,
+    "start": {
+      "x": 200,
+      "y": 600,
+      "heading": 90
+    },
+    "goal": {
+      "x": 1400,
+      "y": 1200,
+      "radius": 70
+    },
+    "walls": [],
+    "blocks": [
+      {
+        "id": "push-box-0",
+        "x": 500,
+        "y": 600,
+        "color": "red",
+        "pushable": true
+      }
+    ],
+    "zones": [
+      {
+        "x": 1200,
+        "y": 600,
+        "color": "red",
+        "radius": 85
+      }
+    ]
+  }
+}

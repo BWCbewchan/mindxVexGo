@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "field": {
+    "name": "Heading wraparound",
+    "width": 1800,
+    "height": 1600,
+    "start": {
+      "x": 200,
+      "y": 200,
+      "heading": 90
+    },
+    "goal": {
+      "x": 650,
+      "y": 900,
+      "radius": 45
+    },
+    "walls": [],
+    "checkpoints": [
+      {
+        "x": 250,
+        "y": 900,
+        "radius": 45
+      },
+      {
+        "x": 150,
+        "y": 200,
+        "radius": 45
+      },
+      {
+        "x": 350,
+        "y": 900,
+        "radius": 45
+      },
+      {
+        "x": 450,
+        "y": 200,
+        "radius": 45
+      }
+    ]
+  }
+}

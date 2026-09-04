@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "field": {
+    "name": "Around the corner",
+    "width": 1200,
+    "height": 1200,
+    "start": {
+      "x": 200,
+      "y": 1000,
+      "heading": 0
+    },
+    "goal": {
+      "x": 1000,
+      "y": 200,
+      "radius": 70
+    },
+    "walls": [
+      {
+        "x": 400,
+        "y": 400,
+        "width": 500,
+        "height": 500
+      }
+    ]
+  }
+}

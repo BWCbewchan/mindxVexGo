@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "field": {
+    "name": "Compass reset",
+    "width": 1800,
+    "height": 1600,
+    "start": {
+      "x": 200,
+      "y": 200,
+      "heading": 90
+    },
+    "goal": {
+      "x": 100,
+      "y": 1000,
+      "radius": 45
+    },
+    "walls": [],
+    "checkpoints": [
+      {
+        "x": 700,
+        "y": 200,
+        "radius": 45
+      },
+      {
+        "x": 700,
+        "y": 100,
+        "radius": 45
+      },
+      {
+        "x": 1400,
+        "y": 100,
+        "radius": 45
+      },
+      {
+        "x": 1400,
+        "y": 1000,
+        "radius": 45
+      }
+    ]
+  }
+}

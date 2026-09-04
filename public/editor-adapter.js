@@ -43,7 +43,7 @@
       home.className = 'studio-home';
       home.href = '/';
       home.target = '_parent';
-      home.textContent = 'mindX / GO';
+      home.innerHTML = '<span class="editor-mindx-logo"><img src="/mindx-logo-color-mark.png" alt="mindX Tech and AI School"></span><b>/ GO</b>'; 
       home.setAttribute('aria-label','mindX GO Studio home');
       firstGroup.prepend(home);
     }

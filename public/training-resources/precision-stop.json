@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "field": {
+    "name": "Precision stop",
+    "width": 800,
+    "height": 800,
+    "start": {
+      "x": 100,
+      "y": 400,
+      "heading": 90
+    },
+    "goal": {
+      "x": 600,
+      "y": 400,
+      "radius": 40
+    },
+    "walls": []
+  }
+}

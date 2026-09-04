@@ -1,0 +1,49 @@
+{
+  "version": 1,
+  "field": {
+    "name": "Two independent deliveries",
+    "width": 1600,
+    "height": 1400,
+    "start": {
+      "x": 200,
+      "y": 350,
+      "heading": 90
+    },
+    "goal": {
+      "x": 1400,
+      "y": 1200,
+      "radius": 70
+    },
+    "walls": [],
+    "blocks": [
+      {
+        "id": "push-box-0",
+        "x": 500,
+        "y": 350,
+        "color": "red",
+        "pushable": true
+      },
+      {
+        "id": "push-box-1",
+        "x": 500,
+        "y": 950,
+        "color": "blue",
+        "pushable": true
+      }
+    ],
+    "zones": [
+      {
+        "x": 1250,
+        "y": 350,
+        "color": "red",
+        "radius": 85
+      },
+      {
+        "x": 1250,
+        "y": 950,
+        "color": "blue",
+        "radius": 85
+      }
+    ]
+  }
+}

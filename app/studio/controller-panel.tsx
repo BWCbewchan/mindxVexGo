@@ -4,11 +4,11 @@ import { useCallback, useEffect, useRef, useState, type RefObject } from 'react'
 type MyBlock = { signature: string; args: { name: string; type: string; value: string | boolean }[] };
 type Binding = { id: string; key: string; label: string; signature: string; args: (string | boolean)[] };
 type State = { functions: MyBlock[]; connected: boolean; running: boolean };
-const storageKey = 'mindx-go-controller-v1';
+
 const keyLabel = (key: string) => ({ArrowUp:'↑',ArrowDown:'↓',ArrowLeft:'←',ArrowRight:'→',Space:'Space'}[key] || key.replace(/^(Key|Digit)/,''));
 const keyChoices=[...'ABCDEFGHIJKLMNOPQRSTUVWXYZ'].map(k=>'Key'+k).concat([...'0123456789'].map(k=>'Digit'+k),['ArrowUp','ArrowDown','ArrowLeft','ArrowRight','Space']);
 
-export default function ControllerPanel({ frame, open, dockVisible, onHideDock, onClose, onOpen, onOpenMovement }: {frame: RefObject<HTMLIFrameElement | null>; open: boolean; dockVisible: boolean; onHideDock: () => void; onClose: () => void; onOpen: () => void; onOpenMovement: () => void}) {
+export default function ControllerPanel({ frame, open, dockVisible, onHideDock, onClose, onOpen, onOpenMovement, training = false, storageKey = 'mindx-go-controller-v1' }: {frame: RefObject<HTMLIFrameElement | null>; open: boolean; dockVisible: boolean; onHideDock: () => void; onClose: () => void; onOpen: () => void; onOpenMovement: () => void; training?: boolean; storageKey?: string}) {
   const [state,setState]=useState<State>({functions:[],connected:false,running:false});
   const [bindings,setBindings]=useState<Binding[]>([]);
   const [enabled,setEnabled]=useState(false);
@@ -22,7 +22,7 @@ export default function ControllerPanel({ frame, open, dockVisible, onHideDock, 
     frame.current?.contentWindow?.postMessage({type:'vex-controller',id,action,...payload},location.origin);
   },[frame]);
   useEffect(()=>{
-    try { const data=JSON.parse(localStorage.getItem(storageKey)||'[]');if(Array.isArray(data))setBindings(data.filter(b=>b&&typeof b.id==='string'&&typeof b.key==='string'&&typeof b.signature==='string'&&typeof b.label==='string'&&Array.isArray(b.args)).slice(0,24)); }catch{}
+    try { const data=JSON.parse(localStorage.getItem(storageKey)??(storageKey==='training:custom:mindx-go-controller-v1'?localStorage.getItem('training:mindx-go-controller-v1'):null)??'[]');if(Array.isArray(data))setBindings(data.filter(b=>b&&typeof b.id==='string'&&typeof b.key==='string'&&typeof b.signature==='string'&&typeof b.label==='string'&&Array.isArray(b.args)).slice(0,24)); }catch{}
     setLoaded(true);send('snapshot');
     return ()=>{send('enable',{enabled:false});};
   },[send]);
@@ -89,7 +89,7 @@ export default function ControllerPanel({ frame, open, dockVisible, onHideDock, 
   return <><aside hidden={!open} className="controller-panel" aria-label="Custom controller">
     <div className="controller-title"><div><span className="eyebrow">MY BLOCKS → YOUR CONTROLS</span><h2>Custom controller</h2></div><button onClick={onClose} aria-label="Close controller">×</button></div>
     <div className="controller-tabs"><button className={tab==='setup'?'selected':''} onClick={()=>setTab('setup')}>1. Setup</button><button className={tab==='play'?'selected':''} onClick={()=>setTab('play')}>2. Control pad</button></div>
-    <div className="controller-connection"><span className={state.connected?'live-dot':'offline-dot'}/>{state.connected?'Brain connected':'No Brain connected'}<span>{state.running?'Running':'Ready'}</span></div>
+    <div className="controller-connection"><span className={state.connected?'live-dot':'offline-dot'}/>{training?'Simulator ready':state.connected?'Brain connected':'No Brain connected'}<span>{state.running?'Running':'Ready'}</span></div>
     <button className="movement-open" onClick={onOpenMovement}>Robot movement · mm / °</button><div className="controller-content">
     {tab==='setup'?<>
       <p className="controller-intro">Assign a key or touch button to a function created with <strong>Make a Block</strong>. No <strong>when started</strong> connection is needed.</p>

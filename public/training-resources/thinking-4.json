@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "field": {
+    "name": "Rectangle patrol",
+    "width": 1800,
+    "height": 1600,
+    "start": {
+      "x": 200,
+      "y": 200,
+      "heading": 90
+    },
+    "goal": {
+      "x": 200,
+      "y": 200,
+      "radius": 45
+    },
+    "walls": [],
+    "checkpoints": [
+      {
+        "x": 1100,
+        "y": 200,
+        "radius": 45
+      },
+      {
+        "x": 1100,
+        "y": 900,
+        "radius": 45
+      },
+      {
+        "x": 200,
+        "y": 900,
+        "radius": 45
+      }
+    ]
+  }
+}

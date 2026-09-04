@@ -1,0 +1,51 @@
+{
+  "version": 1,
+  "field": {
+    "name": "Figure-eight junction",
+    "width": 1800,
+    "height": 1600,
+    "start": {
+      "x": 200,
+      "y": 200,
+      "heading": 90
+    },
+    "goal": {
+      "x": 800,
+      "y": 650,
+      "radius": 45
+    },
+    "walls": [],
+    "checkpoints": [
+      {
+        "x": 800,
+        "y": 650,
+        "radius": 45
+      },
+      {
+        "x": 1300,
+        "y": 200,
+        "radius": 45
+      },
+      {
+        "x": 1300,
+        "y": 1100,
+        "radius": 45
+      },
+      {
+        "x": 800,
+        "y": 650,
+        "radius": 45
+      },
+      {
+        "x": 300,
+        "y": 1100,
+        "radius": 45
+      },
+      {
+        "x": 300,
+        "y": 200,
+        "radius": 45
+      }
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "field": {
+    "name": "Reverse parking",
+    "width": 1800,
+    "height": 1600,
+    "start": {
+      "x": 200,
+      "y": 200,
+      "heading": 90
+    },
+    "goal": {
+      "x": 100,
+      "y": 750,
+      "radius": 45
+    },
+    "walls": [],
+    "checkpoints": [
+      {
+        "x": 100,
+        "y": 200,
+        "radius": 45
+      }
+    ]
+  }
+}

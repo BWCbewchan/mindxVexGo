@@ -1,0 +1,44 @@
+{
+  "version": 1,
+  "field": {
+    "name": "Crossroads",
+    "width": 1400,
+    "height": 1400,
+    "start": {
+      "x": 150,
+      "y": 1250,
+      "heading": 0
+    },
+    "goal": {
+      "x": 1250,
+      "y": 150,
+      "radius": 70
+    },
+    "walls": [
+      {
+        "x": 350,
+        "y": 350,
+        "width": 250,
+        "height": 250
+      },
+      {
+        "x": 800,
+        "y": 350,
+        "width": 250,
+        "height": 250
+      },
+      {
+        "x": 350,
+        "y": 800,
+        "width": 250,
+        "height": 250
+      },
+      {
+        "x": 800,
+        "y": 800,
+        "width": 250,
+        "height": 250
+      }
+    ]
+  }
+}

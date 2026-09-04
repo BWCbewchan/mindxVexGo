@@ -1,0 +1,51 @@
+import {chromium} from 'playwright';
+import assert from 'node:assert/strict';
+import fs from 'node:fs/promises';
+const browser=await chromium.launch({channel:'chrome'});
+const page=await browser.newPage({viewport:{width:1440,height:1000}});
+const errors=[];page.on('pageerror',e=>errors.push(e.message));page.on('dialog',d=>d.accept());
+const block=(type,content='',next='')=>`<block type="${type}">${content}${next?'<next>'+next+'</next>':''}</block>`;
+const num=(name,n)=>`<value name="${name}"><shadow type="math_number"><field name="NUM">${n}</field></shadow></value>`;
+const drive=(amount,next='')=>block('go_drivetrain_drive_for',`<field name="DIRECTION">${amount<0?'rev':'fwd'}</field><field name="UNITS">mm</field>`+num('AMOUNT',Math.abs(amount)),next);
+const magnet=(action,next='')=>block('go_magnet_energize',`<field name="MAGNET">Magnet</field><field name="ACTION">${action}</field>`,next);
+try{
+ await page.goto((process.env.BASE_URL||'http://localhost:3115')+'/training');
+ await page.getByRole('button',{name:'Practice First cargo delivery',exact:true}).click();
+ const editor=await(await page.waitForSelector('iframe')).contentFrame();
+ await editor.waitForFunction(()=>!!window.VexStudio);
+ await editor.getByText('Magnet',{exact:true}).first().waitFor({timeout:20000});
+ await editor.locator('.blocklyTreeRow').filter({hasText:/^Sensing$/}).first().click();
+ const sensingText=await editor.locator('.blocklyFlyout').first().textContent();
+ assert.match(sensingText,/Bumper/i);assert.match(sensingText,/Eye/i);
+ const fixture=JSON.parse(await fs.readFile('scripts/fixtures/controls.goblocks','utf8'));
+ async function load(stack){
+  fixture.workspace='<xml>'+block('go_events_when_started','',stack)+'</xml>';
+  await editor.getByRole('button',{name:'File',exact:true}).click();
+  const chooser=page.waitForEvent('filechooser');await editor.getByText('Load From Your Device',{exact:true}).click();
+  const discard=editor.getByRole('button',{name:'Discard',exact:true});
+  if(await Promise.race([chooser.then(()=>false),discard.waitFor({state:'visible'}).then(()=>true)]))await discard.click();
+  await(await chooser).setFiles({name:'sensors.goblocks',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(fixture))});
+  await editor.waitForFunction(()=>[...document.querySelectorAll('.blocklyBlockCanvas')].some(el=>/when\s+started/.test(el.textContent)));
+  await page.waitForTimeout(800);
+  await page.getByRole('button',{name:/Reset robot/}).click();
+ }
+ const condition='<value name="CONDITION">'+block('go_sensing_eye_detect','<field name="COLORS">red</field>')+'</value>';
+ const delivery=drive(100,block('go_control_if_then',condition+'<statement name="SUBSTACK">'+magnet('boost')+'</statement>',drive(600,magnet('drop'))));
+ await load(block('go_control_wait_until','<value name="CONDITION">'+block('go_sensing_eye_found_object')+'</value>',delivery));
+ await page.getByRole('button',{name:/Run code/}).click();
+ await page.waitForFunction(()=>document.querySelector('.training-status')?.textContent==='Program finished',{},{timeout:20000});
+ assert.match(await page.locator('.goal-status').textContent(),/Goal reached/);
+ assert.match(await page.locator('.sensor-readings').textContent(),/Cargo: Empty/);
+ const backup=page.waitForEvent('download');await page.getByRole('button',{name:'Export field'}).click();
+ await(await backup).saveAs('artifacts/cargo-field.json');
+ const saved=JSON.parse(await fs.readFile('artifacts/cargo-field.json','utf8'));assert.equal(saved.field.blocks.length,1);assert.equal(saved.field.zones[0].color,'red');
+ const bumper=block('go_drivetrain_drive','<field name="DIRECTION">forward</field>',block('go_control_wait_until','<value name="CONDITION">'+block('go_sensing_bumper','<field name="BUMPER">Bumper1</field>')+'</value>',drive(-100)));
+ await load(bumper);await page.getByRole('button',{name:/Run code/}).click();
+ await page.waitForFunction(()=>document.querySelector('.training-status')?.textContent==='Program finished',{},{timeout:20000});
+ assert.match(await page.locator('.sensor-readings').textContent(),/Bumper: Released/);
+ const distance=parseFloat(await page.locator('.training-telemetry strong').first().textContent());assert.ok(distance>225&&distance<240,'bumper condition must resume interpreter and reverse');
+ await page.screenshot({path:'artifacts/training-sensors.png',fullPage:true});
+ await page.setViewportSize({width:390,height:844});assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
+ assert.deepEqual(errors,[]);
+ console.log('PASS: Magnet and Sensing visible; real Blockly eye wait/if/color -> pickup/drive/drop completes mission; export contains objects/zones; bumper wait resumes and reverses; mobile width; no page errors.');
+}catch(error){console.log('Status:',await page.locator('.training-status').textContent().catch(()=>''));await page.screenshot({path:'artifacts/training-sensors-failure.png',fullPage:true});throw error;}finally{await browser.close();}

@@ -1,0 +1,81 @@
+{
+  "version": 1,
+  "field": {
+    "name": "Final logistics exam",
+    "width": 1800,
+    "height": 1600,
+    "start": {
+      "x": 200,
+      "y": 200,
+      "heading": 90
+    },
+    "goal": {
+      "x": 1500,
+      "y": 1300,
+      "radius": 70
+    },
+    "walls": [],
+    "blocks": [
+      {
+        "id": "parcel-0",
+        "x": 450,
+        "y": 300,
+        "color": "blue"
+      },
+      {
+        "id": "parcel-1",
+        "x": 450,
+        "y": 600,
+        "color": "red"
+      },
+      {
+        "id": "parcel-2",
+        "x": 450,
+        "y": 900,
+        "color": "green"
+      }
+    ],
+    "zones": [
+      {
+        "x": 1350,
+        "y": 600,
+        "radius": 110,
+        "color": "blue"
+      },
+      {
+        "x": 1350,
+        "y": 900,
+        "radius": 110,
+        "color": "red"
+      },
+      {
+        "x": 1350,
+        "y": 300,
+        "radius": 110,
+        "color": "green"
+      }
+    ],
+    "checkpoints": [
+      {
+        "x": 600,
+        "y": 1100,
+        "radius": 55
+      },
+      {
+        "x": 1200,
+        "y": 1100,
+        "radius": 55
+      },
+      {
+        "x": 1200,
+        "y": 1350,
+        "radius": 55
+      },
+      {
+        "x": 200,
+        "y": 1350,
+        "radius": 55
+      }
+    ]
+  }
+}

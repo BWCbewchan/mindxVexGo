@@ -1,0 +1,46 @@
+{
+  "version": 1,
+  "field": {
+    "name": "Precision slalom",
+    "width": 1800,
+    "height": 1600,
+    "start": {
+      "x": 200,
+      "y": 200,
+      "heading": 90
+    },
+    "goal": {
+      "x": 1450,
+      "y": 1100,
+      "radius": 45
+    },
+    "walls": [],
+    "checkpoints": [
+      {
+        "x": 450,
+        "y": 450,
+        "radius": 45
+      },
+      {
+        "x": 700,
+        "y": 200,
+        "radius": 45
+      },
+      {
+        "x": 950,
+        "y": 450,
+        "radius": 45
+      },
+      {
+        "x": 1200,
+        "y": 200,
+        "radius": 45
+      },
+      {
+        "x": 1450,
+        "y": 450,
+        "radius": 45
+      }
+    ]
+  }
+}

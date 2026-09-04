@@ -1,0 +1,46 @@
+{
+  "version": 1,
+  "field": {
+    "name": "Staircase courier",
+    "width": 1800,
+    "height": 1600,
+    "start": {
+      "x": 200,
+      "y": 200,
+      "heading": 90
+    },
+    "goal": {
+      "x": 1100,
+      "y": 1100,
+      "radius": 45
+    },
+    "walls": [],
+    "checkpoints": [
+      {
+        "x": 500,
+        "y": 200,
+        "radius": 45
+      },
+      {
+        "x": 500,
+        "y": 500,
+        "radius": 45
+      },
+      {
+        "x": 800,
+        "y": 500,
+        "radius": 45
+      },
+      {
+        "x": 800,
+        "y": 800,
+        "radius": 45
+      },
+      {
+        "x": 1100,
+        "y": 800,
+        "radius": 45
+      }
+    ]
+  }
+}

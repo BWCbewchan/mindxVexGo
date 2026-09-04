@@ -1,0 +1,74 @@
+{
+  "version": 1,
+  "field": {
+    "name": "Little labyrinth",
+    "width": 800,
+    "height": 800,
+    "start": {
+      "x": 100,
+      "y": 700,
+      "heading": 0
+    },
+    "goal": {
+      "x": 700,
+      "y": 500,
+      "radius": 55
+    },
+    "walls": [
+      {
+        "x": 400,
+        "y": 188,
+        "width": 200,
+        "height": 24
+      },
+      {
+        "x": 188,
+        "y": 200,
+        "width": 24,
+        "height": 200
+      },
+      {
+        "x": 388,
+        "y": 200,
+        "width": 24,
+        "height": 200
+      },
+      {
+        "x": 600,
+        "y": 388,
+        "width": 200,
+        "height": 24
+      },
+      {
+        "x": 188,
+        "y": 400,
+        "width": 24,
+        "height": 200
+      },
+      {
+        "x": 0,
+        "y": 588,
+        "width": 200,
+        "height": 24
+      },
+      {
+        "x": 388,
+        "y": 400,
+        "width": 24,
+        "height": 200
+      },
+      {
+        "x": 588,
+        "y": 400,
+        "width": 24,
+        "height": 200
+      },
+      {
+        "x": 388,
+        "y": 600,
+        "width": 24,
+        "height": 200
+      }
+    ]
+  }
+}

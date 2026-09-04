@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "field": {
+    "name": "Slalom challenge",
+    "width": 1200,
+    "height": 1200,
+    "start": {
+      "x": 180,
+      "y": 1050,
+      "heading": 0
+    },
+    "goal": {
+      "x": 1000,
+      "y": 200,
+      "radius": 70
+    },
+    "walls": [
+      {
+        "x": 400,
+        "y": 300,
+        "width": 120,
+        "height": 700
+      },
+      {
+        "x": 700,
+        "y": 0,
+        "width": 120,
+        "height": 700
+      }
+    ]
+  }
+}

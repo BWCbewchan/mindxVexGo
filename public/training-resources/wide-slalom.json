@@ -1,0 +1,44 @@
+{
+  "version": 1,
+  "field": {
+    "name": "Slalom marathon",
+    "width": 1600,
+    "height": 1600,
+    "start": {
+      "x": 100,
+      "y": 1450,
+      "heading": 0
+    },
+    "goal": {
+      "x": 1500,
+      "y": 150,
+      "radius": 70
+    },
+    "walls": [
+      {
+        "x": 300,
+        "y": 400,
+        "width": 40,
+        "height": 1200
+      },
+      {
+        "x": 650,
+        "y": 0,
+        "width": 40,
+        "height": 1200
+      },
+      {
+        "x": 1000,
+        "y": 400,
+        "width": 40,
+        "height": 1200
+      },
+      {
+        "x": 1350,
+        "y": 0,
+        "width": 40,
+        "height": 1200
+      }
+    ]
+  }
+}

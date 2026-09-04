@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "field": {
+    "name": "Push north",
+    "width": 1600,
+    "height": 1400,
+    "start": {
+      "x": 500,
+      "y": 1200,
+      "heading": 90
+    },
+    "goal": {
+      "x": 1400,
+      "y": 1200,
+      "radius": 70
+    },
+    "walls": [],
+    "blocks": [
+      {
+        "id": "push-box-0",
+        "x": 500,
+        "y": 950,
+        "color": "green",
+        "pushable": true
+      }
+    ],
+    "zones": [
+      {
+        "x": 500,
+        "y": 300,
+        "color": "green",
+        "radius": 85
+      }
+    ]
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "version": 1,
+  "field": {
+    "name": "Push around the island",
+    "width": 1600,
+    "height": 1400,
+    "start": {
+      "x": 200,
+      "y": 600,
+      "heading": 90
+    },
+    "goal": {
+      "x": 1400,
+      "y": 1200,
+      "radius": 70
+    },
+    "walls": [
+      {
+        "x": 800,
+        "y": 400,
+        "width": 200,
+        "height": 400
+      }
+    ],
+    "blocks": [
+      {
+        "id": "push-box-0",
+        "x": 500,
+        "y": 600,
+        "color": "blue",
+        "pushable": true
+      }
+    ],
+    "zones": [
+      {
+        "x": 1200,
+        "y": 1000,
+        "color": "blue",
+        "radius": 85
+      }
+    ]
+  }
+}

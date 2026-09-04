@@ -1,0 +1,5446 @@
+[
+  {
+    "id": "first-journey",
+    "level": "01 · BEGINNER",
+    "description": "Drive 700 mm forward and stop in the green target.",
+    "field": {
+      "name": "First journey",
+      "width": 1200,
+      "height": 1200,
+      "start": {
+        "x": 200,
+        "y": 600,
+        "heading": 90
+      },
+      "goal": {
+        "x": 900,
+        "y": 600,
+        "radius": 70
+      },
+      "walls": []
+    }
+  },
+  {
+    "id": "corner-route",
+    "level": "02 · BEGINNER",
+    "description": "Use drive and turn commands to go around the large wall and reach the target.",
+    "field": {
+      "name": "Around the corner",
+      "width": 1200,
+      "height": 1200,
+      "start": {
+        "x": 200,
+        "y": 1000,
+        "heading": 0
+      },
+      "goal": {
+        "x": 1000,
+        "y": 200,
+        "radius": 70
+      },
+      "walls": [
+        {
+          "x": 400,
+          "y": 400,
+          "width": 500,
+          "height": 500
+        }
+      ]
+    }
+  },
+  {
+    "id": "narrow-passage",
+    "level": "03 · INTERMEDIATE",
+    "description": "Find the gaps in both walls. Plan your distances and turns before running.",
+    "field": {
+      "name": "Find the passage",
+      "width": 1200,
+      "height": 1200,
+      "start": {
+        "x": 180,
+        "y": 1050,
+        "heading": 0
+      },
+      "goal": {
+        "x": 1000,
+        "y": 200,
+        "radius": 70
+      },
+      "walls": [
+        {
+          "x": 0,
+          "y": 450,
+          "width": 850,
+          "height": 120
+        },
+        {
+          "x": 350,
+          "y": 800,
+          "width": 850,
+          "height": 120
+        }
+      ]
+    }
+  },
+  {
+    "id": "slalom",
+    "level": "04 · CHALLENGE",
+    "description": "Navigate around alternating barriers. Use My Blocks to organize your route.",
+    "field": {
+      "name": "Slalom challenge",
+      "width": 1200,
+      "height": 1200,
+      "start": {
+        "x": 180,
+        "y": 1050,
+        "heading": 0
+      },
+      "goal": {
+        "x": 1000,
+        "y": 200,
+        "radius": 70
+      },
+      "walls": [
+        {
+          "x": 400,
+          "y": 300,
+          "width": 120,
+          "height": 700
+        },
+        {
+          "x": 700,
+          "y": 0,
+          "width": 120,
+          "height": 700
+        }
+      ]
+    }
+  },
+  {
+    "id": "precision-stop",
+    "level": "05 · BEGINNER",
+    "description": "Choose a distance that stops the robot inside a smaller target.",
+    "field": {
+      "name": "Precision stop",
+      "width": 800,
+      "height": 800,
+      "start": {
+        "x": 100,
+        "y": 400,
+        "heading": 90
+      },
+      "goal": {
+        "x": 600,
+        "y": 400,
+        "radius": 40
+      },
+      "walls": []
+    }
+  },
+  {
+    "id": "long-straight",
+    "level": "06 · BEGINNER",
+    "description": "Practice distance and velocity on a long straight field.",
+    "field": {
+      "name": "The long straight",
+      "width": 2000,
+      "height": 800,
+      "start": {
+        "x": 100,
+        "y": 400,
+        "heading": 90
+      },
+      "goal": {
+        "x": 1850,
+        "y": 400,
+        "radius": 50
+      },
+      "walls": []
+    }
+  },
+  {
+    "id": "quarter-turn",
+    "level": "07 · BEGINNER",
+    "description": "Combine forward motion and a quarter turn to reach the far corner.",
+    "field": {
+      "name": "Quarter turn",
+      "width": 1000,
+      "height": 1000,
+      "start": {
+        "x": 150,
+        "y": 850,
+        "heading": 0
+      },
+      "goal": {
+        "x": 850,
+        "y": 150,
+        "radius": 60
+      },
+      "walls": [
+        {
+          "x": 400,
+          "y": 400,
+          "width": 350,
+          "height": 350
+        }
+      ]
+    }
+  },
+  {
+    "id": "return-route",
+    "level": "08 · BEGINNER",
+    "description": "Start facing left and plan a route around the centre island.",
+    "field": {
+      "name": "The return route",
+      "width": 1200,
+      "height": 1200,
+      "start": {
+        "x": 1000,
+        "y": 1000,
+        "heading": 270
+      },
+      "goal": {
+        "x": 200,
+        "y": 200,
+        "radius": 70
+      },
+      "walls": [
+        {
+          "x": 450,
+          "y": 450,
+          "width": 300,
+          "height": 300
+        }
+      ]
+    }
+  },
+  {
+    "id": "island-detour",
+    "level": "09 · INTERMEDIATE",
+    "description": "Choose a side of the island and reach the target without touching it.",
+    "field": {
+      "name": "Island detour",
+      "width": 1600,
+      "height": 1200,
+      "start": {
+        "x": 150,
+        "y": 600,
+        "heading": 90
+      },
+      "goal": {
+        "x": 1450,
+        "y": 600,
+        "radius": 70
+      },
+      "walls": [
+        {
+          "x": 600,
+          "y": 350,
+          "width": 400,
+          "height": 500
+        }
+      ]
+    }
+  },
+  {
+    "id": "twin-islands",
+    "level": "10 · INTERMEDIATE",
+    "description": "Plan a route past two large islands. Compare different routes.",
+    "field": {
+      "name": "Twin islands",
+      "width": 1600,
+      "height": 1200,
+      "start": {
+        "x": 150,
+        "y": 1050,
+        "heading": 0
+      },
+      "goal": {
+        "x": 1450,
+        "y": 150,
+        "radius": 70
+      },
+      "walls": [
+        {
+          "x": 350,
+          "y": 300,
+          "width": 300,
+          "height": 550
+        },
+        {
+          "x": 950,
+          "y": 300,
+          "width": 300,
+          "height": 550
+        }
+      ]
+    }
+  },
+  {
+    "id": "three-gates",
+    "level": "11 · INTERMEDIATE",
+    "description": "Alternate your turns to pass all three gates.",
+    "field": {
+      "name": "Three gates",
+      "width": 1600,
+      "height": 1200,
+      "start": {
+        "x": 150,
+        "y": 1050,
+        "heading": 0
+      },
+      "goal": {
+        "x": 1450,
+        "y": 150,
+        "radius": 70
+      },
+      "walls": [
+        {
+          "x": 400,
+          "y": 300,
+          "width": 60,
+          "height": 900
+        },
+        {
+          "x": 800,
+          "y": 0,
+          "width": 60,
+          "height": 900
+        },
+        {
+          "x": 1200,
+          "y": 300,
+          "width": 60,
+          "height": 900
+        }
+      ]
+    }
+  },
+  {
+    "id": "wide-slalom",
+    "level": "12 · CHALLENGE",
+    "description": "Build reusable movement functions for a longer slalom course.",
+    "field": {
+      "name": "Slalom marathon",
+      "width": 1600,
+      "height": 1600,
+      "start": {
+        "x": 100,
+        "y": 1450,
+        "heading": 0
+      },
+      "goal": {
+        "x": 1500,
+        "y": 150,
+        "radius": 70
+      },
+      "walls": [
+        {
+          "x": 300,
+          "y": 400,
+          "width": 40,
+          "height": 1200
+        },
+        {
+          "x": 650,
+          "y": 0,
+          "width": 40,
+          "height": 1200
+        },
+        {
+          "x": 1000,
+          "y": 400,
+          "width": 40,
+          "height": 1200
+        },
+        {
+          "x": 1350,
+          "y": 0,
+          "width": 40,
+          "height": 1200
+        }
+      ]
+    }
+  },
+  {
+    "id": "warehouse-aisles",
+    "level": "13 · INTERMEDIATE",
+    "description": "Navigate around storage shelves and reach the delivery zone.",
+    "field": {
+      "name": "Warehouse delivery",
+      "width": 1600,
+      "height": 1200,
+      "start": {
+        "x": 150,
+        "y": 1050,
+        "heading": 0
+      },
+      "goal": {
+        "x": 1450,
+        "y": 150,
+        "radius": 70
+      },
+      "walls": [
+        {
+          "x": 300,
+          "y": 250,
+          "width": 100,
+          "height": 700
+        },
+        {
+          "x": 600,
+          "y": 250,
+          "width": 100,
+          "height": 700
+        },
+        {
+          "x": 900,
+          "y": 250,
+          "width": 100,
+          "height": 700
+        },
+        {
+          "x": 1200,
+          "y": 250,
+          "width": 100,
+          "height": 700
+        }
+      ]
+    }
+  },
+  {
+    "id": "crossroads",
+    "level": "14 · INTERMEDIATE",
+    "description": "Choose a route through or around four blocks. Keep your code organized.",
+    "field": {
+      "name": "Crossroads",
+      "width": 1400,
+      "height": 1400,
+      "start": {
+        "x": 150,
+        "y": 1250,
+        "heading": 0
+      },
+      "goal": {
+        "x": 1250,
+        "y": 150,
+        "radius": 70
+      },
+      "walls": [
+        {
+          "x": 350,
+          "y": 350,
+          "width": 250,
+          "height": 250
+        },
+        {
+          "x": 800,
+          "y": 350,
+          "width": 250,
+          "height": 250
+        },
+        {
+          "x": 350,
+          "y": 800,
+          "width": 250,
+          "height": 250
+        },
+        {
+          "x": 800,
+          "y": 800,
+          "width": 250,
+          "height": 250
+        }
+      ]
+    }
+  },
+  {
+    "id": "maze-1",
+    "level": "15 · INTERMEDIATE",
+    "description": "Find the green target through connected passages. Plan turns and use My Blocks to split the route into smaller steps.",
+    "field": {
+      "name": "Garden paths",
+      "width": 800,
+      "height": 800,
+      "start": {
+        "x": 100,
+        "y": 700,
+        "heading": 0
+      },
+      "goal": {
+        "x": 700,
+        "y": 700,
+        "radius": 55
+      },
+      "walls": [
+        {
+          "x": 400,
+          "y": 188,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 188,
+          "y": 200,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 200,
+          "y": 388,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 588,
+          "y": 200,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 0,
+          "y": 588,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 388,
+          "y": 400,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 200,
+          "y": 588,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 588,
+          "y": 400,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 588,
+          "y": 600,
+          "width": 24,
+          "height": 200
+        }
+      ]
+    }
+  },
+  {
+    "id": "maze-2",
+    "level": "16 · INTERMEDIATE",
+    "description": "Find the green target through connected passages. Plan turns and use My Blocks to split the route into smaller steps.",
+    "field": {
+      "name": "Hidden lane",
+      "width": 800,
+      "height": 800,
+      "start": {
+        "x": 100,
+        "y": 700,
+        "heading": 0
+      },
+      "goal": {
+        "x": 500,
+        "y": 500,
+        "radius": 55
+      },
+      "walls": [
+        {
+          "x": 400,
+          "y": 188,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 600,
+          "y": 188,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 188,
+          "y": 200,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 200,
+          "y": 388,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 400,
+          "y": 388,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 0,
+          "y": 588,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 200,
+          "y": 588,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 588,
+          "y": 400,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 400,
+          "y": 588,
+          "width": 200,
+          "height": 24
+        }
+      ]
+    }
+  },
+  {
+    "id": "maze-3",
+    "level": "17 · INTERMEDIATE",
+    "description": "Find the green target through connected passages. Plan turns and use My Blocks to split the route into smaller steps.",
+    "field": {
+      "name": "Little labyrinth",
+      "width": 800,
+      "height": 800,
+      "start": {
+        "x": 100,
+        "y": 700,
+        "heading": 0
+      },
+      "goal": {
+        "x": 700,
+        "y": 500,
+        "radius": 55
+      },
+      "walls": [
+        {
+          "x": 400,
+          "y": 188,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 188,
+          "y": 200,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 388,
+          "y": 200,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 600,
+          "y": 388,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 188,
+          "y": 400,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 0,
+          "y": 588,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 388,
+          "y": 400,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 588,
+          "y": 400,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 388,
+          "y": 600,
+          "width": 24,
+          "height": 200
+        }
+      ]
+    }
+  },
+  {
+    "id": "maze-4",
+    "level": "18 · INTERMEDIATE",
+    "description": "Find the green target through connected passages. Plan turns and use My Blocks to split the route into smaller steps.",
+    "field": {
+      "name": "Clockwise trail",
+      "width": 800,
+      "height": 800,
+      "start": {
+        "x": 100,
+        "y": 700,
+        "heading": 0
+      },
+      "goal": {
+        "x": 300,
+        "y": 300,
+        "radius": 55
+      },
+      "walls": [
+        {
+          "x": 200,
+          "y": 188,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 600,
+          "y": 188,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 388,
+          "y": 200,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 200,
+          "y": 388,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 400,
+          "y": 388,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 188,
+          "y": 400,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 0,
+          "y": 588,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 588,
+          "y": 400,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 388,
+          "y": 600,
+          "width": 24,
+          "height": 200
+        }
+      ]
+    }
+  },
+  {
+    "id": "maze-5",
+    "level": "19 · CHALLENGE",
+    "description": "Find the green target through connected passages. Plan turns and use My Blocks to split the route into smaller steps.",
+    "field": {
+      "name": "Lantern maze",
+      "width": 1000,
+      "height": 1000,
+      "start": {
+        "x": 100,
+        "y": 900,
+        "heading": 0
+      },
+      "goal": {
+        "x": 900,
+        "y": 900,
+        "radius": 55
+      },
+      "walls": [
+        {
+          "x": 0,
+          "y": 188,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 588,
+          "y": 0,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 600,
+          "y": 188,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 388,
+          "y": 200,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 200,
+          "y": 388,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 400,
+          "y": 388,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 600,
+          "y": 388,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 188,
+          "y": 400,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 200,
+          "y": 588,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 788,
+          "y": 400,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 0,
+          "y": 788,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 388,
+          "y": 600,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 588,
+          "y": 600,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 600,
+          "y": 788,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 800,
+          "y": 788,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 388,
+          "y": 800,
+          "width": 24,
+          "height": 200
+        }
+      ]
+    }
+  },
+  {
+    "id": "maze-6",
+    "level": "20 · CHALLENGE",
+    "description": "Find the green target through connected passages. Plan turns and use My Blocks to split the route into smaller steps.",
+    "field": {
+      "name": "River bends",
+      "width": 1000,
+      "height": 1000,
+      "start": {
+        "x": 100,
+        "y": 900,
+        "heading": 0
+      },
+      "goal": {
+        "x": 100,
+        "y": 700,
+        "radius": 55
+      },
+      "walls": [
+        {
+          "x": 200,
+          "y": 188,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 400,
+          "y": 188,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 600,
+          "y": 188,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 188,
+          "y": 200,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 400,
+          "y": 388,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 788,
+          "y": 200,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 188,
+          "y": 400,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 388,
+          "y": 400,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 788,
+          "y": 400,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 600,
+          "y": 588,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 188,
+          "y": 600,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 0,
+          "y": 788,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 388,
+          "y": 600,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 588,
+          "y": 600,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 388,
+          "y": 800,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 788,
+          "y": 800,
+          "width": 24,
+          "height": 200
+        }
+      ]
+    }
+  },
+  {
+    "id": "maze-7",
+    "level": "21 · CHALLENGE",
+    "description": "Find the green target through connected passages. Plan turns and use My Blocks to split the route into smaller steps.",
+    "field": {
+      "name": "Forest passage",
+      "width": 1000,
+      "height": 1000,
+      "start": {
+        "x": 100,
+        "y": 900,
+        "heading": 0
+      },
+      "goal": {
+        "x": 300,
+        "y": 300,
+        "radius": 55
+      },
+      "walls": [
+        {
+          "x": 388,
+          "y": 0,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 188,
+          "y": 200,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 388,
+          "y": 200,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 200,
+          "y": 388,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 588,
+          "y": 200,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 788,
+          "y": 200,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 800,
+          "y": 388,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 200,
+          "y": 588,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 588,
+          "y": 400,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 400,
+          "y": 588,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 600,
+          "y": 588,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 188,
+          "y": 600,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 0,
+          "y": 788,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 588,
+          "y": 600,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 388,
+          "y": 800,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 788,
+          "y": 800,
+          "width": 24,
+          "height": 200
+        }
+      ]
+    }
+  },
+  {
+    "id": "maze-8",
+    "level": "22 · CHALLENGE",
+    "description": "Find the green target through connected passages. Plan turns and use My Blocks to split the route into smaller steps.",
+    "field": {
+      "name": "Old town lanes",
+      "width": 1000,
+      "height": 1000,
+      "start": {
+        "x": 100,
+        "y": 900,
+        "heading": 0
+      },
+      "goal": {
+        "x": 500,
+        "y": 700,
+        "radius": 55
+      },
+      "walls": [
+        {
+          "x": 400,
+          "y": 188,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 600,
+          "y": 188,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 800,
+          "y": 188,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 188,
+          "y": 200,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 200,
+          "y": 388,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 400,
+          "y": 388,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 600,
+          "y": 388,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 188,
+          "y": 400,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 588,
+          "y": 400,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 0,
+          "y": 788,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 388,
+          "y": 600,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 200,
+          "y": 788,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 588,
+          "y": 600,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 400,
+          "y": 788,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 788,
+          "y": 600,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 788,
+          "y": 800,
+          "width": 24,
+          "height": 200
+        }
+      ]
+    }
+  },
+  {
+    "id": "maze-9",
+    "level": "23 · CHALLENGE",
+    "description": "Find the green target through connected passages. Plan turns and use My Blocks to split the route into smaller steps.",
+    "field": {
+      "name": "Circuit maze",
+      "width": 1200,
+      "height": 1200,
+      "start": {
+        "x": 100,
+        "y": 1100,
+        "heading": 0
+      },
+      "goal": {
+        "x": 900,
+        "y": 700,
+        "radius": 55
+      },
+      "walls": [
+        {
+          "x": 200,
+          "y": 188,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 400,
+          "y": 188,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 600,
+          "y": 188,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 988,
+          "y": 0,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 188,
+          "y": 200,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 200,
+          "y": 388,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 600,
+          "y": 388,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 988,
+          "y": 200,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 800,
+          "y": 388,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 0,
+          "y": 588,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 388,
+          "y": 400,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 588,
+          "y": 400,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 800,
+          "y": 588,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 388,
+          "y": 600,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 200,
+          "y": 788,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 400,
+          "y": 788,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 788,
+          "y": 600,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 600,
+          "y": 788,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 988,
+          "y": 600,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 0,
+          "y": 988,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 200,
+          "y": 988,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 588,
+          "y": 800,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 988,
+          "y": 800,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 800,
+          "y": 988,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 588,
+          "y": 1000,
+          "width": 24,
+          "height": 200
+        }
+      ]
+    }
+  },
+  {
+    "id": "maze-10",
+    "level": "24 · CHALLENGE",
+    "description": "Find the green target through connected passages. Plan turns and use My Blocks to split the route into smaller steps.",
+    "field": {
+      "name": "Harbour route",
+      "width": 1200,
+      "height": 1200,
+      "start": {
+        "x": 100,
+        "y": 1100,
+        "heading": 0
+      },
+      "goal": {
+        "x": 700,
+        "y": 500,
+        "radius": 55
+      },
+      "walls": [
+        {
+          "x": 200,
+          "y": 188,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 588,
+          "y": 0,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 800,
+          "y": 188,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 188,
+          "y": 200,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 388,
+          "y": 200,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 400,
+          "y": 388,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 788,
+          "y": 200,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 600,
+          "y": 388,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 1000,
+          "y": 388,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 188,
+          "y": 400,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 400,
+          "y": 588,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 788,
+          "y": 400,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 600,
+          "y": 588,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 800,
+          "y": 588,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 188,
+          "y": 600,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 200,
+          "y": 788,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 400,
+          "y": 788,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 800,
+          "y": 788,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 1000,
+          "y": 788,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 0,
+          "y": 988,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 200,
+          "y": 988,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 588,
+          "y": 800,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 600,
+          "y": 988,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 988,
+          "y": 800,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 588,
+          "y": 1000,
+          "width": 24,
+          "height": 200
+        }
+      ]
+    }
+  },
+  {
+    "id": "maze-11",
+    "level": "25 · CHALLENGE",
+    "description": "Find the green target through connected passages. Plan turns and use My Blocks to split the route into smaller steps.",
+    "field": {
+      "name": "Canyon turns",
+      "width": 1200,
+      "height": 1200,
+      "start": {
+        "x": 100,
+        "y": 1100,
+        "heading": 0
+      },
+      "goal": {
+        "x": 1100,
+        "y": 1100,
+        "radius": 55
+      },
+      "walls": [
+        {
+          "x": 200,
+          "y": 188,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 788,
+          "y": 0,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 800,
+          "y": 188,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 188,
+          "y": 200,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 0,
+          "y": 388,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 588,
+          "y": 200,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 400,
+          "y": 388,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 788,
+          "y": 200,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 388,
+          "y": 400,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 200,
+          "y": 588,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 600,
+          "y": 588,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 988,
+          "y": 400,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 800,
+          "y": 588,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 388,
+          "y": 600,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 588,
+          "y": 600,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 400,
+          "y": 788,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 988,
+          "y": 600,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 188,
+          "y": 800,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 0,
+          "y": 988,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 200,
+          "y": 988,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 400,
+          "y": 988,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 788,
+          "y": 800,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 600,
+          "y": 988,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 988,
+          "y": 800,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 988,
+          "y": 1000,
+          "width": 24,
+          "height": 200
+        }
+      ]
+    }
+  },
+  {
+    "id": "maze-12",
+    "level": "26 · CHALLENGE",
+    "description": "Find the green target through connected passages. Plan turns and use My Blocks to split the route into smaller steps.",
+    "field": {
+      "name": "Winding tunnels",
+      "width": 1200,
+      "height": 1200,
+      "start": {
+        "x": 100,
+        "y": 1100,
+        "heading": 0
+      },
+      "goal": {
+        "x": 1100,
+        "y": 100,
+        "radius": 55
+      },
+      "walls": [
+        {
+          "x": 400,
+          "y": 188,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 600,
+          "y": 188,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 800,
+          "y": 188,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 1000,
+          "y": 188,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 188,
+          "y": 200,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 0,
+          "y": 388,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 200,
+          "y": 388,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 588,
+          "y": 200,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 800,
+          "y": 388,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 200,
+          "y": 588,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 588,
+          "y": 400,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 400,
+          "y": 588,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 600,
+          "y": 588,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 988,
+          "y": 400,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 388,
+          "y": 600,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 788,
+          "y": 600,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 988,
+          "y": 600,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 188,
+          "y": 800,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 0,
+          "y": 988,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 200,
+          "y": 988,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 588,
+          "y": 800,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 400,
+          "y": 988,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 600,
+          "y": 988,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 988,
+          "y": 800,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 800,
+          "y": 988,
+          "width": 200,
+          "height": 24
+        }
+      ]
+    }
+  },
+  {
+    "id": "maze-13",
+    "level": "27 · CHALLENGE",
+    "description": "Find the green target through connected passages. Plan turns and use My Blocks to split the route into smaller steps.",
+    "field": {
+      "name": "Explorer maze",
+      "width": 1400,
+      "height": 1400,
+      "start": {
+        "x": 100,
+        "y": 1300,
+        "heading": 0
+      },
+      "goal": {
+        "x": 300,
+        "y": 100,
+        "radius": 55
+      },
+      "walls": [
+        {
+          "x": 388,
+          "y": 0,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 200,
+          "y": 188,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 800,
+          "y": 188,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 1000,
+          "y": 188,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 0,
+          "y": 388,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 200,
+          "y": 388,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 588,
+          "y": 200,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 400,
+          "y": 388,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 800,
+          "y": 388,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 1188,
+          "y": 200,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 1200,
+          "y": 388,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 200,
+          "y": 588,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 588,
+          "y": 400,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 600,
+          "y": 588,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 988,
+          "y": 400,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 800,
+          "y": 588,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 1000,
+          "y": 588,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 188,
+          "y": 600,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 388,
+          "y": 600,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 400,
+          "y": 788,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 600,
+          "y": 788,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 800,
+          "y": 788,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 1188,
+          "y": 600,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 188,
+          "y": 800,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 200,
+          "y": 988,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 400,
+          "y": 988,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 988,
+          "y": 800,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 1000,
+          "y": 988,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 0,
+          "y": 1188,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 200,
+          "y": 1188,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 588,
+          "y": 1000,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 788,
+          "y": 1000,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 1188,
+          "y": 1000,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 1000,
+          "y": 1188,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 588,
+          "y": 1200,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 788,
+          "y": 1200,
+          "width": 24,
+          "height": 200
+        }
+      ]
+    }
+  },
+  {
+    "id": "maze-14",
+    "level": "28 · CHALLENGE",
+    "description": "Find the green target through connected passages. Plan turns and use My Blocks to split the route into smaller steps.",
+    "field": {
+      "name": "Night mission",
+      "width": 1400,
+      "height": 1400,
+      "start": {
+        "x": 100,
+        "y": 1300,
+        "heading": 0
+      },
+      "goal": {
+        "x": 1300,
+        "y": 700,
+        "radius": 55
+      },
+      "walls": [
+        {
+          "x": 388,
+          "y": 0,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 400,
+          "y": 188,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 988,
+          "y": 0,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 188,
+          "y": 200,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 200,
+          "y": 388,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 400,
+          "y": 388,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 788,
+          "y": 200,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 600,
+          "y": 388,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 988,
+          "y": 200,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 1188,
+          "y": 200,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 200,
+          "y": 588,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 588,
+          "y": 400,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 988,
+          "y": 400,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 800,
+          "y": 588,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 1188,
+          "y": 400,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 188,
+          "y": 600,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 588,
+          "y": 600,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 400,
+          "y": 788,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 600,
+          "y": 788,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 800,
+          "y": 788,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 1188,
+          "y": 600,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 1000,
+          "y": 788,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 1200,
+          "y": 788,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 188,
+          "y": 800,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 200,
+          "y": 988,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 400,
+          "y": 988,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 600,
+          "y": 988,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 1000,
+          "y": 988,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 188,
+          "y": 1000,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 0,
+          "y": 1188,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 400,
+          "y": 1188,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 788,
+          "y": 1000,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 988,
+          "y": 1000,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 800,
+          "y": 1188,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 388,
+          "y": 1200,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 1188,
+          "y": 1200,
+          "width": 24,
+          "height": 200
+        }
+      ]
+    }
+  },
+  {
+    "id": "maze-15",
+    "level": "29 · CHALLENGE",
+    "description": "Find the green target through connected passages. Plan turns and use My Blocks to split the route into smaller steps.",
+    "field": {
+      "name": "Final labyrinth",
+      "width": 1400,
+      "height": 1400,
+      "start": {
+        "x": 100,
+        "y": 1300,
+        "heading": 0
+      },
+      "goal": {
+        "x": 500,
+        "y": 700,
+        "radius": 55
+      },
+      "walls": [
+        {
+          "x": 388,
+          "y": 0,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 600,
+          "y": 188,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 800,
+          "y": 188,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 1000,
+          "y": 188,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 188,
+          "y": 200,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 200,
+          "y": 388,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 588,
+          "y": 200,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 400,
+          "y": 388,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 800,
+          "y": 388,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 1000,
+          "y": 388,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 188,
+          "y": 400,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 400,
+          "y": 588,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 788,
+          "y": 400,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 600,
+          "y": 588,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 1188,
+          "y": 400,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 188,
+          "y": 600,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 0,
+          "y": 788,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 388,
+          "y": 600,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 588,
+          "y": 600,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 988,
+          "y": 600,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 800,
+          "y": 788,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 1000,
+          "y": 788,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 1200,
+          "y": 788,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 388,
+          "y": 800,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 200,
+          "y": 988,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 588,
+          "y": 800,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 600,
+          "y": 988,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 988,
+          "y": 800,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 0,
+          "y": 1188,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 388,
+          "y": 1000,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 788,
+          "y": 1000,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 600,
+          "y": 1188,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 800,
+          "y": 1188,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 1188,
+          "y": 1000,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 1000,
+          "y": 1188,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 388,
+          "y": 1200,
+          "width": 24,
+          "height": 200
+        }
+      ]
+    }
+  },
+  {
+    "id": "maze-16",
+    "level": "30 · CHALLENGE",
+    "description": "Find the green target through connected passages. Plan turns and use My Blocks to split the route into smaller steps.",
+    "field": {
+      "name": "Master navigator",
+      "width": 1400,
+      "height": 1400,
+      "start": {
+        "x": 100,
+        "y": 1300,
+        "heading": 0
+      },
+      "goal": {
+        "x": 300,
+        "y": 300,
+        "radius": 55
+      },
+      "walls": [
+        {
+          "x": 200,
+          "y": 188,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 400,
+          "y": 188,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 600,
+          "y": 188,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 800,
+          "y": 188,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 0,
+          "y": 388,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 388,
+          "y": 200,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 200,
+          "y": 388,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 600,
+          "y": 388,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 988,
+          "y": 200,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 1188,
+          "y": 200,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 200,
+          "y": 588,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 588,
+          "y": 400,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 400,
+          "y": 588,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 988,
+          "y": 400,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 800,
+          "y": 588,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 1188,
+          "y": 400,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 1000,
+          "y": 588,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 188,
+          "y": 600,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 200,
+          "y": 788,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 588,
+          "y": 600,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 600,
+          "y": 788,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 988,
+          "y": 600,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 388,
+          "y": 800,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 588,
+          "y": 800,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 988,
+          "y": 800,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 800,
+          "y": 988,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 1188,
+          "y": 800,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 1200,
+          "y": 988,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 188,
+          "y": 1000,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 0,
+          "y": 1188,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 388,
+          "y": 1000,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 788,
+          "y": 1000,
+          "width": 24,
+          "height": 200
+        },
+        {
+          "x": 600,
+          "y": 1188,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 800,
+          "y": 1188,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 1000,
+          "y": 1188,
+          "width": 200,
+          "height": 24
+        },
+        {
+          "x": 388,
+          "y": 1200,
+          "width": 24,
+          "height": 200
+        }
+      ]
+    }
+  },
+  {
+    "id": "cargo-1",
+    "level": "31 · BEGINNER",
+    "description": "Find the colored cargo with Eye sensing. Use Magnet boost to pick it up, then drop it completely inside the matching delivery zone.",
+    "field": {
+      "name": "First cargo delivery",
+      "width": 1200,
+      "height": 1200,
+      "start": {
+        "x": 200,
+        "y": 300,
+        "heading": 90
+      },
+      "goal": {
+        "x": 950,
+        "y": 300,
+        "radius": 70
+      },
+      "walls": [],
+      "blocks": [
+        {
+          "id": "box-0",
+          "x": 400,
+          "y": 300,
+          "color": "red"
+        }
+      ],
+      "zones": [
+        {
+          "x": 1000,
+          "y": 300,
+          "radius": 90,
+          "color": "red"
+        }
+      ]
+    }
+  },
+  {
+    "id": "cargo-2",
+    "level": "32 · BEGINNER",
+    "description": "Find the colored cargo with Eye sensing. Use Magnet boost to pick it up, then drop it completely inside the matching delivery zone.",
+    "field": {
+      "name": "Green cargo pickup",
+      "width": 1200,
+      "height": 1200,
+      "start": {
+        "x": 200,
+        "y": 300,
+        "heading": 90
+      },
+      "goal": {
+        "x": 950,
+        "y": 300,
+        "radius": 70
+      },
+      "walls": [],
+      "blocks": [
+        {
+          "id": "box-0",
+          "x": 450,
+          "y": 300,
+          "color": "green"
+        }
+      ],
+      "zones": [
+        {
+          "x": 1000,
+          "y": 300,
+          "radius": 90,
+          "color": "green"
+        }
+      ]
+    }
+  },
+  {
+    "id": "cargo-3",
+    "level": "33 · BEGINNER",
+    "description": "Find the colored cargo with Eye sensing. Use Magnet boost to pick it up, then drop it completely inside the matching delivery zone.",
+    "field": {
+      "name": "Blue cargo pickup",
+      "width": 1200,
+      "height": 1200,
+      "start": {
+        "x": 200,
+        "y": 300,
+        "heading": 90
+      },
+      "goal": {
+        "x": 950,
+        "y": 300,
+        "radius": 70
+      },
+      "walls": [],
+      "blocks": [
+        {
+          "id": "box-0",
+          "x": 500,
+          "y": 300,
+          "color": "blue"
+        }
+      ],
+      "zones": [
+        {
+          "x": 1000,
+          "y": 300,
+          "radius": 90,
+          "color": "blue"
+        }
+      ]
+    }
+  },
+  {
+    "id": "cargo-4",
+    "level": "34 · INTERMEDIATE",
+    "description": "Sort 2 cargo blocks into their matching color zones. Use Eye color detection, loops and My Blocks to automate each delivery.",
+    "field": {
+      "name": "Two-color warehouse",
+      "width": 1200,
+      "height": 1200,
+      "start": {
+        "x": 200,
+        "y": 300,
+        "heading": 90
+      },
+      "goal": {
+        "x": 950,
+        "y": 300,
+        "radius": 70
+      },
+      "walls": [],
+      "blocks": [
+        {
+          "id": "box-0",
+          "x": 400,
+          "y": 300,
+          "color": "red"
+        },
+        {
+          "id": "box-1",
+          "x": 400,
+          "y": 550,
+          "color": "green"
+        }
+      ],
+      "zones": [
+        {
+          "x": 1000,
+          "y": 300,
+          "radius": 90,
+          "color": "red"
+        },
+        {
+          "x": 1000,
+          "y": 550,
+          "radius": 90,
+          "color": "green"
+        }
+      ]
+    }
+  },
+  {
+    "id": "cargo-5",
+    "level": "35 · INTERMEDIATE",
+    "description": "Sort 2 cargo blocks into their matching color zones. Use Eye color detection, loops and My Blocks to automate each delivery.",
+    "field": {
+      "name": "Red and blue dispatch",
+      "width": 1200,
+      "height": 1200,
+      "start": {
+        "x": 200,
+        "y": 300,
+        "heading": 90
+      },
+      "goal": {
+        "x": 950,
+        "y": 300,
+        "radius": 70
+      },
+      "walls": [],
+      "blocks": [
+        {
+          "id": "box-0",
+          "x": 450,
+          "y": 300,
+          "color": "green"
+        },
+        {
+          "id": "box-1",
+          "x": 450,
+          "y": 550,
+          "color": "blue"
+        }
+      ],
+      "zones": [
+        {
+          "x": 1000,
+          "y": 300,
+          "radius": 90,
+          "color": "green"
+        },
+        {
+          "x": 1000,
+          "y": 550,
+          "radius": 90,
+          "color": "blue"
+        }
+      ]
+    }
+  },
+  {
+    "id": "cargo-6",
+    "level": "36 · INTERMEDIATE",
+    "description": "Sort 2 cargo blocks into their matching color zones. Use Eye color detection, loops and My Blocks to automate each delivery.",
+    "field": {
+      "name": "Green and blue dispatch",
+      "width": 1200,
+      "height": 1200,
+      "start": {
+        "x": 200,
+        "y": 300,
+        "heading": 90
+      },
+      "goal": {
+        "x": 950,
+        "y": 300,
+        "radius": 70
+      },
+      "walls": [],
+      "blocks": [
+        {
+          "id": "box-0",
+          "x": 500,
+          "y": 300,
+          "color": "blue"
+        },
+        {
+          "id": "box-1",
+          "x": 500,
+          "y": 550,
+          "color": "red"
+        }
+      ],
+      "zones": [
+        {
+          "x": 1000,
+          "y": 300,
+          "radius": 90,
+          "color": "blue"
+        },
+        {
+          "x": 1000,
+          "y": 550,
+          "radius": 90,
+          "color": "red"
+        }
+      ]
+    }
+  },
+  {
+    "id": "cargo-7",
+    "level": "37 · CHALLENGE",
+    "description": "Sort 3 cargo blocks into their matching color zones. Use Eye color detection, loops and My Blocks to automate each delivery.",
+    "field": {
+      "name": "Three-color sorting",
+      "width": 1200,
+      "height": 1200,
+      "start": {
+        "x": 200,
+        "y": 300,
+        "heading": 90
+      },
+      "goal": {
+        "x": 950,
+        "y": 300,
+        "radius": 70
+      },
+      "walls": [
+        {
+          "x": 650,
+          "y": 150,
+          "width": 100,
+          "height": 650
+        }
+      ],
+      "blocks": [
+        {
+          "id": "box-0",
+          "x": 400,
+          "y": 300,
+          "color": "red"
+        },
+        {
+          "id": "box-1",
+          "x": 400,
+          "y": 550,
+          "color": "green"
+        },
+        {
+          "id": "box-2",
+          "x": 400,
+          "y": 800,
+          "color": "blue"
+        }
+      ],
+      "zones": [
+        {
+          "x": 1000,
+          "y": 300,
+          "radius": 90,
+          "color": "red"
+        },
+        {
+          "x": 1000,
+          "y": 550,
+          "radius": 90,
+          "color": "green"
+        },
+        {
+          "x": 1000,
+          "y": 800,
+          "radius": 90,
+          "color": "blue"
+        }
+      ]
+    }
+  },
+  {
+    "id": "cargo-8",
+    "level": "38 · CHALLENGE",
+    "description": "Sort 3 cargo blocks into their matching color zones. Use Eye color detection, loops and My Blocks to automate each delivery.",
+    "field": {
+      "name": "Warehouse master",
+      "width": 1200,
+      "height": 1200,
+      "start": {
+        "x": 200,
+        "y": 300,
+        "heading": 90
+      },
+      "goal": {
+        "x": 950,
+        "y": 300,
+        "radius": 70
+      },
+      "walls": [
+        {
+          "x": 650,
+          "y": 150,
+          "width": 100,
+          "height": 650
+        }
+      ],
+      "blocks": [
+        {
+          "id": "box-0",
+          "x": 450,
+          "y": 300,
+          "color": "green"
+        },
+        {
+          "id": "box-1",
+          "x": 450,
+          "y": 550,
+          "color": "blue"
+        },
+        {
+          "id": "box-2",
+          "x": 450,
+          "y": 800,
+          "color": "red"
+        }
+      ],
+      "zones": [
+        {
+          "x": 1000,
+          "y": 300,
+          "radius": 90,
+          "color": "green"
+        },
+        {
+          "x": 1000,
+          "y": 550,
+          "radius": 90,
+          "color": "blue"
+        },
+        {
+          "x": 1000,
+          "y": 800,
+          "radius": 90,
+          "color": "red"
+        }
+      ]
+    }
+  },
+  {
+    "id": "sensor-bumper-1",
+    "level": "39 · INTERMEDIATE",
+    "description": "Drive until Bumper is pressed, reverse away from the wall, then navigate to the green target. Touching an obstacle is required to complete this mission.",
+    "field": {
+      "name": "Bumper stop and reverse",
+      "width": 1200,
+      "height": 1200,
+      "start": {
+        "x": 200,
+        "y": 400,
+        "heading": 90
+      },
+      "goal": {
+        "x": 200,
+        "y": 800,
+        "radius": 70
+      },
+      "walls": [
+        {
+          "x": 650,
+          "y": 200,
+          "width": 100,
+          "height": 400
+        }
+      ],
+      "requireBumper": true
+    }
+  },
+  {
+    "id": "sensor-bumper-2",
+    "level": "40 · INTERMEDIATE",
+    "description": "Drive until Bumper is pressed, reverse away from the wall, then navigate to the green target. Touching an obstacle is required to complete this mission.",
+    "field": {
+      "name": "Bumper corner escape",
+      "width": 1200,
+      "height": 1200,
+      "start": {
+        "x": 200,
+        "y": 400,
+        "heading": 90
+      },
+      "goal": {
+        "x": 200,
+        "y": 800,
+        "radius": 70
+      },
+      "walls": [
+        {
+          "x": 650,
+          "y": 200,
+          "width": 100,
+          "height": 650
+        }
+      ],
+      "requireBumper": true
+    }
+  },
+  {
+    "id": "sensor-eye-1",
+    "level": "41 · INTERMEDIATE",
+    "description": "Use Eye found object or Eye distance in a wait-until condition to stop before the wall. Turn and reach the green target without contact.",
+    "field": {
+      "name": "Eye obstacle lookout",
+      "width": 1200,
+      "height": 1200,
+      "start": {
+        "x": 200,
+        "y": 300,
+        "heading": 90
+      },
+      "goal": {
+        "x": 1000,
+        "y": 900,
+        "radius": 70
+      },
+      "walls": [
+        {
+          "x": 700,
+          "y": 100,
+          "width": 100,
+          "height": 500
+        }
+      ]
+    }
+  },
+  {
+    "id": "sensor-eye-2",
+    "level": "42 · INTERMEDIATE",
+    "description": "Use Eye found object or Eye distance in a wait-until condition to stop before the wall. Turn and reach the green target without contact.",
+    "field": {
+      "name": "Eye narrow approach",
+      "width": 1200,
+      "height": 1200,
+      "start": {
+        "x": 200,
+        "y": 300,
+        "heading": 90
+      },
+      "goal": {
+        "x": 1000,
+        "y": 900,
+        "radius": 70
+      },
+      "walls": [
+        {
+          "x": 700,
+          "y": 100,
+          "width": 100,
+          "height": 650
+        }
+      ]
+    }
+  },
+  {
+    "id": "thinking-1",
+    "level": "43 · BEGINNER",
+    "focus": "Sequence and distance subtraction",
+    "hint": "Subtract consecutive x coordinates.",
+    "description": "Visit 1, then 2, then the goal. Work out each segment rather than using distances from the start. Visit numbered checkpoints in order before the green goal.",
+    "field": {
+      "name": "Two stops, one direction",
+      "width": 1800,
+      "height": 1600,
+      "start": {
+        "x": 200,
+        "y": 200,
+        "heading": 90
+      },
+      "goal": {
+        "x": 1400,
+        "y": 200,
+        "radius": 45
+      },
+      "walls": [],
+      "checkpoints": [
+        {
+          "x": 500,
+          "y": 200,
+          "radius": 45
+        },
+        {
+          "x": 950,
+          "y": 200,
+          "radius": 45
+        }
+      ]
+    }
+  },
+  {
+    "id": "thinking-2",
+    "level": "44 · BEGINNER",
+    "focus": "Reverse versus turning",
+    "hint": "A negative displacement can be covered while keeping the same heading.",
+    "description": "Visit the point behind the starting direction, then park at the goal. Try using reverse instead of a U-turn. Visit numbered checkpoints in order before the green goal.",
+    "field": {
+      "name": "Reverse parking",
+      "width": 1800,
+      "height": 1600,
+      "start": {
+        "x": 200,
+        "y": 200,
+        "heading": 90
+      },
+      "goal": {
+        "x": 100,
+        "y": 750,
+        "radius": 45
+      },
+      "walls": [],
+      "checkpoints": [
+        {
+          "x": 100,
+          "y": 200,
+          "radius": 45
+        }
+      ]
+    }
+  },
+  {
+    "id": "thinking-3",
+    "level": "45 · BEGINNER",
+    "focus": "Robot-relative directions",
+    "hint": "After moving down, a left turn points right on the map.",
+    "description": "Reach the lower point, then the point to its right, then the goal above it. Decide left and right from the robot heading. Visit numbered checkpoints in order before the green goal.",
+    "field": {
+      "name": "Left is relative",
+      "width": 1800,
+      "height": 1600,
+      "start": {
+        "x": 200,
+        "y": 200,
+        "heading": 90
+      },
+      "goal": {
+        "x": 700,
+        "y": 200,
+        "radius": 45
+      },
+      "walls": [],
+      "checkpoints": [
+        {
+          "x": 200,
+          "y": 650,
+          "radius": 45
+        },
+        {
+          "x": 700,
+          "y": 650,
+          "radius": 45
+        }
+      ]
+    }
+  },
+  {
+    "id": "thinking-4",
+    "level": "46 · BEGINNER",
+    "focus": "Repeated opposite sides",
+    "hint": "Opposite sides of a rectangle have equal lengths.",
+    "description": "Visit three corners in order and return to the start. Pair equal side lengths. Visit numbered checkpoints in order before the green goal.",
+    "field": {
+      "name": "Rectangle patrol",
+      "width": 1800,
+      "height": 1600,
+      "start": {
+        "x": 200,
+        "y": 200,
+        "heading": 90
+      },
+      "goal": {
+        "x": 200,
+        "y": 200,
+        "radius": 45
+      },
+      "walls": [],
+      "checkpoints": [
+        {
+          "x": 1100,
+          "y": 200,
+          "radius": 45
+        },
+        {
+          "x": 1100,
+          "y": 900,
+          "radius": 45
+        },
+        {
+          "x": 200,
+          "y": 900,
+          "radius": 45
+        }
+      ]
+    }
+  },
+  {
+    "id": "thinking-5",
+    "level": "47 · BEGINNER",
+    "focus": "Recognizing a repeated pair",
+    "hint": "One horizontal segment and one vertical segment form a step.",
+    "description": "Climb three map steps in order. Find the pair of movements that repeats. Visit numbered checkpoints in order before the green goal.",
+    "field": {
+      "name": "Staircase courier",
+      "width": 1800,
+      "height": 1600,
+      "start": {
+        "x": 200,
+        "y": 200,
+        "heading": 90
+      },
+      "goal": {
+        "x": 1100,
+        "y": 1100,
+        "radius": 45
+      },
+      "walls": [],
+      "checkpoints": [
+        {
+          "x": 500,
+          "y": 200,
+          "radius": 45
+        },
+        {
+          "x": 500,
+          "y": 500,
+          "radius": 45
+        },
+        {
+          "x": 800,
+          "y": 500,
+          "radius": 45
+        },
+        {
+          "x": 800,
+          "y": 800,
+          "radius": 45
+        },
+        {
+          "x": 1100,
+          "y": 800,
+          "radius": 45
+        }
+      ]
+    }
+  },
+  {
+    "id": "thinking-6",
+    "level": "48 · BEGINNER",
+    "focus": "Changing a variable",
+    "hint": "The consecutive gaps are 200, 300, 400 and 500 mm.",
+    "description": "Visit the markers on one line; the gaps grow each time. Consider storing the next distance in a variable. Visit numbered checkpoints in order before the green goal.",
+    "field": {
+      "name": "Unequal strides",
+      "width": 1800,
+      "height": 1600,
+      "start": {
+        "x": 200,
+        "y": 200,
+        "heading": 90
+      },
+      "goal": {
+        "x": 1600,
+        "y": 200,
+        "radius": 45
+      },
+      "walls": [],
+      "checkpoints": [
+        {
+          "x": 400,
+          "y": 200,
+          "radius": 45
+        },
+        {
+          "x": 700,
+          "y": 200,
+          "radius": 45
+        },
+        {
+          "x": 1100,
+          "y": 200,
+          "radius": 45
+        }
+      ]
+    }
+  },
+  {
+    "id": "thinking-7",
+    "level": "49 · INTERMEDIATE",
+    "focus": "Diagonal length and bearing",
+    "hint": "Use the horizontal and vertical differences to calculate distance and bearing.",
+    "description": "Visit the three survey corners in order. Work out a diagonal heading instead of using only right angles. Visit numbered checkpoints in order before the green goal.",
+    "field": {
+      "name": "Triangle survey",
+      "width": 1800,
+      "height": 1600,
+      "start": {
+        "x": 200,
+        "y": 200,
+        "heading": 90
+      },
+      "goal": {
+        "x": 200,
+        "y": 200,
+        "radius": 45
+      },
+      "walls": [],
+      "checkpoints": [
+        {
+          "x": 1000,
+          "y": 200,
+          "radius": 45
+        },
+        {
+          "x": 600,
+          "y": 900,
+          "radius": 45
+        }
+      ]
+    }
+  },
+  {
+    "id": "thinking-8",
+    "level": "50 · INTERMEDIATE",
+    "focus": "Exterior turn angles",
+    "hint": "Equal diagonals create four equal route segments.",
+    "description": "Trace all four diamond corners and return. Compare the angle turned with the interior angle. Visit numbered checkpoints in order before the green goal.",
+    "field": {
+      "name": "Diamond circuit",
+      "width": 1800,
+      "height": 1600,
+      "start": {
+        "x": 200,
+        "y": 200,
+        "heading": 90
+      },
+      "goal": {
+        "x": 650,
+        "y": 100,
+        "radius": 45
+      },
+      "walls": [],
+      "checkpoints": [
+        {
+          "x": 650,
+          "y": 100,
+          "radius": 45
+        },
+        {
+          "x": 1100,
+          "y": 550,
+          "radius": 45
+        },
+        {
+          "x": 650,
+          "y": 1000,
+          "radius": 45
+        },
+        {
+          "x": 200,
+          "y": 550,
+          "radius": 45
+        }
+      ]
+    }
+  },
+  {
+    "id": "thinking-9",
+    "level": "51 · INTERMEDIATE",
+    "focus": "State at a shared junction",
+    "hint": "Use a stage variable to distinguish repeated visits to the center.",
+    "description": "Visit the numbered points on both loops in order. The shared center means different turns on different visits. Visit numbered checkpoints in order before the green goal.",
+    "field": {
+      "name": "Figure-eight junction",
+      "width": 1800,
+      "height": 1600,
+      "start": {
+        "x": 200,
+        "y": 200,
+        "heading": 90
+      },
+      "goal": {
+        "x": 800,
+        "y": 650,
+        "radius": 45
+      },
+      "walls": [],
+      "checkpoints": [
+        {
+          "x": 800,
+          "y": 650,
+          "radius": 45
+        },
+        {
+          "x": 1300,
+          "y": 200,
+          "radius": 45
+        },
+        {
+          "x": 1300,
+          "y": 1100,
+          "radius": 45
+        },
+        {
+          "x": 800,
+          "y": 650,
+          "radius": 45
+        },
+        {
+          "x": 300,
+          "y": 1100,
+          "radius": 45
+        },
+        {
+          "x": 300,
+          "y": 200,
+          "radius": 45
+        }
+      ]
+    }
+  },
+  {
+    "id": "thinking-10",
+    "level": "52 · BEGINNER",
+    "focus": "Reversing a sequence",
+    "hint": "Reverse the order of segments, not just each direction.",
+    "description": "Visit the outbound points, then return through them in reverse order. Visit numbered checkpoints in order before the green goal.",
+    "field": {
+      "name": "Out and back",
+      "width": 1800,
+      "height": 1600,
+      "start": {
+        "x": 200,
+        "y": 200,
+        "heading": 90
+      },
+      "goal": {
+        "x": 200,
+        "y": 200,
+        "radius": 45
+      },
+      "walls": [],
+      "checkpoints": [
+        {
+          "x": 600,
+          "y": 200,
+          "radius": 45
+        },
+        {
+          "x": 600,
+          "y": 800,
+          "radius": 45
+        },
+        {
+          "x": 1200,
+          "y": 800,
+          "radius": 45
+        },
+        {
+          "x": 600,
+          "y": 800,
+          "radius": 45
+        },
+        {
+          "x": 600,
+          "y": 200,
+          "radius": 45
+        }
+      ]
+    }
+  },
+  {
+    "id": "thinking-11",
+    "level": "53 · INTERMEDIATE",
+    "focus": "Nested repetition",
+    "hint": "Make a rectangle My Block and call it for each patrol area.",
+    "description": "Trace a small rectangle, transfer to the next one, then trace that rectangle. Look for an inner and outer pattern. Visit numbered checkpoints in order before the green goal.",
+    "field": {
+      "name": "Nested patrol",
+      "width": 1800,
+      "height": 1600,
+      "start": {
+        "x": 200,
+        "y": 200,
+        "heading": 90
+      },
+      "goal": {
+        "x": 900,
+        "y": 200,
+        "radius": 45
+      },
+      "walls": [],
+      "checkpoints": [
+        {
+          "x": 500,
+          "y": 200,
+          "radius": 45
+        },
+        {
+          "x": 500,
+          "y": 500,
+          "radius": 45
+        },
+        {
+          "x": 200,
+          "y": 500,
+          "radius": 45
+        },
+        {
+          "x": 200,
+          "y": 200,
+          "radius": 45
+        },
+        {
+          "x": 900,
+          "y": 200,
+          "radius": 45
+        },
+        {
+          "x": 1200,
+          "y": 200,
+          "radius": 45
+        },
+        {
+          "x": 1200,
+          "y": 500,
+          "radius": 45
+        },
+        {
+          "x": 900,
+          "y": 500,
+          "radius": 45
+        }
+      ]
+    }
+  },
+  {
+    "id": "thinking-12",
+    "level": "54 · INTERMEDIATE",
+    "focus": "Absolute heading versus relative turn",
+    "hint": "Heading 0 points up, 90 right, 180 down and 270 left.",
+    "description": "Visit north, east, south and west survey points in order. Try turn-to-heading commands. Visit numbered checkpoints in order before the green goal.",
+    "field": {
+      "name": "Compass reset",
+      "width": 1800,
+      "height": 1600,
+      "start": {
+        "x": 200,
+        "y": 200,
+        "heading": 90
+      },
+      "goal": {
+        "x": 100,
+        "y": 1000,
+        "radius": 45
+      },
+      "walls": [],
+      "checkpoints": [
+        {
+          "x": 700,
+          "y": 200,
+          "radius": 45
+        },
+        {
+          "x": 700,
+          "y": 100,
+          "radius": 45
+        },
+        {
+          "x": 1400,
+          "y": 100,
+          "radius": 45
+        },
+        {
+          "x": 1400,
+          "y": 1000,
+          "radius": 45
+        }
+      ]
+    }
+  },
+  {
+    "id": "thinking-13",
+    "level": "55 · CHALLENGE",
+    "focus": "Arithmetic progressions",
+    "hint": "Two neighboring legs share a length before it increases.",
+    "description": "Trace the expanding spiral through all markers. Derive the next leg length from a pattern. Visit numbered checkpoints in order before the green goal.",
+    "field": {
+      "name": "Growing spiral",
+      "width": 1800,
+      "height": 1600,
+      "start": {
+        "x": 200,
+        "y": 200,
+        "heading": 90
+      },
+      "goal": {
+        "x": 1300,
+        "y": 1300,
+        "radius": 45
+      },
+      "walls": [],
+      "checkpoints": [
+        {
+          "x": 400,
+          "y": 200,
+          "radius": 45
+        },
+        {
+          "x": 400,
+          "y": 400,
+          "radius": 45
+        },
+        {
+          "x": 100,
+          "y": 400,
+          "radius": 45
+        },
+        {
+          "x": 100,
+          "y": 100,
+          "radius": 45
+        },
+        {
+          "x": 700,
+          "y": 100,
+          "radius": 45
+        },
+        {
+          "x": 700,
+          "y": 700,
+          "radius": 45
+        },
+        {
+          "x": 100,
+          "y": 700,
+          "radius": 45
+        },
+        {
+          "x": 100,
+          "y": 1300,
+          "radius": 45
+        }
+      ]
+    }
+  },
+  {
+    "id": "thinking-14",
+    "level": "56 · INTERMEDIATE",
+    "focus": "Alternating decisions",
+    "hint": "Alternate the vertical direction after each horizontal step.",
+    "description": "Inspect alternating upper and lower markers without skipping their order. Visit numbered checkpoints in order before the green goal.",
+    "field": {
+      "name": "Zigzag inspection",
+      "width": 1800,
+      "height": 1600,
+      "start": {
+        "x": 200,
+        "y": 200,
+        "heading": 90
+      },
+      "goal": {
+        "x": 1500,
+        "y": 1000,
+        "radius": 45
+      },
+      "walls": [],
+      "checkpoints": [
+        {
+          "x": 450,
+          "y": 200,
+          "radius": 45
+        },
+        {
+          "x": 450,
+          "y": 1000,
+          "radius": 45
+        },
+        {
+          "x": 800,
+          "y": 1000,
+          "radius": 45
+        },
+        {
+          "x": 800,
+          "y": 200,
+          "radius": 45
+        },
+        {
+          "x": 1150,
+          "y": 200,
+          "radius": 45
+        },
+        {
+          "x": 1150,
+          "y": 1000,
+          "radius": 45
+        }
+      ]
+    }
+  },
+  {
+    "id": "thinking-15",
+    "level": "57 · INTERMEDIATE",
+    "focus": "Two-stage alignment",
+    "hint": "Align one coordinate first, then approach along the other.",
+    "description": "Reach the alignment point before the final narrow goal. Separate sideways positioning from the final approach. Visit numbered checkpoints in order before the green goal.",
+    "field": {
+      "name": "Offset docking",
+      "width": 1800,
+      "height": 1600,
+      "start": {
+        "x": 200,
+        "y": 200,
+        "heading": 90
+      },
+      "goal": {
+        "x": 1300,
+        "y": 1350,
+        "radius": 45
+      },
+      "walls": [],
+      "checkpoints": [
+        {
+          "x": 900,
+          "y": 200,
+          "radius": 45
+        },
+        {
+          "x": 900,
+          "y": 1050,
+          "radius": 45
+        },
+        {
+          "x": 1300,
+          "y": 1050,
+          "radius": 45
+        }
+      ]
+    }
+  },
+  {
+    "id": "thinking-16",
+    "level": "58 · INTERMEDIATE",
+    "focus": "Coordinate differences",
+    "hint": "Each command is based on the difference between the current and next point.",
+    "description": "Visit markers with irregular spacing. Build a table of changes in x and y before coding. Visit numbered checkpoints in order before the green goal.",
+    "field": {
+      "name": "Coordinate translator",
+      "width": 1800,
+      "height": 1600,
+      "start": {
+        "x": 200,
+        "y": 200,
+        "heading": 90
+      },
+      "goal": {
+        "x": 1475,
+        "y": 1175,
+        "radius": 45
+      },
+      "walls": [],
+      "checkpoints": [
+        {
+          "x": 475,
+          "y": 200,
+          "radius": 45
+        },
+        {
+          "x": 475,
+          "y": 675,
+          "radius": 45
+        },
+        {
+          "x": 1125,
+          "y": 675,
+          "radius": 45
+        },
+        {
+          "x": 1125,
+          "y": 1175,
+          "radius": 45
+        }
+      ]
+    }
+  },
+  {
+    "id": "thinking-17",
+    "level": "59 · BEGINNER",
+    "focus": "Parameterized My Blocks",
+    "hint": "Pass the distance into your My Block rather than copying it.",
+    "description": "Follow alternating short and long legs. Reuse one movement routine with different arguments. Visit numbered checkpoints in order before the green goal.",
+    "field": {
+      "name": "Short-long rhythm",
+      "width": 1800,
+      "height": 1600,
+      "start": {
+        "x": 200,
+        "y": 200,
+        "heading": 90
+      },
+      "goal": {
+        "x": 1250,
+        "y": 1400,
+        "radius": 45
+      },
+      "walls": [],
+      "checkpoints": [
+        {
+          "x": 350,
+          "y": 200,
+          "radius": 45
+        },
+        {
+          "x": 350,
+          "y": 800,
+          "radius": 45
+        },
+        {
+          "x": 500,
+          "y": 800,
+          "radius": 45
+        },
+        {
+          "x": 500,
+          "y": 1400,
+          "radius": 45
+        },
+        {
+          "x": 650,
+          "y": 1400,
+          "radius": 45
+        }
+      ]
+    }
+  },
+  {
+    "id": "thinking-18",
+    "level": "60 · CHALLENGE",
+    "focus": "Angles across zero",
+    "hint": "A heading close to 360 degrees is close to 0 degrees.",
+    "description": "Move between slanted markers across the north direction. Consider the shortest rotation across 0 degrees. Visit numbered checkpoints in order before the green goal.",
+    "field": {
+      "name": "Heading wraparound",
+      "width": 1800,
+      "height": 1600,
+      "start": {
+        "x": 200,
+        "y": 200,
+        "heading": 90
+      },
+      "goal": {
+        "x": 650,
+        "y": 900,
+        "radius": 45
+      },
+      "walls": [],
+      "checkpoints": [
+        {
+          "x": 250,
+          "y": 900,
+          "radius": 45
+        },
+        {
+          "x": 150,
+          "y": 200,
+          "radius": 45
+        },
+        {
+          "x": 350,
+          "y": 900,
+          "radius": 45
+        },
+        {
+          "x": 450,
+          "y": 200,
+          "radius": 45
+        }
+      ]
+    }
+  },
+  {
+    "id": "thinking-19",
+    "level": "61 · CHALLENGE",
+    "focus": "Remembering progress",
+    "hint": "The same position can require different actions depending on progress.",
+    "description": "Pass the center, complete the top branch, return to the center and take the bottom branch. Visit numbered checkpoints in order before the green goal.",
+    "field": {
+      "name": "Cross the center twice",
+      "width": 1800,
+      "height": 1600,
+      "start": {
+        "x": 200,
+        "y": 200,
+        "heading": 90
+      },
+      "goal": {
+        "x": 1400,
+        "y": 1400,
+        "radius": 45
+      },
+      "walls": [],
+      "checkpoints": [
+        {
+          "x": 800,
+          "y": 800,
+          "radius": 45
+        },
+        {
+          "x": 800,
+          "y": 200,
+          "radius": 45
+        },
+        {
+          "x": 1400,
+          "y": 200,
+          "radius": 45
+        },
+        {
+          "x": 800,
+          "y": 800,
+          "radius": 45
+        },
+        {
+          "x": 800,
+          "y": 1400,
+          "radius": 45
+        }
+      ]
+    }
+  },
+  {
+    "id": "thinking-20",
+    "level": "62 · INTERMEDIATE",
+    "focus": "Mirrored instructions",
+    "hint": "Mirroring keeps distances but swaps left and right turns.",
+    "description": "Trace one side, then its mirror. Decide which turns must change sign. Visit numbered checkpoints in order before the green goal.",
+    "field": {
+      "name": "Symmetry workshop",
+      "width": 1800,
+      "height": 1600,
+      "start": {
+        "x": 200,
+        "y": 200,
+        "heading": 90
+      },
+      "goal": {
+        "x": 1400,
+        "y": 600,
+        "radius": 45
+      },
+      "walls": [],
+      "checkpoints": [
+        {
+          "x": 500,
+          "y": 200,
+          "radius": 45
+        },
+        {
+          "x": 500,
+          "y": 600,
+          "radius": 45
+        },
+        {
+          "x": 800,
+          "y": 600,
+          "radius": 45
+        },
+        {
+          "x": 800,
+          "y": 1000,
+          "radius": 45
+        },
+        {
+          "x": 1100,
+          "y": 1000,
+          "radius": 45
+        },
+        {
+          "x": 1100,
+          "y": 600,
+          "radius": 45
+        }
+      ]
+    }
+  },
+  {
+    "id": "thinking-21",
+    "level": "63 · CHALLENGE",
+    "focus": "Reusing a routine at different scales",
+    "hint": "A square routine needs only one length argument.",
+    "description": "Complete a small square followed by a larger square. Use the same routine with a new side length. Visit numbered checkpoints in order before the green goal.",
+    "field": {
+      "name": "Progressive squares",
+      "width": 1800,
+      "height": 1600,
+      "start": {
+        "x": 200,
+        "y": 200,
+        "heading": 90
+      },
+      "goal": {
+        "x": 200,
+        "y": 200,
+        "radius": 45
+      },
+      "walls": [],
+      "checkpoints": [
+        {
+          "x": 400,
+          "y": 200,
+          "radius": 45
+        },
+        {
+          "x": 400,
+          "y": 400,
+          "radius": 45
+        },
+        {
+          "x": 200,
+          "y": 400,
+          "radius": 45
+        },
+        {
+          "x": 200,
+          "y": 200,
+          "radius": 45
+        },
+        {
+          "x": 800,
+          "y": 200,
+          "radius": 45
+        },
+        {
+          "x": 800,
+          "y": 800,
+          "radius": 45
+        },
+        {
+          "x": 200,
+          "y": 800,
+          "radius": 45
+        }
+      ]
+    }
+  },
+  {
+    "id": "thinking-22",
+    "level": "64 · CHALLENGE",
+    "focus": "Saving a reference position",
+    "hint": "Keep the inspection coordinate separate from your changing position.",
+    "description": "Visit the inspection point, detour through the next markers, then return to the saved point. Visit numbered checkpoints in order before the green goal.",
+    "field": {
+      "name": "Return-point memory",
+      "width": 1800,
+      "height": 1600,
+      "start": {
+        "x": 200,
+        "y": 200,
+        "heading": 90
+      },
+      "goal": {
+        "x": 1400,
+        "y": 200,
+        "radius": 45
+      },
+      "walls": [],
+      "checkpoints": [
+        {
+          "x": 700,
+          "y": 200,
+          "radius": 45
+        },
+        {
+          "x": 1100,
+          "y": 650,
+          "radius": 45
+        },
+        {
+          "x": 700,
+          "y": 1100,
+          "radius": 45
+        },
+        {
+          "x": 300,
+          "y": 650,
+          "radius": 45
+        },
+        {
+          "x": 700,
+          "y": 200,
+          "radius": 45
+        }
+      ]
+    }
+  },
+  {
+    "id": "thinking-23",
+    "level": "65 · CHALLENGE",
+    "focus": "Smooth bearing changes",
+    "hint": "Compute each new bearing from the next target rather than accumulating guesses.",
+    "description": "Visit small target regions on alternating diagonals. Choose headings carefully to stay inside each region. Visit numbered checkpoints in order before the green goal.",
+    "field": {
+      "name": "Precision slalom",
+      "width": 1800,
+      "height": 1600,
+      "start": {
+        "x": 200,
+        "y": 200,
+        "heading": 90
+      },
+      "goal": {
+        "x": 1450,
+        "y": 1100,
+        "radius": 45
+      },
+      "walls": [],
+      "checkpoints": [
+        {
+          "x": 450,
+          "y": 450,
+          "radius": 45
+        },
+        {
+          "x": 700,
+          "y": 200,
+          "radius": 45
+        },
+        {
+          "x": 950,
+          "y": 450,
+          "radius": 45
+        },
+        {
+          "x": 1200,
+          "y": 200,
+          "radius": 45
+        },
+        {
+          "x": 1450,
+          "y": 450,
+          "radius": 45
+        }
+      ]
+    }
+  },
+  {
+    "id": "thinking-24",
+    "level": "66 · CHALLENGE",
+    "focus": "Planning independent subroutines",
+    "hint": "Write and test each stage before connecting the complete mission.",
+    "description": "Visit the loading point, inspection area, service point and exit in that order. Give each stage a named My Block. Visit numbered checkpoints in order before the green goal.",
+    "field": {
+      "name": "Mission decomposition",
+      "width": 1800,
+      "height": 1600,
+      "start": {
+        "x": 200,
+        "y": 200,
+        "heading": 90
+      },
+      "goal": {
+        "x": 1450,
+        "y": 1400,
+        "radius": 45
+      },
+      "walls": [],
+      "checkpoints": [
+        {
+          "x": 500,
+          "y": 200,
+          "radius": 45
+        },
+        {
+          "x": 500,
+          "y": 1000,
+          "radius": 45
+        },
+        {
+          "x": 1000,
+          "y": 1000,
+          "radius": 45
+        },
+        {
+          "x": 1000,
+          "y": 500,
+          "radius": 45
+        },
+        {
+          "x": 1450,
+          "y": 500,
+          "radius": 45
+        }
+      ]
+    }
+  },
+  {
+    "id": "thinking-25",
+    "level": "67 · INTERMEDIATE",
+    "focus": "Multi-stage cargo workflow",
+    "hint": "Separate inspection from pickup so the magnet is enabled only when needed.",
+    "description": "Visit the inspection markers in order, then collect the red cargo and deliver it.",
+    "field": {
+      "name": "Inspection before delivery",
+      "width": 1800,
+      "height": 1600,
+      "start": {
+        "x": 200,
+        "y": 200,
+        "heading": 90
+      },
+      "goal": {
+        "x": 1500,
+        "y": 1300,
+        "radius": 70
+      },
+      "walls": [],
+      "blocks": [
+        {
+          "id": "parcel-0",
+          "x": 450,
+          "y": 300,
+          "color": "red"
+        }
+      ],
+      "zones": [
+        {
+          "x": 1350,
+          "y": 300,
+          "radius": 110,
+          "color": "red"
+        }
+      ],
+      "checkpoints": [
+        {
+          "x": 500,
+          "y": 1100,
+          "radius": 55
+        },
+        {
+          "x": 1100,
+          "y": 1100,
+          "radius": 55
+        }
+      ]
+    }
+  },
+  {
+    "id": "thinking-26",
+    "level": "68 · INTERMEDIATE",
+    "focus": "Repeated deliveries to one destination",
+    "hint": "Approach different positions inside the large shared delivery zone.",
+    "description": "Deliver two red blocks to the shared red depot. Plan a return route that avoids the first delivered block.",
+    "field": {
+      "name": "Shared red depot",
+      "width": 1800,
+      "height": 1600,
+      "start": {
+        "x": 200,
+        "y": 200,
+        "heading": 90
+      },
+      "goal": {
+        "x": 1500,
+        "y": 1300,
+        "radius": 70
+      },
+      "walls": [],
+      "blocks": [
+        {
+          "id": "parcel-0",
+          "x": 450,
+          "y": 300,
+          "color": "red"
+        },
+        {
+          "id": "parcel-1",
+          "x": 450,
+          "y": 600,
+          "color": "red"
+        }
+      ],
+      "zones": [
+        {
+          "x": 1350,
+          "y": 550,
+          "radius": 220,
+          "color": "red"
+        }
+      ],
+      "checkpoints": [
+        {
+          "x": 300,
+          "y": 1100,
+          "radius": 55
+        }
+      ]
+    }
+  },
+  {
+    "id": "thinking-27",
+    "level": "69 · CHALLENGE",
+    "focus": "Matching rather than nearest destination",
+    "hint": "Read cargo color before choosing the delivery destination.",
+    "description": "Deliver red and blue cargo to opposite-row destinations. The nearest zone has the wrong color.",
+    "field": {
+      "name": "Cross-color dispatch",
+      "width": 1800,
+      "height": 1600,
+      "start": {
+        "x": 200,
+        "y": 200,
+        "heading": 90
+      },
+      "goal": {
+        "x": 1500,
+        "y": 1300,
+        "radius": 70
+      },
+      "walls": [],
+      "blocks": [
+        {
+          "id": "parcel-0",
+          "x": 450,
+          "y": 300,
+          "color": "red"
+        },
+        {
+          "id": "parcel-1",
+          "x": 450,
+          "y": 600,
+          "color": "blue"
+        }
+      ],
+      "zones": [
+        {
+          "x": 1350,
+          "y": 600,
+          "radius": 110,
+          "color": "red"
+        },
+        {
+          "x": 1350,
+          "y": 300,
+          "radius": 110,
+          "color": "blue"
+        }
+      ],
+      "checkpoints": [
+        {
+          "x": 800,
+          "y": 1100,
+          "radius": 55
+        }
+      ]
+    }
+  },
+  {
+    "id": "thinking-28",
+    "level": "70 · CHALLENGE",
+    "focus": "Reusable pickup and return cycle",
+    "hint": "A pickup-delivery-return My Block can accept row and destination arguments.",
+    "description": "Deliver three different cargo colors, returning to a clear travel lane after every drop.",
+    "field": {
+      "name": "Three-stop dispatch",
+      "width": 1800,
+      "height": 1600,
+      "start": {
+        "x": 200,
+        "y": 200,
+        "heading": 90
+      },
+      "goal": {
+        "x": 1500,
+        "y": 1300,
+        "radius": 70
+      },
+      "walls": [],
+      "blocks": [
+        {
+          "id": "parcel-0",
+          "x": 450,
+          "y": 300,
+          "color": "red"
+        },
+        {
+          "id": "parcel-1",
+          "x": 450,
+          "y": 600,
+          "color": "green"
+        },
+        {
+          "id": "parcel-2",
+          "x": 450,
+          "y": 900,
+          "color": "blue"
+        }
+      ],
+      "zones": [
+        {
+          "x": 1350,
+          "y": 300,
+          "radius": 110,
+          "color": "red"
+        },
+        {
+          "x": 1350,
+          "y": 600,
+          "radius": 110,
+          "color": "green"
+        },
+        {
+          "x": 1350,
+          "y": 900,
+          "radius": 110,
+          "color": "blue"
+        }
+      ],
+      "checkpoints": [
+        {
+          "x": 200,
+          "y": 1200,
+          "radius": 55
+        }
+      ]
+    }
+  },
+  {
+    "id": "thinking-29",
+    "level": "71 · CHALLENGE",
+    "focus": "Choosing collection order",
+    "hint": "Your program can choose collection order after the mandatory inspection.",
+    "description": "Inspect the far marker before collecting the two cargo blocks. Compare far-first and near-first delivery plans.",
+    "field": {
+      "name": "Far-to-near collection",
+      "width": 1800,
+      "height": 1600,
+      "start": {
+        "x": 200,
+        "y": 200,
+        "heading": 90
+      },
+      "goal": {
+        "x": 1500,
+        "y": 1300,
+        "radius": 70
+      },
+      "walls": [],
+      "blocks": [
+        {
+          "id": "parcel-0",
+          "x": 450,
+          "y": 300,
+          "color": "green"
+        },
+        {
+          "id": "parcel-1",
+          "x": 450,
+          "y": 600,
+          "color": "blue"
+        }
+      ],
+      "zones": [
+        {
+          "x": 1350,
+          "y": 300,
+          "radius": 110,
+          "color": "green"
+        },
+        {
+          "x": 1350,
+          "y": 600,
+          "radius": 110,
+          "color": "blue"
+        }
+      ],
+      "checkpoints": [
+        {
+          "x": 1300,
+          "y": 1200,
+          "radius": 55
+        },
+        {
+          "x": 300,
+          "y": 1200,
+          "radius": 55
+        }
+      ]
+    }
+  },
+  {
+    "id": "thinking-30",
+    "level": "72 · CHALLENGE",
+    "focus": "Combining planning and classification",
+    "hint": "Break the job into inspection, classification, transport and safe return phases.",
+    "description": "Complete the ordered inspection route and sort three cargo colors into shuffled destinations.",
+    "field": {
+      "name": "Final logistics exam",
+      "width": 1800,
+      "height": 1600,
+      "start": {
+        "x": 200,
+        "y": 200,
+        "heading": 90
+      },
+      "goal": {
+        "x": 1500,
+        "y": 1300,
+        "radius": 70
+      },
+      "walls": [],
+      "blocks": [
+        {
+          "id": "parcel-0",
+          "x": 450,
+          "y": 300,
+          "color": "blue"
+        },
+        {
+          "id": "parcel-1",
+          "x": 450,
+          "y": 600,
+          "color": "red"
+        },
+        {
+          "id": "parcel-2",
+          "x": 450,
+          "y": 900,
+          "color": "green"
+        }
+      ],
+      "zones": [
+        {
+          "x": 1350,
+          "y": 600,
+          "radius": 110,
+          "color": "blue"
+        },
+        {
+          "x": 1350,
+          "y": 900,
+          "radius": 110,
+          "color": "red"
+        },
+        {
+          "x": 1350,
+          "y": 300,
+          "radius": 110,
+          "color": "green"
+        }
+      ],
+      "checkpoints": [
+        {
+          "x": 600,
+          "y": 1100,
+          "radius": 55
+        },
+        {
+          "x": 1200,
+          "y": 1100,
+          "radius": 55
+        },
+        {
+          "x": 1200,
+          "y": 1350,
+          "radius": 55
+        },
+        {
+          "x": 200,
+          "y": 1350,
+          "radius": 55
+        }
+      ]
+    }
+  },
+  {
+    "id": "push-1",
+    "level": "73 · BEGINNER",
+    "focus": "Contact and continued drive",
+    "hint": "Align with the center of the block. To change its direction, back away and move to another side before pushing again.",
+    "description": "Push the marked cargo completely into its matching color zone using drivetrain commands. These blocks cannot be lifted by the magnet. Contact and continued drive.",
+    "field": {
+      "name": "First push",
+      "width": 1600,
+      "height": 1400,
+      "start": {
+        "x": 200,
+        "y": 600,
+        "heading": 90
+      },
+      "goal": {
+        "x": 1400,
+        "y": 1200,
+        "radius": 70
+      },
+      "walls": [],
+      "blocks": [
+        {
+          "id": "push-box-0",
+          "x": 500,
+          "y": 600,
+          "color": "red",
+          "pushable": true
+        }
+      ],
+      "zones": [
+        {
+          "x": 1200,
+          "y": 600,
+          "color": "red",
+          "radius": 85
+        }
+      ]
+    }
+  },
+  {
+    "id": "push-2",
+    "level": "74 · BEGINNER",
+    "focus": "Stopping before overshoot",
+    "hint": "Align with the center of the block. To change its direction, back away and move to another side before pushing again.",
+    "description": "Push the marked cargo completely into its matching color zone using drivetrain commands. These blocks cannot be lifted by the magnet. Stopping before overshoot.",
+    "field": {
+      "name": "Stop inside the bay",
+      "width": 1600,
+      "height": 1400,
+      "start": {
+        "x": 200,
+        "y": 400,
+        "heading": 90
+      },
+      "goal": {
+        "x": 1400,
+        "y": 1200,
+        "radius": 70
+      },
+      "walls": [],
+      "blocks": [
+        {
+          "id": "push-box-0",
+          "x": 500,
+          "y": 400,
+          "color": "blue",
+          "pushable": true
+        }
+      ],
+      "zones": [
+        {
+          "x": 850,
+          "y": 400,
+          "color": "blue",
+          "radius": 85
+        }
+      ]
+    }
+  },
+  {
+    "id": "push-3",
+    "level": "75 · BEGINNER",
+    "focus": "Changing the approach heading",
+    "hint": "Align with the center of the block. To change its direction, back away and move to another side before pushing again.",
+    "description": "Push the marked cargo completely into its matching color zone using drivetrain commands. These blocks cannot be lifted by the magnet. Changing the approach heading.",
+    "field": {
+      "name": "Push north",
+      "width": 1600,
+      "height": 1400,
+      "start": {
+        "x": 500,
+        "y": 1200,
+        "heading": 90
+      },
+      "goal": {
+        "x": 1400,
+        "y": 1200,
+        "radius": 70
+      },
+      "walls": [],
+      "blocks": [
+        {
+          "id": "push-box-0",
+          "x": 500,
+          "y": 950,
+          "color": "green",
+          "pushable": true
+        }
+      ],
+      "zones": [
+        {
+          "x": 500,
+          "y": 300,
+          "color": "green",
+          "radius": 85
+        }
+      ]
+    }
+  },
+  {
+    "id": "push-4",
+    "level": "76 · INTERMEDIATE",
+    "focus": "Getting behind the cargo",
+    "hint": "Align with the center of the block. To change its direction, back away and move to another side before pushing again.",
+    "description": "Push the marked cargo completely into its matching color zone using drivetrain commands. These blocks cannot be lifted by the magnet. Getting behind the cargo.",
+    "field": {
+      "name": "Approach from above",
+      "width": 1600,
+      "height": 1400,
+      "start": {
+        "x": 200,
+        "y": 200,
+        "heading": 90
+      },
+      "goal": {
+        "x": 1400,
+        "y": 1200,
+        "radius": 70
+      },
+      "walls": [],
+      "blocks": [
+        {
+          "id": "push-box-0",
+          "x": 600,
+          "y": 600,
+          "color": "red",
+          "pushable": true
+        }
+      ],
+      "zones": [
+        {
+          "x": 600,
+          "y": 1050,
+          "color": "red",
+          "radius": 85
+        }
+      ]
+    }
+  },
+  {
+    "id": "push-5",
+    "level": "77 · INTERMEDIATE",
+    "focus": "Repositioning before the second push",
+    "hint": "Align with the center of the block. To change its direction, back away and move to another side before pushing again.",
+    "description": "Push the marked cargo completely into its matching color zone using drivetrain commands. These blocks cannot be lifted by the magnet. Repositioning before the second push.",
+    "field": {
+      "name": "Corner transfer",
+      "width": 1600,
+      "height": 1400,
+      "start": {
+        "x": 200,
+        "y": 600,
+        "heading": 90
+      },
+      "goal": {
+        "x": 1400,
+        "y": 1200,
+        "radius": 70
+      },
+      "walls": [],
+      "blocks": [
+        {
+          "id": "push-box-0",
+          "x": 500,
+          "y": 600,
+          "color": "blue",
+          "pushable": true
+        }
+      ],
+      "zones": [
+        {
+          "x": 950,
+          "y": 300,
+          "color": "blue",
+          "radius": 85
+        }
+      ]
+    }
+  },
+  {
+    "id": "push-6",
+    "level": "78 · CHALLENGE",
+    "focus": "Planning access around a block",
+    "hint": "Align with the center of the block. To change its direction, back away and move to another side before pushing again.",
+    "description": "Push the marked cargo completely into its matching color zone using drivetrain commands. These blocks cannot be lifted by the magnet. Planning access around a block.",
+    "field": {
+      "name": "Three-sided delivery",
+      "width": 1600,
+      "height": 1400,
+      "start": {
+        "x": 200,
+        "y": 600,
+        "heading": 90
+      },
+      "goal": {
+        "x": 1400,
+        "y": 1200,
+        "radius": 70
+      },
+      "walls": [],
+      "blocks": [
+        {
+          "id": "push-box-0",
+          "x": 500,
+          "y": 600,
+          "color": "green",
+          "pushable": true
+        }
+      ],
+      "zones": [
+        {
+          "x": 250,
+          "y": 1000,
+          "color": "green",
+          "radius": 85
+        }
+      ]
+    }
+  },
+  {
+    "id": "push-7",
+    "level": "79 · INTERMEDIATE",
+    "focus": "Maintaining lateral alignment",
+    "hint": "Align with the center of the block. To change its direction, back away and move to another side before pushing again.",
+    "description": "Push the marked cargo completely into its matching color zone using drivetrain commands. These blocks cannot be lifted by the magnet. Maintaining lateral alignment.",
+    "field": {
+      "name": "Warehouse corridor",
+      "width": 1600,
+      "height": 1400,
+      "start": {
+        "x": 200,
+        "y": 600,
+        "heading": 90
+      },
+      "goal": {
+        "x": 1400,
+        "y": 1200,
+        "radius": 70
+      },
+      "walls": [
+        {
+          "x": 350,
+          "y": 350,
+          "width": 1050,
+          "height": 100
+        },
+        {
+          "x": 350,
+          "y": 750,
+          "width": 1050,
+          "height": 100
+        }
+      ],
+      "blocks": [
+        {
+          "id": "push-box-0",
+          "x": 500,
+          "y": 600,
+          "color": "red",
+          "pushable": true
+        }
+      ],
+      "zones": [
+        {
+          "x": 1250,
+          "y": 600,
+          "color": "red",
+          "radius": 85
+        }
+      ]
+    }
+  },
+  {
+    "id": "push-8",
+    "level": "80 · INTERMEDIATE",
+    "focus": "Clearance through a bottleneck",
+    "hint": "Align with the center of the block. To change its direction, back away and move to another side before pushing again.",
+    "description": "Push the marked cargo completely into its matching color zone using drivetrain commands. These blocks cannot be lifted by the magnet. Clearance through a bottleneck.",
+    "field": {
+      "name": "Loading gate",
+      "width": 1600,
+      "height": 1400,
+      "start": {
+        "x": 200,
+        "y": 600,
+        "heading": 90
+      },
+      "goal": {
+        "x": 1400,
+        "y": 1200,
+        "radius": 70
+      },
+      "walls": [
+        {
+          "x": 800,
+          "y": 0,
+          "width": 80,
+          "height": 470
+        },
+        {
+          "x": 800,
+          "y": 730,
+          "width": 80,
+          "height": 670
+        }
+      ],
+      "blocks": [
+        {
+          "id": "push-box-0",
+          "x": 450,
+          "y": 600,
+          "color": "blue",
+          "pushable": true
+        }
+      ],
+      "zones": [
+        {
+          "x": 1250,
+          "y": 600,
+          "color": "blue",
+          "radius": 85
+        }
+      ]
+    }
+  },
+  {
+    "id": "push-9",
+    "level": "81 · CHALLENGE",
+    "focus": "Safe return lanes",
+    "hint": "Align with the center of the block. To change its direction, back away and move to another side before pushing again.",
+    "description": "Push the marked cargo completely into its matching color zone using drivetrain commands. These blocks cannot be lifted by the magnet. Safe return lanes.",
+    "field": {
+      "name": "Two independent deliveries",
+      "width": 1600,
+      "height": 1400,
+      "start": {
+        "x": 200,
+        "y": 350,
+        "heading": 90
+      },
+      "goal": {
+        "x": 1400,
+        "y": 1200,
+        "radius": 70
+      },
+      "walls": [],
+      "blocks": [
+        {
+          "id": "push-box-0",
+          "x": 500,
+          "y": 350,
+          "color": "red",
+          "pushable": true
+        },
+        {
+          "id": "push-box-1",
+          "x": 500,
+          "y": 950,
+          "color": "blue",
+          "pushable": true
+        }
+      ],
+      "zones": [
+        {
+          "x": 1250,
+          "y": 350,
+          "color": "red",
+          "radius": 85
+        },
+        {
+          "x": 1250,
+          "y": 950,
+          "color": "blue",
+          "radius": 85
+        }
+      ]
+    }
+  },
+  {
+    "id": "push-10",
+    "level": "82 · CHALLENGE",
+    "focus": "Separate parking positions",
+    "hint": "Align with the center of the block. To change its direction, back away and move to another side before pushing again.",
+    "description": "Push the marked cargo completely into its matching color zone using drivetrain commands. These blocks cannot be lifted by the magnet. Separate parking positions.",
+    "field": {
+      "name": "Shared sorting bay",
+      "width": 1600,
+      "height": 1400,
+      "start": {
+        "x": 200,
+        "y": 400,
+        "heading": 90
+      },
+      "goal": {
+        "x": 1400,
+        "y": 1200,
+        "radius": 70
+      },
+      "walls": [],
+      "blocks": [
+        {
+          "id": "push-box-0",
+          "x": 500,
+          "y": 400,
+          "color": "green",
+          "pushable": true
+        },
+        {
+          "id": "push-box-1",
+          "x": 500,
+          "y": 850,
+          "color": "green",
+          "pushable": true
+        }
+      ],
+      "zones": [
+        {
+          "x": 1200,
+          "y": 400,
+          "color": "green",
+          "radius": 85
+        },
+        {
+          "x": 1200,
+          "y": 850,
+          "color": "green",
+          "radius": 85
+        }
+      ]
+    }
+  },
+  {
+    "id": "push-11",
+    "level": "83 · INTERMEDIATE",
+    "focus": "Inspection followed by transport",
+    "hint": "Align with the center of the block. To change its direction, back away and move to another side before pushing again.",
+    "description": "Push the marked cargo completely into its matching color zone using drivetrain commands. These blocks cannot be lifted by the magnet. Inspection followed by transport.",
+    "field": {
+      "name": "Inspect then push",
+      "width": 1600,
+      "height": 1400,
+      "start": {
+        "x": 200,
+        "y": 200,
+        "heading": 90
+      },
+      "goal": {
+        "x": 1400,
+        "y": 1200,
+        "radius": 70
+      },
+      "walls": [],
+      "blocks": [
+        {
+          "id": "push-box-0",
+          "x": 500,
+          "y": 700,
+          "color": "red",
+          "pushable": true
+        }
+      ],
+      "zones": [
+        {
+          "x": 1250,
+          "y": 700,
+          "color": "red",
+          "radius": 85
+        }
+      ],
+      "checkpoints": [
+        {
+          "x": 200,
+          "y": 1100,
+          "radius": 50
+        }
+      ]
+    }
+  },
+  {
+    "id": "push-12",
+    "level": "84 · CHALLENGE",
+    "focus": "Avoiding a blocked direct route",
+    "hint": "Align with the center of the block. To change its direction, back away and move to another side before pushing again.",
+    "description": "Push the marked cargo completely into its matching color zone using drivetrain commands. These blocks cannot be lifted by the magnet. Avoiding a blocked direct route.",
+    "field": {
+      "name": "Push around the island",
+      "width": 1600,
+      "height": 1400,
+      "start": {
+        "x": 200,
+        "y": 600,
+        "heading": 90
+      },
+      "goal": {
+        "x": 1400,
+        "y": 1200,
+        "radius": 70
+      },
+      "walls": [
+        {
+          "x": 800,
+          "y": 400,
+          "width": 200,
+          "height": 400
+        }
+      ],
+      "blocks": [
+        {
+          "id": "push-box-0",
+          "x": 500,
+          "y": 600,
+          "color": "blue",
+          "pushable": true
+        }
+      ],
+      "zones": [
+        {
+          "x": 1200,
+          "y": 1000,
+          "color": "blue",
+          "radius": 85
+        }
+      ]
+    }
+  }
+]

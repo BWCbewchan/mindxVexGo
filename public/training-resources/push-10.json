@@ -1,0 +1,49 @@
+{
+  "version": 1,
+  "field": {
+    "name": "Shared sorting bay",
+    "width": 1600,
+    "height": 1400,
+    "start": {
+      "x": 200,
+      "y": 400,
+      "heading": 90
+    },
+    "goal": {
+      "x": 1400,
+      "y": 1200,
+      "radius": 70
+    },
+    "walls": [],
+    "blocks": [
+      {
+        "id": "push-box-0",
+        "x": 500,
+        "y": 400,
+        "color": "green",
+        "pushable": true
+      },
+      {
+        "id": "push-box-1",
+        "x": 500,
+        "y": 850,
+        "color": "green",
+        "pushable": true
+      }
+    ],
+    "zones": [
+      {
+        "x": 1200,
+        "y": 400,
+        "color": "green",
+        "radius": 85
+      },
+      {
+        "x": 1200,
+        "y": 850,
+        "color": "green",
+        "radius": 85
+      }
+    ]
+  }
+}

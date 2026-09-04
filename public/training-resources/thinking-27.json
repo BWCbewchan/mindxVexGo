@@ -1,0 +1,54 @@
+{
+  "version": 1,
+  "field": {
+    "name": "Cross-color dispatch",
+    "width": 1800,
+    "height": 1600,
+    "start": {
+      "x": 200,
+      "y": 200,
+      "heading": 90
+    },
+    "goal": {
+      "x": 1500,
+      "y": 1300,
+      "radius": 70
+    },
+    "walls": [],
+    "blocks": [
+      {
+        "id": "parcel-0",
+        "x": 450,
+        "y": 300,
+        "color": "red"
+      },
+      {
+        "id": "parcel-1",
+        "x": 450,
+        "y": 600,
+        "color": "blue"
+      }
+    ],
+    "zones": [
+      {
+        "x": 1350,
+        "y": 600,
+        "radius": 110,
+        "color": "red"
+      },
+      {
+        "x": 1350,
+        "y": 300,
+        "radius": 110,
+        "color": "blue"
+      }
+    ],
+    "checkpoints": [
+      {
+        "x": 800,
+        "y": 1100,
+        "radius": 55
+      }
+    ]
+  }
+}

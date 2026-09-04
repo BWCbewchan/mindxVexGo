@@ -1,0 +1,46 @@
+{
+  "version": 1,
+  "field": {
+    "name": "Cross the center twice",
+    "width": 1800,
+    "height": 1600,
+    "start": {
+      "x": 200,
+      "y": 200,
+      "heading": 90
+    },
+    "goal": {
+      "x": 1400,
+      "y": 1400,
+      "radius": 45
+    },
+    "walls": [],
+    "checkpoints": [
+      {
+        "x": 800,
+        "y": 800,
+        "radius": 45
+      },
+      {
+        "x": 800,
+        "y": 200,
+        "radius": 45
+      },
+      {
+        "x": 1400,
+        "y": 200,
+        "radius": 45
+      },
+      {
+        "x": 800,
+        "y": 800,
+        "radius": 45
+      },
+      {
+        "x": 800,
+        "y": 1400,
+        "radius": 45
+      }
+    ]
+  }
+}
