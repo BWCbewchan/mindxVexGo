@@ -14,6 +14,17 @@
   const workspace = () => controllers.getCurrentMainController()?.blocklyWorkspace;
   const connected = () => !!hw && hw.getConnectionState() === hardware.BrainConnectionState.Connected;
   const post = data => window.parent.postMessage(data, location.origin);
+  let controllerRun = false;
+  const originalRunComplete = interpreter.onRunComplete;
+  interpreter.onRunComplete = function (...args) {
+    originalRunComplete.apply(this,args);
+    // The vendor keeps normal projects alive for events after their main stack
+    // ends. A standalone controller call must release that running state.
+    if(controllerRun && this.isRunning){
+      controllerRun=false;
+      this.stop();
+    }
+  };
   let highlighted = [], highlightTimer = null, highlightStarted = 0;
   function clearFunctionHighlight() {
     clearTimeout(highlightTimer);
@@ -106,9 +117,10 @@
       interpreter.setProgram(code);
       interpreter.setVarNames(controllers.javascriptVariableNames());
       highlightFunction(signature);
+      controllerRun=true;
       interpreter.run();
       return {signature};
-    } catch(error) { clearFunctionHighlight(); throw error; }
+    } catch(error) { controllerRun=false;clearFunctionHighlight(); throw error; }
     finally { pending = false; }
   }
   function stop() {
@@ -118,6 +130,7 @@
     return {stopped:true};
   }
   interpreter.on('onStop',()=>{
+    controllerRun=false;
     stopUntil=Date.now()+500;
     // Keep very short calls visible, while long calls stay outlined until done.
     clearTimeout(highlightTimer);
