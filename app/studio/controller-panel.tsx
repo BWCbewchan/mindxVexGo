@@ -29,10 +29,11 @@ export default function ControllerPanel({ frame, open, dockVisible, onHideDock, 
   useEffect(()=>{if(loaded)try{localStorage.setItem(storageKey,JSON.stringify(bindings));}catch{setNotice('Browser storage is unavailable. Keep this page open to retain bindings.');}},[bindings,loaded]);
   useEffect(()=>{send('keys',{keys:bindings.filter(b=>state.functions.some(f=>f.signature===b.signature)).map(b=>b.key)});},[bindings,state.functions,send]);
   const run=useCallback((binding: Binding)=>{
+    if(state.running)return;
     if(!enabled){setNotice('Enable controls first.');return;}
     if(!state.functions.some(fn=>fn.signature===binding.signature)){setNotice('The assigned function is missing. Choose a My Block in Setup.');return;}
     send('run',{signature:binding.signature,args:binding.args});
-  },[enabled,send,state.functions]);
+  },[enabled,send,state.functions,state.running]);
   useEffect(()=>{
     const key=(code:string)=>{
       if(!enabled)return;
@@ -105,7 +106,7 @@ export default function ControllerPanel({ frame, open, dockVisible, onHideDock, 
   </aside>
   {dockVisible&&assigned.length>0&&<nav className="controller-dock" aria-label="Assigned control keys">
     <div className="dock-tools"><button onClick={onOpen} title="Edit key bindings">⌨ Setup</button><button className={enabled?'dock-enabled':''} onClick={toggleEnabled}>{enabled?'● Enabled':'○ Enable'}</button></div>
-    <div className="dock-keys">{assigned.map(b=><button key={b.id} className={`dock-key ${pressed.includes(b.key)?'is-pressed':''}`} aria-label={`${keyLabel(b.key)}: ${b.label||b.signature}`} title={`${b.signature} · ${enabled?'Press to run':'Enable controls to run'}`} onPointerDown={e=>{e.currentTarget.setPointerCapture(e.pointerId);setPressed(keys=>[...new Set([...keys,b.key])]);}} onPointerUp={()=>setPressed(keys=>keys.filter(k=>k!==b.key))} onPointerCancel={()=>setPressed(keys=>keys.filter(k=>k!==b.key))} onLostPointerCapture={()=>setPressed(keys=>keys.filter(k=>k!==b.key))} onClick={()=>run(b)}><kbd>{keyLabel(b.key)}</kbd><span>{b.label||b.signature}</span></button>)}</div>
+    <div className="dock-keys">{assigned.map(b=><button key={b.id} disabled={state.running} className={`dock-key ${pressed.includes(b.key)?'is-pressed':''}`} aria-label={`${keyLabel(b.key)}: ${b.label||b.signature}`} title={`${b.signature} · ${enabled?'Press to run':'Enable controls to run'}`} onPointerDown={e=>{e.currentTarget.setPointerCapture(e.pointerId);setPressed(keys=>[...new Set([...keys,b.key])]);}} onPointerUp={()=>setPressed(keys=>keys.filter(k=>k!==b.key))} onPointerCancel={()=>setPressed(keys=>keys.filter(k=>k!==b.key))} onLostPointerCapture={()=>setPressed(keys=>keys.filter(k=>k!==b.key))} onClick={()=>run(b)}><kbd>{keyLabel(b.key)}</kbd><span>{b.label||b.signature}</span></button>)}</div>
     <button className="dock-stop" onClick={()=>{send('stop');setPressed([]);}}>■ Stop<kbd>Esc</kbd></button>
     <button className="dock-hide" onClick={onHideDock} aria-label="Hide dock" title="Hide dock — show again with Dock in the toolbar">⌄</button>
     <p className="dock-notice" role="status">{notice}</p>

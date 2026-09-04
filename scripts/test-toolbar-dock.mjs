@@ -33,6 +33,12 @@ try {
  await dock.locator('.is-pressed').waitFor();
  await page.keyboard.up('w');
  await dock.locator('.is-pressed').waitFor({state:'detached'});
+ await frame.evaluate(()=>parent.postMessage({type:'vex-controller-state',...window.VexStudio.snapshot(),running:true},location.origin));
+ await page.waitForFunction(()=>document.querySelector('.dock-key')?.disabled);
+ await page.waitForFunction(()=>getComputedStyle(document.querySelector('.dock-key')).backgroundColor==='rgb(209, 213, 216)');
+ assert.equal(await dock.locator('.dock-stop').isEnabled(),true);
+ await frame.evaluate(()=>parent.postMessage({type:'vex-controller-state',...window.VexStudio.snapshot(),running:false},location.origin));
+ await page.waitForFunction(()=>!document.querySelector('.dock-key')?.disabled);
  await page.screenshot({path:'artifacts/unified-toolbar-dock.png'});
  await page.setViewportSize({width:390,height:844});
  await frame.getByRole('button',{name:'▤ Dock',exact:true}).click();

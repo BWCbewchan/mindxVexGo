@@ -129,14 +129,17 @@
     clearFunctionHighlight();
     return {stopped:true};
   }
+  interpreter.on('onRunning',()=>{last='';post({type:'vex-controller-state',functions:functions(),connected:connected(),running:true});});
   interpreter.on('onStop',()=>{
+    last='';
+    post({type:'vex-controller-state',functions:functions(),connected:connected(),running:true});
     controllerRun=false;
     stopUntil=Date.now()+500;
     // Keep very short calls visible, while long calls stay outlined until done.
     clearTimeout(highlightTimer);
     highlightTimer=setTimeout(clearFunctionHighlight,Math.max(0,600-(Date.now()-highlightStarted)));
   });
-  window.VexStudio = Object.freeze({functions,compileFunction,runFunction,stop,snapshot:()=>({functions:functions(),connected:connected(),running:interpreter.isRunning})});
+  window.VexStudio = Object.freeze({functions,compileFunction,runFunction,stop,snapshot:()=>({functions:functions(),connected:connected(),running:interpreter.isRunning||pending||Date.now()<stopUntil})});
   window.addEventListener('message',async event => {
     if(event.origin !== location.origin || event.source !== window.parent || event.data?.type !== 'vex-controller')return;
     const {id,action,signature,args} = event.data;
@@ -168,7 +171,7 @@
     if(!connected()&&highlighted.length)clearFunctionHighlight();
     const mobile = innerWidth <= 700;
     if(mobile !== mobileInitialized){controllers.getCurrentMainController().setAutoCollapse(mobile);mobileInitialized=mobile;}
-    const state={type:'vex-controller-state',functions:functions(),connected:connected(),running:interpreter.isRunning};
+    const state={type:'vex-controller-state',functions:functions(),connected:connected(),running:interpreter.isRunning||pending||Date.now()<stopUntil};
     const serialized=JSON.stringify(state);if(serialized!==last){post(state);last=serialized;}
   },500);
 })();
