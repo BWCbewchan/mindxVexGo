@@ -9,7 +9,8 @@ try{
  let bridge=await fs.readFile('public/controller-bridge.js','utf8');
  bridge=bridge.replace(/const connected = [^\r\n]+;/,`const connected = () => true;
  const go=requireModule('./src/HardwareInterface/controllers/VEXGOController.ts').goController;
- go.stopScriptEngine=async()=>{};go.clearMessageQueue=()=>{};
+ window.deviceStopCalls=0;window.queueClearCalls=0;
+ go.stopScriptEngine=async()=>{window.deviceStopCalls++;};go.clearMessageQueue=()=>{window.queueClearCalls++;};
  const loadProgram=interpreter.setProgram.bind(interpreter);
  interpreter.setProgram=code=>loadProgram('var vexcodeSystemInit={runInit:function(){}};function wait(){}function waitForConfigReady(){};'+code.slice(code.lastIndexOf('var console_precision = 0;')));
  interpreter.startCode=function(){this.nextStep();};
@@ -30,5 +31,10 @@ try{
   await page.waitForTimeout(650);
  }
  assert.equal(await editor.locator('.studio-function-running').count(),0);
- console.log('PASS: real interpreter completes and accepts three consecutive My Block calls without manual Stop; robot I/O mocked.');
+ assert.equal(await editor.evaluate(()=>window.deviceStopCalls),0,'normal completion must preserve continuous motor commands');
+ assert.equal(await editor.evaluate(()=>window.queueClearCalls),0,'normal completion must preserve queued device commands');
+ await editor.evaluate(()=>window.VexStudio.stop());
+ await editor.waitForFunction(()=>window.deviceStopCalls===1);
+ assert.equal(await editor.evaluate(()=>window.queueClearCalls),1);
+ console.log('PASS: repeated calls finish without stopping hardware or clearing its queue; explicit Stop still stops hardware after a call completes. Real interpreter, robot I/O mocked.');
 }finally{await browser.close();}

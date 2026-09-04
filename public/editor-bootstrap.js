@@ -1,4 +1,6 @@
 (function () {
+  try { window.__vexAutoSaveEnabled=localStorage.getItem('mindx-go-autosave')!=='off'; }
+  catch { window.__vexAutoSaveEnabled=true; }
   var startupError = '', finished = false;
   window.addEventListener('error', function (event) {
     if (finished) return;

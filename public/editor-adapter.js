@@ -1,6 +1,30 @@
 (function () {
   let toolbarState = {controls:false,help:false,dock:true};
   const post = data => window.parent.postMessage(data, location.origin);
+  let autosave={enabled:window.__vexAutoSaveEnabled!==false,status:'Loading…',savedAt:null};
+  function syncAutosave(){
+    const menu=document.getElementById('file_menu');
+    if(!menu)return;
+    let option=menu.querySelector('.studio-autosave');
+    if(!option){
+      option=document.createElement('div');option.className='studio-autosave';
+      const label=document.createElement('label');
+      const checkbox=document.createElement('input');checkbox.type='checkbox';
+      label.append(checkbox,document.createTextNode('Auto save'));
+      const status=document.createElement('small');status.setAttribute('role','status');
+      const description=document.createElement('small');description.textContent='Save in this browser on this device.';
+      option.append(label,status,description);
+      option.addEventListener('click',event=>event.stopPropagation());
+      checkbox.addEventListener('change',()=>window.postMessage({type:'vex-autosave-toggle',enabled:checkbox.checked},location.origin));
+      menu.append(option);
+    }
+    const checkbox=option.querySelector('input');
+    checkbox.checked=autosave.enabled;checkbox.disabled=autosave.status==='Loading…';
+    option.querySelector('[role=status]').textContent=autosave.status;
+    option.title=autosave.savedAt?'Saved at '+new Date(autosave.savedAt).toLocaleTimeString():'';
+  }
+  document.addEventListener('vex-autosave-state',event=>{autosave=event.detail;syncAutosave();});
+  document.addEventListener('click',event=>{if(event.target.closest?.('#top_menu_file_button'))setTimeout(syncAutosave,0);});
   document.addEventListener('click',event=>{
     if(!event.target.closest?.('.brain_button'))return;
     if(!window.isSecureContext || typeof navigator.bluetooth?.requestDevice !== 'function'){
@@ -48,6 +72,7 @@
   });
   setInterval(function () {
     syncToolbar();
+    syncAutosave();
     if (document.querySelector('.blocklySvg')) {
       window.parent.postMessage({ type: 'vex-editor-ready' }, window.location.origin);
     }

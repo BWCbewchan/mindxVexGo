@@ -14,7 +14,45 @@
   const workspace = () => controllers.getCurrentMainController()?.blocklyWorkspace;
   const connected = () => !!hw && hw.getConnectionState() === hardware.BrainConnectionState.Connected;
   const post = data => window.parent.postMessage(data, location.origin);
-  let controllerRun = false;
+  // Use the full vendor project format, including the robot configuration.
+  (function setupAutosave(){
+    const manager=requireModule('./src/FileSys/ProjectManager.ts');
+    const project=manager.currentProject;
+    if(!project){setTimeout(setupAutosave,100);return;}
+    const save=project.saveWorkspaceToStorage.bind(project);
+    let loaded=!!workspace()&&!!project.projectData,lastSaved='',status='Waiting for editor',savedAt=null;
+    const report=()=>document.dispatchEvent(new CustomEvent('vex-autosave-state',{detail:{enabled:window.__vexAutoSaveEnabled!==false,status,savedAt}}));
+    manager.projectLoadEvent.registerCallback(()=>{loaded=true;});
+    project.saveWorkspaceToStorage=function(){
+      if(window.__vexAutoSaveEnabled===false||!loaded||!workspace()||!project.projectData)return;
+      try{
+        const content=project.getFileContentString();
+        if(!content)return;
+        const fingerprint=project.getProjectName()+'\n'+content;
+        if(fingerprint===lastSaved)return;
+        save();
+        lastSaved=fingerprint;savedAt=Date.now();status='Saved';report();
+      }catch{status='Could not save — use File to download a copy';report();}
+    };
+    window.addEventListener('message',event=>{
+      if(event.origin!==location.origin||(event.source!==window.parent&&event.source!==window)||event.data?.type!=='vex-autosave-toggle')return;
+      window.__vexAutoSaveEnabled=event.data.enabled===true;
+      try{
+        localStorage.setItem('mindx-go-autosave',window.__vexAutoSaveEnabled?'on':'off');
+        status=window.__vexAutoSaveEnabled?'Waiting to save':'Off';
+        if(window.__vexAutoSaveEnabled){lastSaved='';project.saveWorkspaceToStorage();}
+      }catch{status='Could not save preference — browser storage unavailable';}
+      report();
+    });
+    setInterval(()=>{
+      project.saveWorkspaceToStorage();
+      if(window.__vexAutoSaveEnabled===false)status='Off';
+      report();
+    },2000);
+    document.addEventListener('visibilitychange',()=>{if(document.hidden)project.saveWorkspaceToStorage();});
+    window.addEventListener('pagehide',()=>project.saveWorkspaceToStorage());
+  })();
+  let controllerRun = false, controllerDeviceActive = false, completingCall = false;
   const originalRunComplete = interpreter.onRunComplete;
   interpreter.onRunComplete = function (...args) {
     originalRunComplete.apply(this,args);
@@ -22,7 +60,9 @@
     // ends. A standalone controller call must release that running state.
     if(controllerRun && this.isRunning){
       controllerRun=false;
-      this.stop();
+      completingCall=true;
+      try { this.stop(true); }
+      finally { completingCall=false; }
     }
   };
   let highlighted = [], highlightTimer = null, highlightStarted = 0;
@@ -118,6 +158,7 @@
       interpreter.setVarNames(controllers.javascriptVariableNames());
       highlightFunction(signature);
       controllerRun=true;
+      controllerDeviceActive=true;
       interpreter.run();
       return {signature};
     } catch(error) { controllerRun=false;clearFunctionHighlight(); throw error; }
@@ -125,7 +166,7 @@
   }
   function stop() {
     stopUntil = Date.now()+500;
-    if(interpreter.isRunning) interpreter.stop();
+    if(interpreter.isRunning||controllerDeviceActive) interpreter.stop();
     clearFunctionHighlight();
     return {stopped:true};
   }
@@ -134,7 +175,8 @@
     last='';
     post({type:'vex-controller-state',functions:functions(),connected:connected(),running:true});
     controllerRun=false;
-    stopUntil=Date.now()+500;
+    if(!completingCall)controllerDeviceActive=false;
+    stopUntil=Date.now()+(completingCall?0:500);
     // Keep very short calls visible, while long calls stay outlined until done.
     clearTimeout(highlightTimer);
     highlightTimer=setTimeout(clearFunctionHighlight,Math.max(0,600-(Date.now()-highlightStarted)));

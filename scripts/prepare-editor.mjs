@@ -32,6 +32,11 @@ function replaceOnce(before, after) {
   if (bundle.split(before).length !== 2) throw new Error('Unexpected APK patch target: ' + before);
   bundle = bundle.replace(before, after);
 }
+replaceOnce('value: function saveWorkspaceToStorage() {', 'value: function saveWorkspaceToStorage() {\n      if (window.__vexAutoSaveEnabled === false) return;');
+// Completing a controller call releases the JS runtime but must preserve
+// continuous motor commands. Explicit Stop keeps its original hardware action.
+replaceOnce('value: function stop() {\n      log.debug("stop");', 'value: function stop(preserveDeviceState) {\n      log.debug("stop");');
+replaceOnce('if (_targetPlatform__WEBPACK_IMPORTED_MODULE_3__["targetIsPlaygrounds"]) {} else if (_targetPlatform__WEBPACK_IMPORTED_MODULE_3__["targetIsGO"]) {', 'if (_targetPlatform__WEBPACK_IMPORTED_MODULE_3__["targetIsPlaygrounds"]) {} else if (_targetPlatform__WEBPACK_IMPORTED_MODULE_3__["targetIsGO"] && preserveDeviceState !== true) {');
 replaceOnce('__webpack_require__.p = "dist/";', '__webpack_require__.p = "dist/"; window.__vexStudioRequire = __webpack_require__;');
 replaceOnce('// check for ChromeOS compatibility\n              if (_platformInfo__WEBPACK_IMPORTED_MODULE_43__["OSisAndroid"]) {', '// Check native app permissions only inside the APK, never Android browsers.\n              if (_platformInfo__WEBPACK_IMPORTED_MODULE_43__["PlatformIsAndroid"]) {');
 replaceOnce('mainWorkspace.getToolbox().HtmlDiv.contains(targetNode)', '(mainWorkspace.getToolbox() && mainWorkspace.getToolbox().HtmlDiv.contains(targetNode))');

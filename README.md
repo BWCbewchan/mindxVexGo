@@ -29,6 +29,11 @@ assign keys. **Dock** toggles the key bar; its collapse button hides it.
 Bindings are saved in the current browser. Enable controls before running
 functions. Escape and Stop request a stop.
 
+After a function returns, continuous commands such as **drive forward** keep
+their device state. Use a drivetrain stop block or the controller's **Stop**
+button to stop motion. Finishing a function unlocks the controls without sending
+an extra hardware stop command.
+
 The editor defaults to English, without a language selector. Share and Feedback
 are omitted from the toolbar. Editing is available on desktop and mobile;
 robot connectivity requires Web Bluetooth and a secure context (HTTPS or
@@ -38,6 +43,12 @@ See [the device compatibility matrix](docs/compatibility.md) for tested browser
 layouts, connection limits, and local verification commands.
 
 ## Editor adaptations
+
+**File → Auto save** saves changes in the current browser every two seconds and
+when the page is hidden. It is enabled by default; the choice persists. Reopening
+the studio restores the most recent local project, including its robot settings.
+Use **File → Save To Your Device** for a portable project file. Browser storage
+does not sync across devices and clearing site data removes the local copy.
 
 `scripts/prepare-editor.mjs` reproduces the vendor bundle adaptations from
 `apk-extracted/assets/webapp` when the original APK has been extracted locally.
