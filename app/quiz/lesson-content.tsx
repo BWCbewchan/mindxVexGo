@@ -1,0 +1,4 @@
+import type {Block} from './model';
+export default function LessonContent({blocks,title}:{blocks:Block[];title:string}){
+ return <>{blocks.map((block,i)=>block.type==='table'?<div className="quiz-source-table" key={i}><table aria-label={block.text}><tbody>{block.rows?.map((row,j)=><tr key={j}>{row.map((cell,k)=><td colSpan={cell.colSpan} rowSpan={cell.rowSpan} key={k}><LessonContent blocks={cell.blocks} title={title}/></td>)}</tr>)}</tbody></table></div>:block.type==='text'?<p key={i}>{block.text}</p>:block.type==='divider'?<hr key={i}/>:<figure key={i}><img src={block.src} loading="lazy" alt={block.type==='page'?`Trang ${block.page} của ${title}`:block.text}/>{block.type==='page'&&<><figcaption>Trang {block.page}</figcaption><details><summary>Đọc văn bản trang {block.page}</summary><p>{block.text||'Trang này chỉ có hình ảnh. Xem hình hoặc tải bản gốc.'}</p></details></>}</figure>)}</>;
+}

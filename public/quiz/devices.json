@@ -1,0 +1,44 @@
+[
+  {
+    "id": "motor",
+    "name": "Motor",
+    "src": "/quiz/devices/motor.svg",
+    "source": "https://content.vexrobotics.com/vexgo/parts-page/go-parts/svg/motor_small_size.svg"
+  },
+  {
+    "id": "electromagnet",
+    "name": "Electromagnet",
+    "src": "/quiz/devices/electromagnet.svg",
+    "source": "https://content.vexrobotics.com/vexgo/parts-page/go-parts/svg/electronics-electromagnet.svg"
+  },
+  {
+    "id": "bumper",
+    "name": "LED Bumper",
+    "src": "/quiz/devices/bumper.svg",
+    "source": "https://content.vexrobotics.com/vexgo/parts-page/go-parts/svg/electronics-led_bumper.svg"
+  },
+  {
+    "id": "brain",
+    "name": "Brain",
+    "src": "/quiz/devices/brain.svg",
+    "source": "https://content.vexrobotics.com/vexgo/parts-page/go-parts/svg/electronics-brain.svg"
+  },
+  {
+    "id": "battery",
+    "name": "Battery",
+    "src": "/quiz/devices/battery.svg",
+    "source": "https://content.vexrobotics.com/vexgo/parts-page/go-parts/svg/electronics-battery.svg"
+  },
+  {
+    "id": "switch",
+    "name": "Switch",
+    "src": "/quiz/devices/switch.svg",
+    "source": "https://content.vexrobotics.com/vexgo/parts-page/go-parts/svg/electronics-switch.svg"
+  },
+  {
+    "id": "eye",
+    "name": "Eye Sensor",
+    "src": "/quiz/devices/eye.svg",
+    "source": "https://content.vexrobotics.com/vexgo/parts-page/go-parts/svg/electronics-eye_sensor.svg"
+  }
+]

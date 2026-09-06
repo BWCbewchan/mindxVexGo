@@ -15,6 +15,7 @@
     if(!original||original.training)return;
     const wrapped=function(){
       configData.setBumperList([['Bumper1']]);configData.setEyeList([['Eye']]);configData.setMagnetList([['Magnet']]);
+      if(new URLSearchParams(location.search).get('assessment')==='code')configData.setMotorList([['Motor1'],['Motor2']]);
       const xml=B.Xml.textToDom(original());
       const sensing=xml.querySelector('category[id="sensing"]');
       if(sensing){
@@ -46,7 +47,8 @@
   let runner=null,epoch=0,status='Ready',driveSpeed=50,turnSpeed=50,started=0,timerStart=0;
   let logs=[],poseRevision=0;
   let missionStarted=null,missionElapsed=0;
-  const report=()=>{const running=!!runner||engine.moving;if(missionStarted!==null){missionElapsed=performance.now()-missionStarted;if(!running||engine.state.goal)missionStarted=null;}post({type:'training-state',...engine.state,elapsedMs:missionElapsed,running,status,logs,path:[]});};
+  let assessmentId=null,assessmentProfile=null,settledAt=0,observations={eyeRead:false,eyeFound:false,stop:false,stopAfterEye:false};
+  const report=()=>{const running=!!runner||engine.moving;if(missionStarted!==null){missionElapsed=performance.now()-missionStarted;if(!running||(!assessmentId&&engine.state.goal))missionStarted=null;}post({type:'training-state',...engine.state,elapsedMs:missionElapsed,running,status,logs,path:[],assessmentId,observations});};
   function stop(message='Stopped'){epoch++;runner=null;engine.stop();status=message;workspace()?.highlightBlock(null);report();}
   function fail(error){stop(error?.message||String(error));}
   function prepare(){
@@ -115,10 +117,10 @@
     runner=new Interpreter('var console_precision=0; var vexcodeSystemInit={runInit:function(){}}; function waitForConfigReady(){};\n'+code,(i,s)=>{
       native(i,s,'print',v=>{logs=[...logs,String(v).slice(0,500)].slice(-50);});
       native(i,s,'clearConsole',()=>{logs=[];});
-      native(i,s,'simStop',()=>engine.stop());
-      native(i,s,'simEnd',()=>stop('Program stopped'));
+      native(i,s,'simStop',()=>{observations.stop=true;if(observations.eyeFound&&engine.state.eye.found&&engine.state.distance>30)observations.stopAfterEye=true;engine.stop();});
+      native(i,s,'simEnd',()=>{observations.stop=true;if(observations.eyeFound&&engine.state.eye.found&&engine.state.distance>30)observations.stopAfterEye=true;stop('Program stopped');});
       native(i,s,'simResetTimer',()=>{timerStart=performance.now();});
-      native(i,s,'simRead',kind=>({timer:(performance.now()-timerStart)/1000,done:!engine.moving,moving:engine.moving,heading:((engine.state.heading%360)+360)%360,rotation:engine.state.rotation})[kind]??engine.read(kind));
+      native(i,s,'simRead',kind=>{if(kind.startsWith('eye_')){observations.eyeRead=true;if(engine.state.eye.found)observations.eyeFound=true;}return ({timer:(performance.now()-timerStart)/1000,done:!engine.moving,moving:engine.moving,heading:((engine.state.heading%360)+360)%360,rotation:engine.state.rotation})[kind]??engine.read(kind);});
       native(i,s,'simMagnet',action=>engine.magnet(action));
       native(i,s,'simSensor',(kind,value)=>engine.sensorSetting(kind,value));
       native(i,s,'simVelocity',(kind,v)=>{
@@ -130,12 +132,15 @@
         setTimeout(()=>{if(active())callback();},Math.min(Number(seconds)*1000,2147483647));
       });
       asyncFn(i,s,'simMove',(kind,amount,andWait,callback)=>{
+        observations.stopAfterEye=false;
         try{engine.command(kind,Number(amount),(kind==='drive'?driveSpeed*2.5:turnSpeed*1.8),()=>{if(active()&&andWait)callback();});if(!andWait)callback();}catch(error){fail(error);}
       });
       asyncFn(i,s,'simDriveUntil',(direction,obstacle,andWait,callback)=>{
+        observations.stopAfterEye=false;
         try{engine.commandUntil(direction,obstacle,driveSpeed*2.5,()=>{if(active()&&andWait)callback();});if(!andWait)callback();}catch(error){fail(error);}
       });
       asyncFn(i,s,'simTurnTo',(target,heading,callback)=>{
+        observations.stopAfterEye=false;
         let delta=Number(target)-(heading?((engine.state.heading%360)+360)%360:engine.state.rotation);
         if(heading)delta=((delta+540)%360+360)%360-180;
         try{engine.command('turn',delta,turnSpeed*1.8,()=>{if(active())callback();});}catch(error){fail(error);}
@@ -154,6 +159,12 @@
       if(now-started>300000){stop('Run limit reached (5 minutes).');}
       else try{const until=performance.now()+5;for(let n=0;n<500&&runner&&!runner.paused_&&performance.now()<until;n++){if(!runner.step()){runner=null;status=engine.moving?'Moving — press Stop to stop':'Program finished';break;}}}catch(error){fail(error);}
     }
+    // Sensor tasks commonly keep a forever loop alive after stopping the robot.
+    // Accept one second of stable stopping after an actual positive eye reading.
+    if(assessmentId&&assessmentProfile==='eye-stop'&&runner&&!engine.moving&&observations.stopAfterEye&&engine.state.bumperHits===0&&engine.state.eye.found){
+      if(!settledAt)settledAt=now;
+      if(now-settledAt>=1000)stop('Program stopped');
+    }else settledAt=0;
     if(now-lastReport>100){lastReport=now;report();}
     if(now-lastPose>=30){lastPose=now;post({type:'training-pose',x:engine.state.x,y:engine.state.y,heading:engine.state.heading,collision:engine.state.collision,blocks:engine.state.blocks,carryingId:engine.state.carrying,carrying:engine.state.blocks.find(b=>b.id===engine.state.carrying)?.color||null,revision:poseRevision});}
   },16);
@@ -162,7 +173,16 @@
     if(event.origin!==location.origin||event.source!==parent||event.data?.type!=='training-command')return;
     try{
       const {action}=event.data;
-      if(action==='run')run(compileMain());
+      if(action==='inspect-code'){
+        post({type:'quiz-code-inspection',attemptId:event.data.attemptId,xml:workspace()?B.Xml.domToText(B.Xml.workspaceToDom(workspace())):'<xml/>'});return;
+      }
+      if(action==='run'){assessmentId=null;run(compileMain());}
+      if(action==='assess'){
+        stop('Ready');assessmentId=String(event.data.attemptId||'').slice(0,100);
+        assessmentProfile=event.data.profile==='eye-stop'?'eye-stop':null;settledAt=0;
+        observations={eyeRead:false,eyeFound:false,stop:false,stopAfterEye:false};engine.reset();missionStarted=null;missionElapsed=0;poseRevision++;
+        run(compileMain());
+      }
       if(action==='stop')stop();
       if(action==='reset'){stop('Ready');engine.reset();missionStarted=null;missionElapsed=0;poseRevision++;report();}
       if(action==='field'){

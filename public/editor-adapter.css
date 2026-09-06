@@ -69,3 +69,5 @@ html, body { overscroll-behavior: none; overflow: clip; }
 }
 .editor-mindx-logo{display:inline-block;width:92px;height:29px;overflow:hidden;position:relative;vertical-align:middle}.editor-mindx-logo img{position:absolute;width:211%;height:auto;max-width:none;left:-56%;top:-71%}.studio-home{display:flex!important;align-items:center!important;gap:5px!important}.studio-home b{font-size:10px;letter-spacing:1px}
 .editor-mindx-logo img{inset:0!important;width:100%!important;height:100%!important;object-fit:contain!important}
+/* Homework submissions run from when started; controller-shell actions are not hosted here. */
+html[data-homework="true"] .studio-toolbar-actions{display:none!important}

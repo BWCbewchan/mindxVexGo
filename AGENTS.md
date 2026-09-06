@@ -8,6 +8,11 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 <!-- END:nextjs-agent-rules -->
 
+## Text encoding
+- Read and write source files as UTF-8 explicitly. In PowerShell, always specify `-Encoding utf8` for text reads/writes; never round-trip Unicode source using the default Windows code page.
+- Prefer `apply_patch` for edits and Python `read_text(encoding='utf-8-sig')` / `write_text(encoding='utf-8')` for scripted edits.
+- Run `scripts/check-encoding.py` after scripted text transformations. Preserve valid Vietnamese letters; do not replace accented letters globally.
+
 ## UI dialogs
 - Do not use browser alert(), prompt(), or confirm() in application UI, including window-qualified calls.
 - Use custom React dialog components for input and confirmation, and inline status/toast components for notifications.

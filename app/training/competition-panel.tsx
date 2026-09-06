@@ -1,0 +1,15 @@
+'use client';
+import {useEffect,useRef,useState} from 'react';
+import './competition.css';
+type Pose={distance:number;rotation:number;heading:number};
+export default function CompetitionPanel({pose,ready,onStop,onControls,onClose}:{pose:Pose;ready:boolean;onStop:()=>void;onControls:()=>void;onClose:()=>void}){
+ const [duration,setDuration]=useState(120),[remaining,setRemaining]=useState(120),[active,setActive]=useState(false);
+ const [baseline,setBaseline]=useState({distance:0,rotation:0});
+ const [laps,setLaps]=useState<{distance:number;rotation:number}[]>([]);
+ const stop=useRef(onStop);stop.current=onStop;
+ const deadline=useRef(0);
+ const distance=pose.distance-baseline.distance,rotation=pose.rotation-baseline.rotation;
+ useEffect(()=>{if(!active)return;const tick=()=>{const left=Math.max(0,(deadline.current-performance.now())/1000);setRemaining(left);if(left===0){setActive(false);stop.current();}};tick();const id=setInterval(tick,100);return()=>clearInterval(id);},[active]);
+ useEffect(()=>()=>{stop.current();},[]);
+ return <aside className="competition-panel" aria-label="Competition console"><header><div><span>VIRTUAL COMPETITION</span><strong>Precision console</strong></div><button onClick={()=>{onStop();onClose();}} aria-label="Close competition">×</button></header><div className="competition-clock"><strong role="timer" aria-label="Round time">{Math.floor(Math.ceil(remaining)/60).toString().padStart(2,'0')}:{(Math.ceil(remaining)%60).toString().padStart(2,'0')}</strong><label>Round seconds<input type="number" min="10" max="900" step="10" value={duration} disabled={active} onChange={e=>{const n=Math.max(10,Math.min(900,Number(e.target.value)||10));setDuration(n);setRemaining(n);}}/></label></div><div className="competition-buttons"><button disabled={!ready||active} onClick={()=>{deadline.current=performance.now()+duration*1000;setRemaining(duration);setActive(true);}}>Start round</button><button className="competition-stop" onClick={()=>{setActive(false);onStop();}}>■ Stop</button><button onClick={onControls}>Set up keys</button></div><p role="status">{active?'Round running · use your mapped function keys':remaining===0?'Time is up · robot stopped':'Practice mode · start a timed round when ready'}</p><div className="competition-readings"><div><span>Distance from marker</span><strong>{distance.toFixed(1)}<small> mm</small></strong></div><div><span>Turn from marker</span><strong>{rotation.toFixed(1)}<small> °</small></strong></div></div><div className="competition-buttons"><button onClick={()=>setBaseline({distance:pose.distance,rotation:pose.rotation})}>Set marker to 0</button><button onClick={()=>setLaps(v=>[{distance,rotation},...v].slice(0,8))}>Record segment</button></div><small>Virtual measurements · heading {((pose.heading%360+360)%360).toFixed(1)}°<br/>Marker changes the display only. After Reset robot, set a new marker.</small>{laps.length>0&&<ol className="competition-segments">{laps.map((lap,i)=><li key={i}><span>Segment {laps.length-i}</span><b>{lap.distance.toFixed(1)} mm</b><b>{lap.rotation.toFixed(1)}°</b></li>)}</ol>}</aside>;
+}

@@ -2,6 +2,7 @@
   if(new URLSearchParams(location.search).get('mode')==='training'){
     window.__vexTrainingMode=true;
     const lesson=new URLSearchParams(location.search).get('lesson');
+    if(lesson?.startsWith('quiz-'))document.documentElement.dataset.homework='true';
     const prefix='training:'+(lesson&&/^[a-z0-9-]{1,80}$/.test(lesson)?lesson+':':'');
     if(lesson==='custom'){
       // Keep the original single-workspace training project in Your practice field.

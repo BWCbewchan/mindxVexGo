@@ -1,0 +1,142 @@
+{
+  "wait": {
+    "xml": "<block type=\"go_control_wait\"><value name=\"DURATION\"><shadow type=\"math_number\"><field name=\"NUM\">3</field></shadow></value></block>",
+    "caption": "wait 3 seconds",
+    "description": "Khối chờ 3 giây trước khi chuyển sang lệnh tiếp theo.",
+    "rendered": [
+      {
+        "type": "go_control_wait",
+        "text": "wait 3 seconds"
+      },
+      {
+        "type": "math_number",
+        "text": "3"
+      }
+    ],
+    "src": "/quiz/blocks/wait.png"
+  },
+  "speed": {
+    "xml": "<block type=\"go_motion_set_motor_velocity\"><field name=\"MOTOR\">Motor1</field><value name=\"VELOCITY\"><shadow type=\"math_number\"><field name=\"NUM\">50</field></shadow></value></block>",
+    "caption": "Set motor velocity",
+    "description": "Khối thiết lập tốc độ Motor1 là 50%.",
+    "rendered": [
+      {
+        "type": "go_motion_set_motor_velocity",
+        "text": "set Motor1 velocity to 50 %"
+      },
+      {
+        "type": "math_number",
+        "text": "50"
+      }
+    ],
+    "src": "/quiz/blocks/speed.png"
+  },
+  "order": {
+    "xml": "<block type=\"go_motion_set_motor_velocity\"><field name=\"MOTOR\">Motor1</field><value name=\"VELOCITY\"><shadow type=\"math_number\"><field name=\"NUM\">50</field></shadow></value><next><block type=\"go_motion_spin\"><field name=\"MOTOR\">Motor1</field><field name=\"DIRECTION\">forward</field></block></next></block>",
+    "caption": "Set velocity → spin motor",
+    "description": "Đặt tốc độ trước, sau đó bắt đầu quay động cơ.",
+    "rendered": [
+      {
+        "type": "go_motion_set_motor_velocity",
+        "text": "set Motor1 velocity to 50 %"
+      },
+      {
+        "type": "math_number",
+        "text": "50"
+      },
+      {
+        "type": "go_motion_spin",
+        "text": "spin Motor1 up"
+      }
+    ],
+    "src": "/quiz/blocks/order.png"
+  },
+  "repeat": {
+    "xml": "<block type=\"go_control_repeat\"><value name=\"TIMES\"><shadow type=\"math_number\"><field name=\"NUM\">10</field></shadow></value><statement name=\"SUBSTACK\"><block type=\"go_control_wait\"><value name=\"DURATION\"><shadow type=\"math_number\"><field name=\"NUM\">3</field></shadow></value></block></statement></block>",
+    "caption": "repeat 10",
+    "description": "Khối repeat chứa một lệnh wait.",
+    "rendered": [
+      {
+        "type": "go_control_repeat",
+        "text": "repeat 10 wait 3 seconds *"
+      },
+      {
+        "type": "math_number",
+        "text": "10"
+      },
+      {
+        "type": "go_control_wait",
+        "text": "wait 3 seconds"
+      },
+      {
+        "type": "math_number",
+        "text": "3"
+      }
+    ],
+    "src": "/quiz/blocks/repeat.png"
+  },
+  "until": {
+    "xml": "<block type=\"go_control_repeat_until\"><value name=\"CONDITION\"><block type=\"go_sensing_eye_found_object\"><field name=\"EYE\">Eye</field></block></value><statement name=\"SUBSTACK\"><block type=\"go_control_wait\"><value name=\"DURATION\"><shadow type=\"math_number\"><field name=\"NUM\">3</field></shadow></value></block></statement></block>",
+    "caption": "repeat until · Eye sensor",
+    "description": "Vòng lặp kiểm tra điều kiện mắt phát hiện vật.",
+    "rendered": [
+      {
+        "type": "go_control_repeat_until",
+        "text": "repeat until eye found an object? wait 3 seconds *"
+      },
+      {
+        "type": "go_sensing_eye_found_object",
+        "text": "eye found an object?"
+      },
+      {
+        "type": "go_control_wait",
+        "text": "wait 3 seconds"
+      },
+      {
+        "type": "math_number",
+        "text": "3"
+      }
+    ],
+    "src": "/quiz/blocks/until.png"
+  },
+  "condition": {
+    "xml": "<block type=\"go_control_if_then\"><value name=\"CONDITION\"><block type=\"go_sensing_eye_found_object\"><field name=\"EYE\">Eye</field></block></value><statement name=\"SUBSTACK\"><block type=\"go_drivetrain_stop_driving\"/></statement></block>",
+    "caption": "if · Eye sensor",
+    "description": "Khối if có điều kiện mắt phát hiện vật và lệnh dừng ở bên trong.",
+    "rendered": [
+      {
+        "type": "go_control_if_then",
+        "text": "if eye found an object? then stop driving"
+      },
+      {
+        "type": "go_sensing_eye_found_object",
+        "text": "eye found an object?"
+      },
+      {
+        "type": "go_drivetrain_stop_driving",
+        "text": "stop driving"
+      }
+    ],
+    "src": "/quiz/blocks/condition.png"
+  },
+  "forever": {
+    "xml": "<block type=\"go_control_forever\"><statement name=\"SUBSTACK\"><block type=\"go_control_wait\"><value name=\"DURATION\"><shadow type=\"math_number\"><field name=\"NUM\">3</field></shadow></value></block></statement></block>",
+    "caption": "forever",
+    "description": "Khối forever bao quanh lệnh wait.",
+    "rendered": [
+      {
+        "type": "go_control_forever",
+        "text": "forever wait 3 seconds *"
+      },
+      {
+        "type": "go_control_wait",
+        "text": "wait 3 seconds"
+      },
+      {
+        "type": "math_number",
+        "text": "3"
+      }
+    ],
+    "src": "/quiz/blocks/forever.png"
+  }
+}
