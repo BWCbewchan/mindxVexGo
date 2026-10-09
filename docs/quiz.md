@@ -54,3 +54,9 @@ Tests cover grading/storage, behavior and structural checks, visible requirement
 
 Run `python scripts/repair-quiz-question-context.py` after both visual/context builders. It applies manually reviewed PDF regions for maze, numbered positions and route tasks, propagates them to matching combined-document questions, and audits all 241 questions. It also restores missing source text context. Required diagrams are marked as question illustrations, so filtering out full-page source cards cannot hide them. Regression: `node scripts/test-quiz-diagrams.mjs`. Original source downloads are unchanged.
 
+
+## PRE practice expansion
+
+Run `node scripts/build-quiz-block-images.mjs` with the local server available, then `python scripts/expand-pre-quizzes.py` after all source/question builders. The expansion appends 255 supplementary questions across 39 PRE documents, reaching at least 10 per document (496 questions overall). Existing IDs/options stay unchanged. New scenarios are explicitly identified as app-authored practice with actual Blockly illustrations, rather than attributed to the paper source. Selection prioritizes concepts mentioned in each lesson and limits reuse of a single illustration to two new questions per lesson.
+
+The catalog records approved previous question counts. On opening an expanded lesson, valid previous answers and best scores are retained, new answers are null, and submitted becomes false. Invalid progress remains protected. Verify with `node scripts/test-pre-expansion.mjs`.

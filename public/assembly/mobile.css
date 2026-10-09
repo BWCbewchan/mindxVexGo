@@ -1,0 +1,10 @@
+.library{grid-column:1;grid-row:1}.workspace{grid-column:2;grid-row:1}.inspector{grid-column:3;grid-row:1}
+@media(max-width:650px){
+ header{min-height:106px;padding:8px;gap:5px}header a{width:100%}header #title{max-width:none;width:100%;flex:1}
+ main{height:calc(100dvh - 106px);grid-template-columns:0 minmax(0,1fr) 0}.library{display:none}
+ body:not(.hide-library) .library{display:block;position:fixed;left:0;top:var(--panel-top,220px);bottom:0;width:180px;z-index:5;box-shadow:5px 0 20px #0002}
+ body.hide-panel main,body.hide-library main,body.hide-panel.hide-library main{grid-template-columns:0 minmax(0,1fr) 0}
+ nav{position:relative;z-index:6;gap:5px}nav button{padding:6px;font-size:11px}
+ body:not(.hide-panel) .inspector{top:var(--panel-top,220px);width:260px}
+ #parts{grid-template-columns:1fr 1fr}
+}

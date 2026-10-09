@@ -1,4 +1,60 @@
 {
+  "drive": {
+    "xml": "<block type=\"go_drivetrain_drive_for\"><field name=\"DIRECTION\">fwd</field><field name=\"UNITS\">mm</field><value name=\"AMOUNT\"><shadow type=\"math_number\"><field name=\"NUM\">200</field></shadow></value></block>",
+    "caption": "drive forward 200 mm",
+    "description": "Robot di chuyển tiến một đoạn 200 mm.",
+    "rendered": [
+      {
+        "type": "go_drivetrain_drive_for",
+        "text": "drive forward for 200 mm false"
+      },
+      {
+        "type": "math_number",
+        "text": "200"
+      }
+    ],
+    "src": "/quiz/blocks/drive.png"
+  },
+  "turn": {
+    "xml": "<block type=\"go_drivetrain_turn_for\"><field name=\"TURNDIRECTION\">right</field><value name=\"AMOUNT\"><shadow type=\"math_number\"><field name=\"NUM\">90</field></shadow></value></block>",
+    "caption": "turn right 90 degrees",
+    "description": "Robot rẽ phải 90 độ.",
+    "rendered": [
+      {
+        "type": "go_drivetrain_turn_for",
+        "text": "turn right for 90 degrees false"
+      },
+      {
+        "type": "math_number",
+        "text": "90"
+      }
+    ],
+    "src": "/quiz/blocks/turn.png"
+  },
+  "sequence": {
+    "xml": "<block type=\"go_drivetrain_drive_for\"><field name=\"DIRECTION\">fwd</field><field name=\"UNITS\">mm</field><value name=\"AMOUNT\"><shadow type=\"math_number\"><field name=\"NUM\">200</field></shadow></value><next><block type=\"go_drivetrain_turn_for\"><field name=\"TURNDIRECTION\">right</field><value name=\"AMOUNT\"><shadow type=\"math_number\"><field name=\"NUM\">90</field></shadow></value></block></next></block>",
+    "caption": "drive → turn",
+    "description": "Chuỗi di chuyển tiến 200 mm rồi rẽ phải 90 độ.",
+    "rendered": [
+      {
+        "type": "go_drivetrain_drive_for",
+        "text": "drive forward for 200 mm false"
+      },
+      {
+        "type": "math_number",
+        "text": "200"
+      },
+      {
+        "type": "go_drivetrain_turn_for",
+        "text": "turn right for 90 degrees false"
+      },
+      {
+        "type": "math_number",
+        "text": "90"
+      }
+    ],
+    "src": "/quiz/blocks/sequence.png"
+  },
   "wait": {
     "xml": "<block type=\"go_control_wait\"><value name=\"DURATION\"><shadow type=\"math_number\"><field name=\"NUM\">3</field></shadow></value></block>",
     "caption": "wait 3 seconds",
