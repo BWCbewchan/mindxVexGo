@@ -1,3 +1,4 @@
+import {visibleBounds} from './visible-bounds.js';
 import * as THREE from 'three';
 import {worldReference} from './mating.js?v=compatibility-27';
 
@@ -12,14 +13,14 @@ export function createGuideRenderer(){
  const directions=[[1,.8,1],[-1,.8,1],[1,.8,-1],[-1,.8,-1],[1,.3,1],[-1,.3,1],[1,-.5,1],[-1,-.5,-1]].map(p=>new THREE.Vector3(...p).normalize());
  const owned=[];
  function clear(){group.clear();for(const r of owned.splice(0))r.dispose();}
- function build(objects,addedId){clear();const copies=new Map();for(const [id,obj] of objects){const copy=obj.clone(true);copy.visible=true;copy.traverse(mesh=>{if(!mesh.isMesh)return;const isNew=id===addedId,geometry=new THREE.EdgesGeometry(mesh.geometry,35),material=new THREE.LineBasicMaterial({color:isNew?0xed1c24:0x687078,transparent:true,opacity:isNew?.85:.28});owned.push(geometry,material);mesh.add(new THREE.LineSegments(geometry,material));});group.add(copy);copies.set(id,copy);}group.updateMatrixWorld(true);return copies;}
+ function build(objects,addedId){clear();const copies=new Map();for(const [id,obj] of objects){const copy=obj.clone(true);copy.visible=true;copy.traverseVisible(mesh=>{if(!mesh.isMesh)return;const isNew=addedId instanceof Set?addedId.has(id):id===addedId,geometry=new THREE.EdgesGeometry(mesh.geometry,35),material=new THREE.LineBasicMaterial({color:isNew?0xed1c24:0x687078,transparent:true,opacity:isNew?.85:.28});owned.push(geometry,material);mesh.add(new THREE.LineSegments(geometry,material));});group.add(copy);copies.set(id,copy);}group.updateMatrixWorld(true);return copies;}
  function cameraFor(bounds,direction,width,height){
   const center=bounds.getCenter(new THREE.Vector3()),size=bounds.getSize(new THREE.Vector3());
   const camera=new THREE.OrthographicCamera(-1,1,1,-1,.00001,10);
   camera.position.copy(center).addScaledVector(direction,Math.max(.1,size.length()*3));camera.lookAt(center);camera.updateMatrixWorld(true);
   const inverse=camera.matrixWorldInverse;let minX=Infinity,maxX=-Infinity,minY=Infinity,maxY=-Infinity;
   for(const x of [bounds.min.x,bounds.max.x])for(const y of [bounds.min.y,bounds.max.y])for(const z of [bounds.min.z,bounds.max.z]){const p=new THREE.Vector3(x,y,z).applyMatrix4(inverse);minX=Math.min(minX,p.x);maxX=Math.max(maxX,p.x);minY=Math.min(minY,p.y);maxY=Math.max(maxY,p.y);}
-  const halfHeight=Math.max((maxY-minY)/2,(maxX-minX)/2/(width/height),.002)*1.12,halfWidth=halfHeight*width/height;
+  const halfHeight=Math.max((maxY-minY)/2,(maxX-minX)/2/(width/height),.002)*1.06,halfWidth=halfHeight*width/height;
   // Projected AABB center is often different from the orbit target: center both axes.
   camera.left=(minX+maxX)/2-halfWidth;camera.right=(minX+maxX)/2+halfWidth;camera.bottom=(minY+maxY)/2-halfHeight;camera.top=(minY+maxY)/2+halfHeight;camera.updateProjectionMatrix();return camera;
  }
@@ -29,19 +30,31 @@ export function createGuideRenderer(){
  }
  function capture(bounds,direction,width,height){renderer.setSize(width,height,false);const camera=cameraFor(bounds,direction,width,height);renderer.render(scene,camera);return renderer.domElement.toDataURL('image/png');}
  return {
+  completed(objects){build(objects);const bounds=visibleBounds(group);return capture(bounds,directions[0],2200,1200);},
   render(objects,step,references){
-   const joint=step.joint,copies=build(objects,joint?.part),bounds=new THREE.Box3().setFromObject(group);
+   const joint=step.joint,copies=build(objects,new Set(step.added.map(p=>p.id))),bounds=visibleBounds(group);
    const part=step.parts.find(p=>p.id===joint?.part),target=step.parts.find(p=>p.id===joint?.target);
    const ref=references[target?.sku]?.find(r=>r.id===joint?.targetRef);
    const socket=target&&ref?worldReference(target,ref):null;
    const point=socket?.point.clone().multiplyScalar(.001),direction=choose(bounds,point);
-   const assembled=capture(bounds,directions[0],1800,1100);
+   const markHole=(location)=>{const geometry=new THREE.SphereGeometry(.0018,20,12),material=new THREE.MeshBasicMaterial({color:0xa855f7,depthTest:false,depthWrite:false});const dot=new THREE.Mesh(geometry,material);dot.position.copy(location);dot.renderOrder=1100;group.add(dot);owned.push(geometry,material);};
+   if(socket){
+    const sourceRef=references[part?.sku]?.find(r=>r.id===joint.sourceRef);
+    const hole=ref.kind==='hole'?socket:sourceRef?.kind==='hole'?worldReference(part,sourceRef):null;
+    if(hole)markHole(hole.point.clone().multiplyScalar(.001));
+   }
+   for(const item of step.added){if(item.id===joint?.part)continue;const row=step.parts.find(p=>p.id===item.id),parent=step.parts.find(p=>p.id===row?.mate?.target),ref=references[parent?.sku]?.find(r=>r.id===row?.mate?.targetRef);if(ref?.kind==='hole')markHole(worldReference(parent,ref).point.multiplyScalar(.001));}
+   const assembled=capture(bounds,direction,1400,1400);
    let detail=null;
    if(part&&socket){
     // Only the newly added piece is exploded; all earlier parts remain where saved.
     const added=copies.get(part.id),targetObject=copies.get(target.id),axis=socket.normal;
     const offset=Math.max(.012,Math.min(.035,new THREE.Box3().setFromObject(added).getSize(new THREE.Vector3()).length()*.45));
-    added.position.addScaledVector(axis,offset);group.updateMatrixWorld(true);
+    const ray=new THREE.Raycaster(point.clone().addScaledVector(axis,.001),axis,.001,offset);
+    const obstacles=[...copies].filter(([id])=>!step.added.some(p=>p.id===id)&&id!==target.id).map(([,obj])=>obj);
+    const obstructed=ray.intersectObjects(obstacles,true).some(hit=>hit.object.isMesh);
+    if(obstructed){const focus=new THREE.Box3().setFromObject(added).union(new THREE.Box3().setFromObject(targetObject));return {assembled,detail:capture(focus,choose(focus,point),900,900),seatedDetail:true};}
+    const addedIds=new Set(step.added.map(p=>p.id));for(const [id,obj] of copies)if(addedIds.has(id)&&id!==target.id)obj.position.addScaledVector(axis,offset);group.updateMatrixWorld(true);
     const arrow=new THREE.ArrowHelper(axis.clone().negate(),point.clone().addScaledVector(axis,offset*.92),offset*.8,0xed1c24,.004,.003);group.add(arrow);for(const mesh of [arrow.line,arrow.cone]){mesh.material.depthTest=false;mesh.material.depthWrite=false;mesh.renderOrder=1000;}owned.push(arrow.line.geometry,arrow.line.material,arrow.cone.geometry,arrow.cone.material);
     const detailBounds=(row,obj)=>{
      if(!row.sku.startsWith('269-')||!references[row.sku]?.length)return new THREE.Box3().setFromObject(obj);
@@ -50,7 +63,7 @@ export function createGuideRenderer(){
      const result=new THREE.Box3();for(const r of references[row.sku])result.expandByPoint(worldReference(row,r).point.multiplyScalar(.001));return result.expandByScalar(.008);
     };
     const addedBounds=detailBounds(part,added);if(part.sku.startsWith('269-'))addedBounds.translate(axis.clone().multiplyScalar(offset));
-    const focus=addedBounds.clone().union(detailBounds(target,targetObject));
+    const focus=addedBounds.clone().union(detailBounds(target,targetObject));for(const item of step.added){if(item.id===target.id||item.id===part.id)continue;const obj=copies.get(item.id);if(obj)focus.union(visibleBounds(obj));}
     const size=focus.getSize(new THREE.Vector3());const max=Math.max(.025,addedBounds.getSize(new THREE.Vector3()).length()*1.6);
     if(size.length()>max*2){focus.setFromCenterAndSize(point.clone().addScaledVector(axis,offset/2),new THREE.Vector3(max,max,max));}
     detail=capture(focus,direction,900,650);

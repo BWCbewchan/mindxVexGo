@@ -1,3 +1,4 @@
+import {inventoryPages} from '../public/assembly/guide-inventory.js';
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 import {createHash} from 'node:crypto';
@@ -31,7 +32,7 @@ try{
  await page.waitForFunction(()=>window.__printed,null,{timeout:120000});
  await page.locator('#status').filter({hasText:'Student guide is ready'}).waitFor();
  assert.equal(await page.evaluate(()=>localStorage.getItem('mindx-vexgo-assembly-v1')),saved,'export must preserve saved positions, joints and title');
- assert.equal(await page.locator('#print-guide .guide-page').count(),guide.steps.length+1);
+ assert.equal(await page.locator('#print-guide .guide-page').count(),guide.steps.length+1+inventoryPages(new Map(project.parts.map(p=>[p.sku,1])),JSON.parse(await fs.readFile('public/assembly/parts.json','utf8'))).length);
  assert.deepEqual(errors,[]);
  await page.emulateMedia({media:'print'});
  const layout=await page.evaluate(()=>[...document.querySelectorAll('.guide-page')].map(p=>{const r=p.getBoundingClientRect(),logo=p.querySelector('.guide-document-logo').getBoundingClientRect();return {width:r.width,height:r.height,overflow:p.scrollHeight>p.clientHeight,logoRight:logo.right-r.left,logoWidth:logo.width};}));

@@ -1,6 +1,6 @@
 import * as THREE from 'three';
-import {nearestMate,worldReference} from './mating.js?v=compatibility-27';
-import {compatibleReferences} from './connector-policy.js';
+import {nearestMate,worldReference} from './mating.js?v=fit-tolerance-36';
+import {compatibleReferences,insertionLimit} from './connector-policy.js';
 
 // Repair connection metadata first; only nudge already aligned components by <=2 mm.
 export function repairAssemblyLinks(input,references,{isLocked=()=>false,maxDistance=2}={}){
@@ -25,7 +25,13 @@ export function repairAssemblyLinks(input,references,{isLocked=()=>false,maxDist
     const key=(part,ref)=>new THREE.Vector3().fromArray(ref.key).applyEuler(new THREE.Euler(...part.rotation.map(THREE.MathUtils.degToRad)));
     const angle=THREE.MathUtils.radToDeg(key(p,match.sourceRef).angleTo(key(match.target,match.targetRef)));if(Math.abs(angle-Math.round(angle/90)*90)>1)continue;
    }
-   const delta=b.point.clone().addScaledVector(b.normal,-match.depth).sub(a.point);if(delta.length()>maxDistance)continue;
+   const offset=a.point.clone().sub(b.point),actualDepth=-offset.dot(b.normal),lateral=offset.clone().addScaledVector(b.normal,actualDepth).length();
+   const seated=actualDepth>=-1&&actualDepth<=insertionLimit(match.sourceRef,match.targetRef)+1&&lateral<=1;
+   // Recover already seated, tolerance-valid joints without forcing every pin
+   // back to its nominal depth and moving the whole chassis into another body.
+   const delta=seated?new THREE.Vector3():b.point.clone().addScaledVector(b.normal,-match.depth).sub(a.point);
+   if(seated)match.depth=Math.max(0,actualDepth);
+   if(delta.length()>maxDistance)continue;
    if(!best||delta.length()<best.delta.length())best={part:p,match,members,delta};
   }
   if(!best)break;

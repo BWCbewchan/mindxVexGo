@@ -26602,7 +26602,8 @@
         "radius": 2.115,
         "depth": 4.7318,
         "kind": "pin",
-        "id": "1"
+        "id": "1",
+        "maxDepth": 11.08177
       },
       {
         "point": [

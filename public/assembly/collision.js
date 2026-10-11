@@ -101,8 +101,9 @@ export function meshContact(a,b){
  if(inside)return 'penetration';
  return surfaceProbe(gb,ga,bToA)||surfaceProbe(ga,gb,aToB)?'surface':null;
 }
-export function seatedConnectorContact(a,b,references={}){
- if(!connector.test(a.sku)&&!connector.test(b.sku))return false;
+export function seatedConnectorContact(a,b,references={},lateralTolerance=.15){
+ // Connectors also have integral pegs: their joints are just as valid as loose pins.
+ if(![...(references[a.sku]||[]),...(references[b.sku]||[])].some(ref=>ref.kind==='pin'))return false;
  const world=(part,ref)=>{const q=new THREE.Quaternion().setFromEuler(new THREE.Euler(...part.rotation.map(THREE.MathUtils.degToRad)));return {point:new THREE.Vector3().fromArray(ref.point).applyQuaternion(q).add(new THREE.Vector3().fromArray(part.position)),normal:new THREE.Vector3().fromArray(ref.normal).applyQuaternion(q)};};
  for(const ar of references[a.sku]||[])for(const br of references[b.sku]||[]){
   if(!compatibleReferences(ar,br,a.sku,b.sku))continue;
@@ -110,12 +111,13 @@ export function seatedConnectorContact(a,b,references={}){
   if(pin.radius>2.6||hole.kind!=='hole')continue;
   const p=world(pin===ar?a:b,pin),h=world(hole===ar?a:b,hole),offset=p.point.sub(h.point),depth=-offset.dot(h.normal);
   const lateral=offset.addScaledVector(h.normal,depth).length();
-  if(lateral<.15&&p.normal.dot(h.normal)<-.999&&depth>.15&&depth<=insertionLimit(pin,hole)+.15)return true;
+  if(lateral<=lateralTolerance&&p.normal.dot(h.normal)<-.999&&depth>.15&&depth<=insertionLimit(pin,hole)+.15)return true;
  }
  return false;
 }
 export function analyzeCollisions(parts,objects,{limit=80,references={}}={}){
  const groups=new Map(),issues=[];
+ const tolerantParts=new Set(parts.filter(part=>!connector.test(part.sku)&&parts.filter(pin=>pin.id!==part.id&&seatedConnectorContact(part,pin,references,1)).length>=2).map(part=>part.id));
  for(const p of parts){const obj=objects.get(p.id);if(obj)groups.set(p.id,meshes(obj));}
  for(let i=0;i<parts.length;i++)for(let j=i+1;j<parts.length;j++){
   const a=parts[i],b=parts[j];let result=null;
@@ -126,7 +128,7 @@ export function analyzeCollisions(parts,objects,{limit=80,references={}}={}){
   // Only a recorded compatible mate is an intentional connector contact. Merely
   // containing a connector SKU must not hide an unrelated body collision.
   const linked=a.mate?.target===b.id||b.mate?.target===a.id;
-  const joint=(linked&&(connector.test(a.sku)||connector.test(b.sku)))||seatedConnectorContact(a,b,references);
+  const joint=(linked&&(connector.test(a.sku)||connector.test(b.sku)))||seatedConnectorContact(a,b,references,tolerantParts.has(a.id)||tolerantParts.has(b.id)?1:.15);
   issues.push({a:a.id,b:b.id,key:[a.id,b.id].sort().join('|'),kind:joint?'joint':result,label:joint?'Connector contact · verify seating':result==='penetration'?'Detected mesh penetration':'Surface intersection · review'});
   if(issues.length>=limit)return {issues,truncated:true};
  }

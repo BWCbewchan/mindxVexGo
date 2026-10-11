@@ -39,16 +39,58 @@ nav{position:relative;z-index:6}.tool-options{position:relative}.tool-options su
  .guide-prep-note{margin:0;text-align:center;font-size:9pt;color:#555}
  .guide-step-title{display:flex;align-items:center;gap:4mm;margin:5mm 0 2mm;font-size:20pt;font-weight:650}
  .guide-step-number{display:inline-flex;align-items:center;justify-content:center;width:11mm;height:11mm;flex:none;border-radius:50%;background:#18823b;color:#fff;font-size:16pt;font-weight:750}
- .guide-step-content{flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,1fr) 86mm;gap:6mm;margin-top:2mm}
+ .guide-step-content{flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,1fr) 102mm;gap:6mm;margin-top:2mm}
  .guide-main-figure{margin:0;display:flex;flex-direction:column;min-height:0;align-items:center;justify-content:center}
  #print-guide .guide-step-image{display:block;width:100%;height:100%;min-height:0;max-height:none;object-fit:contain;margin:0;background:#fff}
  .guide-step-content figcaption{font-size:10pt;line-height:1.2;color:#52606b;text-align:center;margin-top:1mm}
  .guide-step-side{display:flex;flex-direction:column;min-height:0;border-left:.3mm solid #e4e8eb;padding-left:5mm}
- .guide-needed h3{margin:0 0 2mm;font-size:12pt;color:#333}
- .guide-needed-part{display:flex;align-items:center;gap:3mm;font-size:11pt;margin-bottom:2mm}
- #print-guide .guide-needed-part img{flex:none;width:22mm;height:18mm;object-fit:contain;max-height:18mm}
+ .guide-needed h3{margin:0 0 3mm;font-size:16pt;font-weight:750;color:#222}
+ .guide-needed-part{display:flex;align-items:center;gap:4mm;font-size:14pt;font-weight:650;margin-bottom:3mm;break-inside:avoid}
+ #print-guide .guide-needed-part img{flex:none;width:36mm;height:28mm;object-fit:contain;max-height:28mm}
  .guide-detail-figure{display:flex;flex:1;min-height:0;flex-direction:column;margin:2mm 0 0;justify-content:center}
  #print-guide .guide-detail-figure img{width:100%;height:100%;min-height:0;max-height:78mm;object-fit:contain}
  .guide-step-instruction{width:100%;max-width:100%;flex:none;margin:4mm 0 0;padding:3mm 5mm;background:#f4f6f7;border-radius:2mm;text-align:left;font-size:12pt;line-height:1.35;color:#222}
  .guide-page-number{position:absolute;right:17mm;bottom:5mm;font-size:10pt;color:#52606b}
+}
+
+.part-layer-row{display:flex;gap:4px;align-items:stretch}.part-layer-row .part-layer-select{flex:1;min-width:0}.part-layer-row .part-layer-lock{flex:0 0 32px;padding:4px;text-align:center}
+
+.guide-path-warning{font-size:13px;line-height:1.4;color:#8a3d00;background:#fff3dc;padding:12px;border:1px solid #e7b86a;border-radius:6px}
+
+@media print{
+ .guide-step-content{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8mm}
+ .guide-step-content>.guide-main-figure{grid-column:2;grid-row:1}
+ .guide-step-content>.guide-step-side{grid-column:1;grid-row:1;border-left:0;border-right:.3mm solid #e4e8eb;padding-left:0;padding-right:5mm;display:flex;flex-direction:column}
+ .guide-needed h3{font-size:18pt;margin-bottom:4mm}
+ .guide-needed-part{font-size:15pt;gap:4mm;margin-bottom:4mm}
+ #print-guide .guide-needed-part img{width:42mm;height:32mm;max-height:32mm}
+ .guide-step-side .guide-detail-figure{flex:1;min-height:0;margin:3mm 0 0}
+ #print-guide .guide-detail-figure img{width:100%;height:100%;max-height:85mm;object-fit:contain}
+}
+
+dialog:has(#wiring-title){width:min(680px,92vw);max-width:680px;max-height:85vh;overflow:auto}#wiring-devices{margin:16px 0}.wiring-row{display:grid;grid-template-columns:48px 1fr 220px;align-items:center;gap:10px;margin:10px 0}.wiring-row img{width:48px;height:44px;object-fit:contain}#wiring-brain{width:100%;margin:8px 0}dialog label{display:block}
+
+.ps-layers{gap:0!important;margin:0!important;background:#292c30;min-height:260px}.ps-layers svg{width:16px;height:16px;stroke-width:1.6;flex-shrink:0}.layers-tools{display:flex;padding:6px;border-bottom:1px solid #191b1f;gap:4px}.layers-help{font-size:10px;color:#a8adb6;padding:8px;margin:0;border-bottom:1px solid #191b1f}.ps-layer{display:flex;align-items:center;min-height:42px;border-bottom:1px solid #202226;gap:0!important}.ps-layer button{border:0!important;border-radius:0!important;background:transparent!important;color:#c5c9d1!important;padding:6px!important}.ps-layer.is-selected{background:#46566e}.ps-layer:hover{background:#373d46}.ps-layer.is-selected:hover{background:#46566e}.ps-layers .layer-icon{width:30px;min-width:30px;display:flex;align-items:center;justify-content:center;border:0;border-radius:3px;background:transparent;color:#aeb5c0;padding:6px}.ps-layers .layer-icon:hover{background:#49505b!important;color:white!important}.ps-layers .part-layer-select,.group-layer-select{display:flex;gap:8px;align-items:center;flex:1;min-width:0;text-align:left;font-size:12px}.ps-layers .part-layer-thumb{width:32px;height:32px;object-fit:contain;background:#e7e9eb;border:1px solid #5d6370;border-radius:2px}.layer-name{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1}.ps-group{background:#30343a}.layer-rename{width:100%;min-width:0;padding:3px!important;margin:0!important;color:white!important;background:#222!important}.drop-target{background:#354d65!important;box-shadow:inset 0 0 0 2px #70aeed}.layers-ungroup-drop{padding:14px;font-size:11px;color:#969eaa;text-align:center;border:1px dashed #505761;margin:8px}.ps-layers:empty:after{content:'Chưa có mảnh ghép'}
+
+@media print{.guide-finished{display:flex;flex-direction:column}.guide-finished h2{font-size:22pt;margin:4mm 0;text-align:center}#print-guide .guide-finished-image{width:100%;flex:1;min-height:0;height:100%;max-height:none;object-fit:contain}.guide-main-figure{overflow:hidden}}
+
+@media print{
+.guide-inventory-groups{flex:1;min-height:0;display:flex;flex-direction:column;gap:4mm;padding-top:4mm}
+.guide-inventory-group{border:0.3mm solid #dfe4e8;border-radius:2mm;overflow:hidden;break-inside:avoid}
+.guide-inventory-group h2{margin:0;padding:2mm 4mm;font-size:13pt;color:#273441;background:#f1f4f6;border-bottom:.3mm solid #dfe4e8}
+.guide-inventory-cards{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:2mm;padding:2mm 3mm}
+.guide-inventory-card{position:relative;min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;height:36mm;padding:1mm 3mm}
+#print-guide .guide-inventory-card img{height:25mm;width:100%;max-height:25mm;object-fit:contain}
+.inventory-quantity{position:absolute;right:1mm;top:0;font-size:15pt;color:#111;background:#fff;padding:0 1mm}
+.guide-inventory-card>span{font-size:10pt;line-height:1.15;color:#273441}
+.guide-prep>p{font-size:9pt;text-align:center;color:#65717a;margin:2mm 0}
+}
+
+@media print{
+.guide-inventory-groups{gap:2mm;padding-top:2mm}
+.guide-inventory-group h2{padding:1mm 3mm;font-size:11pt}
+.guide-inventory-cards{grid-template-columns:repeat(var(--inventory-columns,5),minmax(0,1fr));gap:1mm;padding:1mm 2mm}
+.guide-inventory-card{height:var(--inventory-card-height,36mm);padding:0 2mm}
+#print-guide .guide-inventory-card img{height:var(--inventory-image-height,25mm);max-height:var(--inventory-image-height,25mm)}
+.inventory-compact .inventory-quantity{font-size:11pt}.inventory-compact .guide-inventory-card>span{font-size:8pt}
 }

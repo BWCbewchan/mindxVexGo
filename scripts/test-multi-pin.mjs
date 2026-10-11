@@ -1,0 +1,12 @@
+import fs from 'node:fs/promises';
+import assert from 'node:assert/strict';
+import {matingPose,nearestMate,seatedPinMatches} from '../public/assembly/mating.js';
+const refs=JSON.parse(await fs.readFile('public/assembly/connectors.json','utf8')).parts;
+const beam={id:'beam',sku:'228-2500-023',position:[0,40,0],rotation:[0,0,0]};
+const holes=refs[beam.sku].filter(r=>r.normal[1]<-.99&&r.radius<2.6);const chosen=[holes[0],holes[1],holes.at(-2),holes.at(-1)];
+const pinRef=refs['228-2500-2260'].find(r=>r.id==='4');
+const pins=chosen.map((hole,i)=>{const p={id:'pin'+i,sku:'228-2500-2260',position:[0,0,0],rotation:[0,0,0]};return {...p,...matingPose(p,pinRef,beam,hole,{depth:4.572})};});
+assert.equal(seatedPinMatches(beam,pins,refs).length,4);
+const moving={...beam,position:[1,46,0]};const snap=nearestMate(moving,pins,refs);assert.ok(snap);assert.equal(snap.support,4);assert.equal(seatedPinMatches({...moving,...snap.pose},pins,refs).length,4);
+const off=structuredClone(pins);off[3].position[0]+=2;assert.equal(seatedPinMatches(beam,off,refs).length,3);
+console.log('PASS: four-pin beam seating, snap preserves four alignments, misaligned pin excluded.');

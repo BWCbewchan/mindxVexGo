@@ -1,6 +1,6 @@
 import {compatibleReferences,insertionLimit,recommendedInsertionDepth} from './connector-policy.js?v=compatibility-27';
 import * as THREE from 'three';
-import {matingPose,worldReference,attachmentReferences} from './mating.js?v=compatibility-27';
+import {matingPose,worldReference,attachmentReferences} from './mating.js?v=fit-tolerance-36';
 export async function installConnectTool(api){
  const data=await(await fetch('connectors.json?v=compatibility-27', {cache:'no-store'})).json(),refs=data.parts,$=id=>document.getElementById(id);
  for(const id of Object.keys(refs))refs[id]=attachmentReferences(refs[id]);

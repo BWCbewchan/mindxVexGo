@@ -1,4 +1,4 @@
-import {compatibleReferences,insertionLimit,recommendedInsertionDepth} from './connector-policy.js?v=compatibility-27';
+import {compatibleReferences,insertionLimit,recommendedInsertionDepth} from './connector-policy.js?v=deep-seat-49';
 import * as THREE from 'three';
 const vector=a=>new THREE.Vector3().fromArray(a);
 export const SNAP_DISTANCE_MM=8;
@@ -43,6 +43,21 @@ export function linkedPoses(parts,id,newPose,selection=[]){
  for(const part of parts)if(group.has(part.id)&&part.id!==id){const position=vector(part.position).sub(vector(old.position)).applyQuaternion(delta).add(vector(newPose.position));const rotation=new THREE.Euler().setFromQuaternion(delta.clone().multiply(q(part)),'XYZ');result.set(part.id,{position:position.toArray(),rotation:[rotation.x,rotation.y,rotation.z].map(THREE.MathUtils.radToDeg)});}
  return result;
 }
+// Count independently seated pins, not both analytic faces of one hole.
+export function seatedPinMatches(moving,parts,references,tolerance=1){
+ const holes=attachmentReferences(references[moving.sku]).filter(r=>r.kind==='hole'&&!r.profile);
+ const matches=[];
+ for(const target of parts){if(target.id===moving.id)continue;
+  for(const pin of attachmentReferences(references[target.sku]).filter(r=>r.kind==='pin'&&!r.profile)){
+   const b=worldReference(target,pin);
+   for(const hole of holes){if(!compatibleReferences(hole,pin,moving.sku,target.sku))continue;
+    const a=worldReference(moving,hole),delta=a.point.clone().sub(b.point),depth=-delta.dot(b.normal);
+    if(a.normal.dot(b.normal)<-.999&&delta.addScaledVector(b.normal,depth).length()<=tolerance&&depth>=-.15&&depth<=insertionLimit(hole,pin)+.15){matches.push({target:target.id,sourceRef:hole.id,targetRef:pin.id,depth});break;}
+   }
+  }
+ }
+ return matches;
+}
 export function nearestMate(moving,parts,references,{distance=SNAP_DISTANCE_MM,excluded=[],excludedMates=[]}={}){
  const candidates=attachmentReferences(references[moving.sku]);
  let best=null;
@@ -58,7 +73,7 @@ export function nearestMate(moving,parts,references,{distance=SNAP_DISTANCE_MM,e
    if(excludedMates.some(block=>block.target===target.id&&coaxial(sourceRef,(references[moving.sku]||[]).find(r=>r.id===block.sourceRef))&&coaxial(targetRef,(references[target.sku]||[]).find(r=>r.id===block.targetRef))))continue;
    if(moving.mate?.target===target.id&&coaxial(targetRef,(references[target.sku]||[]).find(r=>r.id===moving.mate.targetRef)))continue;
    if(target.mate?.target===moving.id&&coaxial(sourceRef,(references[moving.sku]||[]).find(r=>r.id===target.mate.targetRef)))continue;
-   let depth=recommendedInsertionDepth(sourceRef,targetRef);
+   let depth=recommendedInsertionDepth(sourceRef,targetRef,moving.sku,target.sku);
    const to=worldReference(target,targetRef),endGap=from.point.distanceTo(to.point),seatedGap=from.point.distanceTo(to.point.clone().addScaledVector(to.normal,-depth)),// Seated poses use a tighter corridor to avoid pulling a released piece into a neighbouring hole.
     initialGap=Math.min(endGap,seatedGap/.85);
    let gap=initialGap;
@@ -74,8 +89,11 @@ export function nearestMate(moving,parts,references,{distance=SNAP_DISTANCE_MM,e
    }
    if(gap>distance)continue;
    const alignment=from.normal.dot(to.normal),score=gap+(1+alignment)*distance*.35;
-   if(best&&score>=best.score)continue;
-   best={target,sourceRef,targetRef,gap,score,depth,pose:matingPose(moving,sourceRef,target,targetRef,{depth})};
+   const pose=matingPose(moving,sourceRef,target,targetRef,{depth});
+   const matches=sourceRef.kind==='hole'&&!sourceRef.profile?seatedPinMatches({...moving,...pose},parts,references):[];
+   const support=matches.length;
+   if(best&&(support<best.support||support===best.support&&score>=best.score))continue;
+   best={target,sourceRef,targetRef,gap,score,depth,pose,support,matches};
   }
  }}return best;
 }
@@ -88,7 +106,13 @@ export function normalizeMatedJoints(parts,references){
   const sourceRef=references[part.sku]?.find(ref=>ref.id===mate.sourceRef),targetRef=references[target.sku]?.find(ref=>ref.id===mate.targetRef);
   if(!compatibleReferences(sourceRef,targetRef,part.sku,target.sku))continue;
   const limit=insertionLimit(sourceRef,targetRef),requested=Number.isFinite(mate.depth)?mate.depth:limit,depth=Math.max(0,Math.min(limit,requested));
-  if(Math.abs(depth-requested)<1e-6)continue;
+  if(Math.abs(depth-requested)<1e-6){
+   const a=worldReference(part,sourceRef),b=worldReference(target,targetRef),offset=a.point.sub(b.point).addScaledVector(b.normal,depth);
+   // A saved mate is not evidence of attachment when its actual pose disagrees.
+   // Preserve the authored placement and release stale metadata rather than teleporting it.
+   if(offset.length()>.2||Math.abs(a.normal.dot(b.normal))<.999)delete part.mate;
+   continue;
+  }
   Object.assign(part,matingPose(part,sourceRef,target,targetRef,{depth,twist:mate.twist||0,flip:!!mate.flip}));
   part.mate={...mate,depth};
  }

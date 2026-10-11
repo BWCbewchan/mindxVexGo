@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import {worldReference,matingPose,nearestMate,insideSnapReleaseZone,SNAP_DISTANCE_MM} from './mating.js?v=compatibility-27';
+import {worldReference,matingPose,nearestMate,insideSnapReleaseZone,SNAP_DISTANCE_MM} from './mating.js?v=fit-tolerance-36';
 
 const v=a=>new THREE.Vector3().fromArray(a);
 const lateralGap=(part,sourceRef,target,targetRef)=>{const a=worldReference(part,sourceRef),b=worldReference(target,targetRef),d=a.point.sub(b.point);return d.addScaledVector(b.normal,-d.dot(b.normal)).length();};

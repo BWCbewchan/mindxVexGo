@@ -30,13 +30,16 @@ export function insertionLimit(a,b,previous=0){
   return Math.min(pin.maxDepth??pin.depth,hole.depth??Infinity);
  }
  const pin=a.kind==='pin'?a:b.kind==='pin'?b:null;
- if(pin&&Number.isFinite(pin.depth)&&pin.depth>=0)return pin.depth;
+ if(pin&&Number.isFinite(pin.depth)&&pin.depth>=0)return pin.maxDepth??pin.depth;
  const depths=[a.depth,b.depth].filter(value=>Number.isFinite(value)&&value>=0);
  return depths.length?Math.max(...depths):Math.max(0,previous);
 }
-export function recommendedInsertionDepth(a,b){
+export function recommendedInsertionDepth(a,b,skuA,skuB){
  const limit=insertionLimit(a,b);
- if(a.profile||b.profile){const hole=a.kind==='hole'?a:b;return Math.max(0,hole.id!=='motor-output'?Math.min(limit,hole.depth):limit);}
+ const pin=a.kind==='pin'?a:b.kind==='pin'?b:null;
+ const wheel=['228-2500-1383','228-2500-1384'].includes(skuA)||['228-2500-1383','228-2500-1384'].includes(skuB);
+ if(wheel&&pin?.maxDepth&&!pin.profile)return Math.max(0,limit-.3);
+ if(a.profile||b.profile){const hole=a.kind==='hole'?a:b;return Math.max(0,hole.id!=='motor-output'?(wheel?Math.max(0,limit-.3):Math.min(limit,hole.depth)):limit);}
  const depths=[a.depth,b.depth].filter(value=>Number.isFinite(value)&&value>=0);
  return depths.length?Math.min(limit,...depths):Math.max(0,limit);
 }

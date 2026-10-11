@@ -1,4 +1,4 @@
-import {nearestMate,worldReference} from './mating.js?v=guide-repair-31';
+import {nearestMate,worldReference,seatedPinMatches} from './mating.js?v=fit-tolerance-36';
 import { compatibleReferences } from './connector-policy.js';
 
 const defaultElectronics = new Set([
@@ -123,12 +123,12 @@ export function generateStudentGuide(parts, {
   }
 
   const roots = parts.filter(part => coreIds.has(part.id) && !part.mate);
-  if (roots.length !== 1) blockers.push('The main assembly has no single starting part. Check for missing connections or a circular joint chain.');
+  if (structuralComponents.length===1 && roots.length !== 1) blockers.push('The main assembly has no single starting part. Check for missing connections or a circular joint chain.');
   if (blockers.length) return { ready: false, steps: [], blockers: [...new Set(blockers)], notes: warnings };
 
   // A saved mate records the editing gesture, not a manufacturing dependency.
   // Re-root real drive assemblies on a motor/chassis, never a wheel retainer.
-  const collar = part => part.sku === '228-2500-143';
+  const collar = part => ['228-2500-143','228-2500-154'].includes(part.sku);
   const motor = part => part.sku === '269-6690-000';
   const rank = part => collar(part) ? 100 : /Wheel/.test(nameFor(part)) || ['228-2500-1383','228-2500-1384'].includes(part.sku) ? 40 : /Shaft/.test(nameFor(part)) || ['228-2500-124','228-2500-2221','228-2500-2234','228-2500-2238'].includes(part.sku) ? 20 : 0;
   const orderParts=(a,b)=>rank(a)-rank(b)||nameFor(a).localeCompare(nameFor(b))||a.id.localeCompare(b.id);
@@ -160,10 +160,22 @@ export function generateStudentGuide(parts, {
     roots[0]=start;
   }
   const prerequisites=new Map(parts.map(part=>[part.id,new Set()]));
+  const roundPins=new Set(['228-2500-2258','228-2500-2260','228-2500-2261','228-2500-328']);
+  const descendsFrom=(part,ancestor)=>{const seen=new Set();let current=part;while(current?.mate&&!seen.has(current.id)){seen.add(current.id);if(current.mate.target===ancestor)return true;current=byId.get(current.mate.target);}return false;};
+  // Seat every accessible mounting pin before lowering a beam over the cluster.
+  // Geometric secondary contacts matter even when the saved tree has only one mate.
+  for(const part of parts){
+   if(roundPins.has(part.sku)||!(references[part.sku]||[]).every(r=>Array.isArray(r.point)&&Array.isArray(r.normal)))continue;
+   for(const joint of seatedPinMatches(part,parts.filter(p=>(references[p.sku]||[]).every(r=>Array.isArray(r.point)&&Array.isArray(r.normal))),references)){
+    const pin=byId.get(joint.target);
+    if(roundPins.has(pin?.sku)&&!descendsFrom(pin,part.id))prerequisites.get(part.id).add(pin.id);
+   }
+  }
+
   for(const rows of children.values()){
     const stacks=new Map();
     for(const edge of rows){
-      if(edge.targetRef.kind!=='pin'||edge.targetRef.profile!=='square-drive')continue;
+      if(edge.targetRef.kind!=='pin')continue;
       const end=edge.targetRef.id;const stack=stacks.get(end)||[];stack.push(edge.part);stacks.set(end,stack);
     }
     for(const stack of stacks.values()){
@@ -209,6 +221,12 @@ export function generateStudentGuide(parts, {
     });
   };
 
+  const pinBatch=part=>{
+   if(!roundPins.has(part.sku))return [part];
+   const parent=byId.get(part.mate?.target),ref=references[parent?.sku]?.find(r=>r.id===part.mate.targetRef);
+   if(!ref)return [part];
+   return ordered.filter(other=>!included.has(other.id)&&other.sku===part.sku&&other.mate?.target===parent.id&&[...prerequisites.get(other.id)].every(id=>included.has(id)||id===parent.id)&&(()=>{const r=references[parent.sku]?.find(r=>r.id===other.mate.targetRef);return r&&r.normal.every((v,i)=>Math.abs(v-ref.normal[i])<.001);})());
+  };
   const root = roots[0];
   const rootChildren = children.get(root.id) || [];
   if (!rootChildren.length) {
@@ -219,7 +237,7 @@ export function generateStudentGuide(parts, {
     if (!first || !firstEdge) blockers.push(`${nameFor(root)} has no valid first connection.`);
     else {
       const action = jointDescription(first, root, firstEdge.sourceRef, firstEdge.targetRef, nameFor);
-      appendStep([root, first], `Lắp ${nameFor(first)} vào ${nameFor(root)}`, `${action}. Giữ cụm bằng tay và lắp theo hướng mũi tên.`);
+      appendStep([root, ...pinBatch(first)], `Lắp ${nameFor(first)} vào ${nameFor(root)}`, `${action}. Giữ cụm bằng tay và lắp theo hướng mũi tên.`);
     }
   }
 
@@ -233,7 +251,12 @@ export function generateStudentGuide(parts, {
     }
     const action = jointDescription(part, parent, edge.sourceRef, edge.targetRef, nameFor);
     const note = collar(part) ? `Luồn vòng chặn vào trục sau các chi tiết cần giữ. Đặt như hình; chừa khe để các chi tiết quay tự do, không ép chặt gây kẹt.` : `${action}. Giữ cụm bằng tay và lắp theo hướng mũi tên.`;
-    appendStep([part], `Lắp ${nameFor(part)} vào ${nameFor(parent)}`, note);
+    const needsPreassembly=['228-2500-018','228-2500-019','228-2500-020','228-2500-021','228-2500-023','228-2500-025','228-2500-026','228-2500-027'].includes(part.sku);
+    const prepPins=needsPreassembly?(children.get(part.id)||[]).map(edge=>edge.part).filter(child=>roundPins.has(child.sku)&&!included.has(child.id)):[];
+    if(prepPins.length){
+      appendStep([part,...prepPins],`Chuẩn bị ${nameFor(part)} rồi ghép vào cụm`,`Cắm ${prepPins.length} đinh vào ${nameFor(part)} trước khi ghép. Sau đó ${action.charAt(0).toLowerCase()+action.slice(1)}. Đưa cả cụm vào cùng lúc; không lắp kín rồi mới luồn đinh.`, 'assembly');
+      steps.at(-1).joint={part:part.id,...part.mate};
+    }else {const batch=pinBatch(part);appendStep(batch,batch.length>1?`Lắp ${batch.length} ${nameFor(part)} vào ${nameFor(parent)}`:`Lắp ${nameFor(part)} vào ${nameFor(parent)}`,batch.length>1?`Cắm ${batch.length} chốt vào các lỗ được đánh dấu trên ${nameFor(parent)}. Giữ cụm và cắm từng chốt theo cùng hướng.`:note);}
   }
 
   const looseElectronics = parts.filter(part => isElectronic(part.sku) && !included.has(part.id));
