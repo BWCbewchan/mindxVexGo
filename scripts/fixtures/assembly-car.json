@@ -1,0 +1,340 @@
+{
+  "version": 1,
+  "title": "test mô hình",
+  "parts": [
+    {
+      "id": "21055e9e-281a-4736-a884-88fc0b7385c1",
+      "sku": "228-2500-1383",
+      "label": "228-2500-1383",
+      "position": [
+        48.64764918206061,
+        30.21762746707591,
+        6
+      ],
+      "rotation": [
+        -89.99999999999997,
+        -4.4979835663949474e-15,
+        179.99999999999994
+      ],
+      "snapBlocked": [
+        {
+          "target": "b5f6692a-b74d-41d0-8a7c-f8d86fa80d07",
+          "sourceRef": "square-hole-front",
+          "targetRef": "square-long-shaft-end"
+        }
+      ]
+    },
+    {
+      "id": "b5f6692a-b74d-41d0-8a7c-f8d86fa80d07",
+      "sku": "228-2500-2234",
+      "label": "Red Shaft",
+      "position": [
+        48.64764918206064,
+        30.21762746707593,
+        -7.4913839634630826
+      ],
+      "rotation": [
+        90.00000000000003,
+        4.4979835663949474e-15,
+        -179.99999999999994
+      ],
+      "snapBlocked": [
+        {
+          "target": "21055e9e-281a-4736-a884-88fc0b7385c1",
+          "sourceRef": "short-drive-end",
+          "targetRef": "square-hole-front"
+        }
+      ]
+    },
+    {
+      "id": "6e6c401b-8ae4-42b5-a8d5-ae380301298e",
+      "sku": "269-6690-000",
+      "label": "Motor",
+      "position": [
+        48.64764918206063,
+        30.217627467075925,
+        -36.072383963463075
+      ],
+      "rotation": [
+        -180,
+        -2.121895940482006e-16,
+        -179.5175635699853
+      ],
+      "mate": {
+        "target": "b5f6692a-b74d-41d0-8a7c-f8d86fa80d07",
+        "sourceRef": "motor-output",
+        "targetRef": "short-drive-end",
+        "depth": 5.46,
+        "twist": 0,
+        "flip": false
+      }
+    },
+    {
+      "id": "c397f870-0475-4450-bf3a-7f39583b3e82",
+      "sku": "228-2500-043",
+      "label": "Dark Gray Plate",
+      "position": [
+        86.74764918206061,
+        42.91762746707596,
+        -0.9999999999999982
+      ],
+      "rotation": [
+        -89.99999999999997,
+        -5.79055842019511e-14,
+        179.99999999999994
+      ],
+      "mate": {
+        "target": "b5f6692a-b74d-41d0-8a7c-f8d86fa80d07",
+        "sourceRef": "93",
+        "targetRef": "square-long-shaft-end",
+        "depth": 23.480616036536958,
+        "twist": 0,
+        "flip": false
+      }
+    },
+    {
+      "id": "f5c103d0-2419-4bc2-874a-c7e051ad3d51",
+      "sku": "228-2500-2308",
+      "label": "Green Connector",
+      "position": [
+        54.997649182060606,
+        61.967627467075914,
+        -16.87500000000002
+      ],
+      "rotation": [
+        -89.99999999999997,
+        5.79055842019511e-14,
+        -5.790558420195113e-14
+      ],
+      "mate": {
+        "target": "c397f870-0475-4450-bf3a-7f39583b3e82",
+        "sourceRef": "11",
+        "targetRef": "102",
+        "depth": 2.2,
+        "twist": 0,
+        "flip": false
+      }
+    },
+    {
+      "id": "1140311d-9e80-4441-8ca6-e2582ff9618c",
+      "sku": "228-2500-2260",
+      "label": "Red Pin",
+      "position": [
+        67.75044091060539,
+        36.40700127836262,
+        -55.12235396346307
+      ],
+      "rotation": [
+        -89.99999999999999,
+        -2.1218959404820052e-16,
+        2.1218959404820064e-16
+      ],
+      "snapBlocked": [
+        {
+          "target": "6e6c401b-8ae4-42b5-a8d5-ae380301298e",
+          "sourceRef": "1",
+          "targetRef": "14"
+        }
+      ],
+      "mate": {
+        "target": "6e6c401b-8ae4-42b5-a8d5-ae380301298e",
+        "sourceRef": "1",
+        "targetRef": "14",
+        "depth": 4.7318,
+        "twist": 0,
+        "flip": false
+      }
+    },
+    {
+      "id": "3a1ad0b6-729c-4bfb-a13f-bb31c0840a2e",
+      "sku": "228-2500-2260",
+      "label": "Red Pin",
+      "position": [
+        67.64350685166846,
+        23.707451478978424,
+        -55.28415396346307
+      ],
+      "rotation": [
+        -89.99999999999999,
+        -2.1218959404820054e-16,
+        2.121895940482006e-16
+      ],
+      "snapBlocked": [
+        {
+          "target": "6e6c401b-8ae4-42b5-a8d5-ae380301298e",
+          "sourceRef": "1",
+          "targetRef": "10"
+        }
+      ],
+      "mate": {
+        "target": "6e6c401b-8ae4-42b5-a8d5-ae380301298e",
+        "sourceRef": "1",
+        "targetRef": "10",
+        "depth": 4.57,
+        "twist": 0,
+        "flip": false
+      }
+    },
+    {
+      "id": "e24bf57d-4435-493e-9d03-8474f910c550",
+      "sku": "269-6690-000",
+      "label": "Motor",
+      "position": [
+        48.593506851668465,
+        30.05745147897843,
+        -74.49392396346306
+      ],
+      "rotation": [
+        1.2722218725854067e-14,
+        2.1218959404820054e-16,
+        180
+      ],
+      "mate": {
+        "target": "3a1ad0b6-729c-4bfb-a13f-bb31c0840a2e",
+        "sourceRef": "14",
+        "targetRef": "4",
+        "depth": 4.57200000000001,
+        "twist": 0,
+        "flip": false
+      }
+    },
+    {
+      "id": "b53c9603-5030-45ee-962d-bf4c83762eab",
+      "sku": "228-2500-143",
+      "label": "Shaft Collar",
+      "position": [
+        48.64764918206062,
+        30.217627467075914,
+        13.000000000000002
+      ],
+      "rotation": [
+        2.544443745170812e-14,
+        -5.790558420195113e-14,
+        -180
+      ],
+      "snapBlocked": [
+        {
+          "target": "b5f6692a-b74d-41d0-8a7c-f8d86fa80d07",
+          "sourceRef": "square-hole-front",
+          "targetRef": "square-long-shaft-end"
+        }
+      ]
+    },
+    {
+      "id": "6a54cc2b-58d4-487a-9e17-ee95252e5995",
+      "sku": "228-2500-2234",
+      "label": "Red Shaft",
+      "position": [
+        48.593506851668465,
+        30.057451478978436,
+        -103.07492396346306
+      ],
+      "rotation": [
+        -89.99999999999999,
+        0.48243643001469916,
+        -180
+      ],
+      "mate": {
+        "target": "e24bf57d-4435-493e-9d03-8474f910c550",
+        "sourceRef": "short-drive-end",
+        "targetRef": "motor-output",
+        "depth": 5.46,
+        "twist": 0,
+        "flip": false
+      }
+    },
+    {
+      "id": "642392fd-8ac1-498e-b29c-72593651ae57",
+      "sku": "228-2500-043",
+      "label": "Dark Gray Plate",
+      "position": [
+        86.69350685166847,
+        42.75745147897844,
+        -110
+      ],
+      "rotation": [
+        90.00000000000001,
+        -7.056855699497185e-15,
+        -7.056855699497178e-15
+      ],
+      "snapBlocked": [
+        {
+          "target": "6a54cc2b-58d4-487a-9e17-ee95252e5995",
+          "sourceRef": "14",
+          "targetRef": "square-long-shaft-end"
+        }
+      ]
+    },
+    {
+      "id": "f99cb033-d8a7-4606-bd2a-12152dbd4e93",
+      "sku": "228-2500-1383",
+      "label": "Gray Wheel",
+      "position": [
+        48.593506851668465,
+        30.05745147897844,
+        -117
+      ],
+      "rotation": [
+        90,
+        -0.482436430014692,
+        180
+      ],
+      "mate": {
+        "target": "6a54cc2b-58d4-487a-9e17-ee95252e5995",
+        "sourceRef": "square-hole-front",
+        "targetRef": "square-long-shaft-end",
+        "depth": 16.935923963463054,
+        "twist": 0,
+        "flip": false
+      }
+    },
+    {
+      "id": "be63fda3-b246-4cff-b6bc-f3b19d0f8735",
+      "sku": "228-2500-143",
+      "label": "Shaft Collar",
+      "position": [
+        48.593506851668465,
+        30.05745147897844,
+        -124
+      ],
+      "rotation": [
+        -2.827245994923991e-15,
+        7.056855699497179e-15,
+        179.5175635699853
+      ],
+      "mate": {
+        "target": "6a54cc2b-58d4-487a-9e17-ee95252e5995",
+        "sourceRef": "square-hole-back",
+        "targetRef": "square-long-shaft-end",
+        "depth": 9.935923963463054,
+        "twist": 0,
+        "flip": false
+      }
+    },
+    {
+      "id": "ce6eb51a-f613-48eb-936d-75481592821a",
+      "sku": "228-2500-2308",
+      "label": "Green Connector",
+      "position": [
+        118.49764918206058,
+        61.96762746707599,
+        -4.174999999999958
+      ],
+      "rotation": [
+        -89.99999999999997,
+        -5.79055842019511e-14,
+        179.99999999999994
+      ],
+      "mate": {
+        "target": "c397f870-0475-4450-bf3a-7f39583b3e82",
+        "sourceRef": "30",
+        "targetRef": "18",
+        "depth": 2.199999999999999,
+        "twist": 0,
+        "flip": false
+      }
+    }
+  ],
+  "groups": [],
+  "steps": []
+}

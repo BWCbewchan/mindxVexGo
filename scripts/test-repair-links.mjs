@@ -1,0 +1,30 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs/promises';
+import {chromium} from '@playwright/test';
+import {repairAssemblyLinks} from '../public/assembly/repair-links.js';
+import {generateStudentGuide} from '../public/assembly/guide-sequence.js';
+const path=process.argv[2]||'scripts/fixtures/assembly-car.json';
+const project=JSON.parse(await fs.readFile(path,'utf8')),refs=JSON.parse(await fs.readFile('public/assembly/connectors.json','utf8')).parts;
+const original=JSON.stringify(project),result=repairAssemblyLinks(project.parts,refs);
+assert.equal(JSON.stringify(project),original);
+assert.equal(result.recovered,3);assert.equal(result.moved,0);assert.equal(result.components.length,1);
+assert.equal(generateStudentGuide(result.parts,{references:refs}).ready,true);
+assert.deepEqual(result.parts.map(p=>[p.id,p.position,p.rotation]),project.parts.map(p=>[p.id,p.position,p.rotation]));
+assert.equal(repairAssemblyLinks(result.parts,refs).recovered,0,'repeated repair is idempotent');
+assert.equal(repairAssemblyLinks(project.parts,refs,{isLocked:()=>true}).recovered,0,'locked assemblies must not change');
+const far=structuredClone(project.parts);far[0].position[0]+=1000;
+assert.ok(repairAssemblyLinks(far,refs).components.length>1,'far parts must not be forced onto arbitrary joints');
+const browser=await chromium.launch({headless:true});
+try{
+ const page=await browser.newPage({viewport:{width:1500,height:1000}});const errors=[];page.on('pageerror',e=>errors.push(e.message));
+ await page.goto('http://localhost:3120/assembly/editor.html');await page.locator('#status').filter({hasText:'Draft saved locally'}).waitFor();
+ await page.locator('#open').setInputFiles(path);await page.waitForFunction(count=>JSON.parse(localStorage.getItem('mindx-vexgo-assembly-v1')).parts.length===count,project.parts.length);await page.getByRole('tab',{name:'Guide',exact:true}).click();
+ const before=await page.evaluate(()=>JSON.parse(localStorage.getItem('mindx-vexgo-assembly-v1')).parts);
+ await page.locator('#guide-repair').click();await page.locator('#guide-repair-status').filter({hasText:'Có thể xuất PDF'}).waitFor({timeout:90000});
+ const after=await page.evaluate(()=>JSON.parse(localStorage.getItem('mindx-vexgo-assembly-v1')).parts);
+ assert.ok(after.filter(p=>p.mate).length>before.filter(p=>p.mate).length);
+ assert.equal(await page.locator('#guide-export').isEnabled(),true);
+ await page.keyboard.press('Control+z');
+ await page.waitForFunction(expected=>JSON.stringify(JSON.parse(localStorage.getItem('mindx-vexgo-assembly-v1')).parts)===JSON.stringify(expected),before);
+ assert.deepEqual(errors,[]);console.log('PASS: exact link recovery, positions preserved, locked/far parts protected, repair persisted and Ctrl+Z restored source.');
+}finally{await browser.close();}

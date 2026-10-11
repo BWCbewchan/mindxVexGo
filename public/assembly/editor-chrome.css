@@ -1,0 +1,45 @@
+/* Compact desktop editing chrome; panels and canvas retain their own palette. */
+header.app-menubar{min-height:38px;padding:4px 12px;gap:14px;background:#292b2e;color:#eceef0;border:0;flex-wrap:nowrap;z-index:20}
+.app-menubar>a{display:flex;align-items:center;gap:8px;flex:none;font-size:12px!important;width:auto!important}
+.app-menubar>a img{width:65px;background:white;padding:3px 5px;border-radius:3px}
+.app-menubar b{font-size:9px;letter-spacing:1px;color:#b8bdc4}
+.app-menus{display:flex;align-items:center;gap:2px}
+.app-menu{position:relative}.app-menu>summary{list-style:none;cursor:pointer;padding:6px 10px;border-radius:3px;font-size:12px}
+.app-menu>summary::-webkit-details-marker{display:none}.app-menu[open]>summary,.app-menu>summary:hover{background:#45484d}
+.app-menu-panel{position:absolute;top:calc(100% + 4px);left:0;min-width:240px;padding:5px;background:#33363a;border:1px solid #52565c;box-shadow:0 8px 24px #0005;border-radius:5px;display:flex;flex-direction:column;gap:2px}
+.app-menu-panel button,.app-menu-panel label.button{display:flex;justify-content:space-between;align-items:center;gap:20px;border:0;border-radius:3px;background:transparent;color:#eceef0;text-align:left;padding:9px 10px;font-size:12px;white-space:nowrap}
+.app-menu-panel button:hover,.app-menu-panel label:hover{background:#476b91}.app-menu-panel kbd{font:11px system-ui;color:#aeb7c2}
+.app-menubar #title{margin-left:auto;max-width:300px;min-width:90px;padding:5px 9px;background:#202225;border:1px solid #50545a;border-radius:3px;color:#eee;font-size:12px}
+nav.app-optionsbar{flex:none;flex-wrap:nowrap;min-height:40px;padding:4px 12px;gap:4px;background:#393c40;border-bottom:1px solid #202225;color:#e1e5e9;z-index:15}
+.app-optionsbar button{display:flex;align-items:center;justify-content:center;gap:5px;height:30px;min-height:30px;padding:4px 8px;border:1px solid transparent;border-radius:3px;background:transparent;color:inherit;flex:none}
+.app-optionsbar button:hover{background:#51555b}.app-optionsbar button[aria-pressed=true]{background:#202a36;border-color:#7295bb;color:#d6eaff}
+.tool-glyph{font-size:20px;line-height:1}.tool-label{font-size:11px}
+.tool-shortcut{font:10px system-ui;line-height:1;padding:3px 4px;border:1px solid #737982;border-radius:3px;color:#c5cbd3;background:#25282d;white-space:nowrap}
+.app-optionsbar #duplicate{margin-left:10px;border-left:1px solid #65696f}.app-optionsbar #library-toggle{margin-left:auto}
+.app-optionsbar .tool-options summary{min-height:30px;padding:5px 10px;border:1px solid #646971;border-radius:3px;background:#45494f;color:#eee}
+.app-optionsbar .tool-options-body{color:#223d38;top:calc(100% + 5px)}
+@media(max-width:1000px){.app-optionsbar .tool-label{display:none}.app-menubar b{display:none}}
+@media(max-width:650px){header.app-menubar{padding:4px 7px;gap:5px}.app-menubar>a img{width:48px}.app-menu>summary{padding:6px}.app-menubar #title{min-width:65px;max-width:150px;width:auto}.app-menu-panel{min-width:215px}.app-optionsbar{padding:4px 6px!important;gap:2px!important}.app-optionsbar button{padding:4px 5px;min-width:28px}.app-optionsbar #duplicate{margin-left:2px}.app-optionsbar .tool-options summary{font-size:11px;padding:5px}}
+@media print{.app-optionsbar{display:none!important}}
+@media(max-width:650px){nav.app-optionsbar{flex-wrap:wrap;justify-content:flex-start}.app-optionsbar button{gap:3px}.tool-shortcut{font-size:9px;padding:2px 3px}.app-optionsbar #library-toggle{margin-left:auto}}
+.studio-inspector{padding:0!important;display:flex;flex-direction:column;background:#303338;color:#e0e5eb;overflow:hidden}
+.studio-inspector>h2{order:-2;padding:12px 14px 8px;margin:0;font-size:12px;font-weight:600;letter-spacing:.3px}
+.studio-inspector>.panel-close{position:absolute;right:8px;top:5px;background:transparent;border:0;color:#c4ccd5}
+.inspector-tabs{display:flex;flex:none;border-bottom:1px solid #50555d;background:#26292d;padding:0 7px;gap:2px}
+.inspector-tabs button{flex:1;padding:9px 5px;border:0;border-bottom:2px solid transparent;border-radius:0;background:transparent;color:#b3bdc8;font-size:11px;min-width:0}
+.inspector-tabs button[aria-selected=true]{border-bottom-color:#7ab5ef;color:white;background:#393e45}
+.inspector-body{min-height:0;flex:1;overflow:auto;padding:12px}
+.inspector-content[hidden]{display:none!important}
+.studio-inspector #selection{padding:10px;border:1px solid #545b65;border-radius:5px;background:#25282d;font-size:12px;line-height:1.5;margin-bottom:12px;overflow-wrap:anywhere}
+.studio-inspector details,.studio-inspector #layer-panel{padding:9px;margin:0 0 12px;border:1px solid #4b515b;background:#353a41;border-radius:5px}
+.studio-inspector summary{font-size:11px;font-weight:600;cursor:pointer}
+.studio-inspector input,.studio-inspector button:not(.panel-close):not([role=tab]){background:#24282e;border-color:#59616c;color:#e4eaf1;border-radius:4px}
+.studio-inspector button:hover:not(:disabled){background:#465567}.studio-inspector button[aria-pressed=true]{background:#344c66!important;border-color:#81b6eb!important;color:#fff}
+.studio-inspector .hint,.studio-inspector small{color:#b2bdc9;font-size:11px}.studio-inspector h3{font-size:11px;margin:14px 0 8px;color:#bfc8d2}
+.studio-inspector #transforms{gap:8px}.studio-inspector #transforms label{color:#b6c3d2;font-size:10px}.studio-inspector #transforms input{padding:6px;margin-top:4px;font-size:12px}
+.studio-inspector .collision-panel{margin-top:12px}.studio-inspector .collision-panel:has(h3:only-child){display:none}
+.studio-inspector .fit-issue{font-size:10px!important;line-height:1.5}.studio-inspector #warnings{padding:8px;border-top:1px solid #4d535d;line-height:1.6}
+.studio-inspector #objects button{display:flex;align-items:center;gap:9px;padding:5px;text-align:left;min-height:42px;font-size:11px}
+.studio-inspector .part-layer-thumb{width:34px;height:32px;object-fit:contain;border-radius:3px;background:#edf1f2;flex:none}
+.studio-inspector #objects span{overflow-wrap:anywhere}.studio-inspector .student-guide-step{background:#353a41;border-color:#555d67;border-radius:5px}.studio-inspector .student-guide-step p{color:#c2ccd7;font-size:11px}
+.studio-inspector #guide-export,.studio-inspector #guide-repair{width:100%;padding:10px;font-size:12px}.studio-inspector #guide-repair-status:empty{display:none}.studio-inspector #groups:empty:after{color:#aeb9c6}

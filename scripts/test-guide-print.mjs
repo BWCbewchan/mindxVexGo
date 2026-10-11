@@ -1,0 +1,51 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs/promises';
+import {createHash} from 'node:crypto';
+import {chromium} from '@playwright/test';
+import {generateStudentGuide,sequenceIssue} from '../public/assembly/guide-sequence.js';
+
+const source=process.argv[2]||'scripts/fixtures/assembly-car.json';
+const project=JSON.parse(await fs.readFile(source,'utf8'));
+const references=JSON.parse(await fs.readFile('public/assembly/connectors.json','utf8')).parts;
+const original=JSON.stringify(project);
+const guide=generateStudentGuide(project.parts,{references,inferConnections:true});
+assert.equal(guide.ready,true,guide.blockers.join('; '));
+assert.equal(sequenceIssue(guide.steps),null);
+assert.equal(JSON.stringify(project),original,'guide planning must not change the source project');
+const collars=guide.steps.flatMap((s,i)=>s.added.filter(p=>p.sku==='228-2500-143').map(()=>i));
+const wheels=guide.steps.flatMap((s,i)=>s.added.filter(p=>['228-2500-1383','228-2500-1384'].includes(p.sku)).map(()=>i));
+assert.ok(collars.every(i=>wheels.every(j=>i>j)),'wheel retainers must be installed after hubs');
+assert.equal(guide.steps.at(-1).parts.length,project.parts.length);
+
+const browser=await chromium.launch({headless:true});
+try{
+ const page=await browser.newPage({viewport:{width:1500,height:1000}});
+ const errors=[];page.on('pageerror',e=>errors.push(e.message));
+ await page.goto('http://localhost:3120/assembly/editor.html');
+ await page.locator('#status').filter({hasText:'Draft saved locally'}).waitFor();
+ await page.locator('#open').setInputFiles(source);
+ await page.waitForFunction(()=>!document.getElementById('export').disabled);
+ const saved=await page.evaluate(()=>localStorage.getItem('mindx-vexgo-assembly-v1'));
+ await page.evaluate(()=>{window.__printed=false;window.print=()=>window.__printed=true;});
+ await page.getByText('File',{exact:true}).click();await page.locator('#export').click();
+ await page.waitForFunction(()=>window.__printed,null,{timeout:120000});
+ await page.locator('#status').filter({hasText:'Student guide is ready'}).waitFor();
+ assert.equal(await page.evaluate(()=>localStorage.getItem('mindx-vexgo-assembly-v1')),saved,'export must preserve saved positions, joints and title');
+ assert.equal(await page.locator('#print-guide .guide-page').count(),guide.steps.length+1);
+ assert.deepEqual(errors,[]);
+ await page.emulateMedia({media:'print'});
+ const layout=await page.evaluate(()=>[...document.querySelectorAll('.guide-page')].map(p=>{const r=p.getBoundingClientRect(),logo=p.querySelector('.guide-document-logo').getBoundingClientRect();return {width:r.width,height:r.height,overflow:p.scrollHeight>p.clientHeight,logoRight:logo.right-r.left,logoWidth:logo.width};}));
+ assert.ok(layout.every(p=>!p.overflow&&p.width===1536&&p.height===864&&p.logoWidth<150&&p.logoRight>1300),'print layout must use the full page, right-align the logo and fit all content');
+ const signature=async()=>createHash('sha256').update((await page.locator('.guide-step-image').evaluateAll(imgs=>imgs.map(img=>img.src))).join('')).digest('hex');
+ const firstImages=await signature();
+ await page.emulateMedia({media:'screen'});await page.setViewportSize({width:1000,height:760});
+ await page.evaluate(()=>window.__printed=false);
+ await page.getByText('File',{exact:true}).click();await page.locator('#export').click();
+ await page.waitForFunction(()=>window.__printed,null,{timeout:120000});
+ assert.equal(await signature(),firstImages,'print images must not depend on editor viewport dimensions');
+ await page.emulateMedia({media:'print'});
+ await fs.mkdir('output/pdf',{recursive:true});
+ await page.pdf({path:'output/pdf/VEXGO-car-build-guide-v2.pdf',printBackground:true,preferCSSPageSize:true});
+ await fs.writeFile('artifacts/assembly-tests/guide-print-audit.json',JSON.stringify({steps:guide.steps.map(s=>({title:s.title,added:s.added,joint:s.joint})),layout,errors,sourcePreserved:true},null,2));
+ console.log(`PASS: ${guide.steps.length} ordered actions, retainers last, full-page print layout, identical images at two viewport sizes, no JS errors, source preserved.`);
+}finally{await browser.close();}
