@@ -249,10 +249,14 @@ async function exportStudentGuide(){
   const prepPages=inventoryPages(counts,catalog);
   prepPages.forEach((groups,index)=>{
    const prep=node('article');prep.className='guide-page guide-prep';const [prepHeader,prepRule]=header('CHUẨN BỊ');prep.append(prepHeader,prepRule,node('h1',project.title));
-   const inventory=node('div');inventory.className='guide-inventory-groups';const columns=counts.size>30?8:counts.size>18?6:5;const rowCount=groups.reduce((n,g)=>n+Math.ceil(g.items.length/columns),0);const cardHeight=Math.max(10,Math.min(36,(146-groups.length*9)/Math.max(1,rowCount)));inventory.style.setProperty('--inventory-columns',String(columns));inventory.style.setProperty('--inventory-card-height',cardHeight+'mm');inventory.style.setProperty('--inventory-image-height',Math.max(6,cardHeight-9)+'mm');inventory.classList.toggle('inventory-compact',counts.size>18);
-   for(const group of groups){const section=node('section');section.className='guide-inventory-group';section.append(node('h2',group.title+(group.continued?' · tiếp theo':'')));const grid=node('div');grid.className='guide-inventory-cards';
-    for(const part of group.items){const card=node('div');card.className='guide-inventory-card';const thumb=node('img');thumb.src=`parts/${part.id}/preview.png`;thumb.alt=part.name;const quantity=node('strong',`${part.count}×`);quantity.className='inventory-quantity';card.append(thumb,quantity,node('span',part.name));grid.append(card);}section.append(grid);inventory.append(section);
-   }prep.append(inventory,node('p','Xếp linh kiện theo nhóm trước khi lắp.'));container.append(prep);
+   const inventory=node('div');inventory.className='guide-droplet-inventory';
+   const items=groups.flatMap(group=>group.items.map(part=>({...part,categoryTitle:group.title})));
+   const columns=Math.min(8,Math.max(3,Math.ceil(items.length/3))),rows=Math.ceil(items.length/columns);
+   inventory.style.setProperty('--droplet-columns',String(columns));inventory.style.setProperty('--droplet-image-height',Math.min(38,Math.max(16,142/rows-12))+'mm');
+   for(let offset=0;offset<items.length;offset+=columns){const row=node('div');row.className='guide-droplet-row';
+    for(const part of items.slice(offset,offset+columns)){const card=node('div');card.className='guide-droplet-part';const thumb=node('img');thumb.src=`parts/${part.id}/preview.png`;thumb.alt=part.name;const quantity=node('strong',`${part.count}×`);quantity.className='droplet-quantity';const name=node('span',part.name),category=node('small',part.categoryTitle);card.append(thumb,quantity,name,category);row.append(card);}inventory.append(row);
+   }
+   prep.append(inventory,node('p','Xếp linh kiện theo nhóm trước khi lắp.'));container.append(prep);
   });
   for(let i=0;i<studentGuide.steps.length;i++){
    const step=studentGuide.steps[i];await show(step.parts);setBusy(true);const stepFit=await inspectFit(step.parts);

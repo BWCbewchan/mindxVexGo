@@ -94,3 +94,14 @@ dialog:has(#wiring-title){width:min(680px,92vw);max-width:680px;max-height:85vh;
 #print-guide .guide-inventory-card img{height:var(--inventory-image-height,25mm);max-height:var(--inventory-image-height,25mm)}
 .inventory-compact .inventory-quantity{font-size:11pt}.inventory-compact .guide-inventory-card>span{font-size:8pt}
 }
+
+@media print{
+.guide-droplet-inventory{flex:1;min-height:0;display:flex;flex-direction:column;justify-content:center;gap:3mm;padding:2mm 8mm}
+.guide-droplet-row{display:flex;justify-content:center;gap:4mm;align-items:center}
+.guide-droplet-row:nth-child(even){transform:translateX(3mm)}
+.guide-droplet-part{position:relative;flex:0 1 calc(100% / var(--droplet-columns));min-width:0;text-align:center;display:flex;flex-direction:column;align-items:center;gap:1mm;padding:1mm 2mm;border:0;background:none}
+#print-guide .guide-droplet-part img{width:100%;height:var(--droplet-image-height,38mm);max-height:none;object-fit:contain}
+.droplet-quantity{position:absolute;top:0;right:1mm;display:flex;align-items:center;justify-content:center;min-width:9mm;height:9mm;padding:1mm;background:#f0f3f5;color:#172734;border-radius:55% 55% 55% 12%;font-size:13pt}
+.guide-droplet-part>span{font-size:11pt;font-weight:600;line-height:1.15;color:#26323c}
+.guide-droplet-part>small{font-size:8pt;color:#75818b;line-height:1.1}
+}
