@@ -1,0 +1,222 @@
+{
+  "id": "228-2500-1302",
+  "sku": "228-2500-1302",
+  "name": "25mm Half Tube 3x Pitch Barrel End",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\25mm Half Tube 3x Pitch Barrel End (228-2500-1302).step",
+  "sourceFile": "25mm Half Tube 3x Pitch Barrel End (228-2500-1302).step",
+  "sourceHash": "2fd6fa8331f96c939aacefb7c0477b12ce53240b42cb1458c56694951a2d803c",
+  "bounds": {
+    "min": [
+      -25.25747,
+      -34.96557,
+      -14.90932
+    ],
+    "max": [
+      25.25747,
+      3.09057,
+      -0.08443
+    ]
+  },
+  "references": [
+    {
+      "point": [
+        -19.05,
+        -9.525,
+        -5.461
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "1"
+    },
+    {
+      "point": [
+        -19.05,
+        -9.525,
+        -0.889
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "2"
+    },
+    {
+      "point": [
+        -19.05,
+        -2.286,
+        -6.35
+      ],
+      "normal": [
+        -0.0,
+        -1.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "3"
+    },
+    {
+      "point": [
+        -19.05,
+        2.286,
+        -6.35
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "4"
+    },
+    {
+      "point": [
+        19.05,
+        -9.525,
+        -5.461
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "5"
+    },
+    {
+      "point": [
+        19.05,
+        -9.525,
+        -0.889
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "6"
+    },
+    {
+      "point": [
+        19.05,
+        -2.286,
+        -6.35
+      ],
+      "normal": [
+        -0.0,
+        -1.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "7"
+    },
+    {
+      "point": [
+        19.05,
+        2.286,
+        -6.35
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "8"
+    },
+    {
+      "point": [
+        -19.05,
+        -9.525,
+        -5.461
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 3.175,
+      "depth": 1.286,
+      "kind": "pin",
+      "id": "9"
+    },
+    {
+      "point": [
+        -19.05,
+        -9.525,
+        -4.175
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 3.175,
+      "depth": 1.286,
+      "kind": "pin",
+      "id": "10"
+    },
+    {
+      "point": [
+        19.05,
+        -9.525,
+        -5.461
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 3.175,
+      "depth": 1.286,
+      "kind": "pin",
+      "id": "11"
+    },
+    {
+      "point": [
+        19.05,
+        -9.525,
+        -4.175
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 3.175,
+      "depth": 1.286,
+      "kind": "pin",
+      "id": "12"
+    }
+  ],
+  "status": "ok",
+  "bytes": 208224,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "accessory"
+}

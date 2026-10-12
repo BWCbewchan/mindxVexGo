@@ -1,0 +1,222 @@
+{
+  "id": "228-2500-289",
+  "sku": "228-2500-289",
+  "name": "Hex Cup Half",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\Hex Cup Half (228-2500-289).step",
+  "sourceFile": "Hex Cup Half (228-2500-289).step",
+  "sourceHash": "851ab20aa22475a368cad2e08ba8db342c226a0badd0fb756a9c165655b97bfa",
+  "bounds": {
+    "min": [
+      -37.95,
+      -32.86647,
+      -22.10158
+    ],
+    "max": [
+      -0.14311,
+      32.86724,
+      3.05689
+    ]
+  },
+  "references": [
+    {
+      "point": [
+        -12.7,
+        0.0,
+        -2.286
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "1"
+    },
+    {
+      "point": [
+        -12.7,
+        0.0,
+        2.286
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "2"
+    },
+    {
+      "point": [
+        -6.35,
+        -6.35,
+        -2.286
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "3"
+    },
+    {
+      "point": [
+        -6.35,
+        -6.35,
+        2.286
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "4"
+    },
+    {
+      "point": [
+        -6.35,
+        6.35,
+        -2.286
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "5"
+    },
+    {
+      "point": [
+        -6.35,
+        6.35,
+        2.286
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "6"
+    },
+    {
+      "point": [
+        -12.7,
+        0.0,
+        -2.286
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 3.175,
+      "depth": 1.286,
+      "kind": "pin",
+      "id": "7"
+    },
+    {
+      "point": [
+        -12.7,
+        0.0,
+        -1.0
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 3.175,
+      "depth": 1.286,
+      "kind": "pin",
+      "id": "8"
+    },
+    {
+      "point": [
+        -6.35,
+        -6.35,
+        -2.286
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        -1.0
+      ],
+      "radius": 3.175,
+      "depth": 1.286,
+      "kind": "pin",
+      "id": "9"
+    },
+    {
+      "point": [
+        -6.35,
+        -6.35,
+        -1.0
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 3.175,
+      "depth": 1.286,
+      "kind": "pin",
+      "id": "10"
+    },
+    {
+      "point": [
+        -6.35,
+        6.35,
+        1.0
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 3.175,
+      "depth": 1.286,
+      "kind": "pin",
+      "id": "11"
+    },
+    {
+      "point": [
+        -6.35,
+        6.35,
+        2.286
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 3.175,
+      "depth": 1.286,
+      "kind": "pin",
+      "id": "12"
+    }
+  ],
+  "status": "ok",
+  "bytes": 149052,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "accessory"
+}

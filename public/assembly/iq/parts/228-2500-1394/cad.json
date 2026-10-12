@@ -1,0 +1,29 @@
+{
+  "id": "228-2500-1394",
+  "sku": "228-2500-1394",
+  "name": "Large Spring Dart",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\Large Spring Dart (228-2500-1394).step",
+  "sourceFile": "Large Spring Dart (228-2500-1394).step",
+  "sourceHash": "e040578ae918d386c5c24cfd0b94d5752d0ec2908fbfde9ee053d57229117d6f",
+  "bounds": {
+    "min": [
+      41.88831,
+      -71.24105,
+      -10.09183
+    ],
+    "max": [
+      54.3765,
+      23.20776,
+      2.39627
+    ]
+  },
+  "references": [],
+  "status": "ok",
+  "bytes": 180316,
+  "meshes": 2,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "accessory"
+}

@@ -1,0 +1,126 @@
+{
+  "id": "228-2500-069",
+  "sku": "228-2500-069",
+  "name": "3x Pitch Standoff",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\3x Pitch Standoff (228-2500-069).step",
+  "sourceFile": "3x Pitch Standoff (228-2500-069).step",
+  "sourceHash": "d8883cb0e46c25bef1845ec7bd969681ff41b03cb51830c94eb8ecd41241cc4a",
+  "bounds": {
+    "min": [
+      -3.21464,
+      -44.24303,
+      -3.21464
+    ],
+    "max": [
+      3.21464,
+      6.14303,
+      3.21464
+    ]
+  },
+  "references": [
+    {
+      "point": [
+        -0.0,
+        -43.539,
+        -0.0
+      ],
+      "normal": [
+        0.0,
+        -1.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.55,
+      "kind": "pin",
+      "id": "1"
+    },
+    {
+      "point": [
+        -0.0,
+        -38.989,
+        -0.0
+      ],
+      "normal": [
+        -0.0,
+        -1.0,
+        0.0
+      ],
+      "radius": 3.125,
+      "depth": 39.878,
+      "kind": "pin",
+      "id": "2"
+    },
+    {
+      "point": [
+        -0.0,
+        -38.989,
+        -0.0
+      ],
+      "normal": [
+        -0.0,
+        1.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.55,
+      "kind": "pin",
+      "id": "3"
+    },
+    {
+      "point": [
+        0.0,
+        0.889,
+        -0.0
+      ],
+      "normal": [
+        -0.0,
+        -1.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.55,
+      "kind": "pin",
+      "id": "4"
+    },
+    {
+      "point": [
+        0.0,
+        0.889,
+        -0.0
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        -0.0
+      ],
+      "radius": 3.125,
+      "depth": 39.878,
+      "kind": "pin",
+      "id": "5"
+    },
+    {
+      "point": [
+        0.0,
+        5.439,
+        -0.0
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.55,
+      "kind": "pin",
+      "id": "6"
+    }
+  ],
+  "status": "ok",
+  "bytes": 227372,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "body"
+}

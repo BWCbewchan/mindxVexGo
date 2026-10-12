@@ -19,7 +19,7 @@ export function collisionMesh(object){
  if(object.children.length===1&&object.children[0].isMesh)return object.children[0];
  if(!combined.has(object)){
   const positions=[],indices=[],inverse=object.matrixWorld.clone().invert(),point=new THREE.Vector3();let offset=0;
-  object.traverse(m=>{if(!m.isMesh||!m.geometry?.attributes.position)return;
+  object.traverse(m=>{if(!m.isMesh||m.userData.cable||!m.geometry?.attributes.position)return;
    const attr=m.geometry.attributes.position,index=m.geometry.index,matrix=inverse.clone().multiply(m.matrixWorld);
    for(let i=0;i<attr.count;i++){point.fromBufferAttribute(attr,i).applyMatrix4(matrix);positions.push(point.x,point.y,point.z);}
    if(index)for(let i=0;i<index.count;i++)indices.push(offset+index.getX(i));else for(let i=0;i<attr.count;i++)indices.push(offset+i);

@@ -1,0 +1,158 @@
+{
+  "id": "228-2500-061",
+  "sku": "228-2500-061",
+  "name": "1x2 Connector Pin",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\1x2 Connector Pin (228-2500-061).step",
+  "sourceFile": "1x2 Connector Pin (228-2500-061).step",
+  "sourceHash": "68fe098e4f40f8a6b17f550bddc0fae050877c1705751026bec19fefae9926a9",
+  "bounds": {
+    "min": [
+      -3.17865,
+      -12.49268,
+      -2.90365
+    ],
+    "max": [
+      3.17865,
+      6.14268,
+      2.90365
+    ]
+  },
+  "references": [
+    {
+      "point": [
+        0.0,
+        -11.789,
+        -0.0
+      ],
+      "normal": [
+        -0.0,
+        -1.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.55,
+      "kind": "pin",
+      "id": "1"
+    },
+    {
+      "point": [
+        0.0,
+        -7.239,
+        -0.0
+      ],
+      "normal": [
+        0.0,
+        -1.0,
+        -0.0
+      ],
+      "radius": 3.175,
+      "depth": 1.778,
+      "kind": "pin",
+      "id": "2"
+    },
+    {
+      "point": [
+        0.0,
+        -7.239,
+        0.0
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.55,
+      "kind": "pin",
+      "id": "3"
+    },
+    {
+      "point": [
+        0.0,
+        -5.461,
+        -0.0
+      ],
+      "normal": [
+        0.0,
+        -1.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "pin",
+      "id": "4"
+    },
+    {
+      "point": [
+        0.0,
+        -5.461,
+        0.0
+      ],
+      "normal": [
+        -0.0,
+        1.0,
+        0.0
+      ],
+      "radius": 3.175,
+      "depth": 1.778,
+      "kind": "pin",
+      "id": "5"
+    },
+    {
+      "point": [
+        0.0,
+        -0.889,
+        -0.0
+      ],
+      "normal": [
+        -0.0,
+        1.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "pin",
+      "id": "6"
+    },
+    {
+      "point": [
+        0.0,
+        0.889,
+        -0.0
+      ],
+      "normal": [
+        -0.0,
+        -1.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.55,
+      "kind": "pin",
+      "id": "7"
+    },
+    {
+      "point": [
+        0.0,
+        5.439,
+        -0.0
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.55,
+      "kind": "pin",
+      "id": "8"
+    }
+  ],
+  "status": "ok",
+  "bytes": 198760,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "pin"
+}

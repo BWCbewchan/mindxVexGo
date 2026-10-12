@@ -1,0 +1,318 @@
+{
+  "id": "228-2500-472",
+  "sku": "228-2500-472",
+  "name": "12x Robot Arm Beam",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\12x Robot Arm Beam (228-2500-472).step",
+  "sourceFile": "12x Robot Arm Beam (228-2500-472).step",
+  "sourceHash": "3783e0e755967c8be60d73c36cc61e23d11243bfdd66c6b0bb2770aba47507cd",
+  "bounds": {
+    "min": [
+      -76.05773,
+      -3.17514,
+      -17.26704
+    ],
+    "max": [
+      76.06102,
+      3.17514,
+      12.55765
+    ]
+  },
+  "references": [
+    {
+      "point": [
+        -69.85,
+        -2.286,
+        -0.0
+      ],
+      "normal": [
+        -0.0,
+        -1.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "1"
+    },
+    {
+      "point": [
+        -69.85,
+        2.286,
+        -0.0
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "2"
+    },
+    {
+      "point": [
+        -25.4,
+        -2.286,
+        -6.35
+      ],
+      "normal": [
+        -0.0,
+        -1.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "3"
+    },
+    {
+      "point": [
+        -25.4,
+        2.286,
+        -6.35
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "4"
+    },
+    {
+      "point": [
+        25.4,
+        -2.286,
+        -6.35
+      ],
+      "normal": [
+        -0.0,
+        -1.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "5"
+    },
+    {
+      "point": [
+        25.4,
+        2.286,
+        -6.35
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "6"
+    },
+    {
+      "point": [
+        57.15,
+        -2.286,
+        0.0
+      ],
+      "normal": [
+        -0.0,
+        -1.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "7"
+    },
+    {
+      "point": [
+        57.15,
+        2.286,
+        0.0
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "8"
+    },
+    {
+      "point": [
+        63.5,
+        -2.286,
+        -6.35
+      ],
+      "normal": [
+        -0.0,
+        -1.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "9"
+    },
+    {
+      "point": [
+        63.5,
+        -2.286,
+        6.35
+      ],
+      "normal": [
+        -0.0,
+        -1.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "10"
+    },
+    {
+      "point": [
+        63.5,
+        2.286,
+        -6.35
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "11"
+    },
+    {
+      "point": [
+        63.5,
+        2.286,
+        6.35
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "12"
+    },
+    {
+      "point": [
+        69.85,
+        -2.286,
+        -0.0
+      ],
+      "normal": [
+        -0.0,
+        -1.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "13"
+    },
+    {
+      "point": [
+        69.85,
+        2.286,
+        -0.0
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "14"
+    },
+    {
+      "point": [
+        -69.85,
+        -2.286,
+        -0.0
+      ],
+      "normal": [
+        -0.0,
+        -1.0,
+        0.0
+      ],
+      "radius": 3.175,
+      "depth": 1.286,
+      "kind": "pin",
+      "id": "15"
+    },
+    {
+      "point": [
+        -69.85,
+        -1.0,
+        -0.0
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        -0.0
+      ],
+      "radius": 3.175,
+      "depth": 1.286,
+      "kind": "pin",
+      "id": "16"
+    },
+    {
+      "point": [
+        -69.85,
+        1.0,
+        -0.0
+      ],
+      "normal": [
+        -0.0,
+        -1.0,
+        0.0
+      ],
+      "radius": 3.175,
+      "depth": 1.286,
+      "kind": "pin",
+      "id": "17"
+    },
+    {
+      "point": [
+        -69.85,
+        2.286,
+        -0.0
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        -0.0
+      ],
+      "radius": 3.175,
+      "depth": 1.286,
+      "kind": "pin",
+      "id": "18"
+    }
+  ],
+  "status": "ok",
+  "bytes": 382748,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "body"
+}

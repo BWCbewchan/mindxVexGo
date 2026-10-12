@@ -1,0 +1,94 @@
+{
+  "id": "228-2500-1447",
+  "sku": "228-2500-1447",
+  "name": "Zip Flyer Propeller (CCW)",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\Zip Flyer Propeller (CCW) (228-2500-1447).step",
+  "sourceFile": "Zip Flyer Propeller (CCW) (228-2500-1447).step",
+  "sourceHash": "2e63da03bfae2d2e905c49145c669151a2afea720d810d76565f0a16936380c7",
+  "bounds": {
+    "min": [
+      -50.71101,
+      -50.71101,
+      -3.18601
+    ],
+    "max": [
+      50.71101,
+      50.71101,
+      12.2431
+    ]
+  },
+  "references": [
+    {
+      "point": [
+        0.0,
+        0.0,
+        -2.286
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        -1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "1"
+    },
+    {
+      "point": [
+        0.0,
+        0.0,
+        2.286
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 3.225,
+      "depth": 0.889,
+      "kind": "hole",
+      "id": "2"
+    },
+    {
+      "point": [
+        0.0,
+        0.0,
+        2.286
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "3"
+    },
+    {
+      "point": [
+        0.0,
+        0.0,
+        3.175
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 3.225,
+      "depth": 0.889,
+      "kind": "hole",
+      "id": "4"
+    }
+  ],
+  "status": "ok",
+  "bytes": 117368,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "accessory"
+}

@@ -1,0 +1,210 @@
+{
+  "id": "228-2500-1141",
+  "sku": "228-2500-1141",
+  "name": "1x3 Center Lock Beam",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\1x3 Center Lock Beam (228-2500-1141).step",
+  "sourceFile": "1x3 Center Lock Beam (228-2500-1141).step",
+  "sourceHash": "3482ccd858c03de488e117abb7314537fdecb1ad37386384c9587d7eac849e7c",
+  "bounds": {
+    "min": [
+      -18.90747,
+      -3.1871,
+      -6.20747
+    ],
+    "max": [
+      18.90747,
+      3.1871,
+      6.20747
+    ]
+  },
+  "references": [
+    {
+      "point": [
+        -12.7,
+        -2.286,
+        -0.0
+      ],
+      "normal": [
+        0.0,
+        -1.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "1"
+    },
+    {
+      "point": [
+        -12.7,
+        2.286,
+        -0.0
+      ],
+      "normal": [
+        -0.0,
+        1.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "2"
+    },
+    {
+      "point": [
+        12.7,
+        -2.286,
+        -0.0
+      ],
+      "normal": [
+        0.0,
+        -1.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "3"
+    },
+    {
+      "point": [
+        12.7,
+        2.286,
+        -0.0
+      ],
+      "normal": [
+        -0.0,
+        1.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "4"
+    },
+    {
+      "point": [
+        12.7,
+        -2.286,
+        -0.0
+      ],
+      "normal": [
+        -0.0,
+        -1.0,
+        0.0
+      ],
+      "radius": 3.175,
+      "depth": 1.286,
+      "kind": "pin",
+      "id": "5"
+    },
+    {
+      "point": [
+        12.7,
+        -1.0,
+        -0.0
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        -0.0
+      ],
+      "radius": 3.175,
+      "depth": 1.286,
+      "kind": "pin",
+      "id": "6"
+    },
+    {
+      "point": [
+        12.7,
+        1.0,
+        -0.0
+      ],
+      "normal": [
+        -0.0,
+        -1.0,
+        0.0
+      ],
+      "radius": 3.175,
+      "depth": 1.286,
+      "kind": "pin",
+      "id": "7"
+    },
+    {
+      "point": [
+        12.7,
+        2.286,
+        -0.0
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        -0.0
+      ],
+      "radius": 3.175,
+      "depth": 1.286,
+      "kind": "pin",
+      "id": "8"
+    },
+    {
+      "id": "square-hole-1",
+      "kind": "hole",
+      "profile": "square-drive",
+      "label": "Square socket · CAD",
+      "point": [
+        -0.0,
+        -2.286,
+        0.0
+      ],
+      "normal": [
+        -0.0,
+        -1.0,
+        0.0
+      ],
+      "key": [
+        -0.0,
+        0.0,
+        1.0
+      ],
+      "width": 3.23,
+      "radius": 1.615,
+      "depth": 4.572,
+      "maxDepth": 4.572,
+      "through": true
+    },
+    {
+      "id": "square-hole-2",
+      "kind": "hole",
+      "profile": "square-drive",
+      "label": "Square socket · CAD",
+      "point": [
+        -0.0,
+        2.286,
+        0.0
+      ],
+      "normal": [
+        -0.0,
+        1.0,
+        0.0
+      ],
+      "key": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "width": 3.23,
+      "radius": 1.615,
+      "depth": 4.572,
+      "maxDepth": 4.572,
+      "through": true
+    }
+  ],
+  "status": "ok",
+  "bytes": 186612,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "body"
+}

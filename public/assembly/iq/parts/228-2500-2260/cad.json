@@ -1,0 +1,94 @@
+{
+  "id": "228-2500-2260",
+  "sku": "228-2500-2260",
+  "name": "1x1 Connector Pin (Weak)",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\1x1 Connector Pin (Weak) (228-2500-2260).step",
+  "sourceFile": "1x1 Connector Pin (Weak) (228-2500-2260).step",
+  "sourceHash": "36458aafc66e7b55ed5f271da8b1fc6e146d9f753a57a6c70f55d2522ce455d1",
+  "bounds": {
+    "min": [
+      -2.90349,
+      -6.1531,
+      -3.125
+    ],
+    "max": [
+      2.90349,
+      6.1531,
+      3.125
+    ]
+  },
+  "references": [
+    {
+      "point": [
+        0.0,
+        -5.62077,
+        -0.0
+      ],
+      "normal": [
+        0.0,
+        -1.0,
+        -0.0
+      ],
+      "radius": 2.115,
+      "depth": 4.7318,
+      "kind": "pin",
+      "id": "1"
+    },
+    {
+      "point": [
+        0.0,
+        -0.889,
+        -0.0
+      ],
+      "normal": [
+        -0.0,
+        1.0,
+        0.0
+      ],
+      "radius": 2.115,
+      "depth": 4.7318,
+      "kind": "pin",
+      "id": "2"
+    },
+    {
+      "point": [
+        0.0,
+        0.889,
+        -0.0
+      ],
+      "normal": [
+        0.0,
+        -1.0,
+        -0.0
+      ],
+      "radius": 2.115,
+      "depth": 4.7318,
+      "kind": "pin",
+      "id": "3"
+    },
+    {
+      "point": [
+        0.0,
+        5.62077,
+        -0.0
+      ],
+      "normal": [
+        -0.0,
+        1.0,
+        0.0
+      ],
+      "radius": 2.115,
+      "depth": 4.7318,
+      "kind": "pin",
+      "id": "4"
+    }
+  ],
+  "status": "ok",
+  "bytes": 221464,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "pin"
+}

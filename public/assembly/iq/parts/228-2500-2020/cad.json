@@ -1,0 +1,158 @@
+{
+  "id": "228-2500-2020",
+  "sku": "228-2500-2020",
+  "name": "1x3 Bottom Shuttle Nose Panel",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\1x3 Bottom Shuttle Nose Panel (228-2500-2020).step",
+  "sourceFile": "1x3 Bottom Shuttle Nose Panel (228-2500-2020).step",
+  "sourceHash": "d33f734a1ca4aec8db67179a8add49efa248d0203bba232a7159aeb1d02c2d0c",
+  "bounds": {
+    "min": [
+      -19.20468,
+      -0.17968,
+      -6.52968
+    ],
+    "max": [
+      19.11115,
+      19.05138,
+      6.52968
+    ]
+  },
+  "references": [
+    {
+      "point": [
+        -6.35,
+        0.889,
+        0.0
+      ],
+      "normal": [
+        -0.0,
+        -1.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "1"
+    },
+    {
+      "point": [
+        -6.35,
+        5.461,
+        0.0
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "2"
+    },
+    {
+      "point": [
+        -6.35,
+        12.7,
+        -5.461
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        -1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "3"
+    },
+    {
+      "point": [
+        -6.35,
+        12.7,
+        -0.889
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "4"
+    },
+    {
+      "point": [
+        6.35,
+        0.889,
+        -0.0
+      ],
+      "normal": [
+        -0.0,
+        -1.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "5"
+    },
+    {
+      "point": [
+        6.35,
+        5.461,
+        -0.0
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "6"
+    },
+    {
+      "point": [
+        6.35,
+        12.7,
+        -5.461
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        -1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "7"
+    },
+    {
+      "point": [
+        6.35,
+        12.7,
+        -0.889
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "8"
+    }
+  ],
+  "status": "ok",
+  "bytes": 148192,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "accessory"
+}

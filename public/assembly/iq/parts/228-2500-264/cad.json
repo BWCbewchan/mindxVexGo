@@ -1,0 +1,82 @@
+{
+  "id": "228-2500-264",
+  "sku": "228-2500-264",
+  "name": "14x Pitch Shaft",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\14x Pitch Shaft (228-2500-264).step",
+  "sourceFile": "14x Pitch Shaft (228-2500-264).step",
+  "sourceHash": "34f9fba233afbaebb798b1c367a96a8472f9e2cb308baaca857624009b0c99a3",
+  "bounds": {
+    "min": [
+      -1.61301,
+      -88.03651,
+      -1.61301
+    ],
+    "max": [
+      1.61301,
+      88.03651,
+      1.61301
+    ]
+  },
+  "references": [
+    {
+      "kind": "pin",
+      "profile": "square-drive",
+      "point": [
+        -0.0,
+        -88.011,
+        0.0
+      ],
+      "normal": [
+        -0.0,
+        -1.0,
+        0.0
+      ],
+      "key": [
+        -1.0,
+        -0.0,
+        0.0
+      ],
+      "width": 3.175,
+      "radius": 1.5875,
+      "depth": 176.022,
+      "maxDepth": 176.022,
+      "label": "Square shaft / bore · measured planar walls",
+      "evidence": "Opposing planar wall spacing and original CAD end planes",
+      "id": "square-pin-walls-1"
+    },
+    {
+      "kind": "pin",
+      "profile": "square-drive",
+      "point": [
+        0.0,
+        88.011,
+        -0.0
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        -0.0
+      ],
+      "key": [
+        -1.0,
+        -0.0,
+        0.0
+      ],
+      "width": 3.175,
+      "radius": 1.5875,
+      "depth": 176.022,
+      "maxDepth": 176.022,
+      "label": "Square shaft / bore · measured planar walls",
+      "evidence": "Opposing planar wall spacing and original CAD end planes",
+      "id": "square-pin-walls-2"
+    }
+  ],
+  "status": "ok",
+  "bytes": 26756,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "shaft"
+}

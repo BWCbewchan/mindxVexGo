@@ -1,0 +1,94 @@
+{
+  "id": "228-2500-170",
+  "sku": "228-2500-170",
+  "name": "Mini Standoff Connector",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\Mini Standoff Connector (228-2500-170).step",
+  "sourceFile": "Mini Standoff Connector (228-2500-170).step",
+  "sourceHash": "f55db0eb5c10d4b8b7b716b888052dfb788e114a3caa7a704f7dafc7bf72a999",
+  "bounds": {
+    "min": [
+      -5.48913,
+      -4.02813,
+      -3.16003
+    ],
+    "max": [
+      5.48913,
+      4.02813,
+      3.16003
+    ]
+  },
+  "references": [
+    {
+      "point": [
+        -5.461,
+        0.0,
+        -0.0
+      ],
+      "normal": [
+        -1.0,
+        -0.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "1"
+    },
+    {
+      "point": [
+        -0.889,
+        0.0,
+        -0.0
+      ],
+      "normal": [
+        1.0,
+        0.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "2"
+    },
+    {
+      "point": [
+        0.889,
+        0.0,
+        -0.0
+      ],
+      "normal": [
+        -1.0,
+        0.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "3"
+    },
+    {
+      "point": [
+        5.461,
+        0.0,
+        -0.0
+      ],
+      "normal": [
+        1.0,
+        -0.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "4"
+    }
+  ],
+  "status": "ok",
+  "bytes": 60888,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "body"
+}

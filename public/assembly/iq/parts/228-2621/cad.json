@@ -1,0 +1,29 @@
+{
+  "id": "228-2621",
+  "sku": "228-2621",
+  "name": "900 MHz Radio",
+  "category": "electronics",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Control-STEP (1)\\VEX-IQ-All-Control-STEP\\228-2621 VEX IQ 900 MHz Radio\\228-2621.STEP",
+  "sourceFile": "228-2621.STEP",
+  "sourceHash": "c19a7e43834477b2622d59d71c0e5b8eb9646d91a6e3fef29ded9cacf838dad8",
+  "bounds": {
+    "min": [
+      -14.37615,
+      -3.47615,
+      -23.02074
+    ],
+    "max": [
+      14.37074,
+      3.47615,
+      0.0
+    ]
+  },
+  "references": [],
+  "status": "ok",
+  "bytes": 78552,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "electronic"
+}

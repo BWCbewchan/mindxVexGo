@@ -1,0 +1,29 @@
+{
+  "id": "228-2500-226",
+  "sku": "228-2500-226",
+  "name": "Outer Twist Lock Collar",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\Outer Twist Lock Collar (228-2500-226).step",
+  "sourceFile": "Outer Twist Lock Collar (228-2500-226).step",
+  "sourceHash": "bb8ef810193f84e2c28682a135632c180c8da6069b2341db6b52c7908aa49f47",
+  "bounds": {
+    "min": [
+      -10.00403,
+      -4.45238,
+      -10.00403
+    ],
+    "max": [
+      10.00403,
+      4.45238,
+      10.00403
+    ]
+  },
+  "references": [],
+  "status": "ok",
+  "bytes": 383496,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "accessory"
+}

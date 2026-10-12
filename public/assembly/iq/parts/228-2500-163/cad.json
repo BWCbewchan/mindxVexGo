@@ -1,0 +1,146 @@
+{
+  "id": "228-2500-163",
+  "sku": "228-2500-163",
+  "name": "10mm Pulley",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\10mm Pulley (228-2500-163).step",
+  "sourceFile": "10mm Pulley (228-2500-163).step",
+  "sourceHash": "60e9c7361d4d8f2fc4b1dfc60ee40199448f6f084b12d8d635b792a3190d08fa",
+  "bounds": {
+    "min": [
+      -7.33577,
+      -3.18703,
+      -7.33577
+    ],
+    "max": [
+      7.33577,
+      3.18703,
+      7.33577
+    ]
+  },
+  "references": [
+    {
+      "point": [
+        0.0,
+        -3.175,
+        -0.0
+      ],
+      "normal": [
+        0.0,
+        -1.0,
+        -0.0
+      ],
+      "radius": 3.175,
+      "depth": 2.425,
+      "kind": "pin",
+      "id": "1"
+    },
+    {
+      "point": [
+        0.0,
+        -0.75,
+        -0.0
+      ],
+      "normal": [
+        -0.0,
+        1.0,
+        0.0
+      ],
+      "radius": 3.175,
+      "depth": 2.425,
+      "kind": "pin",
+      "id": "2"
+    },
+    {
+      "point": [
+        0.0,
+        0.75,
+        -0.0
+      ],
+      "normal": [
+        0.0,
+        -1.0,
+        -0.0
+      ],
+      "radius": 3.175,
+      "depth": 2.425,
+      "kind": "pin",
+      "id": "3"
+    },
+    {
+      "point": [
+        0.0,
+        3.175,
+        -0.0
+      ],
+      "normal": [
+        -0.0,
+        1.0,
+        0.0
+      ],
+      "radius": 3.175,
+      "depth": 2.425,
+      "kind": "pin",
+      "id": "4"
+    },
+    {
+      "id": "square-hole-1",
+      "kind": "hole",
+      "profile": "square-drive",
+      "label": "Square socket · CAD",
+      "point": [
+        0.0,
+        2.286,
+        0.0
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        -0.0
+      ],
+      "key": [
+        1.0,
+        0.0,
+        -0.0
+      ],
+      "width": 3.175,
+      "radius": 1.5875,
+      "depth": 4.572,
+      "maxDepth": 4.572,
+      "through": true
+    },
+    {
+      "id": "square-hole-2",
+      "kind": "hole",
+      "profile": "square-drive",
+      "label": "Square socket · CAD",
+      "point": [
+        0.0,
+        -2.286,
+        0.0
+      ],
+      "normal": [
+        0.0,
+        -1.0,
+        -0.0
+      ],
+      "key": [
+        1.0,
+        0.0,
+        -0.0
+      ],
+      "width": 3.175,
+      "radius": 1.5875,
+      "depth": 4.572,
+      "maxDepth": 4.572,
+      "through": true
+    }
+  ],
+  "status": "ok",
+  "bytes": 191104,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "accessory"
+}

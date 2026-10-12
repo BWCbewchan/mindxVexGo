@@ -1,0 +1,29 @@
+{
+  "id": "228-2500-223",
+  "sku": "228-2500-223",
+  "name": "2x50mm Rubber Belt",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\2x50mm Rubber Belt (228-2500-223).step",
+  "sourceFile": "2x50mm Rubber Belt (228-2500-223).step",
+  "sourceHash": "2f5fa29ba9320c16bbf5fd34f7e615c36a3eab1e01a348869903ff9f6fd1c9ef",
+  "bounds": {
+    "min": [
+      -26.03252,
+      -1.03252,
+      -26.03252
+    ],
+    "max": [
+      26.03252,
+      1.03252,
+      26.03252
+    ]
+  },
+  "references": [],
+  "status": "ok",
+  "bytes": 156012,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "accessory"
+}

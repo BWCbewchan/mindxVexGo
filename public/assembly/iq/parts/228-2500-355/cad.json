@@ -1,0 +1,114 @@
+{
+  "id": "228-2500-355",
+  "sku": "228-2500-355",
+  "name": "Dial Knob",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\Dial Knob (228-2500-355).step",
+  "sourceFile": "Dial Knob (228-2500-355).step",
+  "sourceHash": "ee57763b25bd3b32df4a92ad9daf3d5be63e667761dccd7f07d2734cf1dc4c18",
+  "bounds": {
+    "min": [
+      -6.26124,
+      -9.46924,
+      -6.26124
+    ],
+    "max": [
+      6.26124,
+      9.46924,
+      6.26124
+    ]
+  },
+  "references": [
+    {
+      "point": [
+        0.0,
+        -8.636,
+        -0.0
+      ],
+      "normal": [
+        -0.0,
+        -1.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "1"
+    },
+    {
+      "point": [
+        0.0,
+        -4.064,
+        -0.0
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "2"
+    },
+    {
+      "id": "square-hole-1",
+      "kind": "hole",
+      "profile": "square-drive",
+      "label": "Square socket · CAD",
+      "point": [
+        0.0,
+        8.636,
+        -0.0
+      ],
+      "normal": [
+        -0.0,
+        1.0,
+        0.0
+      ],
+      "key": [
+        1.0,
+        0.0,
+        -0.0
+      ],
+      "width": 3.175,
+      "radius": 1.5875,
+      "depth": 4.572,
+      "maxDepth": 4.572,
+      "through": true
+    },
+    {
+      "id": "square-hole-2",
+      "kind": "hole",
+      "profile": "square-drive",
+      "label": "Square socket · CAD",
+      "point": [
+        0.0,
+        4.064,
+        -0.0
+      ],
+      "normal": [
+        -0.0,
+        -1.0,
+        0.0
+      ],
+      "key": [
+        -1.0,
+        0.0,
+        -0.0
+      ],
+      "width": 3.175,
+      "radius": 1.5875,
+      "depth": 4.572,
+      "maxDepth": 4.572,
+      "through": true
+    }
+  ],
+  "status": "ok",
+  "bytes": 150232,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "accessory"
+}

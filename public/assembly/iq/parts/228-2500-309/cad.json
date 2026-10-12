@@ -1,0 +1,222 @@
+{
+  "id": "228-2500-309",
+  "sku": "228-2500-309",
+  "name": "Spider Top Plate - Rear",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\Spider Top Plate - Rear (228-2500-309).step",
+  "sourceFile": "Spider Top Plate - Rear (228-2500-309).step",
+  "sourceHash": "cad7d2f21a7a22e3432d0409143c0a0d749a80ee5bdb2d7d4315c4f817e05375",
+  "bounds": {
+    "min": [
+      -82.10254,
+      -130.10453,
+      -21.23171
+    ],
+    "max": [
+      82.10223,
+      0.12049,
+      0.08001
+    ]
+  },
+  "references": [
+    {
+      "point": [
+        -57.15,
+        -10.99852,
+        -5.335
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.57,
+      "kind": "hole",
+      "id": "1"
+    },
+    {
+      "point": [
+        -57.15,
+        -10.99852,
+        -0.765
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.57,
+      "kind": "hole",
+      "id": "2"
+    },
+    {
+      "point": [
+        -50.8,
+        -21.99705,
+        -5.335
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.57,
+      "kind": "hole",
+      "id": "3"
+    },
+    {
+      "point": [
+        -50.8,
+        -21.99705,
+        -0.765
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.57,
+      "kind": "hole",
+      "id": "4"
+    },
+    {
+      "point": [
+        -19.05,
+        -54.99261,
+        -5.335
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.57,
+      "kind": "hole",
+      "id": "5"
+    },
+    {
+      "point": [
+        -19.05,
+        -54.99261,
+        -0.765
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.57,
+      "kind": "hole",
+      "id": "6"
+    },
+    {
+      "point": [
+        19.05,
+        -54.99261,
+        -5.335
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.57,
+      "kind": "hole",
+      "id": "7"
+    },
+    {
+      "point": [
+        19.05,
+        -54.99261,
+        -0.765
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.57,
+      "kind": "hole",
+      "id": "8"
+    },
+    {
+      "point": [
+        50.8,
+        -21.99705,
+        -5.335
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.57,
+      "kind": "hole",
+      "id": "9"
+    },
+    {
+      "point": [
+        50.8,
+        -21.99705,
+        -0.765
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.57,
+      "kind": "hole",
+      "id": "10"
+    },
+    {
+      "point": [
+        57.15,
+        -10.99852,
+        -5.335
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.57,
+      "kind": "hole",
+      "id": "11"
+    },
+    {
+      "point": [
+        57.15,
+        -10.99852,
+        -0.765
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.57,
+      "kind": "hole",
+      "id": "12"
+    }
+  ],
+  "status": "ok",
+  "bytes": 608792,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "body"
+}

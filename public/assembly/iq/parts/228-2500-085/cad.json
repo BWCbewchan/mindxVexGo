@@ -1,0 +1,94 @@
+{
+  "id": "228-2500-085",
+  "sku": "228-2500-085",
+  "name": "0x3 Smooth Idler Pin (Weak)",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\0x3 Smooth Idler Pin (Weak) (228-2500-085).step",
+  "sourceFile": "0x3 Smooth Idler Pin (Weak) (228-2500-085).step",
+  "sourceHash": "fd5d993cd80c340e5c182b0d078de15807c6b23803f9584cdcccba9429d8acc9",
+  "bounds": {
+    "min": [
+      -3.17882,
+      -12.61482,
+      -3.17882
+    ],
+    "max": [
+      3.17882,
+      6.20259,
+      3.17882
+    ]
+  },
+  "references": [
+    {
+      "point": [
+        0.0,
+        -12.611,
+        -0.0
+      ],
+      "normal": [
+        0.0,
+        -1.0,
+        -0.0
+      ],
+      "radius": 3.175,
+      "depth": 0.8,
+      "kind": "pin",
+      "id": "1"
+    },
+    {
+      "point": [
+        0.0,
+        -11.811,
+        -0.0
+      ],
+      "normal": [
+        0.0,
+        -1.0,
+        -0.0
+      ],
+      "radius": 2.05,
+      "depth": 10.922,
+      "kind": "pin",
+      "id": "2"
+    },
+    {
+      "point": [
+        0.0,
+        -11.811,
+        -0.0
+      ],
+      "normal": [
+        -0.0,
+        1.0,
+        0.0
+      ],
+      "radius": 3.175,
+      "depth": 0.8,
+      "kind": "pin",
+      "id": "3"
+    },
+    {
+      "point": [
+        0.0,
+        -0.889,
+        -0.0
+      ],
+      "normal": [
+        -0.0,
+        1.0,
+        0.0
+      ],
+      "radius": 2.05,
+      "depth": 10.922,
+      "kind": "pin",
+      "id": "4"
+    }
+  ],
+  "status": "ok",
+  "bytes": 74748,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "pin"
+}

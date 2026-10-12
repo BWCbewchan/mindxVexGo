@@ -1,0 +1,286 @@
+{
+  "id": "228-2500-193",
+  "sku": "228-2500-193",
+  "name": "Small Turntable Outer Housing",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\Small Turntable Outer Housing (228-2500-193).step",
+  "sourceFile": "Small Turntable Outer Housing (228-2500-193).step",
+  "sourceHash": "cb8441ebd1125523b4c1169e036a656020a95b8de15475e93454dff21dc026c2",
+  "bounds": {
+    "min": [
+      -25.30301,
+      -25.30301,
+      -0.59615
+    ],
+    "max": [
+      25.30301,
+      25.30301,
+      2.52422
+    ]
+  },
+  "references": [
+    {
+      "point": [
+        -19.05,
+        -6.35,
+        -0.55
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        -1.0
+      ],
+      "radius": 2.1082,
+      "depth": 2.286,
+      "kind": "hole",
+      "id": "1"
+    },
+    {
+      "point": [
+        -19.05,
+        -6.35,
+        1.736
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 2.1082,
+      "depth": 2.286,
+      "kind": "hole",
+      "id": "2"
+    },
+    {
+      "point": [
+        -19.05,
+        6.35,
+        -0.55
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        -1.0
+      ],
+      "radius": 2.1082,
+      "depth": 2.286,
+      "kind": "hole",
+      "id": "3"
+    },
+    {
+      "point": [
+        -19.05,
+        6.35,
+        1.736
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 2.1082,
+      "depth": 2.286,
+      "kind": "hole",
+      "id": "4"
+    },
+    {
+      "point": [
+        -6.35,
+        -19.05,
+        -0.55
+      ],
+      "normal": [
+        -0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 2.1082,
+      "depth": 2.286,
+      "kind": "hole",
+      "id": "5"
+    },
+    {
+      "point": [
+        -6.35,
+        -19.05,
+        1.736
+      ],
+      "normal": [
+        0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 2.1082,
+      "depth": 2.286,
+      "kind": "hole",
+      "id": "6"
+    },
+    {
+      "point": [
+        -6.35,
+        19.05,
+        -0.55
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        -1.0
+      ],
+      "radius": 2.1082,
+      "depth": 2.286,
+      "kind": "hole",
+      "id": "7"
+    },
+    {
+      "point": [
+        -6.35,
+        19.05,
+        1.736
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 2.1082,
+      "depth": 2.286,
+      "kind": "hole",
+      "id": "8"
+    },
+    {
+      "point": [
+        6.35,
+        -19.05,
+        -0.55
+      ],
+      "normal": [
+        -0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 2.1082,
+      "depth": 2.286,
+      "kind": "hole",
+      "id": "9"
+    },
+    {
+      "point": [
+        6.35,
+        -19.05,
+        1.736
+      ],
+      "normal": [
+        0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 2.1082,
+      "depth": 2.286,
+      "kind": "hole",
+      "id": "10"
+    },
+    {
+      "point": [
+        6.35,
+        19.05,
+        -0.55
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        -1.0
+      ],
+      "radius": 2.1082,
+      "depth": 2.286,
+      "kind": "hole",
+      "id": "11"
+    },
+    {
+      "point": [
+        6.35,
+        19.05,
+        1.736
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 2.1082,
+      "depth": 2.286,
+      "kind": "hole",
+      "id": "12"
+    },
+    {
+      "point": [
+        19.05,
+        -6.35,
+        -0.55
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        -1.0
+      ],
+      "radius": 2.1082,
+      "depth": 2.286,
+      "kind": "hole",
+      "id": "13"
+    },
+    {
+      "point": [
+        19.05,
+        -6.35,
+        1.736
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 2.1082,
+      "depth": 2.286,
+      "kind": "hole",
+      "id": "14"
+    },
+    {
+      "point": [
+        19.05,
+        6.35,
+        -0.55
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        -1.0
+      ],
+      "radius": 2.1082,
+      "depth": 2.286,
+      "kind": "hole",
+      "id": "15"
+    },
+    {
+      "point": [
+        19.05,
+        6.35,
+        1.736
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 2.1082,
+      "depth": 2.286,
+      "kind": "hole",
+      "id": "16"
+    }
+  ],
+  "status": "ok",
+  "bytes": 350076,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "accessory"
+}

@@ -1,0 +1,62 @@
+{
+  "id": "228-2500-1470",
+  "sku": "228-2500-1470",
+  "name": "1x Pitch Linear Motion Bracket (Snap)",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\1x Pitch Linear Motion Bracket (Snap) (228-2500-1470).STEP",
+  "sourceFile": "1x Pitch Linear Motion Bracket (Snap) (228-2500-1470).STEP",
+  "sourceHash": "b0fad8a8d9600c2035db16818919baa0d21bb43fd93f64de280734c89237227b",
+  "bounds": {
+    "min": [
+      -6.25553,
+      -6.25553,
+      -3.05
+    ],
+    "max": [
+      6.25553,
+      6.27528,
+      15.67624
+    ]
+  },
+  "references": [
+    {
+      "point": [
+        0.0,
+        0.0,
+        10.414
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        -1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.55,
+      "kind": "pin",
+      "id": "1"
+    },
+    {
+      "point": [
+        0.0,
+        0.0,
+        14.964
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.55,
+      "kind": "pin",
+      "id": "2"
+    }
+  ],
+  "status": "ok",
+  "bytes": 97928,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "accessory"
+}

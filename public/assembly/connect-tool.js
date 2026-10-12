@@ -1,8 +1,9 @@
+import {assetUrl} from './platform.js';
 import {compatibleReferences,insertionLimit,recommendedInsertionDepth} from './connector-policy.js?v=compatibility-27';
 import * as THREE from 'three';
 import {matingPose,worldReference,attachmentReferences} from './mating.js?v=fit-tolerance-36';
 export async function installConnectTool(api){
- const data=await(await fetch('connectors.json?v=compatibility-27', {cache:'no-store'})).json(),refs=data.parts,$=id=>document.getElementById(id);
+ const data=await(await fetch(assetUrl('connectors.json?v=compatibility-27'), {cache:'no-store'})).json(),refs=data.parts,$=id=>document.getElementById(id);
  for(const id of Object.keys(refs))refs[id]=attachmentReferences(refs[id]);
  const pinCategory=document.createElement('option');pinCategory.value='pins';pinCategory.textContent='Pins & shafts';$('category').append(pinCategory);
  let state=null,markers=[],pending=null;

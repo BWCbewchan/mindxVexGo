@@ -1,0 +1,29 @@
+{
+  "id": "228-2500-212",
+  "sku": "228-2500-212",
+  "name": "Tire (250 mm Travel)",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\Tire (250 mm Travel) (228-2500-212).step",
+  "sourceFile": "Tire (250 mm Travel) (228-2500-212).step",
+  "sourceHash": "0e0f4453bd7cd295c9c2cbb6fe570d9135f9e1248b8e427e626fc3c218559862",
+  "bounds": {
+    "min": [
+      -39.81829,
+      -9.65633,
+      -39.82743
+    ],
+    "max": [
+      39.81829,
+      9.65633,
+      39.82743
+    ]
+  },
+  "references": [],
+  "status": "ok",
+  "bytes": 2763068,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "accessory"
+}

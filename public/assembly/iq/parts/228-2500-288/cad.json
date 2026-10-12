@@ -1,0 +1,286 @@
+{
+  "id": "228-2500-288",
+  "sku": "228-2500-288",
+  "name": "Racer Windscreen",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\Racer Windscreen (228-2500-288).step",
+  "sourceFile": "Racer Windscreen (228-2500-288).step",
+  "sourceHash": "6477c30a6d4b5ea56d6e2a3b02ec84fb211bff71a57cd76acac68349f46bfb37",
+  "bounds": {
+    "min": [
+      -57.07848,
+      -22.15348,
+      -17.22908
+    ],
+    "max": [
+      37.97259,
+      3.10348,
+      -0.10829
+    ]
+  },
+  "references": [
+    {
+      "point": [
+        -25.4,
+        -21.336,
+        -6.35
+      ],
+      "normal": [
+        -0.0,
+        -1.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "1"
+    },
+    {
+      "point": [
+        -25.4,
+        -16.764,
+        -6.35
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "2"
+    },
+    {
+      "point": [
+        -25.4,
+        -2.286,
+        -6.35
+      ],
+      "normal": [
+        -0.0,
+        -1.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "3"
+    },
+    {
+      "point": [
+        -25.4,
+        2.286,
+        -6.35
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "4"
+    },
+    {
+      "point": [
+        25.4,
+        -21.336,
+        -6.35
+      ],
+      "normal": [
+        -0.0,
+        -1.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "5"
+    },
+    {
+      "point": [
+        25.4,
+        -16.764,
+        -6.35
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "6"
+    },
+    {
+      "point": [
+        25.4,
+        -2.286,
+        -6.35
+      ],
+      "normal": [
+        -0.0,
+        -1.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "7"
+    },
+    {
+      "point": [
+        25.4,
+        2.286,
+        -6.35
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "8"
+    },
+    {
+      "point": [
+        -25.4,
+        -21.336,
+        -6.35
+      ],
+      "normal": [
+        -0.0,
+        -1.0,
+        0.0
+      ],
+      "radius": 3.175,
+      "depth": 2.572,
+      "kind": "pin",
+      "id": "9"
+    },
+    {
+      "point": [
+        -25.4,
+        -18.764,
+        -6.35
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        -0.0
+      ],
+      "radius": 3.175,
+      "depth": 2.572,
+      "kind": "pin",
+      "id": "10"
+    },
+    {
+      "point": [
+        -25.4,
+        -0.286,
+        -6.35
+      ],
+      "normal": [
+        -0.0,
+        -1.0,
+        0.0
+      ],
+      "radius": 3.175,
+      "depth": 2.572,
+      "kind": "pin",
+      "id": "11"
+    },
+    {
+      "point": [
+        -25.4,
+        2.286,
+        -6.35
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        -0.0
+      ],
+      "radius": 3.175,
+      "depth": 2.572,
+      "kind": "pin",
+      "id": "12"
+    },
+    {
+      "point": [
+        25.4,
+        -21.336,
+        -6.35
+      ],
+      "normal": [
+        -0.0,
+        -1.0,
+        0.0
+      ],
+      "radius": 3.175,
+      "depth": 2.572,
+      "kind": "pin",
+      "id": "13"
+    },
+    {
+      "point": [
+        25.4,
+        -18.764,
+        -6.35
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        -0.0
+      ],
+      "radius": 3.175,
+      "depth": 2.572,
+      "kind": "pin",
+      "id": "14"
+    },
+    {
+      "point": [
+        25.4,
+        -0.286,
+        -6.35
+      ],
+      "normal": [
+        -0.0,
+        -1.0,
+        0.0
+      ],
+      "radius": 3.175,
+      "depth": 2.572,
+      "kind": "pin",
+      "id": "15"
+    },
+    {
+      "point": [
+        25.4,
+        2.286,
+        -6.35
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        -0.0
+      ],
+      "radius": 3.175,
+      "depth": 2.572,
+      "kind": "pin",
+      "id": "16"
+    }
+  ],
+  "status": "ok",
+  "bytes": 228796,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "accessory"
+}

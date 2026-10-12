@@ -1,0 +1,222 @@
+{
+  "id": "228-2500-231",
+  "sku": "228-2500-231",
+  "name": "Tank Tread, Attachment Link",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\Tank Tread, Attachment Link (228-2500-231).step",
+  "sourceFile": "Tank Tread, Attachment Link (228-2500-231).step",
+  "sourceHash": "2cb15a51214440e71d90ec4bf0b11ba8c83379a8b8d321b051c225084ecdaf0c",
+  "bounds": {
+    "min": [
+      -12.0,
+      -8.55313,
+      -8.65184
+    ],
+    "max": [
+      12.0,
+      3.10373,
+      2.20313
+    ]
+  },
+  "references": [
+    {
+      "point": [
+        -6.35,
+        0.0,
+        -8.636
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "1"
+    },
+    {
+      "point": [
+        -6.35,
+        0.0,
+        -4.064
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "2"
+    },
+    {
+      "point": [
+        6.35,
+        0.0,
+        -8.636
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "3"
+    },
+    {
+      "point": [
+        6.35,
+        0.0,
+        -4.064
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "4"
+    },
+    {
+      "point": [
+        -6.35,
+        0.0,
+        -8.636
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 3.1,
+      "depth": 4.572,
+      "kind": "pin",
+      "id": "5"
+    },
+    {
+      "point": [
+        -6.35,
+        0.0,
+        -4.064
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 3.1,
+      "depth": 4.572,
+      "kind": "pin",
+      "id": "6"
+    },
+    {
+      "point": [
+        -3.25,
+        0.0,
+        -0.0
+      ],
+      "normal": [
+        -1.0,
+        -0.0,
+        0.0
+      ],
+      "radius": 1.6,
+      "depth": 6.5,
+      "kind": "pin",
+      "id": "7"
+    },
+    {
+      "point": [
+        3.25,
+        0.0,
+        -0.0
+      ],
+      "normal": [
+        1.0,
+        0.0,
+        -0.0
+      ],
+      "radius": 1.6,
+      "depth": 6.5,
+      "kind": "pin",
+      "id": "8"
+    },
+    {
+      "point": [
+        4.38,
+        -6.35,
+        -0.0
+      ],
+      "normal": [
+        -1.0,
+        -0.0,
+        0.0
+      ],
+      "radius": 2.2,
+      "depth": 0.87,
+      "kind": "pin",
+      "id": "9"
+    },
+    {
+      "point": [
+        5.25,
+        -6.35,
+        -0.0
+      ],
+      "normal": [
+        1.0,
+        0.0,
+        -0.0
+      ],
+      "radius": 2.2,
+      "depth": 0.87,
+      "kind": "pin",
+      "id": "10"
+    },
+    {
+      "point": [
+        6.35,
+        0.0,
+        -8.636
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 3.1,
+      "depth": 4.572,
+      "kind": "pin",
+      "id": "11"
+    },
+    {
+      "point": [
+        6.35,
+        0.0,
+        -4.064
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 3.1,
+      "depth": 4.572,
+      "kind": "pin",
+      "id": "12"
+    }
+  ],
+  "status": "ok",
+  "bytes": 335520,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "accessory"
+}

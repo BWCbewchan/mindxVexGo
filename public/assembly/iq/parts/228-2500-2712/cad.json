@@ -1,0 +1,29 @@
+{
+  "id": "228-2500-2712",
+  "sku": "228-2500-2712",
+  "name": "6x12 Plastic Sheet",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\6x12 Plastic Sheet (228-2500-2712).STEP",
+  "sourceFile": "6x12 Plastic Sheet (228-2500-2712).STEP",
+  "sourceHash": "ec7da9385948a393fee723d1d1d4e26cb4ae37030a2b4fd4b8b150a203286afb",
+  "bounds": {
+    "min": [
+      -76.05747,
+      -37.95747,
+      -0.26147
+    ],
+    "max": [
+      76.05747,
+      37.95747,
+      0.00747
+    ]
+  },
+  "references": [],
+  "status": "ok",
+  "bytes": 290940,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "accessory"
+}

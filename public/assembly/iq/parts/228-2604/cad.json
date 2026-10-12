@@ -1,0 +1,29 @@
+{
+  "id": "228-2604",
+  "sku": "228-2604",
+  "name": "Robot Battery",
+  "category": "electronics",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Control-STEP (1)\\VEX-IQ-All-Control-STEP\\228-2604 VEX IQ Robot Battery\\228-2604.STEP",
+  "sourceFile": "228-2604.STEP",
+  "sourceHash": "7b493eb7170cd7247e6dd5b490125204e5f356c5b5d91f6bd6884d3f1b8b8f6d",
+  "bounds": {
+    "min": [
+      -28.80542,
+      -49.80542,
+      -0.80099
+    ],
+    "max": [
+      28.80542,
+      55.30915,
+      20.00915
+    ]
+  },
+  "references": [],
+  "status": "ok",
+  "bytes": 266840,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "electronic"
+}

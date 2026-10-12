@@ -1,0 +1,29 @@
+{
+  "id": "228-2500-210",
+  "sku": "228-2500-210",
+  "name": "Tire (160 mm Travel)",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\Tire (160 mm Travel) (228-2500-210).step",
+  "sourceFile": "Tire (160 mm Travel) (228-2500-210).step",
+  "sourceHash": "3d07add114cf3185ac8cbf53d8bb9c376fb688c29ef45c7a4db16561f831b202",
+  "bounds": {
+    "min": [
+      -23.92156,
+      -9.44612,
+      -23.93273
+    ],
+    "max": [
+      23.89932,
+      9.44612,
+      23.93273
+    ]
+  },
+  "references": [],
+  "status": "ok",
+  "bytes": 706800,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "accessory"
+}

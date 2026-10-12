@@ -1,0 +1,350 @@
+{
+  "id": "228-2500-2028",
+  "sku": "228-2500-2028",
+  "name": "10x Pitch Wide Front Loader Bucket",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\10x Pitch Wide Front Loader Bucket (228-2500-2028).step",
+  "sourceFile": "10x Pitch Wide Front Loader Bucket (228-2500-2028).step",
+  "sourceHash": "3476ae0d10f4c22547ab821ed5883f75c34930059a092d462993530e46dc232b",
+  "bounds": {
+    "min": [
+      -63.352,
+      -4.02682,
+      -18.9
+    ],
+    "max": [
+      63.352,
+      57.0,
+      37.95
+    ]
+  },
+  "references": [
+    {
+      "point": [
+        -24.511,
+        0.0,
+        -0.0
+      ],
+      "normal": [
+        -1.0,
+        0.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "1"
+    },
+    {
+      "point": [
+        -24.511,
+        0.0,
+        6.35
+      ],
+      "normal": [
+        -1.0,
+        0.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "2"
+    },
+    {
+      "point": [
+        -24.511,
+        0.0,
+        12.7
+      ],
+      "normal": [
+        -1.0,
+        0.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "3"
+    },
+    {
+      "point": [
+        -24.511,
+        0.0,
+        19.05
+      ],
+      "normal": [
+        -1.0,
+        0.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "4"
+    },
+    {
+      "point": [
+        -24.511,
+        0.0,
+        25.4
+      ],
+      "normal": [
+        -1.0,
+        0.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "5"
+    },
+    {
+      "point": [
+        -19.939,
+        0.0,
+        -0.0
+      ],
+      "normal": [
+        1.0,
+        -0.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "6"
+    },
+    {
+      "point": [
+        -19.939,
+        0.0,
+        6.35
+      ],
+      "normal": [
+        1.0,
+        -0.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "7"
+    },
+    {
+      "point": [
+        -19.939,
+        0.0,
+        12.7
+      ],
+      "normal": [
+        1.0,
+        -0.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "8"
+    },
+    {
+      "point": [
+        -19.939,
+        0.0,
+        19.05
+      ],
+      "normal": [
+        1.0,
+        -0.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "9"
+    },
+    {
+      "point": [
+        -19.939,
+        0.0,
+        25.4
+      ],
+      "normal": [
+        1.0,
+        -0.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "10"
+    },
+    {
+      "point": [
+        19.939,
+        0.0,
+        -0.0
+      ],
+      "normal": [
+        -1.0,
+        -0.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "11"
+    },
+    {
+      "point": [
+        19.939,
+        0.0,
+        6.35
+      ],
+      "normal": [
+        -1.0,
+        -0.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "12"
+    },
+    {
+      "point": [
+        19.939,
+        0.0,
+        12.7
+      ],
+      "normal": [
+        -1.0,
+        -0.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "13"
+    },
+    {
+      "point": [
+        19.939,
+        0.0,
+        19.05
+      ],
+      "normal": [
+        -1.0,
+        -0.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "14"
+    },
+    {
+      "point": [
+        19.939,
+        0.0,
+        25.4
+      ],
+      "normal": [
+        -1.0,
+        -0.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "15"
+    },
+    {
+      "point": [
+        24.511,
+        0.0,
+        -0.0
+      ],
+      "normal": [
+        1.0,
+        0.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "16"
+    },
+    {
+      "point": [
+        24.511,
+        0.0,
+        6.35
+      ],
+      "normal": [
+        1.0,
+        0.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "17"
+    },
+    {
+      "point": [
+        24.511,
+        0.0,
+        12.7
+      ],
+      "normal": [
+        1.0,
+        0.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "18"
+    },
+    {
+      "point": [
+        24.511,
+        0.0,
+        19.05
+      ],
+      "normal": [
+        1.0,
+        0.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "19"
+    },
+    {
+      "point": [
+        24.511,
+        0.0,
+        25.4
+      ],
+      "normal": [
+        1.0,
+        0.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "20"
+    }
+  ],
+  "status": "ok",
+  "bytes": 418000,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "accessory"
+}

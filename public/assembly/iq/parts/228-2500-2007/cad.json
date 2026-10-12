@@ -1,0 +1,254 @@
+{
+  "id": "228-2500-2007",
+  "sku": "228-2500-2007",
+  "name": "2x4.75 Curved Fade Panel",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\2x4.75 Curved Fade Panel (228-2500-2007).step",
+  "sourceFile": "2x4.75 Curved Fade Panel (228-2500-2007).step",
+  "sourceHash": "aef8b5c3184af80d30ec2dde20798e0169bcee36c794f2e13ee01d004cf0db7f",
+  "bounds": {
+    "min": [
+      -12.79733,
+      -31.84733,
+      -9.64725
+    ],
+    "max": [
+      12.79733,
+      22.92007,
+      3.10683
+    ]
+  },
+  "references": [
+    {
+      "point": [
+        -6.35,
+        -30.861,
+        -3.175
+      ],
+      "normal": [
+        -0.0,
+        -1.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "1"
+    },
+    {
+      "point": [
+        -6.35,
+        -26.289,
+        -3.175
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "2"
+    },
+    {
+      "point": [
+        0.0,
+        -19.05,
+        -2.286
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "3"
+    },
+    {
+      "point": [
+        0.0,
+        -19.05,
+        2.286
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "4"
+    },
+    {
+      "point": [
+        0.0,
+        -12.7,
+        -2.286
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "5"
+    },
+    {
+      "point": [
+        0.0,
+        -12.7,
+        2.286
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "6"
+    },
+    {
+      "point": [
+        0.0,
+        -6.35,
+        -2.286
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "7"
+    },
+    {
+      "point": [
+        0.0,
+        -6.35,
+        2.286
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "8"
+    },
+    {
+      "point": [
+        6.35,
+        -30.861,
+        -3.175
+      ],
+      "normal": [
+        -0.0,
+        -1.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "9"
+    },
+    {
+      "point": [
+        6.35,
+        -26.289,
+        -3.175
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "10"
+    },
+    {
+      "point": [
+        0.0,
+        -12.7,
+        -1.086
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 3.175,
+      "depth": 3.372,
+      "kind": "pin",
+      "id": "11"
+    },
+    {
+      "point": [
+        0.0,
+        -12.7,
+        2.286
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 3.175,
+      "depth": 3.372,
+      "kind": "pin",
+      "id": "12"
+    },
+    {
+      "point": [
+        6.35,
+        -30.861,
+        -3.175
+      ],
+      "normal": [
+        -0.0,
+        -1.0,
+        0.0
+      ],
+      "radius": 3.175,
+      "depth": 2.572,
+      "kind": "pin",
+      "id": "13"
+    },
+    {
+      "point": [
+        6.35,
+        -28.289,
+        -3.175
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        -0.0
+      ],
+      "radius": 3.175,
+      "depth": 2.572,
+      "kind": "pin",
+      "id": "14"
+    }
+  ],
+  "status": "ok",
+  "bytes": 189592,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "accessory"
+}

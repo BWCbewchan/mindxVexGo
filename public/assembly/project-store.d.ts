@@ -1,0 +1,14 @@
+export type Platform='vexgo'|'vexiq';
+export function validateProjectFile(data: ProjectData, platform: Platform, catalog: {id: string;kind?:string}[]): ProjectData;
+export type ProjectMeta={id:string;platform:Platform;title:string;createdAt:number;updatedAt:number;partCount:number;thumbnail?:string;deletedAt?:number;legacyDraft?:boolean};
+export type ProjectData={version:1;platform?:Platform;projectId?:string;title:string;parts:Array<{id:string;sku:string;label:string;position:number[];rotation:number[];[key:string]:unknown}>;groups:unknown[];steps:unknown[];createdAt?:number;savedAt?:number;[key:string]:unknown};
+export const PROJECT_INDEX:string;
+export function platformValid(value:unknown):value is Platform;
+export function projectIdValid(value:unknown):value is string;
+export function projectKey(platform:Platform,id:string):string;
+export function listProjects(storage?:Storage):ProjectMeta[];
+export function loadProject(platform:Platform,id:string,storage?:Storage):ProjectData|null;
+export function saveProject(platform:Platform,id:string,data:ProjectData,options?:{thumbnail?:string},storage?:Storage):ProjectMeta;
+export function createProject(platform:Platform,title:string,data?:Partial<ProjectData>,storage?:Storage):string;
+export function markProjectDeleted(platform:Platform,id:string,deleted:boolean,storage?:Storage):void;
+export function migrateLegacyDraft(storage?:Storage):void;

@@ -1,0 +1,114 @@
+{
+  "id": "228-2500-420",
+  "sku": "228-2500-420",
+  "name": "1x Wide Spool",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\1x Wide Spool (228-2500-420).step",
+  "sourceFile": "1x Wide Spool (228-2500-420).step",
+  "sourceHash": "9df9a19fd8bfba22e70436072a61a80e4ae0c1c1eac17eb1cab9f3e958d8998c",
+  "bounds": {
+    "min": [
+      -12.72309,
+      -6.35445,
+      -12.72082
+    ],
+    "max": [
+      12.72309,
+      6.22736,
+      12.72309
+    ]
+  },
+  "references": [
+    {
+      "point": [
+        0.0,
+        -6.35,
+        -0.0
+      ],
+      "normal": [
+        -0.0,
+        -1.0,
+        0.0
+      ],
+      "radius": 2.5,
+      "depth": 0.889,
+      "kind": "hole",
+      "id": "1"
+    },
+    {
+      "point": [
+        0.0,
+        -5.461,
+        -0.0
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        -0.0
+      ],
+      "radius": 2.5,
+      "depth": 0.889,
+      "kind": "hole",
+      "id": "2"
+    },
+    {
+      "id": "square-hole-1",
+      "kind": "hole",
+      "profile": "square-drive",
+      "label": "Square socket · CAD",
+      "point": [
+        0.0,
+        -0.889,
+        -0.0
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        -0.0
+      ],
+      "key": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "width": 3.175,
+      "radius": 1.5875,
+      "depth": 4.572,
+      "maxDepth": 4.572,
+      "through": true
+    },
+    {
+      "id": "square-hole-2",
+      "kind": "hole",
+      "profile": "square-drive",
+      "label": "Square socket · CAD",
+      "point": [
+        0.0,
+        -5.461,
+        -0.0
+      ],
+      "normal": [
+        -0.0,
+        -1.0,
+        0.0
+      ],
+      "key": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "width": 3.175,
+      "radius": 1.5875,
+      "depth": 4.572,
+      "maxDepth": 4.572,
+      "through": true
+    }
+  ],
+  "status": "ok",
+  "bytes": 144188,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "accessory"
+}

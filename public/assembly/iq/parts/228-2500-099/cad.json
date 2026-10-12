@@ -1,0 +1,126 @@
+{
+  "id": "228-2500-099",
+  "sku": "228-2500-099",
+  "name": "0x1 Sheet Pin",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\0x1 Sheet Pin (228-2500-099).step",
+  "sourceFile": "0x1 Sheet Pin (228-2500-099).step",
+  "sourceHash": "b1a83820b70fd609158d1d172ca8a44cf0a66fbb6afcee3f1c805c8eb3fb3b12",
+  "bounds": {
+    "min": [
+      -4.00542,
+      -0.89442,
+      -4.00542
+    ],
+    "max": [
+      4.00542,
+      6.14303,
+      4.00542
+    ]
+  },
+  "references": [
+    {
+      "point": [
+        0.0,
+        -0.889,
+        -0.0
+      ],
+      "normal": [
+        -0.0,
+        -1.0,
+        0.0
+      ],
+      "radius": 2.425,
+      "depth": 0.85,
+      "kind": "hole",
+      "id": "1"
+    },
+    {
+      "point": [
+        0.0,
+        -0.039,
+        -0.0
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        -0.0
+      ],
+      "radius": 2.425,
+      "depth": 0.85,
+      "kind": "hole",
+      "id": "2"
+    },
+    {
+      "point": [
+        0.0,
+        -0.125,
+        -0.0
+      ],
+      "normal": [
+        0.0,
+        -1.0,
+        -0.0
+      ],
+      "radius": 3.175,
+      "depth": 1.014,
+      "kind": "pin",
+      "id": "3"
+    },
+    {
+      "point": [
+        0.0,
+        0.889,
+        -0.0
+      ],
+      "normal": [
+        -0.0,
+        -1.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.55,
+      "kind": "pin",
+      "id": "4"
+    },
+    {
+      "point": [
+        0.0,
+        0.889,
+        -0.0
+      ],
+      "normal": [
+        -0.0,
+        1.0,
+        0.0
+      ],
+      "radius": 3.175,
+      "depth": 1.014,
+      "kind": "pin",
+      "id": "5"
+    },
+    {
+      "point": [
+        0.0,
+        5.439,
+        -0.0
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.55,
+      "kind": "pin",
+      "id": "6"
+    }
+  ],
+  "status": "ok",
+  "bytes": 134352,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "pin"
+}

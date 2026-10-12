@@ -1,0 +1,222 @@
+{
+  "id": "228-2500-1472",
+  "sku": "228-2500-1472",
+  "name": "1x6 Linear Motion Rack Gear",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\1x6 Linear Motion Rack Gear (228-2500-1472).step",
+  "sourceFile": "1x6 Linear Motion Rack Gear (228-2500-1472).step",
+  "sourceHash": "5eb752e028304dbcb6a6207b8ee0c75028ac935268341d1dd762f44a193e4a3d",
+  "bounds": {
+    "min": [
+      -35.75533,
+      -4.30533,
+      -4.00436
+    ],
+    "max": [
+      35.75533,
+      4.30533,
+      2.29997
+    ]
+  },
+  "references": [
+    {
+      "point": [
+        -31.75,
+        0.0,
+        -2.286
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "1"
+    },
+    {
+      "point": [
+        -31.75,
+        0.0,
+        2.286
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "2"
+    },
+    {
+      "point": [
+        31.75,
+        0.0,
+        -2.286
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "3"
+    },
+    {
+      "point": [
+        31.75,
+        0.0,
+        2.286
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "4"
+    },
+    {
+      "point": [
+        -31.75,
+        0.0,
+        -2.286
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 3.125,
+      "depth": 1.286,
+      "kind": "pin",
+      "id": "5"
+    },
+    {
+      "point": [
+        -31.75,
+        0.0,
+        -1.0
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 3.125,
+      "depth": 1.286,
+      "kind": "pin",
+      "id": "6"
+    },
+    {
+      "point": [
+        -31.75,
+        0.0,
+        1.0
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 3.125,
+      "depth": 1.286,
+      "kind": "pin",
+      "id": "7"
+    },
+    {
+      "point": [
+        -31.75,
+        0.0,
+        2.286
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 3.125,
+      "depth": 1.286,
+      "kind": "pin",
+      "id": "8"
+    },
+    {
+      "point": [
+        31.75,
+        0.0,
+        -2.286
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 3.125,
+      "depth": 1.286,
+      "kind": "pin",
+      "id": "9"
+    },
+    {
+      "point": [
+        31.75,
+        0.0,
+        -1.0
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 3.125,
+      "depth": 1.286,
+      "kind": "pin",
+      "id": "10"
+    },
+    {
+      "point": [
+        31.75,
+        0.0,
+        1.0
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 3.125,
+      "depth": 1.286,
+      "kind": "pin",
+      "id": "11"
+    },
+    {
+      "point": [
+        31.75,
+        0.0,
+        2.286
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 3.125,
+      "depth": 1.286,
+      "kind": "pin",
+      "id": "12"
+    }
+  ],
+  "status": "ok",
+  "bytes": 248868,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "gear"
+}

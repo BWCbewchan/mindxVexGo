@@ -1,0 +1,94 @@
+{
+  "id": "228-2500-1905",
+  "sku": "228-2500-1905",
+  "name": "2.5x1.4 Widescreen Monitor",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\2.5x1.4 Widescreen Monitor (228-2500-1905).step",
+  "sourceFile": "2.5x1.4 Widescreen Monitor (228-2500-1905).step",
+  "sourceHash": "e3c8056fc76681cfc00505bf7cfa5d15f604296c94fd36fcc5bf5aad000db61d",
+  "bounds": {
+    "min": [
+      -15.74091,
+      -2.2897,
+      -8.86591
+    ],
+    "max": [
+      15.74091,
+      3.17741,
+      8.86556
+    ]
+  },
+  "references": [
+    {
+      "point": [
+        0.0,
+        -2.286,
+        -0.0
+      ],
+      "normal": [
+        -0.0,
+        -1.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "1"
+    },
+    {
+      "point": [
+        0.0,
+        2.286,
+        -0.0
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "2"
+    },
+    {
+      "point": [
+        0.0,
+        -2.286,
+        -0.0
+      ],
+      "normal": [
+        -0.0,
+        -1.0,
+        0.0
+      ],
+      "radius": 3.175,
+      "depth": 3.836,
+      "kind": "pin",
+      "id": "3"
+    },
+    {
+      "point": [
+        0.0,
+        1.55,
+        -0.0
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        -0.0
+      ],
+      "radius": 3.175,
+      "depth": 3.836,
+      "kind": "pin",
+      "id": "4"
+    }
+  ],
+  "status": "ok",
+  "bytes": 179084,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "accessory"
+}

@@ -1,0 +1,2196 @@
+{
+  "source": "https://www.vexrobotics.com/parts/228-7755",
+  "palette": {
+    "lightGray": "#b0b3b2",
+    "pinGray": "#b3b4b2",
+    "darkGray": "#53575a",
+    "mediumGray": "#898d8d",
+    "white": "#d9d8d6",
+    "black": "#25282a",
+    "rubber": "#3e3e3e",
+    "blue": "#0075c9",
+    "orange": "#f26728",
+    "green": "#98ca3d",
+    "metal": "#cdd0cd"
+  },
+  "mapped": 265,
+  "preserved": 213,
+  "parts": [
+    {
+      "id": "228-2500-1413",
+      "color": "#0075c9",
+      "colorName": "blue",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/specialty-parts-1x-wide-spool.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-114",
+      "color": "#25282a",
+      "colorName": "black",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/shafts-0.25-pitch-shaft-spacer.svg",
+      "evidence": "kit",
+      "regions": []
+    },
+    {
+      "id": "228-2500-063",
+      "color": "#25282a",
+      "colorName": "black",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/pins-and-standoffs-0.25x-pitch-standoff.svg",
+      "evidence": "kit",
+      "regions": []
+    },
+    {
+      "id": "228-2500-064",
+      "color": "#d9d8d6",
+      "colorName": "white",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/pins-and-standoffs-pitch-standoffs-inner.svg",
+      "evidence": "kit",
+      "regions": []
+    },
+    {
+      "id": "228-2500-2268",
+      "color": "#d9d8d6",
+      "colorName": "white",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/pins-and-standoffs-pitch-standoffs-inner.svg",
+      "evidence": "family",
+      "regions": [],
+      "variantOf": "228-2500-064"
+    },
+    {
+      "id": "228-2500-109",
+      "color": "#25282a",
+      "colorName": "black",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/pins-and-standoffs-0.5x-pitch-standoff-extender.svg",
+      "evidence": "kit",
+      "regions": []
+    },
+    {
+      "id": "228-2500-086",
+      "color": "#898d8d",
+      "colorName": "mediumGray",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/pins-and-standoffs-0x2-connector-pin.svg",
+      "evidence": "kit",
+      "regions": []
+    },
+    {
+      "id": "228-2500-090",
+      "color": "#898d8d",
+      "colorName": "mediumGray",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/pins-and-standoffs-0x2-connector-pin.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-084",
+      "color": "#98ca3d",
+      "colorName": "green",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/pins-and-standoffs-0x2-idler-pin.svg",
+      "evidence": "kit",
+      "regions": []
+    },
+    {
+      "id": "228-2500-2258",
+      "color": "#98ca3d",
+      "colorName": "green",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/pins-and-standoffs-0x2-idler-pin.svg",
+      "evidence": "family",
+      "regions": [],
+      "variantOf": "228-2500-084"
+    },
+    {
+      "id": "228-2500-087",
+      "color": "#53575a",
+      "colorName": "darkGray",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/pins-and-standoffs-0x3-connector-pin.svg",
+      "evidence": "kit",
+      "regions": []
+    },
+    {
+      "id": "228-2500-097",
+      "color": "#898d8d",
+      "colorName": "mediumGray",
+      "source": "https://www.pltw.org/hubfs/operations/equipment_supplies/eng_bill_of_materials/IED_VEX_IQ_Kit_228-7342_.pdf",
+      "evidence": "manufacturer",
+      "regions": [],
+      "sourcePage": 8
+    },
+    {
+      "id": "228-2500-066",
+      "color": "#25282a",
+      "colorName": "black",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/pins-and-standoffs-pitch-standoffs-inner.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-163",
+      "color": "#0075c9",
+      "colorName": "blue",
+      "source": "https://www.pltw.org/hubfs/operations/equipment_supplies/eng_bill_of_materials/IED_VEX_IQ_Kit_228-7342_.pdf",
+      "evidence": "manufacturer",
+      "regions": [],
+      "sourcePage": 3
+    },
+    {
+      "id": "228-2500-2230",
+      "color": "#cdd0cd",
+      "colorName": "metal",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/shafts-pitch-capped-shafts-inner.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-261",
+      "color": "#cdd0cd",
+      "colorName": "metal",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/shafts-pitch-capped-shafts-inner.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-2231",
+      "color": "#cdd0cd",
+      "colorName": "metal",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/shafts-pitch-capped-shafts-inner.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-262",
+      "color": "#cdd0cd",
+      "colorName": "metal",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/shafts-pitch-capped-shafts-inner.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-213",
+      "color": "#0075c9",
+      "colorName": "blue",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/gears-gears-inner.svg",
+      "evidence": "kit",
+      "regions": []
+    },
+    {
+      "id": "228-2500-2232",
+      "color": "#cdd0cd",
+      "colorName": "metal",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/shafts-pitch-capped-shafts-inner.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-263",
+      "color": "#cdd0cd",
+      "colorName": "metal",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/shafts-pitch-capped-shafts-inner.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-472",
+      "color": "#b0b3b2",
+      "colorName": "lightGray",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/beams-and-plates-beams.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-059",
+      "color": "#53575a",
+      "colorName": "darkGray",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/beams-and-plates-plates.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-205",
+      "color": "#53575a",
+      "colorName": "darkGray",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/beams-and-plates-plates.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-264",
+      "color": "#cdd0cd",
+      "colorName": "metal",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/shafts-pitch-capped-shafts-inner.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-1381",
+      "color": "#53575a",
+      "colorName": "darkGray",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/beams-and-plates-plates.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-192",
+      "color": "#0075c9",
+      "colorName": "blue",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/pins-and-standoffs-standoff-connectors.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-233",
+      "color": "#f26728",
+      "colorName": "orange",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/sprockets-and-chain-sprockets-inner.svg",
+      "evidence": "kit",
+      "regions": []
+    },
+    {
+      "id": "228-2500-265",
+      "color": "#cdd0cd",
+      "colorName": "metal",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/shafts-pitch-capped-shafts-inner.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-471",
+      "color": "#b0b3b2",
+      "colorName": "lightGray",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/beams-and-plates-beams.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-244",
+      "color": "#0075c9",
+      "colorName": "blue",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/gears-gears-inner.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-266",
+      "color": "#cdd0cd",
+      "colorName": "metal",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/shafts-pitch-capped-shafts-inner.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-328",
+      "color": "#f26728",
+      "colorName": "orange",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/shafts-1x-pitch-plastic-motor-snap-shaft.svg",
+      "evidence": "kit",
+      "regions": []
+    },
+    {
+      "id": "228-2500-065",
+      "color": "#25282a",
+      "colorName": "black",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/pins-and-standoffs-pitch-standoffs-inner.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-2269",
+      "color": "#25282a",
+      "colorName": "black",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/pins-and-standoffs-pitch-standoffs-inner.svg",
+      "evidence": "family",
+      "regions": [],
+      "variantOf": "228-2500-065"
+    },
+    {
+      "id": "228-2500-420",
+      "color": "#0075c9",
+      "colorName": "blue",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/specialty-parts-1x-wide-spool.svg",
+      "evidence": "kit",
+      "regions": []
+    },
+    {
+      "id": "228-2500-129",
+      "color": "#d9d8d6",
+      "colorName": "white",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/connectors-double-triple-corner-connectors.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-2288",
+      "color": "#d9d8d6",
+      "colorName": "white",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/connectors-double-triple-corner-connectors.svg",
+      "evidence": "family",
+      "regions": [],
+      "variantOf": "228-2500-129"
+    },
+    {
+      "id": "228-2500-130",
+      "color": "#d9d8d6",
+      "colorName": "white",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/connectors-double-triple-corner-connectors.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-279",
+      "color": "#d9d8d6",
+      "colorName": "white",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/connectors-double-triple-corner-connectors.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-154",
+      "color": "#b0b3b2",
+      "colorName": "lightGray",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/beams-and-plates-beams.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-060",
+      "color": "#0075c9",
+      "colorName": "blue",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/pins-and-standoffs-1x1-connector-pin.svg",
+      "evidence": "kit",
+      "regions": []
+    },
+    {
+      "id": "228-2500-2260",
+      "color": "#0075c9",
+      "colorName": "blue",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/pins-and-standoffs-1x1-connector-pin.svg",
+      "evidence": "family",
+      "regions": [],
+      "variantOf": "228-2500-060"
+    },
+    {
+      "id": "228-2500-073",
+      "color": "#f26728",
+      "colorName": "orange",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/pins-and-standoffs-1x1-idler-pin.svg",
+      "evidence": "kit",
+      "regions": []
+    },
+    {
+      "id": "228-2500-510",
+      "color": "#d9d8d6",
+      "colorName": "white",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/specialty-parts-2x8-smooth-panel-inner.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-009",
+      "color": "#b0b3b2",
+      "colorName": "lightGray",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/beams-and-plates-beams.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-010",
+      "color": "#b0b3b2",
+      "colorName": "lightGray",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/beams-and-plates-beams.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-011",
+      "color": "#b0b3b2",
+      "colorName": "lightGray",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/beams-and-plates-beams.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-012",
+      "color": "#b0b3b2",
+      "colorName": "lightGray",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/beams-and-plates-beams.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-013",
+      "color": "#b0b3b2",
+      "colorName": "lightGray",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/beams-and-plates-beams.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-014",
+      "color": "#b0b3b2",
+      "colorName": "lightGray",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/beams-and-plates-beams.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-015",
+      "color": "#b0b3b2",
+      "colorName": "lightGray",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/beams-and-plates-beams.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-001",
+      "color": "#b0b3b2",
+      "colorName": "lightGray",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/beams-and-plates-beams.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-061",
+      "color": "#b3b4b2",
+      "colorName": "pinGray",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/pins-and-standoffs-1x2-connector-pin.svg",
+      "evidence": "kit",
+      "regions": []
+    },
+    {
+      "id": "228-2500-2261",
+      "color": "#b3b4b2",
+      "colorName": "pinGray",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/pins-and-standoffs-1x2-connector-pin.svg",
+      "evidence": "family",
+      "regions": [],
+      "variantOf": "228-2500-061"
+    },
+    {
+      "id": "228-2500-098",
+      "color": "#898d8d",
+      "colorName": "mediumGray",
+      "source": "https://www.pltw.org/hubfs/operations/equipment_supplies/eng_bill_of_materials/IED_VEX_IQ_Kit_228-7342_.pdf",
+      "evidence": "manufacturer",
+      "regions": [],
+      "sourcePage": 8
+    },
+    {
+      "id": "228-2500-1254",
+      "color": "#d9d8d6",
+      "colorName": "white",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/connectors-double-triple-corner-connectors.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-1255",
+      "color": "#d9d8d6",
+      "colorName": "white",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/connectors-double-triple-corner-connectors.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-511",
+      "color": "#d9d8d6",
+      "colorName": "white",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/specialty-parts-2x8-smooth-panel-inner.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-016",
+      "color": "#b0b3b2",
+      "colorName": "lightGray",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/beams-and-plates-beams.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-1454",
+      "color": "#0075c9",
+      "colorName": "blue",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/gears-gears-inner.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-002",
+      "color": "#b0b3b2",
+      "colorName": "lightGray",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/beams-and-plates-beams.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-1141",
+      "color": "#0075c9",
+      "colorName": "blue",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/beams-and-plates-lock-beams.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-141",
+      "color": "#0075c9",
+      "colorName": "blue",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/beams-and-plates-lock-beams.svg",
+      "evidence": "kit",
+      "regions": []
+    },
+    {
+      "id": "228-2500-003",
+      "color": "#b0b3b2",
+      "colorName": "lightGray",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/beams-and-plates-beams.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-246",
+      "color": "#0075c9",
+      "colorName": "blue",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/specialty-parts-1x4-crank-arm-with-23-tooth-gear-inner.svg",
+      "evidence": "kit",
+      "regions": []
+    },
+    {
+      "id": "228-2500-1548",
+      "color": "#0075c9",
+      "colorName": "blue",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/beams-and-plates-lock-beams.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-513",
+      "color": "#d9d8d6",
+      "colorName": "white",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/specialty-parts-2x8-smooth-panel-inner.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-004",
+      "color": "#b0b3b2",
+      "colorName": "lightGray",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/beams-and-plates-beams.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-1456",
+      "color": "#b0b3b2",
+      "colorName": "lightGray",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/beams-and-plates-beams.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-1110",
+      "color": "#b0b3b2",
+      "colorName": "lightGray",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/beams-and-plates-beams.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-005",
+      "color": "#b0b3b2",
+      "colorName": "lightGray",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/beams-and-plates-beams.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-1473",
+      "color": "#0075c9",
+      "colorName": "blue",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/gears-gears-inner.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-1472",
+      "color": "#0075c9",
+      "colorName": "blue",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/gears-gears-inner.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-323",
+      "color": "#b0b3b2",
+      "colorName": "lightGray",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/beams-and-plates-beams.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-006",
+      "color": "#b0b3b2",
+      "colorName": "lightGray",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/beams-and-plates-beams.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-007",
+      "color": "#b0b3b2",
+      "colorName": "lightGray",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/beams-and-plates-beams.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-008",
+      "color": "#b0b3b2",
+      "colorName": "lightGray",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/beams-and-plates-beams.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-2220",
+      "color": "#cdd0cd",
+      "colorName": "metal",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/shafts-pitch-capped-shafts-inner.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-164",
+      "color": "#0075c9",
+      "colorName": "blue",
+      "source": "https://www.pltw.org/hubfs/operations/equipment_supplies/eng_bill_of_materials/IED_VEX_IQ_Kit_228-7342_.pdf",
+      "evidence": "manufacturer",
+      "regions": [],
+      "sourcePage": 3
+    },
+    {
+      "id": "228-2500-267",
+      "color": "#cdd0cd",
+      "colorName": "metal",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/shafts-pitch-capped-shafts-inner.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-268",
+      "color": "#cdd0cd",
+      "colorName": "metal",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/shafts-pitch-capped-shafts-inner.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-227",
+      "color": "#0075c9",
+      "colorName": "blue",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/gears-gears-inner.svg",
+      "evidence": "kit",
+      "regions": []
+    },
+    {
+      "id": "228-2500-235",
+      "color": "#f26728",
+      "colorName": "orange",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/sprockets-and-chain-sprockets-inner.svg",
+      "evidence": "kit",
+      "regions": []
+    },
+    {
+      "id": "228-2500-269",
+      "color": "#cdd0cd",
+      "colorName": "metal",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/shafts-pitch-capped-shafts-inner.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-080",
+      "color": "#53575a",
+      "colorName": "darkGray",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/shafts-pitch-capped-plastic-shafts-inner.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-2219",
+      "color": "#cdd0cd",
+      "colorName": "metal",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/shafts-pitch-capped-shafts-inner.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-2234",
+      "color": "#cdd0cd",
+      "colorName": "metal",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/shafts-pitch-motor-shafts-inner.svg",
+      "evidence": "kit",
+      "regions": [
+        {
+          "match": "OVERMOLD",
+          "color": "#f26728"
+        }
+      ]
+    },
+    {
+      "id": "228-2500-078",
+      "color": "#f26728",
+      "colorName": "orange",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/shafts-pitch-plastic-motor-shafts-inner.svg",
+      "evidence": "kit",
+      "regions": []
+    },
+    {
+      "id": "228-2500-074",
+      "color": "#53575a",
+      "colorName": "darkGray",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/shafts-pitch-capped-plastic-shafts-inner.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-117",
+      "color": "#cdd0cd",
+      "colorName": "metal",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/shafts-pitch-capped-shafts-inner.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-067",
+      "color": "#25282a",
+      "colorName": "black",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/pins-and-standoffs-pitch-standoffs-inner.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-2271",
+      "color": "#25282a",
+      "colorName": "black",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/pins-and-standoffs-pitch-standoffs-inner.svg",
+      "evidence": "family",
+      "regions": [],
+      "variantOf": "228-2500-067"
+    },
+    {
+      "id": "228-2500-421",
+      "color": "#0075c9",
+      "colorName": "blue",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/specialty-parts-1x-wide-spool.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-133",
+      "color": "#d9d8d6",
+      "colorName": "white",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/connectors-double-triple-corner-connectors.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-128",
+      "color": "#d9d8d6",
+      "colorName": "white",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/connectors-double-triple-corner-connectors.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-135",
+      "color": "#d9d8d6",
+      "colorName": "white",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/connectors-double-triple-corner-connectors.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-283",
+      "color": "#d9d8d6",
+      "colorName": "white",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/connectors-double-triple-corner-connectors.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-132",
+      "color": "#d9d8d6",
+      "colorName": "white",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/connectors-double-triple-corner-connectors.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-131",
+      "color": "#d9d8d6",
+      "colorName": "white",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/connectors-double-triple-corner-connectors.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-134",
+      "color": "#d9d8d6",
+      "colorName": "white",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/connectors-double-triple-corner-connectors.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-2295",
+      "color": "#d9d8d6",
+      "colorName": "white",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/connectors-double-triple-corner-connectors.svg",
+      "evidence": "family",
+      "regions": [],
+      "variantOf": "228-2500-134"
+    },
+    {
+      "id": "228-2500-136",
+      "color": "#d9d8d6",
+      "colorName": "white",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/connectors-double-triple-corner-connectors.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-2296",
+      "color": "#d9d8d6",
+      "colorName": "white",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/connectors-double-triple-corner-connectors.svg",
+      "evidence": "family",
+      "regions": [],
+      "variantOf": "228-2500-136"
+    },
+    {
+      "id": "228-2500-137",
+      "color": "#d9d8d6",
+      "colorName": "white",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/connectors-double-triple-corner-connectors.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-1952",
+      "color": "#25282a",
+      "colorName": "black",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/specialty-parts-intake-flaps-inner.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-1957",
+      "color": "#25282a",
+      "colorName": "black",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/specialty-parts-intake-flaps-inner.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-372",
+      "color": "#d9d8d6",
+      "colorName": "white",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/connectors-double-triple-corner-connectors.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-371",
+      "color": "#d9d8d6",
+      "colorName": "white",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/connectors-double-triple-corner-connectors.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-1950",
+      "color": "#d9d8d6",
+      "colorName": "white",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/wheels-2x-wide-48.5mm-diameter-hub.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-1951",
+      "color": "#25282a",
+      "colorName": "black",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/specialty-parts-intake-flaps-inner.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-1268",
+      "color": "#98ca3d",
+      "colorName": "green",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/beams-and-plates-angle-beams-2.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-1953",
+      "color": "#d9d8d6",
+      "colorName": "white",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/wheels-2x-wide-48.5mm-diameter-hub.svg",
+      "evidence": "kit",
+      "regions": []
+    },
+    {
+      "id": "228-2500-1956",
+      "color": "#25282a",
+      "colorName": "black",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/specialty-parts-intake-flaps-inner.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-1958",
+      "color": "#25282a",
+      "colorName": "black",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/specialty-parts-intake-flaps-inner.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-368",
+      "color": "#d9d8d6",
+      "colorName": "white",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/connectors-double-triple-corner-connectors.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-1955",
+      "color": "#25282a",
+      "colorName": "black",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/specialty-parts-intake-flaps-inner.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-1954",
+      "color": "#25282a",
+      "colorName": "black",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/specialty-parts-intake-flaps-inner.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-025",
+      "color": "#b0b3b2",
+      "colorName": "lightGray",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/beams-and-plates-beams.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-206",
+      "color": "#b0b3b2",
+      "colorName": "lightGray",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/beams-and-plates-beams.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-026",
+      "color": "#b0b3b2",
+      "colorName": "lightGray",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/beams-and-plates-beams.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-027",
+      "color": "#b0b3b2",
+      "colorName": "lightGray",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/beams-and-plates-beams.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-028",
+      "color": "#b0b3b2",
+      "colorName": "lightGray",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/beams-and-plates-beams.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-029",
+      "color": "#b0b3b2",
+      "colorName": "lightGray",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/beams-and-plates-beams.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-1485",
+      "color": "#f26728",
+      "colorName": "orange",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/beams-and-plates-angle-beams-2.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-1486",
+      "color": "#0075c9",
+      "colorName": "blue",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/beams-and-plates-angle-beams-2.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-017",
+      "color": "#b0b3b2",
+      "colorName": "lightGray",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/beams-and-plates-beams.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-1140",
+      "color": "#0075c9",
+      "colorName": "blue",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/beams-and-plates-lock-beams.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-140",
+      "color": "#0075c9",
+      "colorName": "blue",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/beams-and-plates-lock-beams.svg",
+      "evidence": "kit",
+      "regions": []
+    },
+    {
+      "id": "228-2500-1925",
+      "color": "#0075c9",
+      "colorName": "blue",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/wheels-2x2-center-offset-round-lock-beam.svg",
+      "evidence": "kit",
+      "regions": []
+    },
+    {
+      "id": "228-2500-062",
+      "color": "#53575a",
+      "colorName": "darkGray",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/pins-and-standoffs-2x2-connector-pin.svg",
+      "evidence": "kit",
+      "regions": []
+    },
+    {
+      "id": "228-2500-030",
+      "color": "#b0b3b2",
+      "colorName": "lightGray",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/beams-and-plates-beams.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-018",
+      "color": "#b0b3b2",
+      "colorName": "lightGray",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/beams-and-plates-beams.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-1189",
+      "color": "#0075c9",
+      "colorName": "blue",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/beams-and-plates-angle-beams.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-145",
+      "color": "#0075c9",
+      "colorName": "blue",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/beams-and-plates-angle-beams-2.svg",
+      "evidence": "kit",
+      "regions": []
+    },
+    {
+      "id": "228-2500-221",
+      "color": "#25282a",
+      "colorName": "black",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/specialty-parts-intake-flaps-inner.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-019",
+      "color": "#b0b3b2",
+      "colorName": "lightGray",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/beams-and-plates-beams.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-520",
+      "color": "#d9d8d6",
+      "colorName": "white",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/specialty-parts-2x8-smooth-panel-inner.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-222",
+      "color": "#25282a",
+      "colorName": "black",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/specialty-parts-intake-flaps-inner.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-1199",
+      "color": "#98ca3d",
+      "colorName": "green",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/beams-and-plates-angle-beams-2.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-020",
+      "color": "#b0b3b2",
+      "colorName": "lightGray",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/beams-and-plates-beams.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-223",
+      "color": "#25282a",
+      "colorName": "black",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/specialty-parts-intake-flaps-inner.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-021",
+      "color": "#b0b3b2",
+      "colorName": "lightGray",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/beams-and-plates-beams.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-322",
+      "color": "#b0b3b2",
+      "colorName": "lightGray",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/beams-and-plates-beams.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-224",
+      "color": "#25282a",
+      "colorName": "black",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/specialty-parts-intake-flaps-inner.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-1556",
+      "color": "#f26728",
+      "colorName": "orange",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/beams-and-plates-angle-beams-2.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-022",
+      "color": "#b0b3b2",
+      "colorName": "lightGray",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/beams-and-plates-beams.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-023",
+      "color": "#b0b3b2",
+      "colorName": "lightGray",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/beams-and-plates-beams.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-1445",
+      "color": "#53575a",
+      "colorName": "darkGray",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/beams-and-plates-plates.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-524",
+      "color": "#d9d8d6",
+      "colorName": "white",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/specialty-parts-2x8-smooth-panel-inner.svg",
+      "evidence": "kit",
+      "regions": []
+    },
+    {
+      "id": "228-2500-024",
+      "color": "#b0b3b2",
+      "colorName": "lightGray",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/beams-and-plates-beams.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-165",
+      "color": "#0075c9",
+      "colorName": "blue",
+      "source": "https://www.pltw.org/hubfs/operations/equipment_supplies/eng_bill_of_materials/IED_VEX_IQ_Kit_228-7342_.pdf",
+      "evidence": "manufacturer",
+      "regions": [],
+      "sourcePage": 3
+    },
+    {
+      "id": "228-2500-236",
+      "color": "#f26728",
+      "colorName": "orange",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/sprockets-and-chain-sprockets-inner.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-218",
+      "color": "#0075c9",
+      "colorName": "blue",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/gears-gears-inner.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-214",
+      "color": "#0075c9",
+      "colorName": "blue",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/gears-gears-inner.svg",
+      "evidence": "kit",
+      "regions": []
+    },
+    {
+      "id": "228-2500-451",
+      "color": "#0075c9",
+      "colorName": "blue",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/gears-gears-inner.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-081",
+      "color": "#898d8d",
+      "colorName": "mediumGray",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/shafts-pitch-capped-plastic-shafts-inner.svg",
+      "evidence": "kit",
+      "regions": []
+    },
+    {
+      "id": "228-2500-2221",
+      "color": "#cdd0cd",
+      "colorName": "metal",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/shafts-pitch-capped-shafts-inner.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-2236",
+      "color": "#cdd0cd",
+      "colorName": "metal",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/shafts-pitch-motor-shafts-inner.svg",
+      "evidence": "kit",
+      "regions": [
+        {
+          "match": "OVERMOLD",
+          "color": "#0075c9"
+        }
+      ]
+    },
+    {
+      "id": "228-2500-094",
+      "color": "#0075c9",
+      "colorName": "blue",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/shafts-pitch-plastic-motor-shafts-inner.svg",
+      "evidence": "kit",
+      "regions": []
+    },
+    {
+      "id": "228-2500-075",
+      "color": "#53575a",
+      "colorName": "darkGray",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/shafts-pitch-capped-plastic-shafts-inner.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-119",
+      "color": "#cdd0cd",
+      "colorName": "metal",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/shafts-pitch-capped-shafts-inner.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-069",
+      "color": "#25282a",
+      "colorName": "black",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/pins-and-standoffs-pitch-standoffs-inner.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-036",
+      "color": "#53575a",
+      "colorName": "darkGray",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/beams-and-plates-plates.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-1600",
+      "color": "#53575a",
+      "colorName": "darkGray",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/beams-and-plates-plates.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-037",
+      "color": "#53575a",
+      "colorName": "darkGray",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/beams-and-plates-plates.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-038",
+      "color": "#53575a",
+      "colorName": "darkGray",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/beams-and-plates-plates.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-147",
+      "color": "#f26728",
+      "colorName": "orange",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/beams-and-plates-angle-beams-2.svg",
+      "evidence": "kit",
+      "regions": []
+    },
+    {
+      "id": "228-2500-148",
+      "color": "#0075c9",
+      "colorName": "blue",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/beams-and-plates-angle-beams-2.svg",
+      "evidence": "kit",
+      "regions": []
+    },
+    {
+      "id": "228-2500-149",
+      "color": "#98ca3d",
+      "colorName": "green",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/beams-and-plates-angle-beams-2.svg",
+      "evidence": "kit",
+      "regions": []
+    },
+    {
+      "id": "228-2500-089",
+      "color": "#53575a",
+      "colorName": "darkGray",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/pins-and-standoffs-2x2-connector-pin.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-031",
+      "color": "#53575a",
+      "colorName": "darkGray",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/beams-and-plates-plates.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-156",
+      "color": "#53575a",
+      "colorName": "darkGray",
+      "source": "https://www.pltw.org/hubfs/operations/equipment_supplies/eng_bill_of_materials/IED_VEX_IQ_Kit_228-7342_.pdf",
+      "evidence": "manufacturer",
+      "regions": [],
+      "sourcePage": 8
+    },
+    {
+      "id": "228-2500-146",
+      "color": "#0075c9",
+      "colorName": "blue",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/beams-and-plates-angle-beams.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-1159",
+      "color": "#0075c9",
+      "colorName": "blue",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/beams-and-plates-lock-beams.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-161",
+      "color": "#0075c9",
+      "colorName": "blue",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/beams-and-plates-lock-beams.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-032",
+      "color": "#53575a",
+      "colorName": "darkGray",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/beams-and-plates-plates.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-144",
+      "color": "#0075c9",
+      "colorName": "blue",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/beams-and-plates-angle-beams.svg",
+      "evidence": "kit",
+      "regions": []
+    },
+    {
+      "id": "228-2500-150",
+      "color": "#0075c9",
+      "colorName": "blue",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/beams-and-plates-angle-beams.svg",
+      "evidence": "kit",
+      "regions": []
+    },
+    {
+      "id": "228-2500-1245",
+      "color": "#53575a",
+      "colorName": "darkGray",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/beams-and-plates-plates.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-034",
+      "color": "#53575a",
+      "colorName": "darkGray",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/beams-and-plates-plates.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-035",
+      "color": "#53575a",
+      "colorName": "darkGray",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/beams-and-plates-plates.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-2224",
+      "color": "#cdd0cd",
+      "colorName": "metal",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/shafts-pitch-capped-shafts-inner.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-237",
+      "color": "#f26728",
+      "colorName": "orange",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/sprockets-and-chain-sprockets-inner.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-166",
+      "color": "#0075c9",
+      "colorName": "blue",
+      "source": "https://www.pltw.org/hubfs/operations/equipment_supplies/eng_bill_of_materials/IED_VEX_IQ_Kit_228-7342_.pdf",
+      "evidence": "manufacturer",
+      "regions": [],
+      "sourcePage": 3
+    },
+    {
+      "id": "228-2500-175",
+      "color": "#0075c9",
+      "colorName": "blue",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/pins-and-standoffs-standoff-connectors.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-228",
+      "color": "#0075c9",
+      "colorName": "blue",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/gears-gears-inner.svg",
+      "evidence": "kit",
+      "regions": []
+    },
+    {
+      "id": "228-2500-082",
+      "color": "#53575a",
+      "colorName": "darkGray",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/shafts-pitch-capped-plastic-shafts-inner.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-2223",
+      "color": "#cdd0cd",
+      "colorName": "metal",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/shafts-pitch-capped-shafts-inner.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-2238",
+      "color": "#cdd0cd",
+      "colorName": "metal",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/shafts-pitch-motor-shafts-inner.svg",
+      "evidence": "kit",
+      "regions": [
+        {
+          "match": "OVERMOLD",
+          "color": "#98ca3d"
+        }
+      ]
+    },
+    {
+      "id": "228-2500-079",
+      "color": "#98ca3d",
+      "colorName": "green",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/shafts-pitch-plastic-motor-shafts-inner.svg",
+      "evidence": "kit",
+      "regions": []
+    },
+    {
+      "id": "228-2500-076",
+      "color": "#53575a",
+      "colorName": "darkGray",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/shafts-pitch-capped-plastic-shafts-inner.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-120",
+      "color": "#cdd0cd",
+      "colorName": "metal",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/shafts-pitch-capped-shafts-inner.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-070",
+      "color": "#25282a",
+      "colorName": "black",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/pins-and-standoffs-pitch-standoffs-inner.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-044",
+      "color": "#53575a",
+      "colorName": "darkGray",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/beams-and-plates-plates.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-045",
+      "color": "#53575a",
+      "colorName": "darkGray",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/beams-and-plates-plates.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-046",
+      "color": "#53575a",
+      "colorName": "darkGray",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/beams-and-plates-plates.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-151",
+      "color": "#0075c9",
+      "colorName": "blue",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/beams-and-plates-angle-beams.svg",
+      "evidence": "kit",
+      "regions": []
+    },
+    {
+      "id": "228-2500-040",
+      "color": "#53575a",
+      "colorName": "darkGray",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/beams-and-plates-plates.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-042",
+      "color": "#53575a",
+      "colorName": "darkGray",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/beams-and-plates-plates.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-043",
+      "color": "#53575a",
+      "colorName": "darkGray",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/beams-and-plates-plates.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-083",
+      "color": "#53575a",
+      "colorName": "darkGray",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/shafts-pitch-capped-plastic-shafts-inner.svg",
+      "evidence": "kit",
+      "regions": []
+    },
+    {
+      "id": "228-2500-2225",
+      "color": "#cdd0cd",
+      "colorName": "metal",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/shafts-pitch-capped-shafts-inner.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-077",
+      "color": "#53575a",
+      "colorName": "darkGray",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/shafts-pitch-capped-plastic-shafts-inner.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-121",
+      "color": "#cdd0cd",
+      "colorName": "metal",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/shafts-pitch-capped-shafts-inner.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-1601",
+      "color": "#0075c9",
+      "colorName": "blue",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/beams-and-plates-angle-beams.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-152",
+      "color": "#0075c9",
+      "colorName": "blue",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/beams-and-plates-angle-beams.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-215",
+      "color": "#0075c9",
+      "colorName": "blue",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/gears-gears-inner.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-2226",
+      "color": "#cdd0cd",
+      "colorName": "metal",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/shafts-pitch-capped-shafts-inner.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-122",
+      "color": "#cdd0cd",
+      "colorName": "metal",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/shafts-pitch-capped-shafts-inner.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-072",
+      "color": "#25282a",
+      "colorName": "black",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/pins-and-standoffs-pitch-standoffs-inner.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-051",
+      "color": "#53575a",
+      "colorName": "darkGray",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/beams-and-plates-plates.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-478",
+      "color": "#0075c9",
+      "colorName": "blue",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/beams-and-plates-angle-beams.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-2227",
+      "color": "#cdd0cd",
+      "colorName": "metal",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/shafts-pitch-capped-shafts-inner.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-123",
+      "color": "#cdd0cd",
+      "colorName": "metal",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/shafts-pitch-capped-shafts-inner.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-1117",
+      "color": "#53575a",
+      "colorName": "darkGray",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/beams-and-plates-plates.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-232",
+      "color": "#f26728",
+      "colorName": "orange",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/sprockets-and-chain-sprockets-inner.svg",
+      "evidence": "kit",
+      "regions": []
+    },
+    {
+      "id": "228-2500-2228",
+      "color": "#cdd0cd",
+      "colorName": "metal",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/shafts-pitch-capped-shafts-inner.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-124",
+      "color": "#cdd0cd",
+      "colorName": "metal",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/shafts-pitch-capped-shafts-inner.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-1061",
+      "color": "#25282a",
+      "colorName": "black",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/pins-and-standoffs-pitch-standoffs-inner.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-178",
+      "color": "#0075c9",
+      "colorName": "blue",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/pins-and-standoffs-standoff-connectors.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-2229",
+      "color": "#cdd0cd",
+      "colorName": "metal",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/shafts-pitch-capped-shafts-inner.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-260",
+      "color": "#cdd0cd",
+      "colorName": "metal",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/shafts-pitch-capped-shafts-inner.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2677",
+      "color": "#53575a",
+      "colorName": "darkGray",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/electronics-bumper-sensor.svg",
+      "evidence": "kit",
+      "regions": [
+        {
+          "match": "228-2677-002",
+          "color": "#c8c8c8"
+        }
+      ]
+    },
+    {
+      "id": "228-2500-230",
+      "color": "#53575a",
+      "colorName": "darkGray",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/sprockets-and-chain-chain-link.svg",
+      "evidence": "kit",
+      "regions": []
+    },
+    {
+      "id": "228-2500-270",
+      "color": "#d9d8d6",
+      "colorName": "white",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/connectors-double-triple-corner-connectors.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-272",
+      "color": "#d9d8d6",
+      "colorName": "white",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/connectors-double-triple-corner-connectors.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-271",
+      "color": "#d9d8d6",
+      "colorName": "white",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/connectors-double-triple-corner-connectors.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-274",
+      "color": "#d9d8d6",
+      "colorName": "white",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/connectors-double-triple-corner-connectors.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-220",
+      "color": "#d9d8d6",
+      "colorName": "white",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/connectors-double-triple-corner-connectors.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-277",
+      "color": "#d9d8d6",
+      "colorName": "white",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/connectors-double-triple-corner-connectors.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-172",
+      "color": "#0075c9",
+      "colorName": "blue",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/pins-and-standoffs-standoff-connectors.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-126",
+      "color": "#d9d8d6",
+      "colorName": "white",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/connectors-double-triple-corner-connectors.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-1211",
+      "color": "#b0b3b2",
+      "colorName": "lightGray",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/wheels-wheel-hub.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-211",
+      "color": "#b0b3b2",
+      "colorName": "lightGray",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/wheels-wheel-hub.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-217",
+      "color": "#0075c9",
+      "colorName": "blue",
+      "source": "https://www.pltw.org/hubfs/operations/equipment_supplies/eng_bill_of_materials/IED_VEX_IQ_Kit_228-7342_.pdf",
+      "evidence": "manufacturer",
+      "regions": [],
+      "sourcePage": 1
+    },
+    {
+      "id": "228-2500-242",
+      "color": "#25282a",
+      "colorName": "black",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/specialty-parts-intake-flaps-inner.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-241",
+      "color": "#25282a",
+      "colorName": "black",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/specialty-parts-intake-flaps-inner.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-170",
+      "color": "#0075c9",
+      "colorName": "blue",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/pins-and-standoffs-standoff-connectors.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-1258",
+      "color": "#d9d8d6",
+      "colorName": "white",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/connectors-double-triple-corner-connectors.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-216",
+      "color": "#0075c9",
+      "colorName": "blue",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/gears-gears-inner.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-157",
+      "color": "#0075c9",
+      "colorName": "blue",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/specialty-parts-rubber-band-anchor.svg",
+      "evidence": "kit",
+      "regions": []
+    },
+    {
+      "id": "228-2500-143",
+      "color": "#3e3e3e",
+      "colorName": "rubber",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/shafts-rubber-shaft-collar.svg",
+      "evidence": "kit",
+      "regions": []
+    },
+    {
+      "id": "228-2500-168",
+      "color": "#3e3e3e",
+      "colorName": "rubber",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/shafts-rubber-shaft-collar.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-243",
+      "color": "#0075c9",
+      "colorName": "blue",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/gears-gears-inner.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-125",
+      "color": "#25282a",
+      "colorName": "black",
+      "source": "https://www.pltw.org/hubfs/operations/equipment_supplies/eng_bill_of_materials/IED_VEX_IQ_Kit_228-7342_.pdf",
+      "evidence": "manufacturer",
+      "regions": [],
+      "sourcePage": 4
+    },
+    {
+      "id": "228-2500-240",
+      "color": "#25282a",
+      "colorName": "black",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/specialty-parts-intake-flaps-inner.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-468",
+      "color": "#f26728",
+      "colorName": "orange",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/specialty-parts-silicone-rubber-band-inner.svg",
+      "evidence": "kit",
+      "regions": []
+    },
+    {
+      "id": "228-2500-127",
+      "color": "#d9d8d6",
+      "colorName": "white",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/connectors-double-triple-corner-connectors.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-1208",
+      "color": "#b3b4b2",
+      "colorName": "pinGray",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/wheels-wheel-hub.svg",
+      "evidence": "kit",
+      "regions": []
+    },
+    {
+      "id": "228-2500-208",
+      "color": "#b3b4b2",
+      "colorName": "pinGray",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/wheels-wheel-hub.svg",
+      "evidence": "kit",
+      "regions": []
+    },
+    {
+      "id": "228-2560",
+      "color": "#53575a",
+      "colorName": "darkGray",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/electronics-smart-motor.svg",
+      "evidence": "kit",
+      "regions": [
+        {
+          "match": "228-2560-002",
+          "color": "#b3b4b2"
+        },
+        {
+          "match": "228-2540-901",
+          "color": "#25282a"
+        }
+      ]
+    },
+    {
+      "id": "228-2500-171",
+      "color": "#0075c9",
+      "colorName": "blue",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/pins-and-standoffs-standoff-connectors.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-207",
+      "color": "#25282a",
+      "colorName": "black",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/specialty-parts-intake-flaps-inner.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-210",
+      "color": "#25282a",
+      "colorName": "black",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/specialty-parts-intake-flaps-inner.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-209",
+      "color": "#25282a",
+      "colorName": "black",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/specialty-parts-intake-flaps-inner.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-212",
+      "color": "#25282a",
+      "colorName": "black",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/specialty-parts-intake-flaps-inner.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-3010",
+      "color": "#53575a",
+      "colorName": "darkGray",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/electronics-touch-led.svg",
+      "evidence": "kit",
+      "regions": [
+        {
+          "match": "Middle_touch_LED",
+          "color": "#c8c8c8"
+        },
+        {
+          "match": "Middle touch LED",
+          "color": "#c8c8c8"
+        }
+      ]
+    },
+    {
+      "id": "228-2500-239",
+      "color": "#25282a",
+      "colorName": "black",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/specialty-parts-intake-flaps-inner.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-1251",
+      "color": "#d9d8d6",
+      "colorName": "white",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/connectors-double-triple-corner-connectors.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-1250",
+      "color": "#d9d8d6",
+      "colorName": "white",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/connectors-double-triple-corner-connectors.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-1253",
+      "color": "#d9d8d6",
+      "colorName": "white",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/connectors-double-triple-corner-connectors.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-1109",
+      "color": "#0075c9",
+      "colorName": "blue",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/pins-and-standoffs-standoff-connectors.svg",
+      "evidence": "family",
+      "regions": []
+    },
+    {
+      "id": "228-2500-112",
+      "color": "#898d8d",
+      "colorName": "mediumGray",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/shafts-washer.svg",
+      "evidence": "kit",
+      "regions": []
+    },
+    {
+      "id": "228-2500-219",
+      "color": "#0075c9",
+      "colorName": "blue",
+      "source": "https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/gears-gears-inner.svg",
+      "evidence": "family",
+      "regions": []
+    }
+  ]
+}

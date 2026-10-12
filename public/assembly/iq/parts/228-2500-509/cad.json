@@ -1,0 +1,158 @@
+{
+  "id": "228-2500-509",
+  "sku": "228-2500-509",
+  "name": "2x4 25mm Ball Shooter Plate (Strong)",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\2x4 25mm Ball Shooter Plate (Strong) (228-2500-509).step",
+  "sourceFile": "2x4 25mm Ball Shooter Plate (Strong) (228-2500-509).step",
+  "sourceHash": "fc1f9278a1e467e41eb76ff1e525827f7c00a076bbecf5c39b0a1f77c1c9d77d",
+  "bounds": {
+    "min": [
+      -25.25747,
+      -3.0738,
+      -14.90932
+    ],
+    "max": [
+      25.25747,
+      11.16122,
+      14.90932
+    ]
+  },
+  "references": [
+    {
+      "point": [
+        -19.05,
+        -2.286,
+        -6.35
+      ],
+      "normal": [
+        -0.0,
+        -1.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "1"
+    },
+    {
+      "point": [
+        -19.05,
+        -2.286,
+        6.35
+      ],
+      "normal": [
+        -0.0,
+        -1.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "2"
+    },
+    {
+      "point": [
+        -19.05,
+        2.286,
+        -6.35
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "3"
+    },
+    {
+      "point": [
+        -19.05,
+        2.286,
+        6.35
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "4"
+    },
+    {
+      "point": [
+        19.05,
+        -2.286,
+        -6.35
+      ],
+      "normal": [
+        -0.0,
+        -1.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "5"
+    },
+    {
+      "point": [
+        19.05,
+        -2.286,
+        6.35
+      ],
+      "normal": [
+        -0.0,
+        -1.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "6"
+    },
+    {
+      "point": [
+        19.05,
+        2.286,
+        -6.35
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "7"
+    },
+    {
+      "point": [
+        19.05,
+        2.286,
+        6.35
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "8"
+    }
+  ],
+  "status": "ok",
+  "bytes": 316744,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "body"
+}

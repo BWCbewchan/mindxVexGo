@@ -1,0 +1,94 @@
+{
+  "id": "228-2500-1702",
+  "sku": "228-2500-1702",
+  "name": "2x2, Extended 0.5 x 1x Pitch Sloped Panel",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\2x2, Extended 0.5 x 1x Pitch Sloped Panel (228-2500-1702).step",
+  "sourceFile": "2x2, Extended 0.5 x 1x Pitch Sloped Panel (228-2500-1702).step",
+  "sourceHash": "1f052e383e0a72acf546f5e0a40a26bae85035d17469863893dd2d6712d4167e",
+  "bounds": {
+    "min": [
+      -12.5528,
+      -6.20241,
+      -3.07617
+    ],
+    "max": [
+      12.55241,
+      18.9028,
+      3.0528
+    ]
+  },
+  "references": [
+    {
+      "point": [
+        -6.35,
+        0.0,
+        -2.286
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "1"
+    },
+    {
+      "point": [
+        -6.35,
+        0.0,
+        2.286
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "2"
+    },
+    {
+      "point": [
+        6.35,
+        0.0,
+        -2.286
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "3"
+    },
+    {
+      "point": [
+        6.35,
+        0.0,
+        2.286
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "4"
+    }
+  ],
+  "status": "ok",
+  "bytes": 121168,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "accessory"
+}

@@ -1,0 +1,158 @@
+{
+  "id": "228-2500-290",
+  "sku": "228-2500-290",
+  "name": "Blank Year Plate",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\Blank Year Plate (228-2500-290).step",
+  "sourceFile": "Blank Year Plate (228-2500-290).step",
+  "sourceHash": "9cbf0e9206210e3de589ada3d6e6bdfcd4b1a2b2dac200217e9bbfcd032e8b0e",
+  "bounds": {
+    "min": [
+      -12.55747,
+      -3.05747,
+      -31.60747
+    ],
+    "max": [
+      12.55747,
+      3.05747,
+      31.60747
+    ]
+  },
+  "references": [
+    {
+      "point": [
+        -6.35,
+        -2.286,
+        -25.4
+      ],
+      "normal": [
+        -0.0,
+        -1.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "1"
+    },
+    {
+      "point": [
+        -6.35,
+        -2.286,
+        25.4
+      ],
+      "normal": [
+        -0.0,
+        -1.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "2"
+    },
+    {
+      "point": [
+        -6.35,
+        2.286,
+        -25.4
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "3"
+    },
+    {
+      "point": [
+        -6.35,
+        2.286,
+        25.4
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "4"
+    },
+    {
+      "point": [
+        6.35,
+        -2.286,
+        -25.4
+      ],
+      "normal": [
+        -0.0,
+        -1.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "5"
+    },
+    {
+      "point": [
+        6.35,
+        -2.286,
+        25.4
+      ],
+      "normal": [
+        -0.0,
+        -1.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "6"
+    },
+    {
+      "point": [
+        6.35,
+        2.286,
+        -25.4
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "7"
+    },
+    {
+      "point": [
+        6.35,
+        2.286,
+        25.4
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "8"
+    }
+  ],
+  "status": "ok",
+  "bytes": 218848,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "body"
+}

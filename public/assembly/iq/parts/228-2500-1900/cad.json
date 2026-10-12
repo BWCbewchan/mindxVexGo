@@ -1,0 +1,94 @@
+{
+  "id": "228-2500-1900",
+  "sku": "228-2500-1900",
+  "name": "1.5x3 Oblong Satellite Dish",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\1.5x3 Oblong Satellite Dish (228-2500-1900).step",
+  "sourceFile": "1.5x3 Oblong Satellite Dish (228-2500-1900).step",
+  "sourceHash": "1a67882c59cc2ed74b28df79f89063a039d191e20e5e1298a2034b045bddcfea",
+  "bounds": {
+    "min": [
+      -9.49553,
+      -19.02053,
+      -5.61539
+    ],
+    "max": [
+      9.49553,
+      19.02053,
+      3.02563
+    ]
+  },
+  "references": [
+    {
+      "point": [
+        0.0,
+        0.0,
+        -5.461
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        -1.0
+      ],
+      "radius": 3.225,
+      "depth": 3.175,
+      "kind": "hole",
+      "id": "1"
+    },
+    {
+      "point": [
+        0.0,
+        0.0,
+        -2.286
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "2"
+    },
+    {
+      "point": [
+        0.0,
+        0.0,
+        -2.286
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 3.225,
+      "depth": 3.175,
+      "kind": "hole",
+      "id": "3"
+    },
+    {
+      "point": [
+        0.0,
+        0.0,
+        2.286
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "4"
+    }
+  ],
+  "status": "ok",
+  "bytes": 261188,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "accessory"
+}

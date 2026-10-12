@@ -1,0 +1,94 @@
+{
+  "id": "228-2500-1906",
+  "sku": "228-2500-1906",
+  "name": "4x Pitch Antenna",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\4x Pitch Antenna (228-2500-1906).step",
+  "sourceFile": "4x Pitch Antenna (228-2500-1906).step",
+  "sourceHash": "d08f3f3eeeba72972a4a4834b87aef8579ebff24e956ec734dae0f1e23fe264b",
+  "bounds": {
+    "min": [
+      -3.21812,
+      -50.61006,
+      -3.21812
+    ],
+    "max": [
+      3.2119,
+      6.14268,
+      3.21812
+    ]
+  },
+  "references": [
+    {
+      "point": [
+        0.0,
+        -2.18781,
+        -0.0
+      ],
+      "normal": [
+        0.0,
+        -1.0,
+        -0.0
+      ],
+      "radius": 3.175,
+      "depth": 3.0768,
+      "kind": "pin",
+      "id": "1"
+    },
+    {
+      "point": [
+        0.0,
+        0.889,
+        -0.0
+      ],
+      "normal": [
+        -0.0,
+        -1.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.55,
+      "kind": "pin",
+      "id": "2"
+    },
+    {
+      "point": [
+        0.0,
+        0.889,
+        -0.0
+      ],
+      "normal": [
+        -0.0,
+        1.0,
+        0.0
+      ],
+      "radius": 3.175,
+      "depth": 3.0768,
+      "kind": "pin",
+      "id": "3"
+    },
+    {
+      "point": [
+        0.0,
+        5.439,
+        -0.0
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.55,
+      "kind": "pin",
+      "id": "4"
+    }
+  ],
+  "status": "ok",
+  "bytes": 135856,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "accessory"
+}

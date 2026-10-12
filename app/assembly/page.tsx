@@ -1,5 +1,5 @@
-import AssemblyClient from './assembly-client';
-export const metadata = { title: 'VEX GO Assembly · mindX' };
+import AssemblyHome from './assembly-home';
+export const metadata = { title: 'Assembly Studio · Dự án của bạn · mindX' };
 export default function AssemblyPage() {
- return <AssemblyClient/>;
+ return <AssemblyHome/>;
 }

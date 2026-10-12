@@ -1,0 +1,530 @@
+{
+  "id": "228-2500-319",
+  "sku": "228-2500-319",
+  "name": "Ant Wheel - 86mm",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\Ant Wheel - 86mm (228-2500-319).step",
+  "sourceFile": "Ant Wheel - 86mm (228-2500-319).step",
+  "sourceHash": "9169138b2c2ced4f4861151927aaa72a75f0fdcd259165d1ae733b37a3f71be0",
+  "bounds": {
+    "min": [
+      -3.05422,
+      -43.04093,
+      -41.57574
+    ],
+    "max": [
+      13.76541,
+      43.04093,
+      41.57574
+    ]
+  },
+  "references": [
+    {
+      "point": [
+        -2.285,
+        -6.35,
+        -6.35
+      ],
+      "normal": [
+        -1.0,
+        -0.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.57,
+      "kind": "hole",
+      "id": "1"
+    },
+    {
+      "point": [
+        -2.285,
+        -6.35,
+        6.35
+      ],
+      "normal": [
+        -1.0,
+        -0.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.57,
+      "kind": "hole",
+      "id": "2"
+    },
+    {
+      "point": [
+        -2.285,
+        6.35,
+        -6.35
+      ],
+      "normal": [
+        -1.0,
+        -0.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.57,
+      "kind": "hole",
+      "id": "3"
+    },
+    {
+      "point": [
+        -2.285,
+        6.35,
+        6.35
+      ],
+      "normal": [
+        -1.0,
+        -0.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.57,
+      "kind": "hole",
+      "id": "4"
+    },
+    {
+      "point": [
+        2.285,
+        -6.35,
+        -6.35
+      ],
+      "normal": [
+        1.0,
+        0.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.57,
+      "kind": "hole",
+      "id": "5"
+    },
+    {
+      "point": [
+        2.285,
+        -6.35,
+        6.35
+      ],
+      "normal": [
+        1.0,
+        0.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.57,
+      "kind": "hole",
+      "id": "6"
+    },
+    {
+      "point": [
+        2.285,
+        6.35,
+        -6.35
+      ],
+      "normal": [
+        1.0,
+        0.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.57,
+      "kind": "hole",
+      "id": "7"
+    },
+    {
+      "point": [
+        2.285,
+        6.35,
+        6.35
+      ],
+      "normal": [
+        1.0,
+        0.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.57,
+      "kind": "hole",
+      "id": "8"
+    },
+    {
+      "point": [
+        -3.05,
+        0.0,
+        -0.0
+      ],
+      "normal": [
+        -1.0,
+        -0.0,
+        0.0
+      ],
+      "radius": 3.5,
+      "depth": 2.086,
+      "kind": "pin",
+      "id": "9"
+    },
+    {
+      "point": [
+        -2.285,
+        -6.35,
+        -6.35
+      ],
+      "normal": [
+        -1.0,
+        -0.0,
+        0.0
+      ],
+      "radius": 3.1,
+      "depth": 1.321,
+      "kind": "pin",
+      "id": "10"
+    },
+    {
+      "point": [
+        -2.285,
+        -6.35,
+        6.35
+      ],
+      "normal": [
+        -1.0,
+        -0.0,
+        0.0
+      ],
+      "radius": 3.1,
+      "depth": 1.321,
+      "kind": "pin",
+      "id": "11"
+    },
+    {
+      "point": [
+        -2.285,
+        6.35,
+        -6.35
+      ],
+      "normal": [
+        -1.0,
+        -0.0,
+        0.0
+      ],
+      "radius": 3.1,
+      "depth": 1.321,
+      "kind": "pin",
+      "id": "12"
+    },
+    {
+      "point": [
+        -2.285,
+        6.35,
+        6.35
+      ],
+      "normal": [
+        -1.0,
+        -0.0,
+        0.0
+      ],
+      "radius": 3.1,
+      "depth": 1.321,
+      "kind": "pin",
+      "id": "13"
+    },
+    {
+      "point": [
+        -0.964,
+        -6.35,
+        -6.35
+      ],
+      "normal": [
+        1.0,
+        0.0,
+        -0.0
+      ],
+      "radius": 3.1,
+      "depth": 1.321,
+      "kind": "pin",
+      "id": "14"
+    },
+    {
+      "point": [
+        -0.964,
+        -6.35,
+        6.35
+      ],
+      "normal": [
+        1.0,
+        0.0,
+        -0.0
+      ],
+      "radius": 3.1,
+      "depth": 1.321,
+      "kind": "pin",
+      "id": "15"
+    },
+    {
+      "point": [
+        -0.964,
+        0.0,
+        -0.0
+      ],
+      "normal": [
+        1.0,
+        0.0,
+        -0.0
+      ],
+      "radius": 3.5,
+      "depth": 2.086,
+      "kind": "pin",
+      "id": "16"
+    },
+    {
+      "point": [
+        -0.964,
+        6.35,
+        -6.35
+      ],
+      "normal": [
+        1.0,
+        0.0,
+        -0.0
+      ],
+      "radius": 3.1,
+      "depth": 1.321,
+      "kind": "pin",
+      "id": "17"
+    },
+    {
+      "point": [
+        -0.964,
+        6.35,
+        6.35
+      ],
+      "normal": [
+        1.0,
+        0.0,
+        -0.0
+      ],
+      "radius": 3.1,
+      "depth": 1.321,
+      "kind": "pin",
+      "id": "18"
+    },
+    {
+      "point": [
+        0.964,
+        -6.35,
+        -6.35
+      ],
+      "normal": [
+        -1.0,
+        -0.0,
+        0.0
+      ],
+      "radius": 3.1,
+      "depth": 1.321,
+      "kind": "pin",
+      "id": "19"
+    },
+    {
+      "point": [
+        0.964,
+        -6.35,
+        6.35
+      ],
+      "normal": [
+        -1.0,
+        -0.0,
+        0.0
+      ],
+      "radius": 3.1,
+      "depth": 1.321,
+      "kind": "pin",
+      "id": "20"
+    },
+    {
+      "point": [
+        0.964,
+        0.0,
+        -0.0
+      ],
+      "normal": [
+        -1.0,
+        -0.0,
+        0.0
+      ],
+      "radius": 3.5,
+      "depth": 2.086,
+      "kind": "pin",
+      "id": "21"
+    },
+    {
+      "point": [
+        0.964,
+        6.35,
+        -6.35
+      ],
+      "normal": [
+        -1.0,
+        -0.0,
+        0.0
+      ],
+      "radius": 3.1,
+      "depth": 1.321,
+      "kind": "pin",
+      "id": "22"
+    },
+    {
+      "point": [
+        0.964,
+        6.35,
+        6.35
+      ],
+      "normal": [
+        -1.0,
+        -0.0,
+        0.0
+      ],
+      "radius": 3.1,
+      "depth": 1.321,
+      "kind": "pin",
+      "id": "23"
+    },
+    {
+      "point": [
+        2.285,
+        -6.35,
+        -6.35
+      ],
+      "normal": [
+        1.0,
+        0.0,
+        -0.0
+      ],
+      "radius": 3.1,
+      "depth": 1.321,
+      "kind": "pin",
+      "id": "24"
+    },
+    {
+      "point": [
+        2.285,
+        -6.35,
+        6.35
+      ],
+      "normal": [
+        1.0,
+        0.0,
+        -0.0
+      ],
+      "radius": 3.1,
+      "depth": 1.321,
+      "kind": "pin",
+      "id": "25"
+    },
+    {
+      "point": [
+        2.285,
+        6.35,
+        -6.35
+      ],
+      "normal": [
+        1.0,
+        0.0,
+        -0.0
+      ],
+      "radius": 3.1,
+      "depth": 1.321,
+      "kind": "pin",
+      "id": "26"
+    },
+    {
+      "point": [
+        2.285,
+        6.35,
+        6.35
+      ],
+      "normal": [
+        1.0,
+        0.0,
+        -0.0
+      ],
+      "radius": 3.1,
+      "depth": 1.321,
+      "kind": "pin",
+      "id": "27"
+    },
+    {
+      "point": [
+        3.05,
+        0.0,
+        -0.0
+      ],
+      "normal": [
+        1.0,
+        0.0,
+        -0.0
+      ],
+      "radius": 3.5,
+      "depth": 2.086,
+      "kind": "pin",
+      "id": "28"
+    },
+    {
+      "id": "square-hole-1",
+      "kind": "hole",
+      "profile": "square-drive",
+      "label": "Square socket · CAD",
+      "point": [
+        -3.05,
+        0.0,
+        -0.0
+      ],
+      "normal": [
+        -1.0,
+        -0.0,
+        -0.0
+      ],
+      "key": [
+        0.0,
+        1.0,
+        -0.0
+      ],
+      "width": 3.22,
+      "radius": 1.61,
+      "depth": 6.1,
+      "maxDepth": 6.1,
+      "through": true
+    },
+    {
+      "id": "square-hole-2",
+      "kind": "hole",
+      "profile": "square-drive",
+      "label": "Square socket · CAD",
+      "point": [
+        3.05,
+        0.0,
+        -0.0
+      ],
+      "normal": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "key": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "width": 3.22,
+      "radius": 1.61,
+      "depth": 6.1,
+      "maxDepth": 6.1,
+      "through": true
+    }
+  ],
+  "status": "ok",
+  "bytes": 639516,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "wheel"
+}

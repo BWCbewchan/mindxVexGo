@@ -1,0 +1,29 @@
+{
+  "id": "228-2500-1664",
+  "sku": "228-2500-1664",
+  "name": "1x3 Ball Socket Linkage",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\1x3 Ball Socket Linkage (228-2500-1664).step",
+  "sourceFile": "1x3 Ball Socket Linkage (228-2500-1664).step",
+  "sourceHash": "8227772e71973895cf508e1933247280536a135659fe51727b95b6f022fbb34d",
+  "bounds": {
+    "min": [
+      -18.90747,
+      -6.21105,
+      -2.2982
+    ],
+    "max": [
+      18.90747,
+      6.21105,
+      2.2982
+    ]
+  },
+  "references": [],
+  "status": "ok",
+  "bytes": 240720,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "accessory"
+}

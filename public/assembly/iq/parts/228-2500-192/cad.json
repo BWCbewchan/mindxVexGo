@@ -1,0 +1,94 @@
+{
+  "id": "228-2500-192",
+  "sku": "228-2500-192",
+  "name": "15 Degree Offset Locking Angle End Standoff Connector",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\15 Degree Offset Locking Angle End Standoff Connector (228-2500-192).step",
+  "sourceFile": "15 Degree Offset Locking Angle End Standoff Connector (228-2500-192).step",
+  "sourceHash": "daf55fa853cd0844868acb9c2f4b8c3c52c1416263f6ec80c8689f7ff17096c9",
+  "bounds": {
+    "min": [
+      -5.00933,
+      -5.01158,
+      -3.97731
+    ],
+    "max": [
+      11.81443,
+      5.01158,
+      3.12843
+    ]
+  },
+  "references": [
+    {
+      "point": [
+        0.0,
+        0.0,
+        -2.286
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "1"
+    },
+    {
+      "point": [
+        0.0,
+        0.0,
+        2.286
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "2"
+    },
+    {
+      "point": [
+        7.239,
+        -0.0,
+        -0.0
+      ],
+      "normal": [
+        -1.0,
+        0.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "3"
+    },
+    {
+      "point": [
+        11.811,
+        -0.0,
+        -0.0
+      ],
+      "normal": [
+        1.0,
+        -0.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "4"
+    }
+  ],
+  "status": "ok",
+  "bytes": 75776,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "body"
+}

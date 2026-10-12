@@ -1,0 +1,222 @@
+{
+  "id": "228-2500-217",
+  "sku": "228-2500-217",
+  "name": "Linear Slide",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\Linear Slide (228-2500-217).step",
+  "sourceFile": "Linear Slide (228-2500-217).step",
+  "sourceHash": "c60b721e20e305c50cc37d570f1d16b170d05b1b4da4b81953e1f434b88758c5",
+  "bounds": {
+    "min": [
+      -12.55,
+      -12.55775,
+      -18.8
+    ],
+    "max": [
+      12.55,
+      12.55775,
+      6.225
+    ]
+  },
+  "references": [
+    {
+      "point": [
+        -11.811,
+        -6.35,
+        -12.7
+      ],
+      "normal": [
+        -1.0,
+        -0.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "1"
+    },
+    {
+      "point": [
+        -11.811,
+        6.35,
+        -12.7
+      ],
+      "normal": [
+        -1.0,
+        -0.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "2"
+    },
+    {
+      "point": [
+        -7.239,
+        -6.35,
+        -12.7
+      ],
+      "normal": [
+        1.0,
+        0.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "3"
+    },
+    {
+      "point": [
+        -7.239,
+        6.35,
+        -12.7
+      ],
+      "normal": [
+        1.0,
+        0.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "4"
+    },
+    {
+      "point": [
+        -0.0,
+        -6.35,
+        -18.161
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        -1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "5"
+    },
+    {
+      "point": [
+        -0.0,
+        -6.35,
+        -13.589
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "6"
+    },
+    {
+      "point": [
+        0.0,
+        6.35,
+        -18.161
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        -1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "7"
+    },
+    {
+      "point": [
+        0.0,
+        6.35,
+        -13.589
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "8"
+    },
+    {
+      "point": [
+        7.239,
+        -6.35,
+        -12.7
+      ],
+      "normal": [
+        -1.0,
+        0.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "9"
+    },
+    {
+      "point": [
+        7.239,
+        6.35,
+        -12.7
+      ],
+      "normal": [
+        -1.0,
+        0.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "10"
+    },
+    {
+      "point": [
+        11.811,
+        -6.35,
+        -12.7
+      ],
+      "normal": [
+        1.0,
+        -0.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "11"
+    },
+    {
+      "point": [
+        11.811,
+        6.35,
+        -12.7
+      ],
+      "normal": [
+        1.0,
+        -0.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "12"
+    }
+  ],
+  "status": "ok",
+  "bytes": 283464,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "accessory"
+}

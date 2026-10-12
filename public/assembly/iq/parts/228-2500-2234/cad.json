@@ -1,0 +1,116 @@
+{
+  "id": "228-2500-2234",
+  "sku": "228-2500-2234",
+  "name": "2x Pitch Motor Shaft",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\2x Pitch Motor Shaft (228-2500-2234).step",
+  "sourceFile": "2x Pitch Motor Shaft (228-2500-2234).step",
+  "sourceHash": "60c1a99e417d27198b95b9ea2bb306b4659d22b4ad01e9d7cba89cb2db6de8f4",
+  "bounds": {
+    "min": [
+      -2.40289,
+      -27.71151,
+      -2.40289
+    ],
+    "max": [
+      2.40289,
+      2.31239,
+      2.40289
+    ]
+  },
+  "references": [
+    {
+      "point": [
+        0.0,
+        -3.975,
+        -0.0
+      ],
+      "normal": [
+        -0.0,
+        -1.0,
+        0.0
+      ],
+      "radius": 2.4,
+      "depth": 0.8,
+      "kind": "pin",
+      "id": "1"
+    },
+    {
+      "point": [
+        0.0,
+        -3.175,
+        -0.0
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        -0.0
+      ],
+      "radius": 2.4,
+      "depth": 0.8,
+      "kind": "pin",
+      "id": "2"
+    },
+    {
+      "kind": "pin",
+      "profile": "square-drive",
+      "point": [
+        0.0,
+        -27.686,
+        -0.0
+      ],
+      "normal": [
+        0.0,
+        -1.0,
+        0.0
+      ],
+      "key": [
+        -1.0,
+        -0.0,
+        -0.0
+      ],
+      "width": 3.175,
+      "radius": 1.5875,
+      "depth": 23.711,
+      "maxDepth": 23.711,
+      "label": "Square shaft / bore · measured planar walls",
+      "evidence": "Opposing planar wall spacing and original CAD end planes",
+      "id": "square-pin-walls-1",
+      "driveRole": "long"
+    },
+    {
+      "kind": "pin",
+      "profile": "square-drive",
+      "point": [
+        -0.0,
+        2.286,
+        -0.0
+      ],
+      "normal": [
+        -0.0,
+        1.0,
+        -0.0
+      ],
+      "key": [
+        -1.0,
+        -0.0,
+        -0.0
+      ],
+      "width": 3.175,
+      "radius": 1.5875,
+      "depth": 5.461,
+      "maxDepth": 5.461,
+      "label": "Square shaft / bore · measured planar walls",
+      "evidence": "Opposing planar wall spacing and original CAD end planes",
+      "id": "square-pin-walls-2",
+      "driveRole": "short"
+    }
+  ],
+  "status": "ok",
+  "bytes": 106628,
+  "meshes": 2,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "shaft"
+}

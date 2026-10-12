@@ -1,0 +1,146 @@
+{
+  "id": "228-2500-250",
+  "sku": "228-2500-250",
+  "name": "12 Tooth Hybrid Gear",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\12 Tooth Hybrid Gear (228-2500-250).STEP",
+  "sourceFile": "12 Tooth Hybrid Gear (228-2500-250).STEP",
+  "sourceHash": "2d86cd5192618f93728fb1dc5879af0e9c8780a1769a05ccf9a2b1859b703b88",
+  "bounds": {
+    "min": [
+      -7.32411,
+      -3.17982,
+      -7.32411
+    ],
+    "max": [
+      7.32411,
+      5.51351,
+      7.32411
+    ]
+  },
+  "references": [
+    {
+      "point": [
+        0.0,
+        -3.175,
+        -0.0
+      ],
+      "normal": [
+        -0.0,
+        -1.0,
+        0.0
+      ],
+      "radius": 2.5,
+      "depth": 0.889,
+      "kind": "hole",
+      "id": "1"
+    },
+    {
+      "point": [
+        0.0,
+        -2.286,
+        -0.0
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        -0.0
+      ],
+      "radius": 2.5,
+      "depth": 0.889,
+      "kind": "hole",
+      "id": "2"
+    },
+    {
+      "point": [
+        0.0,
+        2.286,
+        -0.0
+      ],
+      "normal": [
+        0.0,
+        -1.0,
+        -0.0
+      ],
+      "radius": 2.4,
+      "depth": 3.175,
+      "kind": "hole",
+      "id": "3"
+    },
+    {
+      "point": [
+        0.0,
+        5.461,
+        -0.0
+      ],
+      "normal": [
+        -0.0,
+        1.0,
+        0.0
+      ],
+      "radius": 2.4,
+      "depth": 3.175,
+      "kind": "hole",
+      "id": "4"
+    },
+    {
+      "id": "square-hole-1",
+      "kind": "hole",
+      "profile": "square-drive",
+      "label": "Square socket · CAD",
+      "point": [
+        -0.0,
+        2.286,
+        -0.0
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        -0.0
+      ],
+      "key": [
+        -1.0,
+        0.0,
+        0.0
+      ],
+      "width": 3.175,
+      "radius": 1.5875,
+      "depth": 4.572,
+      "maxDepth": 4.572,
+      "through": true
+    },
+    {
+      "id": "square-hole-2",
+      "kind": "hole",
+      "profile": "square-drive",
+      "label": "Square socket · CAD",
+      "point": [
+        -0.0,
+        -2.286,
+        -0.0
+      ],
+      "normal": [
+        -0.0,
+        -1.0,
+        0.0
+      ],
+      "key": [
+        -1.0,
+        0.0,
+        0.0
+      ],
+      "width": 3.175,
+      "radius": 1.5875,
+      "depth": 4.572,
+      "maxDepth": 4.572,
+      "through": true
+    }
+  ],
+  "status": "ok",
+  "bytes": 569464,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "gear"
+}

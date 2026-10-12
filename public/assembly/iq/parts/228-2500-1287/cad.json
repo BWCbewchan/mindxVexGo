@@ -1,0 +1,254 @@
+{
+  "id": "228-2500-1287",
+  "sku": "228-2500-1287",
+  "name": "25mm Half Tube 60 Degree Turn Small",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\25mm Half Tube 60 Degree Turn Small (228-2500-1287).step",
+  "sourceFile": "25mm Half Tube 60 Degree Turn Small (228-2500-1287).step",
+  "sourceHash": "b1ebbafba57a1c9fd650797a588d59fe49904c1bf3a105c1146c699f20c4f3c9",
+  "bounds": {
+    "min": [
+      -13.88948,
+      -44.59739,
+      -14.92609
+    ],
+    "max": [
+      44.30747,
+      12.47912,
+      -0.03346
+    ]
+  },
+  "references": [
+    {
+      "point": [
+        -10.22863,
+        -5.9055,
+        -6.35
+      ],
+      "normal": [
+        -0.86603,
+        -0.5,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "1"
+    },
+    {
+      "point": [
+        -6.26916,
+        -3.6195,
+        -6.35
+      ],
+      "normal": [
+        0.86603,
+        0.5,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "2"
+    },
+    {
+      "point": [
+        0.0,
+        0.0,
+        -5.461
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        -1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "3"
+    },
+    {
+      "point": [
+        0.0,
+        0.0,
+        -0.889
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "4"
+    },
+    {
+      "point": [
+        0.0,
+        7.239,
+        -6.35
+      ],
+      "normal": [
+        -0.0,
+        -1.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "5"
+    },
+    {
+      "point": [
+        0.0,
+        11.811,
+        -6.35
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "6"
+    },
+    {
+      "point": [
+        8.82137,
+        -38.90107,
+        -6.35
+      ],
+      "normal": [
+        -0.86603,
+        -0.5,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "7"
+    },
+    {
+      "point": [
+        12.78084,
+        -36.61507,
+        -6.35
+      ],
+      "normal": [
+        0.86603,
+        0.5,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "8"
+    },
+    {
+      "point": [
+        19.05,
+        -32.99557,
+        -5.461
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "9"
+    },
+    {
+      "point": [
+        19.05,
+        -32.99557,
+        -0.889
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "10"
+    },
+    {
+      "point": [
+        38.1,
+        -0.0,
+        -5.461
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "11"
+    },
+    {
+      "point": [
+        38.1,
+        -0.0,
+        -0.889
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "12"
+    },
+    {
+      "point": [
+        38.1,
+        7.239,
+        -6.35
+      ],
+      "normal": [
+        -0.0,
+        -1.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "13"
+    },
+    {
+      "point": [
+        38.1,
+        11.811,
+        -6.35
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "14"
+    }
+  ],
+  "status": "ok",
+  "bytes": 415248,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "accessory"
+}

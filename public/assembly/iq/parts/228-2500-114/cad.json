@@ -1,0 +1,62 @@
+{
+  "id": "228-2500-114",
+  "sku": "228-2500-114",
+  "name": "0.25x Pitch Spacer",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\0.25x Pitch Spacer (228-2500-114).step",
+  "sourceFile": "0.25x Pitch Spacer (228-2500-114).step",
+  "sourceHash": "12f742c53e57c08e3120fd0ddafb40961a243cf81d02d9653be98c253212b5af",
+  "bounds": {
+    "min": [
+      -4.00482,
+      -1.59232,
+      -4.00482
+    ],
+    "max": [
+      4.00482,
+      1.59232,
+      4.00482
+    ]
+  },
+  "references": [
+    {
+      "point": [
+        0.0,
+        -1.5875,
+        -0.0
+      ],
+      "normal": [
+        -0.0,
+        -1.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 3.175,
+      "kind": "hole",
+      "id": "1"
+    },
+    {
+      "point": [
+        0.0,
+        1.5875,
+        -0.0
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 3.175,
+      "kind": "hole",
+      "id": "2"
+    }
+  ],
+  "status": "ok",
+  "bytes": 18436,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "retainer"
+}

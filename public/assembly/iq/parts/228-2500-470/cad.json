@@ -1,0 +1,29 @@
+{
+  "id": "228-2500-470",
+  "sku": "228-2500-470",
+  "name": "Silicone Rubber Band #117B",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\Silicone Rubber Band #117B (228-2500-470).step",
+  "sourceFile": "Silicone Rubber Band #117B (228-2500-470).step",
+  "sourceHash": "58d2bb21360fc5a26a629b7e318a7731f125a8407f515706becc79de27ff1a00",
+  "bounds": {
+    "min": [
+      -57.21884,
+      -57.21884,
+      -3.21884
+    ],
+    "max": [
+      57.21884,
+      57.21884,
+      3.21884
+    ]
+  },
+  "references": [],
+  "status": "ok",
+  "bytes": 18532,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "accessory"
+}

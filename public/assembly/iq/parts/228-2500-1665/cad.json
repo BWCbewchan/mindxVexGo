@@ -1,0 +1,29 @@
+{
+  "id": "228-2500-1665",
+  "sku": "228-2500-1665",
+  "name": "1x4 Ball Socket Linkage",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\1x4 Ball Socket Linkage (228-2500-1665).step",
+  "sourceFile": "1x4 Ball Socket Linkage (228-2500-1665).step",
+  "sourceHash": "9927ea1551f184a9aad143e992ba9d5b54554b0f2dd588a4821cf304c8ea4bcf",
+  "bounds": {
+    "min": [
+      -25.25747,
+      -6.20973,
+      -2.2982
+    ],
+    "max": [
+      25.25747,
+      6.20973,
+      2.2982
+    ]
+  },
+  "references": [],
+  "status": "ok",
+  "bytes": 256024,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "accessory"
+}

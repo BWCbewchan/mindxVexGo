@@ -1,0 +1,88 @@
+{
+  "id": "228-2500-081",
+  "sku": "228-2500-081",
+  "name": "3x Pitch Capped Plastic Shaft",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\3x Pitch Capped Plastic Shaft (228-2500-081).step",
+  "sourceFile": "3x Pitch Capped Plastic Shaft (228-2500-081).step",
+  "sourceHash": "a43255ea99c5bde7a11fd242a7f4e4d9e886bcf9390074ab148e2b1397538819",
+  "bounds": {
+    "min": [
+      -2.40289,
+      -18.18651,
+      -2.40289
+    ],
+    "max": [
+      2.40289,
+      18.96389,
+      2.40289
+    ]
+  },
+  "references": [
+    {
+      "point": [
+        0.0,
+        18.161,
+        -0.0
+      ],
+      "normal": [
+        -0.0,
+        -1.0,
+        0.0
+      ],
+      "radius": 2.4,
+      "depth": 0.8,
+      "kind": "pin",
+      "id": "1"
+    },
+    {
+      "point": [
+        0.0,
+        18.961,
+        -0.0
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        -0.0
+      ],
+      "radius": 2.4,
+      "depth": 0.8,
+      "kind": "pin",
+      "id": "2"
+    },
+    {
+      "kind": "pin",
+      "profile": "square-drive",
+      "point": [
+        0.0,
+        -18.161,
+        0.0
+      ],
+      "normal": [
+        -0.0,
+        -1.0,
+        0.0
+      ],
+      "key": [
+        -1.0,
+        -0.0,
+        0.0
+      ],
+      "width": 3.175,
+      "radius": 1.5875,
+      "depth": 36.322,
+      "maxDepth": 36.322,
+      "label": "Square shaft / bore · measured planar walls",
+      "evidence": "Opposing planar wall spacing and original CAD end planes",
+      "id": "square-pin-walls-1"
+    }
+  ],
+  "status": "ok",
+  "bytes": 25864,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "shaft"
+}

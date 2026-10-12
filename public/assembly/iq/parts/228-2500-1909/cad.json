@@ -1,0 +1,62 @@
+{
+  "id": "228-2500-1909",
+  "sku": "228-2500-1909",
+  "name": "1x Pitch Actuator Handle",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\1x Pitch Actuator Handle (228-2500-1909).step",
+  "sourceFile": "1x Pitch Actuator Handle (228-2500-1909).step",
+  "sourceHash": "0dbffcd34950ab29bfb860497e393089867b335e6c51542740bf62e7ec06759f",
+  "bounds": {
+    "min": [
+      -4.00484,
+      -2.29084,
+      -14.80808
+    ],
+    "max": [
+      4.00484,
+      2.29084,
+      4.00482
+    ]
+  },
+  "references": [
+    {
+      "point": [
+        0.0,
+        -2.286,
+        -0.0
+      ],
+      "normal": [
+        -0.0,
+        -1.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "1"
+    },
+    {
+      "point": [
+        0.0,
+        2.286,
+        -0.0
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "2"
+    }
+  ],
+  "status": "ok",
+  "bytes": 73904,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "accessory"
+}

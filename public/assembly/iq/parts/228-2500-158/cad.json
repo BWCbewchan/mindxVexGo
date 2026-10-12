@@ -1,0 +1,158 @@
+{
+  "id": "228-2500-158",
+  "sku": "228-2500-158",
+  "name": "Cable Anchor",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\Cable Anchor (228-2500-158).step",
+  "sourceFile": "Cable Anchor (228-2500-158).step",
+  "sourceHash": "9af1f716e3d2a821228a7229a63b5f7d2e9866dcfa1a903ddd2e124c5bfd3daf",
+  "bounds": {
+    "min": [
+      -10.35482,
+      -4.00482,
+      -6.525
+    ],
+    "max": [
+      10.35482,
+      4.00482,
+      2.29082
+    ]
+  },
+  "references": [
+    {
+      "point": [
+        -6.35,
+        0.0,
+        -5.97797
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        -1.0
+      ],
+      "radius": 2.75,
+      "depth": 3.692,
+      "kind": "hole",
+      "id": "1"
+    },
+    {
+      "point": [
+        -6.35,
+        0.0,
+        -2.286
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "2"
+    },
+    {
+      "point": [
+        -6.35,
+        0.0,
+        -2.286
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 2.75,
+      "depth": 3.692,
+      "kind": "hole",
+      "id": "3"
+    },
+    {
+      "point": [
+        -6.35,
+        0.0,
+        2.286
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "4"
+    },
+    {
+      "point": [
+        6.35,
+        0.0,
+        -5.97797
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        -1.0
+      ],
+      "radius": 2.75,
+      "depth": 3.692,
+      "kind": "hole",
+      "id": "5"
+    },
+    {
+      "point": [
+        6.35,
+        0.0,
+        -2.286
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "6"
+    },
+    {
+      "point": [
+        6.35,
+        0.0,
+        -2.286
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 2.75,
+      "depth": 3.692,
+      "kind": "hole",
+      "id": "7"
+    },
+    {
+      "point": [
+        6.35,
+        0.0,
+        2.286
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "8"
+    }
+  ],
+  "status": "ok",
+  "bytes": 47856,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "accessory"
+}

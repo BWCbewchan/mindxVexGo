@@ -1,5 +1,6 @@
 import {nearestMate,worldReference,seatedPinMatches} from './mating.js?v=fit-tolerance-36';
 import { compatibleReferences } from './connector-policy.js';
+import {PLATFORM} from './platform.js';
 
 const defaultElectronics = new Set([
   '269-6685-000', '269-6686-000', '269-6687-000', '269-6690-000',
@@ -40,7 +41,7 @@ function jointDescription(part, parent, sourceRef, targetRef, nameFor) {
     return `Đưa lỗ đỡ của ${childName} thẳng hàng với ${parentName}`;
   }
   if (sourceRef.profile === 'square-drive' && targetRef.profile === 'square-drive') {
-    return `Canh trục vuông của ${childName} với lỗ vuông trên ${parentName}`;
+    return sourceRef.kind==='pin'?`Canh đầu trục vuông của ${childName} với lỗ vuông trên ${parentName}`:`Luồn lỗ vuông của ${childName} vào trục ${parentName}`;
   }
   if (sourceRef.profile === 'square-drive' && targetRef.kind === 'hole') {
     return `Canh đầu trục của ${childName} với lỗ trên ${parentName}`;
@@ -58,7 +59,7 @@ function jointDescription(part, parent, sourceRef, targetRef, nameFor) {
 export function generateStudentGuide(parts, {
   references = {},
   nameFor = part => part.label || part.sku,
-  isElectronic = sku => defaultElectronics.has(sku),
+  isElectronic = sku => PLATFORM.electronics.includes(sku),
   inferConnections = false,
 } = {}) {
   if (!parts.length) return { ready: false, steps: [], blockers: ['Add the parts for the model first.'], notes: [] };
@@ -128,9 +129,9 @@ export function generateStudentGuide(parts, {
 
   // A saved mate records the editing gesture, not a manufacturing dependency.
   // Re-root real drive assemblies on a motor/chassis, never a wheel retainer.
-  const collar = part => ['228-2500-143','228-2500-154'].includes(part.sku);
-  const motor = part => part.sku === '269-6690-000';
-  const rank = part => collar(part) ? 100 : /Wheel/.test(nameFor(part)) || ['228-2500-1383','228-2500-1384'].includes(part.sku) ? 40 : /Shaft/.test(nameFor(part)) || ['228-2500-124','228-2500-2221','228-2500-2234','228-2500-2238'].includes(part.sku) ? 20 : 0;
+  const collar = part => PLATFORM.id==='vexiq'?part.kind==='retainer':['228-2500-143','228-2500-154'].includes(part.sku);
+  const motor = part => part.sku === PLATFORM.motor;
+  const rank = part => collar(part) ? 100 : PLATFORM.id==='vexiq'?(part.kind==='wheel'?40:part.kind==='shaft'?20:0): /Wheel/.test(nameFor(part)) || ['228-2500-1383','228-2500-1384'].includes(part.sku) ? 40 : /Shaft/.test(nameFor(part)) || ['228-2500-124','228-2500-2221','228-2500-2234','228-2500-2238'].includes(part.sku) ? 20 : 0;
   const orderParts=(a,b)=>rank(a)-rank(b)||nameFor(a).localeCompare(nameFor(b))||a.id.localeCompare(b.id);
   const adjacency = new Map(parts.map(part => [part.id, []]));
   const originalMates = new Map(parts.filter(part=>part.mate).map(part=>[part.id,{...part.mate}]));
@@ -160,7 +161,7 @@ export function generateStudentGuide(parts, {
     roots[0]=start;
   }
   const prerequisites=new Map(parts.map(part=>[part.id,new Set()]));
-  const roundPins=new Set(['228-2500-2258','228-2500-2260','228-2500-2261','228-2500-328']);
+  const roundPins=new Set(PLATFORM.id==='vexiq'?parts.filter(p=>p.kind==='pin').map(p=>p.sku):['228-2500-2258','228-2500-2260','228-2500-2261','228-2500-328']);
   const descendsFrom=(part,ancestor)=>{const seen=new Set();let current=part;while(current?.mate&&!seen.has(current.id)){seen.add(current.id);if(current.mate.target===ancestor)return true;current=byId.get(current.mate.target);}return false;};
   // Seat every accessible mounting pin before lowering a beam over the cluster.
   // Geometric secondary contacts matter even when the saved tree has only one mate.
@@ -215,6 +216,7 @@ export function generateStudentGuide(parts, {
       title,
       note,
       type,
+      requires:[...new Set(added.flatMap(part=>[...(prerequisites.get(part.id)||[]),part.mate?.target].filter(Boolean)))].filter(id=>!added.some(part=>part.id===id)),
       added: added.map(part => ({ id: part.id, sku: part.sku, name: nameFor(part) })),
       joint: added.at(-1)?.mate ? {part:added.at(-1).id,...added.at(-1).mate} : null,
       parts: parts.filter(part => included.has(part.id)).map(part => structuredClone(part)),
@@ -251,7 +253,7 @@ export function generateStudentGuide(parts, {
     }
     const action = jointDescription(part, parent, edge.sourceRef, edge.targetRef, nameFor);
     const note = collar(part) ? `Luồn vòng chặn vào trục sau các chi tiết cần giữ. Đặt như hình; chừa khe để các chi tiết quay tự do, không ép chặt gây kẹt.` : `${action}. Giữ cụm bằng tay và lắp theo hướng mũi tên.`;
-    const needsPreassembly=['228-2500-018','228-2500-019','228-2500-020','228-2500-021','228-2500-023','228-2500-025','228-2500-026','228-2500-027'].includes(part.sku);
+    const needsPreassembly=PLATFORM.id==='vexiq'?part.kind==='body':['228-2500-018','228-2500-019','228-2500-020','228-2500-021','228-2500-023','228-2500-025','228-2500-026','228-2500-027'].includes(part.sku);
     const prepPins=needsPreassembly?(children.get(part.id)||[]).map(edge=>edge.part).filter(child=>roundPins.has(child.sku)&&!included.has(child.id)):[];
     if(prepPins.length){
       appendStep([part,...prepPins],`Chuẩn bị ${nameFor(part)} rồi ghép vào cụm`,`Cắm ${prepPins.length} đinh vào ${nameFor(part)} trước khi ghép. Sau đó ${action.charAt(0).toLowerCase()+action.slice(1)}. Đưa cả cụm vào cùng lúc; không lắp kín rồi mới luồn đinh.`, 'assembly');

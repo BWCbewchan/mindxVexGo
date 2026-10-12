@@ -1,0 +1,286 @@
+{
+  "id": "228-2500-2029",
+  "sku": "228-2500-2029",
+  "name": "4x Pitch Wide Excavator Bucket",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\4x Pitch Wide Excavator Bucket (228-2500-2029).step",
+  "sourceFile": "4x Pitch Wide Excavator Bucket (228-2500-2029).step",
+  "sourceHash": "5e20f23922de0d0cc543ba28e44d8892bfa2312f4ca6bc10ff177cdc7dbe4408",
+  "bounds": {
+    "min": [
+      -25.25367,
+      -4.03101,
+      -29.43101
+    ],
+    "max": [
+      25.25367,
+      57.0,
+      37.95
+    ]
+  },
+  "references": [
+    {
+      "point": [
+        -11.811,
+        0.0,
+        -0.0
+      ],
+      "normal": [
+        -1.0,
+        0.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "1"
+    },
+    {
+      "point": [
+        -11.811,
+        0.0,
+        6.35
+      ],
+      "normal": [
+        -1.0,
+        0.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "2"
+    },
+    {
+      "point": [
+        -11.811,
+        0.0,
+        12.7
+      ],
+      "normal": [
+        -1.0,
+        0.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "3"
+    },
+    {
+      "point": [
+        -11.811,
+        25.4,
+        -25.4
+      ],
+      "normal": [
+        -1.0,
+        0.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "4"
+    },
+    {
+      "point": [
+        -7.239,
+        0.0,
+        -0.0
+      ],
+      "normal": [
+        1.0,
+        -0.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "5"
+    },
+    {
+      "point": [
+        -7.239,
+        0.0,
+        6.35
+      ],
+      "normal": [
+        1.0,
+        -0.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "6"
+    },
+    {
+      "point": [
+        -7.239,
+        0.0,
+        12.7
+      ],
+      "normal": [
+        1.0,
+        -0.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "7"
+    },
+    {
+      "point": [
+        -7.239,
+        25.4,
+        -25.4
+      ],
+      "normal": [
+        1.0,
+        -0.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "8"
+    },
+    {
+      "point": [
+        7.239,
+        0.0,
+        -0.0
+      ],
+      "normal": [
+        -1.0,
+        -0.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "9"
+    },
+    {
+      "point": [
+        7.239,
+        0.0,
+        6.35
+      ],
+      "normal": [
+        -1.0,
+        -0.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "10"
+    },
+    {
+      "point": [
+        7.239,
+        0.0,
+        12.7
+      ],
+      "normal": [
+        -1.0,
+        -0.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "11"
+    },
+    {
+      "point": [
+        7.239,
+        25.4,
+        -25.4
+      ],
+      "normal": [
+        -1.0,
+        -0.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "12"
+    },
+    {
+      "point": [
+        11.811,
+        0.0,
+        -0.0
+      ],
+      "normal": [
+        1.0,
+        0.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "13"
+    },
+    {
+      "point": [
+        11.811,
+        0.0,
+        6.35
+      ],
+      "normal": [
+        1.0,
+        0.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "14"
+    },
+    {
+      "point": [
+        11.811,
+        0.0,
+        12.7
+      ],
+      "normal": [
+        1.0,
+        0.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "15"
+    },
+    {
+      "point": [
+        11.811,
+        25.4,
+        -25.4
+      ],
+      "normal": [
+        1.0,
+        0.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "16"
+    }
+  ],
+  "status": "ok",
+  "bytes": 338212,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "accessory"
+}

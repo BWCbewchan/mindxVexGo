@@ -1,0 +1,94 @@
+{
+  "id": "228-2500-1473",
+  "sku": "228-2500-1473",
+  "name": "1x6 Continuous Linear Motion Rack Gear",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\1x6 Continuous Linear Motion Rack Gear (228-2500-1473).STEP",
+  "sourceFile": "1x6 Continuous Linear Motion Rack Gear (228-2500-1473).STEP",
+  "sourceHash": "e758bb03af2e200ee4b29adb0ca49fe59aa854d85c8d1a91377a328d2fa99a27",
+  "bounds": {
+    "min": [
+      -38.0,
+      -4.3,
+      -4.004
+    ],
+    "max": [
+      38.0,
+      4.3,
+      9.3281
+    ]
+  },
+  "references": [
+    {
+      "point": [
+        -31.75,
+        -0.0,
+        4.064
+      ],
+      "normal": [
+        0.0,
+        -0.0,
+        -1.0
+      ],
+      "radius": 2.085,
+      "depth": 2.2,
+      "kind": "pin",
+      "id": "1"
+    },
+    {
+      "point": [
+        -31.75,
+        -0.0,
+        6.264
+      ],
+      "normal": [
+        -0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 2.085,
+      "depth": 2.2,
+      "kind": "pin",
+      "id": "2"
+    },
+    {
+      "point": [
+        31.75,
+        -0.0,
+        4.064
+      ],
+      "normal": [
+        0.0,
+        -0.0,
+        -1.0
+      ],
+      "radius": 2.085,
+      "depth": 2.2,
+      "kind": "pin",
+      "id": "3"
+    },
+    {
+      "point": [
+        31.75,
+        -0.0,
+        6.264
+      ],
+      "normal": [
+        -0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 2.085,
+      "depth": 2.2,
+      "kind": "pin",
+      "id": "4"
+    }
+  ],
+  "status": "ok",
+  "bytes": 524060,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "gear"
+}

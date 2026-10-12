@@ -1,0 +1,94 @@
+{
+  "id": "228-2500-172",
+  "sku": "228-2500-172",
+  "name": "End Standoff Connector",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\End Standoff Connector (228-2500-172).step",
+  "sourceFile": "End Standoff Connector (228-2500-172).step",
+  "sourceHash": "49a30a01886f876e5e4721c135a52480d79920f5084904658b3a57fbd5331b4c",
+  "bounds": {
+    "min": [
+      -4.00702,
+      -4.01715,
+      -3.16003
+    ],
+    "max": [
+      11.83913,
+      4.02813,
+      3.16003
+    ]
+  },
+  "references": [
+    {
+      "point": [
+        0.0,
+        0.0,
+        -2.286
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "1"
+    },
+    {
+      "point": [
+        0.0,
+        0.0,
+        2.286
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "2"
+    },
+    {
+      "point": [
+        7.239,
+        -0.0,
+        -0.0
+      ],
+      "normal": [
+        -1.0,
+        0.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "3"
+    },
+    {
+      "point": [
+        11.811,
+        -0.0,
+        -0.0
+      ],
+      "normal": [
+        1.0,
+        -0.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "4"
+    }
+  ],
+  "status": "ok",
+  "bytes": 54760,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "body"
+}

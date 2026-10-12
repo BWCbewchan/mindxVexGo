@@ -1,0 +1,29 @@
+{
+  "id": "228-2500-1952",
+  "sku": "228-2500-1952",
+  "name": "2x Wide, 3.5x Pitch Diameter Balloon Tire (Chevron Offroad Tread)",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\2x Wide, 3.5x Pitch Diameter Balloon Tire (Chevron Offroad Tread) (228-2500-1952).step",
+  "sourceFile": "2x Wide, 3.5x Pitch Diameter Balloon Tire (Chevron Offroad Tread) (228-2500-1952).step",
+  "sourceHash": "461a94d3d70996a837d4481412811c4f61bca8215829a3190da0bf59de63fdaa",
+  "bounds": {
+    "min": [
+      -22.25784,
+      -2.11885,
+      -22.25753
+    ],
+    "max": [
+      22.25784,
+      21.17143,
+      22.25753
+    ]
+  },
+  "references": [],
+  "status": "ok",
+  "bytes": 580236,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "accessory"
+}

@@ -1,0 +1,222 @@
+{
+  "id": "228-2500-1469",
+  "sku": "228-2500-1469",
+  "name": "2x Pitch Linear Motion Bracket (Side Mount)",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\2x Pitch Linear Motion Bracket (Side Mount) (228-2500-1469).step",
+  "sourceFile": "2x Pitch Linear Motion Bracket (Side Mount) (228-2500-1469).step",
+  "sourceHash": "052f8ed57dc92c41790449825140b2fd0ecf9eb06f6985e51a58e5404b740c49",
+  "bounds": {
+    "min": [
+      -12.55479,
+      -6.22193,
+      -3.05
+    ],
+    "max": [
+      12.55479,
+      6.22193,
+      15.75675
+    ]
+  },
+  "references": [
+    {
+      "point": [
+        -6.35,
+        -5.461,
+        9.525
+      ],
+      "normal": [
+        0.0,
+        -1.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "1"
+    },
+    {
+      "point": [
+        -6.35,
+        -0.889,
+        9.525
+      ],
+      "normal": [
+        0.0,
+        -1.0,
+        -0.0
+      ],
+      "radius": 3.175,
+      "depth": 1.778,
+      "kind": "hole",
+      "id": "2"
+    },
+    {
+      "point": [
+        -6.35,
+        -0.889,
+        9.525
+      ],
+      "normal": [
+        -0.0,
+        1.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "3"
+    },
+    {
+      "point": [
+        -6.35,
+        0.889,
+        9.525
+      ],
+      "normal": [
+        -0.0,
+        -1.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "4"
+    },
+    {
+      "point": [
+        -6.35,
+        0.889,
+        9.525
+      ],
+      "normal": [
+        -0.0,
+        1.0,
+        0.0
+      ],
+      "radius": 3.175,
+      "depth": 1.778,
+      "kind": "hole",
+      "id": "5"
+    },
+    {
+      "point": [
+        -6.35,
+        5.461,
+        9.525
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "6"
+    },
+    {
+      "point": [
+        6.35,
+        -5.461,
+        9.525
+      ],
+      "normal": [
+        0.0,
+        -1.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "7"
+    },
+    {
+      "point": [
+        6.35,
+        -0.889,
+        9.525
+      ],
+      "normal": [
+        0.0,
+        -1.0,
+        -0.0
+      ],
+      "radius": 3.175,
+      "depth": 1.778,
+      "kind": "hole",
+      "id": "8"
+    },
+    {
+      "point": [
+        6.35,
+        -0.889,
+        9.525
+      ],
+      "normal": [
+        -0.0,
+        1.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "9"
+    },
+    {
+      "point": [
+        6.35,
+        0.889,
+        9.525
+      ],
+      "normal": [
+        -0.0,
+        -1.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "10"
+    },
+    {
+      "point": [
+        6.35,
+        0.889,
+        9.525
+      ],
+      "normal": [
+        -0.0,
+        1.0,
+        0.0
+      ],
+      "radius": 3.175,
+      "depth": 1.778,
+      "kind": "hole",
+      "id": "11"
+    },
+    {
+      "point": [
+        6.35,
+        5.461,
+        9.525
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "12"
+    }
+  ],
+  "status": "ok",
+  "bytes": 240692,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "accessory"
+}

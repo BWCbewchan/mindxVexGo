@@ -1,0 +1,94 @@
+{
+  "id": "228-2500-287",
+  "sku": "228-2500-287",
+  "name": "Racer Nose Panel",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\Racer Nose Panel (228-2500-287).step",
+  "sourceFile": "Racer Nose Panel (228-2500-287).step",
+  "sourceHash": "3f9ac69fb475c09e4e3ceecf7e7b81b7e967efda66c426763e7d729f89484a32",
+  "bounds": {
+    "min": [
+      -44.57048,
+      -0.11998,
+      -36.72483
+    ],
+    "max": [
+      44.57108,
+      26.49199,
+      -12.68364
+    ]
+  },
+  "references": [
+    {
+      "point": [
+        -6.35,
+        19.05,
+        -18.161
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "1"
+    },
+    {
+      "point": [
+        -6.35,
+        19.05,
+        -13.589
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "2"
+    },
+    {
+      "point": [
+        6.35,
+        19.05,
+        -18.161
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "3"
+    },
+    {
+      "point": [
+        6.35,
+        19.05,
+        -13.589
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "4"
+    }
+  ],
+  "status": "ok",
+  "bytes": 96312,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "accessory"
+}

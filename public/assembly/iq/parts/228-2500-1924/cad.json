@@ -1,0 +1,254 @@
+{
+  "id": "228-2500-1924",
+  "sku": "228-2500-1924",
+  "name": "2x1x1 Landing Gear Beam",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\2x1x1 Landing Gear Beam (228-2500-1924).step",
+  "sourceFile": "2x1x1 Landing Gear Beam (228-2500-1924).step",
+  "sourceHash": "bd92d8417b58d328dead3ebc1581bc718fab120a0dbb8f5a607fa00bd1d9843c",
+  "bounds": {
+    "min": [
+      -4.00482,
+      -2.29509,
+      -4.00909
+    ],
+    "max": [
+      31.00312,
+      2.29509,
+      16.7035
+    ]
+  },
+  "references": [
+    {
+      "point": [
+        0.0,
+        -2.286,
+        -0.0
+      ],
+      "normal": [
+        -0.0,
+        -1.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "1"
+    },
+    {
+      "point": [
+        0.0,
+        2.286,
+        -0.0
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "2"
+    },
+    {
+      "point": [
+        12.7,
+        -2.286,
+        -0.0
+      ],
+      "normal": [
+        -0.0,
+        -1.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "3"
+    },
+    {
+      "point": [
+        12.7,
+        2.286,
+        -0.0
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "4"
+    },
+    {
+      "point": [
+        25.4,
+        -2.286,
+        12.7
+      ],
+      "normal": [
+        -0.0,
+        -1.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "5"
+    },
+    {
+      "point": [
+        25.4,
+        2.286,
+        12.7
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "6"
+    },
+    {
+      "point": [
+        16.20468,
+        0.0,
+        1.21128
+      ],
+      "normal": [
+        -0.94514,
+        -0.0,
+        -0.32666
+      ],
+      "radius": 1.5,
+      "depth": 0.7919,
+      "kind": "pin",
+      "id": "7"
+    },
+    {
+      "point": [
+        16.95314,
+        0.0,
+        1.46996
+      ],
+      "normal": [
+        0.94514,
+        0.0,
+        0.32666
+      ],
+      "radius": 1.5,
+      "depth": 0.7919,
+      "kind": "pin",
+      "id": "8"
+    },
+    {
+      "point": [
+        17.23669,
+        0.0,
+        1.56795
+      ],
+      "normal": [
+        -0.94514,
+        -0.0,
+        -0.32666
+      ],
+      "radius": 2.1,
+      "depth": 6.4,
+      "kind": "pin",
+      "id": "9"
+    },
+    {
+      "point": [
+        23.2856,
+        0.0,
+        3.65856
+      ],
+      "normal": [
+        0.94514,
+        0.0,
+        0.32666
+      ],
+      "radius": 2.1,
+      "depth": 6.4,
+      "kind": "pin",
+      "id": "10"
+    },
+    {
+      "point": [
+        23.56914,
+        0.0,
+        3.75656
+      ],
+      "normal": [
+        -0.94514,
+        -0.0,
+        -0.32666
+      ],
+      "radius": 1.25,
+      "depth": 5.1705,
+      "kind": "pin",
+      "id": "11"
+    },
+    {
+      "point": [
+        28.45604,
+        0.0,
+        5.44555
+      ],
+      "normal": [
+        0.94514,
+        0.0,
+        0.32666
+      ],
+      "radius": 1.25,
+      "depth": 5.1705,
+      "kind": "pin",
+      "id": "12"
+    },
+    {
+      "point": [
+        29.4,
+        -1.5,
+        5.7718
+      ],
+      "normal": [
+        -0.0,
+        -1.0,
+        0.0
+      ],
+      "radius": 1.6,
+      "depth": 3.0,
+      "kind": "pin",
+      "id": "13"
+    },
+    {
+      "point": [
+        29.4,
+        1.5,
+        5.7718
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        -0.0
+      ],
+      "radius": 1.6,
+      "depth": 3.0,
+      "kind": "pin",
+      "id": "14"
+    }
+  ],
+  "status": "ok",
+  "bytes": 161300,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "gear"
+}

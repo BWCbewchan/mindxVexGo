@@ -1,0 +1,94 @@
+{
+  "id": "228-2500-073",
+  "sku": "228-2500-073",
+  "name": "1x1 Idler Pin",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\1x1 Idler Pin (228-2500-073).step",
+  "sourceFile": "1x1 Idler Pin (228-2500-073).step",
+  "sourceHash": "5160db7e9a03d7a605fa3ac7915f244406c681c8eda5112378377ab879f03414",
+  "bounds": {
+    "min": [
+      -3.13116,
+      -6.2002,
+      -3.17924
+    ],
+    "max": [
+      3.13116,
+      6.14268,
+      3.17924
+    ]
+  },
+  "references": [
+    {
+      "point": [
+        0.0,
+        0.0,
+        -0.0
+      ],
+      "normal": [
+        0.0,
+        -1.0,
+        -0.0
+      ],
+      "radius": 3.175,
+      "depth": 0.889,
+      "kind": "pin",
+      "id": "1"
+    },
+    {
+      "point": [
+        0.0,
+        0.889,
+        -0.0
+      ],
+      "normal": [
+        -0.0,
+        -1.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.55,
+      "kind": "pin",
+      "id": "2"
+    },
+    {
+      "point": [
+        0.0,
+        0.889,
+        -0.0
+      ],
+      "normal": [
+        -0.0,
+        1.0,
+        0.0
+      ],
+      "radius": 3.175,
+      "depth": 0.889,
+      "kind": "pin",
+      "id": "3"
+    },
+    {
+      "point": [
+        0.0,
+        5.439,
+        -0.0
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.55,
+      "kind": "pin",
+      "id": "4"
+    }
+  ],
+  "status": "ok",
+  "bytes": 132168,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "pin"
+}

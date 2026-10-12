@@ -1,0 +1,930 @@
+{
+  "id": "228-2560",
+  "sku": "228-2560",
+  "name": "Smart Motor",
+  "category": "electronics",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Control-STEP (1)\\VEX-IQ-All-Control-STEP\\228 2560 VEX IQ Smart Motor\\228-2560.STEP",
+  "sourceFile": "228-2560.STEP",
+  "sourceHash": "a89468a6ef1b488acf2d2322441523fd2d1988eb6b70502ecd5ae4b22ce1753c",
+  "bounds": {
+    "min": [
+      -28.50507,
+      -12.63007,
+      -0.13179
+    ],
+    "max": [
+      28.50508,
+      12.63008,
+      50.46535
+    ]
+  },
+  "references": [
+    {
+      "point": [
+        -22.225,
+        0.0,
+        0.764
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        -1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "1",
+      "excludedProfiles": [
+        "square-drive"
+      ]
+    },
+    {
+      "point": [
+        -22.225,
+        0.0,
+        5.336
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "2",
+      "excludedProfiles": [
+        "square-drive"
+      ]
+    },
+    {
+      "point": [
+        -15.875,
+        -6.35,
+        0.764
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        -1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "3",
+      "excludedProfiles": [
+        "square-drive"
+      ]
+    },
+    {
+      "point": [
+        -15.875,
+        -6.35,
+        5.336
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "4",
+      "excludedProfiles": [
+        "square-drive"
+      ]
+    },
+    {
+      "point": [
+        -15.875,
+        6.35,
+        0.764
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        -1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "5",
+      "excludedProfiles": [
+        "square-drive"
+      ]
+    },
+    {
+      "point": [
+        -15.875,
+        6.35,
+        5.336
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "6",
+      "excludedProfiles": [
+        "square-drive"
+      ]
+    },
+    {
+      "point": [
+        -3.175,
+        -6.35,
+        0.764
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        -1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "7",
+      "excludedProfiles": [
+        "square-drive"
+      ]
+    },
+    {
+      "point": [
+        -3.175,
+        -6.35,
+        5.336
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "8",
+      "excludedProfiles": [
+        "square-drive"
+      ]
+    },
+    {
+      "point": [
+        -3.175,
+        6.35,
+        0.764
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        -1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "9",
+      "excludedProfiles": [
+        "square-drive"
+      ]
+    },
+    {
+      "point": [
+        -3.175,
+        6.35,
+        5.336
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "10",
+      "excludedProfiles": [
+        "square-drive"
+      ]
+    },
+    {
+      "point": [
+        3.175,
+        0.0,
+        0.764
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        -1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "11",
+      "excludedProfiles": [
+        "square-drive"
+      ]
+    },
+    {
+      "point": [
+        3.175,
+        0.0,
+        5.336
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "12",
+      "excludedProfiles": [
+        "square-drive"
+      ]
+    },
+    {
+      "point": [
+        9.525,
+        -6.35,
+        0.764
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        -1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "13",
+      "excludedProfiles": [
+        "square-drive"
+      ]
+    },
+    {
+      "point": [
+        9.525,
+        -6.35,
+        5.336
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "14",
+      "excludedProfiles": [
+        "square-drive"
+      ]
+    },
+    {
+      "point": [
+        9.525,
+        6.35,
+        0.764
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        -1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "15",
+      "excludedProfiles": [
+        "square-drive"
+      ]
+    },
+    {
+      "point": [
+        9.525,
+        6.35,
+        5.336
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "16",
+      "excludedProfiles": [
+        "square-drive"
+      ]
+    },
+    {
+      "point": [
+        15.875,
+        0.0,
+        0.764
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        -1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "17",
+      "excludedProfiles": [
+        "square-drive"
+      ]
+    },
+    {
+      "point": [
+        15.875,
+        0.0,
+        5.336
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "18",
+      "excludedProfiles": [
+        "square-drive"
+      ]
+    },
+    {
+      "point": [
+        22.225,
+        -6.35,
+        0.764
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        -1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "19",
+      "excludedProfiles": [
+        "square-drive"
+      ]
+    },
+    {
+      "point": [
+        22.225,
+        -6.35,
+        5.336
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "20",
+      "excludedProfiles": [
+        "square-drive"
+      ]
+    },
+    {
+      "point": [
+        22.225,
+        6.35,
+        0.764
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        -1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "21",
+      "excludedProfiles": [
+        "square-drive"
+      ]
+    },
+    {
+      "point": [
+        22.225,
+        6.35,
+        5.336
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "22",
+      "excludedProfiles": [
+        "square-drive"
+      ]
+    },
+    {
+      "point": [
+        -22.225,
+        0.0,
+        0.764
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 3.175,
+      "depth": 1.286,
+      "kind": "pin",
+      "id": "23",
+      "excludedProfiles": [
+        "square-drive"
+      ]
+    },
+    {
+      "point": [
+        -22.225,
+        0.0,
+        2.05
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 3.175,
+      "depth": 1.286,
+      "kind": "pin",
+      "id": "24",
+      "excludedProfiles": [
+        "square-drive"
+      ]
+    },
+    {
+      "point": [
+        -22.225,
+        0.0,
+        4.05
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 3.175,
+      "depth": 1.286,
+      "kind": "pin",
+      "id": "25",
+      "excludedProfiles": [
+        "square-drive"
+      ]
+    },
+    {
+      "point": [
+        -22.225,
+        0.0,
+        5.336
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 3.175,
+      "depth": 1.286,
+      "kind": "pin",
+      "id": "26",
+      "excludedProfiles": [
+        "square-drive"
+      ]
+    },
+    {
+      "point": [
+        -15.875,
+        -6.35,
+        4.05
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 3.175,
+      "depth": 1.286,
+      "kind": "pin",
+      "id": "27",
+      "excludedProfiles": [
+        "square-drive"
+      ]
+    },
+    {
+      "point": [
+        -15.875,
+        -6.35,
+        5.336
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 3.175,
+      "depth": 1.286,
+      "kind": "pin",
+      "id": "28",
+      "excludedProfiles": [
+        "square-drive"
+      ]
+    },
+    {
+      "point": [
+        -15.875,
+        6.35,
+        4.05
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 3.175,
+      "depth": 1.286,
+      "kind": "pin",
+      "id": "29",
+      "excludedProfiles": [
+        "square-drive"
+      ]
+    },
+    {
+      "point": [
+        -15.875,
+        6.35,
+        5.336
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 3.175,
+      "depth": 1.286,
+      "kind": "pin",
+      "id": "30",
+      "excludedProfiles": [
+        "square-drive"
+      ]
+    },
+    {
+      "point": [
+        -3.175,
+        -6.35,
+        4.05
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 3.175,
+      "depth": 1.286,
+      "kind": "pin",
+      "id": "31",
+      "excludedProfiles": [
+        "square-drive"
+      ]
+    },
+    {
+      "point": [
+        -3.175,
+        -6.35,
+        5.336
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 3.175,
+      "depth": 1.286,
+      "kind": "pin",
+      "id": "32",
+      "excludedProfiles": [
+        "square-drive"
+      ]
+    },
+    {
+      "point": [
+        -3.175,
+        6.35,
+        4.05
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 3.175,
+      "depth": 1.286,
+      "kind": "pin",
+      "id": "33",
+      "excludedProfiles": [
+        "square-drive"
+      ]
+    },
+    {
+      "point": [
+        -3.175,
+        6.35,
+        5.336
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 3.175,
+      "depth": 1.286,
+      "kind": "pin",
+      "id": "34",
+      "excludedProfiles": [
+        "square-drive"
+      ]
+    },
+    {
+      "point": [
+        3.175,
+        0.0,
+        4.05
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 3.175,
+      "depth": 1.286,
+      "kind": "pin",
+      "id": "35",
+      "excludedProfiles": [
+        "square-drive"
+      ]
+    },
+    {
+      "point": [
+        3.175,
+        0.0,
+        5.336
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 3.175,
+      "depth": 1.286,
+      "kind": "pin",
+      "id": "36",
+      "excludedProfiles": [
+        "square-drive"
+      ]
+    },
+    {
+      "point": [
+        9.525,
+        -6.35,
+        4.05
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 3.175,
+      "depth": 1.286,
+      "kind": "pin",
+      "id": "37",
+      "excludedProfiles": [
+        "square-drive"
+      ]
+    },
+    {
+      "point": [
+        9.525,
+        -6.35,
+        5.336
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 3.175,
+      "depth": 1.286,
+      "kind": "pin",
+      "id": "38",
+      "excludedProfiles": [
+        "square-drive"
+      ]
+    },
+    {
+      "point": [
+        9.525,
+        6.35,
+        4.05
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 3.175,
+      "depth": 1.286,
+      "kind": "pin",
+      "id": "39",
+      "excludedProfiles": [
+        "square-drive"
+      ]
+    },
+    {
+      "point": [
+        9.525,
+        6.35,
+        5.336
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 3.175,
+      "depth": 1.286,
+      "kind": "pin",
+      "id": "40",
+      "excludedProfiles": [
+        "square-drive"
+      ]
+    },
+    {
+      "point": [
+        15.875,
+        0.0,
+        4.05
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 3.175,
+      "depth": 1.286,
+      "kind": "pin",
+      "id": "41",
+      "excludedProfiles": [
+        "square-drive"
+      ]
+    },
+    {
+      "point": [
+        15.875,
+        0.0,
+        5.336
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 3.175,
+      "depth": 1.286,
+      "kind": "pin",
+      "id": "42",
+      "excludedProfiles": [
+        "square-drive"
+      ]
+    },
+    {
+      "point": [
+        22.225,
+        -6.35,
+        4.05
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 3.175,
+      "depth": 1.286,
+      "kind": "pin",
+      "id": "43",
+      "excludedProfiles": [
+        "square-drive"
+      ]
+    },
+    {
+      "point": [
+        22.225,
+        -6.35,
+        5.336
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 3.175,
+      "depth": 1.286,
+      "kind": "pin",
+      "id": "44",
+      "excludedProfiles": [
+        "square-drive"
+      ]
+    },
+    {
+      "point": [
+        22.225,
+        6.35,
+        4.05
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 3.175,
+      "depth": 1.286,
+      "kind": "pin",
+      "id": "45",
+      "excludedProfiles": [
+        "square-drive"
+      ]
+    },
+    {
+      "point": [
+        22.225,
+        6.35,
+        5.336
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 3.175,
+      "depth": 1.286,
+      "kind": "pin",
+      "id": "46",
+      "excludedProfiles": [
+        "square-drive"
+      ]
+    },
+    {
+      "id": "motor-output",
+      "kind": "hole",
+      "profile": "square-drive",
+      "label": "Square socket · CAD",
+      "point": [
+        -9.525,
+        -0.0,
+        -0.125
+      ],
+      "normal": [
+        0.0,
+        -0.0,
+        -1.0
+      ],
+      "key": [
+        0.96985,
+        -0.24369,
+        -0.0
+      ],
+      "width": 3.2,
+      "radius": 1.6,
+      "depth": 6.0,
+      "maxDepth": 6.0,
+      "through": false
+    }
+  ],
+  "status": "ok",
+  "bytes": 653688,
+  "meshes": 5,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "motor"
+}

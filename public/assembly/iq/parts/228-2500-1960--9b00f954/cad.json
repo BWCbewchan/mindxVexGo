@@ -1,0 +1,29 @@
+{
+  "id": "228-2500-1960--9b00f954",
+  "sku": "228-2500-1960",
+  "name": "228-2500-1960 (1950 Hub)",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\228-2500-1960 (1950 Hub).STEP",
+  "sourceFile": "228-2500-1960 (1950 Hub).STEP",
+  "sourceHash": "79c40a34abe281db7ee885f8d5365b3389d814d1711288f56e5556ba8b1cc52f",
+  "bounds": {
+    "min": [
+      -57.02051,
+      -11.84742,
+      -19.27014
+    ],
+    "max": [
+      57.02051,
+      11.84742,
+      19.27014
+    ]
+  },
+  "references": [],
+  "status": "ok",
+  "bytes": 413968,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "accessory"
+}

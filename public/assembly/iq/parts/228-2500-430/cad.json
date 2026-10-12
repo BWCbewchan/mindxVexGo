@@ -1,0 +1,94 @@
+{
+  "id": "228-2500-430",
+  "sku": "228-2500-430",
+  "name": "12x Pitch Rope",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\12x Pitch Rope (228-2500-430).step",
+  "sourceFile": "12x Pitch Rope (228-2500-430).step",
+  "sourceHash": "9a7c0124272e3021f4d257fdfdddca76440550f7a04b12eaadb255c568fa80bd",
+  "bounds": {
+    "min": [
+      -73.85482,
+      -2.29713,
+      -4.01113
+    ],
+    "max": [
+      73.85482,
+      2.29713,
+      4.01113
+    ]
+  },
+  "references": [
+    {
+      "point": [
+        -69.85,
+        -2.286,
+        -0.0
+      ],
+      "normal": [
+        -0.0,
+        -1.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "1"
+    },
+    {
+      "point": [
+        -69.85,
+        2.286,
+        0.0
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "2"
+    },
+    {
+      "point": [
+        69.85,
+        -2.286,
+        -0.0
+      ],
+      "normal": [
+        -0.0,
+        -1.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "3"
+    },
+    {
+      "point": [
+        69.85,
+        2.286,
+        0.0
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "4"
+    }
+  ],
+  "status": "ok",
+  "bytes": 100604,
+  "meshes": 5,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "accessory"
+}

@@ -1,0 +1,146 @@
+{
+  "id": "228-2500-1446",
+  "sku": "228-2500-1446",
+  "name": "Propeller Clutch (CCW)",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\Propeller Clutch (CCW) (228-2500-1446).step",
+  "sourceFile": "Propeller Clutch (CCW) (228-2500-1446).step",
+  "sourceHash": "fc2c4c2f4b03fe7097f752340d6014b2ac93412fc02183aa031692e82a2f70da",
+  "bounds": {
+    "min": [
+      -6.24395,
+      -6.24748,
+      -9.52982
+    ],
+    "max": [
+      6.24395,
+      6.24748,
+      3.18037
+    ]
+  },
+  "references": [
+    {
+      "point": [
+        0.0,
+        0.0,
+        -9.525
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 2.45,
+      "depth": 7.239,
+      "kind": "hole",
+      "id": "1"
+    },
+    {
+      "point": [
+        0.0,
+        0.0,
+        -2.286
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 2.45,
+      "depth": 7.239,
+      "kind": "hole",
+      "id": "2"
+    },
+    {
+      "point": [
+        0.0,
+        0.0,
+        2.286
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 2.45,
+      "depth": 0.889,
+      "kind": "hole",
+      "id": "3"
+    },
+    {
+      "point": [
+        0.0,
+        0.0,
+        3.175
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 2.45,
+      "depth": 0.889,
+      "kind": "hole",
+      "id": "4"
+    },
+    {
+      "id": "square-hole-1",
+      "kind": "hole",
+      "profile": "square-drive",
+      "label": "Square socket · CAD",
+      "point": [
+        -0.0,
+        0.0,
+        -2.286
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        -1.0
+      ],
+      "key": [
+        -1.0,
+        0.0,
+        -0.0
+      ],
+      "width": 3.175,
+      "radius": 1.5875,
+      "depth": 4.572,
+      "maxDepth": 4.572,
+      "through": true
+    },
+    {
+      "id": "square-hole-2",
+      "kind": "hole",
+      "profile": "square-drive",
+      "label": "Square socket · CAD",
+      "point": [
+        -0.0,
+        0.0,
+        2.286
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "key": [
+        -1.0,
+        0.0,
+        -0.0
+      ],
+      "width": 3.175,
+      "radius": 1.5875,
+      "depth": 4.572,
+      "maxDepth": 4.572,
+      "through": true
+    }
+  ],
+  "status": "ok",
+  "bytes": 86476,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "accessory"
+}

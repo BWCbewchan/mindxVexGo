@@ -1,0 +1,174 @@
+{
+  "id": "228-2500-241",
+  "sku": "228-2500-241",
+  "name": "Medium Intake Flap",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\Medium Intake Flap (228-2500-241).step",
+  "sourceFile": "Medium Intake Flap (228-2500-241).step",
+  "sourceHash": "675b9738306d34985b65de5afd51b6ec48bfc263504b740b6c050550f2ff9a0c",
+  "bounds": {
+    "min": [
+      -8.26146,
+      15.79627,
+      -18.53437
+    ],
+    "max": [
+      10.64601,
+      22.00373,
+      6.47211
+    ]
+  },
+  "references": [
+    {
+      "point": [
+        -5.15772,
+        18.9,
+        -0.67057
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 3.1,
+      "depth": 1.889,
+      "kind": "pin",
+      "id": "1"
+    },
+    {
+      "point": [
+        -5.15772,
+        18.9,
+        0.32943
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        -1.0
+      ],
+      "radius": 3.175,
+      "depth": 0.889,
+      "kind": "pin",
+      "id": "2"
+    },
+    {
+      "point": [
+        -5.15772,
+        18.9,
+        1.21843
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.55,
+      "kind": "pin",
+      "id": "3"
+    },
+    {
+      "point": [
+        -5.15772,
+        18.9,
+        1.21843
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 3.1,
+      "depth": 1.889,
+      "kind": "pin",
+      "id": "4"
+    },
+    {
+      "point": [
+        -5.15772,
+        18.9,
+        5.76843
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.55,
+      "kind": "pin",
+      "id": "5"
+    },
+    {
+      "point": [
+        7.54228,
+        18.9,
+        -0.67057
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 3.1,
+      "depth": 1.889,
+      "kind": "pin",
+      "id": "6"
+    },
+    {
+      "point": [
+        7.54228,
+        18.9,
+        1.21843
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.55,
+      "kind": "pin",
+      "id": "7"
+    },
+    {
+      "point": [
+        7.54228,
+        18.9,
+        1.21843
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 3.1,
+      "depth": 1.889,
+      "kind": "pin",
+      "id": "8"
+    },
+    {
+      "point": [
+        7.54228,
+        18.9,
+        5.76843
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.55,
+      "kind": "pin",
+      "id": "9"
+    }
+  ],
+  "status": "ok",
+  "bytes": 258308,
+  "meshes": 2,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "accessory"
+}

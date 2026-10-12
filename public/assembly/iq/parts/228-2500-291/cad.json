@@ -1,0 +1,158 @@
+{
+  "id": "228-2500-291",
+  "sku": "228-2500-291",
+  "name": "Blank Award, VIQC Team Number Plate",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\Blank Award, VIQC Team Number Plate (228-2500-291).step",
+  "sourceFile": "Blank Award, VIQC Team Number Plate (228-2500-291).step",
+  "sourceHash": "fdb88b2b77d7d1a1f12b4f53c74bd0e02e63992ffc0544ebe229cb442d11ce6d",
+  "bounds": {
+    "min": [
+      -18.90747,
+      -3.05747,
+      -44.30747
+    ],
+    "max": [
+      18.90747,
+      3.05747,
+      44.30747
+    ]
+  },
+  "references": [
+    {
+      "point": [
+        -12.7,
+        -2.286,
+        -38.1
+      ],
+      "normal": [
+        -0.0,
+        -1.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "1"
+    },
+    {
+      "point": [
+        -12.7,
+        -2.286,
+        38.1
+      ],
+      "normal": [
+        -0.0,
+        -1.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "2"
+    },
+    {
+      "point": [
+        -12.7,
+        2.286,
+        -38.1
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "3"
+    },
+    {
+      "point": [
+        -12.7,
+        2.286,
+        38.1
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "4"
+    },
+    {
+      "point": [
+        12.7,
+        -2.286,
+        -38.1
+      ],
+      "normal": [
+        -0.0,
+        -1.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "5"
+    },
+    {
+      "point": [
+        12.7,
+        -2.286,
+        38.1
+      ],
+      "normal": [
+        -0.0,
+        -1.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "6"
+    },
+    {
+      "point": [
+        12.7,
+        2.286,
+        -38.1
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "7"
+    },
+    {
+      "point": [
+        12.7,
+        2.286,
+        38.1
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "8"
+    }
+  ],
+  "status": "ok",
+  "bytes": 251744,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "body"
+}

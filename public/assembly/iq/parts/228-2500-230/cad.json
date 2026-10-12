@@ -1,0 +1,94 @@
+{
+  "id": "228-2500-230",
+  "sku": "228-2500-230",
+  "name": "Chain Link",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\Chain Link (228-2500-230).step",
+  "sourceFile": "Chain Link (228-2500-230).step",
+  "sourceHash": "6adbfb465d8c15bf67c65d8a03f739245e74f5fe5226cf216daebebdad136dcd",
+  "bounds": {
+    "min": [
+      -5.92234,
+      -8.55313,
+      -2.20313
+    ],
+    "max": [
+      5.92234,
+      2.20313,
+      2.20313
+    ]
+  },
+  "references": [
+    {
+      "point": [
+        -3.25,
+        0.0,
+        -0.0
+      ],
+      "normal": [
+        -1.0,
+        -0.0,
+        0.0
+      ],
+      "radius": 1.6,
+      "depth": 6.5,
+      "kind": "pin",
+      "id": "1"
+    },
+    {
+      "point": [
+        3.25,
+        0.0,
+        -0.0
+      ],
+      "normal": [
+        1.0,
+        0.0,
+        -0.0
+      ],
+      "radius": 1.6,
+      "depth": 6.5,
+      "kind": "pin",
+      "id": "2"
+    },
+    {
+      "point": [
+        4.38,
+        -6.35,
+        -0.0
+      ],
+      "normal": [
+        -1.0,
+        -0.0,
+        0.0
+      ],
+      "radius": 2.2,
+      "depth": 0.87,
+      "kind": "pin",
+      "id": "3"
+    },
+    {
+      "point": [
+        5.25,
+        -6.35,
+        -0.0
+      ],
+      "normal": [
+        1.0,
+        0.0,
+        -0.0
+      ],
+      "radius": 2.2,
+      "depth": 0.87,
+      "kind": "pin",
+      "id": "4"
+    }
+  ],
+  "status": "ok",
+  "bytes": 265728,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "accessory"
+}

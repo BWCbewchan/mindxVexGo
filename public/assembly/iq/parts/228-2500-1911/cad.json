@@ -1,0 +1,62 @@
+{
+  "id": "228-2500-1911",
+  "sku": "228-2500-1911",
+  "name": "Medium Rocket Engine Nozzle",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\Medium Rocket Engine Nozzle (228-2500-1911).step",
+  "sourceFile": "Medium Rocket Engine Nozzle (228-2500-1911).step",
+  "sourceHash": "36a29a60b06614e5bdf0c39e430fb7c6c2faf537c7438709863f2e4b63cce5ed",
+  "bounds": {
+    "min": [
+      -12.32385,
+      -12.29471,
+      -2.31717
+    ],
+    "max": [
+      12.37338,
+      12.29471,
+      22.27093
+    ]
+  },
+  "references": [
+    {
+      "point": [
+        0.0,
+        0.0,
+        -2.286
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        -1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "1"
+    },
+    {
+      "point": [
+        0.0,
+        0.0,
+        2.286
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "2"
+    }
+  ],
+  "status": "ok",
+  "bytes": 134852,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "accessory"
+}

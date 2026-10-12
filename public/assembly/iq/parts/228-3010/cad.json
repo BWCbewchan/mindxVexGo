@@ -1,0 +1,318 @@
+{
+  "id": "228-3010",
+  "sku": "228-3010",
+  "name": "Touch LED",
+  "category": "electronics",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Control-STEP (1)\\VEX-IQ-All-Control-STEP\\228-3010 VEX IQ Touch Sensor\\228-3010.STEP",
+  "sourceFile": "228-3010.STEP",
+  "sourceHash": "dcf9b043566d793baf3003318b977340c1f182ba5a0c90a7cee6aca1043e6562",
+  "bounds": {
+    "min": [
+      -25.1585,
+      -0.0585,
+      -25.4585
+    ],
+    "max": [
+      0.0585,
+      25.1585,
+      6.10747
+    ]
+  },
+  "references": [
+    {
+      "point": [
+        -18.9,
+        6.2,
+        -0.0
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 2.1,
+      "depth": 5.3,
+      "kind": "hole",
+      "id": "1"
+    },
+    {
+      "point": [
+        -18.9,
+        6.2,
+        5.3
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 2.1,
+      "depth": 5.3,
+      "kind": "hole",
+      "id": "2"
+    },
+    {
+      "point": [
+        -18.9,
+        18.9,
+        -0.0
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 2.1,
+      "depth": 5.3,
+      "kind": "hole",
+      "id": "3"
+    },
+    {
+      "point": [
+        -18.9,
+        18.9,
+        5.3
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 2.1,
+      "depth": 5.3,
+      "kind": "hole",
+      "id": "4"
+    },
+    {
+      "point": [
+        -12.55,
+        12.55,
+        -0.0
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 2.1,
+      "depth": 5.3,
+      "kind": "hole",
+      "id": "5"
+    },
+    {
+      "point": [
+        -12.55,
+        12.55,
+        5.3
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 2.1,
+      "depth": 5.3,
+      "kind": "hole",
+      "id": "6"
+    },
+    {
+      "point": [
+        -6.2,
+        6.2,
+        -0.0
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 2.1,
+      "depth": 5.3,
+      "kind": "hole",
+      "id": "7"
+    },
+    {
+      "point": [
+        -6.2,
+        6.2,
+        5.3
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 2.1,
+      "depth": 5.3,
+      "kind": "hole",
+      "id": "8"
+    },
+    {
+      "point": [
+        -6.2,
+        18.9,
+        -0.0
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 2.1,
+      "depth": 5.3,
+      "kind": "hole",
+      "id": "9"
+    },
+    {
+      "point": [
+        -6.2,
+        18.9,
+        5.3
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 2.1,
+      "depth": 5.3,
+      "kind": "hole",
+      "id": "10"
+    },
+    {
+      "point": [
+        -18.9,
+        6.2,
+        4.05
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        -1.0
+      ],
+      "radius": 3.1,
+      "depth": 1.25,
+      "kind": "pin",
+      "id": "11"
+    },
+    {
+      "point": [
+        -18.9,
+        6.2,
+        5.3
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 3.1,
+      "depth": 1.25,
+      "kind": "pin",
+      "id": "12"
+    },
+    {
+      "point": [
+        -18.9,
+        18.9,
+        4.05
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        -1.0
+      ],
+      "radius": 3.1,
+      "depth": 1.25,
+      "kind": "pin",
+      "id": "13"
+    },
+    {
+      "point": [
+        -18.9,
+        18.9,
+        5.3
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 3.1,
+      "depth": 1.25,
+      "kind": "pin",
+      "id": "14"
+    },
+    {
+      "point": [
+        -6.2,
+        6.2,
+        4.05
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        -1.0
+      ],
+      "radius": 3.1,
+      "depth": 1.25,
+      "kind": "pin",
+      "id": "15"
+    },
+    {
+      "point": [
+        -6.2,
+        6.2,
+        5.3
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 3.1,
+      "depth": 1.25,
+      "kind": "pin",
+      "id": "16"
+    },
+    {
+      "point": [
+        -6.2,
+        18.9,
+        4.05
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        -1.0
+      ],
+      "radius": 3.1,
+      "depth": 1.25,
+      "kind": "pin",
+      "id": "17"
+    },
+    {
+      "point": [
+        -6.2,
+        18.9,
+        5.3
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 3.1,
+      "depth": 1.25,
+      "kind": "pin",
+      "id": "18"
+    }
+  ],
+  "status": "ok",
+  "bytes": 248368,
+  "meshes": 5,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "electronic"
+}

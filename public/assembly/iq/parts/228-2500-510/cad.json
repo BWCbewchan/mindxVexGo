@@ -1,0 +1,62 @@
+{
+  "id": "228-2500-510",
+  "sku": "228-2500-510",
+  "name": "1x1 Smooth Panel",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\1x1 Smooth Panel (228-2500-510).step",
+  "sourceFile": "1x1 Smooth Panel (228-2500-510).step",
+  "sourceHash": "722491d2d4c82bc027f7ea3d0de910bffc0c1c2d0197101b25e48c69a38ef913",
+  "bounds": {
+    "min": [
+      -6.20241,
+      -6.20241,
+      -3.07617
+    ],
+    "max": [
+      6.20241,
+      6.20241,
+      3.05241
+    ]
+  },
+  "references": [
+    {
+      "point": [
+        0.0,
+        0.0,
+        -2.286
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "1"
+    },
+    {
+      "point": [
+        0.0,
+        0.0,
+        2.286
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "2"
+    }
+  ],
+  "status": "ok",
+  "bytes": 72816,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "accessory"
+}

@@ -1,0 +1,94 @@
+{
+  "id": "228-2500-1934",
+  "sku": "228-2500-1934",
+  "name": "6x Pitch Flexible Standoff",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\6x Pitch Flexible Standoff (228-2500-1934).step",
+  "sourceFile": "6x Pitch Flexible Standoff (228-2500-1934).step",
+  "sourceHash": "965884d116c7a13aa1ec8e046586ff85642a44f787a2cd0d846cf4ce2c63f74e",
+  "bounds": {
+    "min": [
+      -64.41063,
+      3.89481,
+      -8.03996
+    ],
+    "max": [
+      24.07474,
+      11.9126,
+      -0.02217
+    ]
+  },
+  "references": [
+    {
+      "point": [
+        -63.70694,
+        7.90371,
+        -4.03106
+      ],
+      "normal": [
+        -1.0,
+        0.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.55,
+      "kind": "pin",
+      "id": "1"
+    },
+    {
+      "point": [
+        -59.15694,
+        7.90371,
+        -4.03106
+      ],
+      "normal": [
+        1.0,
+        -0.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.55,
+      "kind": "pin",
+      "id": "2"
+    },
+    {
+      "point": [
+        18.82106,
+        7.90371,
+        -4.03106
+      ],
+      "normal": [
+        -1.0,
+        0.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.55,
+      "kind": "pin",
+      "id": "3"
+    },
+    {
+      "point": [
+        23.37106,
+        7.90371,
+        -4.03106
+      ],
+      "normal": [
+        1.0,
+        -0.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.55,
+      "kind": "pin",
+      "id": "4"
+    }
+  ],
+  "status": "ok",
+  "bytes": 631068,
+  "meshes": 3,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "body"
+}

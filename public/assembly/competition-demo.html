@@ -1,0 +1,18 @@
+<!doctype html><html lang="vi"><head><meta charset="utf-8"><title>AI API · Xe thi đấu · 2 motor</title><style>html,body{margin:0;height:100%;background:#272a2e;font:14px system-ui;color:white}header{height:40px;display:flex;align-items:center;gap:20px;padding:0 16px}iframe{width:100%;height:calc(100% - 40px);border:0}#progress{color:#b6d5ef}</style></head><body><header><b>AI API · Xe thi đấu · 2 motor</b><span id="progress">Đang mở Assembly…</span></header><iframe title="Assembly API demo"></iframe><script type="module">
+const frame=document.querySelector('iframe'),status=document.getElementById('progress');
+async function run(){try{while(!frame.contentWindow.mindxAssembly)await new Promise(r=>setTimeout(r,100));const api=frame.contentWindow.mindxAssembly;let state=await api.execute('getState');if(state.result.project.parts.length){status.textContent='Mô hình demo đã lưu · không ảnh hưởng bản đang lắp';frame.contentDocument.getElementById('fit').click();window.demoReady=true;return;}
+let n=0;async function call(command,args){status.textContent=`API ${++n}: ${command}`;const result=await api.execute(command,args);if(!result.ok){const s=await api.execute('getState');throw Error(command+' '+JSON.stringify(args)+' '+result.error+' PARTS '+JSON.stringify(s.result.project.parts.map(p=>({id:p.id,sku:p.sku}))));}return result.result;}
+const recipe=await(await fetch('competition-recipe.json')).json(),map=new Map();
+for(const item of recipe){if(item.sku==='269-6695-000')continue;const current=await api.execute('getState');let id=map.get(item.id);
+if(!id&&['269-6685-000','269-6686-000'].includes(item.sku)){id=current.result.project.parts.find(p=>p.sku===item.sku)?.id;if(id)await call('setTransform',{id,position:[n===0?500:1500,200,1000],rotation:item.rotation});}
+if(!id){const added=await call('addPart',{sku:item.sku,position:[n===0?500:1500,200,1000],rotation:item.rotation});id=added.id;}
+map.set(item.id,id);
+if(item.mate){const targetId=map.get(item.mate.target);if(!targetId)throw Error('Missing parent '+item.mate.target);await call('attach',{id,targetId,sourceRef:item.mate.sourceRef,targetRef:item.mate.targetRef,depth:item.mate.depth,twist:item.mate.twist||0});}
+else await call('setTransform',{id,position:item.position,rotation:item.rotation});
+}
+const fit=await call('checkFit');await call('select',{ids:[...map.values()].slice(0,1)});frame.contentDocument.getElementById('fit').click();status.textContent=`Hoàn thành bằng ${n} lệnh API · xe 2 motor + Brain + Battery · ${fit.issues.filter(i=>i.kind==='penetration').length} va chạm xuyên thân`;window.demoReady=true;
+}catch(e){status.textContent='Lỗi API: '+e.message;window.demoError=e.message;}}
+frame.addEventListener('load',run);
+if(!new URLSearchParams(location.search).has('build')&&!localStorage.getItem('mindx-vexgo-demo-competition')){try{const response=await fetch('competition-project.json');if(response.ok)localStorage.setItem('mindx-vexgo-demo-competition',JSON.stringify(await response.json()));}catch{}}
+frame.src='editor.html?demo=competition';
+</script></body></html>

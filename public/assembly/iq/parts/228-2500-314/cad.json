@@ -1,0 +1,126 @@
+{
+  "id": "228-2500-314",
+  "sku": "228-2500-314",
+  "name": "1x4 Bearing Surface Block",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\1x4 Bearing Surface Block (228-2500-314).step",
+  "sourceFile": "1x4 Bearing Surface Block (228-2500-314).step",
+  "sourceHash": "d084b0c650689f0d22ff718718b60f4efe612bf09f3db12c5b3fcb4e51dcf67c",
+  "bounds": {
+    "min": [
+      -22.2056,
+      -3.17928,
+      -6.4106
+    ],
+    "max": [
+      22.2056,
+      3.17928,
+      6.14268
+    ]
+  },
+  "references": [
+    {
+      "point": [
+        -15.875,
+        0.0,
+        -3.18
+      ],
+      "normal": [
+        -1.0,
+        -0.0,
+        0.0
+      ],
+      "radius": 2.175,
+      "depth": 31.75,
+      "kind": "hole",
+      "id": "1"
+    },
+    {
+      "point": [
+        15.875,
+        0.0,
+        -3.18
+      ],
+      "normal": [
+        1.0,
+        0.0,
+        -0.0
+      ],
+      "radius": 2.175,
+      "depth": 31.75,
+      "kind": "hole",
+      "id": "2"
+    },
+    {
+      "point": [
+        -19.05,
+        0.0,
+        0.88857
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        -1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.5504,
+      "kind": "pin",
+      "id": "3"
+    },
+    {
+      "point": [
+        -19.05,
+        0.0,
+        5.439
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.5504,
+      "kind": "pin",
+      "id": "4"
+    },
+    {
+      "point": [
+        19.05,
+        0.0,
+        0.88857
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        -1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.5504,
+      "kind": "pin",
+      "id": "5"
+    },
+    {
+      "point": [
+        19.05,
+        0.0,
+        5.439
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.5504,
+      "kind": "pin",
+      "id": "6"
+    }
+  ],
+  "status": "ok",
+  "bytes": 230876,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "accessory"
+}

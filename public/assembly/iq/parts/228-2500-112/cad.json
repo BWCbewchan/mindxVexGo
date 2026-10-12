@@ -1,0 +1,62 @@
+{
+  "id": "228-2500-112",
+  "sku": "228-2500-112",
+  "name": "Washer",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\Washer (228-2500-112).step",
+  "sourceFile": "Washer (228-2500-112).step",
+  "sourceHash": "f7727b5adbb02ac72366bd85856f66e85775440b273b9de6d9995bb97653f146",
+  "bounds": {
+    "min": [
+      -4.00482,
+      -0.38582,
+      -4.00482
+    ],
+    "max": [
+      4.00482,
+      0.38582,
+      4.00482
+    ]
+  },
+  "references": [
+    {
+      "point": [
+        0.0,
+        -0.381,
+        -0.0
+      ],
+      "normal": [
+        -0.0,
+        -1.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 0.762,
+      "kind": "hole",
+      "id": "1"
+    },
+    {
+      "point": [
+        0.0,
+        0.381,
+        -0.0
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 0.762,
+      "kind": "hole",
+      "id": "2"
+    }
+  ],
+  "status": "ok",
+  "bytes": 18424,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "retainer"
+}

@@ -1,7 +1,8 @@
 import * as THREE from './vendor/three.module.js';
 import {analyzeCollisions} from './collision.js?v=integral-pegs-61';
+import {assetUrl} from './platform.js';
 const geometries=new Map();
-const references=fetch('connectors.json?v=motor-pair-29',{cache:'no-store'}).then(r=>r.json()).then(r=>r.parts);
+const references=fetch(assetUrl('connectors.json?v=platform-73'),{cache:'no-store'}).then(r=>r.json()).then(r=>r.parts);
 self.onmessage=async e=>{
  const {id,parts,groups,geometryData}=e.data;
  try{

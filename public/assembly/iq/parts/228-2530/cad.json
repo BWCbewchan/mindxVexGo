@@ -1,0 +1,94 @@
+{
+  "id": "228-2530",
+  "sku": "228-2530",
+  "name": "Controller (1st generation)",
+  "category": "electronics",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Control-STEP (1)\\VEX-IQ-All-Control-STEP\\228-2530 VEX IQ Controller\\228-2530.STEP",
+  "sourceFile": "228-2530.STEP",
+  "sourceHash": "d3f532073ab24b7a1d5ac99372456c803483f9cbdfd8ca3ee26aebabef687415",
+  "bounds": {
+    "min": [
+      -73.81642,
+      -29.67219,
+      -29.8592
+    ],
+    "max": [
+      73.81642,
+      77.61789,
+      29.30246
+    ]
+  },
+  "references": [
+    {
+      "point": [
+        -45.0,
+        0.0,
+        -26.5
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        -1.0
+      ],
+      "radius": 3.0,
+      "depth": 13.0,
+      "kind": "pin",
+      "id": "1"
+    },
+    {
+      "point": [
+        -45.0,
+        0.0,
+        -13.5
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 3.0,
+      "depth": 13.0,
+      "kind": "pin",
+      "id": "2"
+    },
+    {
+      "point": [
+        45.0,
+        0.0,
+        -26.5
+      ],
+      "normal": [
+        0.0,
+        -0.0,
+        -1.0
+      ],
+      "radius": 3.0,
+      "depth": 13.0,
+      "kind": "pin",
+      "id": "3"
+    },
+    {
+      "point": [
+        45.0,
+        0.0,
+        -13.5
+      ],
+      "normal": [
+        -0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 3.0,
+      "depth": 13.0,
+      "kind": "pin",
+      "id": "4"
+    }
+  ],
+  "status": "ok",
+  "bytes": 10044760,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "electronic"
+}

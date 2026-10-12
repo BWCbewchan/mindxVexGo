@@ -1,0 +1,52 @@
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import {constrainJoints,compatibleReferences} from '../public/assembly/joint-constraints.js';
+import {worldReference,nearestMate,matingPose,attachmentReferences,SNAP_DISTANCE_MM} from '../public/assembly/mating.js';
+const refs={beam:[{id:'a',kind:'hole',point:[0,0,0],normal:[0,0,1],radius:2.1,depth:4},{id:'b',kind:'hole',point:[12.7,0,0],normal:[0,0,1],radius:2.1,depth:4}],pin:[{id:'p',kind:'pin',point:[0,0,0],normal:[0,0,-1],radius:2.05,depth:10}]};
+const base=[{id:'beam',sku:'beam',position:[0,0,0],rotation:[0,0,0]},{id:'pin',sku:'pin',position:[0,0,-4],rotation:[0,0,0],mate:{target:'beam',sourceRef:'p',targetRef:'a',depth:4}}];
+let parts=structuredClone(base);parts[1].position[0]=3;
+assert.equal(constrainJoints(parts,base,refs).ok,true);assert.equal(parts[1].position[0],0,'Off-hole movement returns to the actual hole');
+parts=structuredClone(base);parts[1].position[0]=10;
+assert.equal(constrainJoints(parts,base,refs).ok,true);assert.equal(parts[1].position[0],12.7);assert.equal(parts[1].mate.targetRef,'b','Choose adjacent real hole');
+parts=structuredClone(base);parts[1].position[0]=6.2;
+parts[1].mate=undefined;parts[1].snapBlocked=[{target:'beam',sourceRef:'p',targetRef:'a'}];
+const nearNext=nearestMate(parts[1],parts,refs,{distance:SNAP_DISTANCE_MM,excludedMates:parts[1].snapBlocked});
+assert.equal(nearNext?.targetRef.id,'b','Direct drag snap must reach the adjacent hole through the midpoint tolerance');
+Object.assign(parts[1],nearNext.pose);parts[1].mate={target:'beam',sourceRef:nearNext.sourceRef.id,targetRef:nearNext.targetRef.id,depth:nearNext.depth,twist:0,flip:false};
+delete parts[1].snapBlocked;
+assert.equal(constrainJoints(parts,base,refs).ok,true);assert.equal(parts[1].mate.targetRef,'b','Saving a near-midpoint direct drag must keep the new hole instead of snapping back');
+parts=structuredClone(base);parts[1].mate=undefined;parts[1].snapBlocked=[{target:'beam',sourceRef:'p',targetRef:'a'}];parts[1].position[0]=5;
+assert.equal(constrainJoints(parts,base,refs).ok,true);assert.equal(parts[1].mate,undefined,'Dragging a mated part away must release it instead of restoring the original joint');assert.equal(parts[1].position[0],5);
+parts=structuredClone(base);parts[1].mate=undefined;parts[1].snapBlocked=[{target:'beam',sourceRef:'p',targetRef:'a'}];parts[1].position[0]=30;
+assert.equal(constrainJoints(parts,base,refs).ok,true);assert.equal(parts[1].mate,undefined,'A released part dropped outside snap range must stay free');assert.equal(parts[1].position[0],30);
+parts=structuredClone(base);parts[0].snapBlocked=[{target:'pin',sourceRef:'a',targetRef:'p'}];delete parts[1].mate;parts[0].position[0]=30;
+assert.equal(constrainJoints(parts,base,refs).ok,true);assert.equal(parts[0].position[0],30,'A hole-bearing target can be dragged away from a pin attached to it');
+const cadRefs=JSON.parse(readFileSync(new URL('../public/assembly/connectors.json',import.meta.url),'utf8')).parts,greenBase={id:'green',sku:'228-2500-002',position:[0,40,0],rotation:[0,0,0]},pinSku='228-2500-2271',loosePin={id:'pin',sku:pinSku,position:[0,0,0],rotation:[0,0,0]},pinPose=matingPose(loosePin,cadRefs[pinSku].find(r=>r.id==='3'),greenBase,cadRefs[greenBase.sku].find(r=>r.id==='1'),{depth:0}),greenPin={...loosePin,...pinPose,mate:{target:'green',sourceRef:'3',targetRef:'1',depth:0,twist:0,flip:false}},greenAssembly=[greenBase,greenPin];
+parts=structuredClone(greenAssembly);parts[0].snapBlocked=[{target:'pin',sourceRef:'1',targetRef:'3'}];parts[1].snapBlocked=[{target:'green',sourceRef:'3',targetRef:'1'}];delete parts[1].mate;parts[0].position[0]=30;
+assert.equal(constrainJoints(parts,greenAssembly,cadRefs).ok,true);assert.equal(parts[0].position[0],30,'The actual green VEX beam can be pulled out of a pin joint');assert.equal(parts[1].mate,undefined);assert.deepEqual(parts[1].position,greenPin.position,'The loose pin remains where it was');
+parts=structuredClone(greenAssembly);parts[0].snapBlocked=[{target:'pin',sourceRef:'1',targetRef:'3'}];parts[1].snapBlocked=[{target:'green',sourceRef:'3',targetRef:'1'}];delete parts[1].mate;parts[0].position[0]=-12.7;
+const greenNext=nearestMate(parts[0],parts,cadRefs,{distance:SNAP_DISTANCE_MM,excludedMates:parts[0].snapBlocked});assert.ok(greenNext);assert.equal(greenNext.target.id,'pin');assert.notEqual(greenNext.sourceRef.id,'1','Green beam must prefer its adjacent free hole, not the original one');Object.assign(parts[0],greenNext.pose);parts[0].mate={target:'pin',sourceRef:greenNext.sourceRef.id,targetRef:greenNext.targetRef.id,depth:greenNext.depth,twist:0,flip:false};delete parts[0].snapBlocked;
+assert.equal(constrainJoints(parts,greenAssembly,cadRefs).ok,true);assert.equal(parts[0].mate.target,'pin','Green beam reattaches automatically when brought near a compatible pin');
+parts=structuredClone(base);parts[1].position[2]=-6;
+constrainJoints(parts,base,refs);assert.equal(parts[1].position[2],-6,'Allow independent axial insertion');assert.deepEqual(parts[0],base[0]);
+parts=structuredClone(base);parts[1].position[2]=5;
+constrainJoints(parts,base,refs);assert.equal(parts[1].position[2],0,'Cannot pull an established joint past seating interval');
+parts=structuredClone(base);parts[0].position[0]=5;
+assert.equal(constrainJoints(parts,base,refs).ok,true);assert.equal(parts[0].position[0],0,'Individual target movement corrects its own hole');assert.deepEqual(parts[1].position,base[1].position,'Do not drag the connected pin along in individual mode');
+parts=structuredClone(base);parts[1].rotation=[90,0,0];constrainJoints(parts,base,refs);
+assert.ok(Math.abs(worldReference(parts[1],refs.pin[0]).normal.dot(worldReference(parts[0],refs.beam[0]).normal))>.999);
+assert.equal(compatibleReferences(refs.beam[0],refs.beam[1]),false);assert.equal(compatibleReferences(refs.pin[0],{...refs.beam[0],radius:3}),false);
+parts=structuredClone(base);parts[1].position[0]=3;assert.equal(constrainJoints(parts,base,{...refs,pin:[]}).ok,false);
+console.log('PASS: off-hole correction, nearest hole, axial depth, target movement, orientation and incompatible references.');
+
+// A free drop must remain free when snapping was deliberately disabled.
+parts=structuredClone(base);delete parts[1].mate;parts[1].position=[.1,0,-4];
+assert.equal(constrainJoints(parts,base,refs,{autoAttach:false}).ok,true);assert.equal(parts[1].mate,undefined);
+// Withdrawing along the pin axis releases the old-slot suppression.
+parts=structuredClone(base);delete parts[1].mate;parts[1].snapBlocked=[{target:'beam',sourceRef:'p',targetRef:'a'}];parts[1].position=[0,0,50];
+constrainJoints(parts,base,refs);assert.equal(parts[1].snapBlocked,undefined);
+
+const deepRefs={beam:[{id:'h',kind:'hole',point:[0,0,0],normal:[0,0,1],radius:2.1,depth:12}],pin:[{id:'tip',kind:'pin',point:[0,0,0],normal:[0,0,-1],radius:2.05,depth:12}]};
+const seated=[{id:'beam',sku:'beam',position:[0,0,0],rotation:[0,0,0]},{id:'pin',sku:'pin',position:[.5,0,-12],rotation:[0,0,0]}];
+assert.ok(nearestMate(seated[1],seated,deepRefs),'A near-seated connector must snap despite endpoint distance exceeding 8 mm');
+assert.deepEqual(attachmentReferences([{id:'shoulder',kind:'pin',point:[0,0,0],normal:[0,0,1],radius:2,depth:5},{id:'tip',kind:'pin',point:[0,0,5],normal:[0,0,1],radius:2,depth:5}]).map(r=>r.id),['tip']);

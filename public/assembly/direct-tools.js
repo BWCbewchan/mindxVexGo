@@ -1,9 +1,10 @@
+import {assetUrl} from './platform.js';
 import {visibleBounds,VisibleBoxHelper} from './visible-bounds.js';
 import {compatibleReferences} from './connector-policy.js?v=compatibility-27';
 import * as THREE from 'three';
 import {nearestMate,worldReference,matingPose,linkedPoses,insideSnapReleaseZone,SNAP_DISTANCE_MM} from './mating.js?v=fit-tolerance-36';
 export async function installDirectTools(api){
- const refs=(await(await fetch('connectors.json?v=compatibility-27', {cache:'no-store'})).json()).parts,$=id=>document.getElementById(id);
+ const refs=(await(await fetch(assetUrl('connectors.json?v=compatibility-27'), {cache:'no-store'})).json()).parts,$=id=>document.getElementById(id);
  let drag=null,candidate=null,ghost=null,marker=null;const selectionBoxes=new Map();
  const bar=document.createElement('div');bar.className='part-actions';bar.hidden=true;bar.setAttribute('role','toolbar');bar.setAttribute('aria-label','Selected part actions');
  for(const [id,label,tip] of [['turn','↻ 90°','Rotate selected part 90 degrees'],['flip','⇅','Reverse selected connector end'],['copy','⧉','Duplicate selected part'],['detach','Unlink','Detach selected part'],['remove','×','Remove selected part']]){const b=document.createElement('button');b.textContent=label;b.title=tip;b.setAttribute('aria-label',tip);b.dataset.action=id;b.onclick=()=>action(id);bar.append(b);}

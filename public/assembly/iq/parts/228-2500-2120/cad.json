@@ -1,0 +1,94 @@
+{
+  "id": "228-2500-2120",
+  "sku": "228-2500-2120",
+  "name": "Dual R5, Left Curve Filler Panel",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\Dual R5, Left Curve Filler Panel (228-2500-2120).step",
+  "sourceFile": "Dual R5, Left Curve Filler Panel (228-2500-2120).step",
+  "sourceHash": "304e23991115c0d5de687455b9ad0613c0fd705fd78dadb2f207408f59417c75",
+  "bounds": {
+    "min": [
+      -31.83218,
+      -6.26065,
+      -3.28161
+    ],
+    "max": [
+      6.43218,
+      12.79918,
+      15.82496
+    ]
+  },
+  "references": [
+    {
+      "point": [
+        -12.7,
+        0.0,
+        10.414
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "1"
+    },
+    {
+      "point": [
+        -12.7,
+        0.0,
+        14.986
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "2"
+    },
+    {
+      "point": [
+        0.0,
+        0.0,
+        10.414
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "3"
+    },
+    {
+      "point": [
+        0.0,
+        0.0,
+        14.986
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "4"
+    }
+  ],
+  "status": "ok",
+  "bytes": 143552,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "accessory"
+}

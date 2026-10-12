@@ -1,0 +1,88 @@
+{
+  "id": "228-2500-125",
+  "sku": "228-2500-125",
+  "name": "Shaft Bushing",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\Shaft Bushing (228-2500-125).step",
+  "sourceFile": "Shaft Bushing (228-2500-125).step",
+  "sourceHash": "4f01b65f3d7ac0c0b37417e7547f5993322ea50e5c1078c27d98efc0c5caed5e",
+  "bounds": {
+    "min": [
+      -4.02725,
+      -6.35482,
+      -4.02725
+    ],
+    "max": [
+      4.02725,
+      6.14303,
+      4.02725
+    ]
+  },
+  "references": [
+    {
+      "point": [
+        0.0,
+        0.889,
+        -0.0
+      ],
+      "normal": [
+        -0.0,
+        -1.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.55,
+      "kind": "pin",
+      "id": "1"
+    },
+    {
+      "point": [
+        0.0,
+        5.439,
+        -0.0
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.55,
+      "kind": "pin",
+      "id": "2"
+    },
+    {
+      "id": "square-hole-1",
+      "kind": "hole",
+      "profile": "square-drive",
+      "label": "Square socket · CAD",
+      "point": [
+        -0.0,
+        -6.35,
+        0.0
+      ],
+      "normal": [
+        0.0,
+        -1.0,
+        0.0
+      ],
+      "key": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "width": 3.23,
+      "radius": 1.615,
+      "depth": 5.461,
+      "maxDepth": 5.461,
+      "through": false
+    }
+  ],
+  "status": "ok",
+  "bytes": 85208,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "retainer"
+}

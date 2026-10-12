@@ -1,0 +1,126 @@
+{
+  "id": "228-2500-1853",
+  "sku": "228-2500-1853",
+  "name": "Minifigure Shoulder Pin",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\Minifigure Shoulder Pin (228-2500-1853).step",
+  "sourceFile": "Minifigure Shoulder Pin (228-2500-1853).step",
+  "sourceHash": "96b312f61dc3c3eef0e64a5a78b1bab143e7ef37d4b551d58bd5be397225573b",
+  "bounds": {
+    "min": [
+      -3.84596,
+      -5.94759,
+      -3.84596
+    ],
+    "max": [
+      3.84596,
+      5.15124,
+      3.84596
+    ]
+  },
+  "references": [
+    {
+      "point": [
+        0.0,
+        -5.62191,
+        0.71599
+      ],
+      "normal": [
+        0.0,
+        -0.99619,
+        0.08716
+      ],
+      "radius": 1.75,
+      "depth": 1.5034,
+      "kind": "hole",
+      "id": "1"
+    },
+    {
+      "point": [
+        0.0,
+        -4.12419,
+        0.58495
+      ],
+      "normal": [
+        -0.0,
+        0.99619,
+        -0.08716
+      ],
+      "radius": 1.75,
+      "depth": 1.5034,
+      "kind": "hole",
+      "id": "2"
+    },
+    {
+      "point": [
+        0.0,
+        0.0,
+        -0.0
+      ],
+      "normal": [
+        0.0,
+        -1.0,
+        -0.0
+      ],
+      "radius": 3.175,
+      "depth": 0.889,
+      "kind": "pin",
+      "id": "3"
+    },
+    {
+      "point": [
+        0.0,
+        0.889,
+        -0.0
+      ],
+      "normal": [
+        -0.0,
+        -1.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 3.55,
+      "kind": "pin",
+      "id": "4"
+    },
+    {
+      "point": [
+        0.0,
+        0.889,
+        -0.0
+      ],
+      "normal": [
+        -0.0,
+        1.0,
+        0.0
+      ],
+      "radius": 3.175,
+      "depth": 0.889,
+      "kind": "pin",
+      "id": "5"
+    },
+    {
+      "point": [
+        0.0,
+        4.439,
+        -0.0
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 3.55,
+      "kind": "pin",
+      "id": "6"
+    }
+  ],
+  "status": "ok",
+  "bytes": 88860,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "accessory"
+}

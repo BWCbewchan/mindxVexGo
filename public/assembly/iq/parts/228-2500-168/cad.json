@@ -1,0 +1,94 @@
+{
+  "id": "228-2500-168",
+  "sku": "228-2500-168",
+  "name": "Rubber Shaft Collar v1",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\Rubber Shaft Collar v1 (228-2500-168).step",
+  "sourceFile": "Rubber Shaft Collar v1 (228-2500-168).step",
+  "sourceHash": "ed058cd33b12627f0737988c96384e473fd3e2cc42dfe5ea6a3eb3e744e5e5d0",
+  "bounds": {
+    "min": [
+      -11.02245,
+      -4.68796,
+      -6.02138
+    ],
+    "max": [
+      1.19345,
+      7.52793,
+      0.28521
+    ]
+  },
+  "references": [
+    {
+      "point": [
+        -4.9145,
+        1.41998,
+        -6.00808
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        -1.0
+      ],
+      "radius": 2.5,
+      "depth": 1.0,
+      "kind": "hole",
+      "id": "1"
+    },
+    {
+      "point": [
+        -4.9145,
+        1.41998,
+        -5.54308
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 1.5,
+      "depth": 5.35,
+      "kind": "hole",
+      "id": "2"
+    },
+    {
+      "point": [
+        -4.9145,
+        1.41998,
+        -5.00808
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 2.5,
+      "depth": 1.0,
+      "kind": "hole",
+      "id": "3"
+    },
+    {
+      "point": [
+        -4.9145,
+        1.41998,
+        -0.19308
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 1.5,
+      "depth": 5.35,
+      "kind": "hole",
+      "id": "4"
+    }
+  ],
+  "status": "ok",
+  "bytes": 154856,
+  "meshes": 2,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "retainer"
+}

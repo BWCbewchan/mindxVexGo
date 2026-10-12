@@ -1,0 +1,29 @@
+{
+  "id": "228-2500-1958",
+  "sku": "228-2500-1958",
+  "name": "2x Wide, 5x Pitch Diameter Balloon Tire (Racing Slick Tread)",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\2x Wide, 5x Pitch Diameter Balloon Tire (Racing Slick Tread) (228-2500-1958).step",
+  "sourceFile": "2x Wide, 5x Pitch Diameter Balloon Tire (Racing Slick Tread) (228-2500-1958).step",
+  "sourceHash": "51415b8aef857c2b203bad721534ceda32dba8f3c9ee4494f39fd7f0bc85cf2a",
+  "bounds": {
+    "min": [
+      -31.78902,
+      -2.3214,
+      -31.78902
+    ],
+    "max": [
+      31.78902,
+      21.3714,
+      31.78902
+    ]
+  },
+  "references": [],
+  "status": "ok",
+  "bytes": 187580,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "accessory"
+}

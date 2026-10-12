@@ -1,0 +1,158 @@
+{
+  "id": "228-2500-243",
+  "sku": "228-2500-243",
+  "name": "Scarab Thrust Washer for 60 Tooth Gear",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\Scarab Thrust Washer for 60 Tooth Gear (228-2500-243).step",
+  "sourceFile": "Scarab Thrust Washer for 60 Tooth Gear (228-2500-243).step",
+  "sourceHash": "df5788b23103905e37bd7d357653d8a9f2dedfadafb14df5d845756e9d5019f1",
+  "bounds": {
+    "min": [
+      -3.25247,
+      -0.83447,
+      -28.65247
+    ],
+    "max": [
+      54.05247,
+      11.6141,
+      28.65247
+    ]
+  },
+  "references": [
+    {
+      "point": [
+        0.0,
+        0.0,
+        -0.0
+      ],
+      "normal": [
+        -0.0,
+        -1.0,
+        0.0
+      ],
+      "radius": 2.115,
+      "depth": 4.572,
+      "kind": "pin",
+      "id": "1"
+    },
+    {
+      "point": [
+        0.0,
+        4.572,
+        -0.0
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        -0.0
+      ],
+      "radius": 2.115,
+      "depth": 4.572,
+      "kind": "pin",
+      "id": "2"
+    },
+    {
+      "point": [
+        0.0,
+        6.35,
+        -0.0
+      ],
+      "normal": [
+        -0.0,
+        -1.0,
+        0.0
+      ],
+      "radius": 2.115,
+      "depth": 4.7318,
+      "kind": "pin",
+      "id": "3"
+    },
+    {
+      "point": [
+        0.0,
+        11.08177,
+        -0.0
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        -0.0
+      ],
+      "radius": 2.115,
+      "depth": 4.7318,
+      "kind": "pin",
+      "id": "4"
+    },
+    {
+      "point": [
+        38.1,
+        0.0,
+        -21.99705
+      ],
+      "normal": [
+        -0.0,
+        -1.0,
+        -0.0
+      ],
+      "radius": 2.085,
+      "depth": 2.2,
+      "kind": "pin",
+      "id": "5"
+    },
+    {
+      "point": [
+        38.1,
+        0.0,
+        21.99705
+      ],
+      "normal": [
+        -0.0,
+        -1.0,
+        -0.0
+      ],
+      "radius": 2.085,
+      "depth": 2.2,
+      "kind": "pin",
+      "id": "6"
+    },
+    {
+      "point": [
+        38.1,
+        2.2,
+        -21.99705
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "radius": 2.085,
+      "depth": 2.2,
+      "kind": "pin",
+      "id": "7"
+    },
+    {
+      "point": [
+        38.1,
+        2.2,
+        21.99705
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "radius": 2.085,
+      "depth": 2.2,
+      "kind": "pin",
+      "id": "8"
+    }
+  ],
+  "status": "ok",
+  "bytes": 363796,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "gear"
+}

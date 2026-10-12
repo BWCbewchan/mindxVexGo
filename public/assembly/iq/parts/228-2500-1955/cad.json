@@ -1,0 +1,29 @@
+{
+  "id": "228-2500-1955",
+  "sku": "228-2500-1955",
+  "name": "2x Wide, 7x Pitch Diameter Balloon Tire (Offroad Hex Tread)",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\2x Wide, 7x Pitch Diameter Balloon Tire (Offroad Hex Tread) (228-2500-1955).step",
+  "sourceFile": "2x Wide, 7x Pitch Diameter Balloon Tire (Offroad Hex Tread) (228-2500-1955).step",
+  "sourceHash": "a5676e9690da66e9342dd3b68ae1a037fc480ce2026743b0a6897865f6c2cd75",
+  "bounds": {
+    "min": [
+      -44.45292,
+      -2.35089,
+      -44.46178
+    ],
+    "max": [
+      44.45292,
+      21.40089,
+      44.46178
+    ]
+  },
+  "references": [],
+  "status": "ok",
+  "bytes": 1236952,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "accessory"
+}

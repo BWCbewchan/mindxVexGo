@@ -1,11 +1,13 @@
 // VEX GO distinguishes a torque-transmitting square drive from a free-spinning
 // square shaft in a round bore. A round peg must never enter a square socket.
+import {PLATFORM_ID} from './platform.js';
 export function compatibleReferences(a,b,skuA,skuB){
  if(!a||!b||a.kind===b.kind)return false;
  // Collared shafts drive the motor with their short tip; wheels belong on
  // the long free section, even when both ends fit a square socket geometrically.
  const wheelSkus=['228-2500-1383','228-2500-1384'];
- if(a.id==='short-drive-end'&&wheelSkus.includes(skuB)||b.id==='short-drive-end'&&wheelSkus.includes(skuA))return false;
+ if(PLATFORM_ID==='vexgo'&&(a.id==='short-drive-end'&&wheelSkus.includes(skuB)||b.id==='short-drive-end'&&wheelSkus.includes(skuA)))return false;
+ if(PLATFORM_ID==='vexiq'&&(a.id==='motor-output'&&b.driveRole==='long'||b.id==='motor-output'&&a.driveRole==='long'))return false;
  if(a.excludedPartSkus?.includes(skuB)||b.excludedPartSkus?.includes(skuA))return false;
  if(a.excludedProfiles?.includes(b.profile)||b.excludedProfiles?.includes(a.profile))return false;
  const squarePin=ref=>ref.profile==='square-drive'&&ref.kind==='pin';

@@ -1,0 +1,62 @@
+{
+  "id": "228-2500-2258",
+  "sku": "228-2500-2258",
+  "name": "0x2 Idler Pin (Weak)",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\0x2 Idler Pin (Weak) (228-2500-2258).step",
+  "sourceFile": "0x2 Idler Pin (Weak) (228-2500-2258).step",
+  "sourceHash": "6477a76f6c6a348b1bcc96a42112d4f59fdc8c509fa82581994298876e2add80",
+  "bounds": {
+    "min": [
+      -2.90349,
+      -6.26449,
+      -3.125
+    ],
+    "max": [
+      2.90349,
+      6.20259,
+      3.125
+    ]
+  },
+  "references": [
+    {
+      "point": [
+        0.0,
+        -5.461,
+        -0.0
+      ],
+      "normal": [
+        0.0,
+        -1.0,
+        -0.0
+      ],
+      "radius": 2.05,
+      "depth": 4.572,
+      "kind": "pin",
+      "id": "1"
+    },
+    {
+      "point": [
+        0.0,
+        -0.889,
+        -0.0
+      ],
+      "normal": [
+        -0.0,
+        1.0,
+        0.0
+      ],
+      "radius": 2.05,
+      "depth": 4.572,
+      "kind": "pin",
+      "id": "2"
+    }
+  ],
+  "status": "ok",
+  "bytes": 75068,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "pin"
+}

@@ -1,0 +1,126 @@
+{
+  "id": "228-2500-1110",
+  "sku": "228-2500-1110",
+  "name": "1x6 (3-4-5 Triangle) Diagonal Offset Truss Beam",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\1x6 (3-4-5 Triangle) Diagonal Offset Truss Beam (228-2500-1110).step",
+  "sourceFile": "1x6 (3-4-5 Triangle) Diagonal Offset Truss Beam (228-2500-1110).step",
+  "sourceHash": "e34d7a772fcc2390e7379ce5258beaeaa9e6d5745848dca823c579d50a45de6b",
+  "bounds": {
+    "min": [
+      -3.9046,
+      -5.47254,
+      -3.90412
+    ],
+    "max": [
+      67.4046,
+      2.29754,
+      3.90412
+    ]
+  },
+  "references": [
+    {
+      "point": [
+        -0.0,
+        -2.286,
+        -0.0
+      ],
+      "normal": [
+        0.0,
+        -1.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "1"
+    },
+    {
+      "point": [
+        -0.0,
+        2.286,
+        -0.0
+      ],
+      "normal": [
+        -0.0,
+        1.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "2"
+    },
+    {
+      "point": [
+        31.75,
+        -5.461,
+        -0.0
+      ],
+      "normal": [
+        0.0,
+        -1.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "3"
+    },
+    {
+      "point": [
+        31.75,
+        -0.889,
+        -0.0
+      ],
+      "normal": [
+        -0.0,
+        1.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "4"
+    },
+    {
+      "point": [
+        63.5,
+        -2.286,
+        -0.0
+      ],
+      "normal": [
+        -0.0,
+        -1.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "5"
+    },
+    {
+      "point": [
+        63.5,
+        2.286,
+        -0.0
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "6"
+    }
+  ],
+  "status": "ok",
+  "bytes": 264356,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "body"
+}

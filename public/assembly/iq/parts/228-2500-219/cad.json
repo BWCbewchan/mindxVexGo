@@ -1,0 +1,82 @@
+{
+  "id": "228-2500-219",
+  "sku": "228-2500-219",
+  "name": "Worm Gear",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\Worm Gear (228-2500-219).step",
+  "sourceFile": "Worm Gear (228-2500-219).step",
+  "sourceHash": "909d92fa75c8f6c45294e627a7205eccc8ea12680eb4f30b6f3eefba95c0fc54",
+  "bounds": {
+    "min": [
+      -7.36583,
+      -0.07349,
+      -7.35788
+    ],
+    "max": [
+      7.36583,
+      19.12349,
+      7.35786
+    ]
+  },
+  "references": [
+    {
+      "id": "square-hole-1",
+      "kind": "hole",
+      "profile": "square-drive",
+      "label": "Square socket · CAD",
+      "point": [
+        -0.0,
+        18.161,
+        -0.0
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        -0.0
+      ],
+      "key": [
+        -1.0,
+        0.0,
+        -0.0
+      ],
+      "width": 3.23,
+      "radius": 1.615,
+      "depth": 17.272,
+      "maxDepth": 17.272,
+      "through": true
+    },
+    {
+      "id": "square-hole-2",
+      "kind": "hole",
+      "profile": "square-drive",
+      "label": "Square socket · CAD",
+      "point": [
+        -0.0,
+        0.889,
+        0.0
+      ],
+      "normal": [
+        0.0,
+        -1.0,
+        -0.0
+      ],
+      "key": [
+        1.0,
+        0.0,
+        -0.0
+      ],
+      "width": 3.23,
+      "radius": 1.615,
+      "depth": 17.272,
+      "maxDepth": 17.272,
+      "through": true
+    }
+  ],
+  "status": "ok",
+  "bytes": 147696,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "gear"
+}

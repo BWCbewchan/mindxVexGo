@@ -1,0 +1,29 @@
+{
+  "id": "228-2500-222",
+  "sku": "228-2500-222",
+  "name": "2x40mm Rubber Belt",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\2x40mm Rubber Belt (228-2500-222).step",
+  "sourceFile": "2x40mm Rubber Belt (228-2500-222).step",
+  "sourceHash": "df8e857e2e40f0c96ab402731ed1fb3527ca18639a4d5bab83581b9b8412696c",
+  "bounds": {
+    "min": [
+      -21.0265,
+      -1.0265,
+      -21.0265
+    ],
+    "max": [
+      21.0265,
+      1.0265,
+      21.0265
+    ]
+  },
+  "references": [],
+  "status": "ok",
+  "bytes": 155828,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "accessory"
+}

@@ -1,0 +1,29 @@
+{
+  "id": "228-2500-221",
+  "sku": "228-2500-221",
+  "name": "2x30mm Rubber Belt",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\2x30mm Rubber Belt (228-2500-221).step",
+  "sourceFile": "2x30mm Rubber Belt (228-2500-221).step",
+  "sourceHash": "23ace790cd678b9eca2fe10feca6b544f5ed1dbe5d6ac604f60dfac40146b933",
+  "bounds": {
+    "min": [
+      -16.02047,
+      -1.02047,
+      -16.02047
+    ],
+    "max": [
+      16.02047,
+      1.02047,
+      16.02047
+    ]
+  },
+  "references": [],
+  "status": "ok",
+  "bytes": 155832,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "accessory"
+}

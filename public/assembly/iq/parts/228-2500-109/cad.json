@@ -1,0 +1,94 @@
+{
+  "id": "228-2500-109",
+  "sku": "228-2500-109",
+  "name": "0.5x Pitch Standoff Extender",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\0.5x Pitch Standoff Extender (228-2500-109).step",
+  "sourceFile": "0.5x Pitch Standoff Extender (228-2500-109).step",
+  "sourceHash": "d2335dad35b6e4bc3a03f5fff54dfbb5a008e7795d566a8738b23c9d22ca028b",
+  "bounds": {
+    "min": [
+      -4.02813,
+      -5.46708,
+      -4.00608
+    ],
+    "max": [
+      4.01715,
+      6.14303,
+      4.00608
+    ]
+  },
+  "references": [
+    {
+      "point": [
+        0.0,
+        -5.461,
+        -0.0
+      ],
+      "normal": [
+        0.0,
+        -1.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "1"
+    },
+    {
+      "point": [
+        0.0,
+        -0.889,
+        -0.0
+      ],
+      "normal": [
+        -0.0,
+        1.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "2"
+    },
+    {
+      "point": [
+        0.0,
+        0.889,
+        -0.0
+      ],
+      "normal": [
+        -0.0,
+        -1.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.55,
+      "kind": "pin",
+      "id": "3"
+    },
+    {
+      "point": [
+        0.0,
+        5.439,
+        -0.0
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.55,
+      "kind": "pin",
+      "id": "4"
+    }
+  ],
+  "status": "ok",
+  "bytes": 97588,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "body"
+}

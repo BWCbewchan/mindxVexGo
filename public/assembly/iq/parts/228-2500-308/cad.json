@@ -1,0 +1,286 @@
+{
+  "id": "228-2500-308",
+  "sku": "228-2500-308",
+  "name": "Spider Top Plate - Front",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\Spider Top Plate - Front (228-2500-308).step",
+  "sourceFile": "Spider Top Plate - Front (228-2500-308).step",
+  "sourceHash": "bfae01dea033407ee5d37daf20300717bffcc46d27231875a60fa6e3efac3881",
+  "bounds": {
+    "min": [
+      -82.08872,
+      -0.09579,
+      -16.61211
+    ],
+    "max": [
+      82.08872,
+      82.03776,
+      0.1134
+    ]
+  },
+  "references": [
+    {
+      "point": [
+        -57.15,
+        10.99852,
+        -5.335
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.57,
+      "kind": "hole",
+      "id": "1"
+    },
+    {
+      "point": [
+        -57.15,
+        10.99852,
+        -0.765
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.57,
+      "kind": "hole",
+      "id": "2"
+    },
+    {
+      "point": [
+        -38.1,
+        43.99409,
+        -5.335
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.57,
+      "kind": "hole",
+      "id": "3"
+    },
+    {
+      "point": [
+        -38.1,
+        43.99409,
+        -0.765
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.57,
+      "kind": "hole",
+      "id": "4"
+    },
+    {
+      "point": [
+        -31.75,
+        54.99261,
+        -5.335
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.57,
+      "kind": "hole",
+      "id": "5"
+    },
+    {
+      "point": [
+        -31.75,
+        54.99261,
+        -0.765
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.57,
+      "kind": "hole",
+      "id": "6"
+    },
+    {
+      "point": [
+        -19.05,
+        54.99261,
+        -5.335
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.57,
+      "kind": "hole",
+      "id": "7"
+    },
+    {
+      "point": [
+        -19.05,
+        54.99261,
+        -0.765
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.57,
+      "kind": "hole",
+      "id": "8"
+    },
+    {
+      "point": [
+        19.05,
+        54.99261,
+        -5.335
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.57,
+      "kind": "hole",
+      "id": "9"
+    },
+    {
+      "point": [
+        19.05,
+        54.99261,
+        -0.765
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.57,
+      "kind": "hole",
+      "id": "10"
+    },
+    {
+      "point": [
+        31.75,
+        54.99261,
+        -5.335
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.57,
+      "kind": "hole",
+      "id": "11"
+    },
+    {
+      "point": [
+        31.75,
+        54.99261,
+        -0.765
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.57,
+      "kind": "hole",
+      "id": "12"
+    },
+    {
+      "point": [
+        38.1,
+        43.99409,
+        -5.335
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.57,
+      "kind": "hole",
+      "id": "13"
+    },
+    {
+      "point": [
+        38.1,
+        43.99409,
+        -0.765
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.57,
+      "kind": "hole",
+      "id": "14"
+    },
+    {
+      "point": [
+        57.15,
+        10.99852,
+        -5.335
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.57,
+      "kind": "hole",
+      "id": "15"
+    },
+    {
+      "point": [
+        57.15,
+        10.99852,
+        -0.765
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.57,
+      "kind": "hole",
+      "id": "16"
+    }
+  ],
+  "status": "ok",
+  "bytes": 503020,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "body"
+}

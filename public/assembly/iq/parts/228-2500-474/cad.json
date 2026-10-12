@@ -1,0 +1,29 @@
+{
+  "id": "228-2500-474",
+  "sku": "228-2500-474",
+  "name": "Silicone Rubber Band Thin #64 (Use 468)",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\Silicone Rubber Band Thin #64 (Use 468) (228-2500-474).step",
+  "sourceFile": "Silicone Rubber Band Thin #64 (Use 468) (228-2500-474).step",
+  "sourceHash": "75123a7a46ab3c588e65130e024469f403a6f68518f61ddcbfd301fd7b02cca4",
+  "bounds": {
+    "min": [
+      -29.33529,
+      -3.18529,
+      -29.33529
+    ],
+    "max": [
+      29.33529,
+      3.18529,
+      29.33529
+    ]
+  },
+  "references": [],
+  "status": "ok",
+  "bytes": 18504,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "accessory"
+}

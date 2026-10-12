@@ -1,0 +1,126 @@
+{
+  "id": "228-2500-143",
+  "sku": "228-2500-143",
+  "name": "Rubber Shaft Collar",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\Rubber Shaft Collar (228-2500-143).step",
+  "sourceFile": "Rubber Shaft Collar (228-2500-143).step",
+  "sourceHash": "64e29cb0c9db6800d97c4b6879b52e00b070dc306573957b3233a914f9845727",
+  "bounds": {
+    "min": [
+      -1.43549,
+      3.26923,
+      -9.45975
+    ],
+    "max": [
+      9.61661,
+      12.92133,
+      -3.06999
+    ]
+  },
+  "references": [
+    {
+      "point": [
+        4.09056,
+        8.09528,
+        -9.43987
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 2.8,
+      "depth": 0.889,
+      "kind": "hole",
+      "id": "1"
+    },
+    {
+      "point": [
+        4.09056,
+        8.09528,
+        -8.55087
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        -1.0
+      ],
+      "radius": 1.575,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "2"
+    },
+    {
+      "point": [
+        4.09056,
+        8.09528,
+        -8.55087
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 2.8,
+      "depth": 0.889,
+      "kind": "hole",
+      "id": "3"
+    },
+    {
+      "point": [
+        4.09056,
+        8.09528,
+        -3.97887
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 2.8,
+      "depth": 0.889,
+      "kind": "hole",
+      "id": "4"
+    },
+    {
+      "point": [
+        4.09056,
+        8.09528,
+        -3.97887
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 1.575,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "5"
+    },
+    {
+      "point": [
+        4.09056,
+        8.09528,
+        -3.08987
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 2.8,
+      "depth": 0.889,
+      "kind": "hole",
+      "id": "6"
+    }
+  ],
+  "status": "ok",
+  "bytes": 63048,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "retainer"
+}

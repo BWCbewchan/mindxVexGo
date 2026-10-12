@@ -1,0 +1,22 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs/promises';
+import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
+import {matingPose} from '../public/assembly/mating.js';
+import {analyzeCollisions,seatedConnectorContact,meshContact} from '../public/assembly/collision.js';
+const refs=JSON.parse(await fs.readFile('public/assembly/connectors.json','utf8')).parts;
+const motorSku='269-6690-000',pinSku='228-2500-2260',ref=(sku,id)=>refs[sku].find(r=>r.id===id);
+const first={id:'motor1',sku:motorSku,position:[0,40,0],rotation:[0,0,0]};
+const pins=['10','14'].map((hole,i)=>{const p={id:'pin'+i,sku:pinSku,position:[0,0,0],rotation:[0,0,0]};Object.assign(p,matingPose(p,ref(pinSku,'1'),first,ref(motorSku,hole),{depth:4.572}));p.mate={target:first.id,sourceRef:'1',targetRef:hole,depth:4.572};return p;});
+const second={id:'motor2',sku:motorSku,position:[0,0,0],rotation:[0,180,0]};
+Object.assign(second,matingPose(second,ref(motorSku,'10'),pins[0],ref(pinSku,'4'),{depth:4.572}));
+second.mate={target:pins[0].id,sourceRef:'10',targetRef:'4',depth:4.572};
+assert.ok(seatedConnectorContact(pins[1],second,refs),'Second red pin must fit a real mounting hole');
+assert.equal(seatedConnectorContact(pins[1],{...second,position:second.position.map((v,i)=>v+(i===0?2:0))},refs),false,'Misaligned pin must still be rejected');
+const parts=[first,...pins,second],objects=new Map(),loader=new GLTFLoader();
+for(const part of parts){const bytes=await fs.readFile(`public/assembly/parts/${part.sku}/model.glb`);const obj=(await loader.parseAsync(bytes.buffer.slice(bytes.byteOffset,bytes.byteOffset+bytes.byteLength),'')).scene;obj.position.fromArray(part.position).multiplyScalar(.001);obj.rotation.set(...part.rotation.map(v=>v*Math.PI/180));obj.updateMatrixWorld(true);objects.set(part.id,obj);}
+const old=analyzeCollisions(parts,objects),now=analyzeCollisions(parts,objects,{references:refs});
+console.log('Before:',old.issues.map(i=>[i.a,i.b,i.kind]));console.log('After:',now.issues.map(i=>[i.a,i.b,i.kind]));
+assert.ok(old.issues.some(i=>i.kind==='penetration'&&[i.a,i.b].includes('pin1')),'Reproduce unrecorded second pin collision');
+assert.equal(now.issues.filter(i=>i.kind==='penetration').length,0,'Both mounted motors must pass collision guard');
+await fs.writeFile('artifacts/assembly-tests/two-motors-red-pins.json',JSON.stringify({version:1,title:'Two motors with two red pins',parts,steps:[]},null,2));
+console.log('PASS: real CAD two-motor mount, both red pins seated, misaligned pin rejected.');

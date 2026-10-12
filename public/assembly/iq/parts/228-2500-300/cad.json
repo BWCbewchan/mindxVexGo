@@ -1,0 +1,510 @@
+{
+  "id": "228-2500-300",
+  "sku": "228-2500-300",
+  "name": "Strandbeast Shoulder Blade",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\Strandbeast Shoulder Blade (228-2500-300).step",
+  "sourceFile": "Strandbeast Shoulder Blade (228-2500-300).step",
+  "sourceHash": "1a0272ac76d818972d528c50529003d1fceee908ec458f01ca19354cfbd23663",
+  "bounds": {
+    "min": [
+      -10.47569,
+      -50.71908,
+      -50.71908
+    ],
+    "max": [
+      0.0675,
+      50.71908,
+      25.25747
+    ]
+  },
+  "references": [
+    {
+      "point": [
+        -5.33,
+        -44.45,
+        6.2
+      ],
+      "normal": [
+        -1.0,
+        -0.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.57,
+      "kind": "hole",
+      "id": "1"
+    },
+    {
+      "point": [
+        -5.33,
+        -31.75,
+        6.2
+      ],
+      "normal": [
+        -1.0,
+        -0.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.57,
+      "kind": "hole",
+      "id": "2"
+    },
+    {
+      "point": [
+        -5.33,
+        -19.05,
+        6.2
+      ],
+      "normal": [
+        -1.0,
+        -0.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.57,
+      "kind": "hole",
+      "id": "3"
+    },
+    {
+      "point": [
+        -5.33,
+        -6.35,
+        6.2
+      ],
+      "normal": [
+        -1.0,
+        -0.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.57,
+      "kind": "hole",
+      "id": "4"
+    },
+    {
+      "point": [
+        -5.33,
+        -6.35,
+        18.9
+      ],
+      "normal": [
+        -1.0,
+        -0.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.57,
+      "kind": "hole",
+      "id": "5"
+    },
+    {
+      "point": [
+        -5.33,
+        0.0,
+        12.55
+      ],
+      "normal": [
+        -1.0,
+        -0.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.57,
+      "kind": "hole",
+      "id": "6"
+    },
+    {
+      "point": [
+        -5.33,
+        6.35,
+        6.2
+      ],
+      "normal": [
+        -1.0,
+        -0.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.57,
+      "kind": "hole",
+      "id": "7"
+    },
+    {
+      "point": [
+        -5.33,
+        6.35,
+        18.9
+      ],
+      "normal": [
+        -1.0,
+        -0.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.57,
+      "kind": "hole",
+      "id": "8"
+    },
+    {
+      "point": [
+        -5.33,
+        19.05,
+        6.2
+      ],
+      "normal": [
+        -1.0,
+        -0.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.57,
+      "kind": "hole",
+      "id": "9"
+    },
+    {
+      "point": [
+        -5.33,
+        31.75,
+        6.2
+      ],
+      "normal": [
+        -1.0,
+        -0.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.57,
+      "kind": "hole",
+      "id": "10"
+    },
+    {
+      "point": [
+        -5.33,
+        44.45,
+        6.2
+      ],
+      "normal": [
+        -1.0,
+        -0.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.57,
+      "kind": "hole",
+      "id": "11"
+    },
+    {
+      "point": [
+        -0.76,
+        -44.45,
+        6.2
+      ],
+      "normal": [
+        1.0,
+        0.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.57,
+      "kind": "hole",
+      "id": "12"
+    },
+    {
+      "point": [
+        -0.76,
+        -31.75,
+        6.2
+      ],
+      "normal": [
+        1.0,
+        0.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.57,
+      "kind": "hole",
+      "id": "13"
+    },
+    {
+      "point": [
+        -0.76,
+        -19.05,
+        6.2
+      ],
+      "normal": [
+        1.0,
+        0.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.57,
+      "kind": "hole",
+      "id": "14"
+    },
+    {
+      "point": [
+        -0.76,
+        -6.35,
+        6.2
+      ],
+      "normal": [
+        1.0,
+        0.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.57,
+      "kind": "hole",
+      "id": "15"
+    },
+    {
+      "point": [
+        -0.76,
+        -6.35,
+        18.9
+      ],
+      "normal": [
+        1.0,
+        0.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.57,
+      "kind": "hole",
+      "id": "16"
+    },
+    {
+      "point": [
+        -0.76,
+        0.0,
+        12.55
+      ],
+      "normal": [
+        1.0,
+        0.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.57,
+      "kind": "hole",
+      "id": "17"
+    },
+    {
+      "point": [
+        -0.76,
+        6.35,
+        6.2
+      ],
+      "normal": [
+        1.0,
+        0.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.57,
+      "kind": "hole",
+      "id": "18"
+    },
+    {
+      "point": [
+        -0.76,
+        6.35,
+        18.9
+      ],
+      "normal": [
+        1.0,
+        0.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.57,
+      "kind": "hole",
+      "id": "19"
+    },
+    {
+      "point": [
+        -0.76,
+        19.05,
+        6.2
+      ],
+      "normal": [
+        1.0,
+        0.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.57,
+      "kind": "hole",
+      "id": "20"
+    },
+    {
+      "point": [
+        -0.76,
+        31.75,
+        6.2
+      ],
+      "normal": [
+        1.0,
+        0.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.57,
+      "kind": "hole",
+      "id": "21"
+    },
+    {
+      "point": [
+        -0.76,
+        44.45,
+        6.2
+      ],
+      "normal": [
+        1.0,
+        0.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.57,
+      "kind": "hole",
+      "id": "22"
+    },
+    {
+      "point": [
+        -5.33,
+        6.35,
+        18.9
+      ],
+      "normal": [
+        -1.0,
+        -0.0,
+        0.0
+      ],
+      "radius": 3.1,
+      "depth": 1.28,
+      "kind": "pin",
+      "id": "23"
+    },
+    {
+      "point": [
+        -5.33,
+        44.45,
+        6.2
+      ],
+      "normal": [
+        -1.0,
+        -0.0,
+        0.0
+      ],
+      "radius": 3.1,
+      "depth": 1.28,
+      "kind": "pin",
+      "id": "24"
+    },
+    {
+      "point": [
+        -4.05,
+        6.35,
+        18.9
+      ],
+      "normal": [
+        1.0,
+        0.0,
+        -0.0
+      ],
+      "radius": 3.1,
+      "depth": 1.28,
+      "kind": "pin",
+      "id": "25"
+    },
+    {
+      "point": [
+        -4.05,
+        44.45,
+        6.2
+      ],
+      "normal": [
+        1.0,
+        0.0,
+        -0.0
+      ],
+      "radius": 3.1,
+      "depth": 1.28,
+      "kind": "pin",
+      "id": "26"
+    },
+    {
+      "point": [
+        -2.05,
+        6.35,
+        18.9
+      ],
+      "normal": [
+        -1.0,
+        -0.0,
+        0.0
+      ],
+      "radius": 3.175,
+      "depth": 1.29,
+      "kind": "pin",
+      "id": "27"
+    },
+    {
+      "point": [
+        -2.05,
+        44.45,
+        6.2
+      ],
+      "normal": [
+        -1.0,
+        -0.0,
+        0.0
+      ],
+      "radius": 3.175,
+      "depth": 1.29,
+      "kind": "pin",
+      "id": "28"
+    },
+    {
+      "point": [
+        -0.76,
+        6.35,
+        18.9
+      ],
+      "normal": [
+        1.0,
+        0.0,
+        -0.0
+      ],
+      "radius": 3.175,
+      "depth": 1.29,
+      "kind": "pin",
+      "id": "29"
+    },
+    {
+      "point": [
+        -0.76,
+        44.45,
+        6.2
+      ],
+      "normal": [
+        1.0,
+        0.0,
+        -0.0
+      ],
+      "radius": 3.175,
+      "depth": 1.29,
+      "kind": "pin",
+      "id": "30"
+    }
+  ],
+  "status": "ok",
+  "bytes": 550236,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "accessory"
+}

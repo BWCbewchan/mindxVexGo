@@ -1,0 +1,29 @@
+{
+  "id": "228-2500-1225",
+  "sku": "228-2500-1225",
+  "name": "2x30 mm Square Silicone Belt",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\2x30 mm Square Silicone Belt (228-2500-1225).step",
+  "sourceFile": "2x30 mm Square Silicone Belt (228-2500-1225).step",
+  "sourceHash": "64fe665439882f13f4707b495876f1548376a7aa9b6446d42befdfcf3b9892ac",
+  "bounds": {
+    "min": [
+      -16.01927,
+      -1.01927,
+      -16.01927
+    ],
+    "max": [
+      16.01927,
+      1.01927,
+      16.01927
+    ]
+  },
+  "references": [],
+  "status": "ok",
+  "bytes": 18436,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "accessory"
+}

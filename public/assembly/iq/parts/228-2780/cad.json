@@ -1,0 +1,29 @@
+{
+  "id": "228-2780",
+  "sku": "228-2780",
+  "name": "Smart Cable (simulated)",
+  "category": "electronics",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Control-STEP (1)\\VEX-IQ-All-Control-STEP\\228-2780 VEX IQ Cable Pack\\228-2780 - Simulated Cable.STEP",
+  "sourceFile": "228-2780 - Simulated Cable.STEP",
+  "sourceHash": "d0652bec51918ee77b2522aca17a27665aa1f3b55568411367367d3033ed2a15",
+  "bounds": {
+    "min": [
+      -6.45104,
+      -3.4906,
+      -7.02613
+    ],
+    "max": [
+      66.45104,
+      38.4906,
+      2.62992
+    ]
+  },
+  "references": [],
+  "status": "ok",
+  "bytes": 589464,
+  "meshes": 15,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "electronic"
+}

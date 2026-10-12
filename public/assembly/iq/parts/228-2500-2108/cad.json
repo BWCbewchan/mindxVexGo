@@ -1,0 +1,350 @@
+{
+  "id": "228-2500-2108",
+  "sku": "228-2500-2108",
+  "name": "4x1, R6 x Flat Curve Panel",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\4x1, R6 x Flat Curve Panel (228-2500-2108).step",
+  "sourceFile": "4x1, R6 x Flat Curve Panel (228-2500-2108).step",
+  "sourceHash": "a9f629b59622a08ead2725ea9abf01df420da0302a8c380cc73ad7b1d3ec70b1",
+  "bounds": {
+    "min": [
+      -6.24824,
+      -44.34824,
+      -3.09809
+    ],
+    "max": [
+      6.24824,
+      6.24824,
+      22.10257
+    ]
+  },
+  "references": [
+    {
+      "point": [
+        -5.461,
+        -25.4,
+        15.875
+      ],
+      "normal": [
+        -1.0,
+        0.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "1"
+    },
+    {
+      "point": [
+        -5.461,
+        -12.7,
+        15.875
+      ],
+      "normal": [
+        -1.0,
+        0.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "2"
+    },
+    {
+      "point": [
+        -0.889,
+        -25.4,
+        15.875
+      ],
+      "normal": [
+        1.0,
+        -0.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "3"
+    },
+    {
+      "point": [
+        -0.889,
+        -12.7,
+        15.875
+      ],
+      "normal": [
+        1.0,
+        -0.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "4"
+    },
+    {
+      "point": [
+        0.0,
+        -38.1,
+        16.764
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "5"
+    },
+    {
+      "point": [
+        0.0,
+        -38.1,
+        21.336
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "6"
+    },
+    {
+      "point": [
+        0.0,
+        0.0,
+        -2.286
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "7"
+    },
+    {
+      "point": [
+        0.0,
+        0.0,
+        2.286
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "8"
+    },
+    {
+      "point": [
+        0.889,
+        -25.4,
+        15.875
+      ],
+      "normal": [
+        -1.0,
+        -0.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "9"
+    },
+    {
+      "point": [
+        0.889,
+        -12.7,
+        15.875
+      ],
+      "normal": [
+        -1.0,
+        -0.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "10"
+    },
+    {
+      "point": [
+        5.461,
+        -25.4,
+        15.875
+      ],
+      "normal": [
+        1.0,
+        0.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "11"
+    },
+    {
+      "point": [
+        5.461,
+        -12.7,
+        15.875
+      ],
+      "normal": [
+        1.0,
+        0.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "12"
+    },
+    {
+      "point": [
+        -3.961,
+        -25.4,
+        15.875
+      ],
+      "normal": [
+        -1.0,
+        0.0,
+        -0.0
+      ],
+      "radius": 3.175,
+      "depth": 1.597,
+      "kind": "pin",
+      "id": "13"
+    },
+    {
+      "point": [
+        -3.961,
+        -12.7,
+        15.875
+      ],
+      "normal": [
+        -1.0,
+        0.0,
+        -0.0
+      ],
+      "radius": 3.175,
+      "depth": 1.597,
+      "kind": "pin",
+      "id": "14"
+    },
+    {
+      "point": [
+        -2.364,
+        -25.4,
+        15.875
+      ],
+      "normal": [
+        1.0,
+        -0.0,
+        0.0
+      ],
+      "radius": 3.175,
+      "depth": 1.597,
+      "kind": "pin",
+      "id": "15"
+    },
+    {
+      "point": [
+        -2.364,
+        -12.7,
+        15.875
+      ],
+      "normal": [
+        1.0,
+        -0.0,
+        0.0
+      ],
+      "radius": 3.175,
+      "depth": 1.597,
+      "kind": "pin",
+      "id": "16"
+    },
+    {
+      "point": [
+        2.364,
+        -25.4,
+        15.875
+      ],
+      "normal": [
+        -1.0,
+        0.0,
+        -0.0
+      ],
+      "radius": 3.175,
+      "depth": 1.597,
+      "kind": "pin",
+      "id": "17"
+    },
+    {
+      "point": [
+        2.364,
+        -12.7,
+        15.875
+      ],
+      "normal": [
+        -1.0,
+        0.0,
+        -0.0
+      ],
+      "radius": 3.175,
+      "depth": 1.597,
+      "kind": "pin",
+      "id": "18"
+    },
+    {
+      "point": [
+        3.961,
+        -25.4,
+        15.875
+      ],
+      "normal": [
+        1.0,
+        -0.0,
+        0.0
+      ],
+      "radius": 3.175,
+      "depth": 1.597,
+      "kind": "pin",
+      "id": "19"
+    },
+    {
+      "point": [
+        3.961,
+        -12.7,
+        15.875
+      ],
+      "normal": [
+        1.0,
+        -0.0,
+        0.0
+      ],
+      "radius": 3.175,
+      "depth": 1.597,
+      "kind": "pin",
+      "id": "20"
+    }
+  ],
+  "status": "ok",
+  "bytes": 309608,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "accessory"
+}

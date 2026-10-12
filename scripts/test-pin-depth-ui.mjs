@@ -1,0 +1,36 @@
+import assert from 'node:assert/strict';
+import {chromium} from '@playwright/test';
+const browser=await chromium.launch({channel:'chrome',headless:true,args:['--use-angle=swiftshader','--enable-unsafe-swiftshader']});
+try{
+ const page=await browser.newPage({viewport:{width:1450,height:950}});
+ await page.addInitScript(()=>{if(location.pathname==='/assembly/editor.html'&&!sessionStorage.getItem('assembly-ui-test-reset')){localStorage.removeItem('mindx-vexgo-assembly-v1');sessionStorage.setItem('assembly-ui-test-reset','1');}});
+ await page.goto('http://localhost:3120/assembly');
+ const frame=page.frameLocator('iframe');
+ await frame.locator('#status').filter({hasText:'Draft saved locally'}).waitFor();
+ await frame.locator('#search').fill('228-2500-003');
+ await frame.locator('#parts button').click();
+ await frame.locator('#selection').filter({hasText:'228-2500-003'}).waitFor();
+ await frame.locator('button.quick-point-hit').filter({visible:true}).first().click();
+ await frame.locator('#quick-search').fill('228-2500-2271');
+ await frame.locator('#quick-options button').click();
+ await frame.locator('#quick-preview').waitFor({state:'visible'});
+ assert.equal(await frame.locator('#quick-depth').inputValue(),'2.2');
+ assert.equal(await frame.locator('#quick-depth').getAttribute('max'),'2.2');
+ await page.screenshot({path:'artifacts/assembly-tests/standoff-seated-preview.png'});
+ await frame.locator('#quick-apply').click();
+ await frame.locator('#status').filter({hasText:'Part attached'}).waitFor();
+ let project=await page.frames().find(item=>item.url().includes('editor.html')).evaluate(()=>JSON.parse(localStorage.getItem('mindx-vexgo-assembly-v1')));
+ assert.equal(project.parts[1].mate.depth,2.2);
+ const beam=project.parts[0],peg=project.parts[1];
+ const stored=JSON.stringify(project);
+ const legacy=JSON.parse(stored);legacy.parts[1].mate.depth=4.572;legacy.parts[1].position[0]+=5;
+ const child=page.frames().find(item=>item.url().includes('editor.html'));
+ await child.evaluate(value=>localStorage.setItem('mindx-vexgo-assembly-v1',JSON.stringify(value)),legacy);
+ await page.reload();
+ await page.frameLocator('iframe').locator('#status').filter({hasText:'Draft saved locally'}).waitFor();
+ project=await page.frames().find(item=>item.url().includes('editor.html')).evaluate(()=>JSON.parse(localStorage.getItem('mindx-vexgo-assembly-v1')));
+ assert.equal(project.parts[1].mate.depth,2.2,'An older saved over-inserted standoff is migrated to its seating depth.');
+ assert.deepEqual(project.parts[0].position,beam.position);
+ assert.deepEqual(project.parts[1].position,peg.position,'The old saved pose is re-seated at the pin shoulder.');
+ console.log('PASS: standoff quick attach seats at 2.2 mm and legacy over-inserted saved project is corrected on open.');
+}finally{await browser.close();}

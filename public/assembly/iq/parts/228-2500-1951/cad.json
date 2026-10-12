@@ -1,0 +1,29 @@
+{
+  "id": "228-2500-1951",
+  "sku": "228-2500-1951",
+  "name": "2x Wide, 3x Pitch Diameter Tire (Straight Offroad Tread)",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\2x Wide, 3x Pitch Diameter Tire (Straight Offroad Tread) (228-2500-1951).step",
+  "sourceFile": "2x Wide, 3x Pitch Diameter Tire (Straight Offroad Tread) (228-2500-1951).step",
+  "sourceHash": "ad4f96a0b67ac36fcec041cc18ea176bcefb82351273bd8907ae0cf32288cbdb",
+  "bounds": {
+    "min": [
+      -19.11099,
+      -2.09784,
+      -19.09828
+    ],
+    "max": [
+      19.11099,
+      21.14784,
+      19.09828
+    ]
+  },
+  "references": [],
+  "status": "ok",
+  "bytes": 326876,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "accessory"
+}

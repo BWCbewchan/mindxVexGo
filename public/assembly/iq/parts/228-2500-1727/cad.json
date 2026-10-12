@@ -1,0 +1,126 @@
+{
+  "id": "228-2500-1727",
+  "sku": "228-2500-1727",
+  "name": "1x3, Extended 0.5 x 1x Pitch, Diagonal Left Corner Sloped Panel",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\1x3, Extended 0.5 x 1x Pitch, Diagonal Left Corner Sloped Panel (228-2500-1727).step",
+  "sourceFile": "1x3, Extended 0.5 x 1x Pitch, Diagonal Left Corner Sloped Panel (228-2500-1727).step",
+  "sourceHash": "87a28f179e2dc142ca986cf368fde8892050b8814d8b4247879dd5f097bb2b64",
+  "bounds": {
+    "min": [
+      -18.90241,
+      -6.20241,
+      -3.07617
+    ],
+    "max": [
+      15.92379,
+      6.20241,
+      3.05241
+    ]
+  },
+  "references": [
+    {
+      "point": [
+        -12.7,
+        0.0,
+        -2.286
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "1"
+    },
+    {
+      "point": [
+        -12.7,
+        0.0,
+        2.286
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "2"
+    },
+    {
+      "point": [
+        0.0,
+        0.0,
+        -2.286
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "3"
+    },
+    {
+      "point": [
+        0.0,
+        0.0,
+        2.286
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "4"
+    },
+    {
+      "point": [
+        13.92157,
+        -4.2,
+        0.06411
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 2.0,
+      "depth": 2.9859,
+      "kind": "pin",
+      "id": "5"
+    },
+    {
+      "point": [
+        13.92157,
+        -4.2,
+        3.05
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 2.0,
+      "depth": 2.9859,
+      "kind": "pin",
+      "id": "6"
+    }
+  ],
+  "status": "ok",
+  "bytes": 115720,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "accessory"
+}

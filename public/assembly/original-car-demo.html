@@ -1,0 +1,15 @@
+<!doctype html><html lang="vi"><head><meta charset="utf-8"><title>Xe sàn đôi · 2 motor</title><style>html,body{margin:0;height:100%;background:#272a2e;font:14px system-ui;color:white}header{height:40px;display:flex;align-items:center;gap:20px;padding:0 16px}iframe{width:100%;height:calc(100% - 40px);border:0}#progress{color:#b6d5ef}</style></head><body><header><b>Xe sàn đôi · Thiết kế mới · 2 motor</b><span id="progress">Đang mở Assembly…</span></header><iframe title="Xe sàn đôi"></iframe><script type="module">
+const frame=document.querySelector('iframe'),status=document.getElementById('progress'),key='mindx-vexgo-demo-original-platform';
+let started=false;
+async function run(){if(started)return;started=true;try{while(!frame.contentWindow.mindxAssembly)await new Promise(r=>setTimeout(r,100));const api=frame.contentWindow.mindxAssembly;const state=await api.execute('getState');if(state.result.project.parts.length){frame.contentDocument.getElementById('fit').click();status.textContent='Thiết kế mới · 2 motor, 1 Brain, 1 Battery';window.demoReady=true;return;}
+let n=0;async function call(command,args){status.textContent=`Đang lắp bằng API · ${++n}: ${command}`;console.log(status.textContent);const result=await api.execute(command,args);if(!result.ok)throw Error(command+' '+JSON.stringify(args)+' '+result.error);return result.result;}
+const recipe=await(await fetch('original-car-recipe.json')).json(),map=new Map();
+for(const item of recipe){const current=await api.execute('getState');let id;if(['269-6685-000','269-6686-000'].includes(item.sku)){id=current.result.project.parts.find(p=>p.sku===item.sku)?.id;if(id)await call('setTransform',{id,position:[1500,200,1000],rotation:item.rotation});}
+if(!id){const added=await call('addPart',{sku:item.sku,position:[n===0?500:1500,200,1000],rotation:item.rotation});id=added.id;}
+map.set(item.id,id);if(item.mate){const targetId=map.get(item.mate.target);if(!targetId)throw Error('Missing target '+item.mate.target);await call('attach',{id,targetId,sourceRef:item.mate.sourceRef,targetRef:item.mate.targetRef,depth:item.mate.depth,twist:0});}else await call('setTransform',{id,position:item.position,rotation:item.rotation});}
+const fit=await call('checkFit');frame.contentDocument.getElementById('fit').click();status.textContent=`Đã lắp ${recipe.length} chi tiết bằng ${n} lệnh API · ${fit.issues.filter(i=>i.kind==='penetration').length} va chạm xuyên thân`;window.demoReady=true;window.apiCommandCount=n;
+}catch(e){status.textContent='Lỗi API: '+e.message;window.demoError=e.message;}}
+frame.addEventListener('load',run);
+if(!new URLSearchParams(location.search).has('build')&&!localStorage.getItem(key)){try{const response=await fetch('original-car-project.json');if(response.ok)localStorage.setItem(key,JSON.stringify(await response.json()));}catch{}}
+frame.src='editor.html?demo=original-platform';
+</script></body></html>

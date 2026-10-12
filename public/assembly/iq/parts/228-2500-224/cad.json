@@ -1,0 +1,29 @@
+{
+  "id": "228-2500-224",
+  "sku": "228-2500-224",
+  "name": "2x60mm Rubber Belt",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\2x60mm Rubber Belt (228-2500-224).step",
+  "sourceFile": "2x60mm Rubber Belt (228-2500-224).step",
+  "sourceHash": "8ec6f03b09e8319d6f590267be5bd68fefa6d256dfba2ed422382abb078c20a1",
+  "bounds": {
+    "min": [
+      -31.03854,
+      -1.03854,
+      -31.03854
+    ],
+    "max": [
+      31.03854,
+      1.03854,
+      31.03854
+    ]
+  },
+  "references": [],
+  "status": "ok",
+  "bytes": 155824,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "accessory"
+}

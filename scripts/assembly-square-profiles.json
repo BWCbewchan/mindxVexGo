@@ -1,0 +1,723 @@
+{
+  "evidence": "Curated square features mapped from original VEX GO STEP geometry and official VEX GO compatibility guidance. Square shafts transfer rotation through square sockets; the same shafts can run freely in round holes. These are alignment references, not physical-fit certification.",
+  "parts": {
+    "228-2500-143": {
+      "removeCircularIds": [
+        "2",
+        "5",
+        "7",
+        "8"
+      ],
+      "features": [
+        {
+          "id": "square-hole-front",
+          "kind": "hole",
+          "profile": "square-drive",
+          "label": "Shaft collar · square bore",
+          "point": [
+            0,
+            0,
+            -3.175
+          ],
+          "normal": [
+            0,
+            0,
+            -1
+          ],
+          "key": [
+            1,
+            0,
+            0
+          ],
+          "radius": 1.5875,
+          "width": 3.175,
+          "depth": 6.35,
+          "maxDepth": 6.35,
+          "through": true
+        },
+        {
+          "id": "square-hole-back",
+          "kind": "hole",
+          "profile": "square-drive",
+          "label": "Shaft collar · square bore",
+          "point": [
+            0,
+            0,
+            3.175
+          ],
+          "normal": [
+            0,
+            0,
+            1
+          ],
+          "key": [
+            1,
+            0,
+            0
+          ],
+          "radius": 1.5875,
+          "width": 3.175,
+          "depth": 6.35,
+          "maxDepth": 6.35,
+          "through": true
+        }
+      ]
+    },
+    "228-2500-1140": {
+      "removeCircularIds": [],
+      "features": [
+        {
+          "id": "square-hole-front",
+          "kind": "hole",
+          "profile": "square-drive",
+          "label": "Red Square Beam · square hole",
+          "point": [
+            0,
+            -3.175,
+            0
+          ],
+          "normal": [
+            0,
+            -1,
+            0
+          ],
+          "key": [
+            1,
+            0,
+            0
+          ],
+          "radius": 1.5875,
+          "width": 3.175,
+          "depth": 6.35,
+          "maxDepth": 6.35
+        },
+        {
+          "id": "square-hole-back",
+          "kind": "hole",
+          "profile": "square-drive",
+          "label": "Red Square Beam · square hole",
+          "point": [
+            0,
+            3.175,
+            0
+          ],
+          "normal": [
+            0,
+            1,
+            0
+          ],
+          "key": [
+            1,
+            0,
+            0
+          ],
+          "radius": 1.5875,
+          "width": 3.175,
+          "depth": 6.35,
+          "maxDepth": 6.35
+        }
+      ]
+    },
+    "228-2500-1548": {
+      "removeCircularIds": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "features": [
+        {
+          "id": "square-hole-front",
+          "kind": "hole",
+          "profile": "square-drive",
+          "label": "Blue Thin Beam · square hole",
+          "point": [
+            0,
+            -3.175,
+            0
+          ],
+          "normal": [
+            0,
+            -1,
+            0
+          ],
+          "key": [
+            1,
+            0,
+            0
+          ],
+          "radius": 1.5875,
+          "width": 3.175,
+          "depth": 6.35,
+          "maxDepth": 6.35
+        },
+        {
+          "id": "square-hole-back",
+          "kind": "hole",
+          "profile": "square-drive",
+          "label": "Blue Thin Beam · square hole",
+          "point": [
+            0,
+            3.175,
+            0
+          ],
+          "normal": [
+            0,
+            1,
+            0
+          ],
+          "key": [
+            1,
+            0,
+            0
+          ],
+          "radius": 1.5875,
+          "width": 3.175,
+          "depth": 6.35,
+          "maxDepth": 6.35
+        }
+      ]
+    },
+    "228-2500-164": {
+      "removeCircularIds": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "features": [
+        {
+          "id": "square-hole-front",
+          "kind": "hole",
+          "profile": "square-drive",
+          "label": "Green Pulley · square bore",
+          "point": [
+            0,
+            -3.175,
+            0
+          ],
+          "normal": [
+            0,
+            -1,
+            0
+          ],
+          "key": [
+            1,
+            0,
+            0
+          ],
+          "radius": 1.5875,
+          "width": 3.175,
+          "depth": 6.35,
+          "maxDepth": 6.35
+        },
+        {
+          "id": "square-hole-back",
+          "kind": "hole",
+          "profile": "square-drive",
+          "label": "Green Pulley · square bore",
+          "point": [
+            0,
+            3.175,
+            0
+          ],
+          "normal": [
+            0,
+            1,
+            0
+          ],
+          "key": [
+            1,
+            0,
+            0
+          ],
+          "radius": 1.5875,
+          "width": 3.175,
+          "depth": 6.35,
+          "maxDepth": 6.35
+        }
+      ]
+    },
+    "228-2500-2180": {
+      "removeCircularIds": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "features": [
+        {
+          "id": "square-hole-front",
+          "kind": "hole",
+          "profile": "square-drive",
+          "label": "Red Gear · square bore",
+          "point": [
+            0,
+            -3.175,
+            0
+          ],
+          "normal": [
+            0,
+            -1,
+            0
+          ],
+          "key": [
+            1,
+            0,
+            0
+          ],
+          "radius": 1.5875,
+          "width": 3.175,
+          "depth": 8.636,
+          "maxDepth": 8.636
+        },
+        {
+          "id": "square-hole-back",
+          "kind": "hole",
+          "profile": "square-drive",
+          "label": "Red Gear · square bore",
+          "point": [
+            0,
+            5.461,
+            0
+          ],
+          "normal": [
+            0,
+            1,
+            0
+          ],
+          "key": [
+            1,
+            0,
+            0
+          ],
+          "radius": 1.5875,
+          "width": 3.175,
+          "depth": 8.636,
+          "maxDepth": 8.636
+        }
+      ]
+    },
+    "228-2500-2181": {
+      "removeCircularIds": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "features": [
+        {
+          "id": "square-hole-front",
+          "kind": "hole",
+          "profile": "square-drive",
+          "label": "Green Gear · square bore",
+          "point": [
+            0,
+            -3.175,
+            0
+          ],
+          "normal": [
+            0,
+            -1,
+            0
+          ],
+          "key": [
+            1,
+            0,
+            0
+          ],
+          "radius": 1.5875,
+          "width": 3.175,
+          "depth": 8.636,
+          "maxDepth": 8.636
+        },
+        {
+          "id": "square-hole-back",
+          "kind": "hole",
+          "profile": "square-drive",
+          "label": "Green Gear · square bore",
+          "point": [
+            0,
+            5.461,
+            0
+          ],
+          "normal": [
+            0,
+            1,
+            0
+          ],
+          "key": [
+            1,
+            0,
+            0
+          ],
+          "radius": 1.5875,
+          "width": 3.175,
+          "depth": 8.636,
+          "maxDepth": 8.636
+        }
+      ]
+    },
+    "228-2500-2182": {
+      "removeCircularIds": [
+        "5",
+        "6",
+        "7",
+        "8"
+      ],
+      "features": [
+        {
+          "id": "square-hole-front",
+          "kind": "hole",
+          "profile": "square-drive",
+          "label": "Blue Gear · square bore",
+          "point": [
+            0,
+            -3.175,
+            0
+          ],
+          "normal": [
+            0,
+            -1,
+            0
+          ],
+          "key": [
+            1,
+            0,
+            0
+          ],
+          "radius": 1.5875,
+          "width": 3.175,
+          "depth": 8.636,
+          "maxDepth": 8.636
+        },
+        {
+          "id": "square-hole-back",
+          "kind": "hole",
+          "profile": "square-drive",
+          "label": "Blue Gear · square bore",
+          "point": [
+            0,
+            5.461,
+            0
+          ],
+          "normal": [
+            0,
+            1,
+            0
+          ],
+          "key": [
+            1,
+            0,
+            0
+          ],
+          "radius": 1.5875,
+          "width": 3.175,
+          "depth": 8.636,
+          "maxDepth": 8.636
+        }
+      ]
+    },
+    "228-2500-1383": {
+      "removeCircularIds": [
+        "7",
+        "9",
+        "12",
+        "14"
+      ],
+      "features": [
+        {
+          "id": "square-hole-front",
+          "kind": "hole",
+          "profile": "square-drive",
+          "label": "Gray Wheel · square bore",
+          "point": [
+            0,
+            -3.175,
+            0
+          ],
+          "normal": [
+            0,
+            -1,
+            0
+          ],
+          "key": [
+            1,
+            0,
+            0
+          ],
+          "radius": 1.5875,
+          "width": 3.175,
+          "depth": 18.925,
+          "maxDepth": 18.925
+        },
+        {
+          "id": "square-hole-back",
+          "kind": "hole",
+          "profile": "square-drive",
+          "label": "Gray Wheel · square bore",
+          "point": [
+            0,
+            15.75,
+            0
+          ],
+          "normal": [
+            0,
+            1,
+            0
+          ],
+          "key": [
+            1,
+            0,
+            0
+          ],
+          "radius": 1.5875,
+          "width": 3.175,
+          "depth": 18.925,
+          "maxDepth": 18.925
+        }
+      ]
+    },
+    "228-2500-473": {
+      "removeCircularIds": [
+        "7",
+        "8",
+        "9",
+        "10"
+      ],
+      "features": [
+        {
+          "id": "square-hole-front",
+          "kind": "hole",
+          "profile": "square-drive",
+          "label": "Orange Knob · square bore",
+          "point": [
+            0,
+            0,
+            -18.925
+          ],
+          "normal": [
+            0,
+            0,
+            -1
+          ],
+          "key": [
+            1,
+            0,
+            0
+          ],
+          "radius": 1.5875,
+          "width": 3.175,
+          "depth": 22.1,
+          "maxDepth": 22.1
+        },
+        {
+          "id": "square-hole-back",
+          "kind": "hole",
+          "profile": "square-drive",
+          "label": "Orange Knob · square bore",
+          "point": [
+            0,
+            0,
+            3.175
+          ],
+          "normal": [
+            0,
+            0,
+            1
+          ],
+          "key": [
+            1,
+            0,
+            0
+          ],
+          "radius": 1.5875,
+          "width": 3.175,
+          "depth": 22.1,
+          "maxDepth": 22.1
+        }
+      ]
+    },
+    "228-2500-124": {
+      "removeCircularIds": [],
+      "features": [
+        {
+          "id": "square-shaft-end-a",
+          "kind": "pin",
+          "profile": "square-drive",
+          "label": "Plain Shaft · square end",
+          "point": [
+            0,
+            -49.911,
+            0
+          ],
+          "normal": [
+            0,
+            -1,
+            0
+          ],
+          "key": [
+            1,
+            0,
+            0
+          ],
+          "radius": 1.5875,
+          "width": 3.175,
+          "depth": 99.822,
+          "maxDepth": 99.822
+        },
+        {
+          "id": "square-shaft-end-b",
+          "kind": "pin",
+          "profile": "square-drive",
+          "label": "Plain Shaft · square end",
+          "point": [
+            0,
+            49.911,
+            0
+          ],
+          "normal": [
+            0,
+            1,
+            0
+          ],
+          "key": [
+            1,
+            0,
+            0
+          ],
+          "radius": 1.5875,
+          "width": 3.175,
+          "depth": 99.822,
+          "maxDepth": 99.822
+        }
+      ]
+    },
+    "228-2500-2221": {
+      "removeCircularIds": [],
+      "features": [
+        {
+          "id": "square-shaft-end",
+          "kind": "pin",
+          "profile": "square-drive",
+          "label": "Capped Shaft · free end",
+          "point": [
+            0,
+            -34.036,
+            0
+          ],
+          "normal": [
+            0,
+            -1,
+            0
+          ],
+          "key": [
+            1,
+            0,
+            0
+          ],
+          "radius": 1.5875,
+          "width": 3.175,
+          "depth": 37.122,
+          "maxDepth": 37.122
+        }
+      ]
+    },
+    "228-2500-2234": {
+      "removeCircularIds": [],
+      "features": [
+        {
+          "id": "square-long-shaft-end",
+          "kind": "pin",
+          "profile": "square-drive",
+          "label": "Red Shaft · long end",
+          "excludedPartSkus": [
+            "269-6690-000"
+          ],
+          "point": [
+            0,
+            -27.686,
+            0
+          ],
+          "normal": [
+            0,
+            -1,
+            0
+          ],
+          "key": [
+            1,
+            0,
+            0
+          ],
+          "radius": 1.5875,
+          "width": 3.175,
+          "depth": 24.511,
+          "maxDepth": 24.511
+        }
+      ]
+    },
+    "228-2500-2238": {
+      "removeCircularIds": [],
+      "features": [
+        {
+          "id": "square-long-shaft-end",
+          "kind": "pin",
+          "profile": "square-drive",
+          "label": "Green Shaft · long end",
+          "excludedPartSkus": [
+            "269-6690-000"
+          ],
+          "point": [
+            0,
+            -53.086,
+            0
+          ],
+          "normal": [
+            0,
+            -1,
+            0
+          ],
+          "key": [
+            1,
+            0,
+            0
+          ],
+          "radius": 1.5875,
+          "width": 3.175,
+          "depth": 49.911,
+          "maxDepth": 49.911
+        }
+      ]
+    },
+    "228-2500-328": {
+      "removeCircularIds": [],
+      "features": [
+        {
+          "id": "square-drive-end",
+          "kind": "pin",
+          "profile": "square-drive",
+          "label": "Gray Pin · square peg",
+          "point": [
+            0,
+            2.286,
+            0
+          ],
+          "normal": [
+            0,
+            1,
+            0
+          ],
+          "key": [
+            1,
+            0,
+            0
+          ],
+          "radius": 1.5875,
+          "width": 3.175,
+          "depth": 6.261,
+          "maxDepth": 6.261
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,126 @@
+{
+  "id": "228-2500-097",
+  "sku": "228-2500-097",
+  "name": "0x3 Idler Pin",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\0x3 Idler Pin (228-2500-097).step",
+  "sourceFile": "0x3 Idler Pin (228-2500-097).step",
+  "sourceHash": "45cfd2ec1f1547caa851a059558f303c17e74b81e8d6ec738ac3cf250a5ccf2d",
+  "bounds": {
+    "min": [
+      -3.12876,
+      -12.61476,
+      -3.12876
+    ],
+    "max": [
+      3.12876,
+      6.20259,
+      3.12876
+    ]
+  },
+  "references": [
+    {
+      "point": [
+        0.0,
+        -12.611,
+        -0.0
+      ],
+      "normal": [
+        0.0,
+        -1.0,
+        -0.0
+      ],
+      "radius": 3.125,
+      "depth": 0.8,
+      "kind": "pin",
+      "id": "1"
+    },
+    {
+      "point": [
+        0.0,
+        -11.811,
+        -0.0
+      ],
+      "normal": [
+        0.0,
+        -1.0,
+        -0.0
+      ],
+      "radius": 2.05,
+      "depth": 4.572,
+      "kind": "pin",
+      "id": "2"
+    },
+    {
+      "point": [
+        0.0,
+        -11.811,
+        -0.0
+      ],
+      "normal": [
+        -0.0,
+        1.0,
+        0.0
+      ],
+      "radius": 3.125,
+      "depth": 0.8,
+      "kind": "pin",
+      "id": "3"
+    },
+    {
+      "point": [
+        0.0,
+        -7.239,
+        -0.0
+      ],
+      "normal": [
+        -0.0,
+        1.0,
+        0.0
+      ],
+      "radius": 2.05,
+      "depth": 4.572,
+      "kind": "pin",
+      "id": "4"
+    },
+    {
+      "point": [
+        0.0,
+        -5.461,
+        -0.0
+      ],
+      "normal": [
+        0.0,
+        -1.0,
+        -0.0
+      ],
+      "radius": 2.05,
+      "depth": 4.572,
+      "kind": "pin",
+      "id": "5"
+    },
+    {
+      "point": [
+        0.0,
+        -0.889,
+        -0.0
+      ],
+      "normal": [
+        -0.0,
+        1.0,
+        0.0
+      ],
+      "radius": 2.05,
+      "depth": 4.572,
+      "kind": "pin",
+      "id": "6"
+    }
+  ],
+  "status": "ok",
+  "bytes": 117048,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "pin"
+}

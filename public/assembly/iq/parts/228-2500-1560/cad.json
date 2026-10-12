@@ -1,0 +1,350 @@
+{
+  "id": "228-2500-1560",
+  "sku": "228-2500-1560",
+  "name": "2x Pitch Shock Absorber (Weak)",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\2x Pitch Shock Absorber (Weak) (228-2500-1560).step",
+  "sourceFile": "2x Pitch Shock Absorber (Weak) (228-2500-1560).step",
+  "sourceHash": "6b8f2b9caf134adf1f6bcd925d534689b2142cf4db1b6ba6486ebcd542c35cb4",
+  "bounds": {
+    "min": [
+      -6.26137,
+      -6.28416,
+      -95.17279
+    ],
+    "max": [
+      6.26137,
+      6.28416,
+      6.27231
+    ]
+  },
+  "references": [
+    {
+      "point": [
+        -6.20016,
+        -0.0,
+        -45.9
+      ],
+      "normal": [
+        -1.0,
+        -0.0,
+        0.0
+      ],
+      "radius": 1.6,
+      "depth": 2.2089,
+      "kind": "hole",
+      "id": "1"
+    },
+    {
+      "point": [
+        -6.20016,
+        -0.0,
+        -16.3
+      ],
+      "normal": [
+        -1.0,
+        -0.0,
+        0.0
+      ],
+      "radius": 1.6,
+      "depth": 2.2089,
+      "kind": "hole",
+      "id": "2"
+    },
+    {
+      "point": [
+        -5.461,
+        0.0,
+        -88.9
+      ],
+      "normal": [
+        -1.0,
+        -0.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "3"
+    },
+    {
+      "point": [
+        -5.461,
+        0.0,
+        -0.0
+      ],
+      "normal": [
+        -1.0,
+        -0.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "4"
+    },
+    {
+      "point": [
+        -3.99124,
+        -0.0,
+        -45.9
+      ],
+      "normal": [
+        1.0,
+        0.0,
+        -0.0
+      ],
+      "radius": 1.6,
+      "depth": 2.2089,
+      "kind": "hole",
+      "id": "5"
+    },
+    {
+      "point": [
+        -3.99124,
+        -0.0,
+        -16.3
+      ],
+      "normal": [
+        1.0,
+        0.0,
+        -0.0
+      ],
+      "radius": 1.6,
+      "depth": 2.2089,
+      "kind": "hole",
+      "id": "6"
+    },
+    {
+      "point": [
+        -0.889,
+        0.0,
+        -88.9
+      ],
+      "normal": [
+        1.0,
+        0.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "7"
+    },
+    {
+      "point": [
+        -0.889,
+        0.0,
+        -0.0
+      ],
+      "normal": [
+        1.0,
+        0.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "8"
+    },
+    {
+      "point": [
+        0.889,
+        0.0,
+        -88.9
+      ],
+      "normal": [
+        -1.0,
+        -0.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "9"
+    },
+    {
+      "point": [
+        0.889,
+        0.0,
+        -0.0
+      ],
+      "normal": [
+        -1.0,
+        -0.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "10"
+    },
+    {
+      "point": [
+        3.99124,
+        -0.0,
+        -45.9
+      ],
+      "normal": [
+        -1.0,
+        -0.0,
+        0.0
+      ],
+      "radius": 1.6,
+      "depth": 2.2089,
+      "kind": "hole",
+      "id": "11"
+    },
+    {
+      "point": [
+        3.99124,
+        -0.0,
+        -16.3
+      ],
+      "normal": [
+        -1.0,
+        -0.0,
+        0.0
+      ],
+      "radius": 1.6,
+      "depth": 2.2089,
+      "kind": "hole",
+      "id": "12"
+    },
+    {
+      "point": [
+        5.461,
+        0.0,
+        -88.9
+      ],
+      "normal": [
+        1.0,
+        0.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "13"
+    },
+    {
+      "point": [
+        5.461,
+        0.0,
+        -0.0
+      ],
+      "normal": [
+        1.0,
+        0.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "14"
+    },
+    {
+      "point": [
+        6.20016,
+        -0.0,
+        -45.9
+      ],
+      "normal": [
+        1.0,
+        0.0,
+        -0.0
+      ],
+      "radius": 1.6,
+      "depth": 2.2089,
+      "kind": "hole",
+      "id": "15"
+    },
+    {
+      "point": [
+        6.20016,
+        -0.0,
+        -16.3
+      ],
+      "normal": [
+        1.0,
+        0.0,
+        -0.0
+      ],
+      "radius": 1.6,
+      "depth": 2.2089,
+      "kind": "hole",
+      "id": "16"
+    },
+    {
+      "point": [
+        -5.35131,
+        0.0,
+        -45.95
+      ],
+      "normal": [
+        -1.0,
+        -0.0,
+        0.0
+      ],
+      "radius": 1.5,
+      "depth": 1.3748,
+      "kind": "pin",
+      "id": "17"
+    },
+    {
+      "point": [
+        -3.97649,
+        0.0,
+        -45.95
+      ],
+      "normal": [
+        1.0,
+        0.0,
+        -0.0
+      ],
+      "radius": 1.5,
+      "depth": 1.3748,
+      "kind": "pin",
+      "id": "18"
+    },
+    {
+      "point": [
+        3.97649,
+        0.0,
+        -45.95
+      ],
+      "normal": [
+        -1.0,
+        -0.0,
+        0.0
+      ],
+      "radius": 1.5,
+      "depth": 1.3748,
+      "kind": "pin",
+      "id": "19"
+    },
+    {
+      "point": [
+        5.35131,
+        0.0,
+        -45.95
+      ],
+      "normal": [
+        1.0,
+        0.0,
+        -0.0
+      ],
+      "radius": 1.5,
+      "depth": 1.3748,
+      "kind": "pin",
+      "id": "20"
+    }
+  ],
+  "status": "ok",
+  "bytes": 338768,
+  "meshes": 2,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "accessory"
+}

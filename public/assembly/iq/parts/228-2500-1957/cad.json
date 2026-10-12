@@ -1,0 +1,29 @@
+{
+  "id": "228-2500-1957",
+  "sku": "228-2500-1957",
+  "name": "2x Wide, 3.5x Pitch Diameter Balloon Tire (Trapezoid Offroad Tread)",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\2x Wide, 3.5x Pitch Diameter Balloon Tire (Trapezoid Offroad Tread) (228-2500-1957).step",
+  "sourceFile": "2x Wide, 3.5x Pitch Diameter Balloon Tire (Trapezoid Offroad Tread) (228-2500-1957).step",
+  "sourceHash": "1f61156ca25f98f2bfecef84048eb84970e17aec5abbfdf6f066f9aa4769bdd0",
+  "bounds": {
+    "min": [
+      -22.185,
+      -2.10263,
+      -22.18707
+    ],
+    "max": [
+      22.185,
+      21.15263,
+      22.18707
+    ]
+  },
+  "references": [],
+  "status": "ok",
+  "bytes": 309260,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "accessory"
+}

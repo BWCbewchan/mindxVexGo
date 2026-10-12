@@ -1,0 +1,158 @@
+{
+  "id": "228-2500-2288",
+  "sku": "228-2500-2288",
+  "name": "1x Wide, 1x1 Corner Connector (Weak)",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\1x Wide, 1x1 Corner Connector (Weak) (228-2500-2288).step",
+  "sourceFile": "1x Wide, 1x1 Corner Connector (Weak) (228-2500-2288).step",
+  "sourceHash": "1eb2d3bdab6a3580ef644b39dc5a2107078e27694a57eaf07931e7c6e6a71907",
+  "bounds": {
+    "min": [
+      -6.20747,
+      -12.55747,
+      -4.38934
+    ],
+    "max": [
+      6.20747,
+      6.1508,
+      6.23247
+    ]
+  },
+  "references": [
+    {
+      "point": [
+        0.0,
+        -6.35,
+        0.889
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "1"
+    },
+    {
+      "point": [
+        0.0,
+        -6.35,
+        5.461
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "2"
+    },
+    {
+      "point": [
+        0.0,
+        -6.35,
+        0.889
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 3.175,
+      "depth": 1.286,
+      "kind": "pin",
+      "id": "3"
+    },
+    {
+      "point": [
+        0.0,
+        -6.35,
+        2.175
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 3.175,
+      "depth": 1.286,
+      "kind": "pin",
+      "id": "4"
+    },
+    {
+      "point": [
+        0.0,
+        -6.35,
+        4.175
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 3.175,
+      "depth": 1.286,
+      "kind": "pin",
+      "id": "5"
+    },
+    {
+      "point": [
+        0.0,
+        -6.35,
+        5.461
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 3.175,
+      "depth": 1.286,
+      "kind": "pin",
+      "id": "6"
+    },
+    {
+      "point": [
+        0.0,
+        0.889,
+        -0.0
+      ],
+      "normal": [
+        0.0,
+        -1.0,
+        -0.0
+      ],
+      "radius": 2.085,
+      "depth": 2.2,
+      "kind": "pin",
+      "id": "7"
+    },
+    {
+      "point": [
+        0.0,
+        3.089,
+        -0.0
+      ],
+      "normal": [
+        -0.0,
+        1.0,
+        0.0
+      ],
+      "radius": 2.085,
+      "depth": 2.2,
+      "kind": "pin",
+      "id": "8"
+    }
+  ],
+  "status": "ok",
+  "bytes": 155012,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "body"
+}

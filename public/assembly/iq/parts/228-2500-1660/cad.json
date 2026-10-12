@@ -1,0 +1,62 @@
+{
+  "id": "228-2500-1660",
+  "sku": "228-2500-1660",
+  "name": "Ball Pin Bushing",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\Ball Pin Bushing (228-2500-1660).step",
+  "sourceFile": "Ball Pin Bushing (228-2500-1660).step",
+  "sourceHash": "074d9c1b6d88af0ac1fb194689265fdabe69ecbe54b6df90432d0288212ab9a4",
+  "bounds": {
+    "min": [
+      -4.51986,
+      -4.51986,
+      -2.80433
+    ],
+    "max": [
+      4.51425,
+      4.51986,
+      2.80433
+    ]
+  },
+  "references": [
+    {
+      "point": [
+        0.0,
+        0.0,
+        -2.286
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        -1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "1"
+    },
+    {
+      "point": [
+        0.0,
+        0.0,
+        2.286
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "2"
+    }
+  ],
+  "status": "ok",
+  "bytes": 179992,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "accessory"
+}

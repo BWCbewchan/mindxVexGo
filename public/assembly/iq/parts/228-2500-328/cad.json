@@ -1,0 +1,172 @@
+{
+  "id": "228-2500-328",
+  "sku": "228-2500-328",
+  "name": "1x Pitch Plastic Motor Snap Shaft",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\1x Pitch Plastic Motor Snap Shaft (228-2500-328).step",
+  "sourceFile": "1x Pitch Plastic Motor Snap Shaft (228-2500-328).step",
+  "sourceHash": "ba08e9857c751a329101d82063509b006fa53a74e0cd232c332e56c8087d5078",
+  "bounds": {
+    "min": [
+      -2.40289,
+      -15.72759,
+      -2.40289
+    ],
+    "max": [
+      2.40289,
+      2.31239,
+      2.40289
+    ]
+  },
+  "references": [
+    {
+      "point": [
+        0.0,
+        -10.414,
+        -0.0
+      ],
+      "normal": [
+        0.0,
+        -1.0,
+        -0.0
+      ],
+      "radius": 2.05,
+      "depth": 6.439,
+      "kind": "pin",
+      "id": "1"
+    },
+    {
+      "point": [
+        0.0,
+        -3.975,
+        -0.0
+      ],
+      "normal": [
+        0.0,
+        -1.0,
+        -0.0
+      ],
+      "radius": 2.4,
+      "depth": 0.8,
+      "kind": "pin",
+      "id": "2"
+    },
+    {
+      "point": [
+        0.0,
+        -3.975,
+        -0.0
+      ],
+      "normal": [
+        -0.0,
+        1.0,
+        0.0
+      ],
+      "radius": 2.05,
+      "depth": 6.439,
+      "kind": "pin",
+      "id": "3"
+    },
+    {
+      "point": [
+        0.0,
+        -3.175,
+        -0.0
+      ],
+      "normal": [
+        -0.0,
+        1.0,
+        0.0
+      ],
+      "radius": 2.4,
+      "depth": 0.8,
+      "kind": "pin",
+      "id": "4"
+    },
+    {
+      "id": "square-hole-1",
+      "kind": "hole",
+      "profile": "square-drive",
+      "label": "Square socket · CAD",
+      "point": [
+        0.0,
+        -3.175,
+        -0.0
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "key": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "width": 3.175,
+      "radius": 1.5875,
+      "depth": 7.239,
+      "maxDepth": 7.239,
+      "through": true
+    },
+    {
+      "id": "square-hole-2",
+      "kind": "hole",
+      "profile": "square-drive",
+      "label": "Square socket · CAD",
+      "point": [
+        0.0,
+        -10.414,
+        0.0
+      ],
+      "normal": [
+        0.0,
+        -1.0,
+        -0.0
+      ],
+      "key": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "width": 3.1125,
+      "radius": 1.5563,
+      "depth": 7.239,
+      "maxDepth": 7.239,
+      "through": true
+    },
+    {
+      "kind": "pin",
+      "profile": "square-drive",
+      "point": [
+        0.0,
+        2.286,
+        -0.0
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        -0.0
+      ],
+      "key": [
+        -1.0,
+        -0.0,
+        0.0
+      ],
+      "width": 3.175,
+      "radius": 1.5875,
+      "depth": 5.461,
+      "maxDepth": 5.461,
+      "label": "Square shaft / bore · measured planar walls",
+      "evidence": "Opposing planar wall spacing and original CAD end planes",
+      "id": "square-pin-walls-1"
+    }
+  ],
+  "status": "ok",
+  "bytes": 53968,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "shaft"
+}

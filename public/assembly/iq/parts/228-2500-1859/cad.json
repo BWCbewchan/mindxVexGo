@@ -1,0 +1,286 @@
+{
+  "id": "228-2500-1859",
+  "sku": "228-2500-1859",
+  "name": "Minifigure Seat (Snap Mount)",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\Minifigure Seat (Snap Mount) (228-2500-1859).step",
+  "sourceFile": "Minifigure Seat (Snap Mount) (228-2500-1859).step",
+  "sourceHash": "15a692983d93bd0b3b72b6daedbdfa468a5fa937182bcbf9b0ceb3f7cdcbeaeb",
+  "bounds": {
+    "min": [
+      -18.84268,
+      -6.70154,
+      -10.2134
+    ],
+    "max": [
+      18.84268,
+      21.71086,
+      17.65083
+    ]
+  },
+  "references": [
+    {
+      "point": [
+        -18.139,
+        5.0,
+        11.5
+      ],
+      "normal": [
+        -1.0,
+        -0.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.55,
+      "kind": "pin",
+      "id": "1"
+    },
+    {
+      "point": [
+        -18.139,
+        17.7,
+        11.5
+      ],
+      "normal": [
+        -1.0,
+        -0.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.55,
+      "kind": "pin",
+      "id": "2"
+    },
+    {
+      "point": [
+        -13.589,
+        5.0,
+        11.5
+      ],
+      "normal": [
+        -1.0,
+        0.0,
+        -0.0
+      ],
+      "radius": 3.175,
+      "depth": 0.889,
+      "kind": "pin",
+      "id": "3"
+    },
+    {
+      "point": [
+        -13.589,
+        5.0,
+        11.5
+      ],
+      "normal": [
+        1.0,
+        0.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.55,
+      "kind": "pin",
+      "id": "4"
+    },
+    {
+      "point": [
+        -13.589,
+        17.7,
+        11.5
+      ],
+      "normal": [
+        -1.0,
+        0.0,
+        -0.0
+      ],
+      "radius": 3.175,
+      "depth": 0.889,
+      "kind": "pin",
+      "id": "5"
+    },
+    {
+      "point": [
+        -13.589,
+        17.7,
+        11.5
+      ],
+      "normal": [
+        1.0,
+        0.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.55,
+      "kind": "pin",
+      "id": "6"
+    },
+    {
+      "point": [
+        -12.7,
+        5.0,
+        11.5
+      ],
+      "normal": [
+        1.0,
+        -0.0,
+        0.0
+      ],
+      "radius": 3.175,
+      "depth": 0.889,
+      "kind": "pin",
+      "id": "7"
+    },
+    {
+      "point": [
+        -12.7,
+        17.7,
+        11.5
+      ],
+      "normal": [
+        1.0,
+        -0.0,
+        0.0
+      ],
+      "radius": 3.175,
+      "depth": 0.889,
+      "kind": "pin",
+      "id": "8"
+    },
+    {
+      "point": [
+        12.7,
+        5.0,
+        11.5
+      ],
+      "normal": [
+        -1.0,
+        -0.0,
+        0.0
+      ],
+      "radius": 3.175,
+      "depth": 0.889,
+      "kind": "pin",
+      "id": "9"
+    },
+    {
+      "point": [
+        12.7,
+        17.7,
+        11.5
+      ],
+      "normal": [
+        -1.0,
+        -0.0,
+        0.0
+      ],
+      "radius": 3.175,
+      "depth": 0.889,
+      "kind": "pin",
+      "id": "10"
+    },
+    {
+      "point": [
+        13.589,
+        5.0,
+        11.5
+      ],
+      "normal": [
+        -1.0,
+        0.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.55,
+      "kind": "pin",
+      "id": "11"
+    },
+    {
+      "point": [
+        13.589,
+        5.0,
+        11.5
+      ],
+      "normal": [
+        1.0,
+        0.0,
+        -0.0
+      ],
+      "radius": 3.175,
+      "depth": 0.889,
+      "kind": "pin",
+      "id": "12"
+    },
+    {
+      "point": [
+        13.589,
+        17.7,
+        11.5
+      ],
+      "normal": [
+        -1.0,
+        0.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.55,
+      "kind": "pin",
+      "id": "13"
+    },
+    {
+      "point": [
+        13.589,
+        17.7,
+        11.5
+      ],
+      "normal": [
+        1.0,
+        0.0,
+        -0.0
+      ],
+      "radius": 3.175,
+      "depth": 0.889,
+      "kind": "pin",
+      "id": "14"
+    },
+    {
+      "point": [
+        18.139,
+        5.0,
+        11.5
+      ],
+      "normal": [
+        1.0,
+        -0.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.55,
+      "kind": "pin",
+      "id": "15"
+    },
+    {
+      "point": [
+        18.139,
+        17.7,
+        11.5
+      ],
+      "normal": [
+        1.0,
+        -0.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.55,
+      "kind": "pin",
+      "id": "16"
+    }
+  ],
+  "status": "ok",
+  "bytes": 396248,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "accessory"
+}

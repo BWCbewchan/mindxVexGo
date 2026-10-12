@@ -1,0 +1,254 @@
+{
+  "id": "228-2500-321",
+  "sku": "228-2500-321",
+  "name": "Ant Rear Antenna",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\Ant Rear Antenna (228-2500-321).step",
+  "sourceFile": "Ant Rear Antenna (228-2500-321).step",
+  "sourceHash": "03ba06f8544ad0d21a70fcfa52ba9194d077ed36964e7321820c98a975314187",
+  "bounds": {
+    "min": [
+      -46.55886,
+      -12.57334,
+      -56.55886
+    ],
+    "max": [
+      46.55886,
+      12.57334,
+      9.3531
+    ]
+  },
+  "references": [
+    {
+      "point": [
+        0.0,
+        -6.35,
+        -1.9
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        -1.0
+      ],
+      "radius": 2.5,
+      "depth": 3.6,
+      "kind": "pin",
+      "id": "1"
+    },
+    {
+      "point": [
+        0.0,
+        -6.35,
+        -1.3
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 1.5,
+      "depth": 3.0,
+      "kind": "pin",
+      "id": "2"
+    },
+    {
+      "point": [
+        0.0,
+        -6.35,
+        1.7
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 1.5,
+      "depth": 3.0,
+      "kind": "pin",
+      "id": "3"
+    },
+    {
+      "point": [
+        -0.0,
+        -6.35,
+        3.2
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        -1.0
+      ],
+      "radius": 3.175,
+      "depth": 0.889,
+      "kind": "pin",
+      "id": "4"
+    },
+    {
+      "point": [
+        -0.0,
+        -6.35,
+        4.089
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 2.085,
+      "depth": 2.2,
+      "kind": "pin",
+      "id": "5"
+    },
+    {
+      "point": [
+        -0.0,
+        -6.35,
+        4.089
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 3.175,
+      "depth": 0.889,
+      "kind": "pin",
+      "id": "6"
+    },
+    {
+      "point": [
+        -0.0,
+        -6.35,
+        6.289
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 2.085,
+      "depth": 2.2,
+      "kind": "pin",
+      "id": "7"
+    },
+    {
+      "point": [
+        0.0,
+        6.35,
+        -1.9
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        -1.0
+      ],
+      "radius": 2.5,
+      "depth": 3.6,
+      "kind": "pin",
+      "id": "8"
+    },
+    {
+      "point": [
+        0.0,
+        6.35,
+        -1.3
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 1.5,
+      "depth": 3.0,
+      "kind": "pin",
+      "id": "9"
+    },
+    {
+      "point": [
+        0.0,
+        6.35,
+        1.7
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 1.5,
+      "depth": 3.0,
+      "kind": "pin",
+      "id": "10"
+    },
+    {
+      "point": [
+        0.0,
+        6.35,
+        3.2
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        -1.0
+      ],
+      "radius": 3.175,
+      "depth": 0.889,
+      "kind": "pin",
+      "id": "11"
+    },
+    {
+      "point": [
+        0.0,
+        6.35,
+        4.089
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 2.085,
+      "depth": 2.2,
+      "kind": "pin",
+      "id": "12"
+    },
+    {
+      "point": [
+        0.0,
+        6.35,
+        4.089
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 3.175,
+      "depth": 0.889,
+      "kind": "pin",
+      "id": "13"
+    },
+    {
+      "point": [
+        0.0,
+        6.35,
+        6.289
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 2.085,
+      "depth": 2.2,
+      "kind": "pin",
+      "id": "14"
+    }
+  ],
+  "status": "ok",
+  "bytes": 1154392,
+  "meshes": 3,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "accessory"
+}

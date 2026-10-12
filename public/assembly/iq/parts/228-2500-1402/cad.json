@@ -1,0 +1,254 @@
+{
+  "id": "228-2500-1402",
+  "sku": "228-2500-1402",
+  "name": "6x Pitch Flywheel (75 g)",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\6x Pitch Flywheel (75 g) (228-2500-1402).step",
+  "sourceFile": "6x Pitch Flywheel (75 g) (228-2500-1402).step",
+  "sourceHash": "589086f27e828114dca7c871c1af3ede22326f34466cb67b9be579aecce6bf41",
+  "bounds": {
+    "min": [
+      44.67986,
+      -3.18782,
+      -7.56376
+    ],
+    "max": [
+      115.64192,
+      3.18782,
+      68.27297
+    ]
+  },
+  "references": [
+    {
+      "point": [
+        67.46089,
+        -2.286,
+        30.35426
+      ],
+      "normal": [
+        -0.0,
+        -1.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "1"
+    },
+    {
+      "point": [
+        67.46089,
+        2.286,
+        30.35426
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "2"
+    },
+    {
+      "point": [
+        80.16089,
+        -3.175,
+        30.35426
+      ],
+      "normal": [
+        0.0,
+        -1.0,
+        -0.0
+      ],
+      "radius": 3.225,
+      "depth": 0.889,
+      "kind": "hole",
+      "id": "3"
+    },
+    {
+      "point": [
+        80.16089,
+        -2.286,
+        17.65426
+      ],
+      "normal": [
+        -0.0,
+        -1.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "4"
+    },
+    {
+      "point": [
+        80.16089,
+        -2.286,
+        30.35426
+      ],
+      "normal": [
+        0.0,
+        -1.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "5"
+    },
+    {
+      "point": [
+        80.16089,
+        -2.286,
+        30.35426
+      ],
+      "normal": [
+        -0.0,
+        1.0,
+        0.0
+      ],
+      "radius": 3.225,
+      "depth": 0.889,
+      "kind": "hole",
+      "id": "6"
+    },
+    {
+      "point": [
+        80.16089,
+        -2.286,
+        43.05426
+      ],
+      "normal": [
+        -0.0,
+        -1.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "7"
+    },
+    {
+      "point": [
+        80.16089,
+        2.286,
+        17.65426
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "8"
+    },
+    {
+      "point": [
+        80.16089,
+        2.286,
+        30.35426
+      ],
+      "normal": [
+        0.0,
+        -1.0,
+        -0.0
+      ],
+      "radius": 3.225,
+      "depth": 0.889,
+      "kind": "hole",
+      "id": "9"
+    },
+    {
+      "point": [
+        80.16089,
+        2.286,
+        30.35426
+      ],
+      "normal": [
+        -0.0,
+        1.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "10"
+    },
+    {
+      "point": [
+        80.16089,
+        2.286,
+        43.05426
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "11"
+    },
+    {
+      "point": [
+        80.16089,
+        3.175,
+        30.35426
+      ],
+      "normal": [
+        -0.0,
+        1.0,
+        0.0
+      ],
+      "radius": 3.225,
+      "depth": 0.889,
+      "kind": "hole",
+      "id": "12"
+    },
+    {
+      "point": [
+        92.86089,
+        -2.286,
+        30.35426
+      ],
+      "normal": [
+        -0.0,
+        -1.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "13"
+    },
+    {
+      "point": [
+        92.86089,
+        2.286,
+        30.35426
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "14"
+    }
+  ],
+  "status": "ok",
+  "bytes": 4885044,
+  "meshes": 3,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "wheel"
+}

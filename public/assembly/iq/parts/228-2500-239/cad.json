@@ -1,0 +1,174 @@
+{
+  "id": "228-2500-239",
+  "sku": "228-2500-239",
+  "name": "Traction Link",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\Traction Link (228-2500-239).step",
+  "sourceFile": "Traction Link (228-2500-239).step",
+  "sourceHash": "97c14f7a162472c3e3b77b23a29e7e8c4e3cc9b60b686d7fd7dc5b6ef9e2aab3",
+  "bounds": {
+    "min": [
+      -2.72374,
+      15.09606,
+      -9.9372
+    ],
+    "max": [
+      16.18373,
+      21.30353,
+      0.70837
+    ]
+  },
+  "references": [
+    {
+      "point": [
+        0.37999,
+        18.19979,
+        -6.43431
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 3.1,
+      "depth": 1.889,
+      "kind": "pin",
+      "id": "1"
+    },
+    {
+      "point": [
+        0.37999,
+        18.19979,
+        -5.43431
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        -1.0
+      ],
+      "radius": 3.175,
+      "depth": 0.889,
+      "kind": "pin",
+      "id": "2"
+    },
+    {
+      "point": [
+        0.37999,
+        18.19979,
+        -4.54531
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.55,
+      "kind": "pin",
+      "id": "3"
+    },
+    {
+      "point": [
+        0.37999,
+        18.19979,
+        -4.54531
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 3.1,
+      "depth": 1.889,
+      "kind": "pin",
+      "id": "4"
+    },
+    {
+      "point": [
+        0.37999,
+        18.19979,
+        0.00469
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.55,
+      "kind": "pin",
+      "id": "5"
+    },
+    {
+      "point": [
+        13.07999,
+        18.19979,
+        -6.43431
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 3.1,
+      "depth": 1.889,
+      "kind": "pin",
+      "id": "6"
+    },
+    {
+      "point": [
+        13.07999,
+        18.19979,
+        -4.54531
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.55,
+      "kind": "pin",
+      "id": "7"
+    },
+    {
+      "point": [
+        13.07999,
+        18.19979,
+        -4.54531
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 3.1,
+      "depth": 1.889,
+      "kind": "pin",
+      "id": "8"
+    },
+    {
+      "point": [
+        13.07999,
+        18.19979,
+        0.00469
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.55,
+      "kind": "pin",
+      "id": "9"
+    }
+  ],
+  "status": "ok",
+  "bytes": 254932,
+  "meshes": 2,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "accessory"
+}

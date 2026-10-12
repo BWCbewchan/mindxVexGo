@@ -1,0 +1,222 @@
+{
+  "id": "228-2500-2100",
+  "sku": "228-2500-2100",
+  "name": "3x1, R5 x Flat Curve Panel",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\3x1, R5 x Flat Curve Panel (228-2500-2100).step",
+  "sourceFile": "3x1, R5 x Flat Curve Panel (228-2500-2100).step",
+  "sourceHash": "4506b76e471f505ff5b900a6bf1992eb3c4532eceafb0ccaeaa3c4384c81bd60",
+  "bounds": {
+    "min": [
+      -6.25468,
+      -31.65468,
+      -3.10468
+    ],
+    "max": [
+      6.25468,
+      6.25468,
+      15.75266
+    ]
+  },
+  "references": [
+    {
+      "point": [
+        -5.461,
+        -12.7,
+        9.525
+      ],
+      "normal": [
+        -1.0,
+        0.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "1"
+    },
+    {
+      "point": [
+        -0.889,
+        -12.7,
+        9.525
+      ],
+      "normal": [
+        1.0,
+        -0.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "2"
+    },
+    {
+      "point": [
+        0.0,
+        -25.4,
+        10.414
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "3"
+    },
+    {
+      "point": [
+        0.0,
+        -25.4,
+        14.986
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "4"
+    },
+    {
+      "point": [
+        0.0,
+        0.0,
+        -2.286
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "5"
+    },
+    {
+      "point": [
+        0.0,
+        0.0,
+        2.286
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "6"
+    },
+    {
+      "point": [
+        0.889,
+        -12.7,
+        9.525
+      ],
+      "normal": [
+        -1.0,
+        -0.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "7"
+    },
+    {
+      "point": [
+        5.461,
+        -12.7,
+        9.525
+      ],
+      "normal": [
+        1.0,
+        0.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "8"
+    },
+    {
+      "point": [
+        -3.961,
+        -12.7,
+        9.525
+      ],
+      "normal": [
+        -1.0,
+        0.0,
+        -0.0
+      ],
+      "radius": 3.175,
+      "depth": 1.597,
+      "kind": "pin",
+      "id": "9"
+    },
+    {
+      "point": [
+        -2.364,
+        -12.7,
+        9.525
+      ],
+      "normal": [
+        1.0,
+        -0.0,
+        0.0
+      ],
+      "radius": 3.175,
+      "depth": 1.597,
+      "kind": "pin",
+      "id": "10"
+    },
+    {
+      "point": [
+        2.364,
+        -12.7,
+        9.525
+      ],
+      "normal": [
+        -1.0,
+        0.0,
+        -0.0
+      ],
+      "radius": 3.175,
+      "depth": 1.597,
+      "kind": "pin",
+      "id": "11"
+    },
+    {
+      "point": [
+        3.961,
+        -12.7,
+        9.525
+      ],
+      "normal": [
+        1.0,
+        -0.0,
+        0.0
+      ],
+      "radius": 3.175,
+      "depth": 1.597,
+      "kind": "pin",
+      "id": "12"
+    }
+  ],
+  "status": "ok",
+  "bytes": 231984,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "accessory"
+}

@@ -1,0 +1,29 @@
+{
+  "id": "228-2500-207",
+  "sku": "228-2500-207",
+  "name": "Tire (100 mm Travel)",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\Tire (100 mm Travel) (228-2500-207).step",
+  "sourceFile": "Tire (100 mm Travel) (228-2500-207).step",
+  "sourceHash": "da5f33812727906f62371519e0c1a5c93a90152e0f0ba9adeafb8166eb46b671",
+  "bounds": {
+    "min": [
+      -15.99296,
+      -3.19738,
+      -15.99296
+    ],
+    "max": [
+      15.99296,
+      3.19738,
+      15.99296
+    ]
+  },
+  "references": [],
+  "status": "ok",
+  "bytes": 226120,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "accessory"
+}

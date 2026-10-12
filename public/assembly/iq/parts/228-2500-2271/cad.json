@@ -1,0 +1,94 @@
+{
+  "id": "228-2500-2271",
+  "sku": "228-2500-2271",
+  "name": "2x Pitch Standoff (Weak)",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\2x Pitch Standoff (Weak) (228-2500-2271).step",
+  "sourceFile": "2x Pitch Standoff (Weak) (228-2500-2271).step",
+  "sourceHash": "2fe494afa1d025e52d39407b301a64dbae7b165115c643ae23744f66ccaa8d81",
+  "bounds": {
+    "min": [
+      -2.90349,
+      -31.5508,
+      -3.125
+    ],
+    "max": [
+      2.90349,
+      6.1508,
+      3.125
+    ]
+  },
+  "references": [
+    {
+      "point": [
+        0.0,
+        -28.489,
+        -0.0
+      ],
+      "normal": [
+        -0.0,
+        -1.0,
+        0.0
+      ],
+      "radius": 2.085,
+      "depth": 2.2,
+      "kind": "pin",
+      "id": "1"
+    },
+    {
+      "point": [
+        0.0,
+        -26.289,
+        -0.0
+      ],
+      "normal": [
+        0.0,
+        1.0,
+        -0.0
+      ],
+      "radius": 2.085,
+      "depth": 2.2,
+      "kind": "pin",
+      "id": "2"
+    },
+    {
+      "point": [
+        0.0,
+        0.889,
+        -0.0
+      ],
+      "normal": [
+        0.0,
+        -1.0,
+        -0.0
+      ],
+      "radius": 2.085,
+      "depth": 2.2,
+      "kind": "pin",
+      "id": "3"
+    },
+    {
+      "point": [
+        0.0,
+        3.089,
+        -0.0
+      ],
+      "normal": [
+        -0.0,
+        1.0,
+        0.0
+      ],
+      "radius": 2.085,
+      "depth": 2.2,
+      "kind": "pin",
+      "id": "4"
+    }
+  ],
+  "status": "ok",
+  "bytes": 240992,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "body"
+}

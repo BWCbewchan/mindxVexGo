@@ -1,0 +1,126 @@
+{
+  "id": "228-2500-175",
+  "sku": "228-2500-175",
+  "name": "45 Degree Standoff Connector",
+  "category": "mechanical",
+  "source": "C:\\Users\\admin\\Downloads\\VEX-IQ-All-Parts-2024-11-08\\45 Degree Standoff Connector (228-2500-175).step",
+  "sourceFile": "45 Degree Standoff Connector (228-2500-175).step",
+  "sourceHash": "14693e34a63787eb18a11c8d6c077657b4f91a9070e4dc592482cac0ad3a009f",
+  "bounds": {
+    "min": [
+      -10.5785,
+      -10.58948,
+      -3.16003
+    ],
+    "max": [
+      11.83913,
+      4.02813,
+      3.16003
+    ]
+  },
+  "references": [
+    {
+      "point": [
+        -8.35164,
+        -8.35164,
+        -0.0
+      ],
+      "normal": [
+        -0.70711,
+        -0.70711,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "1"
+    },
+    {
+      "point": [
+        -5.11875,
+        -5.11875,
+        -0.0
+      ],
+      "normal": [
+        0.70711,
+        0.70711,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "2"
+    },
+    {
+      "point": [
+        0.0,
+        0.0,
+        -2.286
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "3"
+    },
+    {
+      "point": [
+        0.0,
+        0.0,
+        2.286
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "4"
+    },
+    {
+      "point": [
+        7.239,
+        0.0,
+        -0.0
+      ],
+      "normal": [
+        -1.0,
+        -0.0,
+        0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "5"
+    },
+    {
+      "point": [
+        11.811,
+        0.0,
+        -0.0
+      ],
+      "normal": [
+        1.0,
+        0.0,
+        -0.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "6"
+    }
+  ],
+  "status": "ok",
+  "bytes": 90212,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "body"
+}
