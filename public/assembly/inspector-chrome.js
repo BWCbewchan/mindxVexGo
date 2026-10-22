@@ -6,7 +6,7 @@ export function installInspectorChrome(){
  const body=document.createElement('div');body.className='inspector-body';
  const partsHeading=$('objects').previousElementSibling,footer=inspector.querySelector(':scope > small'),rule=inspector.querySelector('hr');
  rule?.remove();
- const sections=[['Properties',[$('selection'),$('precision-fields'),inspector.querySelector('.collision-panel'),$('warnings'),footer]],['Layers',[$('layer-panel'),partsHeading,$('objects')]],['Guide',[inspector.querySelector('.student-guide'),$('guide-export')]]];
+ const sections=[['Properties',[$('selection'),$('precision-fields'),inspector.querySelector('.collision-panel'),$('warnings'),footer]],['Layers',[$('layer-panel'),partsHeading,$('objects')]],['Guide',[$('guide-export'),inspector.querySelector('.student-guide')]]];
  const rows=[];
  function activate(index,focus=false){rows.forEach((row,i)=>{const selected=i===index;row.button.setAttribute('aria-selected',String(selected));row.button.tabIndex=selected?0:-1;row.panel.hidden=!selected;});if(focus)rows[index].button.focus();}
  sections.forEach(([name,nodes],index)=>{

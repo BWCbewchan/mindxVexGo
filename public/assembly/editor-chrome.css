@@ -10,10 +10,11 @@ header.app-menubar{min-height:38px;padding:4px 12px;gap:14px;background:#292b2e;
 .app-menu-panel button,.app-menu-panel label.button{display:flex;justify-content:space-between;align-items:center;gap:20px;border:0;border-radius:3px;background:transparent;color:#eceef0;text-align:left;padding:9px 10px;font-size:12px;white-space:nowrap}
 .app-menu-panel button:hover,.app-menu-panel label:hover{background:#476b91}.app-menu-panel kbd{font:11px system-ui;color:#aeb7c2}
 .app-menubar #title{margin-left:auto;max-width:300px;min-width:90px;padding:5px 9px;background:#202225;border:1px solid #50545a;border-radius:3px;color:#eee;font-size:12px}
-nav.app-optionsbar{flex:none;flex-wrap:nowrap;min-height:40px;padding:4px 12px;gap:4px;background:#393c40;border-bottom:1px solid #202225;color:#e1e5e9;z-index:15}
+nav.app-optionsbar{flex:none;flex-wrap:wrap;min-height:40px;padding:4px 12px;gap:4px;background:#393c40;border-bottom:1px solid #202225;color:#e1e5e9;z-index:15}
 .app-optionsbar button{display:flex;align-items:center;justify-content:center;gap:5px;height:30px;min-height:30px;padding:4px 8px;border:1px solid transparent;border-radius:3px;background:transparent;color:inherit;flex:none}
 .app-optionsbar button:hover{background:#51555b}.app-optionsbar button[aria-pressed=true]{background:#202a36;border-color:#7295bb;color:#d6eaff}
 .tool-glyph{font-size:20px;line-height:1}.tool-label{font-size:11px}
+.app-optionsbar .tool-glyph svg{display:block;width:17px;height:17px}
 .tool-shortcut{font:10px system-ui;line-height:1;padding:3px 4px;border:1px solid #737982;border-radius:3px;color:#c5cbd3;background:#25282d;white-space:nowrap}
 .app-optionsbar #duplicate{margin-left:10px;border-left:1px solid #65696f}.app-optionsbar #library-toggle{margin-left:auto}
 .app-optionsbar .tool-options summary{min-height:30px;padding:5px 10px;border:1px solid #646971;border-radius:3px;background:#45494f;color:#eee}
@@ -43,3 +44,4 @@ nav.app-optionsbar{flex:none;flex-wrap:nowrap;min-height:40px;padding:4px 12px;g
 .studio-inspector .part-layer-thumb{width:34px;height:32px;object-fit:contain;border-radius:3px;background:#edf1f2;flex:none}
 .studio-inspector #objects span{overflow-wrap:anywhere}.studio-inspector .student-guide-step{background:#353a41;border-color:#555d67;border-radius:5px}.studio-inspector .student-guide-step p{color:#c2ccd7;font-size:11px}
 .studio-inspector #guide-export,.studio-inspector #guide-repair{width:100%;padding:10px;font-size:12px}.studio-inspector #guide-repair-status:empty{display:none}.studio-inspector #groups:empty:after{color:#aeb9c6}
+.studio-inspector #guide-export{position:sticky;top:0;z-index:2;margin:0 0 12px;box-shadow:0 3px 8px #0003}

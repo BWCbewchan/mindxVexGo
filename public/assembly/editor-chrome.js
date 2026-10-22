@@ -18,22 +18,30 @@ export function installEditorChrome(){
   details.append(summary,panel);menus.append(details);
  }
  menu('File',[[$('new'),'New project'],[$('open').closest('label'),'Open project…'],[$('save'),'Save project…','Ctrl+S'],[$('export'),'Export build guide / PDF…']]);
- menu('Edit',[[$('group'),'Group','Ctrl+G'],[$('ungroup'),'Ungroup','Ctrl+Shift+G']]);
+ const groupCommands=[['group','Group','Ctrl+G'],['ungroup','Ungroup','Ctrl+Shift+G']];
+ menu('Edit',groupCommands.map(([id,label,key])=>{
+  const command=$(id),item=document.createElement('button');
+  item.type='button';item.onclick=()=>command.click();item.disabled=command.disabled;
+  new MutationObserver(()=>{item.disabled=command.disabled;}).observe(command,{attributes:true,attributeFilter:['disabled']});
+  toolbar.insertBefore(command,$('duplicate'));
+  return [item,label,key];
+ }));
  const view=[];
  for(const [id,label] of [['library-toggle','Parts library'],['panel-toggle','Inspector']]){
   const button=document.createElement('button');button.textContent=label;button.onclick=()=>$(id).click();view.push([button,label]);
  }
  menu('View',view);
  header.insertBefore(menus,$('title'));header.after(toolbar);
- const specs={move:['↔','Move','V'],rotate:['⟳','Rotate','R'],connect:['⊙','Connect','C'],duplicate:['⧉','Duplicate','Ctrl+J'],delete:['×','Delete','Delete'],undo:['↶','Undo','Ctrl+Z'],redo:['↷','Redo','Ctrl+Shift+Z'],fit:['⛶','Fit view','F'], 'library-toggle':['▦','Parts',''],'panel-toggle':['☷','Inspector','']};
+ const specs={move:['↔','Move','V'],rotate:['⟳','Rotate','R'],connect:['⊙','Connect','C'],group:['folder-plus','Group','Ctrl+G'],ungroup:['folder-minus','Ungroup','Ctrl+Shift+G'],duplicate:['⧉','Duplicate','Ctrl+J'],delete:['×','Delete','Delete'],undo:['↶','Undo','Ctrl+Z'],redo:['↷','Redo','Ctrl+Shift+Z'],fit:['⛶','Fit view','F'], 'library-toggle':['▦','Parts',''],'panel-toggle':['☷','Inspector','']};
  function decorate(){for(const [id,[icon,label,key]] of Object.entries(specs)){
   const button=$(id);if(!button||button.dataset.chrome)continue;button.dataset.chrome='true';
   button.title=label+(key?' · '+key:'');button.setAttribute('aria-label',button.title);
-  const glyph=document.createElement('span');glyph.className='tool-glyph';glyph.textContent=icon;glyph.setAttribute('aria-hidden','true');
+  const glyph=document.createElement('span');glyph.className='tool-glyph';glyph.setAttribute('aria-hidden','true');
+  if(id==='group'||id==='ungroup'){const symbol=document.createElement('i');symbol.dataset.lucide=icon;glyph.append(symbol);}else glyph.textContent=icon;
   const text=document.createElement('span');text.className='tool-label';text.textContent=label;
   button.replaceChildren(glyph,text);
   if(key){const shortcut=document.createElement('kbd');shortcut.className='tool-shortcut';shortcut.textContent=key;button.append(shortcut);}
- }}
+ }globalThis.lucide?.createIcons({root:toolbar});}
  decorate();new MutationObserver(decorate).observe(toolbar,{childList:true});
  function close(){for(const details of menus.children)details.open=false;}
  document.addEventListener('pointerdown',e=>{if(!menus.contains(e.target))close();});

@@ -19,6 +19,9 @@ All calls return `{ok:true,result}` or `{ok:false,error}`. Positions and inserti
 | Command | Arguments |
 |---|---|
 | getState | none |
+| getKit | none; returns the project's kit profile, or null for an unconfigured legacy project |
+| setKit | profile; validates platform, kit count and per-kit SKU quantities; supports Undo |
+| getInventory | none; shared CAD variants consume one stock pool; includes integrated GO tires |
 | listParts | optional query, category |
 | getConnectors | id |
 | select | ids array |
@@ -46,3 +49,8 @@ await api.execute('attach', {
 ```
 
 Do not assume these example references fit other SKUs. Query connectors and inspect compatibility errors first. Adding electronics also supplies missing Brain/battery using the existing app rule. An external AI needs an authorized browser executor to call this API; exposing it does not grant filesystem, network or cross-origin access.
+
+Kit profiles use `{version:1, platform, name, count, enforce, items:{[sku]:quantityPerKit}}`.
+With enforcement enabled, `addPart`, UI duplication, Alt-drag and Quick Attach reject additions that exceed the project stock. Existing overages can be reduced; unrelated additions remain allowed. Strict guide export requires every used stock item to fit the configured quantity. The source presets and CAD coverage limits are documented in `docs/assembly-kit-settings.md`.
+
+The IQ 228-7755 preset is a second-generation kit. Its first-generation Brain/battery CAD files have zero preset stock and are not substituted for generation 2. Under this preset the automatic companion rule does not insert these unsupported legacy devices when adding a motor.

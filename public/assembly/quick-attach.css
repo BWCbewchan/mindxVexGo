@@ -11,3 +11,7 @@
 .quick-attach #quick-preview{border-top:1px solid #cbd4de;margin-top:12px;padding-top:4px}.quick-attach #quick-depth{padding:6px}
 @media(max-width:650px){.quick-attach{width:350px;right:8px;top:100px}.quick-attach #quick-options img{height:55px}}
 @media print{.quick-attach{display:none!important}}
+.quick-target-marker{position:absolute;z-index:4;width:28px;height:28px;box-sizing:border-box;transform:translate(-50%,-50%);border:3px solid #b04bff;border-radius:50%;background:#b04bff40;box-shadow:0 0 0 2px #fff;pointer-events:none}
+.quick-target-marker[hidden]{display:none}
+.quick-target-marker span{position:absolute;left:34px;top:0;white-space:nowrap;background:#6730a7;color:#fff;border:1px solid #fff;border-radius:5px;padding:3px 7px;font-size:11px;line-height:16px}
+@media print{.quick-target-marker{display:none!important}}

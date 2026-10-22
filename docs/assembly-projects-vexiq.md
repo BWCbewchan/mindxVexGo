@@ -16,7 +16,7 @@ On the user's subsequent request, kit 228-7755 presentation colors were added wi
 
 Analytic cylinders, planar opening wires and opposing planar walls provide 13,088 geometric references across 444 parts. All 47 shaft entries have a square tip reference. Side walls determine square width/key even when tips are rounded; original end planes and shoulders determine insertion limits. The motor output uses its measured square socket, rather than a mounting hole. The shared editor supports move, rotate, grouping, layers, pin/hole attachment, square shaft/socket attachment, history, collision review, the AI API and guide export with the selected library.
 
-34 accessories/control parts do not have an extracted round/square mating reference and currently require manual positioning. Ball joints, tire/hub seating, belts, Brain/battery docking, radio slots, wiring and gear-mesh propagation do not yet have dedicated IQ attachment constraints. Conversion and sampled collision checks do not certify every physical combination. IQ stock quantities and competition eligibility are not asserted.
+34 accessories/control parts do not have an extracted round/square mating reference and currently require manual positioning. Ball joints, tire/hub seating, belts, Brain/battery docking, radio slots, wiring and gear-mesh propagation do not yet have dedicated IQ attachment constraints. Conversion and sampled collision checks do not certify every physical combination. Official 228-7755 per-kit stock presets and project limits are now available; see `docs/assembly-kit-settings.md`. Parts missing from CAD are listed separately, and competition eligibility is not asserted.
 
 To rebuild locally using the existing CAD runtime:
 

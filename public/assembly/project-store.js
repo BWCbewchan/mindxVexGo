@@ -1,3 +1,4 @@
+import {validateKitProfile} from './kit-policy.js';
 export const PROJECT_INDEX='mindx-assembly-projects-v1';
 export const platformValid=value=>['vexgo','vexiq'].includes(value);
 export const projectIdValid=id=>typeof id==='string'&&/^[a-zA-Z0-9_-]{1,100}$/.test(id);
@@ -7,7 +8,7 @@ export function validateProjectFile(data,platform,catalog){
  if(!Array.isArray(groups)||groups.length>250||new Set(groups.map(g=>g?.id)).size!==groups.length||groups.some(g=>!g||!projectIdValid(g.id)||typeof g.name!=='string'||!g.name.trim()||g.name.length>120))throw Error('Dữ liệu nhóm không hợp lệ.');
  const groupIds=new Map(groups.map(g=>[g.id,g]));for(const group of groups){const seen=new Set([group.id]);let parent=group.parentId;while(parent){if(seen.has(parent)||!groupIds.has(parent))throw Error('Nhóm bị vòng lặp hoặc thiếu nhóm cha.');seen.add(parent);parent=groupIds.get(parent).parentId;}}
  if(new Set(data.parts.map(p=>p?.id)).size!==data.parts.length||data.parts.some(p=>!p||!projectIdValid(p.id)||!entries.has(p.sku)||typeof p.label!=='string'||p.label.length>200||!vector(p.position)||!vector(p.rotation)||p.groupId&&!groupIds.has(p.groupId)))throw Error('Linh kiện, layer hoặc tọa độ không thuộc thư viện dự án này.');
- return {...structuredClone(data),platform,parts:data.parts.map(p=>({...structuredClone(p),kind:entries.get(p.sku).kind}))};
+ return {...structuredClone(data),kit:data.kit?validateKitProfile(data.kit,catalog,platform):null,platform,parts:data.parts.map(p=>({...structuredClone(p),kind:entries.get(p.sku).kind}))};
 }
 export function projectKey(platform,id){if(!platformValid(platform)||!projectIdValid(id))throw Error('Dự án không hợp lệ.');return `mindx-assembly-project-v1:${platform}:${id}`;}
 function readIndex(storage){const value=JSON.parse(storage.getItem(PROJECT_INDEX)||'[]');if(!Array.isArray(value))throw Error('Danh sách dự án không hợp lệ.');return value.filter(p=>platformValid(p.platform)&&projectIdValid(p.id));}

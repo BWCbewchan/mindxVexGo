@@ -1,0 +1,46 @@
+import {chromium} from '@playwright/test';
+import assert from 'node:assert/strict';
+import fs from 'node:fs/promises';
+const fixture={version:1,title:'Kit limits',parts:[{id:'beam',sku:'228-2500-001',label:'Beam',position:[0,40,0],rotation:[0,0,0]}],groups:[],steps:[]};
+const browser=await chromium.launch({channel:'chrome',headless:true,args:['--use-angle=swiftshader','--enable-unsafe-swiftshader']});
+const page=await browser.newPage({viewport:{width:1500,height:1000}}),errors=[];page.on('pageerror',e=>errors.push(e.message));
+const call=(name,args)=>page.evaluate(async({name,args})=>window.mindxAssembly.execute(name,args),{name,args});
+const state=async()=>(await call('getState')).result;
+const ready=()=>page.waitForFunction(()=>window.mindxAssembly&&document.getElementById('kit-status'));
+const panel=()=>page.frameLocator('iframe[title="Cài đặt số lượng bộ kit"]');
+async function configure(count,quantity){await page.locator('#kit-status').click();await panel().getByRole('heading',{name:'Cài đặt bộ kit',exact:true}).waitFor();await panel().getByRole('spinbutton',{name:'Số bộ kit',exact:true}).fill(String(count));await panel().getByRole('searchbox').fill('Red Beam');await panel().getByRole('spinbutton',{name:'Số lượng Red Beam trong 1 bộ',exact:true}).fill(String(quantity));await panel().getByRole('button',{name:'Áp dụng bộ kit',exact:true}).click();await page.locator('.kit-settings-dialog').waitFor({state:'detached'});}
+try{
+ await fs.mkdir('artifacts/assembly-tests',{recursive:true});
+ await page.addInitScript(project=>{if(!sessionStorage.getItem('kit-test-seeded')){localStorage.setItem('mindx-vexgo-assembly-v1',JSON.stringify(project));sessionStorage.setItem('kit-test-seeded','1');}},fixture);
+ await page.goto('http://localhost:3120/assembly/editor.html');await ready();await page.locator('#status').filter({hasText:'Draft saved locally'}).waitFor();
+ await configure(1,1);
+ assert.equal((await call('getKit')).result.count,1);
+ assert.equal(await page.getByRole('button',{name:'Add Red Beam',exact:true}).isDisabled(),true,'Library must disable exhausted stock');
+ const before=(await state()).project;
+ await call('select',{ids:['beam']});await page.locator('nav #duplicate').click();
+ await page.locator('#status').filter({hasText:'Vượt giới hạn bộ kit'}).waitFor();assert.deepEqual((await state()).project,before,'Blocked duplicate must be atomic');
+ const failed=await call('addPart',{sku:'228-2500-001',position:[200,40,0]});assert.equal(failed.ok,false);assert.match(failed.error,/Vượt giới hạn/);assert.deepEqual((await state()).project,before);
+ console.log('PASS: strict stock applies to Library, Duplicate and API without changing the model');
+ await configure(2,1);await call('select',{ids:['beam']});await page.keyboard.press('Control+j');
+ await page.waitForFunction(async()=>{const s=(await window.mindxAssembly.execute('getState')).result;return !s.busy&&s.project.parts.length===2;});
+ const two=await state();assert.equal((await call('getInventory')).result.find(row=>row.name==='Red Beam').remaining,0);
+ await page.keyboard.press('Control+j');await page.locator('#status').filter({hasText:'Vượt giới hạn'}).waitFor();assert.equal((await state()).project.parts.length,2);
+ await page.keyboard.press('Control+z');await page.waitForFunction(async()=>(await window.mindxAssembly.execute('getState')).result.project.parts.length===1);
+ assert.equal(await page.getByRole('button',{name:'Add Red Beam',exact:true}).isEnabled(),true,'Undo returns stock');
+ await page.getByRole('button',{name:'Add Red Beam',exact:true}).click();await page.waitForFunction(async()=>(await window.mindxAssembly.execute('getState')).result.project.parts.length===2);await page.waitForFunction(async()=>!(await window.mindxAssembly.execute('getState')).result.busy);
+ await page.reload();await ready();assert.equal((await call('getKit')).result.count,2);assert.equal((await state()).project.parts.length,2);
+ console.log('PASS: two-kit multiplication, Ctrl+J, Undo, reused stock and persisted settings');
+ await page.locator('.app-menu').first().locator('summary').click();assert.equal(await page.locator('#kit-import').isVisible(),true);assert.equal(await page.locator('#kit-settings').isVisible(),true);
+ await page.locator('input[type=file][accept=".json,.csv"]').setInputFiles({name:'One beam.csv',mimeType:'text/csv',buffer:Buffer.from('sku,quantity\n228-2500-001,1')});
+ await panel().getByRole('heading',{name:'Cài đặt bộ kit',exact:true}).waitFor();assert.equal(await panel().getByRole('textbox',{name:'Tên bộ kit',exact:true}).inputValue(),'One beam');
+ await panel().getByRole('button',{name:'Hủy',exact:true}).click();await page.locator('.kit-settings-dialog').waitFor({state:'detached'});assert.equal((await call('getKit')).result.count,2,'Cancelled import must keep current stock');
+ await page.locator('input[type=file][accept=".json,.csv"]').setInputFiles({name:'broken.csv',mimeType:'text/csv',buffer:Buffer.from('sku,quantity\nwrong-sku,4')});await page.locator('#status').filter({hasText:'Không import được bộ kit'}).waitFor();assert.equal((await call('getKit')).result.count,2);
+ console.log('PASS: File menu import, editable CSV preview, cancellation and invalid-file rejection');
+ await page.locator('#kit-status').click();await panel().getByRole('heading',{name:'Cài đặt bộ kit',exact:true}).waitFor();await panel().getByRole('searchbox').fill('Red Pin');await panel().getByRole('spinbutton',{name:'Số lượng Red Pin trong 1 bộ',exact:true}).fill('0');await panel().getByRole('button',{name:'Áp dụng bộ kit',exact:true}).click();await page.locator('.kit-settings-dialog').waitFor({state:'detached'});
+ await call('select',{ids:['beam']});await page.locator('#fit').click();await page.getByRole('button',{name:/Quick attach at hole/}).first().dispatchEvent('click');await page.locator('#quick-search').fill('228-2500-2260');await page.locator('#quick-options button').click();await page.locator('#quick-apply').click();await page.locator('#status').filter({hasText:'Vượt giới hạn bộ kit'}).waitFor();assert.equal((await state()).project.parts.length,2);assert.equal(await page.locator('#quick-target-marker').isVisible(),true);await page.keyboard.press('Escape');
+ console.log('PASS: Quick Attach blocks missing pins while keeping the preview editable');
+ await page.locator('#kit-status').click();await panel().getByRole('heading',{name:'Cài đặt bộ kit',exact:true}).waitFor();await panel().getByRole('searchbox').fill('Red Beam');await panel().getByRole('spinbutton',{name:'Số bộ kit',exact:true}).fill('1');await panel().getByRole('button',{name:'Áp dụng bộ kit',exact:true}).click();await page.locator('.kit-settings-dialog').waitFor({state:'detached'});await page.locator('#kit-status').filter({hasText:'thiếu 1 loại'}).waitFor();assert.equal((await state()).project.parts.length,2,'Lowering a limit preserves existing parts');
+ assert.equal((await call('exportGuide')).ok,false,'An over-stock guide cannot export in strict mode');
+ await page.locator('#kit-status').click();await panel().getByRole('heading',{name:'Cài đặt bộ kit',exact:true}).waitFor();await panel().getByRole('searchbox').fill('Red Beam');await page.screenshot({path:'artifacts/assembly-tests/kit-settings-tested.png'});
+ assert.deepEqual(errors,[]);console.log('PASS: existing overages stay visible and prevent invalid guide export; no browser errors');
+}finally{await browser.close();}
