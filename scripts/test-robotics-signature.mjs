@@ -1,0 +1,14 @@
+import assert from 'node:assert/strict';
+import {readFile} from 'node:fs/promises';
+import ts from 'typescript';
+const source=await readFile('lib/robotics/document-signature.ts','utf8');
+const code=ts.transpileModule(source,{compilerOptions:{module:ts.ModuleKind.ESNext,target:ts.ScriptTarget.ES2022}}).outputText;
+const {documentSignature}=await import('data:text/javascript;base64,'+Buffer.from(code).toString('base64'));
+const a={version:1,title:'Xe học tập',parts:[{id:'beam',position:[1,2,3],mate:{target:'pin',depth:3}}],groups:[]};
+const postgresOrder={parts:[{mate:{depth:3,target:'pin'},position:[1,2,3],id:'beam'}],title:'Xe học tập',groups:[],version:1};
+assert.equal(documentSignature(a),documentSignature(postgresOrder),'JSONB key ordering must not cause false changes or submission failures');
+assert.equal(documentSignature(a),documentSignature({...a,createdAt:1,savedAt:99,projectId:'other-device'}),'Device-local timestamps and ID are not CAD edits');
+assert.notEqual(documentSignature(a),documentSignature({...a,title:'Xe khác'}));
+assert.notEqual(documentSignature(a),documentSignature({...a,parts:[{...a.parts[0],position:[1,2,4]}]}));
+assert.notEqual(documentSignature({parts:[1,2]}),documentSignature({parts:[2,1]}),'Array order remains meaningful');
+console.log('PASS JSONB key order, nested mating values, transient metadata, real edits and array order');

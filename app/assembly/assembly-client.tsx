@@ -1,5 +1,6 @@
 'use client';
 import {useEffect,useRef,useState} from 'react';
+import CloudSync from '../components/robotics/cloud-sync';
 import Link from 'next/link';import {useRouter} from 'next/navigation';
 import {createProject,listProjects,loadProject,type Platform,type ProjectData} from '../../public/assembly/project-store';
 export default function AssemblyClient({platform,projectId}:{platform:Platform;projectId:string}){
@@ -16,5 +17,5 @@ export default function AssemblyClient({platform,projectId}:{platform:Platform;p
  if(error)return <main style={{minHeight:'100dvh',display:'grid',placeContent:'center',gap:20,padding:30,background:'#22272e',color:'#e4edf6'}}><h1>Chưa mở được dự án</h1><p role="alert">{error}</p><Link href="/assembly">← Về các dự án</Link></main>;
  if(!loaded)return <div role="status" style={{padding:30}}>Đang mở dự án…</div>;
  const src=(platform==='vexiq'?'/assembly/iq/editor.html':'/assembly/editor.html')+`?platform=${platform}&project=${encodeURIComponent(projectId)}`;
- return <iframe key={src} ref={frame} title={(platform==='vexgo'?'VEX GO':'VEX IQ')+' assembly editor'} src={src} style={{display:'block',width:'100%',height:'100dvh',border:0}}/>;
+ return <><iframe key={src} ref={frame} title={(platform==='vexgo'?'VEX GO':'VEX IQ')+' assembly editor'} src={src} style={{display:'block',width:'100%',height:'100dvh',border:0}}/><CloudSync silent platform={platform} id={projectId} frame={frame}/></>;
 }

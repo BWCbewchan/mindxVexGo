@@ -26,7 +26,7 @@ export function saveProject(platform,id,data,{thumbnail}={},storage=globalThis.l
  const payload={...data,platform,projectId:id,createdAt:existing?.createdAt||data.createdAt||now,savedAt:now};
  storage.setItem(key,JSON.stringify(payload));
  const meta={...existing,id,platform,title:payload.title,createdAt:payload.createdAt,updatedAt:now,partCount:payload.parts.length,...(thumbnail?{thumbnail}:{})};
- const next=rows.filter(p=>p.id!==id||p.platform!==platform);next.push(meta);storage.setItem(PROJECT_INDEX,JSON.stringify(next));return meta;
+ const next=rows.filter(p=>p.id!==id||p.platform!==platform);next.push(meta);storage.setItem(PROJECT_INDEX,JSON.stringify(next));if(typeof window!=='undefined'&&storage===window.localStorage)window.dispatchEvent(new CustomEvent('robotics-local-project-saved',{detail:{platform,id}}));return meta;
 }
 export function createProject(platform,title,data,storage=globalThis.localStorage){const id=crypto.randomUUID();saveProject(platform,id,{version:1,title:title.trim().slice(0,120),parts:[],groups:[],steps:[],hideCables:true,...data}, {},storage);return id;}
 export function markProjectDeleted(platform,id,deleted,storage=globalThis.localStorage){const rows=listProjects(storage),row=rows.find(p=>p.id===id&&p.platform===platform);if(!row)throw Error('Không tìm thấy dự án.');if(deleted)row.deletedAt=Date.now();else delete row.deletedAt;storage.setItem(PROJECT_INDEX,JSON.stringify(rows));}

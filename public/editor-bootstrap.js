@@ -1,9 +1,13 @@
 (function () {
   if(new URLSearchParams(location.search).get('mode')==='training'){
     window.__vexTrainingMode=true;
+    if(new URLSearchParams(location.search).get('simulation')==='assembly'){
+      document.documentElement.dataset.simulation='assembly';
+      const compact=document.createElement('link');compact.rel='stylesheet';compact.href='/simulation/editor-compact.css?v=1';document.head.appendChild(compact);
+    }
     const lesson=new URLSearchParams(location.search).get('lesson');
     if(lesson?.startsWith('quiz-'))document.documentElement.dataset.homework='true';
-    const prefix='training:'+(lesson&&/^[a-z0-9-]{1,80}$/.test(lesson)?lesson+':':'');
+    const prefix='training:'+(lesson&&/^[a-zA-Z0-9_-]{1,160}$/.test(lesson)?lesson+':':'');
     if(lesson==='custom'){
       // Keep the original single-workspace training project in Your practice field.
       try{

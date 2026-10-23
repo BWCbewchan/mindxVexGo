@@ -1,0 +1,17 @@
+import assert from 'node:assert/strict';
+import '../public/training-engine.js';
+const base={width:2400,height:2400,start:{x:400,y:1600,heading:90},goal:{x:1100,y:1600,radius:100},walls:[],robot:{radius:100}};
+const e=globalThis.createTrainingEngine(base),advance=(seconds)=>{for(let n=0;n<Math.ceil(seconds/.01);n++)e.tick(.01);};
+const heading=e.state.heading;
+e.setHeading(0);assert.equal(e.state.heading,heading,'Resetting the heading reading must not rotate CAD');assert.equal(e.state.driveHeading,0);
+e.command('drive',100,100);advance(1.1);assert.ok(Math.abs(e.state.x-500)<.001);assert.equal(e.state.y,1600);
+e.setRotation(720);assert.equal(e.state.rotation,720);assert.equal(e.state.heading,heading);
+e.reset();e.timeout(.2);e.command('drive',1000,100);advance(.5);assert.ok(Math.abs(e.state.distance-20)<.001);assert.equal(e.moving,false);assert.equal(e.state.timedOut,true);
+e.reset();e.command('drive',1000,100);advance(.2);e.velocity('drive',200);advance(.2);assert.ok(Math.abs(e.state.distance-60)<.001);
+e.reset();e.timeout(.1);e.command('drive',100,0);advance(.2);assert.equal(e.state.distance,0);assert.equal(e.moving,false);
+e.reset();e.pen('down');e.command('drive',100,100);advance(1.1);assert.ok(e.state.penDistance>=99.99);assert.ok(e.state.strokes.length>0);e.pen('up');const drawn=e.state.penDistance;e.command('drive',100,100);advance(1.1);assert.equal(e.state.penDistance,drawn);e.reset();assert.equal(e.state.strokes.length,0);
+e.reset({...base,objective:'navigate',blocks:[{id:'unrelated',x:1600,y:400,color:'red'}]});e.command('drive',700,250);advance(3);assert.equal(e.state.goal,true,'Unrelated objects must not prevent a navigation objective');
+e.reset({...base,objective:'delivery',blocks:[{id:'disk',x:640,y:1600,color:'red',width:40,height:40}],zones:[{x:1120,y:1600,radius:80,color:'red'}]});e.magnet('boost');e.command('drive',600,250);advance(3);assert.equal(e.state.carrying,'disk');e.magnet('drop');assert.equal(e.state.delivered,1);assert.equal(e.state.goal,true);e.reset();assert.equal(e.state.blocks[0].x,640);assert.equal(e.state.carrying,null);assert.equal(e.state.goal,false);
+console.log('PASS: physical orientation vs heading/rotation readings, timeouts/zero speed, live velocity, pen strokes/reset, navigation with objects, magnetic delivery and full reset.');
+e.reset({...base,objective:'draw',drawDistance:100,goal:{x:500,y:1600,radius:20}});e.pen('down');e.command('drive',100,100);advance(1.1);assert.equal(e.state.goal,true);e.pen('clear');assert.equal(e.state.goal,false,'Clearing required ink must immediately clear drawing completion');
+console.log('PASS: clearing ink immediately updates the drawing objective.');

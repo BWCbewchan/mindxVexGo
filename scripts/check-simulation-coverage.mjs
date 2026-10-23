@@ -1,0 +1,12 @@
+import '../public/simulation/commands.js';
+import fs from 'node:fs/promises';
+import assert from 'node:assert/strict';
+const results=JSON.parse(await fs.readFile('artifacts/simulation/program-results.json','utf8'));
+assert.ok(results.length>0,'Run test-simulation-programs.mjs first.');
+assert.deepEqual(results.filter(test=>!test.ok),[],'Runtime scenarios must all pass.');
+const covered=new Set(results.flatMap(test=>test.types||[]));
+const missing=VRCommands.types.filter(type=>!covered.has(type));
+assert.deepEqual(missing,[],'Every advertised type needs a runtime or valid structural fixture.');
+const report={date:'2026-10-22',scenarios:results.length,passed:results.length,challengeRuns:results.filter(test=>test.name.startsWith('challenge ')).length,allowedTypes:VRCommands.types.length,coveredTypes:VRCommands.types.filter(type=>covered.has(type)),missing};
+await fs.writeFile('artifacts/simulation/command-coverage.json',JSON.stringify(report,null,2));
+console.log(`PASS: ${report.scenarios} scenarios, ${report.challengeRuns} challenge runs; ${report.allowedTypes}/${report.allowedTypes} advertised block types covered. This does not enumerate every possible program or parameter combination.`);

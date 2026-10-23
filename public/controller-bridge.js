@@ -212,6 +212,7 @@
       // Headless blocks have no rendered hat shape, so the vendor's
       // workspaceToCode would skip their entry point. Generate it explicitly.
       B.JavaScript.init(clone);
+      window.VexTraining?.initializeVariables(clone);
       clone.getTopBlocks(true).filter(block=>block.type==='procedures_definition').forEach(block=>B.JavaScript.blockToCode(block));
       const entry=clone.getTopBlocks(false).find(block=>block.type==='go_events_when_started');
       B.JavaScript.blockToCode(entry);

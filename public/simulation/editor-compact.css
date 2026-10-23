@@ -1,0 +1,25 @@
+/* Only the embedded Assembly simulator uses this compact Blockly shell. */
+html[data-simulation="assembly"] .topmenu{height:36px!important;min-height:36px!important;flex-wrap:nowrap!important;padding:0 6px!important;box-shadow:none;background:#2b3b47;font-size:11px;border-bottom:1px solid #415462}
+html[data-simulation="assembly"] .topmenu>.group{height:36px!important;min-height:0!important;min-width:0;flex:none}
+html[data-simulation="assembly"] .topmenu>.group:first-child{flex:none}
+html[data-simulation="assembly"] .topmenu #topmenu_right_group{width:auto!important;height:36px!important;min-height:0!important;flex:1;flex-wrap:nowrap!important;justify-content:flex-end!important;border:0!important}
+html[data-simulation="assembly"] .studio-home,
+html[data-simulation="assembly"] .topmenu .tool_tutorial,
+html[data-simulation="assembly"] .topmenu .tool_activity,
+html[data-simulation="assembly"] .topmenu .tool_builds,
+html[data-simulation="assembly"] .topmenu .bar_divider,
+html[data-simulation="assembly"] .project_icon_wrapper{display:none!important}
+html[data-simulation="assembly"] .topmenu .toolbar_btn{height:32px!important;min-height:0!important;min-width:28px!important;padding:0 5px!important;font-size:11px!important}
+html[data-simulation="assembly"] .topmenu .toolbar_btn .icon_wrapper{width:20px!important;min-width:0!important}
+html[data-simulation="assembly"] .topmenu .toolbar_btn .icon{height:16px!important}
+html[data-simulation="assembly"] .topmenu .icon_caption{display:none!important}
+html[data-simulation="assembly"] .project_name_wrapper .project_name_ticker{width:100px;font-size:11px}
+html[data-simulation="assembly"] .studio-toolbar-actions{gap:3px;margin:0;padding:0;border:0}
+html[data-simulation="assembly"] .studio-toolbar-button{min-height:26px;padding:3px 6px;font-size:10px;border-color:#687c89;background:#ffffff0c}
+html[data-simulation="assembly"] .tabbed_container[data-style="default"]>.tabbed_header{height:30px!important;min-height:30px!important;background:#dce5eb}
+html[data-simulation="assembly"] .tabbed_container[data-style="default"]>.tabbed_header>.group{height:30px;align-items:center}
+html[data-simulation="assembly"] .tabbed_container[data-style="default"]>.tabbed_header .tab_btn{box-sizing:border-box;height:26px!important;padding:3px 8px!important;margin:0 2px 0 0!important;align-items:center;font-size:11px}
+html[data-simulation="assembly"] .tabbed_header .side_panel_btn{box-sizing:border-box;height:28px;padding:4px 7px}
+html[data-simulation="assembly"] .tabbed_header .side_panel_btn img{height:20px}
+html[data-simulation="assembly"] .tabbed_header .tab_icon{height:18px!important;width:auto!important}
+@media(max-width:540px){html[data-simulation="assembly"] .project_name_wrapper{display:none!important}html[data-simulation="assembly"] .studio-toolbar-button{padding:3px 4px;font-size:10px}}

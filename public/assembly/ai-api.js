@@ -42,6 +42,7 @@ export function installAssemblyAPI(app){
    for(const key of ['visible','locked','collapsed'])if(args[key]!==undefined){if(typeof args[key]!=='boolean')throw Error(key+' must be boolean');group[key]=args[key];}if(args.name!==undefined){if(typeof args.name!=='string'||!args.name.trim())throw Error('Group name required');group.name=args.name.trim().slice(0,120);}return {group:clone(group)};
   }),
   exportProject:()=>clone(app.project()),
+  flushProject:async()=>{if(app.busy())throw Error('Editor is busy. Finish the current edit before syncing.');if(!await app.save())throw Error('Could not save the current edit.');return clone(app.project());},
   exportGuide:()=>{if(app.busy())throw Error('Editor is busy');if(!app.guide().ready)throw Error(app.guide().blockers.join('; ')||'Guide is not ready');const result=app.exportGuide();return result;},
   undo:()=>{if(app.busy())throw Error('Editor is busy');return app.undo(false);},
   redo:()=>{if(app.busy())throw Error('Editor is busy');return app.undo(true);},

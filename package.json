@@ -11,14 +11,16 @@
     "test:browser": "node scripts/test-browser.mjs"
   },
   "dependencies": {
+    "@supabase/supabase-js": "2.118.0",
     "lucide": "^1.55.0",
-    "next": "16.3.4",
+    "next": "16.4.2",
     "react": "19.2.0",
     "react-dom": "19.2.0",
     "three": "^0.186.1",
     "three-mesh-bvh": "^0.9.15"
   },
   "devDependencies": {
+    "@electric-sql/pglite": "0.5.11",
     "@playwright/test": "^1.58.0",
     "@types/node": "^22.0.0",
     "@types/react": "^19.0.0",
