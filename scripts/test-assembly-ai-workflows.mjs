@@ -1,0 +1,41 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs/promises';
+import {chromium} from '@playwright/test';
+import {ASSEMBLY_COMMANDS} from '../public/assembly/api-contract.js';
+const browser=await chromium.launch({channel:'chrome',headless:true,args:['--use-angle=swiftshader','--enable-unsafe-swiftshader']});
+const evidence=[];await fs.mkdir('artifacts/assembly-tests',{recursive:true});
+try{for(const platform of ['vexgo','vexiq']){
+ const page=await browser.newPage({viewport:{width:1440,height:980}}),errors=[],calls=[];page.on('pageerror',error=>errors.push(error.message));
+ await page.addInitScript(platform=>{localStorage.clear();if(platform==='vexiq')localStorage.setItem('mindx-assembly-project-v1:vexiq:ai-regression',JSON.stringify({version:1,platform,title:'AI regression',parts:[],groups:[],steps:[],hideCables:true}));window.print=()=>{window.__printed=(window.__printed||0)+1;};},platform);
+ await page.goto('http://localhost:3120/assembly/'+(platform==='vexiq'?'iq/editor.html?platform=vexiq&project=ai-regression':'editor.html'));await page.waitForFunction(()=>window.mindxAssembly,null,{timeout:60000});
+ const call=async(command,args={})=>{const result=await page.evaluate(({command,args})=>window.mindxAssembly.execute(command,args),{command,args});calls.push({command,ok:result.ok,errorCode:result.errorCode||null,durationMs:result.meta?.durationMs});return result;};
+ const good=async(command,args={})=>{const result=await call(command,args);assert.equal(result.ok,true,JSON.stringify({command,result}));assert.match(result.meta.requestId,/^[a-f0-9-]{36}$/);return result.result;};
+ const bad=async(command,args,code)=>{const before=await good('exportProject');const result=await call(command,args);assert.equal(result.ok,false,JSON.stringify({command,result}));if(code)assert.equal(result.errorCode,code);assert.deepEqual(await good('exportProject'),before,'Rejected command leaves CAD unchanged');return result;};
+ assert.equal((await good('getCapabilities')).version,'1.2');assert.equal((await good('getState')).project.platform,platform);
+ await bad('getState',{typo:true},'INVALID_ARGUMENTS');await bad('listParts',{query:123},'INVALID_ARGUMENTS');await bad('setTransform',{id:'unknown'},'INVALID_ARGUMENTS');await bad('addPart',{sku:'invalid'},'UNKNOWN_SKU');await bad('toString',{},'UNKNOWN_COMMAND');
+ const catalog=await good('listParts',{query:'Beam'});assert.ok(catalog.length);await good('getKit');await good('getInventory');
+ const beam=await good('addPart',{sku:'228-2500-001',position:[0,80,0]});
+ await bad('setLayer',{id:beam.id,visble:false},'INVALID_ARGUMENTS');await good('undo');assert.equal((await good('getState')).project.parts.length,0);await good('redo');
+ await good('select',{ids:[beam.id]});await good('getConnectors',{id:beam.id});await good('getCatalogConnectors',{sku:'228-2500-001'});await bad('getConnectors',{id:'absent'},'UNKNOWN_PART');
+ // Arguments are captured before joining the serialized command queue.
+ const queued=await page.evaluate(async()=>{const api=window.mindxAssembly,args={sku:'228-2500-001',position:[600,80,0]};const first=api.execute('addPart',{sku:'228-2500-001',position:[500,80,0]}),second=api.execute('addPart',args);args.position[0]=0;return Promise.all([first,second]);});assert.ok(queued.every(result=>result.ok));assert.equal((await good('getState')).project.parts.find(p=>p.id===queued[1].result.id).position[0],600);await good('deleteParts',{ids:queued.map(result=>result.result.id)});
+ const pin=await good('addPart',{sku:platform==='vexiq'?'228-2500-060':'228-2500-2260',position:[100,80,100]});
+ const options=await good('getConnectionOptions',{id:pin.id,targetId:beam.id,limit:1});assert.equal(options.options.length,1);assert.ok(options.total>1);assert.equal(options.nextOffset,1);assert.equal((await good('getConnectionOptions',{id:pin.id,targetId:beam.id,offset:1,limit:1})).options.length,1);
+ const sourceRef=platform==='vexiq'?'1':'4',targetRef=platform==='vexiq'?'1':'2';
+ await bad('attach',{id:pin.id,targetId:beam.id,sourceRef:'missing',targetRef},'UNKNOWN_CONNECTOR');
+ await good('attach',{id:pin.id,targetId:beam.id,sourceRef,targetRef});await bad('attach',{id:beam.id,targetId:pin.id,sourceRef:targetRef,targetRef:sourceRef},'CYCLE_REJECTED');
+ await good('detach',{id:pin.id});await good('snap',{id:pin.id});
+ const group=await good('group',{ids:[beam.id,pin.id],name:'AI module'});await good('setGroup',{id:group.groupId,name:'AI module renamed',collapsed:true});await bad('setGroup',{id:group.groupId,parentId:group.groupId});
+ await good('setGroup',{id:group.groupId,locked:true});await bad('duplicateParts',{ids:[beam.id,pin.id],groupId:group.groupId,offset:[200,0,0]},'LAYER_LOCKED');await good('setGroup',{id:group.groupId,locked:false});
+ const copied=await good('duplicateParts',{ids:[pin.id,beam.id],groupId:group.groupId,offset:[200,0,0]});assert.equal(copied.ids.length,2);assert.ok(copied.groupId);let state=(await good('getState')).project;assert.equal(state.parts.find(p=>p.id===copied.idMap[pin.id]).mate.target,copied.idMap[beam.id]);
+ await good('ungroup',{ids:copied.ids,groupId:copied.groupId});await good('deleteParts',{ids:copied.addedIds});await good('ungroup',{ids:[beam.id,pin.id],groupId:group.groupId});
+ await good('setLayer',{id:pin.id,locked:true});await bad('setTransform',{id:beam.id,position:[0,90,0]},'LAYER_LOCKED');await good('setLayer',{id:pin.id,locked:false,visible:false});await good('setLayer',{id:pin.id,visible:true});
+ await bad('addPart',{sku:'228-2500-001',position:[0,80,0]},'COLLISION');
+ await good('getConnections');await good('reviewMechanics');await good('checkFit');assert.equal((await good('getGuide')).ready,true);
+ await good('flushProject');await good('exportGuide');assert.ok(await page.evaluate(()=>window.__printed));assert.equal(await page.locator('.guide-finished').count(),1);await page.pdf({path:`artifacts/assembly-tests/ai-${platform}-guide.pdf`,printBackground:true,preferCSSPageSize:true});
+ await good('setKit',{profile:{version:1,platform,name:'AI regression kit',count:1,enforce:true,items:{'228-2500-001':1,[platform==='vexiq'?'228-2500-060':'228-2500-2260']:1}}});await bad('duplicateParts',{ids:[beam.id],offset:[200,0,0]},'KIT_LIMIT');
+ await good('setTransform',{id:pin.id,position:[150,80,100]});await good('undo');await good('redo');await good('deleteParts',{ids:[beam.id,pin.id]});
+ const diagnostics=await good('getDiagnostics');assert.ok(diagnostics.recent.length<=60);assert.ok(diagnostics.recent.some(row=>row.command==='duplicateParts'&&row.errorCode==='KIT_LIMIT'));assert.equal(JSON.stringify(diagnostics).includes('position'),false,'Diagnostics omit command payloads');
+ const covered=new Set(calls.map(call=>call.command));assert.deepEqual(Object.keys(ASSEMBLY_COMMANDS).filter(command=>!covered.has(command)),[],'Every API command exercised');assert.deepEqual(errors,[]);
+ evidence.push({platform,commands:Object.keys(ASSEMBLY_COMMANDS).length,calls:calls.length,errors,cases:calls});await page.close();console.log(`PASS ${platform}: all ${Object.keys(ASSEMBLY_COMMANDS).length} commands; ${calls.length} outcomes; PDF, group copy, kit, locks, rollback, queue snapshot and validation.`);
+}}finally{await browser.close();await fs.writeFile('artifacts/assembly-tests/ai-workflow-results.json',JSON.stringify(evidence,null,2),'utf8');}

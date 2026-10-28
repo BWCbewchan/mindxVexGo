@@ -59,6 +59,8 @@ const explicit={
 };
 export function iqAppearance(entry){
  if(!entry?.id)return null;
+ if(entry.id==='iq-200mm-travel-wheel')return rule('lightGray','wheels-wheel-hub','kit',[{match:'travel-tire',color:IQ_PALETTE.black}]);
+ if(entry.id==='228-2536')return {color:IQ_PALETTE.lightGray,colorName:'lightGray / black rubber',source:'https://www.vexrobotics.com/228-2536.html',evidence:'manufacturer-cad',regions:[],preserveOriginal:true};
  const id=entry.sku||entry.id.split('--')[0],tail=id.startsWith('228-2500-')?id.slice(9):null,name=entry.name||'';
  if(variantOf[tail]){const canonical='228-2500-'+variantOf[tail],appearance=iqAppearance({...entry,id:canonical,sku:canonical,name:name.replace(/\s*\(Weak\)/,'')});return appearance?{...appearance,evidence:'family',variantOf:canonical}:null;}
  if(['2234','2236','2238'].includes(tail))return rule('metal','shafts-pitch-motor-shafts-inner','kit',[{match:'OVERMOLD',color:IQ_PALETTE[{2234:'orange',2236:'blue',2238:'green'}[tail]]}]);
@@ -99,6 +101,7 @@ export function iqAppearance(entry){
 }
 export function applyIQAppearance(root,entry){
  const appearance=iqAppearance(entry);if(!appearance)return root;
+ if(appearance.preserveOriginal){root.userData.iqAppearance={version:IQ_COLOR_VERSION,...appearance};return root;}
  const materials=new Map();root.traverse(mesh=>{if(!mesh.isMesh)return;const names=[];for(let node=mesh;node;node=node.parent)names.push(node.name||'');const path=names.join('/');
   const color=appearance.regions.find(region=>path.includes(region.match))?.color||appearance.color;
   const colorMaterial=original=>{const key=original.uuid+color;if(!materials.has(key)){const material=original.clone();material.color.set(color);material.metalness=0;material.roughness=.85;material.needsUpdate=true;materials.set(key,material);}return materials.get(key);};

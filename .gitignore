@@ -4,6 +4,8 @@ apk-extracted/
 *.apk
 *.tsbuildinfo
 artifacts/
+public/editor/runtime.html
+public/editor/dist/main.*.bundle.js
 *.log
 .env
 .env.*

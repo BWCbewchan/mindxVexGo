@@ -1,11 +1,13 @@
 export type KitPlatform='vexgo'|'vexiq';
-export type KitCatalogEntry={id:string;name:string;kind?:string;category?:string};
+export type KitCatalogEntry={id:string;name:string;kind?:string;category?:string;components?:Array<{sku:string;quantity:number}>};
 export type KitProfile={version:1;platform:KitPlatform;name:string;count:number;enforce:boolean;items:Record<string,number>};
 export type KitRow={sku:string;skus:string[];name:string;category:string;used:number;available:number|null;remaining:number|null;integrated:number};
+export type KitAssemblyRow=KitRow&{derived:true;perKit:number|null;components:Array<{sku:string;name:string;quantity:number}>};
 export function kitCatalog(catalog:KitCatalogEntry[],platform:KitPlatform):Array<Omit<KitRow,'used'|'available'|'remaining'|'integrated'>>;
 export function defaultKitProfile(catalog:KitCatalogEntry[],platform:KitPlatform):KitProfile;
 export function kitCoverage(catalog:KitCatalogEntry[],platform:KitPlatform):Array<{name:string;quantity:number}>;
 export function validateKitProfile(value:unknown,catalog:KitCatalogEntry[],platform:KitPlatform):KitProfile;
 export function parseKitFile(text:string,filename:string,catalog:KitCatalogEntry[],platform:KitPlatform):KitProfile;
 export function kitReport(parts:Array<{sku:string}>,catalog:KitCatalogEntry[],profile:KitProfile|null):KitRow[];
+export function kitAssemblyReport(parts:Array<{sku:string}>,catalog:KitCatalogEntry[],profile:KitProfile|null):KitAssemblyRow[];
 export function assertKitChange(before:Array<{sku:string}>,after:Array<{sku:string}>,catalog:KitCatalogEntry[],profile:KitProfile|null):void;

@@ -1,0 +1,14 @@
+import assert from 'node:assert/strict';
+import {createRenderScheduler} from '../public/assembly/render-scheduler.js';
+import {loadPool} from '../public/assembly/load-pool.js';
+const doc=new EventTarget();doc.hidden=false;const jobs=new Map();let id=0,draws=0,moving=false;
+const loop=createRenderScheduler(()=>{draws++;return moving;},{document:doc,request:fn=>{jobs.set(++id,fn);return id;},cancel:key=>jobs.delete(key)});
+const flush=()=>{const batch=[...jobs.values()];jobs.clear();for(const job of batch)job(1);};
+assert.equal(jobs.size,1);flush();assert.equal(draws,1);assert.equal(jobs.size,0,'Idle scene does not schedule WebGL work');
+loop.invalidate();loop.invalidate();assert.equal(jobs.size,1,'Coalesce scene changes');flush();
+moving=true;doc.dispatchEvent(new Event('pointermove'));flush();assert.equal(jobs.size,1);moving=false;flush();assert.equal(jobs.size,0,'Damping settles');
+doc.hidden=true;doc.dispatchEvent(new Event('visibilitychange'));loop.invalidate();assert.equal(jobs.size,0,'Hidden scene sleeps');doc.hidden=false;doc.dispatchEvent(new Event('visibilitychange'));flush();
+loop.dispose();doc.dispatchEvent(new Event('pointermove'));assert.equal(jobs.size,0);
+let active=0,peak=0;const output=await loadPool([0,1,2,3,4,5,6,7],async value=>{active++;peak=Math.max(peak,active);await new Promise(resolve=>setTimeout(resolve,2));active--;return value*2;},3);
+assert.equal(peak,3);assert.deepEqual(output,[0,2,4,6,8,10,12,14]);assert.deepEqual(await loadPool([],()=>{}),[]);await assert.rejects(()=>loadPool([1],()=>Promise.reject(Error('CAD unavailable'))),/CAD unavailable/);
+console.log('PASS: idle/active/hidden rendering, input wakeup, coalescing, disposal and bounded ordered CAD loading.');

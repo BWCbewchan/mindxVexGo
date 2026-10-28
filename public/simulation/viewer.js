@@ -4,6 +4,8 @@ import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 import {visibleBounds} from '../assembly/visible-bounds.js';
 import {applyIQAppearance} from '../assembly/iq/color-profile.js';
 import {optimizeStaticModel} from '../assembly/render-model.js';
+import {createRenderScheduler} from '../assembly/render-scheduler.js';
+import {loadPool} from '../assembly/load-pool.js';
 const previewOnly=new URLSearchParams(location.search).get('preview')==='1';
 const post=data=>parent.postMessage(data,location.origin),status=document.getElementById('status');
 const scene=new THREE.Scene();scene.background=new THREE.Color('#e9eff0');
@@ -16,12 +18,22 @@ const cargo=new THREE.Group(),checkpoints=new THREE.Group();scene.add(cargo,chec
 const ink=new THREE.Mesh(new THREE.BufferGeometry(),new THREE.MeshBasicMaterial({vertexColors:true,side:THREE.DoubleSide}));ink.frustumCulled=false;scene.add(ink);
 const arrow=new THREE.ArrowHelper(new THREE.Vector3(0,0,-1),new THREE.Vector3(0,.04,0),.2,0x167caa,.045,.028);robot.add(arrow);arrow.visible=!previewOnly;
 const eye=new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(),new THREE.Vector3()]),new THREE.LineBasicMaterial({color:0x2cbbb0,transparent:true,opacity:.8}));eye.frustumCulled=false;scene.add(eye);
-const trail=new THREE.Line(new THREE.BufferGeometry(),new THREE.LineBasicMaterial({color:0xe58b46}));scene.add(trail);
+const trailGeometry=new THREE.BufferGeometry();trailGeometry.setAttribute('position',new THREE.BufferAttribute(new Float32Array(4000*3),3).setUsage(THREE.DynamicDrawUsage));trailGeometry.setDrawRange(0,0);
+const trail=new THREE.Line(trailGeometry,new THREE.LineBasicMaterial({color:0xe58b46}));trail.frustumCulled=false;scene.add(trail);
+function resetTrail(){points=[];trail.geometry.setDrawRange(0,0);}
 let field=null,pose=null,mode='follow',trace=true,lastRevision=null,points=[],generation=0,modelReady=false,editing=false,drag=null;
 const colors={red:'#df5361',green:'#31965b',blue:'#397fd6'},color=c=>colors[c]||c;
 function ring(point,tint,editable){const group=new THREE.Group(),disk=new THREE.Mesh(new THREE.CircleGeometry(point.radius*.001,48),new THREE.MeshBasicMaterial({color:tint,transparent:true,opacity:.12,side:THREE.DoubleSide})),edge=new THREE.Mesh(new THREE.RingGeometry(point.radius*.0009,point.radius*.001,48),new THREE.MeshBasicMaterial({color:tint,side:THREE.DoubleSide}));for(const obj of [disk,edge]){obj.rotation.x=-Math.PI/2;group.add(obj);}group.position.set(point.x*.001,.004,point.y*.001);group.userData.edit=editable;return group;}
 function syncObjects(blocks){for(const b of blocks||[]){let mesh=cargoMeshes.get(b.id);if(!mesh){mesh=b.pushable?box(b.width*.001,.06,b.height*.001,color(b.color),0,0,0):new THREE.Mesh(new THREE.CylinderGeometry(Math.max(b.width,b.height)*.0005,Math.max(b.width,b.height)*.0005,.02,32),new THREE.MeshStandardMaterial({color:color(b.color),roughness:.8}));mesh.userData.edit={kind:'block',id:b.id};cargo.add(mesh);cargoMeshes.set(b.id,mesh);}if(drag?.object!==mesh)mesh.position.set(b.x*.001,b.pushable ? .03 : pose?.carryingId===b.id ? .045 : .012,b.y*.001);}}
-function syncInk(strokes){const positions=[],tints=[];for(const s of strokes||[]){const dx=s.x2-s.x1,dz=s.y2-s.y1,len=Math.hypot(dx,dz);if(!len)continue;const nx=-dz/len*s.width*.0005,nz=dx/len*s.width*.0005,a=[s.x1*.001+nx,.007,s.y1*.001+nz],b=[s.x1*.001-nx,.007,s.y1*.001-nz],c=[s.x2*.001+nx,.007,s.y2*.001+nz],d=[s.x2*.001-nx,.007,s.y2*.001-nz],tint=new THREE.Color(s.color);for(const vertex of [a,b,c,b,d,c]){positions.push(...vertex);tints.push(tint.r,tint.g,tint.b);}}ink.geometry.dispose();ink.geometry=new THREE.BufferGeometry();ink.geometry.setAttribute('position',new THREE.Float32BufferAttribute(positions,3));ink.geometry.setAttribute('color',new THREE.Float32BufferAttribute(tints,3));}
+let inkCount=0,inkCapacity=0;
+function syncInk(strokes,reset=false){
+ let start=Math.max(0,inkCount-1);if(reset||strokes.length<inkCount||strokes.length>=12000)start=0;
+ if(strokes.length>inkCapacity){inkCapacity=Math.max(64,strokes.length,inkCapacity*2);ink.geometry.dispose();ink.geometry=new THREE.BufferGeometry();for(const name of ['position','color'])ink.geometry.setAttribute(name,new THREE.BufferAttribute(new Float32Array(inkCapacity*18),3).setUsage(THREE.DynamicDrawUsage));start=0;}
+ const positions=ink.geometry.getAttribute('position'),tints=ink.geometry.getAttribute('color');
+ for(let i=start;i<strokes.length;i++){const s=strokes[i],dx=s.x2-s.x1,dz=s.y2-s.y1,len=Math.hypot(dx,dz),nx=len?-dz/len*s.width*.0005:0,nz=len?dx/len*s.width*.0005:0,a=[s.x1*.001+nx,.007,s.y1*.001+nz],b=[s.x1*.001-nx,.007,s.y1*.001-nz],c=[s.x2*.001+nx,.007,s.y2*.001+nz],d=[s.x2*.001-nx,.007,s.y2*.001-nz],tint=new THREE.Color(s.color);for(const [j,v] of [a,b,c,b,d,c].entries()){positions.setXYZ(i*6+j,...v);tints.setXYZ(i*6+j,tint.r,tint.g,tint.b);}}
+ if(positions&&strokes.length>start){for(const attr of [positions,tints]){attr.addUpdateRange(start*18,(strokes.length-start)*18);attr.needsUpdate=true;}}
+ inkCount=strokes.length;ink.geometry.setDrawRange(0,inkCount*6);
+}
 const loader=new GLTFLoader(),cache=new Map();
 function clear(group,dispose=true){for(const child of [...group.children]){group.remove(child);if(dispose)child.traverse(mesh=>{mesh.geometry?.dispose();for(const material of Array.isArray(mesh.material)?mesh.material:[mesh.material])material?.dispose();});}}
 function box(width,height,depth,color,x,y,z){const mesh=new THREE.Mesh(new THREE.BoxGeometry(width,height,depth),new THREE.MeshStandardMaterial({color,roughness:.9}));mesh.position.set(x,y,z);return mesh;}
@@ -45,12 +57,14 @@ async function load(project,catalog){
    const root=project.platform==='vexiq'?'/assembly/iq/':'/assembly/',refs=(await fetch(root+'connectors.json').then(r=>r.json())).parts;
    const groups=new Map((project.groups||[]).map(g=>[g.id,g]));
    const shown=part=>{if(part.visible===false)return false;let id=part.groupId;while(id){const g=groups.get(id);if(!g||g.visible===false)return false;id=g.parentId;}return true;};
-   for(const part of project.parts){if(token!==generation)return;const obj=await cad(part,project.platform,refs,catalog.find(p=>p.id===part.sku));if(token!==generation)return;obj.position.fromArray(part.position.map(v=>v*.001));obj.rotation.set(...part.rotation.map(THREE.MathUtils.degToRad));assembled.add(obj);bounds.union(visibleBounds(obj));obj.visible=shown(part);}
+   const entries=new Map(catalog.map(p=>[p.id,p]));
+   const models=await loadPool(project.parts,part=>cad(part,project.platform,refs,entries.get(part.sku)));
+   for(const [index,part] of project.parts.entries()){if(token!==generation)return;const obj=models[index];obj.position.fromArray(part.position.map(v=>v*.001));obj.rotation.set(...part.rotation.map(THREE.MathUtils.degToRad));assembled.add(obj);bounds.union(visibleBounds(obj));obj.visible=shown(part);}
   }
   if(token!==generation)return;if(!project)bounds.copy(visibleBounds(assembled));if(bounds.isEmpty())throw Error('Mô hình không có hình học để hiển thị.');
   const center=bounds.getCenter(new THREE.Vector3()),size=bounds.getSize(new THREE.Vector3()),radius=Math.hypot(size.x,size.z)*500;previewSize.copy(size);
   if(radius>1000||size.y>2)throw Error('Mô hình có các cụm quá xa nhau hoặc lớn hơn sân. Kiểm tra vị trí CAD trước.');
-  assembled.position.set(-center.x,-bounds.min.y,-center.z);body.add(assembled);arrow.position.y=size.y+.035;arrow.setLength(Math.max(size.x,size.z)*.6+.08,.045,.025);modelReady=true;status.textContent='Kéo để xoay góc nhìn · Cuộn để thu phóng';post({type:'vr-model-ready',radius:Math.max(45,radius),size:[size.x*1000,size.y*1000,size.z*1000]});
+  assembled.position.set(-center.x,-bounds.min.y,-center.z);body.add(assembled);arrow.position.y=size.y+.035;arrow.setLength(Math.max(size.x,size.z)*.6+.08,.045,.025);modelReady=true;renderLoop.invalidate();status.textContent='Kéo để xoay góc nhìn · Cuộn để thu phóng';post({type:'vr-model-ready',radius:Math.max(45,radius),size:[size.x*1000,size.y*1000,size.z*1000]});
  }catch(error){if(token!==generation)return;status.textContent='Không nạp được CAD: '+error.message;post({type:'vr-model-error',message:error.message});}
 }
 function drawField(next){field=next;clear(terrain);clear(cargo);clear(checkpoints);cargoMeshes.clear();syncInk([]);const w=field.width*.001,h=field.height*.001;const floor=new THREE.Mesh(new THREE.PlaneGeometry(w,h),new THREE.MeshStandardMaterial({color:'#f7f8f2',roughness:1}));floor.rotation.x=-Math.PI/2;floor.position.set(w/2,-.002,h/2);terrain.add(floor);const grid=new THREE.GridHelper(Math.max(w,h),24,0xabb9b5,0xd8e0da);grid.position.set(w/2,0,h/2);terrain.add(grid);
@@ -59,13 +73,14 @@ function drawField(next){field=next;clear(terrain);clear(cargo);clear(checkpoint
  for(const [i,zone] of (field.zones||[]).entries())terrain.add(ring(zone,color(zone.color),{kind:'zone',id:zone.id??String(i)}));
  for(const [i,point] of (field.checkpoints||[]).entries()){const marker=ring(point,'#e8a74e',{kind:'checkpoint',id:String(i)});const canvas=document.createElement('canvas');canvas.width=canvas.height=64;const ctx=canvas.getContext('2d');ctx.fillStyle='#62430c';ctx.font='bold 40px sans-serif';ctx.textAlign='center';ctx.fillText(String(i+1),32,46);const label=new THREE.Sprite(new THREE.SpriteMaterial({map:new THREE.CanvasTexture(canvas),depthTest:false}));label.scale.set(.07,.07,.07);label.position.y=.025;marker.add(label);checkpoints.add(marker);}
  syncObjects(field.blocks);
- for(const [x,z] of [[0,0],[w,0],[0,h],[w,h]])terrain.add(box(.025,.055,.025,'#a1b3ad',x,.027,z));points=[];trail.geometry.dispose();trail.geometry=new THREE.BufferGeometry();setView(mode);}
+ for(const [x,z] of [[0,0],[w,0],[0,h],[w,h]])terrain.add(box(.025,.055,.025,'#a1b3ad',x,.027,z));resetTrail();setView(mode);}
 function setView(next){mode=next;if(!field)return;controls.enabled=mode!=='follow'&&!editing;const target=new THREE.Vector3(field.width*.0005,0,field.height*.0005),span=Math.max(field.width,field.height)*.001;
  if(previewOnly&&modelReady){target.y=previewSize.y/2;const halfFov=THREE.MathUtils.degToRad(camera.fov/2),angle=Math.min(halfFov,Math.atan(Math.tan(halfFov)*camera.aspect)),distance=Math.max(.025,previewSize.length()/2)/Math.sin(angle)*1.15;controls.target.copy(target);camera.position.copy(target).add(new THREE.Vector3(1,.8,1).normalize().multiplyScalar(distance));}
+ else if(mode==='follow'){const start=pose||field.start;target.set(start.x*.001,.08,start.y*.001);controls.target.copy(target);camera.position.set(start.x*.001,.55,start.y*.001).add(new THREE.Vector3(0,0,.75).applyAxisAngle(new THREE.Vector3(0,1,0),THREE.MathUtils.degToRad(-start.heading)));}
  else{controls.target.copy(target);camera.position.copy(target).add(mode==='top'?new THREE.Vector3(0,span*1.55,.001):new THREE.Vector3(span,span*1.12,span));}
  camera.lookAt(target);controls.update();}
 window.addEventListener('message',event=>{
- if(event.origin!==location.origin||event.source!==parent)return;const message=event.data;
+ if(event.origin!==location.origin||event.source!==parent)return;const message=event.data;renderLoop.invalidate();
  if(message?.type==='vr-init')load(message.project,message.catalog||[]);
  if(message?.type==='vr-field')drawField(message.field);
  if(message?.type==='vr-view')setView(message.mode);
@@ -73,18 +88,37 @@ window.addEventListener('message',event=>{
  if(message?.type==='vr-trail'){trace=!!message.visible;trail.visible=trace;}
  if(message?.type==='vr-pose'){
   if(![message.x,message.y,message.heading].every(Number.isFinite))return;
-  if(lastRevision!==message.revision){lastRevision=message.revision;points=[];trail.geometry.dispose();trail.geometry=new THREE.BufferGeometry();robot.position.set(message.x*.001,0,message.y*.001);}
-  pose=message;const point=new THREE.Vector3(message.x*.001,.006,message.y*.001);
-  syncObjects(message.blocks);syncInk(message.strokes);for(const [i,marker] of checkpoints.children.entries()){const tint=i<(message.checkpointIndex||0)?'#59aa6d':i===(message.checkpointIndex||0)?'#e8a74e':'#a3aaa8';marker.children[1].material.color.set(tint);}
-  if(trace&&(!points.length||points.at(-1).distanceTo(point)>.003)){points.push(point);if(points.length>4000)points.shift();trail.geometry.dispose();trail.geometry=new THREE.BufferGeometry().setFromPoints(points);}
+  const reset=lastRevision!==message.revision;
+  if(reset){lastRevision=message.revision;resetTrail();robot.position.set(message.x*.001,0,message.y*.001);}
+  pose=message;if(reset&&mode==='follow')setView(mode);const point=new THREE.Vector3(message.x*.001,.006,message.y*.001);
+  syncObjects(message.blocks);if(message.strokes)syncInk(message.strokes,message.inkReset);for(const [i,marker] of checkpoints.children.entries()){const tint=i<(message.checkpointIndex||0)?'#59aa6d':i===(message.checkpointIndex||0)?'#e8a74e':'#a3aaa8';marker.children[1].material.color.set(tint);}
+  if(trace&&(!points.length||points.at(-1).distanceTo(point)>.003)){const attribute=trail.geometry.getAttribute('position');points.push(point);if(points.length>4000){points.shift();attribute.array.copyWithin(0,3);attribute.addUpdateRange(0,3999*3);}attribute.setXYZ(points.length-1,point.x,point.y,point.z);attribute.addUpdateRange((points.length-1)*3,3);attribute.needsUpdate=true;trail.geometry.setDrawRange(0,points.length);}
  }
 });
 const ray=new THREE.Raycaster(),ground=new THREE.Plane(new THREE.Vector3(0,1,0),0),pointer=new THREE.Vector2();
 function hitGround(event){const rect=renderer.domElement.getBoundingClientRect();pointer.set((event.clientX-rect.left)/rect.width*2-1,-(event.clientY-rect.top)/rect.height*2+1);ray.setFromCamera(pointer,camera);return ray.ray.intersectPlane(ground,new THREE.Vector3());}
 renderer.domElement.addEventListener('pointerdown',event=>{if(!editing||event.button!==0)return;const point=hitGround(event);if(!point)return;const hits=ray.intersectObjects([...terrain.children,...cargo.children,...checkpoints.children,robot],true);for(const hit of hits){let node=hit.object;while(node&&!node.userData.edit)node=node.parent;if(node){drag={object:node,edit:node.userData.edit,offset:node.position.clone().sub(point)};renderer.domElement.setPointerCapture(event.pointerId);renderer.domElement.style.cursor='grabbing';break;}}});
-renderer.domElement.addEventListener('pointermove',event=>{if(!drag)return;const point=hitGround(event);if(point){drag.object.position.x=point.x+drag.offset.x;drag.object.position.z=point.z+drag.offset.z;}});
+renderer.domElement.addEventListener('pointermove',event=>{if(!drag)return;renderLoop.invalidate();const point=hitGround(event);if(point){drag.object.position.x=point.x+drag.offset.x;drag.object.position.z=point.z+drag.offset.z;}});
 renderer.domElement.addEventListener('pointerup',()=>{if(!drag)return;post({type:'vr-edit',edit:{...drag.edit,x:drag.object.position.x*1000,y:drag.object.position.z*1000}});drag=null;renderer.domElement.style.cursor='grab';});
 renderer.domElement.addEventListener('pointercancel',()=>{if(drag){drag=null;drawField(field);}});
-new ResizeObserver(()=>{renderer.setSize(innerWidth,innerHeight,false);camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();}).observe(document.body);
-function animate(){requestAnimationFrame(animate);if(pose&&field&&modelReady){const target=new THREE.Vector3(pose.x*.001,0,pose.y*.001);if(drag?.object!==robot)robot.position.lerp(target,.35);robot.rotation.y=THREE.MathUtils.degToRad(-pose.heading);body.rotation.y=THREE.MathUtils.degToRad(field.robot?.yaw||0);if(mode==='follow'){const offset=new THREE.Vector3(0,.55,.75).applyAxisAngle(new THREE.Vector3(0,1,0),robot.rotation.y);camera.position.lerp(target.clone().add(offset),.12);camera.lookAt(target.clone().add(new THREE.Vector3(0,.08,0)));}const length=pose.eyeDistance??400,from=new THREE.Vector3(0,.05,-(field.robot?.radius||45)*.001).applyAxisAngle(new THREE.Vector3(0,1,0),robot.rotation.y).add(robot.position),to=new THREE.Vector3(0,0,-length*.001).applyAxisAngle(new THREE.Vector3(0,1,0),robot.rotation.y).add(from);eye.visible=!previewOnly&&!!field.robot?.eye;const positions=eye.geometry.attributes.position;positions.setXYZ(0,from.x,from.y,from.z);positions.setXYZ(1,to.x,to.y,to.z);positions.needsUpdate=true;}if(mode!=='follow')controls.update();renderer.render(scene,camera);}
-animate();post({type:'vr-viewer-ready'});
+new ResizeObserver(()=>{renderer.setSize(innerWidth,innerHeight,false);camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();if(modelReady)setView(mode);renderLoop.invalidate();}).observe(document.body);
+const target=new THREE.Vector3(),offset=new THREE.Vector3(),look=new THREE.Vector3(),up=new THREE.Vector3(0,1,0),from=new THREE.Vector3(),to=new THREE.Vector3();
+const renderLoop=createRenderScheduler(()=>{
+ let moving=false;
+ if(pose&&field&&modelReady){
+  target.set(pose.x*.001,0,pose.y*.001);
+  if(drag?.object!==robot){if(robot.position.distanceToSquared(target)>1e-10){robot.position.lerp(target,.35);moving=true;}else robot.position.copy(target);}
+  robot.rotation.y=THREE.MathUtils.degToRad(-pose.heading);body.rotation.y=THREE.MathUtils.degToRad(field.robot?.yaw||0);
+  if(mode==='follow'){
+   offset.set(0,.55,.75).applyAxisAngle(up,robot.rotation.y).add(target);
+   if(camera.position.distanceToSquared(offset)>1e-9){camera.position.lerp(offset,.12);moving=true;}else camera.position.copy(offset);
+   camera.lookAt(look.copy(target).setY(.08));
+  }
+  eye.visible=!previewOnly&&!!field.robot?.eye;
+  if(eye.visible){from.set(0,.05,-(field.robot?.radius||45)*.001).applyAxisAngle(up,robot.rotation.y).add(robot.position);to.set(0,0,-(pose.eyeDistance??400)*.001).applyAxisAngle(up,robot.rotation.y).add(from);const positions=eye.geometry.attributes.position;positions.setXYZ(0,from.x,from.y,from.z);positions.setXYZ(1,to.x,to.y,to.z);positions.needsUpdate=true;}
+ }
+ if(mode!=='follow')moving=controls.update()||moving;
+ renderer.render(scene,camera);return moving;
+});
+controls.addEventListener('change',renderLoop.invalidate);
+post({type:'vr-viewer-ready'});

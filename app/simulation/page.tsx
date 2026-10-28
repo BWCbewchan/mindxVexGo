@@ -1,5 +1,5 @@
 'use client';
-import {createElement,useEffect,useRef,useState} from 'react';
+import {createElement,useEffect,useMemo,useRef,useState} from 'react';
 import Link from 'next/link';
 import {Play,Pause,Square,RotateCcw,StepForward,Settings2,Upload,ArrowLeft} from 'lucide';
 import {listProjects,loadProject,createProject,validateProjectFile,type ProjectData} from '../../public/assembly/project-store';
@@ -19,7 +19,7 @@ export default function Simulation(){
  const [devices,setDevices]=useState<Devices>(emptyDevices),[drive,setDrive]=useState<Drive>(emptyDrive),[draft,setDraft]=useState<Drive>(emptyDrive),[radius,setRadius]=useState(135),[modelSize,setModelSize]=useState<number[]>([]),[stage,setStage]=useState('grid'),[settings,setSettings]=useState(false),[trace,setTrace]=useState(true),[view,setView]=useState('follow'),[state,setState]=useState<Telemetry>(initial),[message,setMessage]=useState(''),[loadError,setLoadError]=useState('');
  const [progress,setProgress]=useState<Record<string,{completedAt:number;time:number;distance:number;example:boolean}>>({}),[exampleUsed,setExampleUsed]=useState(false);
  const [editedField,setEditedField]=useState<SimField|null>(null),[editing,setEditing]=useState(false);
- const baseField=playground(stage,drive,devices,radius),field:SimField={...(editedField?.id===stage?editedField:baseField),robot:baseField.robot};
+ const field=useMemo(()=>{const base=playground(stage,drive,devices,radius);return {...(editedField?.id===stage?editedField:base),robot:base.robot};},[stage,drive,devices,radius,editedField]);
  let fieldError='';try{validateField(field,radius);const missing=field.requires.filter(k=>!devices[k]);if(missing.length)fieldError='Bài này cần thêm: '+missing.map(k=>({magnet:'nam châm điện',colorEye:'cảm biến màu',distanceEye:'cảm biến khoảng cách',eye:'mắt',bumper:'bumper'})[k]).join(', ');}catch(e){fieldError=e instanceof Error?e.message:'Sa bàn không hợp lệ.';}
  let driveError='';try{validateDrive(drive,devices);}catch(e){driveError=e instanceof Error?e.message:'Cấu hình dẫn động chưa hợp lệ.';}
  const [loadedSource,setLoadedSource]=useState('');
@@ -49,7 +49,7 @@ export default function Simulation(){
   };window.addEventListener('message',receive);return()=>window.removeEventListener('message',receive);
  },[]);
  useEffect(()=>{if(viewerReady&&loaded)sendView({type:'vr-init',project,catalog});},[viewerReady,loaded,project,catalog]);
- const fieldStamp=JSON.stringify({...field,robot:{...field.robot,enabled}});
+ const fieldStamp=useMemo(()=>JSON.stringify({...field,robot:{...field.robot,enabled}}),[field,enabled]);
  useEffect(()=>{if(!loaded)return;const next=JSON.parse(fieldStamp);if(viewerReady)sendView({type:'vr-field',field:next});if(editorReady)send('field',{field:next});},[fieldStamp,viewerReady,editorReady,loaded]);
  useEffect(()=>{if(viewerReady){sendView({type:'vr-view',mode:view});sendView({type:'vr-trail',visible:trace});sendView({type:'vr-edit-mode',enabled:editing&&!state.running});}},[view,trace,viewerReady,editing,state.running]);
  useEffect(()=>{if(!loaded||loadedSource!==source)return;try{localStorage.setItem('mindx-vr-config:'+source,JSON.stringify({drive,stage,field:editedField}));localStorage.setItem('mindx-vr-last-source',source);}catch{setMessage('Không lưu được cấu hình. Kiểm tra bộ nhớ trình duyệt.');}},[loaded,drive,stage,source,loadedSource,editedField]);

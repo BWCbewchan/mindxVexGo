@@ -5,19 +5,23 @@
   "scripts": {
     "prepare:editor": "node scripts/prepare-editor.mjs",
     "dev": "next dev --hostname 0.0.0.0 --port 3100",
+    "prebuild": "node scripts/optimize-editor.mjs",
     "build": "next build",
     "start": "next start --hostname 0.0.0.0 --port 3100",
     "typecheck": "tsc --noEmit",
-    "test:browser": "node scripts/test-browser.mjs"
+    "test:browser": "node scripts/test-browser.mjs",
+    "mcp:assembly": "node scripts/assembly-mcp.mjs"
   },
   "dependencies": {
+    "@modelcontextprotocol/server": "2.4.0",
     "@supabase/supabase-js": "2.118.0",
     "lucide": "^1.55.0",
     "next": "16.4.2",
     "react": "19.2.0",
     "react-dom": "19.2.0",
     "three": "^0.186.1",
-    "three-mesh-bvh": "^0.9.15"
+    "three-mesh-bvh": "^0.9.15",
+    "zod": "4.6.7"
   },
   "devDependencies": {
     "@electric-sql/pglite": "0.5.11",

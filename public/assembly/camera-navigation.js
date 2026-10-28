@@ -5,7 +5,7 @@ export function installCameraNavigation({canvas,camera,orbit,blocked=()=>false})
  let active=false,hovered=false,lastTime=null,previousDamping=true;
  canvas.addEventListener('pointerenter',()=>{hovered=true;});
  canvas.addEventListener('pointerleave',()=>{hovered=false;if(!active)keys.clear();});
- const editing=target=>target?.closest?.('input,textarea,select,[contenteditable="true"]');
+ const editing=target=>target?.closest?.('input,textarea,select,[contenteditable="true"],dialog[open]');
  function stop(){keys.clear();if(!active)return;active=false;orbit.enabled=true;orbit.enableDamping=previousDamping;lastTime=null;}
  canvas.addEventListener('pointerdown',e=>{
   if(e.button!==2||blocked())return;
@@ -38,7 +38,7 @@ export function installCameraNavigation({canvas,camera,orbit,blocked=()=>false})
  window.addEventListener('blur',stop);
  document.addEventListener('focusin',e=>{if(editing(e.target))stop();});
  document.addEventListener('visibilitychange',()=>{if(document.hidden)stop();});
- return {active:()=>active,update(time){
+ return {active:()=>active,moving:()=>keys.size>0,update(time){
   const dt=lastTime===null?0:Math.min(.05,Math.max(0,(time-lastTime)/1000));lastTime=time;
   if(!active&&!keys.size)return;
   if(blocked()){stop();return;}

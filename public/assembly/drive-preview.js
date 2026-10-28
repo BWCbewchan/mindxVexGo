@@ -2,7 +2,12 @@ import * as THREE from 'three';
 import {worldReference} from './mating.js';
 import {PLATFORM} from './platform.js';
 export function driveStack(parts,connections,references,selectedId){
- const links=connections.filter(c=>c.profile==='square-drive'),visited=new Set([selectedId]),queue=[selectedId];
+ const byId=new Map(parts.map(part=>[part.id,part]));
+ const links=connections.filter(c=>{
+  const hole=references[byId.get(c.part)?.sku]?.find(ref=>ref.id===c.sourceRef),pin=references[byId.get(c.target)?.sku]?.find(ref=>ref.id===c.targetRef);
+  // Square shaft through a round bearing transfers load, not prescribed torque.
+  return hole?.profile==='square-drive'&&pin?.profile==='square-drive';
+ }),visited=new Set([selectedId]),queue=[selectedId];
  while(queue.length){const id=queue.shift();for(const c of links){if(c.part!==id&&c.target!==id)continue;const next=c.part===id?c.target:c.part;if(!visited.has(next)){visited.add(next);queue.push(next);}}}
  const motors=parts.filter(p=>visited.has(p.id)&&p.sku===PLATFORM.motor);if(motors.length!==1)return null;const motor=motors[0],socket=references[motor.sku]?.find(r=>r.id==='motor-output');if(!socket)return null;
  const axis=worldReference(motor,socket),ids=parts.filter(p=>visited.has(p.id)&&p.id!==motor.id&&!PLATFORM.electronics.includes(p.sku)).map(p=>p.id);

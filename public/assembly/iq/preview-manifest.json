@@ -476,5 +476,7 @@
   "228-2500-202": "{\"sourceHash\":\"1610a6b5f230532406cb17c1a066df91b0b3dd80f9a1b15f6b8fe6415d24c722\",\"version\":\"source\",\"appearance\":null}",
   "228-2500-200": "{\"sourceHash\":\"747a6b47bc4ab2fa1009a3b4a1951f53f548d616e7c7ba8448056091666f07c4\",\"version\":\"source\",\"appearance\":null}",
   "228-2500-196": "{\"sourceHash\":\"891fe292c715ebb7b823f45c8f5338e39049552ffeb33c6611dbef7cb4cb4703\",\"version\":\"source\",\"appearance\":null}",
-  "228-2500-1447": "{\"sourceHash\":\"2e63da03bfae2d2e905c49145c669151a2afea720d810d76565f0a16936380c7\",\"version\":\"source\",\"appearance\":null}"
+  "228-2500-1447": "{\"sourceHash\":\"2e63da03bfae2d2e905c49145c669151a2afea720d810d76565f0a16936380c7\",\"version\":\"source\",\"appearance\":null}",
+  "iq-200mm-travel-wheel": "{\"sourceHash\":\"442c173b17bc808827e446b10c99b76e2ef4df1428a46287f4e224694bbec498\",\"version\":\"kit-228-7755-v2\",\"appearance\":{\"color\":\"#b0b3b2\",\"colorName\":\"lightGray\",\"source\":\"https://content.vexrobotics.com/resources/parts-posters/iqgen2/education-kit/wheels-wheel-hub.svg\",\"evidence\":\"kit\",\"regions\":[{\"match\":\"travel-tire\",\"color\":\"#25282a\"}]}}",
+  "228-2536": "{\"sourceHash\":\"7e83106494674b7087cd5e3970c92dc95685c843f3edbfd92cd23a3f65af40e3\",\"version\":\"kit-228-7755-v2\",\"appearance\":{\"color\":\"#b0b3b2\",\"colorName\":\"lightGray / black rubber\",\"source\":\"https://www.vexrobotics.com/228-2536.html\",\"evidence\":\"manufacturer-cad\",\"regions\":[],\"preserveOriginal\":true}}"
 }

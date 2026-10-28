@@ -1,0 +1,9 @@
+# Runtime and deployment performance
+
+Observed Vercel baseline (https://mindxvexgostudio.vercel.app/simulation?robot=sample): cold readiness 18.2 s in one network run, main Blockly payload 5.36 MB Brotli; 1519 GPU draw calls and 88 unchanged pose messages during a 3-second idle sample. Network timing is variable and is not a before/after speedup claim.
+
+Controlled local production baseline: 1533 idle draw calls / 87 unchanged poses over 3 seconds; main bundle 5,930,789 bytes gzip. Updated local production: 0 idle draw calls / 0 poses in the same sample after settling; minified main bundle 5,132,269 bytes gzip (13.5% smaller). Tests use software WebGL; these are work counts, not hardware FPS estimates.
+
+Changes: event-driven rendering and hidden-tab sleep; keyboard/pointer/async scene wakeup; telemetry deduplication; incremental reusable GPU ink/trail buffers including clear/redraw resets; four concurrent CAD loads preserving input order; guide computation cache across selection changes; memoized React field derivation; deploy-generated whitespace/comment-minified vendor bundle with a content-addressed URL; immutable cache only for that hashed file and a bounded one-hour cache for named CAD/vendor assets. Existing source bundle and vendor behavior remain intact. Use npm run build so prebuild generates runtime.html and the hashed payload. A clean dev checkout without generated assets falls back to the original editor page.
+
+Verification: production build/typecheck/UTF-8 gate; 134 simulated program scenarios; sample/custom movement, pause/resume/step, obstacles and Assembly entry; group/duplicate/ungroup and hole targeting; 54-part motion review and illustrated PDF; real renderer ink reset/trail reuse/idle tests; keyboard movement from an idle renderer. No deployment was performed as part of these measurements.

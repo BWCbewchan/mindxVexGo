@@ -30,7 +30,10 @@ export function reviewMechanics(parts,references,connections=seatedConnections(p
  for(const part of parts.filter(p=>PLATFORM.electronics.includes(p.sku))){const mounts=connections.filter(c=>c.profile==='round'&&(c.part===part.id||c.target===part.id));if(mounts.length<2)issues.push({kind:'mount',ids:[part.id],message:mounts.length?'Thiết bị mới được giữ bằng một chốt. Thêm điểm giữ để hạn chế xoay.':'Thiết bị chưa có chốt giữ vào khung theo CAD. Lắp cụm đỡ trước khi vận hành.'});}
  const links=new Map(parts.map(p=>[p.id,new Set()]));for(const c of connections){links.get(c.part)?.add(c.target);links.get(c.target)?.add(c.part);}const seen=new Set(),components=[];for(const p of parts){if(seen.has(p.id))continue;const component=[],queue=[p.id];seen.add(p.id);while(queue.length){const id=queue.shift();component.push(id);for(const next of links.get(id)||[])if(!seen.has(next)){seen.add(next);queue.push(next);}}components.push(component);}if(components.length>1){components.sort((a,b)=>b.length-a.length);for(const component of components.slice(1))issues.push({kind:'disconnected',ids:component,message:`Cụm ${component.length} chi tiết chưa khớp hình học với cụm chính. Chọn để kiểm tra điểm nối.`});}
  for(const part of parts.filter(wheel)){
-  const contact=connections.find(c=>c.part===part.id),axle=byId.get(contact?.target);
+  // Peripheral wheel holes may hold pulley standoffs or decorations; those
+  // contacts are not axle bearings. Prefer the actual central drive/bore.
+  const central=part.sku==='228-2500-1383'?['square-hole-front','square-hole-back']:part.sku==='228-2500-1384'?['8','11']:null;
+  const contact=connections.find(c=>c.part===part.id&&(!central||central.includes(c.sourceRef))),axle=byId.get(contact?.target);
   if(!contact||!axle){issues.push({kind:'support',ids:[part.id],message:'Bánh chưa có trục/chốt khớp hình học. Chọn lỗ giữa bánh để lắp.'});continue;}
   const outer=connections.find(c=>c.target===axle.id&&c.targetRef===contact.targetRef&&retainer(byId.get(c.part))&&c.depth<contact.depth);
   if(!outer)issues.push({kind:'retention',ids:[part.id,axle.id],message:'Chưa tìm thấy vòng chặn ngoài bánh trên cùng đầu trục. Kiểm tra Shaft Collar / Spacer để giữ bánh.'});

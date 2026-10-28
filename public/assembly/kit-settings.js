@@ -1,5 +1,5 @@
 import {PLATFORM} from './platform.js';
-import {kitReport,parseKitFile,validateKitProfile} from './kit-policy.js';
+import {kitReport,kitAssemblyReport,parseKitFile,validateKitProfile} from './kit-policy.js';
 
 export function installKitSettings(api){
  const fileMenu=document.querySelector('.app-menu .app-menu-panel'),settings=document.createElement('button'),importButton=document.createElement('button'),input=document.createElement('input');
@@ -30,12 +30,13 @@ export function installKitSettings(api){
  function render(){
   const profile=api.project().kit,rows=profile?kitReport(api.project().parts,api.catalog(),profile):[],missing=rows.filter(row=>row.remaining<0);
   badge.textContent=profile?`${profile.count} bộ · ${profile.name}${missing.length?` · thiếu ${missing.length} loại`:profile.enforce?' · đang giới hạn':' · chỉ cảnh báo'}`:'Bộ kit: chưa cấu hình · Cài đặt';badge.classList.toggle('kit-missing',missing.length>0);badge.disabled=settings.disabled=importButton.disabled=blocked();
-  const bySku=new Map(rows.flatMap(row=>row.skus.map(sku=>[sku,row])));
+  const assemblies=profile?kitAssemblyReport(api.project().parts,api.catalog(),profile):[];
+  const bySku=new Map([...rows,...assemblies].flatMap(row=>row.skus.map(sku=>[sku,row])));
   for(const button of document.querySelectorAll('#parts button[data-sku]')){
    const row=bySku.get(button.dataset.sku);let quota=button.querySelector('.kit-quota');
    if(!profile){quota?.remove();button.disabled=blocked();continue;}
    if(!quota){quota=document.createElement('small');quota.className='kit-quota';button.append(quota);}
-   quota.textContent=row?`Còn ${Math.max(0,row.remaining)} / ${row.available}`:'Không có trong bộ';button.disabled=blocked()||profile.enforce&&(!row||row.remaining<=0);button.title=row?`${row.name} · dùng ${row.used}/${row.available}${row.remaining<0?` · thiếu ${-row.remaining}`:''}`:button.title;
+   quota.textContent=row?`Còn ${Math.max(0,row.remaining)} / ${row.available}`:'Không có trong bộ';button.disabled=blocked()||profile.enforce&&(!row||row.remaining<=0);button.title=row?`${row.name} · dùng ${row.used}/${row.available}${row.remaining<0?` · thiếu ${-row.remaining}`:''}${row.derived?' · Dùng chung tồn kho: '+row.components.map(component=>`${component.quantity}× ${component.name}`).join(' + '):''}`:button.title;
   }
  }
  return {open,render,active:()=>!!modal};

@@ -57,7 +57,8 @@
   let logs=[],logColors=[],printColor='#d2e9d8',rowOpen=false,poseRevision=0;
   let missionStarted=null,missionElapsed=0;
   let assessmentId=null,assessmentProfile=null,settledAt=0,observations={eyeRead:false,eyeFound:false,stop:false,stopAfterEye:false};
-  const report=()=>{const running=!!runner||engine.moving;if(!simulation&&missionStarted!==null){missionElapsed=performance.now()-missionStarted;if(!running||(!assessmentId&&engine.state.goal))missionStarted=null;}post({type:'training-state',fieldId:field.id,...engine.state,elapsedMs:simulation?simClock*1000:missionElapsed,running,paused,status,logs,logColors,path:[],assessmentId,observations});};
+  let reportStamp='';
+  const report=()=>{const running=!!runner||engine.moving;if(!simulation&&missionStarted!==null){missionElapsed=performance.now()-missionStarted;if(!running||(!assessmentId&&engine.state.goal))missionStarted=null;}const data={type:'training-state',fieldId:field.id,...engine.state,elapsedMs:simulation?simClock*1000:missionElapsed,running,paused,status,logs,logColors,path:[],assessmentId,observations};const stamp=JSON.stringify(data);if(stamp!==reportStamp){reportStamp=stamp;post(data);}};
   function stop(message='Stopped'){epoch++;runner=null;paused=false;stepRemaining=0;waits=[];engine.stop();status=message;workspace()?.highlightBlock(null);report();}
   function fail(error){const message=error?.message||String(error);stop(message);if(simulation)post({type:'simulation-error',message});}
   function prepare(){
@@ -199,7 +200,7 @@
     });
     report();
   }
-  let lastTime=performance.now(),lastReport=0,lastPose=0;
+  let lastTime=performance.now(),lastReport=0,lastPose=0,lastPoseStamp='',lastInk=null,inkCount=-1,inkTail='';
   setInterval(()=>{
     const now=performance.now(),dt=(now-lastTime)/1000;lastTime=now;
     const advancing=!simulation||!paused||stepRemaining>0,delta=advancing?Math.min(.05,Math.max(0,dt),paused?stepRemaining:Infinity):0;
@@ -220,7 +221,11 @@
       if(now-settledAt>=1000)stop('Program stopped');
     }else settledAt=0;
     if(now-lastReport>100){lastReport=now;report();}
-    if(now-lastPose>=30){lastPose=now;post({type:'training-pose',x:engine.state.x,y:engine.state.y,heading:engine.state.heading,collision:engine.state.collision,eyeDistance:engine.state.eye?.distance,checkpointIndex:engine.state.checkpointIndex,blocks:engine.state.blocks,strokes:simulation?engine.state.strokes:[],carryingId:engine.state.carrying,carrying:engine.state.blocks.find(b=>b.id===engine.state.carrying)?.color||null,revision:poseRevision});}
+    if(now-lastPose>=30){
+      lastPose=now;const strokes=simulation?engine.state.strokes:null,tail=JSON.stringify(strokes?.at(-1)),inkChanged=strokes!==lastInk||strokes?.length!==inkCount||tail!==inkTail;
+      const data={type:'training-pose',x:engine.state.x,y:engine.state.y,heading:engine.state.heading,collision:engine.state.collision,eyeDistance:engine.state.eye?.distance,checkpointIndex:engine.state.checkpointIndex,blocks:engine.state.blocks,carryingId:engine.state.carrying,carrying:engine.state.blocks.find(b=>b.id===engine.state.carrying)?.color||null,revision:poseRevision};
+      const stamp=JSON.stringify(data);if(stamp!==lastPoseStamp||inkChanged){lastPoseStamp=stamp;if(inkChanged){data.strokes=strokes||[];data.inkReset=strokes!==lastInk;lastInk=strokes;inkCount=strokes?.length;inkTail=tail;}post(data);}
+    }
   },16);
   window.VexTraining={prepare,validate,initializeVariables,get running(){return !!runner||engine.moving;},runFunction(signature,args){prepare();run(window.VexStudio.compileFunction(signature,args));return {signature};},stop};
   window.addEventListener('message',event=>{

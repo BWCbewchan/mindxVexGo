@@ -1,0 +1,11 @@
+# Practical replacement for the MCP vehicle demo
+
+The previous 54-part model only passed API/kit/sampled fit checks. Its driven wheels cantilever from motor shafts without external bearing plates, and the raised twin-deck chassis was not justified against an authentic build. Do not call that a physically proven vehicle.
+
+Replace the layout using the official VEX GO Code Base 2.0 mechanism, preserving two motors, one Brain, one Battery and one kit. Source: https://content.vexrobotics.com/vexgo/pdf/builds/code_base_2/Code_Base_2.0.pdf?v=2 . All 53 pages inspected in rendered contact sheets; attachment pages 2,3,11,19,37,45,47 inspected at full resolution. Attribute the design to VEX; this is not a new original invention.
+
+Structure: two vertical Dark Gray plates, four pins per motor, a crossbeam with Blue Connector brackets, battery support Yellow Connectors, four-pin Brain mount. Two Red Shafts couple motor square drives to Gray Wheels through the side plates; retain with collars. A Plain Shaft supports the Blue Wheel + Orange Pulley assembly in two Green Beam bearings, with collars on either side. Two driven wheels and one free wheel; no claim of a swiveling caster joint not present in CAD.
+
+Use CAD hole pitch and reference points, not projected PDF distances. Measured wheel radius 25.25 mm, side plate half-height 25.25 mm, motor-to-drive-face coordinates and actual pin shoulder thickness. Red Pin full analytic seat is 4.7318 mm (4.572 mm hole thickness); its collar gap is about 1.778 mm. This yields a 107.95 mm side-plate center spacing consistent across the crossbeam, motor back mounts and 99.822 mm free axle with full bearing engagement. Check all independent supports geometrically, not only the one stored parent mate.
+
+Implement a separate CAD recipe and audit with exact axis stacks, support counts, connected graph, no hard collisions, wheel sweep clearance, kit limits and accessible electronics. Inspect complete/front/side/underside/exploded views. Build the resulting recipe through the real MCP in a separate project; preserve the earlier example as test evidence. Produce editable JSON and a mechanical verification record. Report quantity checked / CAD checked / physical test pending separately.

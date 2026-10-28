@@ -1,0 +1,923 @@
+{
+  "id": "iq-200mm-travel-wheel",
+  "sku": "iq-200mm-travel-wheel",
+  "name": "200mm Travel Wheel (Tire + 44mm Hub)",
+  "category": "mechanical",
+  "kind": "wheel",
+  "components": [
+    {
+      "sku": "228-2500-1208",
+      "quantity": 1
+    },
+    {
+      "sku": "228-2500-209",
+      "quantity": 1
+    }
+  ],
+  "sourceHash": "442c173b17bc808827e446b10c99b76e2ef4df1428a46287f4e224694bbec498",
+  "bounds": {
+    "min": [
+      -31.8310000000018,
+      -3.3000000000000007,
+      -31.831000000002046
+    ],
+    "max": [
+      31.8310000000018,
+      16.000000000023675,
+      31.831000000001357
+    ]
+  },
+  "sourceFile": "Composite of original 228-2500-1208 and 228-2500-209 STEP models",
+  "status": "ok",
+  "source": "https://www.vexrobotics.com/parts/228-7755",
+  "units": "millimeters",
+  "axes": "Y up",
+  "references": [
+    {
+      "point": [
+        -12.7,
+        -2.286,
+        0
+      ],
+      "normal": [
+        0,
+        -1,
+        0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "1"
+    },
+    {
+      "point": [
+        -12.7,
+        2.286,
+        0
+      ],
+      "normal": [
+        0,
+        1,
+        0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "2"
+    },
+    {
+      "point": [
+        -6.35,
+        -2.286,
+        -6.35
+      ],
+      "normal": [
+        0,
+        -1,
+        0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "3"
+    },
+    {
+      "point": [
+        -6.35,
+        -2.286,
+        6.35
+      ],
+      "normal": [
+        0,
+        -1,
+        0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "4"
+    },
+    {
+      "point": [
+        -6.35,
+        2.286,
+        -6.35
+      ],
+      "normal": [
+        0,
+        1,
+        0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "5"
+    },
+    {
+      "point": [
+        -6.35,
+        2.286,
+        6.35
+      ],
+      "normal": [
+        0,
+        1,
+        0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "6"
+    },
+    {
+      "point": [
+        0,
+        -3.175,
+        0
+      ],
+      "normal": [
+        0,
+        -1,
+        0
+      ],
+      "radius": 2.5,
+      "depth": 0.889,
+      "kind": "hole",
+      "id": "7"
+    },
+    {
+      "point": [
+        0,
+        -2.286,
+        -12.7
+      ],
+      "normal": [
+        0,
+        -1,
+        0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "8"
+    },
+    {
+      "point": [
+        0,
+        -2.286,
+        0
+      ],
+      "normal": [
+        0,
+        1,
+        0
+      ],
+      "radius": 2.5,
+      "depth": 0.889,
+      "kind": "hole",
+      "id": "9"
+    },
+    {
+      "point": [
+        0,
+        -2.286,
+        12.7
+      ],
+      "normal": [
+        0,
+        -1,
+        0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "10"
+    },
+    {
+      "point": [
+        0,
+        2.286,
+        -12.7
+      ],
+      "normal": [
+        0,
+        1,
+        0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "11"
+    },
+    {
+      "point": [
+        0,
+        2.286,
+        0
+      ],
+      "normal": [
+        0,
+        -1,
+        0
+      ],
+      "radius": 2.5,
+      "depth": 0.889,
+      "kind": "hole",
+      "id": "12"
+    },
+    {
+      "point": [
+        0,
+        2.286,
+        12.7
+      ],
+      "normal": [
+        0,
+        1,
+        0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "13"
+    },
+    {
+      "point": [
+        0,
+        3.175,
+        0
+      ],
+      "normal": [
+        0,
+        1,
+        0
+      ],
+      "radius": 2.5,
+      "depth": 0.889,
+      "kind": "hole",
+      "id": "14"
+    },
+    {
+      "point": [
+        6.35,
+        -2.286,
+        -6.35
+      ],
+      "normal": [
+        0,
+        -1,
+        0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "15"
+    },
+    {
+      "point": [
+        6.35,
+        -2.286,
+        6.35
+      ],
+      "normal": [
+        0,
+        -1,
+        0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "16"
+    },
+    {
+      "point": [
+        6.35,
+        2.286,
+        -6.35
+      ],
+      "normal": [
+        0,
+        1,
+        0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "17"
+    },
+    {
+      "point": [
+        6.35,
+        2.286,
+        6.35
+      ],
+      "normal": [
+        0,
+        1,
+        0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "18"
+    },
+    {
+      "point": [
+        12.7,
+        -2.286,
+        0
+      ],
+      "normal": [
+        0,
+        -1,
+        0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "19"
+    },
+    {
+      "point": [
+        12.7,
+        2.286,
+        0
+      ],
+      "normal": [
+        0,
+        1,
+        0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "20"
+    },
+    {
+      "point": [
+        -12.7,
+        -2.286,
+        0
+      ],
+      "normal": [
+        0,
+        -1,
+        0
+      ],
+      "radius": 3.175,
+      "depth": 1.286,
+      "kind": "pin",
+      "id": "21"
+    },
+    {
+      "point": [
+        -12.7,
+        -1,
+        0
+      ],
+      "normal": [
+        0,
+        1,
+        0
+      ],
+      "radius": 3.175,
+      "depth": 1.286,
+      "kind": "pin",
+      "id": "22"
+    },
+    {
+      "point": [
+        -12.7,
+        1,
+        0
+      ],
+      "normal": [
+        0,
+        -1,
+        0
+      ],
+      "radius": 3.175,
+      "depth": 1.286,
+      "kind": "pin",
+      "id": "23"
+    },
+    {
+      "point": [
+        -12.7,
+        2.286,
+        0
+      ],
+      "normal": [
+        0,
+        1,
+        0
+      ],
+      "radius": 3.175,
+      "depth": 1.286,
+      "kind": "pin",
+      "id": "24"
+    },
+    {
+      "point": [
+        -6.35,
+        -2.286,
+        -6.35
+      ],
+      "normal": [
+        0,
+        -1,
+        0
+      ],
+      "radius": 3.175,
+      "depth": 1.286,
+      "kind": "pin",
+      "id": "25"
+    },
+    {
+      "point": [
+        -6.35,
+        -2.286,
+        6.35
+      ],
+      "normal": [
+        0,
+        -1,
+        0
+      ],
+      "radius": 3.175,
+      "depth": 1.286,
+      "kind": "pin",
+      "id": "26"
+    },
+    {
+      "point": [
+        -6.35,
+        -1,
+        -6.35
+      ],
+      "normal": [
+        0,
+        1,
+        0
+      ],
+      "radius": 3.175,
+      "depth": 1.286,
+      "kind": "pin",
+      "id": "27"
+    },
+    {
+      "point": [
+        -6.35,
+        -1,
+        6.35
+      ],
+      "normal": [
+        0,
+        1,
+        0
+      ],
+      "radius": 3.175,
+      "depth": 1.286,
+      "kind": "pin",
+      "id": "28"
+    },
+    {
+      "point": [
+        -6.35,
+        1,
+        -6.35
+      ],
+      "normal": [
+        0,
+        -1,
+        0
+      ],
+      "radius": 3.175,
+      "depth": 1.286,
+      "kind": "pin",
+      "id": "29"
+    },
+    {
+      "point": [
+        -6.35,
+        1,
+        6.35
+      ],
+      "normal": [
+        0,
+        -1,
+        0
+      ],
+      "radius": 3.175,
+      "depth": 1.286,
+      "kind": "pin",
+      "id": "30"
+    },
+    {
+      "point": [
+        -6.35,
+        2.286,
+        -6.35
+      ],
+      "normal": [
+        0,
+        1,
+        0
+      ],
+      "radius": 3.175,
+      "depth": 1.286,
+      "kind": "pin",
+      "id": "31"
+    },
+    {
+      "point": [
+        -6.35,
+        2.286,
+        6.35
+      ],
+      "normal": [
+        0,
+        1,
+        0
+      ],
+      "radius": 3.175,
+      "depth": 1.286,
+      "kind": "pin",
+      "id": "32"
+    },
+    {
+      "point": [
+        0,
+        -2.286,
+        -12.7
+      ],
+      "normal": [
+        0,
+        -1,
+        0
+      ],
+      "radius": 3.175,
+      "depth": 1.286,
+      "kind": "pin",
+      "id": "33"
+    },
+    {
+      "point": [
+        0,
+        -2.286,
+        12.7
+      ],
+      "normal": [
+        0,
+        -1,
+        0
+      ],
+      "radius": 3.175,
+      "depth": 1.286,
+      "kind": "pin",
+      "id": "34"
+    },
+    {
+      "point": [
+        0,
+        -1,
+        -12.7
+      ],
+      "normal": [
+        0,
+        1,
+        0
+      ],
+      "radius": 3.175,
+      "depth": 1.286,
+      "kind": "pin",
+      "id": "35"
+    },
+    {
+      "point": [
+        0,
+        -1,
+        12.7
+      ],
+      "normal": [
+        0,
+        1,
+        0
+      ],
+      "radius": 3.175,
+      "depth": 1.286,
+      "kind": "pin",
+      "id": "36"
+    },
+    {
+      "point": [
+        0,
+        1,
+        -12.7
+      ],
+      "normal": [
+        0,
+        -1,
+        0
+      ],
+      "radius": 3.175,
+      "depth": 1.286,
+      "kind": "pin",
+      "id": "37"
+    },
+    {
+      "point": [
+        0,
+        1,
+        12.7
+      ],
+      "normal": [
+        0,
+        -1,
+        0
+      ],
+      "radius": 3.175,
+      "depth": 1.286,
+      "kind": "pin",
+      "id": "38"
+    },
+    {
+      "point": [
+        0,
+        2.286,
+        -12.7
+      ],
+      "normal": [
+        0,
+        1,
+        0
+      ],
+      "radius": 3.175,
+      "depth": 1.286,
+      "kind": "pin",
+      "id": "39"
+    },
+    {
+      "point": [
+        0,
+        2.286,
+        12.7
+      ],
+      "normal": [
+        0,
+        1,
+        0
+      ],
+      "radius": 3.175,
+      "depth": 1.286,
+      "kind": "pin",
+      "id": "40"
+    },
+    {
+      "point": [
+        6.35,
+        -2.286,
+        -6.35
+      ],
+      "normal": [
+        0,
+        -1,
+        0
+      ],
+      "radius": 3.175,
+      "depth": 1.286,
+      "kind": "pin",
+      "id": "41"
+    },
+    {
+      "point": [
+        6.35,
+        -2.286,
+        6.35
+      ],
+      "normal": [
+        0,
+        -1,
+        0
+      ],
+      "radius": 3.175,
+      "depth": 1.286,
+      "kind": "pin",
+      "id": "42"
+    },
+    {
+      "point": [
+        6.35,
+        -1,
+        -6.35
+      ],
+      "normal": [
+        0,
+        1,
+        0
+      ],
+      "radius": 3.175,
+      "depth": 1.286,
+      "kind": "pin",
+      "id": "43"
+    },
+    {
+      "point": [
+        6.35,
+        -1,
+        6.35
+      ],
+      "normal": [
+        0,
+        1,
+        0
+      ],
+      "radius": 3.175,
+      "depth": 1.286,
+      "kind": "pin",
+      "id": "44"
+    },
+    {
+      "point": [
+        6.35,
+        1,
+        -6.35
+      ],
+      "normal": [
+        0,
+        -1,
+        0
+      ],
+      "radius": 3.175,
+      "depth": 1.286,
+      "kind": "pin",
+      "id": "45"
+    },
+    {
+      "point": [
+        6.35,
+        1,
+        6.35
+      ],
+      "normal": [
+        0,
+        -1,
+        0
+      ],
+      "radius": 3.175,
+      "depth": 1.286,
+      "kind": "pin",
+      "id": "46"
+    },
+    {
+      "point": [
+        6.35,
+        2.286,
+        -6.35
+      ],
+      "normal": [
+        0,
+        1,
+        0
+      ],
+      "radius": 3.175,
+      "depth": 1.286,
+      "kind": "pin",
+      "id": "47"
+    },
+    {
+      "point": [
+        6.35,
+        2.286,
+        6.35
+      ],
+      "normal": [
+        0,
+        1,
+        0
+      ],
+      "radius": 3.175,
+      "depth": 1.286,
+      "kind": "pin",
+      "id": "48"
+    },
+    {
+      "point": [
+        12.7,
+        -2.286,
+        0
+      ],
+      "normal": [
+        0,
+        -1,
+        0
+      ],
+      "radius": 3.175,
+      "depth": 1.286,
+      "kind": "pin",
+      "id": "49"
+    },
+    {
+      "point": [
+        12.7,
+        -1,
+        0
+      ],
+      "normal": [
+        0,
+        1,
+        0
+      ],
+      "radius": 3.175,
+      "depth": 1.286,
+      "kind": "pin",
+      "id": "50"
+    },
+    {
+      "point": [
+        12.7,
+        1,
+        0
+      ],
+      "normal": [
+        0,
+        -1,
+        0
+      ],
+      "radius": 3.175,
+      "depth": 1.286,
+      "kind": "pin",
+      "id": "51"
+    },
+    {
+      "point": [
+        12.7,
+        2.286,
+        0
+      ],
+      "normal": [
+        0,
+        1,
+        0
+      ],
+      "radius": 3.175,
+      "depth": 1.286,
+      "kind": "pin",
+      "id": "52"
+    },
+    {
+      "id": "square-hole-1",
+      "kind": "hole",
+      "profile": "square-drive",
+      "label": "Square socket · CAD",
+      "point": [
+        0,
+        -2.286,
+        0
+      ],
+      "normal": [
+        0,
+        -1,
+        0
+      ],
+      "key": [
+        1,
+        0,
+        0
+      ],
+      "width": 3.2,
+      "radius": 1.6,
+      "depth": 4.572,
+      "maxDepth": 4.572,
+      "through": true
+    },
+    {
+      "id": "square-hole-2",
+      "kind": "hole",
+      "profile": "square-drive",
+      "label": "Square socket · CAD",
+      "point": [
+        0,
+        2.286,
+        0
+      ],
+      "normal": [
+        0,
+        1,
+        0
+      ],
+      "key": [
+        -1,
+        0,
+        0
+      ],
+      "width": 3.2,
+      "radius": 1.6,
+      "depth": 4.572,
+      "maxDepth": 4.572,
+      "through": true
+    }
+  ],
+  "bytes": 6088860,
+  "materialPolicy": "Gray hub / black tire, supplied STEP geometry unchanged except assembly positioning"
+}

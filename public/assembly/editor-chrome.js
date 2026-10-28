@@ -1,3 +1,4 @@
+import {installAssemblyHelp} from './help.js';
 export function installEditorChrome(){
  const header=document.querySelector('header'),toolbar=document.querySelector('nav'),$=id=>document.getElementById(id);
  header.classList.add('app-menubar');toolbar.classList.add('app-optionsbar');
@@ -31,6 +32,14 @@ export function installEditorChrome(){
   const button=document.createElement('button');button.textContent=label;button.onclick=()=>$(id).click();view.push([button,label]);
  }
  menu('View',view);
+ const help=installAssemblyHelp();
+ const helpItem=(label,action)=>{const item=document.createElement('button');item.type='button';item.onclick=action;return [item,label];};
+ menu('Help',[
+  helpItem('Hướng dẫn thao tác',()=>help.open()),
+  helpItem('Hướng dẫn nhanh trên app',()=>help.startTour()),
+  helpItem('Phím tắt · F1',()=>help.open('shortcuts')),
+  helpItem('AI / API & MCP',()=>help.open('ai')),
+ ]);
  header.insertBefore(menus,$('title'));header.after(toolbar);
  const specs={move:['↔','Move','V'],rotate:['⟳','Rotate','R'],connect:['⊙','Connect','C'],group:['folder-plus','Group','Ctrl+G'],ungroup:['folder-minus','Ungroup','Ctrl+Shift+G'],duplicate:['⧉','Duplicate','Ctrl+J'],delete:['×','Delete','Delete'],undo:['↶','Undo','Ctrl+Z'],redo:['↷','Redo','Ctrl+Shift+Z'],fit:['⛶','Fit view','F'], 'library-toggle':['▦','Parts',''],'panel-toggle':['☷','Inspector','']};
  function decorate(){for(const [id,[icon,label,key]] of Object.entries(specs)){
