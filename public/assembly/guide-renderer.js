@@ -39,7 +39,7 @@ export function createGuideRenderer(){
    const ref=references[target?.sku]?.find(r=>r.id===joint?.targetRef);
    const socket=target&&ref?worldReference(target,ref):null;
    const views={front:[0,.15,1],rear:[0,.15,-1],left:[-1,.15,0],right:[1,.15,0],top:[0,1,.001],bottom:[0,-1,.001]};
-   const point=socket?.point.clone().multiplyScalar(.001),direction=views[step.view]?new THREE.Vector3(...views[step.view]).normalize():choose(bounds,point);
+   const point=socket?.point.clone().multiplyScalar(.001),direction=views[step.view]?new THREE.Vector3(...views[step.view]).normalize():step.overviewDirection?new THREE.Vector3(...step.overviewDirection).normalize():choose(bounds,point);
    const markHole=(location)=>{const geometry=new THREE.SphereGeometry(.0018,20,12),material=new THREE.MeshBasicMaterial({color:0xa855f7,depthTest:false,depthWrite:false});const dot=new THREE.Mesh(geometry,material);dot.userData.guideAnnotation=true;dot.position.copy(location);dot.renderOrder=1100;group.add(dot);owned.push(geometry,material);};
    if(socket){
     const sourceRef=references[part?.sku]?.find(r=>r.id===joint.sourceRef);
@@ -53,14 +53,15 @@ export function createGuideRenderer(){
    let detail=null;
    if(part&&socket){
     // Only the newly added piece is exploded; all earlier parts remain where saved.
-    const added=copies.get(part.id),targetObject=copies.get(target.id),axis=socket.normal;
-    const offset=Math.max(.012,Math.min(.035,new THREE.Box3().setFromObject(added).getSize(new THREE.Vector3()).length()*.45));
+    const added=copies.get(part.id),targetObject=copies.get(target.id),axis=step.insertion?new THREE.Vector3(...step.insertion.axis).normalize():socket.normal;
+    const offset=step.insertion?Math.max(.012,step.insertion.clearance/1000):Math.max(.012,Math.min(.035,new THREE.Box3().setFromObject(added).getSize(new THREE.Vector3()).length()*.45));
     const ray=new THREE.Raycaster(point.clone().addScaledVector(axis,.001),axis,.001,offset);
     const obstacles=[...copies].filter(([id])=>!step.added.some(p=>p.id===id)&&id!==target.id).map(([,obj])=>obj);
-    const obstructed=bodyHits(ray,obstacles).length>0;
+    const obstructed=!step.insertion&&bodyHits(ray,obstacles).length>0;
     if(obstructed){const focus=new THREE.Box3().setFromObject(added).union(new THREE.Box3().setFromObject(targetObject));return {assembled,detail:capture(focus,choose(focus,point),900,900),seatedDetail:true};}
     const addedIds=new Set(step.added.map(p=>p.id));for(const [id,obj] of copies)if(addedIds.has(id)&&id!==target.id)obj.position.addScaledVector(axis,offset);group.updateMatrixWorld(true);
-    const arrow=new THREE.ArrowHelper(axis.clone().negate(),point.clone().addScaledVector(axis,offset*.92),offset*.8,0xed1c24,.004,.003);group.add(arrow);for(const mesh of [arrow.line,arrow.cone]){mesh.userData.guideAnnotation=true;mesh.material.depthTest=false;mesh.material.depthWrite=false;mesh.renderOrder=1000;}owned.push(arrow.line.geometry,arrow.line.material,arrow.cone.geometry,arrow.cone.material);
+    const arrowPoints=[point];for(const item of step.added){if(item.id===part.id||item.id===target.id)continue;const row=step.parts.find(p=>p.id===item.id),anchor=step.parts.find(p=>p.id===row?.mate?.target),r=references[anchor?.sku]?.find(r=>r.id===row?.mate?.targetRef);if(!r)continue;const socket=worldReference(anchor,r);if(socket.normal.dot(axis)>.999)arrowPoints.push(socket.point.multiplyScalar(.001));}
+    for(const location of arrowPoints){const arrow=new THREE.ArrowHelper(axis.clone().negate(),location.clone().addScaledVector(axis,offset*.92),offset*.8,0xed1c24,.004,.003);group.add(arrow);for(const mesh of [arrow.line,arrow.cone]){mesh.userData.guideAnnotation=true;mesh.material.depthTest=false;mesh.material.depthWrite=false;mesh.renderOrder=1000;}owned.push(arrow.line.geometry,arrow.line.material,arrow.cone.geometry,arrow.cone.material);}
     const detailBounds=(row,obj)=>{
      if(!row.sku.startsWith('269-')||!references[row.sku]?.length)return new THREE.Box3().setFromObject(obj);
      // Motor CAD includes a long straight cable. Close-ups frame its original mounting
@@ -70,7 +71,7 @@ export function createGuideRenderer(){
     const addedBounds=detailBounds(part,added);if(part.sku.startsWith('269-'))addedBounds.translate(axis.clone().multiplyScalar(offset));
     const focus=addedBounds.clone().union(detailBounds(target,targetObject));for(const item of step.added){if(item.id===target.id||item.id===part.id)continue;const obj=copies.get(item.id);if(obj)focus.union(visibleBounds(obj));}
     const size=focus.getSize(new THREE.Vector3());const max=Math.max(.025,addedBounds.getSize(new THREE.Vector3()).length()*1.6);
-    if(size.length()>max*2){focus.setFromCenterAndSize(point.clone().addScaledVector(axis,offset/2),new THREE.Vector3(max,max,max));}
+    if(size.length()>max*2&&step.added.filter(p=>p.id!==target.id).length===1){focus.setFromCenterAndSize(point.clone().addScaledVector(axis,offset/2),new THREE.Vector3(max,max,max));}
     detail=capture(focus,choose(focus,point),900,650);
    }
    return {assembled,detail};

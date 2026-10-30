@@ -10,8 +10,9 @@ export function compatibleReferences(a,b,skuA,skuB){
  if(PLATFORM_ID==='vexiq'&&(a.id==='motor-output'&&b.driveRole==='long'||b.id==='motor-output'&&a.driveRole==='long'))return false;
  if(a.excludedPartSkus?.includes(skuB)||b.excludedPartSkus?.includes(skuA))return false;
  if(a.excludedProfiles?.includes(b.profile)||b.excludedProfiles?.includes(a.profile))return false;
- const squarePin=ref=>ref.profile==='square-drive'&&ref.kind==='pin';
- const squareSocket=ref=>ref.profile==='square-drive'&&ref.kind==='hole';
+ if(a.profile==='lego-stud'||b.profile==='lego-stud')return a.profile==='lego-stud'&&b.profile==='lego-stud';
+ const squarePin=ref=>['square-drive','lego-cross'].includes(ref.profile)&&ref.kind==='pin';
+ const squareSocket=ref=>['square-drive','lego-cross'].includes(ref.profile)&&ref.kind==='hole';
  if(squarePin(a)&&squareSocket(b)||squarePin(b)&&squareSocket(a))return Math.abs(a.width-b.width)<.1;
  const squareToRound=(pin,hole)=>squarePin(pin)&&hole.kind==='hole'&&!hole.profile&&hole.radius>=2&&hole.radius<=2.6;
  if(squareToRound(a,b)||squareToRound(b,a))return true;
@@ -19,13 +20,13 @@ export function compatibleReferences(a,b,skuA,skuB){
  return ['hole','pin'].includes(a.kind)&&['hole','pin'].includes(b.kind)&&Math.abs(a.radius-b.radius)<=.25&&Math.min(a.radius,b.radius)<=2.6;
 }
 export function insertionLimit(a,b,previous=0){
- if(a.profile==='square-drive'&&b.profile==='square-drive'){
+ if(['square-drive','lego-cross'].includes(a.profile)&&a.profile===b.profile){
   const pin=a.kind==='pin'?a:b,hole=pin===a?b:a;
   if(hole.id!=='motor-output')return pin.maxDepth??pin.depth;
   return Math.min(a.maxDepth??a.depth,b.maxDepth??b.depth);
  }
- if(a.profile==='square-drive'||b.profile==='square-drive'){
-  const pin=a.profile==='square-drive'?a:b;
+ if(['square-drive','lego-cross'].includes(a.profile)||['square-drive','lego-cross'].includes(b.profile)){
+  const pin=['square-drive','lego-cross'].includes(a.profile)?a:b;
   const hole=pin===a?b:a;
   // A shaft passes through a beam bearing; bore thickness is not travel length.
   if(pin.kind==='pin'&&hole.kind==='hole')return pin.maxDepth??pin.depth;

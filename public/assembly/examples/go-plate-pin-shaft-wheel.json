@@ -1,0 +1,48 @@
+{
+  "version": 1,
+  "platform": "vexgo",
+  "title": "Đế – chốt – trục – bánh",
+  "parts": [
+    {
+      "id": "base",
+      "partId": "228-2500-035",
+      "position": [
+        0,
+        40,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "pin",
+      "partId": "228-2500-2260",
+      "attachTo": {
+        "targetId": "base",
+        "sourceRef": "1",
+        "targetRef": "1"
+      }
+    },
+    {
+      "id": "shaft",
+      "partId": "228-2500-124",
+      "attachTo": {
+        "targetId": "base",
+        "sourceRef": "square-shaft-end-a",
+        "targetRef": "3"
+      }
+    },
+    {
+      "id": "wheel",
+      "partId": "228-2500-1383",
+      "attachTo": {
+        "targetId": "shaft",
+        "sourceRef": "square-hole-front",
+        "targetRef": "square-shaft-end-a"
+      }
+    }
+  ]
+}

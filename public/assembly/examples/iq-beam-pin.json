@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "platform": "vexiq",
+  "title": "VEXIQ · Dầm và chốt",
+  "parts": [
+    {
+      "id": "base",
+      "partId": "228-2500-026",
+      "position": [
+        0,
+        40,
+        0
+      ]
+    },
+    {
+      "id": "pin",
+      "partId": "228-2500-060",
+      "attachTo": {
+        "targetId": "base",
+        "sourceRef": "1",
+        "targetRef": "1"
+      }
+    }
+  ]
+}

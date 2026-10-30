@@ -1,0 +1,703 @@
+{
+  "id": "31313-1",
+  "name": "EV3 Home",
+  "partTypes": 99,
+  "sourceQuantity": 598,
+  "inventory": [
+    {
+      "part": "11145",
+      "name": "Electric Mindstorms EV3 Cable 25 cm",
+      "quantity": 4,
+      "displayColor": 0,
+      "ldraw": "ldraw/parts/11145.dat"
+    },
+    {
+      "part": "2780",
+      "name": "Technic Pin with Friction and Slots",
+      "quantity": 95,
+      "displayColor": 0,
+      "ldraw": "ldraw/parts/2780.dat"
+    },
+    {
+      "part": "2815",
+      "name": "Technic Wedge Belt Wheel Tyre",
+      "quantity": 3,
+      "displayColor": 0,
+      "ldraw": "ldraw/parts/2815.dat"
+    },
+    {
+      "part": "32009",
+      "name": "Technic Beam  3 x  3.8 x  7 Liftarm Bent 45 Double",
+      "quantity": 12,
+      "displayColor": 0,
+      "ldraw": "ldraw/parts/32009.dat"
+    },
+    {
+      "part": "32013",
+      "name": "Technic Angle Connector #1",
+      "quantity": 4,
+      "displayColor": 4,
+      "ldraw": "ldraw/parts/32013.dat"
+    },
+    {
+      "part": "32014",
+      "name": "Technic Angle Connector #6 (90 degree)",
+      "quantity": 1,
+      "displayColor": 4,
+      "ldraw": "ldraw/parts/32014.dat"
+    },
+    {
+      "part": "32034",
+      "name": "Technic Angle Connector #2 (180 degree)",
+      "quantity": 6,
+      "displayColor": 4,
+      "ldraw": "ldraw/parts/32034.dat"
+    },
+    {
+      "part": "32054",
+      "name": "Technic Pin Long with Stop Bush",
+      "quantity": 10,
+      "displayColor": 4,
+      "ldraw": "ldraw/parts/32054.dat"
+    },
+    {
+      "part": "32062",
+      "name": "Technic Axle  2 Notched",
+      "quantity": 12,
+      "displayColor": 4,
+      "ldraw": "ldraw/parts/32062.dat"
+    },
+    {
+      "part": "32072",
+      "name": "Technic Gear  4 Knob",
+      "quantity": 4,
+      "displayColor": 0,
+      "ldraw": "ldraw/parts/32072.dat"
+    },
+    {
+      "part": "32073",
+      "name": "Technic Axle  5",
+      "quantity": 9,
+      "displayColor": 71,
+      "ldraw": "ldraw/parts/32073.dat"
+    },
+    {
+      "part": "32123b",
+      "name": "Technic Bush 1/2 Smooth with Axle Hole Semi-Reduced",
+      "quantity": 11,
+      "displayColor": 14,
+      "ldraw": "ldraw/parts/32123b.dat"
+    },
+    {
+      "part": "32140",
+      "name": "Technic Beam  2 x  4 Liftarm Bent 90",
+      "quantity": 8,
+      "displayColor": 0,
+      "ldraw": "ldraw/parts/32140.dat"
+    },
+    {
+      "part": "32184",
+      "name": "Technic Cross Block 1 x 3 (Axle/Pin/Axle)",
+      "quantity": 17,
+      "displayColor": 4,
+      "ldraw": "ldraw/parts/32184.dat"
+    },
+    {
+      "part": "32270",
+      "name": "Technic Gear 12 Tooth Double Bevel",
+      "quantity": 2,
+      "displayColor": 0,
+      "ldraw": "ldraw/parts/32270.dat"
+    },
+    {
+      "part": "32271",
+      "name": "Technic Beam  3 x  7 Liftarm Bent 53.13",
+      "quantity": 12,
+      "displayColor": 0,
+      "ldraw": "ldraw/parts/32271.dat"
+    },
+    {
+      "part": "32278",
+      "name": "Technic Beam 15",
+      "quantity": 4,
+      "displayColor": 0,
+      "ldraw": "ldraw/parts/32278.dat"
+    },
+    {
+      "part": "32291",
+      "name": "Technic Cross Block 2 x 2 (Axle/Twin Pin)",
+      "quantity": 2,
+      "displayColor": 4,
+      "ldraw": "ldraw/parts/32291.dat"
+    },
+    {
+      "part": "32316",
+      "name": "Technic Beam  5",
+      "quantity": 10,
+      "displayColor": 0,
+      "ldraw": "ldraw/parts/32316.dat"
+    },
+    {
+      "part": "32348",
+      "name": "Technic Beam  4 x  4 Liftarm Bent 53.13",
+      "quantity": 4,
+      "displayColor": 0,
+      "ldraw": "ldraw/parts/32348.dat"
+    },
+    {
+      "part": "32498",
+      "name": "Technic Gear 36 Tooth Double Bevel",
+      "quantity": 5,
+      "displayColor": 0,
+      "ldraw": "ldraw/parts/32498.dat"
+    },
+    {
+      "part": "32523",
+      "name": "Technic Beam  3",
+      "quantity": 12,
+      "displayColor": 0,
+      "ldraw": "ldraw/parts/32523.dat"
+    },
+    {
+      "part": "32524",
+      "name": "Technic Beam  7",
+      "quantity": 6,
+      "displayColor": 0,
+      "ldraw": "ldraw/parts/32524.dat"
+    },
+    {
+      "part": "32525",
+      "name": "Technic Beam 11",
+      "quantity": 4,
+      "displayColor": 4,
+      "ldraw": "ldraw/parts/32525.dat"
+    },
+    {
+      "part": "32526",
+      "name": "Technic Beam  3 x  5 Bent 90",
+      "quantity": 6,
+      "displayColor": 0,
+      "ldraw": "ldraw/parts/32526.dat"
+    },
+    {
+      "part": "32556a",
+      "name": "Technic Pin Long without Friction with Single Slot",
+      "quantity": 4,
+      "displayColor": 19,
+      "ldraw": "ldraw/parts/32556a.dat"
+    },
+    {
+      "part": "3648b",
+      "name": "Technic Gear 24 Tooth with Single Axle Hole",
+      "quantity": 2,
+      "displayColor": 72,
+      "ldraw": "ldraw/parts/3648b.dat"
+    },
+    {
+      "part": "3673",
+      "name": "Technic Pin",
+      "quantity": 4,
+      "displayColor": 71,
+      "ldraw": "ldraw/parts/3673.dat"
+    },
+    {
+      "part": "3706",
+      "name": "Technic Axle  6",
+      "quantity": 9,
+      "displayColor": 0,
+      "ldraw": "ldraw/parts/3706.dat"
+    },
+    {
+      "part": "3713",
+      "name": "Technic Bush with Two Flanges",
+      "quantity": 9,
+      "displayColor": 4,
+      "ldraw": "ldraw/parts/3713.dat"
+    },
+    {
+      "part": "40490",
+      "name": "Technic Beam  9",
+      "quantity": 8,
+      "displayColor": 0,
+      "ldraw": "ldraw/parts/40490.dat"
+    },
+    {
+      "part": "41239",
+      "name": "Technic Beam 13",
+      "quantity": 4,
+      "displayColor": 0,
+      "ldraw": "ldraw/parts/41239.dat"
+    },
+    {
+      "part": "41669",
+      "name": "Technic Tooth  1 x  3 with Axlehole with Rounded Bottom Cavity",
+      "quantity": 10,
+      "displayColor": 4,
+      "ldraw": "ldraw/parts/41669.dat"
+    },
+    {
+      "part": "41678",
+      "name": "Technic Cross Block 2 x 2 Split (Axle/Twin Pin)",
+      "quantity": 4,
+      "displayColor": 4,
+      "ldraw": "ldraw/parts/41678.dat"
+    },
+    {
+      "part": "4185a",
+      "name": "Technic Wedge Belt Wheel - Not Reinforced",
+      "quantity": 3,
+      "displayColor": 71,
+      "ldraw": "ldraw/parts/4185a.dat"
+    },
+    {
+      "part": "42003",
+      "name": "Technic Cross Block 1 x 3 (Axle/Pin/Pin)",
+      "quantity": 14,
+      "displayColor": 4,
+      "ldraw": "ldraw/parts/42003.dat"
+    },
+    {
+      "part": "43093",
+      "name": "Technic Axle Pin with Friction",
+      "quantity": 28,
+      "displayColor": 1,
+      "ldraw": "ldraw/parts/43093.dat"
+    },
+    {
+      "part": "44294",
+      "name": "Technic Axle  7",
+      "quantity": 2,
+      "displayColor": 71,
+      "ldraw": "ldraw/parts/44294.dat"
+    },
+    {
+      "part": "4519",
+      "name": "Technic Axle  3",
+      "quantity": 22,
+      "displayColor": 71,
+      "ldraw": "ldraw/parts/4519.dat"
+    },
+    {
+      "part": "48989",
+      "name": "Technic Cross Block 1 x 3 (Pin/Pin/Pin) with 4 Pins",
+      "quantity": 12,
+      "displayColor": 71,
+      "ldraw": "ldraw/parts/48989.dat"
+    },
+    {
+      "part": "55013",
+      "name": "Technic Axle  8 with Stop",
+      "quantity": 6,
+      "displayColor": 72,
+      "ldraw": "ldraw/parts/55013.dat"
+    },
+    {
+      "part": "55805",
+      "name": "Electric Mindstorms NXT Cable 35 cm",
+      "quantity": 2,
+      "displayColor": 0,
+      "ldraw": "ldraw/parts/55805.dat"
+    },
+    {
+      "part": "55806",
+      "name": "Electric Mindstorms NXT Cable 50 cm",
+      "quantity": 1,
+      "displayColor": 0,
+      "ldraw": "ldraw/parts/55806.dat"
+    },
+    {
+      "part": "57585",
+      "name": "Technic Bush with Three Axles",
+      "quantity": 1,
+      "displayColor": 71,
+      "ldraw": "ldraw/parts/57585.dat"
+    },
+    {
+      "part": "59443",
+      "name": "Technic Axle Joiner Inline Smooth",
+      "quantity": 3,
+      "displayColor": 4,
+      "ldraw": "ldraw/parts/59443.dat"
+    },
+    {
+      "part": "60483",
+      "name": "Technic Beam  2 Liftarm",
+      "quantity": 10,
+      "displayColor": 0,
+      "ldraw": "ldraw/parts/60483.dat"
+    },
+    {
+      "part": "60484",
+      "name": "Technic Beam  3 x  3 T-shaped",
+      "quantity": 4,
+      "displayColor": 0,
+      "ldraw": "ldraw/parts/60484.dat"
+    },
+    {
+      "part": "60485",
+      "name": "Technic Axle  9",
+      "quantity": 1,
+      "displayColor": 71,
+      "ldraw": "ldraw/parts/60485.dat"
+    },
+    {
+      "part": "62462",
+      "name": "Technic Pin Joiner Round with Slot",
+      "quantity": 2,
+      "displayColor": 71,
+      "ldraw": "ldraw/parts/62462.dat"
+    },
+    {
+      "part": "63869",
+      "name": "Technic Cross Block 3 x 2 (Axle/Triple Pin)",
+      "quantity": 2,
+      "displayColor": 71,
+      "ldraw": "ldraw/parts/63869.dat"
+    },
+    {
+      "part": "64178",
+      "name": "Technic Beam 11 x  5 with Open Center  5 x  3",
+      "quantity": 2,
+      "displayColor": 71,
+      "ldraw": "ldraw/parts/64178.dat"
+    },
+    {
+      "part": "64179",
+      "name": "Technic Beam  7 x  5 with Open Center  5 x  3",
+      "quantity": 2,
+      "displayColor": 71,
+      "ldraw": "ldraw/parts/64179.dat"
+    },
+    {
+      "part": "6536",
+      "name": "Technic Cross Block 1 x 2 (Axle/Pin)",
+      "quantity": 8,
+      "displayColor": 4,
+      "ldraw": "ldraw/parts/6536.dat"
+    },
+    {
+      "part": "6558",
+      "name": "Technic Pin Long with Friction and Slot",
+      "quantity": 38,
+      "displayColor": 1,
+      "ldraw": "ldraw/parts/6558.dat"
+    },
+    {
+      "part": "6587",
+      "name": "Technic Axle  3 with Stud",
+      "quantity": 4,
+      "displayColor": 28,
+      "ldraw": "ldraw/parts/6587.dat"
+    },
+    {
+      "part": "6589",
+      "name": "Technic Gear 12 Tooth Bevel",
+      "quantity": 1,
+      "displayColor": 19,
+      "ldraw": "ldraw/parts/6589.dat"
+    },
+    {
+      "part": "87082",
+      "name": "Technic Pin Long with Pin Hole Type 1",
+      "quantity": 6,
+      "displayColor": 71,
+      "ldraw": "ldraw/parts/87082.dat"
+    },
+    {
+      "part": "87083",
+      "name": "Technic Axle  4 with Stop",
+      "quantity": 4,
+      "displayColor": 72,
+      "ldraw": "ldraw/parts/87083.dat"
+    },
+    {
+      "part": "95646c01",
+      "name": "Electric Mindstorms EV3 with Rechargeable Battery",
+      "quantity": 1,
+      "displayColor": 15,
+      "ldraw": "ldraw/parts/95646c01.dat"
+    },
+    {
+      "part": "95648",
+      "name": "Electric Mindstorms EV3 Touch Sensor",
+      "quantity": 1,
+      "displayColor": 71,
+      "ldraw": "ldraw/parts/95648.dat"
+    },
+    {
+      "part": "95650",
+      "name": "Electric Mindstorms EV3 Colour Sensor",
+      "quantity": 1,
+      "displayColor": 71,
+      "ldraw": "ldraw/parts/95650.dat"
+    },
+    {
+      "part": "95658",
+      "name": "Electric Mindstorms EV3 Large Motor",
+      "quantity": 2,
+      "displayColor": 71,
+      "ldraw": "ldraw/parts/95658.dat"
+    },
+    {
+      "part": "99455",
+      "name": "Electric Mindstorms EV3 Medium Motor",
+      "quantity": 1,
+      "displayColor": 71,
+      "ldraw": "ldraw/parts/99455.dat"
+    },
+    {
+      "part": "2736",
+      "name": "Technic Axle Towball",
+      "quantity": 6,
+      "displayColor": 71,
+      "ldraw": "ldraw/parts/2736.dat"
+    },
+    {
+      "part": "32039",
+      "name": "Technic Connector (Axle/Bush) Type 1",
+      "quantity": 2,
+      "displayColor": 71,
+      "ldraw": "ldraw/parts/32039.dat"
+    },
+    {
+      "part": "32138",
+      "name": "Technic Pin  3L Double with Axlehole",
+      "quantity": 4,
+      "displayColor": 71,
+      "ldraw": "ldraw/parts/32138.dat"
+    },
+    {
+      "part": "32198a",
+      "name": "Technic Gear 20 Tooth Bevel with Two Axlehole Slots",
+      "quantity": 1,
+      "displayColor": 19,
+      "ldraw": "ldraw/parts/32198a.dat"
+    },
+    {
+      "part": "42610",
+      "name": "Wheel Rim  8 x 11.2 with Centre Groove",
+      "quantity": 4,
+      "displayColor": 71,
+      "ldraw": "ldraw/parts/42610.dat"
+    },
+    {
+      "part": "44309",
+      "name": "Tyre 22/ 30 x 30 ZR",
+      "quantity": 4,
+      "displayColor": 0,
+      "ldraw": "ldraw/parts/44309.dat"
+    },
+    {
+      "part": "56145",
+      "name": "Wheel Rim 20 x 30 with  6 Dual Spokes and External Ribs",
+      "quantity": 4,
+      "displayColor": 0,
+      "ldraw": "ldraw/parts/56145.dat"
+    },
+    {
+      "part": "59426",
+      "name": "Technic Axle  5.5 with Stop Type 2",
+      "quantity": 2,
+      "displayColor": 72,
+      "ldraw": "ldraw/parts/59426.dat"
+    },
+    {
+      "part": "64391",
+      "name": "Technic Panel Fairing Smooth #4 (Medium)",
+      "quantity": 3,
+      "displayColor": 15,
+      "ldraw": "ldraw/parts/64391.dat"
+    },
+    {
+      "part": "64393",
+      "name": "Technic Panel Fairing Smooth #6 (Long)",
+      "quantity": 3,
+      "displayColor": 15,
+      "ldraw": "ldraw/parts/64393.dat"
+    },
+    {
+      "part": "64681",
+      "name": "Technic Panel Fairing Smooth #5 (Long)",
+      "quantity": 3,
+      "displayColor": 15,
+      "ldraw": "ldraw/parts/64681.dat"
+    },
+    {
+      "part": "64683",
+      "name": "Technic Panel Fairing Smooth #3 (Medium)",
+      "quantity": 3,
+      "displayColor": 15,
+      "ldraw": "ldraw/parts/64683.dat"
+    },
+    {
+      "part": "6575a",
+      "name": "Technic Cam with Narrow Slit and Recessed Axlehole",
+      "quantity": 2,
+      "displayColor": 0,
+      "ldraw": "ldraw/parts/6575a.dat"
+    },
+    {
+      "part": "6628",
+      "name": "Technic Pin Towball with Friction",
+      "quantity": 6,
+      "displayColor": 0,
+      "ldraw": "ldraw/parts/6628.dat"
+    },
+    {
+      "part": "6632",
+      "name": "Technic Beam  3 x  0.5 Liftarm",
+      "quantity": 1,
+      "displayColor": 71,
+      "ldraw": "ldraw/parts/6632.dat"
+    },
+    {
+      "part": "85544",
+      "name": "Train Wheel Large Traction Band",
+      "quantity": 1,
+      "displayColor": 4,
+      "ldraw": "ldraw/parts/85544.dat"
+    },
+    {
+      "part": "87408",
+      "name": "Technic Connector Toggle Joint Double with Axle and Pin Holes",
+      "quantity": 1,
+      "displayColor": 0,
+      "ldraw": "ldraw/parts/87408.dat"
+    },
+    {
+      "part": "99008",
+      "name": "Technic Axle  4 with Middle Cylindrical Stop",
+      "quantity": 3,
+      "displayColor": 19,
+      "ldraw": "ldraw/parts/99008.dat"
+    },
+    {
+      "part": "13710a",
+      "name": "Sticker Mindstorms EV3 #1 for Panel Smooth Medium (Needs Work)",
+      "quantity": 1,
+      "displayColor": null,
+      "ldraw": "ldraw/parts/13710a.dat"
+    },
+    {
+      "part": "18575",
+      "name": "Technic Gear 20 Tooth Double Bevel Reinforced",
+      "quantity": 4,
+      "displayColor": 0,
+      "ldraw": "ldraw/parts/18575.dat"
+    },
+    {
+      "part": "32068",
+      "name": "Technic Cross Block 1 x 3 (Axle/None/Pin)",
+      "quantity": 4,
+      "displayColor": 71,
+      "ldraw": "ldraw/parts/32068.dat"
+    },
+    {
+      "part": "32192",
+      "name": "Technic Angle Connector #4 (135 degree)",
+      "quantity": 4,
+      "displayColor": 4,
+      "ldraw": "ldraw/parts/32192.dat"
+    },
+    {
+      "part": "32293",
+      "name": "Technic Steering Link 9L",
+      "quantity": 4,
+      "displayColor": 0,
+      "ldraw": "ldraw/parts/32293.dat"
+    },
+    {
+      "part": "32905",
+      "name": "Technic Worm Gear 2L with Axle Hole Two-toothed Sliding",
+      "quantity": 2,
+      "displayColor": 71,
+      "ldraw": "ldraw/parts/32905.dat"
+    },
+    {
+      "part": "50951",
+      "name": "Tyre  6/ 30 x 11",
+      "quantity": 2,
+      "displayColor": 0,
+      "ldraw": "ldraw/parts/50951.dat"
+    },
+    {
+      "part": "53550",
+      "name": "Technic Bionicle Weapon Ball Shooter Magazine",
+      "quantity": 1,
+      "displayColor": 0,
+      "ldraw": "ldraw/parts/53550.dat"
+    },
+    {
+      "part": "3873",
+      "name": "Technic Chain Tread 2.5 Wide",
+      "quantity": 2,
+      "displayColor": 0,
+      "ldraw": "ldraw/parts/3873.dat"
+    },
+    {
+      "part": "54271",
+      "name": "Constraction Weapon Ball Shooter",
+      "quantity": 1,
+      "displayColor": 0,
+      "ldraw": "ldraw/parts/54271.dat"
+    },
+    {
+      "part": "54821",
+      "name": "Technic Bionicle Ball 16.5 mm",
+      "quantity": 3,
+      "displayColor": 4,
+      "ldraw": "ldraw/parts/54821.dat"
+    },
+    {
+      "part": "61070",
+      "name": "Technic Beam  3 with Panel Fairing Right",
+      "quantity": 1,
+      "displayColor": 15,
+      "ldraw": "ldraw/parts/61070.dat"
+    },
+    {
+      "part": "61071",
+      "name": "Technic Beam  3 with Panel Fairing Left",
+      "quantity": 1,
+      "displayColor": 15,
+      "ldraw": "ldraw/parts/61071.dat"
+    },
+    {
+      "part": "72156",
+      "name": "Electric Mindstorms EV3 IR-Beacon / Remote Handset",
+      "quantity": 1,
+      "displayColor": 15,
+      "ldraw": "ldraw/parts/72156.dat"
+    },
+    {
+      "part": "92907",
+      "name": "Technic Cross Block  2 x  2 x  2 Bent 90 Split (Pin/Twin Axle)",
+      "quantity": 2,
+      "displayColor": 71,
+      "ldraw": "ldraw/parts/92907.dat"
+    },
+    {
+      "part": "95654",
+      "name": "Electric Mindstorms EV3 Infrared Sensor",
+      "quantity": 1,
+      "displayColor": 71,
+      "ldraw": "ldraw/parts/95654.dat"
+    },
+    {
+      "part": "98347",
+      "name": "Technic Blade Curved  0.5 x  4 with Pin Hole",
+      "quantity": 4,
+      "displayColor": 15,
+      "ldraw": "ldraw/parts/98347.dat"
+    },
+    {
+      "part": "98568",
+      "name": "Constraction Blade 11.5L with Sawtooth Back",
+      "quantity": 6,
+      "displayColor": 4,
+      "ldraw": "ldraw/parts/98568.dat"
+    }
+  ],
+  "factoryInventoryVerified": false,
+  "quantityByColorAvailable": false
+}

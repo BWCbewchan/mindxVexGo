@@ -1,0 +1,17 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs/promises';
+import {buildAssemblyDocument} from '../public/assembly/document-model.js';
+import {worldReference} from '../public/assembly/mating.js';
+const catalog=JSON.parse(await fs.readFile('public/assembly/parts.json','utf8')),references=JSON.parse(await fs.readFile('public/assembly/connectors.json','utf8')).parts;
+const options={platform:'vexgo',catalog,references};
+const base={version:1,platform:'vexgo',title:'Test',parts:[],groups:[],steps:[],kit:null};
+const root=catalog.find(p=>p.id==='228-2500-001'),pin=catalog.find(p=>p.id==='228-2500-2260'),hole=references[root.id].find(r=>r.kind==='hole'&&!r.profile),tip=references[pin.id].find(r=>r.kind==='pin'&&!r.profile&&r.radius<=2.6);
+const sample={parts:[{id:'pin',partId:pin.id,attachTo:{targetId:'base',sourceRef:tip.id,targetRef:hole.id}},{id:'base',partId:root.id,position:[0,30,0]}]};
+const {document}=buildAssemblyDocument(base,sample,options);assert.equal(document.parts.length,2);const p=document.parts.find(p=>p.id==='pin'),b=document.parts.find(p=>p.id==='base');const a=worldReference(p,tip),target=worldReference(b,hole);assert.ok(a.point.addScaledVector(target.normal,p.mate.depth).distanceTo(target.point)<1e-6,'Forward parent must be positioned before its child');
+const reversed=buildAssemblyDocument(base,{parts:[...sample.parts].reverse()},options).document;assert.deepEqual(reversed.parts.find(p=>p.id==='pin').position,p.position);
+const before=JSON.stringify(document),appended=buildAssemblyDocument(document,{parts:[...document.parts]}, {...options,mode:'append'});assert.equal(appended.document.parts.length,4);assert.deepEqual(appended.document.parts.slice(0,2),document.parts);assert.notEqual(appended.idMap.pin,'pin');assert.equal(appended.document.parts.at(-2).mate.target,appended.idMap.base);assert.equal(JSON.stringify(document),before);
+for(const invalid of ['{broken', {parts:[{id:'x',partId:'fake'}]}, {parts:[{id:'x',partId:root.id,position:[Infinity,0,0]}]}, {parts:[{id:'x',partId:root.id},{id:'x',partId:root.id}]}, {parts:[{id:'p',partId:pin.id,attachTo:{targetId:'missing',sourceRef:tip.id,targetRef:hole.id}}]}, {parts:[{id:'p',partId:pin.id,attachTo:{targetId:'b',sourceRef:'fake',targetRef:hole.id}},{id:'b',partId:root.id}]}, {commands:[{command:'eval',args:{code:'alert(1)'}}]}]){assert.throws(()=>buildAssemblyDocument(document,invalid,options));assert.equal(JSON.stringify(document),before,'Rejected inputs must be pure / atomic');}
+const batch=buildAssemblyDocument(base,{commands:[{command:'addPart',args:{id:'base',partId:root.id}},{command:'addPart',args:{id:'pin',partId:pin.id}},{command:'attach',args:{id:'pin',targetId:'base',sourceRef:tip.id,targetRef:hole.id}},{command:'group',args:{id:'pair',ids:['base','pin'],name:'Pair'}}]},options);assert.equal(batch.document.groups.length,1);assert.equal(batch.document.parts[1].groupId,'pair');
+assert.throws(()=>buildAssemblyDocument(base,{platform:'lego',parts:[]},options),/khác/);
+const cycle={parts:[{id:'a',partId:pin.id,attachTo:{targetId:'b',sourceRef:tip.id,targetRef:tip.id}},{id:'b',partId:pin.id,attachTo:{targetId:'a',sourceRef:tip.id,targetRef:tip.id}}]};assert.throws(()=>buildAssemblyDocument(base,cycle,options),/vòng/);
+console.log('PASS: pure state, real ports, forward parents, JSON/batch, safe ID remap, original preservation, invalid JSON/parts/coordinates/ports/cycles and unsupported code rejected.');

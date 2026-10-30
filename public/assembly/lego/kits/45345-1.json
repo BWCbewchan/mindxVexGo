@@ -1,0 +1,703 @@
+{
+  "id": "45345-1",
+  "name": "SPIKE Essential",
+  "partTypes": 99,
+  "sourceQuantity": 429,
+  "inventory": [
+    {
+      "part": "2815",
+      "name": "Technic Wedge Belt Wheel Tyre",
+      "quantity": 4,
+      "displayColor": 322,
+      "ldraw": "ldraw/parts/2815.dat"
+    },
+    {
+      "part": "32013",
+      "name": "Technic Angle Connector #1",
+      "quantity": 4,
+      "displayColor": 15,
+      "ldraw": "ldraw/parts/32013.dat"
+    },
+    {
+      "part": "32062",
+      "name": "Technic Axle  2 Notched",
+      "quantity": 8,
+      "displayColor": 4,
+      "ldraw": "ldraw/parts/32062.dat"
+    },
+    {
+      "part": "32524",
+      "name": "Technic Beam  7",
+      "quantity": 3,
+      "displayColor": 1,
+      "ldraw": "ldraw/parts/32524.dat"
+    },
+    {
+      "part": "32525",
+      "name": "Technic Beam 11",
+      "quantity": 2,
+      "displayColor": 26,
+      "ldraw": "ldraw/parts/32525.dat"
+    },
+    {
+      "part": "32526",
+      "name": "Technic Beam  3 x  5 Bent 90",
+      "quantity": 3,
+      "displayColor": 10,
+      "ldraw": "ldraw/parts/32526.dat"
+    },
+    {
+      "part": "3705",
+      "name": "Technic Axle  4",
+      "quantity": 3,
+      "displayColor": 0,
+      "ldraw": "ldraw/parts/3705.dat"
+    },
+    {
+      "part": "3706",
+      "name": "Technic Axle  6",
+      "quantity": 3,
+      "displayColor": 4,
+      "ldraw": "ldraw/parts/3706.dat"
+    },
+    {
+      "part": "3707",
+      "name": "Technic Axle  8",
+      "quantity": 3,
+      "displayColor": 0,
+      "ldraw": "ldraw/parts/3707.dat"
+    },
+    {
+      "part": "3713",
+      "name": "Technic Bush with Two Flanges",
+      "quantity": 8,
+      "displayColor": 4,
+      "ldraw": "ldraw/parts/3713.dat"
+    },
+    {
+      "part": "4185a",
+      "name": "Technic Wedge Belt Wheel - Not Reinforced",
+      "quantity": 4,
+      "displayColor": 15,
+      "ldraw": "ldraw/parts/4185a.dat"
+    },
+    {
+      "part": "44294",
+      "name": "Technic Axle  7",
+      "quantity": 3,
+      "displayColor": 14,
+      "ldraw": "ldraw/parts/44294.dat"
+    },
+    {
+      "part": "4519",
+      "name": "Technic Axle  3",
+      "quantity": 4,
+      "displayColor": 14,
+      "ldraw": "ldraw/parts/4519.dat"
+    },
+    {
+      "part": "45590",
+      "name": "Technic Axle Joiner Double Flexible",
+      "quantity": 5,
+      "displayColor": 0,
+      "ldraw": "ldraw/parts/45590.dat"
+    },
+    {
+      "part": "59443",
+      "name": "Technic Axle Joiner Inline Smooth",
+      "quantity": 4,
+      "displayColor": 4,
+      "ldraw": "ldraw/parts/59443.dat"
+    },
+    {
+      "part": "6629",
+      "name": "Technic Beam  4 x  6 Liftarm Bent 53.13",
+      "quantity": 3,
+      "displayColor": 25,
+      "ldraw": "ldraw/parts/6629.dat"
+    },
+    {
+      "part": "2654a",
+      "name": "Dish  2 x  2 with Rim",
+      "quantity": 6,
+      "displayColor": 26,
+      "ldraw": "ldraw/parts/2654a.dat"
+    },
+    {
+      "part": "3941",
+      "name": "Brick  2 x  2 Round without Reinforcement",
+      "quantity": 10,
+      "displayColor": 2,
+      "ldraw": "ldraw/parts/3941.dat"
+    },
+    {
+      "part": "57539",
+      "name": "Hose Flexible 19L",
+      "quantity": 2,
+      "displayColor": 47,
+      "ldraw": "ldraw/parts/57539.dat"
+    },
+    {
+      "part": "59900",
+      "name": "Cone  1 x  1 with Stop",
+      "quantity": 6,
+      "displayColor": 26,
+      "ldraw": "ldraw/parts/59900.dat"
+    },
+    {
+      "part": "85546",
+      "name": "Rubber Belt Round 33 /  1.6",
+      "quantity": 4,
+      "displayColor": 14,
+      "ldraw": "ldraw/parts/85546.dat"
+    },
+    {
+      "part": "98138",
+      "name": "Tile  1 x  1 Round with Groove",
+      "quantity": 4,
+      "displayColor": 15,
+      "ldraw": "ldraw/parts/98138.dat"
+    },
+    {
+      "part": "54821",
+      "name": "Technic Bionicle Ball 16.5 mm",
+      "quantity": 5,
+      "displayColor": 4,
+      "ldraw": "ldraw/parts/54821.dat"
+    },
+    {
+      "part": "14769",
+      "name": "Tile  2 x  2 Round with Round Underside Stud",
+      "quantity": 2,
+      "displayColor": 15,
+      "ldraw": "ldraw/parts/14769.dat"
+    },
+    {
+      "part": "15535",
+      "name": "Tile  2 x  2 Round with Hole",
+      "quantity": 6,
+      "displayColor": 25,
+      "ldraw": "ldraw/parts/15535.dat"
+    },
+    {
+      "part": "37308",
+      "name": "Electric Powered Up Colour Sensor",
+      "quantity": 1,
+      "displayColor": 15,
+      "ldraw": "ldraw/parts/37308.dat"
+    },
+    {
+      "part": "3738",
+      "name": "Technic Plate  2 x  8 with Holes",
+      "quantity": 5,
+      "displayColor": 10,
+      "ldraw": "ldraw/parts/3738.dat"
+    },
+    {
+      "part": "39789",
+      "name": "Brick  2 x  4 with  3 Axleholes Vertical",
+      "quantity": 15,
+      "displayColor": 1,
+      "ldraw": "ldraw/parts/39789.dat"
+    },
+    {
+      "part": "39793",
+      "name": "Technic Connector Block  3 x  3 with  9 Perpendicular Holes",
+      "quantity": 2,
+      "displayColor": 26,
+      "ldraw": "ldraw/parts/39793.dat"
+    },
+    {
+      "part": "61332",
+      "name": "Technic Pin with Friction Type 2",
+      "quantity": 28,
+      "displayColor": 0,
+      "ldraw": "ldraw/parts/61332.dat"
+    },
+    {
+      "part": "42022",
+      "name": "Slope Brick Curved  6 x  1",
+      "quantity": 5,
+      "displayColor": 4,
+      "ldraw": "ldraw/parts/42022.dat"
+    },
+    {
+      "part": "11055",
+      "name": "Flag  2 x  2 Square (Thick C-Clip)",
+      "quantity": 2,
+      "displayColor": 4,
+      "ldraw": "ldraw/parts/11055.dat"
+    },
+    {
+      "part": "14417",
+      "name": "Plate  1 x  2 with Ball Joint-8 on Side",
+      "quantity": 5,
+      "displayColor": 72,
+      "ldraw": "ldraw/parts/14417.dat"
+    },
+    {
+      "part": "14704",
+      "name": "Plate  1 x  2 with Socket Joint-8 with Friction Centre",
+      "quantity": 5,
+      "displayColor": 71,
+      "ldraw": "ldraw/parts/14704.dat"
+    },
+    {
+      "part": "15068",
+      "name": "Slope Brick Curved  2 x  2 x  0.667",
+      "quantity": 6,
+      "displayColor": 25,
+      "ldraw": "ldraw/parts/15068.dat"
+    },
+    {
+      "part": "15279",
+      "name": "Plant Grass Stem",
+      "quantity": 2,
+      "displayColor": 10,
+      "ldraw": "ldraw/parts/15279.dat"
+    },
+    {
+      "part": "18653",
+      "name": "Arch  1 x  3 x  2 Inverted",
+      "quantity": 5,
+      "displayColor": 25,
+      "ldraw": "ldraw/parts/18653.dat"
+    },
+    {
+      "part": "18746",
+      "name": "Minifig Snowboard  2 x  6",
+      "quantity": 2,
+      "displayColor": 191,
+      "ldraw": "ldraw/parts/18746.dat"
+    },
+    {
+      "part": "2431",
+      "name": "Tile  1 x  4 with Groove",
+      "quantity": 5,
+      "displayColor": 321,
+      "ldraw": "ldraw/parts/2431.dat"
+    },
+    {
+      "part": "24312",
+      "name": "Minifig Wheelchair",
+      "quantity": 1,
+      "displayColor": 71,
+      "ldraw": "ldraw/parts/24312.dat"
+    },
+    {
+      "part": "24946",
+      "name": "Animal Egg  1.2 x  1.2 x  1.333 with Hole on Top",
+      "quantity": 1,
+      "displayColor": 15,
+      "ldraw": "ldraw/parts/24946.dat"
+    },
+    {
+      "part": "2496",
+      "name": "Wheel Trolley",
+      "quantity": 1,
+      "displayColor": 0,
+      "ldraw": "ldraw/parts/2496.dat"
+    },
+    {
+      "part": "27328",
+      "name": "Hose Flexible 10L",
+      "quantity": 2,
+      "displayColor": 47,
+      "ldraw": "ldraw/parts/27328.dat"
+    },
+    {
+      "part": "3004",
+      "name": "Brick  1 x  2",
+      "quantity": 6,
+      "displayColor": 1,
+      "ldraw": "ldraw/parts/3004.dat"
+    },
+    {
+      "part": "30089b",
+      "name": "Minifig Camera Snapshot Type 2",
+      "quantity": 1,
+      "displayColor": 0,
+      "ldraw": "ldraw/parts/30089b.dat"
+    },
+    {
+      "part": "3010",
+      "name": "Brick  1 x  4",
+      "quantity": 5,
+      "displayColor": 25,
+      "ldraw": "ldraw/parts/3010.dat"
+    },
+    {
+      "part": "30145",
+      "name": "Brick  2 x  2 x  3",
+      "quantity": 5,
+      "displayColor": 4,
+      "ldraw": "ldraw/parts/30145.dat"
+    },
+    {
+      "part": "30162",
+      "name": "Minifig Binoculars with Round Eyepiece",
+      "quantity": 1,
+      "displayColor": 72,
+      "ldraw": "ldraw/parts/30162.dat"
+    },
+    {
+      "part": "30385",
+      "name": "Rock  1 x  1 Crystal 5 Point",
+      "quantity": 2,
+      "displayColor": 36,
+      "ldraw": "ldraw/parts/30385.dat"
+    },
+    {
+      "part": "3039",
+      "name": "Slope Brick 45  2 x  2",
+      "quantity": 5,
+      "displayColor": 26,
+      "ldraw": "ldraw/parts/3039.dat"
+    },
+    {
+      "part": "3040b",
+      "name": "Slope Brick 45  2 x  1",
+      "quantity": 6,
+      "displayColor": 10,
+      "ldraw": "ldraw/parts/3040b.dat"
+    },
+    {
+      "part": "3069b",
+      "name": "Tile  1 x  2 with Groove",
+      "quantity": 6,
+      "displayColor": 25,
+      "ldraw": "ldraw/parts/3069b.dat"
+    },
+    {
+      "part": "32001",
+      "name": "Technic Plate  2 x  6 with Holes",
+      "quantity": 5,
+      "displayColor": 321,
+      "ldraw": "ldraw/parts/32001.dat"
+    },
+    {
+      "part": "32059",
+      "name": "Plate  4 x  6 without Corners",
+      "quantity": 2,
+      "displayColor": 191,
+      "ldraw": "ldraw/parts/32059.dat"
+    },
+    {
+      "part": "32064a",
+      "name": "Technic Brick  1 x  2 with Axlehole with Open Sides and Stud Blocker",
+      "quantity": 6,
+      "displayColor": 14,
+      "ldraw": "ldraw/parts/32064a.dat"
+    },
+    {
+      "part": "32530",
+      "name": "Technic Tile  1 x  2 with Two Holes",
+      "quantity": 6,
+      "displayColor": 4,
+      "ldraw": "ldraw/parts/32530.dat"
+    },
+    {
+      "part": "32606",
+      "name": "Plant Flower with  7 Alternate Petals with Bar and Pin Hole",
+      "quantity": 4,
+      "displayColor": 5,
+      "ldraw": "ldraw/parts/32606.dat"
+    },
+    {
+      "part": "3298",
+      "name": "Slope Brick 33  3 x  2",
+      "quantity": 5,
+      "displayColor": 321,
+      "ldraw": "ldraw/parts/3298.dat"
+    },
+    {
+      "part": "33121",
+      "name": "Animal Crab",
+      "quantity": 1,
+      "displayColor": 191,
+      "ldraw": "ldraw/parts/33121.dat"
+    },
+    {
+      "part": "33320",
+      "name": "Animal Frog",
+      "quantity": 2,
+      "displayColor": 2,
+      "ldraw": "ldraw/parts/33320.dat"
+    },
+    {
+      "part": "35394",
+      "name": "Dish  4 x  4 Inverted with Hollow Stud",
+      "quantity": 2,
+      "displayColor": 41,
+      "ldraw": "ldraw/parts/35394.dat"
+    },
+    {
+      "part": "3700",
+      "name": "Technic Brick  1 x  2 with Hole",
+      "quantity": 6,
+      "displayColor": 25,
+      "ldraw": "ldraw/parts/3700.dat"
+    },
+    {
+      "part": "3701",
+      "name": "Technic Brick  1 x  4 with Holes",
+      "quantity": 5,
+      "displayColor": 26,
+      "ldraw": "ldraw/parts/3701.dat"
+    },
+    {
+      "part": "3702",
+      "name": "Technic Brick  1 x  8 with Holes",
+      "quantity": 5,
+      "displayColor": 321,
+      "ldraw": "ldraw/parts/3702.dat"
+    },
+    {
+      "part": "3703",
+      "name": "Technic Brick  1 x 16 with Holes",
+      "quantity": 2,
+      "displayColor": 10,
+      "ldraw": "ldraw/parts/3703.dat"
+    },
+    {
+      "part": "3709b",
+      "name": "Technic Plate  2 x  4 with Holes",
+      "quantity": 5,
+      "displayColor": 191,
+      "ldraw": "ldraw/parts/3709b.dat"
+    },
+    {
+      "part": "38648",
+      "name": "Minifig Tool Magnifying Glass with Thick Frame, Hollow Handle and Lens",
+      "quantity": 1,
+      "displayColor": 0,
+      "ldraw": "ldraw/parts/38648.dat"
+    },
+    {
+      "part": "3895",
+      "name": "Technic Brick  1 x 12 with Holes",
+      "quantity": 2,
+      "displayColor": 191,
+      "ldraw": "ldraw/parts/3895.dat"
+    },
+    {
+      "part": "3942c",
+      "name": "Cone  2 x  2 x  2 with Hollow Stud Open",
+      "quantity": 4,
+      "displayColor": 25,
+      "ldraw": "ldraw/parts/3942c.dat"
+    },
+    {
+      "part": "3957b",
+      "name": "Antenna  4H with Flat Top",
+      "quantity": 2,
+      "displayColor": 15,
+      "ldraw": "ldraw/parts/3957b.dat"
+    },
+    {
+      "part": "4006",
+      "name": "Minifig Tool Spanner/Screwdriver",
+      "quantity": 1,
+      "displayColor": 179,
+      "ldraw": "ldraw/parts/4006.dat"
+    },
+    {
+      "part": "4079",
+      "name": "Minifig Seat  2 x  2",
+      "quantity": 4,
+      "displayColor": 4,
+      "ldraw": "ldraw/parts/4079.dat"
+    },
+    {
+      "part": "41539",
+      "name": "Plate  8 x  8",
+      "quantity": 2,
+      "displayColor": 15,
+      "ldraw": "ldraw/parts/41539.dat"
+    },
+    {
+      "part": "4162",
+      "name": "Tile  1 x  8",
+      "quantity": 5,
+      "displayColor": 2,
+      "ldraw": "ldraw/parts/4162.dat"
+    },
+    {
+      "part": "4286",
+      "name": "Slope Brick 33  3 x  1",
+      "quantity": 6,
+      "displayColor": 191,
+      "ldraw": "ldraw/parts/4286.dat"
+    },
+    {
+      "part": "44865",
+      "name": "Brick  1 x  2 with Pin with Bottom Stud Holder",
+      "quantity": 6,
+      "displayColor": 4,
+      "ldraw": "ldraw/parts/44865.dat"
+    },
+    {
+      "part": "4727",
+      "name": "Plant Flower  2 x  2 Leaves",
+      "quantity": 2,
+      "displayColor": 10,
+      "ldraw": "ldraw/parts/4727.dat"
+    },
+    {
+      "part": "47457",
+      "name": "Slope Brick Curved  2 x  2 x   2/3 Triple with Two Top Studs",
+      "quantity": 2,
+      "displayColor": 1,
+      "ldraw": "ldraw/parts/47457.dat"
+    },
+    {
+      "part": "47592",
+      "name": "Electric Powered Up LED Matrix",
+      "quantity": 1,
+      "displayColor": 322,
+      "ldraw": "ldraw/parts/47592.dat"
+    },
+    {
+      "part": "48092",
+      "name": "Brick  4 x  4 Corner Round",
+      "quantity": 4,
+      "displayColor": 191,
+      "ldraw": "ldraw/parts/48092.dat"
+    },
+    {
+      "part": "49153",
+      "name": "Tile  2 x  2 with Pin with Square Hole",
+      "quantity": 6,
+      "displayColor": 15,
+      "ldraw": "ldraw/parts/49153.dat"
+    },
+    {
+      "part": "60474",
+      "name": "Plate  4 x  4 Round with Hole and Snapstud",
+      "quantity": 3,
+      "displayColor": 26,
+      "ldraw": "ldraw/parts/60474.dat"
+    },
+    {
+      "part": "6064",
+      "name": "~Plant Bush (Obsolete)",
+      "quantity": 2,
+      "displayColor": 2,
+      "ldraw": "ldraw/parts/6064.dat"
+    },
+    {
+      "part": "6124",
+      "name": "~Minifig Magic Wand (Obsolete)",
+      "quantity": 1,
+      "displayColor": 45,
+      "ldraw": "ldraw/parts/6124.dat"
+    },
+    {
+      "part": "6256",
+      "name": "Minifig Dinner Plate",
+      "quantity": 1,
+      "displayColor": 191,
+      "ldraw": "ldraw/parts/6256.dat"
+    },
+    {
+      "part": "65249",
+      "name": "Technic Axle Pin Long without Friction with  2L Axle",
+      "quantity": 12,
+      "displayColor": 15,
+      "ldraw": "ldraw/parts/65249.dat"
+    },
+    {
+      "part": "65826",
+      "name": "Technic Pin  1/2 with Stud Tube",
+      "quantity": 28,
+      "displayColor": 10,
+      "ldraw": "ldraw/parts/65826.dat"
+    },
+    {
+      "part": "65834",
+      "name": "Wheel 14 x 35 with 4 Spokes with Integral Tyre",
+      "quantity": 2,
+      "displayColor": 15,
+      "ldraw": "ldraw/parts/65834.dat"
+    },
+    {
+      "part": "66757",
+      "name": "Electric Powered Up 2 Port Hub Rechargeable Battery",
+      "quantity": 1,
+      "displayColor": 14,
+      "ldraw": "ldraw/parts/66757.dat"
+    },
+    {
+      "part": "67351",
+      "name": "Electric Powered Up 2 Port Hub with Yellow Bottom without Rechargeable Battery",
+      "quantity": 1,
+      "displayColor": 14,
+      "ldraw": "ldraw/parts/67351.dat"
+    },
+    {
+      "part": "68488",
+      "name": "Electric Powered Up Small Angular Motor with Medium Azure Back",
+      "quantity": 2,
+      "displayColor": 15,
+      "ldraw": "ldraw/parts/68488.dat"
+    },
+    {
+      "part": "87079",
+      "name": "Tile  2 x  4",
+      "quantity": 14,
+      "displayColor": 1,
+      "ldraw": "ldraw/parts/87079.dat"
+    },
+    {
+      "part": "87087",
+      "name": "Brick  1 x  1 with Stud on 1 Side",
+      "quantity": 6,
+      "displayColor": 4,
+      "ldraw": "ldraw/parts/87087.dat"
+    },
+    {
+      "part": "91405",
+      "name": "Plate 16 x 16 with Underside Ribs",
+      "quantity": 2,
+      "displayColor": 15,
+      "ldraw": "ldraw/parts/91405.dat"
+    },
+    {
+      "part": "92438",
+      "name": "Plate  8 x 16",
+      "quantity": 2,
+      "displayColor": 15,
+      "ldraw": "ldraw/parts/92438.dat"
+    },
+    {
+      "part": "92586",
+      "name": "Animal Dog German Shepherd",
+      "quantity": 1,
+      "displayColor": 84,
+      "ldraw": "ldraw/parts/92586.dat"
+    },
+    {
+      "part": "93273",
+      "name": "Slope Brick Curved  4 x  1 Double",
+      "quantity": 3,
+      "displayColor": 191,
+      "ldraw": "ldraw/parts/93273.dat"
+    },
+    {
+      "part": "95347",
+      "name": "Support  2 x  2 x 10 Girder Triangular  3 Sections with Axlehole",
+      "quantity": 4,
+      "displayColor": 14,
+      "ldraw": "ldraw/parts/95347.dat"
+    },
+    {
+      "part": "96874",
+      "name": "Brick Separator with Top Axle",
+      "quantity": 1,
+      "displayColor": 25,
+      "ldraw": "ldraw/parts/96874.dat"
+    }
+  ],
+  "factoryInventoryVerified": false,
+  "quantityByColorAvailable": false
+}

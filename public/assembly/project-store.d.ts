@@ -1,4 +1,4 @@
-export type Platform='vexgo'|'vexiq';
+export type Platform='vexgo'|'vexiq'|'lego';
 export function validateProjectFile(data: ProjectData, platform: Platform, catalog: {id: string;kind?:string}[]): ProjectData;
 export type ProjectMeta={id:string;platform:Platform;title:string;createdAt:number;updatedAt:number;partCount:number;thumbnail?:string;deletedAt?:number;legacyDraft?:boolean};
 export type ProjectData={version:1;platform?:Platform;projectId?:string;title:string;parts:Array<{id:string;sku:string;label:string;position:number[];rotation:number[];[key:string]:unknown}>;groups:unknown[];steps:unknown[];createdAt?:number;savedAt?:number;[key:string]:unknown};

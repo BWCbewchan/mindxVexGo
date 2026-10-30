@@ -1,1 +1,1 @@
-export function partPreviewSrc(platform:'vexgo'|'vexiq',id:string):string;
+export function partPreviewSrc(platform:'vexgo'|'vexiq'|'lego',id:string,kitId?:string):string;

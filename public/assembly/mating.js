@@ -22,7 +22,7 @@ export function matingPose(source,sourceRef,target,targetRef,{depth=0,twist=0,fl
  const align=new THREE.Quaternion().setFromUnitVectors(from.normal,axis);
  const roll=new THREE.Quaternion().setFromAxisAngle(to.normal,THREE.MathUtils.degToRad(twist));
  const q=roll.multiply(align).multiply(oldQ).normalize();
- if(sourceRef.profile==='square-drive'&&targetRef.profile==='square-drive'){
+ if(['square-drive','lego-cross'].includes(sourceRef.profile)&&sourceRef.profile===targetRef.profile){
  const sk=vector(sourceRef.key).applyQuaternion(q),tk=vector(targetRef.key).applyQuaternion(new THREE.Quaternion().setFromEuler(new THREE.Euler(...target.rotation.map(THREE.MathUtils.degToRad))));
  const angle=Math.atan2(axis.dot(sk.clone().cross(tk)),sk.dot(tk));
  q.premultiply(new THREE.Quaternion().setFromAxisAngle(axis,angle+THREE.MathUtils.degToRad(Math.round(twist/90)*90)));
@@ -67,8 +67,8 @@ export function nearestMate(moving,parts,references,{distance=SNAP_DISTANCE_MM,e
   const targets=attachmentReferences(references[target.sku]);
   for(const targetRef of targets){if(!compatibleReferences(sourceRef,targetRef,moving.sku,target.sku))continue;
    // A keyed hub must use its drive socket, rather than an incidental round hole.
-   if(sourceRef.profile==='square-drive'&&!targetRef.profile&&targets.some(r=>r.profile==='square-drive'&&compatibleReferences(sourceRef,r,moving.sku,target.sku)))continue;
-   if(targetRef.profile==='square-drive'&&!sourceRef.profile&&candidates.some(r=>r.profile==='square-drive'&&compatibleReferences(r,targetRef,moving.sku,target.sku)))continue;
+   if(['square-drive','lego-cross'].includes(sourceRef.profile)&&!targetRef.profile&&targets.some(r=>r.profile===sourceRef.profile&&compatibleReferences(sourceRef,r,moving.sku,target.sku)))continue;
+   if(['square-drive','lego-cross'].includes(targetRef.profile)&&!sourceRef.profile&&candidates.some(r=>r.profile===targetRef.profile&&compatibleReferences(r,targetRef,moving.sku,target.sku)))continue;
    const coaxial=(a,b)=>a&&b&&Math.abs(vector(a.normal).dot(vector(b.normal)))>.99&&vector(a.point).sub(vector(b.point)).cross(vector(b.normal)).length()<.15;
    if(excludedMates.some(block=>block.target===target.id&&coaxial(sourceRef,(references[moving.sku]||[]).find(r=>r.id===block.sourceRef))&&coaxial(targetRef,(references[target.sku]||[]).find(r=>r.id===block.targetRef))))continue;
    if(moving.mate?.target===target.id&&coaxial(targetRef,(references[target.sku]||[]).find(r=>r.id===moving.mate.targetRef)))continue;
@@ -77,7 +77,7 @@ export function nearestMate(moving,parts,references,{distance=SNAP_DISTANCE_MM,e
    const to=worldReference(target,targetRef),endGap=from.point.distanceTo(to.point),seatedGap=from.point.distanceTo(to.point.clone().addScaledVector(to.normal,-depth)),// Seated poses use a tighter corridor to avoid pulling a released piece into a neighbouring hole.
     initialGap=Math.min(endGap,seatedGap/.85);
    let gap=initialGap;
-   const shaft=sourceRef.profile==='square-drive'&&sourceRef.kind==='pin'?sourceRef:targetRef.profile==='square-drive'&&targetRef.kind==='pin'?targetRef:null;
+   const shaft=['square-drive','lego-cross'].includes(sourceRef.profile)&&sourceRef.kind==='pin'?sourceRef:['square-drive','lego-cross'].includes(targetRef.profile)&&targetRef.kind==='pin'?targetRef:null;
    const bore=shaft===sourceRef?targetRef:sourceRef;
    if(shaft&&bore.kind==='hole'&&bore.id!=='motor-output'){
     // Acquire the whole shaft segment, not only its tip. Preserve the user's

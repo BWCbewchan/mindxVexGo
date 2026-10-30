@@ -1,0 +1,892 @@
+{
+  "id": "51515-1",
+  "name": "Robot Inventor",
+  "partTypes": 126,
+  "sourceQuantity": 945,
+  "inventory": [
+    {
+      "part": "10928",
+      "name": "Technic Gear  8 Tooth Reinforced",
+      "quantity": 2,
+      "displayColor": 72,
+      "ldraw": "ldraw/parts/10928.dat"
+    },
+    {
+      "part": "2780",
+      "name": "Technic Pin with Friction and Slots",
+      "quantity": 175,
+      "displayColor": 0,
+      "ldraw": "ldraw/parts/2780.dat"
+    },
+    {
+      "part": "32009",
+      "name": "Technic Beam  3 x  3.8 x  7 Liftarm Bent 45 Double",
+      "quantity": 8,
+      "displayColor": 0,
+      "ldraw": "ldraw/parts/32009.dat"
+    },
+    {
+      "part": "32013",
+      "name": "Technic Angle Connector #1",
+      "quantity": 5,
+      "displayColor": 15,
+      "ldraw": "ldraw/parts/32013.dat"
+    },
+    {
+      "part": "32014",
+      "name": "Technic Angle Connector #6 (90 degree)",
+      "quantity": 1,
+      "displayColor": 0,
+      "ldraw": "ldraw/parts/32014.dat"
+    },
+    {
+      "part": "32034",
+      "name": "Technic Angle Connector #2 (180 degree)",
+      "quantity": 1,
+      "displayColor": 15,
+      "ldraw": "ldraw/parts/32034.dat"
+    },
+    {
+      "part": "32054",
+      "name": "Technic Pin Long with Stop Bush",
+      "quantity": 18,
+      "displayColor": 71,
+      "ldraw": "ldraw/parts/32054.dat"
+    },
+    {
+      "part": "32062",
+      "name": "Technic Axle  2 Notched",
+      "quantity": 10,
+      "displayColor": 4,
+      "ldraw": "ldraw/parts/32062.dat"
+    },
+    {
+      "part": "32073",
+      "name": "Technic Axle  5",
+      "quantity": 4,
+      "displayColor": 14,
+      "ldraw": "ldraw/parts/32073.dat"
+    },
+    {
+      "part": "32123b",
+      "name": "Technic Bush 1/2 Smooth with Axle Hole Semi-Reduced",
+      "quantity": 10,
+      "displayColor": 71,
+      "ldraw": "ldraw/parts/32123b.dat"
+    },
+    {
+      "part": "32140",
+      "name": "Technic Beam  2 x  4 Liftarm Bent 90",
+      "quantity": 12,
+      "displayColor": 0,
+      "ldraw": "ldraw/parts/32140.dat"
+    },
+    {
+      "part": "32184",
+      "name": "Technic Cross Block 1 x 3 (Axle/Pin/Axle)",
+      "quantity": 8,
+      "displayColor": 71,
+      "ldraw": "ldraw/parts/32184.dat"
+    },
+    {
+      "part": "32270",
+      "name": "Technic Gear 12 Tooth Double Bevel",
+      "quantity": 4,
+      "displayColor": 0,
+      "ldraw": "ldraw/parts/32270.dat"
+    },
+    {
+      "part": "32271",
+      "name": "Technic Beam  3 x  7 Liftarm Bent 53.13",
+      "quantity": 4,
+      "displayColor": 0,
+      "ldraw": "ldraw/parts/32271.dat"
+    },
+    {
+      "part": "32278",
+      "name": "Technic Beam 15",
+      "quantity": 5,
+      "displayColor": 0,
+      "ldraw": "ldraw/parts/32278.dat"
+    },
+    {
+      "part": "32291",
+      "name": "Technic Cross Block 2 x 2 (Axle/Twin Pin)",
+      "quantity": 8,
+      "displayColor": 0,
+      "ldraw": "ldraw/parts/32291.dat"
+    },
+    {
+      "part": "32316",
+      "name": "Technic Beam  5",
+      "quantity": 16,
+      "displayColor": 3,
+      "ldraw": "ldraw/parts/32316.dat"
+    },
+    {
+      "part": "32348",
+      "name": "Technic Beam  4 x  4 Liftarm Bent 53.13",
+      "quantity": 9,
+      "displayColor": 0,
+      "ldraw": "ldraw/parts/32348.dat"
+    },
+    {
+      "part": "32498",
+      "name": "Technic Gear 36 Tooth Double Bevel",
+      "quantity": 1,
+      "displayColor": 0,
+      "ldraw": "ldraw/parts/32498.dat"
+    },
+    {
+      "part": "32523",
+      "name": "Technic Beam  3",
+      "quantity": 28,
+      "displayColor": 0,
+      "ldraw": "ldraw/parts/32523.dat"
+    },
+    {
+      "part": "32524",
+      "name": "Technic Beam  7",
+      "quantity": 12,
+      "displayColor": 0,
+      "ldraw": "ldraw/parts/32524.dat"
+    },
+    {
+      "part": "32525",
+      "name": "Technic Beam 11",
+      "quantity": 7,
+      "displayColor": 0,
+      "ldraw": "ldraw/parts/32525.dat"
+    },
+    {
+      "part": "32526",
+      "name": "Technic Beam  3 x  5 Bent 90",
+      "quantity": 18,
+      "displayColor": 0,
+      "ldraw": "ldraw/parts/32526.dat"
+    },
+    {
+      "part": "32556a",
+      "name": "Technic Pin Long without Friction with Single Slot",
+      "quantity": 6,
+      "displayColor": 19,
+      "ldraw": "ldraw/parts/32556a.dat"
+    },
+    {
+      "part": "3648b",
+      "name": "Technic Gear 24 Tooth with Single Axle Hole",
+      "quantity": 2,
+      "displayColor": 72,
+      "ldraw": "ldraw/parts/3648b.dat"
+    },
+    {
+      "part": "3673",
+      "name": "Technic Pin",
+      "quantity": 18,
+      "displayColor": 71,
+      "ldraw": "ldraw/parts/3673.dat"
+    },
+    {
+      "part": "3705",
+      "name": "Technic Axle  4",
+      "quantity": 4,
+      "displayColor": 0,
+      "ldraw": "ldraw/parts/3705.dat"
+    },
+    {
+      "part": "3706",
+      "name": "Technic Axle  6",
+      "quantity": 2,
+      "displayColor": 4,
+      "ldraw": "ldraw/parts/3706.dat"
+    },
+    {
+      "part": "3707",
+      "name": "Technic Axle  8",
+      "quantity": 2,
+      "displayColor": 0,
+      "ldraw": "ldraw/parts/3707.dat"
+    },
+    {
+      "part": "3708",
+      "name": "Technic Axle 12",
+      "quantity": 2,
+      "displayColor": 0,
+      "ldraw": "ldraw/parts/3708.dat"
+    },
+    {
+      "part": "3713",
+      "name": "Technic Bush with Two Flanges",
+      "quantity": 10,
+      "displayColor": 71,
+      "ldraw": "ldraw/parts/3713.dat"
+    },
+    {
+      "part": "3749",
+      "name": "Technic Axle Pin",
+      "quantity": 6,
+      "displayColor": 19,
+      "ldraw": "ldraw/parts/3749.dat"
+    },
+    {
+      "part": "40490",
+      "name": "Technic Beam  9",
+      "quantity": 14,
+      "displayColor": 3,
+      "ldraw": "ldraw/parts/40490.dat"
+    },
+    {
+      "part": "41239",
+      "name": "Technic Beam 13",
+      "quantity": 5,
+      "displayColor": 15,
+      "ldraw": "ldraw/parts/41239.dat"
+    },
+    {
+      "part": "41678",
+      "name": "Technic Cross Block 2 x 2 Split (Axle/Twin Pin)",
+      "quantity": 4,
+      "displayColor": 0,
+      "ldraw": "ldraw/parts/41678.dat"
+    },
+    {
+      "part": "42003",
+      "name": "Technic Cross Block 1 x 3 (Axle/Pin/Pin)",
+      "quantity": 4,
+      "displayColor": 3,
+      "ldraw": "ldraw/parts/42003.dat"
+    },
+    {
+      "part": "43093",
+      "name": "Technic Axle Pin with Friction",
+      "quantity": 60,
+      "displayColor": 1,
+      "ldraw": "ldraw/parts/43093.dat"
+    },
+    {
+      "part": "44294",
+      "name": "Technic Axle  7",
+      "quantity": 4,
+      "displayColor": 71,
+      "ldraw": "ldraw/parts/44294.dat"
+    },
+    {
+      "part": "4519",
+      "name": "Technic Axle  3",
+      "quantity": 9,
+      "displayColor": 71,
+      "ldraw": "ldraw/parts/4519.dat"
+    },
+    {
+      "part": "45590",
+      "name": "Technic Axle Joiner Double Flexible",
+      "quantity": 4,
+      "displayColor": 0,
+      "ldraw": "ldraw/parts/45590.dat"
+    },
+    {
+      "part": "55013",
+      "name": "Technic Axle  8 with Stop",
+      "quantity": 4,
+      "displayColor": 72,
+      "ldraw": "ldraw/parts/55013.dat"
+    },
+    {
+      "part": "59443",
+      "name": "Technic Axle Joiner Inline Smooth",
+      "quantity": 8,
+      "displayColor": 15,
+      "ldraw": "ldraw/parts/59443.dat"
+    },
+    {
+      "part": "60483",
+      "name": "Technic Beam  2 Liftarm",
+      "quantity": 5,
+      "displayColor": 15,
+      "ldraw": "ldraw/parts/60483.dat"
+    },
+    {
+      "part": "60484",
+      "name": "Technic Beam  3 x  3 T-shaped",
+      "quantity": 6,
+      "displayColor": 3,
+      "ldraw": "ldraw/parts/60484.dat"
+    },
+    {
+      "part": "60485",
+      "name": "Technic Axle  9",
+      "quantity": 2,
+      "displayColor": 14,
+      "ldraw": "ldraw/parts/60485.dat"
+    },
+    {
+      "part": "62462",
+      "name": "Technic Pin Joiner Round with Slot",
+      "quantity": 8,
+      "displayColor": 0,
+      "ldraw": "ldraw/parts/62462.dat"
+    },
+    {
+      "part": "63869",
+      "name": "Technic Cross Block 3 x 2 (Axle/Triple Pin)",
+      "quantity": 7,
+      "displayColor": 71,
+      "ldraw": "ldraw/parts/63869.dat"
+    },
+    {
+      "part": "64179",
+      "name": "Technic Beam  7 x  5 with Open Center  5 x  3",
+      "quantity": 5,
+      "displayColor": 0,
+      "ldraw": "ldraw/parts/64179.dat"
+    },
+    {
+      "part": "6536",
+      "name": "Technic Cross Block 1 x 2 (Axle/Pin)",
+      "quantity": 8,
+      "displayColor": 3,
+      "ldraw": "ldraw/parts/6536.dat"
+    },
+    {
+      "part": "6558",
+      "name": "Technic Pin Long with Friction and Slot",
+      "quantity": 82,
+      "displayColor": 1,
+      "ldraw": "ldraw/parts/6558.dat"
+    },
+    {
+      "part": "6589",
+      "name": "Technic Gear 12 Tooth Bevel",
+      "quantity": 6,
+      "displayColor": 19,
+      "ldraw": "ldraw/parts/6589.dat"
+    },
+    {
+      "part": "87080",
+      "name": "Technic Panel Fairing Smooth #1 (Short)",
+      "quantity": 2,
+      "displayColor": 15,
+      "ldraw": "ldraw/parts/87080.dat"
+    },
+    {
+      "part": "87083",
+      "name": "Technic Axle  4 with Stop",
+      "quantity": 6,
+      "displayColor": 72,
+      "ldraw": "ldraw/parts/87083.dat"
+    },
+    {
+      "part": "87086",
+      "name": "Technic Panel Fairing Smooth #2 (Short)",
+      "quantity": 2,
+      "displayColor": 15,
+      "ldraw": "ldraw/parts/87086.dat"
+    },
+    {
+      "part": "99009",
+      "name": "Technic Turntable 28 Tooth Bottom",
+      "quantity": 2,
+      "displayColor": 71,
+      "ldraw": "ldraw/parts/99009.dat"
+    },
+    {
+      "part": "99010",
+      "name": "Technic Turntable 28 Tooth Top",
+      "quantity": 2,
+      "displayColor": 0,
+      "ldraw": "ldraw/parts/99010.dat"
+    },
+    {
+      "part": "10197",
+      "name": "Technic Axle and Pin Connector Hub with 2 Axles at 90 Degrees",
+      "quantity": 2,
+      "displayColor": 0,
+      "ldraw": "ldraw/parts/10197.dat"
+    },
+    {
+      "part": "11478",
+      "name": "Technic Beam  5 x  0.5 Liftarm with Axle Holes at Both Ends",
+      "quantity": 4,
+      "displayColor": 0,
+      "ldraw": "ldraw/parts/11478.dat"
+    },
+    {
+      "part": "11946",
+      "name": "Technic Panel Fairing Smooth #21 (Thin Short)",
+      "quantity": 2,
+      "displayColor": 15,
+      "ldraw": "ldraw/parts/11946.dat"
+    },
+    {
+      "part": "11947",
+      "name": "Technic Panel Fairing Smooth #22 (Thin Short)",
+      "quantity": 2,
+      "displayColor": 15,
+      "ldraw": "ldraw/parts/11947.dat"
+    },
+    {
+      "part": "32015",
+      "name": "Technic Angle Connector #5 (112.5 degree)",
+      "quantity": 2,
+      "displayColor": 15,
+      "ldraw": "ldraw/parts/32015.dat"
+    },
+    {
+      "part": "32557",
+      "name": "Technic Cross Block 2 x 3 (Pin/Pin/Twin Pin)",
+      "quantity": 4,
+      "displayColor": 0,
+      "ldraw": "ldraw/parts/32557.dat"
+    },
+    {
+      "part": "59426",
+      "name": "Technic Axle  5.5 with Stop Type 2",
+      "quantity": 2,
+      "displayColor": 72,
+      "ldraw": "ldraw/parts/59426.dat"
+    },
+    {
+      "part": "64391",
+      "name": "Technic Panel Fairing Smooth #4 (Medium)",
+      "quantity": 2,
+      "displayColor": 15,
+      "ldraw": "ldraw/parts/64391.dat"
+    },
+    {
+      "part": "64393",
+      "name": "Technic Panel Fairing Smooth #6 (Long)",
+      "quantity": 3,
+      "displayColor": 15,
+      "ldraw": "ldraw/parts/64393.dat"
+    },
+    {
+      "part": "64681",
+      "name": "Technic Panel Fairing Smooth #5 (Long)",
+      "quantity": 3,
+      "displayColor": 15,
+      "ldraw": "ldraw/parts/64681.dat"
+    },
+    {
+      "part": "64683",
+      "name": "Technic Panel Fairing Smooth #3 (Medium)",
+      "quantity": 2,
+      "displayColor": 15,
+      "ldraw": "ldraw/parts/64683.dat"
+    },
+    {
+      "part": "85543",
+      "name": "Rubber Belt Round 15 /  1.6",
+      "quantity": 2,
+      "displayColor": 15,
+      "ldraw": "ldraw/parts/85543.dat"
+    },
+    {
+      "part": "98585",
+      "name": "Technic Connector Circular with  2 Pin Holes and  3 Axle Holes",
+      "quantity": 6,
+      "displayColor": 0,
+      "ldraw": "ldraw/parts/98585.dat"
+    },
+    {
+      "part": "98989",
+      "name": "Technic Cross Block  2 x  4 (Axle/Pin/Pin/Twin Pin)",
+      "quantity": 2,
+      "displayColor": 71,
+      "ldraw": "ldraw/parts/98989.dat"
+    },
+    {
+      "part": "99008",
+      "name": "Technic Axle  4 with Middle Cylindrical Stop",
+      "quantity": 2,
+      "displayColor": 19,
+      "ldraw": "ldraw/parts/99008.dat"
+    },
+    {
+      "part": "18575",
+      "name": "Technic Gear 20 Tooth Double Bevel Reinforced",
+      "quantity": 4,
+      "displayColor": 19,
+      "ldraw": "ldraw/parts/18575.dat"
+    },
+    {
+      "part": "32192",
+      "name": "Technic Angle Connector #4 (135 degree)",
+      "quantity": 6,
+      "displayColor": 15,
+      "ldraw": "ldraw/parts/32192.dat"
+    },
+    {
+      "part": "54821",
+      "name": "Technic Bionicle Ball 16.5 mm",
+      "quantity": 1,
+      "displayColor": 4,
+      "ldraw": "ldraw/parts/54821.dat"
+    },
+    {
+      "part": "14720",
+      "name": "Technic Beam  5 x  3 H-shaped",
+      "quantity": 2,
+      "displayColor": 71,
+      "ldraw": "ldraw/parts/14720.dat"
+    },
+    {
+      "part": "15458",
+      "name": "Technic Panel  3 x 11",
+      "quantity": 2,
+      "displayColor": 15,
+      "ldraw": "ldraw/parts/15458.dat"
+    },
+    {
+      "part": "37308",
+      "name": "Electric Powered Up Colour Sensor",
+      "quantity": 1,
+      "displayColor": 15,
+      "ldraw": "ldraw/parts/37308.dat"
+    },
+    {
+      "part": "37316",
+      "name": "Electric Powered Up Distance Sensor",
+      "quantity": 1,
+      "displayColor": 15,
+      "ldraw": "ldraw/parts/37316.dat"
+    },
+    {
+      "part": "39367",
+      "name": "Wheel 14 x 48 with 4 Spokes with Integral Tyre",
+      "quantity": 6,
+      "displayColor": 0,
+      "ldraw": "ldraw/parts/39367.dat"
+    },
+    {
+      "part": "39369",
+      "name": "Technic Beam 19 x 11 Baseplate",
+      "quantity": 1,
+      "displayColor": 3,
+      "ldraw": "ldraw/parts/39369.dat"
+    },
+    {
+      "part": "39790",
+      "name": "Technic Beam 15 x 11 with Open Center 13 x  9",
+      "quantity": 2,
+      "displayColor": 0,
+      "ldraw": "ldraw/parts/39790.dat"
+    },
+    {
+      "part": "39793",
+      "name": "Technic Connector Block  3 x  3 with  9 Perpendicular Holes",
+      "quantity": 9,
+      "displayColor": 3,
+      "ldraw": "ldraw/parts/39793.dat"
+    },
+    {
+      "part": "39794",
+      "name": "Technic Beam 11 x  7 with Open Center  9 x  5",
+      "quantity": 2,
+      "displayColor": 0,
+      "ldraw": "ldraw/parts/39794.dat"
+    },
+    {
+      "part": "44375b",
+      "name": "Dish  6 x  6 Inverted with Solid Studs",
+      "quantity": 1,
+      "displayColor": 15,
+      "ldraw": "ldraw/parts/44375b.dat"
+    },
+    {
+      "part": "49283",
+      "name": "Technic Cable Clip",
+      "quantity": 8,
+      "displayColor": 3,
+      "ldraw": "ldraw/parts/49283.dat"
+    },
+    {
+      "part": "54696p01",
+      "name": "Electric Powered Up Medium Angular Motor with Medium Azure Back and Hub Pattern",
+      "quantity": 4,
+      "displayColor": 71,
+      "ldraw": "ldraw/parts/54696p01.dat"
+    },
+    {
+      "part": "56903",
+      "name": "Wheel Rim  8 x 18 with Deep Centre Groove and Axle Hole",
+      "quantity": 4,
+      "displayColor": 15,
+      "ldraw": "ldraw/parts/56903.dat"
+    },
+    {
+      "part": "61254",
+      "name": "Tyre  7/ 45 x 17 Offset Tread with Middle Band",
+      "quantity": 4,
+      "displayColor": 0,
+      "ldraw": "ldraw/parts/61254.dat"
+    },
+    {
+      "part": "66906",
+      "name": "=Technic Pin Towball with Friction",
+      "quantity": 4,
+      "displayColor": 0,
+      "ldraw": "ldraw/parts/66906.dat"
+    },
+    {
+      "part": "11214",
+      "name": "Technic Axle Pin Long with Friction with  2L Pin",
+      "quantity": 14,
+      "displayColor": 72,
+      "ldraw": "ldraw/parts/11214.dat"
+    },
+    {
+      "part": "15462",
+      "name": "Technic Axle  5 with Stop",
+      "quantity": 2,
+      "displayColor": 70,
+      "ldraw": "ldraw/parts/15462.dat"
+    },
+    {
+      "part": "18654",
+      "name": "Technic Beam  1",
+      "quantity": 26,
+      "displayColor": 3,
+      "ldraw": "ldraw/parts/18654.dat"
+    },
+    {
+      "part": "18938",
+      "name": "Technic Turntable 60 Tooth Top",
+      "quantity": 1,
+      "displayColor": 0,
+      "ldraw": "ldraw/parts/18938.dat"
+    },
+    {
+      "part": "18939",
+      "name": "Technic Turntable 60 Tooth Bottom",
+      "quantity": 1,
+      "displayColor": 71,
+      "ldraw": "ldraw/parts/18939.dat"
+    },
+    {
+      "part": "22961",
+      "name": "Technic Axle with Perpendicular Pin Hole",
+      "quantity": 4,
+      "displayColor": 0,
+      "ldraw": "ldraw/parts/22961.dat"
+    },
+    {
+      "part": "24119",
+      "name": "Technic Panel Smooth  7 x  2 x  3",
+      "quantity": 2,
+      "displayColor": 15,
+      "ldraw": "ldraw/parts/24119.dat"
+    },
+    {
+      "part": "42135",
+      "name": "Technic Connector (Axle/Bush) Type 2",
+      "quantity": 3,
+      "displayColor": 0,
+      "ldraw": "ldraw/parts/42135.dat"
+    },
+    {
+      "part": "4274",
+      "name": "Technic Pin  1/2",
+      "quantity": 10,
+      "displayColor": 71,
+      "ldraw": "ldraw/parts/4274.dat"
+    },
+    {
+      "part": "49130",
+      "name": "Technic Pin Connector Perpendicular  3 x  3 Bent 90 with 4 Pins, Slots Across Beam",
+      "quantity": 4,
+      "displayColor": 71,
+      "ldraw": "ldraw/parts/49130.dat"
+    },
+    {
+      "part": "65489",
+      "name": "Technic Cross Block 1 x 3 (Pin/Pin/Pin) with 4 Pins Rectangular Centre Hole",
+      "quantity": 12,
+      "displayColor": 71,
+      "ldraw": "ldraw/parts/65489.dat"
+    },
+    {
+      "part": "3069b",
+      "name": "Tile  1 x  2 with Groove",
+      "quantity": 4,
+      "displayColor": 3,
+      "ldraw": "ldraw/parts/3069b.dat"
+    },
+    {
+      "part": "4162",
+      "name": "Tile  1 x  8",
+      "quantity": 2,
+      "displayColor": 0,
+      "ldraw": "ldraw/parts/4162.dat"
+    },
+    {
+      "part": "87079",
+      "name": "Tile  2 x  4",
+      "quantity": 1,
+      "displayColor": 3,
+      "ldraw": "ldraw/parts/87079.dat"
+    },
+    {
+      "part": "18948",
+      "name": "Technic Axle Joiner  3L with Ridges for Driving Ring",
+      "quantity": 1,
+      "displayColor": 15,
+      "ldraw": "ldraw/parts/18948.dat"
+    },
+    {
+      "part": "24116",
+      "name": "Technic Panel Bent  4 x  5 x  3",
+      "quantity": 2,
+      "displayColor": 15,
+      "ldraw": "ldraw/parts/24116.dat"
+    },
+    {
+      "part": "24316",
+      "name": "Technic Axle  3 with Stop",
+      "quantity": 12,
+      "displayColor": 70,
+      "ldraw": "ldraw/parts/24316.dat"
+    },
+    {
+      "part": "2476a",
+      "name": "Plate  2 x  2 with Pin Type 1",
+      "quantity": 2,
+      "displayColor": 71,
+      "ldraw": "ldraw/parts/2476a.dat"
+    },
+    {
+      "part": "25214",
+      "name": "Cylinder  2 x  2 Elbow with Axle Holes",
+      "quantity": 8,
+      "displayColor": 0,
+      "ldraw": "ldraw/parts/25214.dat"
+    },
+    {
+      "part": "2569",
+      "name": "Antenna  8H Whip",
+      "quantity": 2,
+      "displayColor": 0,
+      "ldraw": "ldraw/parts/2569.dat"
+    },
+    {
+      "part": "32474",
+      "name": "Technic Ball Joint with Axlehole Blind",
+      "quantity": 2,
+      "displayColor": 3,
+      "ldraw": "ldraw/parts/32474.dat"
+    },
+    {
+      "part": "3961",
+      "name": "Dish  8 x  8 Inverted with Solid Studs",
+      "quantity": 1,
+      "displayColor": 3,
+      "ldraw": "ldraw/parts/3961.dat"
+    },
+    {
+      "part": "41250",
+      "name": "~_Ball 52mm Diameter Red (Obsolete)",
+      "quantity": 1,
+      "displayColor": 4,
+      "ldraw": "ldraw/parts/41250.dat"
+    },
+    {
+      "part": "44874",
+      "name": "Technic Pin Long with Pin Hole Type 2",
+      "quantity": 4,
+      "displayColor": 71,
+      "ldraw": "ldraw/parts/44874.dat"
+    },
+    {
+      "part": "46537",
+      "name": "Technic Competition Arrow with Solid Shaft and Cross Shaped Rubber Black Tip",
+      "quantity": 2,
+      "displayColor": 71,
+      "ldraw": "ldraw/parts/46537.dat"
+    },
+    {
+      "part": "46882",
+      "name": "Technic Panel 15 x  2 x  7 Mudguard with Trapezoidal Arch",
+      "quantity": 2,
+      "displayColor": 15,
+      "ldraw": "ldraw/parts/46882.dat"
+    },
+    {
+      "part": "49743c01",
+      "name": "Spring Shooter  2 x  6 x  1.333 with Dark Bluish Grey Bottom with Loaded Light Bluish Grey Arrow",
+      "quantity": 2,
+      "displayColor": 72,
+      "ldraw": "ldraw/parts/49743c01.dat"
+    },
+    {
+      "part": "55889",
+      "name": "Wheel 12 x 18 Smooth",
+      "quantity": 4,
+      "displayColor": 0,
+      "ldraw": "ldraw/parts/55889.dat"
+    },
+    {
+      "part": "62531",
+      "name": "Technic Panel Smooth 11 x  2 x  3",
+      "quantity": 3,
+      "displayColor": 15,
+      "ldraw": "ldraw/parts/62531.dat"
+    },
+    {
+      "part": "64782",
+      "name": "Technic Panel  5 x 11",
+      "quantity": 4,
+      "displayColor": 15,
+      "ldraw": "ldraw/parts/64782.dat"
+    },
+    {
+      "part": "65098",
+      "name": "Technic Pin  3L Double with Axlehole and Pins with Rectangular Holes",
+      "quantity": 4,
+      "displayColor": 71,
+      "ldraw": "ldraw/parts/65098.dat"
+    },
+    {
+      "part": "65413",
+      "name": "Technic Gear 28 Tooth Double Bevel with Peghole",
+      "quantity": 1,
+      "displayColor": 4,
+      "ldraw": "ldraw/parts/65413.dat"
+    },
+    {
+      "part": "65414",
+      "name": "Technic Differential Casing for 5 Internal Gears",
+      "quantity": 1,
+      "displayColor": 71,
+      "ldraw": "ldraw/parts/65414.dat"
+    },
+    {
+      "part": "65487",
+      "name": "Technic Pin with Friction with Perpendicular Pin Hole Type 2",
+      "quantity": 18,
+      "displayColor": 15,
+      "ldraw": "ldraw/parts/65487.dat"
+    },
+    {
+      "part": "6636",
+      "name": "Tile  1 x  6",
+      "quantity": 2,
+      "displayColor": 0,
+      "ldraw": "ldraw/parts/6636.dat"
+    },
+    {
+      "part": "67704",
+      "name": "=Electric Powered Up 6 Port Hub Rechargeable Battery",
+      "quantity": 1,
+      "displayColor": 3,
+      "ldraw": "ldraw/parts/67704.dat"
+    },
+    {
+      "part": "67718c01",
+      "name": "Electric Powered Up 6 Port Hub with Dark Turquoise Bottom",
+      "quantity": 1,
+      "displayColor": 3,
+      "ldraw": "ldraw/parts/67718c01.dat"
+    }
+  ],
+  "factoryInventoryVerified": false,
+  "quantityByColorAvailable": false
+}

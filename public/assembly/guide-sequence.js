@@ -1,6 +1,7 @@
 import {nearestMate,worldReference,seatedPinMatches} from './mating.js?v=fit-tolerance-36';
 import { compatibleReferences } from './connector-policy.js';
 import {PLATFORM} from './platform.js';
+import {generateIQGuide} from './iq-guide-sequence.js';
 
 const defaultElectronics = new Set([
   '269-6685-000', '269-6686-000', '269-6687-000', '269-6690-000',
@@ -61,7 +62,11 @@ export function generateStudentGuide(parts, {
   nameFor = part => part.label || part.sku,
   isElectronic = sku => PLATFORM.electronics.includes(sku),
   inferConnections = false,
+  objects = null,
+  insertionPaths = null,
 } = {}) {
+  if(PLATFORM.id==='lego')return {ready:false,steps:[],blockers:['Thư viện LEGO đã hỗ trợ lắp và lưu dự án. Xuất guide LEGO chưa được kiểm chứng về thứ tự lắp.'],notes:[]};
+  if(PLATFORM.id==='vexiq')return generateIQGuide(parts,{references,nameFor,isElectronic,inferConnections,objects,insertionPaths});
   if (!parts.length) return { ready: false, steps: [], blockers: ['Add the parts for the model first.'], notes: [] };
   parts=structuredClone(parts);
   let inferred=0;

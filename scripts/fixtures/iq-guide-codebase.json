@@ -1,0 +1,673 @@
+{
+  "version": 1,
+  "platform": "vexiq",
+  "title": "IQ guide regression",
+  "parts": [
+    {
+      "id": "72a6fa8e-d1c1-4cf8-8cd9-2c72c626c48d",
+      "sku": "228-2500-026",
+      "label": "2x12 Beam",
+      "kind": "body",
+      "position": [
+        149.20695072510944,
+        38.59061824081296,
+        -99.34323187721738
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "snapBlocked": [
+        {
+          "target": "87accf35-8515-4170-a603-ec417b3a7827",
+          "sourceRef": "57",
+          "targetRef": "6"
+        }
+      ]
+    },
+    {
+      "id": "2b97f020-a956-4933-b5c0-52942feed4b8",
+      "sku": "228-2500-1253",
+      "label": "Triple 2x Wide, 2x2 Corner Connector",
+      "kind": "body",
+      "position": [
+        92.05695072510944,
+        41.76561824081296,
+        -92.99323187721738
+      ],
+      "rotation": [
+        0,
+        0,
+        -180
+      ],
+      "snapBlocked": [
+        {
+          "target": "72a6fa8e-d1c1-4cf8-8cd9-2c72c626c48d",
+          "sourceRef": "52",
+          "targetRef": "4"
+        }
+      ],
+      "mate": {
+        "target": "72a6fa8e-d1c1-4cf8-8cd9-2c72c626c48d",
+        "sourceRef": "52",
+        "targetRef": "4",
+        "depth": 4.549999999999997,
+        "twist": 0,
+        "flip": false
+      }
+    },
+    {
+      "id": "27312f66-b90e-4e4a-995e-48f6346aebd2",
+      "sku": "228-2500-1253",
+      "label": "Triple 2x Wide, 2x2 Corner Connector",
+      "kind": "body",
+      "position": [
+        92.05695072510943,
+        67.16561824081296,
+        -105.69323187721737
+      ],
+      "rotation": [
+        -180,
+        7.016709298534876e-15,
+        -180
+      ],
+      "snapBlocked": [
+        {
+          "target": "72a6fa8e-d1c1-4cf8-8cd9-2c72c626c48d",
+          "sourceRef": "17",
+          "targetRef": "9"
+        }
+      ],
+      "mate": {
+        "target": "72a6fa8e-d1c1-4cf8-8cd9-2c72c626c48d",
+        "sourceRef": "17",
+        "targetRef": "9",
+        "depth": 4.549999999999997,
+        "twist": 180,
+        "flip": false
+      }
+    },
+    {
+      "id": "340e84dc-b414-4ade-9f2f-1e98f00054e8",
+      "sku": "228-2500-1253",
+      "label": "Triple 2x Wide, 2x2 Corner Connector",
+      "kind": "body",
+      "position": [
+        130.15695072510943,
+        67.16561824081296,
+        -92.99323187721738
+      ],
+      "rotation": [
+        0,
+        90,
+        0
+      ],
+      "snapBlocked": [
+        {
+          "target": "72a6fa8e-d1c1-4cf8-8cd9-2c72c626c48d",
+          "sourceRef": "17",
+          "targetRef": "28"
+        }
+      ],
+      "mate": {
+        "target": "72a6fa8e-d1c1-4cf8-8cd9-2c72c626c48d",
+        "sourceRef": "17",
+        "targetRef": "28",
+        "depth": 4.549999999999997,
+        "twist": 0,
+        "flip": false
+      }
+    },
+    {
+      "id": "5be45133-969d-46de-bcaf-caadf58f6a41",
+      "sku": "228-2500-1253",
+      "label": "Triple 2x Wide, 2x2 Corner Connector",
+      "kind": "body",
+      "position": [
+        219.05695072510943,
+        67.16561824081296,
+        -92.99323187721738
+      ],
+      "rotation": [
+        0,
+        90,
+        0
+      ],
+      "snapBlocked": [
+        {
+          "target": "72a6fa8e-d1c1-4cf8-8cd9-2c72c626c48d",
+          "sourceRef": "17",
+          "targetRef": "70"
+        }
+      ],
+      "mate": {
+        "target": "72a6fa8e-d1c1-4cf8-8cd9-2c72c626c48d",
+        "sourceRef": "17",
+        "targetRef": "70",
+        "depth": 4.549999999999997,
+        "twist": 90,
+        "flip": false
+      }
+    },
+    {
+      "id": "e79db998-eac4-463c-b068-9427027943ed",
+      "sku": "228-2500-060",
+      "label": "1x1 Connector Pin",
+      "kind": "pin",
+      "position": [
+        92.05695072510943,
+        60.81561824081296,
+        -112.04323187721738
+      ],
+      "rotation": [
+        -89.99999999999999,
+        7.016709298534875e-15,
+        -7.016709298534876e-15
+      ],
+      "mate": {
+        "target": "27312f66-b90e-4e4a-995e-48f6346aebd2",
+        "sourceRef": "1",
+        "targetRef": "4",
+        "depth": 4.549999999999983,
+        "twist": 0,
+        "flip": false
+      }
+    },
+    {
+      "id": "78c4d3bf-ed8e-4260-89d3-7ece6a6854d3",
+      "sku": "228-2500-060",
+      "label": "1x1 Connector Pin",
+      "kind": "pin",
+      "position": [
+        79.35695072510943,
+        48.115618240812964,
+        -112.04323187721738
+      ],
+      "rotation": [
+        -89.99999999999999,
+        7.016709298534875e-15,
+        -7.016709298534876e-15
+      ],
+      "mate": {
+        "target": "27312f66-b90e-4e4a-995e-48f6346aebd2",
+        "sourceRef": "1",
+        "targetRef": "12",
+        "depth": 4.549999999999983,
+        "twist": 0,
+        "flip": false
+      }
+    },
+    {
+      "id": "4a01c694-29bb-4f99-a6fb-ac649541873f",
+      "sku": "228-2500-026",
+      "label": "2x12 Beam",
+      "kind": "body",
+      "position": [
+        149.20695072510944,
+        54.24061824081298,
+        -115.21823187721739
+      ],
+      "rotation": [
+        -90.00000000000001,
+        1.272221872585407e-14,
+        -1.272221872585407e-14
+      ],
+      "visible": true,
+      "snapBlocked": [
+        {
+          "target": "3428a476-eb91-4a14-abf3-485c84cda304",
+          "sourceRef": "58",
+          "targetRef": "6"
+        },
+        {
+          "target": "512c38ab-d3ab-49b7-b215-2fe5f86fec0a",
+          "sourceRef": "50",
+          "targetRef": "1"
+        },
+        {
+          "target": "73815f80-a341-474f-9afc-2d279170e30b",
+          "sourceRef": "55",
+          "targetRef": "1"
+        },
+        {
+          "target": "01158e33-0aba-4cda-bde5-f46b513c1a55",
+          "sourceRef": "44",
+          "targetRef": "1"
+        },
+        {
+          "target": "db3b50fe-1086-412c-9435-513b7cc40d3e",
+          "sourceRef": "43",
+          "targetRef": "1"
+        }
+      ]
+    },
+    {
+      "id": "a74d31bf-45cb-4786-999b-60f60a263fa8",
+      "sku": "228-2500-060",
+      "label": "1x1 Connector Pin",
+      "kind": "pin",
+      "position": [
+        79.35695072510943,
+        60.815618240812995,
+        -118.3932318772174
+      ],
+      "rotation": [
+        89.99999999999999,
+        1.2722218725854067e-14,
+        1.272221872585407e-14
+      ],
+      "snapBlocked": [
+        {
+          "target": "4a01c694-29bb-4f99-a6fb-ac649541873f",
+          "sourceRef": "6",
+          "targetRef": "4"
+        }
+      ]
+    },
+    {
+      "id": "fbd4e769-5ebb-438d-8010-5f456bb5c2ff",
+      "sku": "228-2500-060",
+      "label": "1x1 Connector Pin",
+      "kind": "pin",
+      "position": [
+        92.05695072510942,
+        48.11561824081299,
+        -118.3932318772174
+      ],
+      "rotation": [
+        89.99999999999999,
+        1.2722218725854067e-14,
+        1.272221872585407e-14
+      ],
+      "snapBlocked": [
+        {
+          "target": "4a01c694-29bb-4f99-a6fb-ac649541873f",
+          "sourceRef": "6",
+          "targetRef": "9"
+        }
+      ]
+    },
+    {
+      "id": "9f9f1a40-0d8f-439d-84ef-b93b735c3162",
+      "sku": "228-2500-017",
+      "label": "2x2 Beam",
+      "kind": "body",
+      "position": [
+        85.70695072510944,
+        54.465618240813,
+        -121.5682318772174
+      ],
+      "rotation": [
+        89.99999999999999,
+        1.2722218725854067e-14,
+        1.272221872585407e-14
+      ],
+      "mate": {
+        "target": "a74d31bf-45cb-4786-999b-60f60a263fa8",
+        "sourceRef": "3",
+        "targetRef": "1",
+        "depth": 4.549999999999997,
+        "twist": 0,
+        "flip": false
+      }
+    },
+    {
+      "id": "3428a476-eb91-4a14-abf3-485c84cda304",
+      "sku": "228-2500-060",
+      "label": "1x1 Connector Pin",
+      "kind": "pin",
+      "position": [
+        193.65695072510943,
+        60.59061824081296,
+        -118.39323187721737
+      ],
+      "rotation": [
+        89.99999999999999,
+        1.2722218725854067e-14,
+        1.272221872585407e-14
+      ],
+      "snapBlocked": [
+        {
+          "target": "4a01c694-29bb-4f99-a6fb-ac649541873f",
+          "sourceRef": "6",
+          "targetRef": "58"
+        }
+      ]
+    },
+    {
+      "id": "13747c11-8c58-45f7-a7d4-a73e32ff11df",
+      "sku": "228-2500-060",
+      "label": "1x1 Connector Pin",
+      "kind": "pin",
+      "position": [
+        180.95695072510944,
+        48.11561824081298,
+        -118.39323187721737
+      ],
+      "rotation": [
+        89.99999999999999,
+        1.2722218725854067e-14,
+        1.272221872585407e-14
+      ],
+      "snapBlocked": [
+        {
+          "target": "4a01c694-29bb-4f99-a6fb-ac649541873f",
+          "sourceRef": "6",
+          "targetRef": "51"
+        }
+      ]
+    },
+    {
+      "id": "f6a45aaf-5e4a-427d-9dbe-a5ae96bd5d94",
+      "sku": "228-2500-017",
+      "label": "2x2 Beam",
+      "kind": "body",
+      "position": [
+        187.30695072510943,
+        54.46561824081298,
+        -121.56823187721739
+      ],
+      "rotation": [
+        89.99999999999999,
+        1.2722218725854067e-14,
+        1.272221872585407e-14
+      ],
+      "mate": {
+        "target": "13747c11-8c58-45f7-a7d4-a73e32ff11df",
+        "sourceRef": "4",
+        "targetRef": "1",
+        "depth": 4.549999999999983,
+        "twist": 0,
+        "flip": false
+      },
+      "visible": true
+    },
+    {
+      "id": "512c38ab-d3ab-49b7-b215-2fe5f86fec0a",
+      "sku": "228-2500-060",
+      "label": "1x1 Connector Pin",
+      "kind": "pin",
+      "position": [
+        180.95695072510944,
+        60.59061824081297,
+        -112.04323187721738
+      ],
+      "rotation": [
+        89.99999999999999,
+        1.2722218725854067e-14,
+        1.2722218725854073e-14
+      ],
+      "snapBlocked": [
+        {
+          "target": "4a01c694-29bb-4f99-a6fb-ac649541873f",
+          "sourceRef": "1",
+          "targetRef": "50"
+        }
+      ],
+      "locked": false
+    },
+    {
+      "id": "73815f80-a341-474f-9afc-2d279170e30b",
+      "sku": "228-2500-060",
+      "label": "1x1 Connector Pin",
+      "kind": "pin",
+      "position": [
+        193.65695072510943,
+        47.890618240812955,
+        -112.04323187721738
+      ],
+      "rotation": [
+        89.99999999999999,
+        1.2722218725854062e-14,
+        1.272221872585407e-14
+      ],
+      "snapBlocked": [
+        {
+          "target": "4a01c694-29bb-4f99-a6fb-ac649541873f",
+          "sourceRef": "1",
+          "targetRef": "55"
+        }
+      ]
+    },
+    {
+      "id": "3d2c5df4-a294-4a54-a4fd-2ea486cb649a",
+      "sku": "228-2560",
+      "label": "Smart Motor",
+      "kind": "motor",
+      "position": [
+        177.78195072510943,
+        54.24061824081298,
+        -111.91823187721738
+      ],
+      "rotation": [
+        -1.2722218725854067e-14,
+        -1.2722218725854073e-14,
+        180
+      ],
+      "snapBlocked": [
+        {
+          "target": "512c38ab-d3ab-49b7-b215-2fe5f86fec0a",
+          "sourceRef": "7",
+          "targetRef": "6"
+        },
+        {
+          "target": "3651ec5e-cb53-4021-a601-e51148a1365b",
+          "sourceRef": "motor-output",
+          "targetRef": "square-pin-walls-2"
+        }
+      ]
+    },
+    {
+      "id": "01158e33-0aba-4cda-bde5-f46b513c1a55",
+      "sku": "228-2500-060",
+      "label": "1x1 Connector Pin",
+      "kind": "pin",
+      "position": [
+        168.25695072510942,
+        60.59061824081297,
+        -112.0432318772174
+      ],
+      "rotation": [
+        89.99999999999999,
+        1.2722218725854067e-14,
+        1.272221872585407e-14
+      ],
+      "snapBlocked": [
+        {
+          "target": "4a01c694-29bb-4f99-a6fb-ac649541873f",
+          "sourceRef": "1",
+          "targetRef": "44"
+        }
+      ]
+    },
+    {
+      "id": "db3b50fe-1086-412c-9435-513b7cc40d3e",
+      "sku": "228-2500-060",
+      "label": "1x1 Connector Pin",
+      "kind": "pin",
+      "position": [
+        168.25695072510942,
+        47.89061824081297,
+        -112.04323187721738
+      ],
+      "rotation": [
+        89.99999999999999,
+        1.2722218725854067e-14,
+        1.272221872585407e-14
+      ],
+      "snapBlocked": [
+        {
+          "target": "4a01c694-29bb-4f99-a6fb-ac649541873f",
+          "sourceRef": "1",
+          "targetRef": "43"
+        }
+      ]
+    },
+    {
+      "id": "3651ec5e-cb53-4021-a601-e51148a1365b",
+      "sku": "228-2500-2236",
+      "label": "3x Pitch Motor Shaft",
+      "kind": "shaft",
+      "position": [
+        187.30695072510943,
+        54.24061824081298,
+        -108.86923187721737
+      ],
+      "rotation": [
+        90,
+        -14.104474368640536,
+        1.2297822665026616e-14
+      ],
+      "snapBlocked": [
+        {
+          "target": "3d2c5df4-a294-4a54-a4fd-2ea486cb649a",
+          "sourceRef": "square-pin-walls-2",
+          "targetRef": "motor-output"
+        }
+      ]
+    },
+    {
+      "id": "3edc5cbf-3c2d-4f75-9833-5ddceb4212b1",
+      "sku": "228-2500-026",
+      "label": "2x12 Beam",
+      "kind": "body",
+      "position": [
+        149.20695072510944,
+        70.34061824081297,
+        -99.34323187721738
+      ],
+      "rotation": [
+        0,
+        0,
+        -180
+      ],
+      "snapBlocked": [
+        {
+          "target": "340e84dc-b414-4ade-9f2f-1e98f00054e8",
+          "sourceRef": "45",
+          "targetRef": "52"
+        }
+      ]
+    },
+    {
+      "id": "74b0acd5-842b-40fa-ab51-231be76f7b19",
+      "sku": "228-2500-2225",
+      "label": "5x Pitch Capped Shaft",
+      "kind": "shaft",
+      "position": [
+        85.70695072510944,
+        54.46561824081295,
+        -86
+      ],
+      "rotation": [
+        90.00000000000001,
+        0,
+        0
+      ],
+      "mate": {
+        "target": "2b97f020-a956-4933-b5c0-52942feed4b8",
+        "sourceRef": "square-pin-walls-1",
+        "targetRef": "6",
+        "depth": 60.189768122782624,
+        "twist": 0,
+        "flip": false
+      }
+    },
+    {
+      "id": "86dc1346-c1b1-40c9-9f93-fe6e6a67520b",
+      "sku": "228-2500-114",
+      "label": "0.25x Pitch Spacer",
+      "kind": "retainer",
+      "position": [
+        85.70695072510944,
+        54.46561824081295,
+        -125.80950000000001
+      ],
+      "rotation": [
+        -89.99999999999999,
+        0,
+        0
+      ],
+      "mate": {
+        "target": "74b0acd5-842b-40fa-ab51-231be76f7b19",
+        "sourceRef": "1",
+        "targetRef": "square-pin-walls-1",
+        "depth": 23.5,
+        "twist": 0,
+        "flip": false
+      }
+    },
+    {
+      "id": "fc2731bc-3af0-4460-9efc-d30ac175c14b",
+      "sku": "228-2500-114",
+      "label": "0.25x Pitch Spacer",
+      "kind": "retainer",
+      "position": [
+        187.30695072510943,
+        54.24061824081297,
+        -126
+      ],
+      "rotation": [
+        -90.00000000000001,
+        2.118675023064076e-30,
+        -1.1927080055488187e-14
+      ],
+      "snapBlocked": [
+        {
+          "target": "3651ec5e-cb53-4021-a601-e51148a1365b",
+          "sourceRef": "1",
+          "targetRef": "square-pin-walls-1"
+        }
+      ]
+    },
+    {
+      "id": "c551142d-3444-4faa-ab9b-afe35b362cdc",
+      "sku": "228-2500-168",
+      "label": "Rubber Shaft Collar v1",
+      "kind": "retainer",
+      "position": [
+        192.22145072510943,
+        52.82063824081297,
+        -138.2471518772174
+      ],
+      "rotation": [
+        -6.3611093629270335e-15,
+        -1.1927080055488187e-14,
+        -6.6208594470752375e-31
+      ],
+      "mate": {
+        "target": "3651ec5e-cb53-4021-a601-e51148a1365b",
+        "sourceRef": "3",
+        "targetRef": "square-pin-walls-1",
+        "depth": 6,
+        "twist": 0,
+        "flip": false
+      }
+    },
+    {
+      "id": "d3352309-08d5-4171-8e88-3cec825e53c0",
+      "sku": "228-2500-168",
+      "label": "Rubber Shaft Collar v1",
+      "kind": "retainer",
+      "position": [
+        90.62145072510944,
+        53.045638240812956,
+        -137.21392
+      ],
+      "rotation": [
+        1.2722218725854067e-14,
+        0,
+        0
+      ],
+      "mate": {
+        "target": "74b0acd5-842b-40fa-ab51-231be76f7b19",
+        "sourceRef": "3",
+        "targetRef": "square-pin-walls-1",
+        "depth": 5.5,
+        "twist": 0,
+        "flip": false
+      }
+    }
+  ]
+}

@@ -1,0 +1,100 @@
+﻿part,name,quantity,displayColor,ldraw
+11145,Electric Mindstorms EV3 Cable 25 cm,4,0,ldraw/parts/11145.dat
+2780,Technic Pin with Friction and Slots,95,0,ldraw/parts/2780.dat
+2815,Technic Wedge Belt Wheel Tyre,3,0,ldraw/parts/2815.dat
+32009,Technic Beam  3 x  3.8 x  7 Liftarm Bent 45 Double,12,0,ldraw/parts/32009.dat
+32013,Technic Angle Connector #1,4,4,ldraw/parts/32013.dat
+32014,Technic Angle Connector #6 (90 degree),1,4,ldraw/parts/32014.dat
+32034,Technic Angle Connector #2 (180 degree),6,4,ldraw/parts/32034.dat
+32054,Technic Pin Long with Stop Bush,10,4,ldraw/parts/32054.dat
+32062,Technic Axle  2 Notched,12,4,ldraw/parts/32062.dat
+32072,Technic Gear  4 Knob,4,0,ldraw/parts/32072.dat
+32073,Technic Axle  5,9,71,ldraw/parts/32073.dat
+32123b,Technic Bush 1/2 Smooth with Axle Hole Semi-Reduced,11,14,ldraw/parts/32123b.dat
+32140,Technic Beam  2 x  4 Liftarm Bent 90,8,0,ldraw/parts/32140.dat
+32184,Technic Cross Block 1 x 3 (Axle/Pin/Axle),17,4,ldraw/parts/32184.dat
+32270,Technic Gear 12 Tooth Double Bevel,2,0,ldraw/parts/32270.dat
+32271,Technic Beam  3 x  7 Liftarm Bent 53.13,12,0,ldraw/parts/32271.dat
+32278,Technic Beam 15,4,0,ldraw/parts/32278.dat
+32291,Technic Cross Block 2 x 2 (Axle/Twin Pin),2,4,ldraw/parts/32291.dat
+32316,Technic Beam  5,10,0,ldraw/parts/32316.dat
+32348,Technic Beam  4 x  4 Liftarm Bent 53.13,4,0,ldraw/parts/32348.dat
+32498,Technic Gear 36 Tooth Double Bevel,5,0,ldraw/parts/32498.dat
+32523,Technic Beam  3,12,0,ldraw/parts/32523.dat
+32524,Technic Beam  7,6,0,ldraw/parts/32524.dat
+32525,Technic Beam 11,4,4,ldraw/parts/32525.dat
+32526,Technic Beam  3 x  5 Bent 90,6,0,ldraw/parts/32526.dat
+32556a,Technic Pin Long without Friction with Single Slot,4,19,ldraw/parts/32556a.dat
+3648b,Technic Gear 24 Tooth with Single Axle Hole,2,72,ldraw/parts/3648b.dat
+3673,Technic Pin,4,71,ldraw/parts/3673.dat
+3706,Technic Axle  6,9,0,ldraw/parts/3706.dat
+3713,Technic Bush with Two Flanges,9,4,ldraw/parts/3713.dat
+40490,Technic Beam  9,8,0,ldraw/parts/40490.dat
+41239,Technic Beam 13,4,0,ldraw/parts/41239.dat
+41669,Technic Tooth  1 x  3 with Axlehole with Rounded Bottom Cavity,10,4,ldraw/parts/41669.dat
+41678,Technic Cross Block 2 x 2 Split (Axle/Twin Pin),4,4,ldraw/parts/41678.dat
+4185a,Technic Wedge Belt Wheel - Not Reinforced,3,71,ldraw/parts/4185a.dat
+42003,Technic Cross Block 1 x 3 (Axle/Pin/Pin),14,4,ldraw/parts/42003.dat
+43093,Technic Axle Pin with Friction,28,1,ldraw/parts/43093.dat
+44294,Technic Axle  7,2,71,ldraw/parts/44294.dat
+4519,Technic Axle  3,22,71,ldraw/parts/4519.dat
+48989,Technic Cross Block 1 x 3 (Pin/Pin/Pin) with 4 Pins,12,71,ldraw/parts/48989.dat
+55013,Technic Axle  8 with Stop,6,72,ldraw/parts/55013.dat
+55805,Electric Mindstorms NXT Cable 35 cm,2,0,ldraw/parts/55805.dat
+55806,Electric Mindstorms NXT Cable 50 cm,1,0,ldraw/parts/55806.dat
+57585,Technic Bush with Three Axles,1,71,ldraw/parts/57585.dat
+59443,Technic Axle Joiner Inline Smooth,3,4,ldraw/parts/59443.dat
+60483,Technic Beam  2 Liftarm,10,0,ldraw/parts/60483.dat
+60484,Technic Beam  3 x  3 T-shaped,4,0,ldraw/parts/60484.dat
+60485,Technic Axle  9,1,71,ldraw/parts/60485.dat
+62462,Technic Pin Joiner Round with Slot,2,71,ldraw/parts/62462.dat
+63869,Technic Cross Block 3 x 2 (Axle/Triple Pin),2,71,ldraw/parts/63869.dat
+64178,Technic Beam 11 x  5 with Open Center  5 x  3,2,71,ldraw/parts/64178.dat
+64179,Technic Beam  7 x  5 with Open Center  5 x  3,2,71,ldraw/parts/64179.dat
+6536,Technic Cross Block 1 x 2 (Axle/Pin),8,4,ldraw/parts/6536.dat
+6558,Technic Pin Long with Friction and Slot,38,1,ldraw/parts/6558.dat
+6587,Technic Axle  3 with Stud,4,28,ldraw/parts/6587.dat
+6589,Technic Gear 12 Tooth Bevel,1,19,ldraw/parts/6589.dat
+87082,Technic Pin Long with Pin Hole Type 1,6,71,ldraw/parts/87082.dat
+87083,Technic Axle  4 with Stop,4,72,ldraw/parts/87083.dat
+95646c01,Electric Mindstorms EV3 with Rechargeable Battery,1,15,ldraw/parts/95646c01.dat
+95648,Electric Mindstorms EV3 Touch Sensor,1,71,ldraw/parts/95648.dat
+95650,Electric Mindstorms EV3 Colour Sensor,1,71,ldraw/parts/95650.dat
+95658,Electric Mindstorms EV3 Large Motor,2,71,ldraw/parts/95658.dat
+99455,Electric Mindstorms EV3 Medium Motor,1,71,ldraw/parts/99455.dat
+2736,Technic Axle Towball,6,71,ldraw/parts/2736.dat
+32039,Technic Connector (Axle/Bush) Type 1,2,71,ldraw/parts/32039.dat
+32138,Technic Pin  3L Double with Axlehole,4,71,ldraw/parts/32138.dat
+32198a,Technic Gear 20 Tooth Bevel with Two Axlehole Slots,1,19,ldraw/parts/32198a.dat
+42610,Wheel Rim  8 x 11.2 with Centre Groove,4,71,ldraw/parts/42610.dat
+44309,Tyre 22/ 30 x 30 ZR,4,0,ldraw/parts/44309.dat
+56145,Wheel Rim 20 x 30 with  6 Dual Spokes and External Ribs,4,0,ldraw/parts/56145.dat
+59426,Technic Axle  5.5 with Stop Type 2,2,72,ldraw/parts/59426.dat
+64391,Technic Panel Fairing Smooth #4 (Medium),3,15,ldraw/parts/64391.dat
+64393,Technic Panel Fairing Smooth #6 (Long),3,15,ldraw/parts/64393.dat
+64681,Technic Panel Fairing Smooth #5 (Long),3,15,ldraw/parts/64681.dat
+64683,Technic Panel Fairing Smooth #3 (Medium),3,15,ldraw/parts/64683.dat
+6575a,Technic Cam with Narrow Slit and Recessed Axlehole,2,0,ldraw/parts/6575a.dat
+6628,Technic Pin Towball with Friction,6,0,ldraw/parts/6628.dat
+6632,Technic Beam  3 x  0.5 Liftarm,1,71,ldraw/parts/6632.dat
+85544,Train Wheel Large Traction Band,1,4,ldraw/parts/85544.dat
+87408,Technic Connector Toggle Joint Double with Axle and Pin Holes,1,0,ldraw/parts/87408.dat
+99008,Technic Axle  4 with Middle Cylindrical Stop,3,19,ldraw/parts/99008.dat
+13710a,Sticker Mindstorms EV3 #1 for Panel Smooth Medium (Needs Work),1,,ldraw/parts/13710a.dat
+18575,Technic Gear 20 Tooth Double Bevel Reinforced,4,0,ldraw/parts/18575.dat
+32068,Technic Cross Block 1 x 3 (Axle/None/Pin),4,71,ldraw/parts/32068.dat
+32192,Technic Angle Connector #4 (135 degree),4,4,ldraw/parts/32192.dat
+32293,Technic Steering Link 9L,4,0,ldraw/parts/32293.dat
+32905,Technic Worm Gear 2L with Axle Hole Two-toothed Sliding,2,71,ldraw/parts/32905.dat
+50951,Tyre  6/ 30 x 11,2,0,ldraw/parts/50951.dat
+53550,Technic Bionicle Weapon Ball Shooter Magazine,1,0,ldraw/parts/53550.dat
+3873,Technic Chain Tread 2.5 Wide,2,0,ldraw/parts/3873.dat
+54271,Constraction Weapon Ball Shooter,1,0,ldraw/parts/54271.dat
+54821,Technic Bionicle Ball 16.5 mm,3,4,ldraw/parts/54821.dat
+61070,Technic Beam  3 with Panel Fairing Right,1,15,ldraw/parts/61070.dat
+61071,Technic Beam  3 with Panel Fairing Left,1,15,ldraw/parts/61071.dat
+72156,Electric Mindstorms EV3 IR-Beacon / Remote Handset,1,15,ldraw/parts/72156.dat
+92907,Technic Cross Block  2 x  2 x  2 Bent 90 Split (Pin/Twin Axle),2,71,ldraw/parts/92907.dat
+95654,Electric Mindstorms EV3 Infrared Sensor,1,71,ldraw/parts/95654.dat
+98347,Technic Blade Curved  0.5 x  4 with Pin Hole,4,15,ldraw/parts/98347.dat
+98568,Constraction Blade 11.5L with Sawtooth Back,6,4,ldraw/parts/98568.dat

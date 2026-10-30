@@ -1,0 +1,1328 @@
+{
+  "version": 1,
+  "platform": "vexgo",
+  "title": "VEX GO · Xe mẫu 2 motor",
+  "hideCables": true,
+  "kit": {
+    "version": 1,
+    "platform": "vexgo",
+    "name": "VEX GO · 269-6911",
+    "count": 1,
+    "enforce": true,
+    "items": {
+      "269-6685-000": 1,
+      "269-6686-000": 1,
+      "269-6687-000": 1,
+      "269-6690-000": 3,
+      "269-6695-000": 1,
+      "269-6696-000": 1,
+      "269-6702-000": 1,
+      "228-2500-001": 5,
+      "228-2500-002": 9,
+      "228-2500-003": 5,
+      "228-2500-004": 2,
+      "228-2500-005": 6,
+      "228-2500-006": 2,
+      "228-2500-007": 2,
+      "228-2500-009": 2,
+      "228-2500-011": 2,
+      "228-2500-013": 2,
+      "228-2500-018": 4,
+      "228-2500-019": 3,
+      "228-2500-020": 2,
+      "228-2500-021": 3,
+      "228-2500-023": 2,
+      "228-2500-025": 3,
+      "228-2500-026": 3,
+      "228-2500-027": 2,
+      "228-2500-031": 2,
+      "228-2500-032": 2,
+      "228-2500-035": 2,
+      "228-2500-042": 2,
+      "228-2500-043": 3,
+      "228-2500-1140": 6,
+      "228-2500-1199": 2,
+      "228-2500-124": 2,
+      "228-2500-1383": 2,
+      "228-2500-1384": 2,
+      "228-2500-143": 6,
+      "228-2500-145": 3,
+      "228-2500-1456": 0,
+      "228-2500-1469": 2,
+      "228-2500-148": 4,
+      "228-2500-150": 2,
+      "228-2500-154": 8,
+      "228-2500-1548": 2,
+      "228-2500-157": 4,
+      "228-2500-164": 3,
+      "228-2500-165": 2,
+      "228-2500-207": 2,
+      "228-2500-2180": 6,
+      "228-2500-2181": 3,
+      "228-2500-2182": 5,
+      "228-2500-2191": 2,
+      "228-2500-2221": 2,
+      "228-2500-2234": 4,
+      "228-2500-2238": 4,
+      "228-2500-2250": 0,
+      "228-2500-2258": 5,
+      "228-2500-2260": 53,
+      "228-2500-2261": 7,
+      "228-2500-2268": 7,
+      "228-2500-2269": 8,
+      "228-2500-2271": 5,
+      "228-2500-2288": 9,
+      "228-2500-2295": 8,
+      "228-2500-2296": 5,
+      "228-2500-2308": 4,
+      "228-2500-277": 3,
+      "228-2500-328": 2,
+      "228-2500-430": 2,
+      "228-2500-438": 2,
+      "228-2500-468": 2,
+      "228-2500-473": 2,
+      "228-3167-010": 1,
+      "228-3167-020": 1,
+      "228-4035-000": 1
+    }
+  },
+  "parts": [
+    {
+      "id": "car-1",
+      "sku": "269-6690-000",
+      "label": "Motor",
+      "position": [
+        -31.75,
+        25.25,
+        -19.05
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "car-2",
+      "sku": "269-6685-000",
+      "label": "Brain",
+      "position": [
+        -31.75000000000001,
+        77.00861999999996,
+        1.4210854715202004e-14
+      ],
+      "rotation": [
+        -90,
+        -3.1805546814635168e-15,
+        90
+      ],
+      "mate": {
+        "target": "car-33",
+        "sourceRef": "43",
+        "targetRef": "4",
+        "depth": 4.572,
+        "twist": 0,
+        "flip": false
+      }
+    },
+    {
+      "id": "car-3",
+      "sku": "269-6686-000",
+      "label": "Battery",
+      "position": [
+        31.75,
+        85.31961999999997,
+        1.0658141036401503e-14
+      ],
+      "rotation": [
+        -89.99999999999999,
+        0,
+        0
+      ],
+      "mate": {
+        "target": "car-37",
+        "sourceRef": "5",
+        "targetRef": "4",
+        "depth": 2.785,
+        "twist": 0,
+        "flip": false
+      }
+    },
+    {
+      "id": "car-4",
+      "sku": "228-2500-2308",
+      "label": "Green Connector",
+      "position": [
+        -38.099999999999994,
+        18.9,
+        -50.8
+      ],
+      "rotation": [
+        90.00000000000001,
+        0,
+        0
+      ],
+      "mate": {
+        "target": "car-1",
+        "sourceRef": "18",
+        "targetRef": "7",
+        "depth": 2.2,
+        "twist": 0,
+        "flip": false
+      }
+    },
+    {
+      "id": "car-5",
+      "sku": "228-2500-2271",
+      "label": "Orange Standoff",
+      "position": [
+        -50.8,
+        44.3,
+        -57.14999999999999
+      ],
+      "rotation": [
+        1.2722218725854067e-14,
+        0,
+        0
+      ],
+      "mate": {
+        "target": "car-4",
+        "sourceRef": "1",
+        "targetRef": "1",
+        "depth": 2.2,
+        "twist": 0,
+        "flip": false
+      }
+    },
+    {
+      "id": "car-6",
+      "sku": "228-2500-2271",
+      "label": "Orange Standoff",
+      "position": [
+        -38.099999999999994,
+        44.3,
+        -57.14999999999999
+      ],
+      "rotation": [
+        1.2722218725854067e-14,
+        0,
+        0
+      ],
+      "mate": {
+        "target": "car-4",
+        "sourceRef": "1",
+        "targetRef": "9",
+        "depth": 2.2,
+        "twist": 0,
+        "flip": false
+      }
+    },
+    {
+      "id": "car-7",
+      "sku": "228-2500-025",
+      "label": "White Large Beam",
+      "position": [
+        -44.45,
+        47.47499999999998,
+        1.4210854715202004e-14
+      ],
+      "rotation": [
+        1.2722218725854067e-14,
+        90,
+        0
+      ],
+      "mate": {
+        "target": "car-5",
+        "sourceRef": "55",
+        "targetRef": "4",
+        "depth": 2.2,
+        "twist": 0,
+        "flip": false
+      }
+    },
+    {
+      "id": "car-8",
+      "sku": "228-2500-2268",
+      "label": "Yellow Standoff",
+      "position": [
+        -50.80000000000001,
+        44.29999999999997,
+        57.150000000000006
+      ],
+      "rotation": [
+        1.2722218725854067e-14,
+        0,
+        0
+      ],
+      "mate": {
+        "target": "car-7",
+        "sourceRef": "4",
+        "targetRef": "1",
+        "depth": 2.2,
+        "twist": 0,
+        "flip": false
+      }
+    },
+    {
+      "id": "car-9",
+      "sku": "228-2500-2268",
+      "label": "Yellow Standoff",
+      "position": [
+        -38.10000000000001,
+        44.29999999999997,
+        57.15000000000002
+      ],
+      "rotation": [
+        1.2722218725854067e-14,
+        0,
+        0
+      ],
+      "mate": {
+        "target": "car-7",
+        "sourceRef": "4",
+        "targetRef": "2",
+        "depth": 2.2,
+        "twist": 0,
+        "flip": false
+      }
+    },
+    {
+      "id": "car-10",
+      "sku": "228-2500-2308",
+      "label": "Green Connector",
+      "position": [
+        -38.10000000000001,
+        31.599999999999973,
+        50.800000000000004
+      ],
+      "rotation": [
+        -89.99999999999999,
+        0,
+        0
+      ],
+      "mate": {
+        "target": "car-8",
+        "sourceRef": "2",
+        "targetRef": "1",
+        "depth": 2.2,
+        "twist": 0,
+        "flip": false
+      }
+    },
+    {
+      "id": "car-11",
+      "sku": "269-6690-000",
+      "label": "Motor",
+      "position": [
+        -31.75000000000001,
+        25.24999999999998,
+        19.050000000000008
+      ],
+      "rotation": [
+        -180,
+        0,
+        0
+      ],
+      "mate": {
+        "target": "car-10",
+        "sourceRef": "7",
+        "targetRef": "18",
+        "depth": 2.2,
+        "twist": 0,
+        "flip": false
+      }
+    },
+    {
+      "id": "car-12",
+      "sku": "228-2500-2260",
+      "label": "Red Pin",
+      "position": [
+        -50.8,
+        50.80976999999998,
+        -19.049999999999986
+      ],
+      "rotation": [
+        1.2722218725854067e-14,
+        0,
+        0
+      ],
+      "mate": {
+        "target": "car-7",
+        "sourceRef": "1",
+        "targetRef": "39",
+        "depth": 4.572,
+        "twist": 0,
+        "flip": false
+      }
+    },
+    {
+      "id": "car-13",
+      "sku": "228-2500-2260",
+      "label": "Red Pin",
+      "position": [
+        -38.1,
+        50.80976999999998,
+        -19.049999999999983
+      ],
+      "rotation": [
+        1.2722218725854067e-14,
+        0,
+        0
+      ],
+      "mate": {
+        "target": "car-7",
+        "sourceRef": "1",
+        "targetRef": "40",
+        "depth": 4.572,
+        "twist": 0,
+        "flip": false
+      }
+    },
+    {
+      "id": "car-14",
+      "sku": "228-2500-026",
+      "label": "Black Large Beam",
+      "position": [
+        0,
+        54.14453999999998,
+        -19.049999999999986
+      ],
+      "rotation": [
+        1.2722218725854067e-14,
+        0,
+        0
+      ],
+      "mate": {
+        "target": "car-12",
+        "sourceRef": "11",
+        "targetRef": "4",
+        "depth": 4.572,
+        "twist": 0,
+        "flip": false
+      }
+    },
+    {
+      "id": "car-15",
+      "sku": "228-2500-2260",
+      "label": "Red Pin",
+      "position": [
+        -50.800000000000004,
+        50.80976999999997,
+        19.05000000000001
+      ],
+      "rotation": [
+        1.2722218725854067e-14,
+        0,
+        0
+      ],
+      "mate": {
+        "target": "car-7",
+        "sourceRef": "1",
+        "targetRef": "21",
+        "depth": 4.572,
+        "twist": 0,
+        "flip": false
+      }
+    },
+    {
+      "id": "car-16",
+      "sku": "228-2500-2260",
+      "label": "Red Pin",
+      "position": [
+        -38.10000000000001,
+        50.80976999999997,
+        19.050000000000015
+      ],
+      "rotation": [
+        1.2722218725854067e-14,
+        0,
+        0
+      ],
+      "mate": {
+        "target": "car-7",
+        "sourceRef": "1",
+        "targetRef": "22",
+        "depth": 4.572,
+        "twist": 0,
+        "flip": false
+      }
+    },
+    {
+      "id": "car-17",
+      "sku": "228-2500-026",
+      "label": "Black Large Beam",
+      "position": [
+        -7.105427357601002e-15,
+        54.14453999999997,
+        19.05000000000001
+      ],
+      "rotation": [
+        1.2722218725854067e-14,
+        0,
+        0
+      ],
+      "mate": {
+        "target": "car-15",
+        "sourceRef": "11",
+        "targetRef": "4",
+        "depth": 4.572,
+        "twist": 0,
+        "flip": false
+      }
+    },
+    {
+      "id": "car-18",
+      "sku": "228-2500-2260",
+      "label": "Red Pin",
+      "position": [
+        50.8,
+        50.80976999999998,
+        -19.049999999999986
+      ],
+      "rotation": [
+        -180,
+        0,
+        0
+      ],
+      "mate": {
+        "target": "car-14",
+        "sourceRef": "1",
+        "targetRef": "59",
+        "depth": 4.572,
+        "twist": 0,
+        "flip": false
+      }
+    },
+    {
+      "id": "car-19",
+      "sku": "228-2500-2260",
+      "label": "Red Pin",
+      "position": [
+        63.5,
+        50.80976999999998,
+        -19.049999999999986
+      ],
+      "rotation": [
+        -180,
+        0,
+        0
+      ],
+      "mate": {
+        "target": "car-14",
+        "sourceRef": "1",
+        "targetRef": "65",
+        "depth": 4.572,
+        "twist": 0,
+        "flip": false
+      }
+    },
+    {
+      "id": "car-20",
+      "sku": "228-2500-2260",
+      "label": "Red Pin",
+      "position": [
+        50.79999999999999,
+        50.80976999999997,
+        19.05000000000001
+      ],
+      "rotation": [
+        -180,
+        0,
+        0
+      ],
+      "mate": {
+        "target": "car-17",
+        "sourceRef": "1",
+        "targetRef": "59",
+        "depth": 4.572,
+        "twist": 0,
+        "flip": false
+      }
+    },
+    {
+      "id": "car-21",
+      "sku": "228-2500-2260",
+      "label": "Red Pin",
+      "position": [
+        63.49999999999999,
+        50.80976999999997,
+        19.05000000000001
+      ],
+      "rotation": [
+        -180,
+        0,
+        0
+      ],
+      "mate": {
+        "target": "car-17",
+        "sourceRef": "1",
+        "targetRef": "65",
+        "depth": 4.572,
+        "twist": 0,
+        "flip": false
+      }
+    },
+    {
+      "id": "car-22",
+      "sku": "228-2500-025",
+      "label": "White Large Beam",
+      "position": [
+        57.14999999999999,
+        47.47499999999998,
+        1.4210854715202004e-14
+      ],
+      "rotation": [
+        7.0167092985348775e-15,
+        90,
+        0
+      ],
+      "mate": {
+        "target": "car-18",
+        "sourceRef": "39",
+        "targetRef": "4",
+        "depth": 4.572,
+        "twist": 0,
+        "flip": false
+      }
+    },
+    {
+      "id": "car-23",
+      "sku": "228-2500-2260",
+      "label": "Red Pin",
+      "position": [
+        -44.45,
+        57.47930999999998,
+        -25.399999999999984
+      ],
+      "rotation": [
+        1.2722218725854067e-14,
+        0,
+        0
+      ],
+      "mate": {
+        "target": "car-14",
+        "sourceRef": "1",
+        "targetRef": "15",
+        "depth": 4.572,
+        "twist": 0,
+        "flip": false
+      }
+    },
+    {
+      "id": "car-24",
+      "sku": "228-2500-2260",
+      "label": "Red Pin",
+      "position": [
+        -19.05,
+        57.47930999999998,
+        -25.399999999999984
+      ],
+      "rotation": [
+        1.2722218725854067e-14,
+        0,
+        0
+      ],
+      "mate": {
+        "target": "car-14",
+        "sourceRef": "1",
+        "targetRef": "27",
+        "depth": 4.572,
+        "twist": 0,
+        "flip": false
+      }
+    },
+    {
+      "id": "car-25",
+      "sku": "228-2500-2260",
+      "label": "Red Pin",
+      "position": [
+        -44.45000000000001,
+        57.47930999999997,
+        25.400000000000013
+      ],
+      "rotation": [
+        1.2722218725854067e-14,
+        0,
+        0
+      ],
+      "mate": {
+        "target": "car-17",
+        "sourceRef": "1",
+        "targetRef": "16",
+        "depth": 4.572,
+        "twist": 0,
+        "flip": false
+      }
+    },
+    {
+      "id": "car-26",
+      "sku": "228-2500-2260",
+      "label": "Red Pin",
+      "position": [
+        -19.050000000000008,
+        57.47930999999997,
+        25.400000000000013
+      ],
+      "rotation": [
+        1.2722218725854067e-14,
+        0,
+        0
+      ],
+      "mate": {
+        "target": "car-17",
+        "sourceRef": "1",
+        "targetRef": "28",
+        "depth": 4.572,
+        "twist": 0,
+        "flip": false
+      }
+    },
+    {
+      "id": "car-27",
+      "sku": "228-2500-042",
+      "label": "Large White Plate",
+      "position": [
+        -31.75000000000001,
+        60.81407999999997,
+        1.4210854715202004e-14
+      ],
+      "rotation": [
+        1.2722218725854067e-14,
+        90,
+        0
+      ],
+      "mate": {
+        "target": "car-23",
+        "sourceRef": "65",
+        "targetRef": "4",
+        "depth": 4.572,
+        "twist": 0,
+        "flip": false
+      }
+    },
+    {
+      "id": "car-28",
+      "sku": "228-2500-2260",
+      "label": "Red Pin",
+      "position": [
+        19.05,
+        57.47930999999998,
+        -25.399999999999984
+      ],
+      "rotation": [
+        1.2722218725854067e-14,
+        0,
+        0
+      ],
+      "mate": {
+        "target": "car-14",
+        "sourceRef": "1",
+        "targetRef": "45",
+        "depth": 4.572,
+        "twist": 0,
+        "flip": false
+      }
+    },
+    {
+      "id": "car-29",
+      "sku": "228-2500-2260",
+      "label": "Red Pin",
+      "position": [
+        44.45,
+        57.47930999999998,
+        -25.399999999999984
+      ],
+      "rotation": [
+        1.2722218725854067e-14,
+        0,
+        0
+      ],
+      "mate": {
+        "target": "car-14",
+        "sourceRef": "1",
+        "targetRef": "57",
+        "depth": 4.572,
+        "twist": 0,
+        "flip": false
+      }
+    },
+    {
+      "id": "car-30",
+      "sku": "228-2500-2260",
+      "label": "Red Pin",
+      "position": [
+        19.049999999999994,
+        57.47930999999997,
+        25.400000000000013
+      ],
+      "rotation": [
+        1.2722218725854067e-14,
+        0,
+        0
+      ],
+      "mate": {
+        "target": "car-17",
+        "sourceRef": "1",
+        "targetRef": "46",
+        "depth": 4.572,
+        "twist": 0,
+        "flip": false
+      }
+    },
+    {
+      "id": "car-31",
+      "sku": "228-2500-2260",
+      "label": "Red Pin",
+      "position": [
+        44.449999999999996,
+        57.47930999999997,
+        25.400000000000013
+      ],
+      "rotation": [
+        1.2722218725854067e-14,
+        0,
+        0
+      ],
+      "mate": {
+        "target": "car-17",
+        "sourceRef": "1",
+        "targetRef": "58",
+        "depth": 4.572,
+        "twist": 0,
+        "flip": false
+      }
+    },
+    {
+      "id": "car-32",
+      "sku": "228-2500-042",
+      "label": "Large White Plate",
+      "position": [
+        31.749999999999993,
+        60.81407999999997,
+        1.4210854715202004e-14
+      ],
+      "rotation": [
+        1.2722218725854067e-14,
+        90,
+        0
+      ],
+      "mate": {
+        "target": "car-28",
+        "sourceRef": "65",
+        "targetRef": "4",
+        "depth": 4.572,
+        "twist": 0,
+        "flip": false
+      }
+    },
+    {
+      "id": "car-33",
+      "sku": "228-2500-2260",
+      "label": "Red Pin",
+      "position": [
+        -50.800000000000004,
+        64.14884999999998,
+        -31.749999999999986
+      ],
+      "rotation": [
+        1.2722218725854067e-14,
+        0,
+        0
+      ],
+      "mate": {
+        "target": "car-27",
+        "sourceRef": "1",
+        "targetRef": "75",
+        "depth": 4.572,
+        "twist": 0,
+        "flip": false
+      }
+    },
+    {
+      "id": "car-34",
+      "sku": "228-2500-2260",
+      "label": "Red Pin",
+      "position": [
+        -50.80000000000001,
+        64.14884999999995,
+        31.750000000000007
+      ],
+      "rotation": [
+        1.2722218725854067e-14,
+        0,
+        0
+      ],
+      "mate": {
+        "target": "car-27",
+        "sourceRef": "1",
+        "targetRef": "5",
+        "depth": 4.572,
+        "twist": 0,
+        "flip": false
+      }
+    },
+    {
+      "id": "car-35",
+      "sku": "228-2500-2260",
+      "label": "Red Pin",
+      "position": [
+        -12.700000000000006,
+        64.14884999999998,
+        -31.74999999999998
+      ],
+      "rotation": [
+        1.2722218725854067e-14,
+        0,
+        0
+      ],
+      "mate": {
+        "target": "car-27",
+        "sourceRef": "1",
+        "targetRef": "78",
+        "depth": 4.572,
+        "twist": 0,
+        "flip": false
+      }
+    },
+    {
+      "id": "car-36",
+      "sku": "228-2500-2260",
+      "label": "Red Pin",
+      "position": [
+        -12.700000000000017,
+        64.14884999999995,
+        31.750000000000014
+      ],
+      "rotation": [
+        1.2722218725854067e-14,
+        0,
+        0
+      ],
+      "mate": {
+        "target": "car-27",
+        "sourceRef": "1",
+        "targetRef": "8",
+        "depth": 4.572,
+        "twist": 0,
+        "flip": false
+      }
+    },
+    {
+      "id": "car-37",
+      "sku": "228-2500-2260",
+      "label": "Red Pin",
+      "position": [
+        12.7,
+        64.14884999999998,
+        -31.749999999999986
+      ],
+      "rotation": [
+        1.2722218725854067e-14,
+        0,
+        0
+      ],
+      "mate": {
+        "target": "car-32",
+        "sourceRef": "1",
+        "targetRef": "75",
+        "depth": 4.572,
+        "twist": 0,
+        "flip": false
+      }
+    },
+    {
+      "id": "car-38",
+      "sku": "228-2500-2260",
+      "label": "Red Pin",
+      "position": [
+        12.699999999999989,
+        64.14884999999995,
+        31.750000000000007
+      ],
+      "rotation": [
+        1.2722218725854067e-14,
+        0,
+        0
+      ],
+      "mate": {
+        "target": "car-32",
+        "sourceRef": "1",
+        "targetRef": "5",
+        "depth": 4.572,
+        "twist": 0,
+        "flip": false
+      }
+    },
+    {
+      "id": "car-39",
+      "sku": "228-2500-2260",
+      "label": "Red Pin",
+      "position": [
+        50.8,
+        64.14884999999998,
+        -31.74999999999998
+      ],
+      "rotation": [
+        1.2722218725854067e-14,
+        0,
+        0
+      ],
+      "mate": {
+        "target": "car-32",
+        "sourceRef": "1",
+        "targetRef": "78",
+        "depth": 4.572,
+        "twist": 0,
+        "flip": false
+      }
+    },
+    {
+      "id": "car-40",
+      "sku": "228-2500-2260",
+      "label": "Red Pin",
+      "position": [
+        50.79999999999998,
+        64.14884999999995,
+        31.750000000000014
+      ],
+      "rotation": [
+        1.2722218725854067e-14,
+        0,
+        0
+      ],
+      "mate": {
+        "target": "car-32",
+        "sourceRef": "1",
+        "targetRef": "8",
+        "depth": 4.572,
+        "twist": 0,
+        "flip": false
+      }
+    },
+    {
+      "id": "car-41",
+      "sku": "228-2500-2238",
+      "label": "Green Shaft",
+      "position": [
+        -31.75,
+        25.25,
+        -48.519
+      ],
+      "rotation": [
+        90.00000000000001,
+        -0.48243643001470315,
+        0
+      ],
+      "mate": {
+        "target": "car-1",
+        "sourceRef": "short-drive-end",
+        "targetRef": "motor-output",
+        "depth": 4.572,
+        "twist": 0,
+        "flip": false
+      }
+    },
+    {
+      "id": "car-42",
+      "sku": "228-2500-1383",
+      "label": "Gray Wheel",
+      "position": [
+        -31.75,
+        25.250000000000007,
+        -77.77999999999999
+      ],
+      "rotation": [
+        -90.00000000000001,
+        0.48243643001470315,
+        0
+      ],
+      "mate": {
+        "target": "car-41",
+        "sourceRef": "square-hole-front",
+        "targetRef": "square-long-shaft-end",
+        "depth": 27,
+        "twist": 0,
+        "flip": false
+      }
+    },
+    {
+      "id": "car-43",
+      "sku": "228-2500-143",
+      "label": "Shaft Collar",
+      "position": [
+        -31.75,
+        25.250000000000007,
+        -98.77999999999999
+      ],
+      "rotation": [
+        -180,
+        5.52654461253375e-33,
+        0.48243643001470327
+      ],
+      "mate": {
+        "target": "car-41",
+        "sourceRef": "square-hole-front",
+        "targetRef": "square-long-shaft-end",
+        "depth": 6,
+        "twist": 0,
+        "flip": false
+      }
+    },
+    {
+      "id": "car-44",
+      "sku": "228-2500-2238",
+      "label": "Green Shaft",
+      "position": [
+        -31.75000000000001,
+        25.249999999999975,
+        48.519000000000005
+      ],
+      "rotation": [
+        -90,
+        -0.48243643001470315,
+        -4.9697928633148914e-17
+      ],
+      "mate": {
+        "target": "car-11",
+        "sourceRef": "short-drive-end",
+        "targetRef": "motor-output",
+        "depth": 4.572,
+        "twist": 0,
+        "flip": false
+      }
+    },
+    {
+      "id": "car-45",
+      "sku": "228-2500-1383",
+      "label": "Gray Wheel",
+      "position": [
+        -31.75000000000001,
+        25.249999999999964,
+        77.77999999999999
+      ],
+      "rotation": [
+        90.00000000000004,
+        0.48243643001470315,
+        -4.9697928633148914e-17
+      ],
+      "mate": {
+        "target": "car-44",
+        "sourceRef": "square-hole-front",
+        "targetRef": "square-long-shaft-end",
+        "depth": 27,
+        "twist": 0,
+        "flip": false
+      }
+    },
+    {
+      "id": "car-46",
+      "sku": "228-2500-143",
+      "label": "Shaft Collar",
+      "position": [
+        -31.75000000000001,
+        25.24999999999996,
+        98.77999999999999
+      ],
+      "rotation": [
+        1.2722218725854067e-14,
+        -4.969616689786748e-17,
+        0.48243643001470327
+      ],
+      "mate": {
+        "target": "car-44",
+        "sourceRef": "square-hole-front",
+        "targetRef": "square-long-shaft-end",
+        "depth": 6,
+        "twist": 0,
+        "flip": false
+      }
+    },
+    {
+      "id": "car-47",
+      "sku": "228-2500-2295",
+      "label": "Yellow Connector",
+      "position": [
+        50.8,
+        44.29999999999999,
+        -57.14999999999998
+      ],
+      "rotation": [
+        -180,
+        7.016709298534876e-15,
+        180
+      ],
+      "mate": {
+        "target": "car-22",
+        "sourceRef": "22",
+        "targetRef": "56",
+        "depth": 2.2,
+        "twist": 0,
+        "flip": false
+      }
+    },
+    {
+      "id": "car-48",
+      "sku": "228-2500-2261",
+      "label": "Green Pin",
+      "position": [
+        63.5,
+        25.24999999999999,
+        -63.49999999999997
+      ],
+      "rotation": [
+        90.00000000000001,
+        7.0167092985348775e-15,
+        7.016709298534876e-15
+      ],
+      "mate": {
+        "target": "car-47",
+        "sourceRef": "6",
+        "targetRef": "2",
+        "depth": 2.2,
+        "twist": 0,
+        "flip": false
+      }
+    },
+    {
+      "id": "car-49",
+      "sku": "228-2500-1384",
+      "label": "Blue Wheel",
+      "position": [
+        63.5,
+        25.24999999999999,
+        -66.97676999999997
+      ],
+      "rotation": [
+        -89.99999999999999,
+        7.016709298534876e-15,
+        -7.016709298534875e-15
+      ],
+      "mate": {
+        "target": "car-48",
+        "sourceRef": "8",
+        "targetRef": "1",
+        "depth": 10.78,
+        "twist": 0,
+        "flip": false
+      }
+    },
+    {
+      "id": "car-50",
+      "sku": "228-2500-154",
+      "label": "Spacer",
+      "position": [
+        63.5,
+        25.249999999999993,
+        -73.18676999999997
+      ],
+      "rotation": [
+        -89.99999999999999,
+        7.016709298534876e-15,
+        -7.016709298534875e-15
+      ],
+      "mate": {
+        "target": "car-48",
+        "sourceRef": "1",
+        "targetRef": "1",
+        "depth": 4.57,
+        "twist": 0,
+        "flip": false
+      }
+    },
+    {
+      "id": "car-51",
+      "sku": "228-2500-2295",
+      "label": "Yellow Connector",
+      "position": [
+        63.499999999999986,
+        44.299999999999976,
+        57.150000000000006
+      ],
+      "rotation": [
+        7.0167092985348775e-15,
+        0,
+        0
+      ],
+      "mate": {
+        "target": "car-22",
+        "sourceRef": "22",
+        "targetRef": "1",
+        "depth": 2.2,
+        "twist": 0,
+        "flip": false
+      }
+    },
+    {
+      "id": "car-52",
+      "sku": "228-2500-2261",
+      "label": "Green Pin",
+      "position": [
+        63.499999999999986,
+        25.249999999999975,
+        63.5
+      ],
+      "rotation": [
+        -89.99999999999999,
+        0,
+        0
+      ],
+      "mate": {
+        "target": "car-51",
+        "sourceRef": "6",
+        "targetRef": "10",
+        "depth": 2.2,
+        "twist": 0,
+        "flip": false
+      }
+    },
+    {
+      "id": "car-53",
+      "sku": "228-2500-1384",
+      "label": "Blue Wheel",
+      "position": [
+        63.499999999999986,
+        25.249999999999975,
+        66.97677
+      ],
+      "rotation": [
+        90.00000000000003,
+        0,
+        0
+      ],
+      "mate": {
+        "target": "car-52",
+        "sourceRef": "8",
+        "targetRef": "1",
+        "depth": 10.78,
+        "twist": 0,
+        "flip": false
+      }
+    },
+    {
+      "id": "car-54",
+      "sku": "228-2500-154",
+      "label": "Spacer",
+      "position": [
+        63.499999999999986,
+        25.24999999999997,
+        73.18677
+      ],
+      "rotation": [
+        90.00000000000003,
+        0,
+        0
+      ],
+      "mate": {
+        "target": "car-52",
+        "sourceRef": "1",
+        "targetRef": "1",
+        "depth": 4.57,
+        "twist": 0,
+        "flip": false
+      }
+    }
+  ],
+  "groups": [],
+  "steps": [],
+  "guidePreferences": {}
+}

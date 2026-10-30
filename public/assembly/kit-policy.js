@@ -1,22 +1,25 @@
 import {GO_KIT_QUANTITIES,IQ_KIT_QUANTITIES,IQ_STOCK_ALIASES} from './kit-presets.js';
+import {LEGO_KITS} from './lego/kit-presets.js';
 
 export function kitCatalog(catalog,platform){
  const rows=new Map(),byId=new Map(catalog.map(part=>[part.id,part]));
  for(const part of catalog){
   if(part.components?.length)continue;
-  const canonical=platform==='vexiq'?byId.get(IQ_STOCK_ALIASES[part.id])||part:part,key=canonical.name;
+  const canonical=platform==='vexiq'?byId.get(IQ_STOCK_ALIASES[part.id])||part:part,key=platform==='lego'?canonical.id:canonical.name;
   if(!rows.has(key))rows.set(key,{sku:canonical.id,skus:[],name:canonical.name,category:canonical.kind||canonical.category||'other'});
   rows.get(key).skus.push(part.id);
  }
  return [...rows.values()];
 }
-export function defaultKitProfile(catalog,platform){
+export function defaultKitProfile(catalog,platform,kitId='45544-1'){
+ if(platform==='lego'){const kit=LEGO_KITS.find(k=>k.id===kitId);if(!kit)throw Error('Bộ LEGO không hợp lệ.');return {version:1,platform,kitId,name:`LEGO ${kit.name} · ${kitId}`,count:1,enforce:true,items:Object.fromEntries(catalog.map(p=>[p.id,p.sets?.[kitId]||0]))};}
  const quantities=platform==='vexgo'?GO_KIT_QUANTITIES:IQ_KIT_QUANTITIES;
  return {version:1,platform,name:platform==='vexgo'?'VEX GO · 269-6911':'VEX IQ (2nd gen) · 228-7755',count:1,enforce:true,items:Object.fromEntries(kitCatalog(catalog,platform).map(row=>[row.sku,quantities[row.name]??0]))};
 }
-export function kitCoverage(catalog,platform){const names=new Set(kitCatalog(catalog,platform).map(row=>row.name));return Object.entries(platform==='vexgo'?GO_KIT_QUANTITIES:IQ_KIT_QUANTITIES).filter(([name])=>!names.has(name)).map(([name,quantity])=>({name,quantity}));}
+export function kitCoverage(catalog,platform){if(platform==='lego')return [];const names=new Set(kitCatalog(catalog,platform).map(row=>row.name));return Object.entries(platform==='vexgo'?GO_KIT_QUANTITIES:IQ_KIT_QUANTITIES).filter(([name])=>!names.has(name)).map(([name,quantity])=>({name,quantity}));}
 export function validateKitProfile(value,catalog,platform){
- if(!value||value.version!==1||!['vexgo','vexiq'].includes(platform)||value.platform!==platform)throw Error('Bộ kit không thuộc thư viện VEX của dự án này.');
+ if(!value||value.version!==1||!['vexgo','vexiq','lego'].includes(platform)||value.platform!==platform)throw Error('Bộ kit không thuộc thư viện của dự án này.');
+ if(platform==='lego'&&value.kitId&&!LEGO_KITS.some(k=>k.id===value.kitId))throw Error('Mã bộ LEGO không hợp lệ.');
  if(typeof value.name!=='string'||!value.name.trim()||value.name.length>120)throw Error('Tên bộ kit cần có từ 1 đến 120 ký tự.');
  if(!Number.isInteger(value.count)||value.count<1||value.count>100)throw Error('Số bộ kit phải là số nguyên từ 1 đến 100.');
  if(typeof value.enforce!=='boolean'||!value.items||typeof value.items!=='object'||Array.isArray(value.items))throw Error('Cấu hình giới hạn bộ kit không hợp lệ.');
@@ -33,7 +36,7 @@ export function validateKitProfile(value,catalog,platform){
  const standardName=platform==='vexgo'?'VEX GO · 269-6911':'VEX IQ (2nd gen) · 228-7755';
  const stock=platform==='vexgo'?GO_KIT_QUANTITIES:IQ_KIT_QUANTITIES;
  for(const row of rows)if(!Object.hasOwn(items,row.sku))items[row.sku]=value.name===standardName?(stock[row.name]??0):0;
- return {version:1,platform,name:value.name.trim(),count:value.count,enforce:value.enforce,items};
+ return {version:1,platform,...(platform==='lego'&&value.kitId?{kitId:value.kitId}:{}),name:value.name.trim(),count:value.count,enforce:value.enforce,items};
 }
 export function parseKitFile(text,filename,catalog,platform){
  text=text.replace(/^\uFEFF/,'').trim();

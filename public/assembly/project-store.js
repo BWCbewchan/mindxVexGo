@@ -1,6 +1,6 @@
 import {validateKitProfile} from './kit-policy.js';
 export const PROJECT_INDEX='mindx-assembly-projects-v1';
-export const platformValid=value=>['vexgo','vexiq'].includes(value);
+export const platformValid=value=>['vexgo','vexiq','lego'].includes(value);
 export const projectIdValid=id=>typeof id==='string'&&/^[a-zA-Z0-9_-]{1,100}$/.test(id);
 export function validateProjectFile(data,platform,catalog){
  if(!platformValid(platform)||data?.platform&&data.platform!==platform||data?.version!==1||typeof data.title!=='string'||!data.title.trim()||data.title.length>120||!Array.isArray(data.parts)||data.parts.length>250)throw Error('File dự án không hợp lệ.');

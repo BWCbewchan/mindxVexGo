@@ -2,6 +2,54 @@
 
 Open an Assembly project, then **Help → Hướng dẫn thao tác**, **Phím tắt** or **AI / API & MCP**. F1 opens Help. GO and IQ use the same documentation interface and the active platform's catalog. The quick tour highlights the real controls without changing CAD or the camera.
 
+## Workspace and renderer-independent JSON API
+
+`/assembly` opens a persistent guest VEX GO workspace immediately. No sign-in or project picker is required. The existing project manager (GO, IQ and LEGO) is at `/assembly/projects`; **File → Dự án của tôi** opens it. Existing project URLs and local drafts remain supported.
+
+The same-origin editor and its host expose `window.assemblyAPI` from page load. Calls made before initialization wait for the backend. Await `ready` to diagnose initialization failures explicitly:
+
+```js
+const api = window.assemblyAPI;
+await api.ready;
+const parts = await api.listParts(); // real partId, name and full ports for this platform
+const state = await api.getState(); // parts, groups, kit, buildGuide and viewMode
+await api.loadJSON(await (await fetch('/assembly/examples/go-plate-pin-shaft-wheel.json')).json());
+await api.appendJSON({parts: [/* additional parts */]});
+await api.addPart({partId: parts[0].partId, position: [200, 40, 0], rotation: [0, 0, 0]});
+await api.clear(); // undoable; retains title and kit settings
+```
+
+All methods return promises. `loadJSON` replaces the document; `appendJSON` retains existing parts and remaps colliding incoming instance IDs, including their internal links and groups. Neither silently bypasses kit stock or detected CAD penetration. Parse, port, profile, cycle, coordinate, stock or fit errors reject the operation and preserve the old model. Imported raw `mate` records must already match their declared CAD poses; `attachTo` computes a pose from real ports. Editing a parent cannot silently invalidate its children's links.
+
+**Help → AI / API & MCP** contains the live part/port table, working few-shot, JSON textarea and replace/append controls. Stable automation selectors:
+
+- `#ai-assembly-json-input` / `[data-testid=ai-assembly-json-input]`
+- `#ai-assembly-apply-btn` / `[data-testid=ai-assembly-apply-btn]`
+- `#ai-assembly-append-btn` / `[data-testid=ai-assembly-append-btn]`
+- `#ai-assembly-status` (`data-ok=true` or `false` after completion)
+
+The input accepts a native project (`parts[].sku`, `parts[].mate`), an AI document (`parts[].partId`, `parts[].attachTo`) or `{commands:[{command,args}]}`. Supported batch commands: `addPart`, `attach`, `group`, executed in array order. Arbitrary JavaScript is never evaluated. Object-form documents can declare forward part references. Positions are millimetres; Euler rotations and twist are degrees. Get exact port IDs from `listParts()`; they are not invented names such as `hole-1`.
+
+Checked examples in `public/assembly/examples/`:
+
+- `go-plate-pin-shaft-wheel.json`: plate, red pin, plain shaft and wheel with actual compatible attachments.
+- `go-car-two-motors.json`: existing reference car, 54 parts, two motors, one Brain, one Battery, four wheels, within one GO kit. All declared mates and CAD collision checks passed; it has **not been physically built or tested**.
+- `iq-beam-pin.json` and `lego-beam-pin.json`: platform-specific few-shots.
+
+To load the complete GO car in an empty GO project:
+
+```js
+await window.assemblyAPI.ready;
+const car = await (await fetch('/assembly/examples/go-car-two-motors.json')).json();
+await window.assemblyAPI.loadJSON(car);
+const guide = (await window.assemblyAPI.getState()).buildGuide;
+console.log(guide.ready, guide.blockers);
+```
+
+If WebGL globals are missing or context creation fails, menus, library, inspector, CPU CAD fit checks, JSON operations and history remain available. The viewport becomes **2D / Data Fallback View**, listing parts, coordinates, connections and generated steps. `?view=data` on an editor HTML URL forces this mode for debugging. `getState().viewMode` is `data` or `webgl`. Fallback PDF output is explicitly a **data guide** with inventory/coordinates/connections/text steps; it does not fabricate 3D renderings. Normal WebGL guide rendering stays unchanged. LEGO's existing guide limitations still apply.
+
+Validation: `node scripts/test-assembly-document.mjs`, `node scripts/test-assembly-headless-ui.mjs`, `node scripts/test-assembly-webgl-document.mjs`. UI tests accept `BASE_URL`; default dev port is 3131. The headless suite disables WebGL and independently tests missing globals and failed contexts.
+
 ## JavaScript API
 
 `window.mindxAssembly` is exposed by the loaded editor and its same-origin host. API version 1.2 retains `execute(command, args)` and `describe()`. It exposes 31 commands, including compatible connector lookup, group duplication and diagnostics.

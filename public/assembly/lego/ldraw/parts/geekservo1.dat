@@ -1,0 +1,10 @@
+0 Electric Servo Motor Brick  5 x  2 x  3
+0 Name: geekservo1.dat
+0 Author: Philippe Hurbain [Philo]
+0 !LDRAW_ORG Unofficial_Shortcut
+0 !LICENSE Redistributable under CCAL version 2.0 : see CAreadme.txt
+
+0 BFC CERTIFY CCW
+
+1 16 0 0 0 1 0 0 0 1 0 0 0 1 geekservo1a.dat
+1 15 0 -26 10 0 0 -1 0 1 0 1 0 0 geekservo1b.dat

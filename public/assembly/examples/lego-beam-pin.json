@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "platform": "lego",
+  "title": "LEGO · Dầm và chốt",
+  "parts": [
+    {
+      "id": "base",
+      "partId": "32524",
+      "position": [
+        0,
+        40,
+        0
+      ]
+    },
+    {
+      "id": "pin",
+      "partId": "2780",
+      "attachTo": {
+        "targetId": "base",
+        "sourceRef": "lego-pin-0-1",
+        "targetRef": "lego-pinhole-0-1"
+      }
+    }
+  ]
+}

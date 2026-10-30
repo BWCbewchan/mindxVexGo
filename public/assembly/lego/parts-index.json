@@ -1,0 +1,6599 @@
+{
+  "parts": {
+    "10928": {
+      "name": "Technic Gear  8 Tooth Reinforced",
+      "rb": "10928",
+      "sets": {
+        "45544-1": 4,
+        "45560-1": 2,
+        "51515-1": 2
+      },
+      "colors": {
+        "72": "Dark_Bluish_Grey"
+      },
+      "rbname": "Technic Gear 8 Tooth [Reinforced]",
+      "dc": 72,
+      "dcs": {
+        "45544-1": 72,
+        "45560-1": 72,
+        "51515-1": 72
+      }
+    },
+    "11145": {
+      "name": "Electric Mindstorms EV3 Cable 25 cm",
+      "rb": "11145",
+      "sets": {
+        "45544-1": 4,
+        "31313-1": 4
+      },
+      "colors": {
+        "0": "Black"
+      },
+      "rbname": "Cable, Connector, 25cm for EV3",
+      "dc": 0,
+      "dcs": {
+        "45544-1": 0,
+        "31313-1": 0
+      }
+    },
+    "2780": {
+      "name": "Technic Pin with Friction and Slots",
+      "rb": "2780",
+      "sets": {
+        "45544-1": 60,
+        "45560-1": 170,
+        "31313-1": 95,
+        "51515-1": 175
+      },
+      "colors": {
+        "0": "Black"
+      },
+      "rbname": "Technic Pin with Friction Ridges Lengthwise and Center Slots",
+      "dc": 0,
+      "dcs": {
+        "45544-1": 0,
+        "45560-1": 0,
+        "31313-1": 0,
+        "51515-1": 0
+      }
+    },
+    "2815": {
+      "name": "Technic Wedge Belt Wheel Tyre",
+      "rb": "2815",
+      "sets": {
+        "45544-1": 4,
+        "31313-1": 3,
+        "45678-1": 2,
+        "45345-1": 4
+      },
+      "colors": {
+        "0": "Black",
+        "322": "Medium_Azure"
+      },
+      "rbname": "Technic Wedge Belt Wheel Tire",
+      "dc": 0,
+      "dcs": {
+        "45544-1": 0,
+        "31313-1": 0,
+        "45678-1": 0,
+        "45345-1": 322
+      }
+    },
+    "32009": {
+      "name": "Technic Beam  3 x  3.8 x  7 Liftarm Bent 45 Double",
+      "rb": "32009",
+      "sets": {
+        "45544-1": 4,
+        "45560-1": 6,
+        "31313-1": 12,
+        "45678-1": 5,
+        "45681-1": 4,
+        "51515-1": 8
+      },
+      "colors": {
+        "15": "White",
+        "71": "Light_Bluish_Grey",
+        "0": "Black"
+      },
+      "rbname": "Technic Beam 1 x 11.5 Double Bent Thick",
+      "dc": 0,
+      "dcs": {
+        "45544-1": 15,
+        "45560-1": 71,
+        "31313-1": 0,
+        "45678-1": 0,
+        "45681-1": 0,
+        "51515-1": 0
+      }
+    },
+    "32013": {
+      "name": "Technic Angle Connector #1",
+      "rb": "32013",
+      "sets": {
+        "45544-1": 4,
+        "45560-1": 6,
+        "31313-1": 4,
+        "45678-1": 5,
+        "45345-1": 4,
+        "51515-1": 5
+      },
+      "colors": {
+        "0": "Black",
+        "4": "Red",
+        "71": "Light_Bluish_Grey",
+        "15": "White"
+      },
+      "rbname": "Technic Axle and Pin Connector Angled #1",
+      "dc": 0,
+      "dcs": {
+        "45544-1": 0,
+        "45560-1": 0,
+        "31313-1": 4,
+        "45678-1": 71,
+        "45345-1": 15,
+        "51515-1": 15
+      }
+    },
+    "32014": {
+      "name": "Technic Angle Connector #6 (90 degree)",
+      "rb": "32014",
+      "sets": {
+        "45544-1": 2,
+        "45560-1": 2,
+        "31313-1": 1,
+        "45678-1": 5,
+        "45681-1": 12,
+        "51515-1": 1
+      },
+      "colors": {
+        "0": "Black",
+        "4": "Red",
+        "14": "Yellow"
+      },
+      "rbname": "Technic Axle and Pin Connector Angled #6 - 90°",
+      "dc": 14,
+      "dcs": {
+        "45544-1": 0,
+        "45560-1": 0,
+        "31313-1": 4,
+        "45678-1": 14,
+        "45681-1": 14,
+        "51515-1": 0
+      }
+    },
+    "32034": {
+      "name": "Technic Angle Connector #2 (180 degree)",
+      "rb": "32034",
+      "sets": {
+        "45544-1": 4,
+        "45560-1": 5,
+        "31313-1": 6,
+        "45678-1": 5,
+        "51515-1": 1
+      },
+      "colors": {
+        "0": "Black",
+        "4": "Red",
+        "15": "White"
+      },
+      "rbname": "Technic Axle and Pin Connector Angled #2 - 180°",
+      "dc": 0,
+      "dcs": {
+        "45544-1": 0,
+        "45560-1": 0,
+        "31313-1": 4,
+        "45678-1": 0,
+        "51515-1": 15
+      }
+    },
+    "32054": {
+      "name": "Technic Pin Long with Stop Bush",
+      "rb": "32054",
+      "sets": {
+        "45544-1": 22,
+        "31313-1": 10,
+        "45678-1": 10,
+        "45681-1": 12,
+        "51515-1": 18
+      },
+      "colors": {
+        "4": "Red",
+        "71": "Light_Bluish_Grey"
+      },
+      "rbname": "Technic Pin Long with Friction Ridges Lengthwise and Stop Bush [3 Lateral Holes, Big Pin Hole]",
+      "dc": 4,
+      "dcs": {
+        "45544-1": 4,
+        "31313-1": 4,
+        "45678-1": 71,
+        "45681-1": 4,
+        "51515-1": 71
+      }
+    },
+    "32062": {
+      "name": "Technic Axle  2 Notched",
+      "rb": "32062",
+      "sets": {
+        "45544-1": 10,
+        "45560-1": 22,
+        "31313-1": 12,
+        "45678-1": 12,
+        "45681-1": 8,
+        "45345-1": 8,
+        "51515-1": 10
+      },
+      "colors": {
+        "4": "Red"
+      },
+      "rbname": "Technic Axle 2 Notched",
+      "dc": 4,
+      "dcs": {
+        "45544-1": 4,
+        "45560-1": 4,
+        "31313-1": 4,
+        "45678-1": 4,
+        "45681-1": 4,
+        "45345-1": 4,
+        "51515-1": 4
+      }
+    },
+    "32072": {
+      "name": "Technic Gear  4 Knob",
+      "rb": "32072",
+      "sets": {
+        "45544-1": 4,
+        "31313-1": 4
+      },
+      "colors": {
+        "0": "Black"
+      },
+      "rbname": "Technic Knob Wheel",
+      "dc": 0,
+      "dcs": {
+        "45544-1": 0,
+        "31313-1": 0
+      }
+    },
+    "32073": {
+      "name": "Technic Axle  5",
+      "rb": "32073",
+      "sets": {
+        "45544-1": 6,
+        "45560-1": 8,
+        "31313-1": 9,
+        "45678-1": 6,
+        "45681-1": 4,
+        "51515-1": 4
+      },
+      "colors": {
+        "71": "Light_Bluish_Grey",
+        "14": "Yellow"
+      },
+      "rbname": "Technic Axle 5",
+      "dc": 71,
+      "dcs": {
+        "45544-1": 71,
+        "45560-1": 71,
+        "31313-1": 71,
+        "45678-1": 71,
+        "45681-1": 71,
+        "51515-1": 14
+      }
+    },
+    "32123b": {
+      "name": "Technic Bush 1/2 Smooth with Axle Hole Semi-Reduced",
+      "rb": "32123b",
+      "sets": {
+        "45544-1": 10,
+        "45560-1": 16,
+        "31313-1": 11,
+        "45681-1": 16,
+        "51515-1": 10
+      },
+      "colors": {
+        "14": "Yellow",
+        "71": "Light_Bluish_Grey"
+      },
+      "rbname": "Technic Bush 1/2 Smooth with Axle Hole Semi-Reduced",
+      "dc": 14,
+      "dcs": {
+        "45544-1": 14,
+        "45560-1": 14,
+        "31313-1": 14,
+        "45681-1": 14,
+        "51515-1": 71
+      }
+    },
+    "32140": {
+      "name": "Technic Beam  2 x  4 Liftarm Bent 90",
+      "rb": "32140",
+      "sets": {
+        "45544-1": 6,
+        "45560-1": 12,
+        "31313-1": 8,
+        "45678-1": 5,
+        "45681-1": 8,
+        "51515-1": 12
+      },
+      "colors": {
+        "4": "Red",
+        "71": "Light_Bluish_Grey",
+        "0": "Black",
+        "14": "Yellow",
+        "3": "Dark_Turquoise"
+      },
+      "rbname": "Technic Beam 2 x 4 L-Shape Thick",
+      "dc": 0,
+      "dcs": {
+        "45544-1": 4,
+        "45560-1": 71,
+        "31313-1": 0,
+        "45678-1": 14,
+        "45681-1": 14,
+        "51515-1": 0
+      }
+    },
+    "32184": {
+      "name": "Technic Cross Block 1 x 3 (Axle/Pin/Axle)",
+      "rb": "32184",
+      "sets": {
+        "45544-1": 8,
+        "45560-1": 4,
+        "31313-1": 17,
+        "45678-1": 4,
+        "45681-1": 4,
+        "51515-1": 8
+      },
+      "colors": {
+        "0": "Black",
+        "4": "Red",
+        "15": "White",
+        "71": "Light_Bluish_Grey"
+      },
+      "rbname": "Technic Axle and Pin Connector Perpendicular 3L with Centre Pin Hole",
+      "dc": 4,
+      "dcs": {
+        "45544-1": 0,
+        "45560-1": 0,
+        "31313-1": 4,
+        "45678-1": 15,
+        "45681-1": 15,
+        "51515-1": 71
+      }
+    },
+    "32269": {
+      "name": "Technic Gear 20 Tooth Double Bevel",
+      "rb": "32269",
+      "sets": {
+        "45544-1": 2,
+        "45560-1": 1
+      },
+      "colors": {
+        "0": "Black"
+      },
+      "rbname": "Technic Gear 20 Tooth Double Bevel with Axle Hole Type 2 [X Opening]",
+      "dc": 0,
+      "dcs": {
+        "45544-1": 0,
+        "45560-1": 0
+      }
+    },
+    "32270": {
+      "name": "Technic Gear 12 Tooth Double Bevel",
+      "rb": "32270",
+      "sets": {
+        "45544-1": 2,
+        "45560-1": 2,
+        "31313-1": 2,
+        "45678-1": 3,
+        "45681-1": 2,
+        "51515-1": 4
+      },
+      "colors": {
+        "0": "Black"
+      },
+      "rbname": "Technic Gear 12 Tooth Double Bevel",
+      "dc": 0,
+      "dcs": {
+        "45544-1": 0,
+        "45560-1": 0,
+        "31313-1": 0,
+        "45678-1": 0,
+        "45681-1": 0,
+        "51515-1": 0
+      }
+    },
+    "32271": {
+      "name": "Technic Beam  3 x  7 Liftarm Bent 53.13",
+      "rb": "32271",
+      "sets": {
+        "45544-1": 4,
+        "31313-1": 12,
+        "45678-1": 4,
+        "45681-1": 4,
+        "51515-1": 4
+      },
+      "colors": {
+        "71": "Light_Bluish_Grey",
+        "0": "Black",
+        "14": "Yellow"
+      },
+      "rbname": "Technic Beam 1 x 9 Bent (7 - 3) Thick",
+      "dc": 0,
+      "dcs": {
+        "45544-1": 71,
+        "31313-1": 0,
+        "45678-1": 14,
+        "45681-1": 14,
+        "51515-1": 0
+      }
+    },
+    "32278": {
+      "name": "Technic Beam 15",
+      "rb": "32278",
+      "sets": {
+        "45544-1": 6,
+        "45560-1": 13,
+        "31313-1": 4,
+        "45678-1": 6,
+        "45681-1": 6,
+        "51515-1": 5
+      },
+      "colors": {
+        "15": "White",
+        "0": "Black"
+      },
+      "rbname": "Technic Beam 1 x 15 Thick",
+      "dc": 0,
+      "dcs": {
+        "45544-1": 15,
+        "45560-1": 15,
+        "31313-1": 0,
+        "45678-1": 0,
+        "45681-1": 0,
+        "51515-1": 0
+      }
+    },
+    "32291": {
+      "name": "Technic Cross Block 2 x 2 (Axle/Twin Pin)",
+      "rb": "32291",
+      "sets": {
+        "45544-1": 4,
+        "31313-1": 2,
+        "45681-1": 4,
+        "51515-1": 8
+      },
+      "colors": {
+        "0": "Black",
+        "4": "Red"
+      },
+      "rbname": "Technic Axle and Pin Connector Perpendicular Double",
+      "dc": 0,
+      "dcs": {
+        "45544-1": 0,
+        "31313-1": 4,
+        "45681-1": 0,
+        "51515-1": 0
+      }
+    },
+    "32316": {
+      "name": "Technic Beam  5",
+      "rb": "32316",
+      "sets": {
+        "45544-1": 4,
+        "45560-1": 5,
+        "31313-1": 10,
+        "45678-1": 5,
+        "45681-1": 8,
+        "51515-1": 16
+      },
+      "colors": {
+        "71": "Light_Bluish_Grey",
+        "0": "Black",
+        "26": "Magenta",
+        "3": "Dark_Turquoise"
+      },
+      "rbname": "Technic Beam 1 x 5 Thick",
+      "dc": 0,
+      "dcs": {
+        "45544-1": 71,
+        "45560-1": 71,
+        "31313-1": 0,
+        "45678-1": 26,
+        "45681-1": 26,
+        "51515-1": 3
+      }
+    },
+    "32348": {
+      "name": "Technic Beam  4 x  4 Liftarm Bent 53.13",
+      "rb": "32348",
+      "sets": {
+        "45544-1": 6,
+        "31313-1": 4,
+        "45678-1": 5,
+        "45681-1": 4,
+        "51515-1": 9
+      },
+      "colors": {
+        "15": "White",
+        "0": "Black"
+      },
+      "rbname": "Technic Beam 1 x 7 Bent (4 - 4) Thick",
+      "dc": 0,
+      "dcs": {
+        "45544-1": 15,
+        "31313-1": 0,
+        "45678-1": 0,
+        "45681-1": 0,
+        "51515-1": 0
+      }
+    },
+    "32449": {
+      "name": "Technic Beam  4 x  0.5 Liftarm",
+      "rb": "32449",
+      "sets": {
+        "45544-1": 2
+      },
+      "colors": {
+        "0": "Black"
+      },
+      "rbname": "Technic Beam 1 x 4 Thin",
+      "dc": 0,
+      "dcs": {
+        "45544-1": 0
+      }
+    },
+    "32498": {
+      "name": "Technic Gear 36 Tooth Double Bevel",
+      "rb": "32498",
+      "sets": {
+        "45544-1": 2,
+        "31313-1": 5,
+        "45678-1": 3,
+        "45681-1": 2,
+        "51515-1": 1
+      },
+      "colors": {
+        "0": "Black"
+      },
+      "rbname": "Technic Gear 36 Tooth Double Bevel",
+      "dc": 0,
+      "dcs": {
+        "45544-1": 0,
+        "31313-1": 0,
+        "45678-1": 0,
+        "45681-1": 0,
+        "51515-1": 0
+      }
+    },
+    "32523": {
+      "name": "Technic Beam  3",
+      "rb": "32523",
+      "sets": {
+        "45544-1": 18,
+        "45560-1": 13,
+        "31313-1": 12,
+        "45678-1": 8,
+        "45681-1": 10,
+        "51515-1": 28
+      },
+      "colors": {
+        "2": "Green",
+        "0": "Black",
+        "14": "Yellow",
+        "4": "Red",
+        "1": "Blue",
+        "71": "Light_Bluish_Grey",
+        "15": "White",
+        "3": "Dark_Turquoise"
+      },
+      "rbname": "Technic Beam 1 x 3 Thick",
+      "dc": 0,
+      "dcs": {
+        "45544-1": 2,
+        "45560-1": 71,
+        "31313-1": 0,
+        "45678-1": 14,
+        "45681-1": 14,
+        "51515-1": 0
+      }
+    },
+    "32524": {
+      "name": "Technic Beam  7",
+      "rb": "32524",
+      "sets": {
+        "45544-1": 4,
+        "45560-1": 16,
+        "31313-1": 6,
+        "45678-1": 7,
+        "45681-1": 6,
+        "45345-1": 3,
+        "51515-1": 12
+      },
+      "colors": {
+        "71": "Light_Bluish_Grey",
+        "0": "Black",
+        "322": "Medium_Azure",
+        "1": "Blue",
+        "15": "White"
+      },
+      "rbname": "Technic Beam 1 x 7 Thick",
+      "dc": 71,
+      "dcs": {
+        "45544-1": 71,
+        "45560-1": 71,
+        "31313-1": 0,
+        "45678-1": 322,
+        "45681-1": 322,
+        "45345-1": 1,
+        "51515-1": 0
+      }
+    },
+    "32525": {
+      "name": "Technic Beam 11",
+      "rb": "32525",
+      "sets": {
+        "45544-1": 4,
+        "45560-1": 6,
+        "31313-1": 4,
+        "45678-1": 5,
+        "45681-1": 6,
+        "45345-1": 2,
+        "51515-1": 7
+      },
+      "colors": {
+        "71": "Light_Bluish_Grey",
+        "4": "Red",
+        "26": "Magenta",
+        "0": "Black"
+      },
+      "rbname": "Technic Beam 1 x 11 Thick",
+      "dc": 26,
+      "dcs": {
+        "45544-1": 71,
+        "45560-1": 71,
+        "31313-1": 4,
+        "45678-1": 26,
+        "45681-1": 26,
+        "45345-1": 26,
+        "51515-1": 0
+      }
+    },
+    "32526": {
+      "name": "Technic Beam  3 x  5 Bent 90",
+      "rb": "32526",
+      "sets": {
+        "45544-1": 6,
+        "45560-1": 6,
+        "31313-1": 6,
+        "45678-1": 5,
+        "45681-1": 10,
+        "45345-1": 3,
+        "51515-1": 18
+      },
+      "colors": {
+        "15": "White",
+        "71": "Light_Bluish_Grey",
+        "0": "Black",
+        "322": "Medium_Azure",
+        "10": "Bright_Green",
+        "3": "Dark_Turquoise"
+      },
+      "rbname": "Technic Beam 3 x 5 L-Shape Thick",
+      "dc": 0,
+      "dcs": {
+        "45544-1": 15,
+        "45560-1": 71,
+        "31313-1": 0,
+        "45678-1": 322,
+        "45681-1": 15,
+        "45345-1": 10,
+        "51515-1": 0
+      }
+    },
+    "32556a": {
+      "name": "Technic Pin Long without Friction with Single Slot",
+      "rb": "32556",
+      "sets": {
+        "45544-1": 6,
+        "45560-1": 14,
+        "31313-1": 4,
+        "51515-1": 6
+      },
+      "colors": {
+        "19": "Tan"
+      },
+      "rbname": "Technic Pin Long without Friction Ridges",
+      "dc": 19,
+      "dcs": {
+        "45544-1": 19,
+        "45560-1": 19,
+        "31313-1": 19,
+        "51515-1": 19
+      }
+    },
+    "33299a": {
+      "name": "Technic Beam  3 x  0.5 Liftarm with Boss and Pin with Closed Central Axle Hole",
+      "rb": "33299a",
+      "sets": {
+        "45544-1": 2,
+        "45560-1": 1
+      },
+      "colors": {
+        "0": "Black"
+      },
+      "rbname": "Technic Beam 3 x 0.5 Liftarm with Boss and Pin / Crank",
+      "dc": 0,
+      "dcs": {
+        "45544-1": 0,
+        "45560-1": 0
+      }
+    },
+    "3648b": {
+      "name": "Technic Gear 24 Tooth with Single Axle Hole",
+      "rb": "3648b",
+      "sets": {
+        "45544-1": 4,
+        "45560-1": 3,
+        "31313-1": 2,
+        "51515-1": 2
+      },
+      "colors": {
+        "72": "Dark_Bluish_Grey"
+      },
+      "rbname": "Technic Gear 24 Tooth [New Style with Single Axle Hole]",
+      "dc": 72,
+      "dcs": {
+        "45544-1": 72,
+        "45560-1": 72,
+        "31313-1": 72,
+        "51515-1": 72
+      }
+    },
+    "3649": {
+      "name": "Technic Gear 40 Tooth",
+      "rb": "3649",
+      "sets": {
+        "45544-1": 2,
+        "45560-1": 2
+      },
+      "colors": {
+        "71": "Light_Bluish_Grey"
+      },
+      "rbname": "Technic Gear 40 Tooth",
+      "dc": 71,
+      "dcs": {
+        "45544-1": 71,
+        "45560-1": 71
+      }
+    },
+    "3673": {
+      "name": "Technic Pin",
+      "rb": "3673",
+      "sets": {
+        "45544-1": 10,
+        "31313-1": 4,
+        "45681-1": 12,
+        "51515-1": 18
+      },
+      "colors": {
+        "71": "Light_Bluish_Grey"
+      },
+      "rbname": "Technic Pin without Friction Ridges Lengthwise",
+      "dc": 71,
+      "dcs": {
+        "45544-1": 71,
+        "31313-1": 71,
+        "45681-1": 71,
+        "51515-1": 71
+      }
+    },
+    "3705": {
+      "name": "Technic Axle  4",
+      "rb": "3705",
+      "sets": {
+        "45544-1": 4,
+        "45560-1": 5,
+        "45678-1": 4,
+        "45681-1": 4,
+        "45345-1": 3,
+        "51515-1": 4
+      },
+      "colors": {
+        "0": "Black"
+      },
+      "rbname": "Technic Axle 4",
+      "dc": 0,
+      "dcs": {
+        "45544-1": 0,
+        "45560-1": 0,
+        "45678-1": 0,
+        "45681-1": 0,
+        "45345-1": 0,
+        "51515-1": 0
+      }
+    },
+    "3706": {
+      "name": "Technic Axle  6",
+      "rb": "3706",
+      "sets": {
+        "45544-1": 4,
+        "45560-1": 1,
+        "31313-1": 9,
+        "45681-1": 4,
+        "45345-1": 3,
+        "51515-1": 2
+      },
+      "colors": {
+        "0": "Black",
+        "4": "Red"
+      },
+      "rbname": "Technic Axle 6",
+      "dc": 0,
+      "dcs": {
+        "45544-1": 0,
+        "45560-1": 0,
+        "31313-1": 0,
+        "45681-1": 4,
+        "45345-1": 4,
+        "51515-1": 4
+      }
+    },
+    "3707": {
+      "name": "Technic Axle  8",
+      "rb": "3707",
+      "sets": {
+        "45544-1": 2,
+        "45560-1": 1,
+        "45678-1": 6,
+        "45345-1": 3,
+        "51515-1": 2
+      },
+      "colors": {
+        "0": "Black"
+      },
+      "rbname": "Technic Axle 8",
+      "dc": 0,
+      "dcs": {
+        "45544-1": 0,
+        "45560-1": 0,
+        "45678-1": 0,
+        "45345-1": 0,
+        "51515-1": 0
+      }
+    },
+    "3708": {
+      "name": "Technic Axle 12",
+      "rb": "3708",
+      "sets": {
+        "45544-1": 2,
+        "45560-1": 1,
+        "45681-1": 2,
+        "51515-1": 2
+      },
+      "colors": {
+        "0": "Black",
+        "4": "Red"
+      },
+      "rbname": "Technic Axle 12",
+      "dc": 0,
+      "dcs": {
+        "45544-1": 0,
+        "45560-1": 0,
+        "45681-1": 4,
+        "51515-1": 0
+      }
+    },
+    "3713": {
+      "name": "Technic Bush with Two Flanges",
+      "rb": "3713",
+      "sets": {
+        "45544-1": 10,
+        "45560-1": 45,
+        "31313-1": 9,
+        "45678-1": 10,
+        "45681-1": 12,
+        "45345-1": 8,
+        "51515-1": 10
+      },
+      "colors": {
+        "71": "Light_Bluish_Grey",
+        "4": "Red"
+      },
+      "rbname": "Technic Bush",
+      "dc": 71,
+      "dcs": {
+        "45544-1": 71,
+        "45560-1": 71,
+        "31313-1": 4,
+        "45678-1": 71,
+        "45681-1": 71,
+        "45345-1": 4,
+        "51515-1": 71
+      }
+    },
+    "3737": {
+      "name": "Technic Axle 10",
+      "rb": "3737",
+      "sets": {
+        "45544-1": 2,
+        "45560-1": 1
+      },
+      "colors": {
+        "0": "Black"
+      },
+      "rbname": "Technic Axle 10",
+      "dc": 0,
+      "dcs": {
+        "45544-1": 0,
+        "45560-1": 0
+      }
+    },
+    "3749": {
+      "name": "Technic Axle Pin",
+      "rb": "3749",
+      "sets": {
+        "45544-1": 8,
+        "45560-1": 6,
+        "45678-1": 30,
+        "51515-1": 6
+      },
+      "colors": {
+        "19": "Tan"
+      },
+      "rbname": "Technic Axle Pin without Friction Ridges Lengthwise",
+      "dc": 19,
+      "dcs": {
+        "45544-1": 19,
+        "45560-1": 19,
+        "45678-1": 19,
+        "51515-1": 19
+      }
+    },
+    "40490": {
+      "name": "Technic Beam  9",
+      "rb": "40490",
+      "sets": {
+        "45544-1": 6,
+        "45560-1": 7,
+        "31313-1": 8,
+        "45678-1": 5,
+        "45681-1": 8,
+        "51515-1": 14
+      },
+      "colors": {
+        "71": "Light_Bluish_Grey",
+        "0": "Black",
+        "3": "Dark_Turquoise"
+      },
+      "rbname": "Technic Beam 1 x 9 Thick",
+      "dc": 0,
+      "dcs": {
+        "45544-1": 71,
+        "45560-1": 71,
+        "31313-1": 0,
+        "45678-1": 0,
+        "45681-1": 0,
+        "51515-1": 3
+      }
+    },
+    "41239": {
+      "name": "Technic Beam 13",
+      "rb": "41239",
+      "sets": {
+        "45544-1": 6,
+        "31313-1": 4,
+        "45678-1": 4,
+        "45681-1": 6,
+        "51515-1": 5
+      },
+      "colors": {
+        "71": "Light_Bluish_Grey",
+        "0": "Black",
+        "322": "Medium_Azure",
+        "15": "White"
+      },
+      "rbname": "Technic Beam 1 x 13 Thick",
+      "dc": 322,
+      "dcs": {
+        "45544-1": 71,
+        "31313-1": 0,
+        "45678-1": 322,
+        "45681-1": 322,
+        "51515-1": 15
+      }
+    },
+    "41669": {
+      "name": "Technic Tooth  1 x  3 with Axlehole with Rounded Bottom Cavity",
+      "rb": "41669",
+      "sets": {
+        "45544-1": 4,
+        "45560-1": 3,
+        "31313-1": 10
+      },
+      "colors": {
+        "15": "White",
+        "4": "Red"
+      },
+      "rbname": "Technic Tooth 1 x 3 with Axle Hole [Rounded Underside]",
+      "dc": 15,
+      "dcs": {
+        "45544-1": 15,
+        "45560-1": 4,
+        "31313-1": 4
+      }
+    },
+    "41678": {
+      "name": "Technic Cross Block 2 x 2 Split (Axle/Twin Pin)",
+      "rb": "41678",
+      "sets": {
+        "45544-1": 4,
+        "31313-1": 4,
+        "45681-1": 4,
+        "51515-1": 4
+      },
+      "colors": {
+        "0": "Black",
+        "4": "Red"
+      },
+      "rbname": "Technic Axle and Pin Connector Perpendicular Double Split",
+      "dc": 0,
+      "dcs": {
+        "45544-1": 0,
+        "31313-1": 4,
+        "45681-1": 4,
+        "51515-1": 0
+      }
+    },
+    "4185a": {
+      "name": "Technic Wedge Belt Wheel - Not Reinforced",
+      "rb": "4185",
+      "sets": {
+        "45544-1": 4,
+        "31313-1": 3,
+        "45678-1": 2,
+        "45345-1": 4
+      },
+      "colors": {
+        "72": "Dark_Bluish_Grey",
+        "71": "Light_Bluish_Grey",
+        "0": "Black",
+        "15": "White"
+      },
+      "rbname": "Technic Wedge Belt Wheel [aka Pulley]",
+      "dc": 72,
+      "dcs": {
+        "45544-1": 72,
+        "31313-1": 71,
+        "45678-1": 0,
+        "45345-1": 15
+      }
+    },
+    "41897": {
+      "name": "Tyre 28/ 23 x 43 ZR Street",
+      "rb": "41897",
+      "sets": {
+        "45544-1": 2,
+        "45560-1": 2
+      },
+      "colors": {
+        "0": "Black"
+      },
+      "rbname": "Tyre 56 x 28 ZR Street",
+      "dc": 0,
+      "dcs": {
+        "45544-1": 0,
+        "45560-1": 0
+      }
+    },
+    "42003": {
+      "name": "Technic Cross Block 1 x 3 (Axle/Pin/Pin)",
+      "rb": "42003",
+      "sets": {
+        "45544-1": 8,
+        "45560-1": 4,
+        "31313-1": 14,
+        "45681-1": 12,
+        "51515-1": 4
+      },
+      "colors": {
+        "72": "Dark_Bluish_Grey",
+        "4": "Red",
+        "3": "Dark_Turquoise"
+      },
+      "rbname": "Technic Axle and Pin Connector Perpendicular 3L with 2 Pin Holes",
+      "dc": 4,
+      "dcs": {
+        "45544-1": 72,
+        "45560-1": 72,
+        "31313-1": 4,
+        "45681-1": 4,
+        "51515-1": 3
+      }
+    },
+    "43093": {
+      "name": "Technic Axle Pin with Friction",
+      "rb": "43093",
+      "sets": {
+        "45544-1": 20,
+        "45560-1": 57,
+        "31313-1": 28,
+        "45681-1": 24,
+        "51515-1": 60
+      },
+      "colors": {
+        "1": "Blue"
+      },
+      "rbname": "Technic Axle Pin with Friction Ridges Lengthwise",
+      "dc": 1,
+      "dcs": {
+        "45544-1": 1,
+        "45560-1": 1,
+        "31313-1": 1,
+        "45681-1": 1,
+        "51515-1": 1
+      }
+    },
+    "44294": {
+      "name": "Technic Axle  7",
+      "rb": "44294",
+      "sets": {
+        "45544-1": 5,
+        "45560-1": 2,
+        "31313-1": 2,
+        "45678-1": 6,
+        "45345-1": 3,
+        "51515-1": 4
+      },
+      "colors": {
+        "71": "Light_Bluish_Grey",
+        "14": "Yellow"
+      },
+      "rbname": "Technic Axle 7",
+      "dc": 71,
+      "dcs": {
+        "45544-1": 71,
+        "45560-1": 71,
+        "31313-1": 71,
+        "45678-1": 14,
+        "45345-1": 14,
+        "51515-1": 71
+      }
+    },
+    "44809": {
+      "name": "Technic Cross Block 2 x 2 Bent 90 (Pin/Pin/Pin)",
+      "rb": "44809",
+      "sets": {
+        "45544-1": 2
+      },
+      "colors": {
+        "4": "Red"
+      },
+      "rbname": "Technic Pin Connector Perpendicular 2 x 2 Bent",
+      "dc": 4,
+      "dcs": {
+        "45544-1": 4
+      }
+    },
+    "4519": {
+      "name": "Technic Axle  3",
+      "rb": "4519",
+      "sets": {
+        "45544-1": 14,
+        "45560-1": 12,
+        "31313-1": 22,
+        "45678-1": 10,
+        "45681-1": 14,
+        "45345-1": 4,
+        "51515-1": 9
+      },
+      "colors": {
+        "71": "Light_Bluish_Grey",
+        "14": "Yellow"
+      },
+      "rbname": "Technic Axle 3",
+      "dc": 71,
+      "dcs": {
+        "45544-1": 71,
+        "45560-1": 71,
+        "31313-1": 71,
+        "45678-1": 14,
+        "45681-1": 14,
+        "45345-1": 14,
+        "51515-1": 71
+      }
+    },
+    "45590": {
+      "name": "Technic Axle Joiner Double Flexible",
+      "rb": "45590",
+      "sets": {
+        "45544-1": 4,
+        "45678-1": 6,
+        "45345-1": 5,
+        "51515-1": 4
+      },
+      "colors": {
+        "0": "Black"
+      },
+      "rbname": "Technic Axle Connector Double Flexible [Rubber]",
+      "dc": 0,
+      "dcs": {
+        "45544-1": 0,
+        "45678-1": 0,
+        "45345-1": 0,
+        "51515-1": 0
+      }
+    },
+    "4716": {
+      "name": "Technic Worm Gear 2L",
+      "rb": "4716",
+      "sets": {
+        "45544-1": 2,
+        "45560-1": 1
+      },
+      "colors": {
+        "71": "Light_Bluish_Grey"
+      },
+      "rbname": "Technic Worm Gear",
+      "dc": 71,
+      "dcs": {
+        "45544-1": 71,
+        "45560-1": 71
+      }
+    },
+    "48989": {
+      "name": "Technic Cross Block 1 x 3 (Pin/Pin/Pin) with 4 Pins",
+      "rb": "48989",
+      "sets": {
+        "45544-1": 6,
+        "45560-1": 10,
+        "31313-1": 12,
+        "45678-1": 12
+      },
+      "colors": {
+        "71": "Light_Bluish_Grey"
+      },
+      "rbname": "Technic Pin Connector Hub Perpendicular 3L with 4 Pins",
+      "dc": 71,
+      "dcs": {
+        "45544-1": 71,
+        "45560-1": 71,
+        "31313-1": 71,
+        "45678-1": 71
+      }
+    },
+    "55013": {
+      "name": "Technic Axle  8 with Stop",
+      "rb": "55013",
+      "sets": {
+        "45544-1": 2,
+        "45560-1": 6,
+        "31313-1": 6,
+        "45681-1": 2,
+        "51515-1": 4
+      },
+      "colors": {
+        "72": "Dark_Bluish_Grey"
+      },
+      "rbname": "Technic Axle 8 with Stop",
+      "dc": 72,
+      "dcs": {
+        "45544-1": 72,
+        "45560-1": 72,
+        "31313-1": 72,
+        "45681-1": 72,
+        "51515-1": 72
+      }
+    },
+    "55615": {
+      "name": "Technic Pin Connector Perpendicular  3 x  3 Bent 90 with 4 Pins, Slots Along Beam",
+      "rb": "55615",
+      "sets": {
+        "45544-1": 4,
+        "45560-1": 4,
+        "45678-1": 4
+      },
+      "colors": {
+        "71": "Light_Bluish_Grey"
+      },
+      "rbname": "Technic Pin Connector Hub Perpendicular 3 x 3 Bent with 4 Pins (Pin Ridges Across Part)",
+      "dc": 71,
+      "dcs": {
+        "45544-1": 71,
+        "45560-1": 71,
+        "45678-1": 71
+      }
+    },
+    "55805": {
+      "name": "Electric Mindstorms NXT Cable 35 cm",
+      "rb": "55805",
+      "sets": {
+        "45544-1": 2,
+        "31313-1": 2
+      },
+      "colors": {
+        "0": "Black"
+      },
+      "rbname": "Cable, Connector, 35cm for NXT",
+      "dc": 0,
+      "dcs": {
+        "45544-1": 0,
+        "31313-1": 0
+      }
+    },
+    "55806": {
+      "name": "Electric Mindstorms NXT Cable 50 cm",
+      "rb": "55806",
+      "sets": {
+        "45544-1": 1,
+        "31313-1": 1
+      },
+      "colors": {
+        "0": "Black"
+      },
+      "rbname": "Cable, Connector, 50cm for NXT",
+      "dc": 0,
+      "dcs": {
+        "45544-1": 0,
+        "31313-1": 0
+      }
+    },
+    "56908": {
+      "name": "Wheel Rim 26 x 43 with 6 Spokes and 6 Pegholes",
+      "rb": "56908",
+      "sets": {
+        "45544-1": 2,
+        "45560-1": 2
+      },
+      "colors": {
+        "71": "Light_Bluish_Grey"
+      },
+      "rbname": "Wheel 43.2 x 26 Technic Racing Small with 6 Pinholes",
+      "dc": 71,
+      "dcs": {
+        "45544-1": 71,
+        "45560-1": 71
+      }
+    },
+    "57519": {
+      "name": "Technic Sprocket Wheel  40.4",
+      "rb": "57519",
+      "sets": {
+        "45544-1": 4,
+        "45560-1": 2
+      },
+      "colors": {
+        "0": "Black"
+      },
+      "rbname": "Technic Tread Sprocket Wheel Large 10 Tooth",
+      "dc": 0,
+      "dcs": {
+        "45544-1": 0,
+        "45560-1": 0
+      }
+    },
+    "57585": {
+      "name": "Technic Bush with Three Axles",
+      "rb": "57585",
+      "sets": {
+        "45544-1": 2,
+        "31313-1": 1
+      },
+      "colors": {
+        "71": "Light_Bluish_Grey"
+      },
+      "rbname": "Technic Axle Connector Hub with 3 Axles at 120°",
+      "dc": 71,
+      "dcs": {
+        "45544-1": 71,
+        "31313-1": 71
+      }
+    },
+    "59443": {
+      "name": "Technic Axle Joiner Inline Smooth",
+      "rb": "59443",
+      "sets": {
+        "45544-1": 6,
+        "45560-1": 4,
+        "31313-1": 3,
+        "45678-1": 3,
+        "45681-1": 8,
+        "45345-1": 4,
+        "51515-1": 8
+      },
+      "colors": {
+        "4": "Red",
+        "15": "White"
+      },
+      "rbname": "Technic Axle Connector Smooth [with x Hole + Orientation]",
+      "dc": 4,
+      "dcs": {
+        "45544-1": 4,
+        "45560-1": 4,
+        "31313-1": 4,
+        "45678-1": 15,
+        "45681-1": 4,
+        "45345-1": 4,
+        "51515-1": 15
+      }
+    },
+    "60483": {
+      "name": "Technic Beam  2 Liftarm",
+      "rb": "60483",
+      "sets": {
+        "45544-1": 4,
+        "45560-1": 6,
+        "31313-1": 10,
+        "45678-1": 4,
+        "51515-1": 5
+      },
+      "colors": {
+        "0": "Black",
+        "322": "Medium_Azure",
+        "15": "White"
+      },
+      "rbname": "Technic Beam 1 x 2 Thick with Pin Hole and Axle Hole",
+      "dc": 0,
+      "dcs": {
+        "45544-1": 0,
+        "45560-1": 0,
+        "31313-1": 0,
+        "45678-1": 322,
+        "51515-1": 15
+      }
+    },
+    "60484": {
+      "name": "Technic Beam  3 x  3 T-shaped",
+      "rb": "60484",
+      "sets": {
+        "45544-1": 4,
+        "45560-1": 2,
+        "31313-1": 4,
+        "45678-1": 5,
+        "45681-1": 4,
+        "51515-1": 6
+      },
+      "colors": {
+        "0": "Black",
+        "14": "Yellow",
+        "3": "Dark_Turquoise"
+      },
+      "rbname": "Technic Beam 3 x 3 T-Shape Thick",
+      "dc": 0,
+      "dcs": {
+        "45544-1": 0,
+        "45560-1": 0,
+        "31313-1": 0,
+        "45678-1": 0,
+        "45681-1": 14,
+        "51515-1": 3
+      }
+    },
+    "60485": {
+      "name": "Technic Axle  9",
+      "rb": "60485",
+      "sets": {
+        "45544-1": 2,
+        "45560-1": 5,
+        "31313-1": 1,
+        "45678-1": 6,
+        "51515-1": 2
+      },
+      "colors": {
+        "71": "Light_Bluish_Grey",
+        "14": "Yellow"
+      },
+      "rbname": "Technic Axle 9",
+      "dc": 71,
+      "dcs": {
+        "45544-1": 71,
+        "45560-1": 71,
+        "31313-1": 71,
+        "45678-1": 71,
+        "51515-1": 14
+      }
+    },
+    "62462": {
+      "name": "Technic Pin Joiner Round with Slot",
+      "rb": "62462",
+      "sets": {
+        "45544-1": 4,
+        "45560-1": 2,
+        "31313-1": 2,
+        "45678-1": 2,
+        "45681-1": 6,
+        "51515-1": 8
+      },
+      "colors": {
+        "71": "Light_Bluish_Grey",
+        "14": "Yellow",
+        "0": "Black"
+      },
+      "rbname": "Technic Pin Connector Round [Slotted]",
+      "dc": 71,
+      "dcs": {
+        "45544-1": 71,
+        "45560-1": 71,
+        "31313-1": 71,
+        "45678-1": 14,
+        "45681-1": 14,
+        "51515-1": 0
+      }
+    },
+    "63869": {
+      "name": "Technic Cross Block 3 x 2 (Axle/Triple Pin)",
+      "rb": "63869",
+      "sets": {
+        "45544-1": 6,
+        "45560-1": 2,
+        "31313-1": 2,
+        "45681-1": 8,
+        "51515-1": 7
+      },
+      "colors": {
+        "71": "Light_Bluish_Grey"
+      },
+      "rbname": "Technic Axle and Pin Connector Perpendicular Triple",
+      "dc": 71,
+      "dcs": {
+        "45544-1": 71,
+        "45560-1": 71,
+        "31313-1": 71,
+        "45681-1": 71,
+        "51515-1": 71
+      }
+    },
+    "64178": {
+      "name": "Technic Beam 11 x  5 with Open Center  5 x  3",
+      "rb": "64178",
+      "sets": {
+        "45544-1": 1,
+        "45560-1": 6,
+        "31313-1": 2
+      },
+      "colors": {
+        "71": "Light_Bluish_Grey"
+      },
+      "rbname": "Technic Beam 5 x 11 with 3 x 5 Opening Frame Thick",
+      "dc": 71,
+      "dcs": {
+        "45544-1": 71,
+        "45560-1": 71,
+        "31313-1": 71
+      }
+    },
+    "64179": {
+      "name": "Technic Beam  7 x  5 with Open Center  5 x  3",
+      "rb": "64179",
+      "sets": {
+        "45544-1": 3,
+        "45560-1": 9,
+        "31313-1": 2,
+        "45678-1": 2,
+        "45681-1": 8,
+        "51515-1": 5
+      },
+      "colors": {
+        "71": "Light_Bluish_Grey",
+        "0": "Black"
+      },
+      "rbname": "Technic Beam Frame 5 x 7 with 3 x 5 Opening Thick",
+      "dc": 0,
+      "dcs": {
+        "45544-1": 71,
+        "45560-1": 71,
+        "31313-1": 71,
+        "45678-1": 0,
+        "45681-1": 0,
+        "51515-1": 0
+      }
+    },
+    "64392": {
+      "name": "Technic Panel Fairing Smooth #17 (Wide Long)",
+      "rb": "64392",
+      "sets": {
+        "45544-1": 1
+      },
+      "colors": {
+        "0": "Black"
+      },
+      "rbname": "Technic Panel Fairing #17 Large Smooth, Side A",
+      "dc": 0,
+      "dcs": {
+        "45544-1": 0
+      }
+    },
+    "64682": {
+      "name": "Technic Panel Fairing Smooth #18 (Wide Long)",
+      "rb": "64682",
+      "sets": {
+        "45544-1": 1
+      },
+      "colors": {
+        "0": "Black"
+      },
+      "rbname": "Technic Panel Fairing #18 Large Smooth, Side B",
+      "dc": 0,
+      "dcs": {
+        "45544-1": 0
+      }
+    },
+    "6536": {
+      "name": "Technic Cross Block 1 x 2 (Axle/Pin)",
+      "rb": "6536",
+      "sets": {
+        "45544-1": 8,
+        "45560-1": 4,
+        "31313-1": 8,
+        "45681-1": 16,
+        "51515-1": 8
+      },
+      "colors": {
+        "71": "Light_Bluish_Grey",
+        "4": "Red",
+        "0": "Black",
+        "3": "Dark_Turquoise"
+      },
+      "rbname": "Technic Axle and Pin Connector Perpendicular",
+      "dc": 0,
+      "dcs": {
+        "45544-1": 71,
+        "45560-1": 71,
+        "31313-1": 4,
+        "45681-1": 0,
+        "51515-1": 3
+      }
+    },
+    "6558": {
+      "name": "Technic Pin Long with Friction and Slot",
+      "rb": "6558",
+      "sets": {
+        "45544-1": 30,
+        "45560-1": 33,
+        "31313-1": 38,
+        "45678-1": 14,
+        "45681-1": 36,
+        "51515-1": 82
+      },
+      "colors": {
+        "1": "Blue"
+      },
+      "rbname": "Technic Pin Long with Friction Ridges Lengthwise, 2 Center Slots",
+      "dc": 1,
+      "dcs": {
+        "45544-1": 1,
+        "45560-1": 1,
+        "31313-1": 1,
+        "45678-1": 1,
+        "45681-1": 1,
+        "51515-1": 1
+      }
+    },
+    "6587": {
+      "name": "Technic Axle  3 with Stud",
+      "rb": "6587",
+      "sets": {
+        "45544-1": 2,
+        "45560-1": 16,
+        "31313-1": 4
+      },
+      "colors": {
+        "28": "Dark_Tan"
+      },
+      "rbname": "Technic Axle 3 with Stud",
+      "dc": 28,
+      "dcs": {
+        "45544-1": 28,
+        "45560-1": 28,
+        "31313-1": 28
+      }
+    },
+    "6589": {
+      "name": "Technic Gear 12 Tooth Bevel",
+      "rb": "6589",
+      "sets": {
+        "45544-1": 2,
+        "45560-1": 3,
+        "31313-1": 1,
+        "45681-1": 4,
+        "51515-1": 6
+      },
+      "colors": {
+        "19": "Tan"
+      },
+      "rbname": "Technic Gear 12 Tooth Bevel",
+      "dc": 19,
+      "dcs": {
+        "45544-1": 19,
+        "45560-1": 19,
+        "31313-1": 19,
+        "45681-1": 19,
+        "51515-1": 19
+      }
+    },
+    "6629": {
+      "name": "Technic Beam  4 x  6 Liftarm Bent 53.13",
+      "rb": "6629",
+      "sets": {
+        "45544-1": 4,
+        "45560-1": 2,
+        "45681-1": 2,
+        "45345-1": 3
+      },
+      "colors": {
+        "0": "Black",
+        "15": "White",
+        "25": "Orange"
+      },
+      "rbname": "Technic Beam 1 x 9 Bent (6 - 4) Thick",
+      "dc": 0,
+      "dcs": {
+        "45544-1": 0,
+        "45560-1": 0,
+        "45681-1": 15,
+        "45345-1": 25
+      }
+    },
+    "87080": {
+      "name": "Technic Panel Fairing Smooth #1 (Short)",
+      "rb": "87080",
+      "sets": {
+        "45544-1": 1,
+        "45560-1": 1,
+        "51515-1": 2
+      },
+      "colors": {
+        "0": "Black",
+        "15": "White"
+      },
+      "rbname": "Technic Panel Fairing #1 Small Smooth Short, Side A",
+      "dc": 0,
+      "dcs": {
+        "45544-1": 0,
+        "45560-1": 0,
+        "51515-1": 15
+      }
+    },
+    "87082": {
+      "name": "Technic Pin Long with Pin Hole Type 1",
+      "rb": "87082",
+      "sets": {
+        "45544-1": 4,
+        "45560-1": 2,
+        "31313-1": 6,
+        "45678-1": 2
+      },
+      "colors": {
+        "71": "Light_Bluish_Grey"
+      },
+      "rbname": "Technic Pin Connector Hub with 2 Pins with Friction Ridges Lengthwise [Big Squared Pin Holes]",
+      "dc": 71,
+      "dcs": {
+        "45544-1": 71,
+        "45560-1": 71,
+        "31313-1": 71,
+        "45678-1": 71
+      }
+    },
+    "87083": {
+      "name": "Technic Axle  4 with Stop",
+      "rb": "87083",
+      "sets": {
+        "45544-1": 2,
+        "45560-1": 8,
+        "31313-1": 4,
+        "45681-1": 4,
+        "51515-1": 6
+      },
+      "colors": {
+        "72": "Dark_Bluish_Grey"
+      },
+      "rbname": "Technic Axle 4 with Stop",
+      "dc": 72,
+      "dcs": {
+        "45544-1": 72,
+        "45560-1": 72,
+        "31313-1": 72,
+        "45681-1": 72,
+        "51515-1": 72
+      }
+    },
+    "87086": {
+      "name": "Technic Panel Fairing Smooth #2 (Short)",
+      "rb": "87086",
+      "sets": {
+        "45544-1": 1,
+        "45560-1": 1,
+        "51515-1": 2
+      },
+      "colors": {
+        "0": "Black",
+        "15": "White"
+      },
+      "rbname": "Technic Panel Fairing #2 Small Smooth Short, Side B",
+      "dc": 0,
+      "dcs": {
+        "45544-1": 0,
+        "45560-1": 0,
+        "51515-1": 15
+      }
+    },
+    "88323": {
+      "name": "Technic Chain Tread 5 Wide Reinforced",
+      "rb": "88323",
+      "sets": {
+        "45544-1": 54,
+        "45560-1": 5
+      },
+      "colors": {
+        "0": "Black"
+      },
+      "rbname": "Technic Link Tread Wide with Two Pin Holes, Reinforced",
+      "dc": 0,
+      "dcs": {
+        "45544-1": 0,
+        "45560-1": 0
+      }
+    },
+    "92911": {
+      "name": "Technic Ball Joint  2.25 Diameter Socket",
+      "rb": "92911",
+      "sets": {
+        "45544-1": 1,
+        "45560-1": 1
+      },
+      "colors": {
+        "72": "Dark_Bluish_Grey"
+      },
+      "rbname": "Technic Steering Ball Joint Large Receptacle",
+      "dc": 72,
+      "dcs": {
+        "45544-1": 72,
+        "45560-1": 72
+      }
+    },
+    "94925": {
+      "name": "Technic Gear 16 Tooth Reinforced",
+      "rb": "94925",
+      "sets": {
+        "45544-1": 4
+      },
+      "colors": {
+        "71": "Light_Bluish_Grey"
+      },
+      "rbname": "Technic Gear 16 Tooth Reinforced [New Style]",
+      "dc": 71,
+      "dcs": {
+        "45544-1": 71
+      }
+    },
+    "95646c01": {
+      "name": "Electric Mindstorms EV3 with Rechargeable Battery",
+      "rb": "95646c01",
+      "sets": {
+        "45544-1": 1,
+        "31313-1": 1
+      },
+      "colors": {
+        "15": "White"
+      },
+      "rbname": "Hub, EV3 Brick [Complete Assembly]",
+      "dc": 15,
+      "dcs": {
+        "45544-1": 15,
+        "31313-1": 15
+      }
+    },
+    "95648": {
+      "name": "Electric Mindstorms EV3 Touch Sensor",
+      "rb": "95648",
+      "sets": {
+        "45544-1": 2,
+        "31313-1": 1
+      },
+      "colors": {
+        "71": "Light_Bluish_Grey"
+      },
+      "rbname": "Sensor, Touch, EV3 with White Case",
+      "dc": 71,
+      "dcs": {
+        "45544-1": 71,
+        "31313-1": 71
+      }
+    },
+    "95650": {
+      "name": "Electric Mindstorms EV3 Colour Sensor",
+      "rb": "95650",
+      "sets": {
+        "45544-1": 1,
+        "31313-1": 1
+      },
+      "colors": {
+        "71": "Light_Bluish_Grey"
+      },
+      "rbname": "Sensor, Colour, EV3 with White Case",
+      "dc": 71,
+      "dcs": {
+        "45544-1": 71,
+        "31313-1": 71
+      }
+    },
+    "95652": {
+      "name": "Electric Mindstorms EV3 Ultrasonic Sensor",
+      "rb": "95652",
+      "sets": {
+        "45544-1": 1
+      },
+      "colors": {
+        "71": "Light_Bluish_Grey"
+      },
+      "rbname": "Sensor, Ultrasonic, EV3",
+      "dc": 71,
+      "dcs": {
+        "45544-1": 71
+      }
+    },
+    "95656": {
+      "name": "Electric Mindstorms EV3 Rechargeable Battery",
+      "rb": "95656",
+      "sets": {
+        "45544-1": 1
+      },
+      "colors": {
+        "71": "Light_Bluish_Grey"
+      },
+      "rbname": "Battery Pack, Rechargeable, DC, EV3",
+      "dc": 71,
+      "dcs": {
+        "45544-1": 71
+      }
+    },
+    "95658": {
+      "name": "Electric Mindstorms EV3 Large Motor",
+      "rb": "95658",
+      "sets": {
+        "45544-1": 2,
+        "31313-1": 2
+      },
+      "colors": {
+        "71": "Light_Bluish_Grey"
+      },
+      "rbname": "Motor, Large, EV3 with White Case",
+      "dc": 71,
+      "dcs": {
+        "45544-1": 71,
+        "31313-1": 71
+      }
+    },
+    "99009": {
+      "name": "Technic Turntable 28 Tooth Bottom",
+      "rb": "99009",
+      "sets": {
+        "45544-1": 2,
+        "45681-1": 2,
+        "51515-1": 2
+      },
+      "colors": {
+        "71": "Light_Bluish_Grey"
+      },
+      "rbname": "Technic Turntable Small Top",
+      "dc": 71,
+      "dcs": {
+        "45544-1": 71,
+        "45681-1": 71,
+        "51515-1": 71
+      }
+    },
+    "99010": {
+      "name": "Technic Turntable 28 Tooth Top",
+      "rb": "99010",
+      "sets": {
+        "45544-1": 2,
+        "45681-1": 2,
+        "51515-1": 2
+      },
+      "colors": {
+        "0": "Black"
+      },
+      "rbname": "Technic Turntable Small Base, 28 Tooth",
+      "dc": 0,
+      "dcs": {
+        "45544-1": 0,
+        "45681-1": 0,
+        "51515-1": 0
+      }
+    },
+    "99143": {
+      "name": "Electric Mindstorms EV3 Battery Lid",
+      "rb": "99143",
+      "sets": {
+        "45544-1": 1
+      },
+      "colors": {
+        "71": "Light_Bluish_Grey"
+      },
+      "rbname": "Battery Cover, EV3 Programable Brick",
+      "dc": 71,
+      "dcs": {
+        "45544-1": 71
+      }
+    },
+    "99380": {
+      "name": "Electric Mindstorms EV3 Gyroscopic Sensor",
+      "rb": "99380",
+      "sets": {
+        "45544-1": 1
+      },
+      "colors": {
+        "71": "Light_Bluish_Grey"
+      },
+      "rbname": "Sensor, Gyro, EV3 with White Case",
+      "dc": 71,
+      "dcs": {
+        "45544-1": 71
+      }
+    },
+    "99455": {
+      "name": "Electric Mindstorms EV3 Medium Motor",
+      "rb": "99455",
+      "sets": {
+        "45544-1": 1,
+        "31313-1": 1
+      },
+      "colors": {
+        "71": "Light_Bluish_Grey"
+      },
+      "rbname": "Motor, Medium, EV3 with White Case",
+      "dc": 71,
+      "dcs": {
+        "45544-1": 71,
+        "31313-1": 71
+      }
+    },
+    "99773": {
+      "name": "Technic Beam  5 x  3 x  0.5 Liftarm Triangle Type 2",
+      "rb": "99773",
+      "sets": {
+        "45544-1": 4,
+        "45560-1": 5,
+        "45681-1": 4
+      },
+      "colors": {
+        "71": "Light_Bluish_Grey",
+        "14": "Yellow"
+      },
+      "rbname": "Technic Beam Triangle Thin [Type II]",
+      "dc": 71,
+      "dcs": {
+        "45544-1": 71,
+        "45560-1": 71,
+        "45681-1": 14
+      }
+    },
+    "99948": {
+      "name": "Technic Steel Ball 18mm for Ball Castor",
+      "rb": "99948",
+      "sets": {
+        "45544-1": 1
+      },
+      "colors": {
+        "383": "Chrome_Silver"
+      },
+      "rbname": "Technic Steel Ball 18 mm",
+      "dc": 383,
+      "dcs": {
+        "45544-1": 383
+      }
+    },
+    "10197": {
+      "name": "Technic Axle and Pin Connector Hub with 2 Axles at 90 Degrees",
+      "rb": "10197",
+      "sets": {
+        "45560-1": 2,
+        "51515-1": 2
+      },
+      "colors": {
+        "72": "Dark_Bluish_Grey",
+        "0": "Black"
+      },
+      "rbname": "Technic Pin Connector Hub with 2 Perpendicular Axles",
+      "dc": 72,
+      "dcs": {
+        "45560-1": 72,
+        "51515-1": 0
+      }
+    },
+    "10288": {
+      "name": "Technic Angle Connector (3 x 120 degree)",
+      "rb": "10288",
+      "sets": {
+        "45560-1": 5
+      },
+      "colors": {
+        "308": "Dark_Brown"
+      },
+      "rbname": "Technic Axle and Pin Connector Angled Triple [120° Offset]",
+      "dc": 308,
+      "dcs": {
+        "45560-1": 308
+      }
+    },
+    "11478": {
+      "name": "Technic Beam  5 x  0.5 Liftarm with Axle Holes at Both Ends",
+      "rb": "11478",
+      "sets": {
+        "45560-1": 4,
+        "51515-1": 4
+      },
+      "colors": {
+        "0": "Black"
+      },
+      "rbname": "Technic Beam 1 x 5 Thin with Axle Holes on Ends",
+      "dc": 0,
+      "dcs": {
+        "45560-1": 0,
+        "51515-1": 0
+      }
+    },
+    "11946": {
+      "name": "Technic Panel Fairing Smooth #21 (Thin Short)",
+      "rb": "11946",
+      "sets": {
+        "45560-1": 2,
+        "51515-1": 2
+      },
+      "colors": {
+        "4": "Red",
+        "15": "White"
+      },
+      "rbname": "Technic Panel Fairing #21 5L Small Smooth, Side B",
+      "dc": 4,
+      "dcs": {
+        "45560-1": 4,
+        "51515-1": 15
+      }
+    },
+    "11947": {
+      "name": "Technic Panel Fairing Smooth #22 (Thin Short)",
+      "rb": "11947",
+      "sets": {
+        "45560-1": 2,
+        "51515-1": 2
+      },
+      "colors": {
+        "4": "Red",
+        "15": "White"
+      },
+      "rbname": "Technic Panel Fairing #22 5L Small Smooth, Side A",
+      "dc": 4,
+      "dcs": {
+        "45560-1": 4,
+        "51515-1": 15
+      }
+    },
+    "11954": {
+      "name": "Technic Panel Smooth 11 x  2 x  3 with 10 Front Pin Holes",
+      "rb": "11954",
+      "sets": {
+        "45560-1": 4,
+        "45678-1": 2
+      },
+      "colors": {
+        "0": "Black",
+        "322": "Medium_Azure"
+      },
+      "rbname": "Technic Panel Curved 11 x 3 with 10 Pin Holes Through Panel Surface",
+      "dc": 0,
+      "dcs": {
+        "45560-1": 0,
+        "45678-1": 322
+      }
+    },
+    "13971": {
+      "name": "Wheel Rim  8 x 18 with Deep Centre Groove, Deep Spokes and Peghole",
+      "rb": "13971",
+      "sets": {
+        "45560-1": 1
+      },
+      "colors": {
+        "71": "Light_Bluish_Grey"
+      },
+      "rbname": "Wheel 18 x 8 with Fake Bolts and Deep Spokes with Inner Ring",
+      "dc": 71,
+      "dcs": {
+        "45560-1": 71
+      }
+    },
+    "14149": {
+      "name": "Technic Rubber Foot for Chain Tread 5 Wide",
+      "rb": "14149",
+      "sets": {
+        "45560-1": 28
+      },
+      "colors": {
+        "4": "Red"
+      },
+      "rbname": "Technic Tread Attachment 1 x 3",
+      "dc": 4,
+      "dcs": {
+        "45560-1": 4
+      }
+    },
+    "15038": {
+      "name": "Wheel Rim 34 x 56 with  6 Spokes and  6 Pegholes",
+      "rb": "15038",
+      "sets": {
+        "45560-1": 4
+      },
+      "colors": {
+        "71": "Light_Bluish_Grey"
+      },
+      "rbname": "Wheel 56 x 34 Technic Racing Medium with 6 Pin Holes",
+      "dc": 71,
+      "dcs": {
+        "45560-1": 71
+      }
+    },
+    "2654a": {
+      "name": "Dish  2 x  2 with Rim",
+      "rb": "2654",
+      "sets": {
+        "45560-1": 2,
+        "45345-1": 6
+      },
+      "colors": {
+        "0": "Black",
+        "26": "Magenta"
+      },
+      "rbname": "Plate Round 2 x 2 with Rounded Bottom [Boat Stud]",
+      "dc": 26,
+      "dcs": {
+        "45560-1": 0,
+        "45345-1": 26
+      }
+    },
+    "2736": {
+      "name": "Technic Axle Towball",
+      "rb": "2736",
+      "sets": {
+        "45560-1": 2,
+        "31313-1": 6
+      },
+      "colors": {
+        "71": "Light_Bluish_Grey"
+      },
+      "rbname": "Technic Axle Towball",
+      "dc": 71,
+      "dcs": {
+        "45560-1": 71,
+        "31313-1": 71
+      }
+    },
+    "32002": {
+      "name": "Technic Pin  3/4",
+      "rb": "32002",
+      "sets": {
+        "45560-1": 6
+      },
+      "colors": {
+        "19": "Tan"
+      },
+      "rbname": "Technic Pin 3/4",
+      "dc": 19,
+      "dcs": {
+        "45560-1": 19
+      }
+    },
+    "32015": {
+      "name": "Technic Angle Connector #5 (112.5 degree)",
+      "rb": "32015",
+      "sets": {
+        "45560-1": 3,
+        "45681-1": 4,
+        "51515-1": 2
+      },
+      "colors": {
+        "0": "Black",
+        "15": "White"
+      },
+      "rbname": "Technic Axle and Pin Connector Angled #5 - 112.5°",
+      "dc": 0,
+      "dcs": {
+        "45560-1": 0,
+        "45681-1": 0,
+        "51515-1": 15
+      }
+    },
+    "32016": {
+      "name": "Technic Angle Connector #3 (157.5 degree)",
+      "rb": "32016",
+      "sets": {
+        "45560-1": 4,
+        "45681-1": 4
+      },
+      "colors": {
+        "0": "Black",
+        "322": "Medium_Azure"
+      },
+      "rbname": "Technic Axle and Pin Connector Angled #3 - 157.5°",
+      "dc": 0,
+      "dcs": {
+        "45560-1": 0,
+        "45681-1": 322
+      }
+    },
+    "32039": {
+      "name": "Technic Connector (Axle/Bush) Type 1",
+      "rb": "32039",
+      "sets": {
+        "45560-1": 22,
+        "31313-1": 2
+      },
+      "colors": {
+        "0": "Black",
+        "71": "Light_Bluish_Grey"
+      },
+      "rbname": "Technic Axle Connector with Axle Hole",
+      "dc": 0,
+      "dcs": {
+        "45560-1": 0,
+        "31313-1": 71
+      }
+    },
+    "32138": {
+      "name": "Technic Pin  3L Double with Axlehole",
+      "rb": "32138",
+      "sets": {
+        "45560-1": 4,
+        "31313-1": 4
+      },
+      "colors": {
+        "0": "Black",
+        "71": "Light_Bluish_Grey"
+      },
+      "rbname": "Technic Pin Double with Axle Hole",
+      "dc": 0,
+      "dcs": {
+        "45560-1": 0,
+        "31313-1": 71
+      }
+    },
+    "32198a": {
+      "name": "Technic Gear 20 Tooth Bevel with Two Axlehole Slots",
+      "rb": "32198",
+      "sets": {
+        "45560-1": 1,
+        "31313-1": 1,
+        "45681-1": 2
+      },
+      "colors": {
+        "19": "Tan"
+      },
+      "rbname": "Technic Gear 20 Tooth Bevel",
+      "dc": 19,
+      "dcs": {
+        "45560-1": 19,
+        "31313-1": 19,
+        "45681-1": 19
+      }
+    },
+    "32494": {
+      "name": "Technic Wheel Spindle Axle Driver",
+      "rb": "32494",
+      "sets": {
+        "45560-1": 2
+      },
+      "colors": {
+        "71": "Light_Bluish_Grey"
+      },
+      "rbname": "Technic Steering / CV Joint",
+      "dc": 71,
+      "dcs": {
+        "45560-1": 71
+      }
+    },
+    "32557": {
+      "name": "Technic Cross Block 2 x 3 (Pin/Pin/Twin Pin)",
+      "rb": "32557",
+      "sets": {
+        "45560-1": 4,
+        "51515-1": 4
+      },
+      "colors": {
+        "71": "Light_Bluish_Grey",
+        "0": "Black"
+      },
+      "rbname": "Technic Pin Connector Perpendicular Long",
+      "dc": 71,
+      "dcs": {
+        "45560-1": 71,
+        "51515-1": 0
+      }
+    },
+    "3941": {
+      "name": "Brick  2 x  2 Round without Reinforcement",
+      "rb": "3941",
+      "sets": {
+        "45560-1": 4,
+        "45678-1": 6,
+        "45681-1": 6,
+        "45345-1": 10
+      },
+      "colors": {
+        "41": "Trans_Medium_Blue",
+        "42": "Trans_Neon_Green",
+        "15": "White",
+        "14": "Yellow",
+        "2": "Green"
+      },
+      "rbname": "Brick Round 2 x 2 with Axle Hole",
+      "dc": 41,
+      "dcs": {
+        "45560-1": 41,
+        "45678-1": 15,
+        "45681-1": 14,
+        "45345-1": 2
+      }
+    },
+    "4032a": {
+      "name": "Plate  2 x  2 Round with Axlehole",
+      "rb": "4032a",
+      "sets": {
+        "45560-1": 4,
+        "45678-1": 6
+      },
+      "colors": {
+        "0": "Black",
+        "322": "Medium_Azure"
+      },
+      "rbname": "Plate Round 2 x 2 with Axle Hole Type 1 (+ Opening)",
+      "dc": 322,
+      "dcs": {
+        "45560-1": 0,
+        "45678-1": 322
+      }
+    },
+    "41677": {
+      "name": "Technic Beam  2 x  0.5 Liftarm",
+      "rb": "41677",
+      "sets": {
+        "45560-1": 3
+      },
+      "colors": {
+        "71": "Light_Bluish_Grey",
+        "0": "Black"
+      },
+      "rbname": "Technic Beam 1 x 2 Thin",
+      "dc": 0,
+      "dcs": {
+        "45560-1": 0
+      }
+    },
+    "42610": {
+      "name": "Wheel Rim  8 x 11.2 with Centre Groove",
+      "rb": "42610",
+      "sets": {
+        "45560-1": 7,
+        "31313-1": 4
+      },
+      "colors": {
+        "71": "Light_Bluish_Grey"
+      },
+      "rbname": "Wheel 11 x 8 with Center Groove",
+      "dc": 71,
+      "dcs": {
+        "45560-1": 71,
+        "31313-1": 71
+      }
+    },
+    "43857": {
+      "name": "Technic Beam  2",
+      "rb": "43857",
+      "sets": {
+        "45560-1": 3
+      },
+      "colors": {
+        "71": "Light_Bluish_Grey"
+      },
+      "rbname": "Technic Beam 1 x 2 Thick",
+      "dc": 71,
+      "dcs": {
+        "45560-1": 71
+      }
+    },
+    "44309": {
+      "name": "Tyre 22/ 30 x 30 ZR",
+      "rb": "44309",
+      "sets": {
+        "45560-1": 2,
+        "31313-1": 4
+      },
+      "colors": {
+        "0": "Black"
+      },
+      "rbname": "Tyre 43.2 x 22 ZR",
+      "dc": 0,
+      "dcs": {
+        "45560-1": 0,
+        "31313-1": 0
+      }
+    },
+    "44771": {
+      "name": "Tyre 35/ 46 x 56 ZR",
+      "rb": "44771",
+      "sets": {
+        "45560-1": 4
+      },
+      "colors": {
+        "0": "Black"
+      },
+      "rbname": "Tyre 68.8 x 36 ZR",
+      "dc": 0,
+      "dcs": {
+        "45560-1": 0
+      }
+    },
+    "50163": {
+      "name": "~_Technic Turntable Type 2 (Complete) Black/Dark Stone (Obsolete)",
+      "rb": "50163",
+      "sets": {
+        "45560-1": 1
+      },
+      "colors": {
+        "71": "Light_Bluish_Grey"
+      },
+      "rbname": "Technic Turntable Large Type 2, 24/56 Tooth with Black Outside Gear Section [Complete Assembly]",
+      "dc": 71,
+      "dcs": {
+        "45560-1": 71
+      }
+    },
+    "55982": {
+      "name": "Wheel Rim 14 x 18 with Axlehole",
+      "rb": "55982",
+      "sets": {
+        "45560-1": 5
+      },
+      "colors": {
+        "71": "Light_Bluish_Grey"
+      },
+      "rbname": "Wheel 18mm x 14mm with Axle Hole, Fake Bolts and Shallow Spokes",
+      "dc": 71,
+      "dcs": {
+        "45560-1": 71
+      }
+    },
+    "56145": {
+      "name": "Wheel Rim 20 x 30 with  6 Dual Spokes and External Ribs",
+      "rb": "56145",
+      "sets": {
+        "45560-1": 3,
+        "31313-1": 4
+      },
+      "colors": {
+        "71": "Light_Bluish_Grey",
+        "0": "Black"
+      },
+      "rbname": "Wheel 30.4 x 20 without Pinholes, with Reinforced Rim",
+      "dc": 0,
+      "dcs": {
+        "45560-1": 71,
+        "31313-1": 0
+      }
+    },
+    "57539": {
+      "name": "Hose Flexible 19L",
+      "rb": "57539pat0002",
+      "sets": {
+        "45560-1": 2,
+        "45678-1": 2,
+        "45345-1": 2
+      },
+      "colors": {
+        "179": "Pearl_Silver",
+        "47": "Trans_Clear"
+      },
+      "rbname": "Flexible Ribbed Hose 8mm Ends 19L with Lime Green Centre Pattern",
+      "dc": 179,
+      "dcs": {
+        "45560-1": 179,
+        "45678-1": 179,
+        "45345-1": 47
+      }
+    },
+    "59426": {
+      "name": "Technic Axle  5.5 with Stop Type 2",
+      "rb": "59426",
+      "sets": {
+        "45560-1": 4,
+        "31313-1": 2,
+        "51515-1": 2
+      },
+      "colors": {
+        "72": "Dark_Bluish_Grey"
+      },
+      "rbname": "Technic Axle 5.5 with Stop [Rounded Short End]",
+      "dc": 72,
+      "dcs": {
+        "45560-1": 72,
+        "31313-1": 72,
+        "51515-1": 72
+      }
+    },
+    "59900": {
+      "name": "Cone  1 x  1 with Stop",
+      "rb": "59900",
+      "sets": {
+        "45560-1": 4,
+        "45345-1": 6
+      },
+      "colors": {
+        "36": "Trans_Red",
+        "26": "Magenta"
+      },
+      "rbname": "Cone 1 x 1 [Top Groove]",
+      "dc": 26,
+      "dcs": {
+        "45560-1": 36,
+        "45345-1": 26
+      }
+    },
+    "61903": {
+      "name": "Technic Universal Joint 3L (Complete)",
+      "rb": "61903",
+      "sets": {
+        "45560-1": 2
+      },
+      "colors": {
+        "71": "Light_Bluish_Grey"
+      },
+      "rbname": "Technic Universal Joint 3L [Complete Assembly]",
+      "dc": 71,
+      "dcs": {
+        "45560-1": 71
+      }
+    },
+    "64391": {
+      "name": "Technic Panel Fairing Smooth #4 (Medium)",
+      "rb": "64391",
+      "sets": {
+        "45560-1": 2,
+        "31313-1": 3,
+        "51515-1": 2
+      },
+      "colors": {
+        "0": "Black",
+        "15": "White"
+      },
+      "rbname": "Technic Panel Fairing # 4 Small Smooth Long, Side B",
+      "dc": 15,
+      "dcs": {
+        "45560-1": 0,
+        "31313-1": 15,
+        "51515-1": 15
+      }
+    },
+    "64393": {
+      "name": "Technic Panel Fairing Smooth #6 (Long)",
+      "rb": "64393",
+      "sets": {
+        "45560-1": 1,
+        "31313-1": 3,
+        "51515-1": 3
+      },
+      "colors": {
+        "0": "Black",
+        "15": "White"
+      },
+      "rbname": "Technic Panel Fairing #6 Long Smooth, Side B",
+      "dc": 15,
+      "dcs": {
+        "45560-1": 0,
+        "31313-1": 15,
+        "51515-1": 15
+      }
+    },
+    "64394": {
+      "name": "Technic Panel Fairing Smooth #13 (Wide Medium)",
+      "rb": "64394",
+      "sets": {
+        "45560-1": 1
+      },
+      "colors": {
+        "0": "Black"
+      },
+      "rbname": "Technic Panel Fairing #13 Large Short Smooth, Side A",
+      "dc": 0,
+      "dcs": {
+        "45560-1": 0
+      }
+    },
+    "64680": {
+      "name": "Technic Panel Fairing Smooth #14 (Wide Medium)",
+      "rb": "64680",
+      "sets": {
+        "45560-1": 1
+      },
+      "colors": {
+        "0": "Black"
+      },
+      "rbname": "Technic Panel Fairing #14 Large Short Smooth, Side B",
+      "dc": 0,
+      "dcs": {
+        "45560-1": 0
+      }
+    },
+    "64681": {
+      "name": "Technic Panel Fairing Smooth #5 (Long)",
+      "rb": "64681",
+      "sets": {
+        "45560-1": 1,
+        "31313-1": 3,
+        "51515-1": 3
+      },
+      "colors": {
+        "0": "Black",
+        "15": "White"
+      },
+      "rbname": "Technic Panel Fairing #5 Long Smooth, Side A",
+      "dc": 15,
+      "dcs": {
+        "45560-1": 0,
+        "31313-1": 15,
+        "51515-1": 15
+      }
+    },
+    "64683": {
+      "name": "Technic Panel Fairing Smooth #3 (Medium)",
+      "rb": "64683",
+      "sets": {
+        "45560-1": 2,
+        "31313-1": 3,
+        "51515-1": 2
+      },
+      "colors": {
+        "0": "Black",
+        "15": "White"
+      },
+      "rbname": "Technic Panel Fairing # 3 Small Smooth Long, Side A",
+      "dc": 15,
+      "dcs": {
+        "45560-1": 0,
+        "31313-1": 15,
+        "51515-1": 15
+      }
+    },
+    "64781": {
+      "name": "Technic Gear Rack  1 x 13 with Pegholes and Axleholes",
+      "rb": "64781",
+      "sets": {
+        "45560-1": 2,
+        "45678-1": 2
+      },
+      "colors": {
+        "0": "Black"
+      },
+      "rbname": "Technic Gear Rack 1 x 13 with Axle and Pin Holes",
+      "dc": 0,
+      "dcs": {
+        "45560-1": 0,
+        "45678-1": 0
+      }
+    },
+    "6538b": {
+      "name": "Technic Axle Joiner Offset",
+      "rb": "6538b",
+      "sets": {
+        "45560-1": 1
+      },
+      "colors": {
+        "19": "Tan"
+      },
+      "rbname": "Technic Axle Connector Ridged [with x Hole x Orientation]",
+      "dc": 19,
+      "dcs": {
+        "45560-1": 19
+      }
+    },
+    "6539": {
+      "name": "Technic Transmission Driving Ring",
+      "rb": "6539",
+      "sets": {
+        "45560-1": 1
+      },
+      "colors": {
+        "4": "Red"
+      },
+      "rbname": "Technic Driving Ring 2L, 4 Ridges",
+      "dc": 4,
+      "dcs": {
+        "45560-1": 4
+      }
+    },
+    "6542b": {
+      "name": "Technic Gear 16 Tooth with Clutch Smooth",
+      "rb": "6542b",
+      "sets": {
+        "45560-1": 2
+      },
+      "colors": {
+        "72": "Dark_Bluish_Grey"
+      },
+      "rbname": "Technic Gear 16 Tooth with Clutch [Smooth]",
+      "dc": 72,
+      "dcs": {
+        "45560-1": 72
+      }
+    },
+    "6553": {
+      "name": "Technic Connector (Axle) with Axle 1.5",
+      "rb": "6553",
+      "sets": {
+        "45560-1": 2,
+        "45681-1": 6
+      },
+      "colors": {
+        "72": "Dark_Bluish_Grey",
+        "71": "Light_Bluish_Grey"
+      },
+      "rbname": "Technic Axle 1.5 with Perpendicular Axle Connector (Technic Pole Reverser Handle)",
+      "dc": 71,
+      "dcs": {
+        "45560-1": 72,
+        "45681-1": 71
+      }
+    },
+    "6575a": {
+      "name": "Technic Cam with Narrow Slit and Recessed Axlehole",
+      "rb": "6575",
+      "sets": {
+        "45560-1": 2,
+        "31313-1": 2
+      },
+      "colors": {
+        "72": "Dark_Bluish_Grey",
+        "0": "Black"
+      },
+      "rbname": "Technic Cam",
+      "dc": 72,
+      "dcs": {
+        "45560-1": 72,
+        "31313-1": 0
+      }
+    },
+    "6628": {
+      "name": "Technic Pin Towball with Friction",
+      "rb": "6628",
+      "sets": {
+        "45560-1": 8,
+        "31313-1": 6
+      },
+      "colors": {
+        "0": "Black"
+      },
+      "rbname": "Technic Pin with Friction Ridges Lengthwise and Towball",
+      "dc": 0,
+      "dcs": {
+        "45560-1": 0,
+        "31313-1": 0
+      }
+    },
+    "6632": {
+      "name": "Technic Beam  3 x  0.5 Liftarm",
+      "rb": "6632",
+      "sets": {
+        "45560-1": 10,
+        "31313-1": 1
+      },
+      "colors": {
+        "71": "Light_Bluish_Grey"
+      },
+      "rbname": "Technic Beam 1 x 3 Thin",
+      "dc": 71,
+      "dcs": {
+        "45560-1": 71,
+        "31313-1": 71
+      }
+    },
+    "6641": {
+      "name": "Technic Transmission Changeover Catch Type 1",
+      "rb": "6641",
+      "sets": {
+        "45560-1": 1
+      },
+      "colors": {
+        "4": "Red"
+      },
+      "rbname": "Technic Changeover Catch - + Opening",
+      "dc": 4,
+      "dcs": {
+        "45560-1": 4
+      }
+    },
+    "85543": {
+      "name": "Rubber Belt Round 15 /  1.6",
+      "rb": "85543",
+      "sets": {
+        "45560-1": 2,
+        "45681-1": 2,
+        "51515-1": 2
+      },
+      "colors": {
+        "15": "White"
+      },
+      "rbname": "Rubber Belt Small [15mm ID] [Round Cross Section]",
+      "dc": 15,
+      "dcs": {
+        "45560-1": 15,
+        "45681-1": 15,
+        "51515-1": 15
+      }
+    },
+    "85544": {
+      "name": "Train Wheel Large Traction Band",
+      "rb": "85544",
+      "sets": {
+        "45560-1": 2,
+        "31313-1": 1,
+        "45681-1": 2
+      },
+      "colors": {
+        "4": "Red"
+      },
+      "rbname": "Technic Rubber Belt Medium [24mm ID] [Round Cross Section]",
+      "dc": 4,
+      "dcs": {
+        "45560-1": 4,
+        "31313-1": 4,
+        "45681-1": 4
+      }
+    },
+    "85545": {
+      "name": "Rubber Belt Round 26 /  1.6",
+      "rb": "85545",
+      "sets": {
+        "45560-1": 2
+      },
+      "colors": {
+        "1": "Blue"
+      },
+      "rbname": "Technic Rubber Belt Medium [26mm ID] [Round Cross Section]",
+      "dc": 1,
+      "dcs": {
+        "45560-1": 1
+      }
+    },
+    "85546": {
+      "name": "Rubber Belt Round 33 /  1.6",
+      "rb": "85546",
+      "sets": {
+        "45560-1": 2,
+        "45678-1": 4,
+        "45345-1": 4
+      },
+      "colors": {
+        "14": "Yellow"
+      },
+      "rbname": "Technic Rubber Belt Large [33mm ID] [Round Cross Section]",
+      "dc": 14,
+      "dcs": {
+        "45560-1": 14,
+        "45678-1": 14,
+        "45345-1": 14
+      }
+    },
+    "87407": {
+      "name": "Technic Gear 20 Tooth Bevel with Peghole",
+      "rb": "87407",
+      "sets": {
+        "45560-1": 2
+      },
+      "colors": {
+        "71": "Light_Bluish_Grey"
+      },
+      "rbname": "Technic Gear 20 Tooth Bevel with Pin Hole",
+      "dc": 71,
+      "dcs": {
+        "45560-1": 71
+      }
+    },
+    "87408": {
+      "name": "Technic Connector Toggle Joint Double with Axle and Pin Holes",
+      "rb": "87408",
+      "sets": {
+        "45560-1": 1,
+        "31313-1": 1,
+        "45681-1": 2
+      },
+      "colors": {
+        "0": "Black"
+      },
+      "rbname": "Technic Pin Connector Toggle Joint Smooth Double with Axle and Pin Holes",
+      "dc": 0,
+      "dcs": {
+        "45560-1": 0,
+        "31313-1": 0,
+        "45681-1": 0
+      }
+    },
+    "89201": {
+      "name": "Tyre 14/ 25 x 17 Shallow Staggered Treads with Middle Band",
+      "rb": "89201",
+      "sets": {
+        "45560-1": 2
+      },
+      "colors": {
+        "0": "Black"
+      },
+      "rbname": "Tyre 24 x 14 Shallow Tread (Tread Small Hub), Band Around Center of Tread",
+      "dc": 0,
+      "dcs": {
+        "45560-1": 0
+      }
+    },
+    "92906": {
+      "name": "Technic Steering Constant Velocity 4.8mm Joint Female",
+      "rb": "92906",
+      "sets": {
+        "45560-1": 2
+      },
+      "colors": {
+        "72": "Dark_Bluish_Grey"
+      },
+      "rbname": "Technic Steering / CV Joint Axle",
+      "dc": 72,
+      "dcs": {
+        "45560-1": 72
+      }
+    },
+    "92908": {
+      "name": "Technic Steering Portal Axle Frame",
+      "rb": "92908",
+      "sets": {
+        "45560-1": 2
+      },
+      "colors": {
+        "71": "Light_Bluish_Grey"
+      },
+      "rbname": "Technic Steering Portal Axle Housing",
+      "dc": 71,
+      "dcs": {
+        "45560-1": 71
+      }
+    },
+    "92909": {
+      "name": "Technic Steering Wheel Hub for Portal Axle",
+      "rb": "92909",
+      "sets": {
+        "45560-1": 2
+      },
+      "colors": {
+        "72": "Dark_Bluish_Grey"
+      },
+      "rbname": "Technic Steering Hub for Portal Axle",
+      "dc": 72,
+      "dcs": {
+        "45560-1": 72
+      }
+    },
+    "92910": {
+      "name": "Technic Ball Joint  2.25 Diameter with C-Shape Frame",
+      "rb": "92910",
+      "sets": {
+        "45560-1": 1
+      },
+      "colors": {
+        "71": "Light_Bluish_Grey"
+      },
+      "rbname": "Technic Steering Ball Joint Large Open with C-Shape Pivot Frame",
+      "dc": 71,
+      "dcs": {
+        "45560-1": 71
+      }
+    },
+    "98138": {
+      "name": "Tile  1 x  1 Round with Groove",
+      "rb": "98138pr0008",
+      "sets": {
+        "45560-1": 6,
+        "45678-1": 8,
+        "45345-1": 4
+      },
+      "colors": {
+        "36": "Trans_Red",
+        "15": "White",
+        "0": "Black"
+      },
+      "rbname": "Tile Round 1 x 1 with Offset Black Eye Print",
+      "dc": 15,
+      "dcs": {
+        "45560-1": 36,
+        "45678-1": 15,
+        "45345-1": 15
+      }
+    },
+    "98578": {
+      "name": "Technic Spiked Ball Half",
+      "rb": "98578",
+      "sets": {
+        "45560-1": 2
+      },
+      "colors": {
+        "33": "Trans_Dark_Blue"
+      },
+      "rbname": "Large Figure Weapon Spiked Ball, Half",
+      "dc": 33,
+      "dcs": {
+        "45560-1": 33
+      }
+    },
+    "98585": {
+      "name": "Technic Connector Circular with  2 Pin Holes and  3 Axle Holes",
+      "rb": "98585",
+      "sets": {
+        "45560-1": 2,
+        "45681-1": 4,
+        "51515-1": 6
+      },
+      "colors": {
+        "41": "Trans_Medium_Blue",
+        "0": "Black"
+      },
+      "rbname": "Large Figure Weapon, Barrel with 2 Pin Holes and 3 Axle Holes",
+      "dc": 0,
+      "dcs": {
+        "45560-1": 41,
+        "45681-1": 0,
+        "51515-1": 0
+      }
+    },
+    "98989": {
+      "name": "Technic Cross Block  2 x  4 (Axle/Pin/Pin/Twin Pin)",
+      "rb": "98989",
+      "sets": {
+        "45560-1": 3,
+        "51515-1": 2
+      },
+      "colors": {
+        "71": "Light_Bluish_Grey"
+      },
+      "rbname": "Technic Axle and Pin Connector Perpendicular Double 4L",
+      "dc": 71,
+      "dcs": {
+        "45560-1": 71,
+        "51515-1": 71
+      }
+    },
+    "99008": {
+      "name": "Technic Axle  4 with Middle Cylindrical Stop",
+      "rb": "99008",
+      "sets": {
+        "45560-1": 2,
+        "31313-1": 3,
+        "51515-1": 2
+      },
+      "colors": {
+        "19": "Tan"
+      },
+      "rbname": "Technic Axle 4 with Centre Stop",
+      "dc": 19,
+      "dcs": {
+        "45560-1": 19,
+        "31313-1": 19,
+        "51515-1": 19
+      }
+    },
+    "13710a": {
+      "name": "Sticker Mindstorms EV3 #1 for Panel Smooth Medium (Needs Work)",
+      "rb": "13710",
+      "sets": {
+        "31313-1": 1
+      },
+      "colors": {
+        "9999": "[No Color/Any Color]"
+      },
+      "rbname": "Sticker Sheet for Set 31313-1"
+    },
+    "18575": {
+      "name": "Technic Gear 20 Tooth Double Bevel Reinforced",
+      "rb": "18575",
+      "sets": {
+        "31313-1": 4,
+        "45678-1": 3,
+        "45681-1": 2,
+        "51515-1": 4
+      },
+      "colors": {
+        "0": "Black",
+        "19": "Tan"
+      },
+      "rbname": "Technic Gear 20 Tooth Double Bevel with Axle Hole Type 1 [+ Opening]",
+      "dc": 19,
+      "dcs": {
+        "31313-1": 0,
+        "45678-1": 19,
+        "45681-1": 19,
+        "51515-1": 19
+      }
+    },
+    "32068": {
+      "name": "Technic Cross Block 1 x 3 (Axle/None/Pin)",
+      "rb": "32068",
+      "sets": {
+        "31313-1": 4
+      },
+      "colors": {
+        "71": "Light_Bluish_Grey"
+      },
+      "rbname": "Technic Axle and Pin Connector Perpendicular 3L with Pin Hole",
+      "dc": 71,
+      "dcs": {
+        "31313-1": 71
+      }
+    },
+    "32192": {
+      "name": "Technic Angle Connector #4 (135 degree)",
+      "rb": "32192",
+      "sets": {
+        "31313-1": 4,
+        "45678-1": 5,
+        "51515-1": 6
+      },
+      "colors": {
+        "4": "Red",
+        "15": "White"
+      },
+      "rbname": "Technic Axle and Pin Connector Angled #4 - 135°",
+      "dc": 15,
+      "dcs": {
+        "31313-1": 4,
+        "45678-1": 15,
+        "51515-1": 15
+      }
+    },
+    "32293": {
+      "name": "Technic Steering Link 9L",
+      "rb": "32293",
+      "sets": {
+        "31313-1": 4
+      },
+      "colors": {
+        "0": "Black"
+      },
+      "rbname": "Technic Link 1 x 9",
+      "dc": 0,
+      "dcs": {
+        "31313-1": 0
+      }
+    },
+    "32905": {
+      "name": "Technic Worm Gear 2L with Axle Hole Two-toothed Sliding",
+      "rb": "32905",
+      "sets": {
+        "31313-1": 2
+      },
+      "colors": {
+        "71": "Light_Bluish_Grey"
+      },
+      "rbname": "Technic Worm Gear Type 2",
+      "dc": 71,
+      "dcs": {
+        "31313-1": 71
+      }
+    },
+    "50951": {
+      "name": "Tyre  6/ 30 x 11",
+      "rb": "50951",
+      "sets": {
+        "31313-1": 2
+      },
+      "colors": {
+        "0": "Black"
+      },
+      "rbname": "Tyre 14 x 6 Solid Smooth",
+      "dc": 0,
+      "dcs": {
+        "31313-1": 0
+      }
+    },
+    "53550": {
+      "name": "Technic Bionicle Weapon Ball Shooter Magazine",
+      "rb": "53550",
+      "sets": {
+        "31313-1": 1
+      },
+      "colors": {
+        "0": "Black"
+      },
+      "rbname": "Large Figure Weapon, Zamor Sphere Holder",
+      "dc": 0,
+      "dcs": {
+        "31313-1": 0
+      }
+    },
+    "3873": {
+      "name": "Technic Chain Tread 2.5 Wide",
+      "rb": "53992",
+      "sets": {
+        "31313-1": 2
+      },
+      "colors": {
+        "0": "Black"
+      },
+      "rbname": "Technic Tread Large [36 Links]",
+      "dc": 0,
+      "dcs": {
+        "31313-1": 0
+      }
+    },
+    "54271": {
+      "name": "Constraction Weapon Ball Shooter",
+      "rb": "54271",
+      "sets": {
+        "31313-1": 1
+      },
+      "colors": {
+        "0": "Black"
+      },
+      "rbname": "Large Figure Weapon, Zamor Sphere Launcher",
+      "dc": 0,
+      "dcs": {
+        "31313-1": 0
+      }
+    },
+    "54821": {
+      "name": "Technic Bionicle Ball 16.5 mm",
+      "rb": "54821",
+      "sets": {
+        "31313-1": 3,
+        "45345-1": 5,
+        "51515-1": 1
+      },
+      "colors": {
+        "4": "Red"
+      },
+      "rbname": "Projectile, Large Figure Weapon, Zamor Sphere / Ball",
+      "dc": 4,
+      "dcs": {
+        "31313-1": 4,
+        "45345-1": 4,
+        "51515-1": 4
+      }
+    },
+    "61070": {
+      "name": "Technic Beam  3 with Panel Fairing Right",
+      "rb": "61070",
+      "sets": {
+        "31313-1": 1
+      },
+      "colors": {
+        "15": "White"
+      },
+      "rbname": "Technic Panel Car Mudguard Right",
+      "dc": 15,
+      "dcs": {
+        "31313-1": 15
+      }
+    },
+    "61071": {
+      "name": "Technic Beam  3 with Panel Fairing Left",
+      "rb": "61071",
+      "sets": {
+        "31313-1": 1
+      },
+      "colors": {
+        "15": "White"
+      },
+      "rbname": "Technic Panel Car Mudguard Left",
+      "dc": 15,
+      "dcs": {
+        "31313-1": 15
+      }
+    },
+    "72156": {
+      "name": "Electric Mindstorms EV3 IR-Beacon / Remote Handset",
+      "rb": "72156",
+      "sets": {
+        "31313-1": 1
+      },
+      "colors": {
+        "15": "White"
+      },
+      "rbname": "Control Unit, IR-Beacon / Remote Handset, EV3",
+      "dc": 15,
+      "dcs": {
+        "31313-1": 15
+      }
+    },
+    "92907": {
+      "name": "Technic Cross Block  2 x  2 x  2 Bent 90 Split (Pin/Twin Axle)",
+      "rb": "92907",
+      "sets": {
+        "31313-1": 2
+      },
+      "colors": {
+        "71": "Light_Bluish_Grey"
+      },
+      "rbname": "Technic Axle and Pin Connector Perpendicular Split",
+      "dc": 71,
+      "dcs": {
+        "31313-1": 71
+      }
+    },
+    "95654": {
+      "name": "Electric Mindstorms EV3 Infrared Sensor",
+      "rb": "95654",
+      "sets": {
+        "31313-1": 1
+      },
+      "colors": {
+        "71": "Light_Bluish_Grey"
+      },
+      "rbname": "Sensor, Infrared, EV3",
+      "dc": 71,
+      "dcs": {
+        "31313-1": 71
+      }
+    },
+    "98347": {
+      "name": "Technic Blade Curved  0.5 x  4 with Pin Hole",
+      "rb": "98347",
+      "sets": {
+        "31313-1": 4
+      },
+      "colors": {
+        "15": "White"
+      },
+      "rbname": "Wing / Blade 1 x 4 with Pin Hole",
+      "dc": 15,
+      "dcs": {
+        "31313-1": 15
+      }
+    },
+    "98568": {
+      "name": "Constraction Blade 11.5L with Sawtooth Back",
+      "rb": "98568pat0002",
+      "sets": {
+        "31313-1": 6
+      },
+      "colors": {
+        "4": "Red"
+      },
+      "rbname": "Large Figure Weapon Sword, 11.5L with Sawtooth Back with Flat Silver Blade",
+      "dc": 4,
+      "dcs": {
+        "31313-1": 4
+      }
+    },
+    "14720": {
+      "name": "Technic Beam  5 x  3 H-shaped",
+      "rb": "14720",
+      "sets": {
+        "45678-1": 4,
+        "45681-1": 6,
+        "51515-1": 2
+      },
+      "colors": {
+        "71": "Light_Bluish_Grey"
+      },
+      "rbname": "Technic Beam 3 x 5 Thick [90° Offset Centre Beam Holes]",
+      "dc": 71,
+      "dcs": {
+        "45678-1": 71,
+        "45681-1": 71,
+        "51515-1": 71
+      }
+    },
+    "14769": {
+      "name": "Tile  2 x  2 Round with Round Underside Stud",
+      "rb": "14769pr1116",
+      "sets": {
+        "45678-1": 2,
+        "45345-1": 2
+      },
+      "colors": {
+        "15": "White"
+      },
+      "rbname": "Tile Round 2 x 2 with Eye, Blue Iris, Black Pupil Print",
+      "dc": 15,
+      "dcs": {
+        "45678-1": 15,
+        "45345-1": 15
+      }
+    },
+    "15458": {
+      "name": "Technic Panel  3 x 11",
+      "rb": "15458",
+      "sets": {
+        "45678-1": 2,
+        "51515-1": 2
+      },
+      "colors": {
+        "0": "Black",
+        "15": "White"
+      },
+      "rbname": "Technic Panel 3 x 11 x 1",
+      "dc": 0,
+      "dcs": {
+        "45678-1": 0,
+        "51515-1": 15
+      }
+    },
+    "15535": {
+      "name": "Tile  2 x  2 Round with Hole",
+      "rb": "15535",
+      "sets": {
+        "45678-1": 4,
+        "45681-1": 6,
+        "45345-1": 6
+      },
+      "colors": {
+        "0": "Black",
+        "4": "Red",
+        "25": "Orange"
+      },
+      "rbname": "Tile Special Round 2 x 2 with Hole",
+      "dc": 0,
+      "dcs": {
+        "45678-1": 0,
+        "45681-1": 0,
+        "45345-1": 25
+      }
+    },
+    "18651": {
+      "name": "Technic Axle Pin Long with Friction with  2L Axle",
+      "rb": "18651",
+      "sets": {
+        "45678-1": 15
+      },
+      "colors": {
+        "0": "Black"
+      },
+      "rbname": "Technic Axle Pin 3L with Friction Ridges Lengthwise and 2L Axle",
+      "dc": 0,
+      "dcs": {
+        "45678-1": 0
+      }
+    },
+    "18674": {
+      "name": "Plate  2 x  2 Round with  1 Centre Stud",
+      "rb": "18674",
+      "sets": {
+        "45678-1": 2,
+        "45681-1": 4
+      },
+      "colors": {
+        "15": "White",
+        "322": "Medium_Azure"
+      },
+      "rbname": "Plate Special Round 2 x 2 with Center Stud (Jumper Plate)",
+      "dc": 322,
+      "dcs": {
+        "45678-1": 15,
+        "45681-1": 322
+      }
+    },
+    "23948": {
+      "name": "Technic Axle 11",
+      "rb": "23948",
+      "sets": {
+        "45678-1": 3
+      },
+      "colors": {
+        "14": "Yellow"
+      },
+      "rbname": "Technic Axle 11",
+      "dc": 14,
+      "dcs": {
+        "45678-1": 14
+      }
+    },
+    "24309": {
+      "name": "Slope Brick Curved  3 x  2",
+      "rb": "24309",
+      "sets": {
+        "45678-1": 4
+      },
+      "colors": {
+        "14": "Yellow"
+      },
+      "rbname": "Brick Curved 3 x 2 No Studs",
+      "dc": 14,
+      "dcs": {
+        "45678-1": 14
+      }
+    },
+    "37308": {
+      "name": "Electric Powered Up Colour Sensor",
+      "rb": "37308",
+      "sets": {
+        "45678-1": 1,
+        "45681-1": 1,
+        "45345-1": 1,
+        "51515-1": 1
+      },
+      "colors": {
+        "15": "White"
+      },
+      "rbname": "Sensor, Color, SPIKE",
+      "dc": 15,
+      "dcs": {
+        "45678-1": 15,
+        "45681-1": 15,
+        "45345-1": 15,
+        "51515-1": 15
+      }
+    },
+    "37312": {
+      "name": "Electric Powered Up Force Sensor",
+      "rb": "37312",
+      "sets": {
+        "45678-1": 1
+      },
+      "colors": {
+        "15": "White"
+      },
+      "rbname": "Sensor, Force, SPIKE",
+      "dc": 15,
+      "dcs": {
+        "45678-1": 15
+      }
+    },
+    "37316": {
+      "name": "Electric Powered Up Distance Sensor",
+      "rb": "37316",
+      "sets": {
+        "45678-1": 1,
+        "51515-1": 1
+      },
+      "colors": {
+        "15": "White"
+      },
+      "rbname": "Sensor, Distance, SPIKE",
+      "dc": 15,
+      "dcs": {
+        "45678-1": 15,
+        "51515-1": 15
+      }
+    },
+    "3738": {
+      "name": "Technic Plate  2 x  8 with Holes",
+      "rb": "3738",
+      "sets": {
+        "45678-1": 4,
+        "45345-1": 5
+      },
+      "colors": {
+        "0": "Black",
+        "10": "Bright_Green"
+      },
+      "rbname": "Technic Plate 2 x 8 [7 Holes]",
+      "dc": 10,
+      "dcs": {
+        "45678-1": 0,
+        "45345-1": 10
+      }
+    },
+    "39367": {
+      "name": "Wheel 14 x 48 with 4 Spokes with Integral Tyre",
+      "rb": "39367pat0002",
+      "sets": {
+        "45678-1": 4,
+        "51515-1": 6
+      },
+      "colors": {
+        "0": "Black"
+      },
+      "rbname": "Wheel 57 x 14 with 4 Spokes with 2 Holes and Black Integral Tire",
+      "dc": 0,
+      "dcs": {
+        "45678-1": 0,
+        "51515-1": 0
+      }
+    },
+    "39369": {
+      "name": "Technic Beam 19 x 11 Baseplate",
+      "rb": "39369",
+      "sets": {
+        "45678-1": 2,
+        "51515-1": 1
+      },
+      "colors": {
+        "14": "Yellow",
+        "3": "Dark_Turquoise"
+      },
+      "rbname": "Technic Base Frame 11 x 19",
+      "dc": 14,
+      "dcs": {
+        "45678-1": 14,
+        "51515-1": 3
+      }
+    },
+    "39370": {
+      "name": "Technic Beam  5 x  3 H-shaped with Ball Socket",
+      "rb": "39370",
+      "sets": {
+        "45678-1": 1,
+        "45681-1": 1
+      },
+      "colors": {
+        "322": "Medium_Azure"
+      },
+      "rbname": "Technic Beam 3 x 5 with Ball And Castor Joint",
+      "dc": 322,
+      "dcs": {
+        "45678-1": 322,
+        "45681-1": 322
+      }
+    },
+    "39789": {
+      "name": "Brick  2 x  4 with  3 Axleholes Vertical",
+      "rb": "39789",
+      "sets": {
+        "45678-1": 15,
+        "45681-1": 10,
+        "45345-1": 15
+      },
+      "colors": {
+        "26": "Magenta",
+        "2": "Green",
+        "1": "Blue",
+        "4": "Red",
+        "14": "Yellow"
+      },
+      "rbname": "Brick Special 2 x 4 with 3 Axle Holes",
+      "dc": 26,
+      "dcs": {
+        "45678-1": 26,
+        "45681-1": 2,
+        "45345-1": 1
+      }
+    },
+    "39790": {
+      "name": "Technic Beam 15 x 11 with Open Center 13 x  9",
+      "rb": "39790",
+      "sets": {
+        "45678-1": 2,
+        "45681-1": 2,
+        "51515-1": 2
+      },
+      "colors": {
+        "322": "Medium_Azure",
+        "0": "Black"
+      },
+      "rbname": "Technic Beam Frame 11 x 15",
+      "dc": 322,
+      "dcs": {
+        "45678-1": 322,
+        "45681-1": 322,
+        "51515-1": 0
+      }
+    },
+    "39793": {
+      "name": "Technic Connector Block  3 x  3 with  9 Perpendicular Holes",
+      "rb": "39793",
+      "sets": {
+        "45678-1": 14,
+        "45681-1": 4,
+        "45345-1": 2,
+        "51515-1": 9
+      },
+      "colors": {
+        "0": "Black",
+        "26": "Magenta",
+        "3": "Dark_Turquoise"
+      },
+      "rbname": "Technic Connector Beam 3 x 3",
+      "dc": 26,
+      "dcs": {
+        "45678-1": 26,
+        "45681-1": 26,
+        "45345-1": 26,
+        "51515-1": 3
+      }
+    },
+    "39794": {
+      "name": "Technic Beam 11 x  7 with Open Center  9 x  5",
+      "rb": "39794",
+      "sets": {
+        "45678-1": 2,
+        "45681-1": 4,
+        "51515-1": 2
+      },
+      "colors": {
+        "26": "Magenta",
+        "0": "Black"
+      },
+      "rbname": "Technic Beam Frame 7 x 11",
+      "dc": 26,
+      "dcs": {
+        "45678-1": 26,
+        "45681-1": 26,
+        "51515-1": 0
+      }
+    },
+    "41749": {
+      "name": "Slope Brick Round  3 x  8 x  2 Right",
+      "rb": "41749",
+      "sets": {
+        "45678-1": 1
+      },
+      "colors": {
+        "322": "Medium_Azure"
+      },
+      "rbname": "Brick Wedged, Curved 8 x 3 x 2 Open Right",
+      "dc": 322,
+      "dcs": {
+        "45678-1": 322
+      }
+    },
+    "41750": {
+      "name": "Slope Brick Round  3 x  8 x  2 Left",
+      "rb": "41750",
+      "sets": {
+        "45678-1": 1
+      },
+      "colors": {
+        "322": "Medium_Azure"
+      },
+      "rbname": "Brick Wedged, Curved 8 x 3 x 2 Open Left",
+      "dc": 322,
+      "dcs": {
+        "45678-1": 322
+      }
+    },
+    "41751": {
+      "name": "Windscreen  8 x  6 x  2 Curved",
+      "rb": "41751",
+      "sets": {
+        "45678-1": 1
+      },
+      "colors": {
+        "322": "Medium_Azure"
+      },
+      "rbname": "Windscreen 8 x 6 x 2 Curved",
+      "dc": 322,
+      "dcs": {
+        "45678-1": 322
+      }
+    },
+    "4282": {
+      "name": "Plate  2 x 16",
+      "rb": "4282",
+      "sets": {
+        "45678-1": 2
+      },
+      "colors": {
+        "26": "Magenta"
+      },
+      "rbname": "Plate 2 x 16",
+      "dc": 26,
+      "dcs": {
+        "45678-1": 26
+      }
+    },
+    "44126": {
+      "name": "Slope Brick Curved  6 x  2",
+      "rb": "44126",
+      "sets": {
+        "45678-1": 4
+      },
+      "colors": {
+        "0": "Black"
+      },
+      "rbname": "Brick Curved 6 x 2",
+      "dc": 0,
+      "dcs": {
+        "45678-1": 0
+      }
+    },
+    "44375b": {
+      "name": "Dish  6 x  6 Inverted with Solid Studs",
+      "rb": "44375b",
+      "sets": {
+        "45678-1": 2,
+        "51515-1": 1
+      },
+      "colors": {
+        "47": "Trans_Clear",
+        "15": "White"
+      },
+      "rbname": "Dish 6 x 6 Inverted (Radar) with Solid Studs",
+      "dc": 47,
+      "dcs": {
+        "45678-1": 47,
+        "51515-1": 15
+      }
+    },
+    "45601c01": {
+      "name": "Electric Powered Up 6 Port Hub with Yellow Bottom",
+      "rb": "45601",
+      "sets": {
+        "45678-1": 1
+      },
+      "colors": {
+        "14": "Yellow"
+      },
+      "rbname": "Hub, Programmable, SPIKE 6-Port",
+      "dc": 14,
+      "dcs": {
+        "45678-1": 14
+      }
+    },
+    "46372": {
+      "name": "Technic Gear 28 Tooth Double Bevel",
+      "rb": "46372",
+      "sets": {
+        "45678-1": 3,
+        "45681-1": 2
+      },
+      "colors": {
+        "71": "Light_Bluish_Grey"
+      },
+      "rbname": "Technic Gear 28 Tooth Double Bevel",
+      "dc": 71,
+      "dcs": {
+        "45678-1": 71,
+        "45681-1": 71
+      }
+    },
+    "48267": {
+      "name": "Technic Tooth  1 x  3 with Axlehole with Straight Bottom Cavity",
+      "rb": "48267",
+      "sets": {
+        "45678-1": 2
+      },
+      "colors": {
+        "15": "White"
+      },
+      "rbname": "Technic Tooth 1 x 3 with Axle Hole [Hollow Underside]",
+      "dc": 15,
+      "dcs": {
+        "45678-1": 15
+      }
+    },
+    "49283": {
+      "name": "Technic Cable Clip",
+      "rb": "49283",
+      "sets": {
+        "45678-1": 17,
+        "45681-1": 6,
+        "51515-1": 8
+      },
+      "colors": {
+        "26": "Magenta",
+        "322": "Medium_Azure",
+        "1": "Blue",
+        "4": "Red",
+        "14": "Yellow",
+        "2": "Green",
+        "3": "Dark_Turquoise"
+      },
+      "rbname": "Wire Clip with Axle Hole",
+      "dc": 3,
+      "dcs": {
+        "45678-1": 26,
+        "45681-1": 322,
+        "51515-1": 3
+      }
+    },
+    "52629": {
+      "name": "Technic Ball 19mm for Ball Castor",
+      "rb": "52629",
+      "sets": {
+        "45678-1": 1,
+        "45681-1": 1
+      },
+      "colors": {
+        "15": "White"
+      },
+      "rbname": "Ball 19mm",
+      "dc": 15,
+      "dcs": {
+        "45678-1": 15,
+        "45681-1": 15
+      }
+    },
+    "54675": {
+      "name": "Electric Powered Up Large Angular Motor with Medium Azure Back",
+      "rb": "54675",
+      "sets": {
+        "45678-1": 1,
+        "45681-1": 1
+      },
+      "colors": {
+        "322": "Medium_Azure"
+      },
+      "rbname": "Motor, Large Angular, SPIKE, White Housing, White Wire",
+      "dc": 322,
+      "dcs": {
+        "45678-1": 322,
+        "45681-1": 322
+      }
+    },
+    "54696p01": {
+      "name": "Electric Powered Up Medium Angular Motor with Medium Azure Back and Hub Pattern",
+      "rb": "54696",
+      "sets": {
+        "45678-1": 2,
+        "51515-1": 4
+      },
+      "colors": {
+        "322": "Medium_Azure",
+        "71": "Light_Bluish_Grey"
+      },
+      "rbname": "Motor, Medium Servo SPIKE",
+      "dc": 71,
+      "dcs": {
+        "45678-1": 322,
+        "51515-1": 71
+      }
+    },
+    "45610": {
+      "name": "Electric Powered Up 6 Port Hub Rechargeable Battery",
+      "rb": "55422",
+      "sets": {
+        "45678-1": 1
+      },
+      "colors": {
+        "14": "Yellow"
+      },
+      "rbname": "Battery Pack, Rechargeable, SPIKE, 7.3V",
+      "dc": 14,
+      "dcs": {
+        "45678-1": 14
+      }
+    },
+    "56903": {
+      "name": "Wheel Rim  8 x 18 with Deep Centre Groove and Axle Hole",
+      "rb": "56903",
+      "sets": {
+        "45678-1": 3,
+        "51515-1": 4
+      },
+      "colors": {
+        "15": "White"
+      },
+      "rbname": "Wheel 18 x 8 with Fake Bolts and Shallow Spokes and Axle Hole",
+      "dc": 15,
+      "dcs": {
+        "45678-1": 15,
+        "51515-1": 15
+      }
+    },
+    "61254": {
+      "name": "Tyre  7/ 45 x 17 Offset Tread with Middle Band",
+      "rb": "61254",
+      "sets": {
+        "45678-1": 3,
+        "51515-1": 4
+      },
+      "colors": {
+        "0": "Black"
+      },
+      "rbname": "Tyre Offset Tread with Center Band 23 x 7",
+      "dc": 0,
+      "dcs": {
+        "45678-1": 0,
+        "51515-1": 0
+      }
+    },
+    "61332": {
+      "name": "Technic Pin with Friction Type 2",
+      "rb": "61332",
+      "sets": {
+        "45678-1": 92,
+        "45681-1": 80,
+        "45345-1": 28
+      },
+      "colors": {
+        "0": "Black"
+      },
+      "rbname": "Technic Pin with Friction Ridges Lengthwise with No Center Slots",
+      "dc": 0,
+      "dcs": {
+        "45678-1": 0,
+        "45681-1": 0,
+        "45345-1": 0
+      }
+    },
+    "66906": {
+      "name": "=Technic Pin Towball with Friction",
+      "rb": "66906",
+      "sets": {
+        "45678-1": 6,
+        "51515-1": 4
+      },
+      "colors": {
+        "0": "Black"
+      },
+      "rbname": "Technic Pin with Friction Ridges Lengthwise and Towball - Round Pin Hole",
+      "dc": 0,
+      "dcs": {
+        "45678-1": 0,
+        "51515-1": 0
+      }
+    },
+    "85984": {
+      "name": "Slope Brick 31  1 x  2 x  0.667",
+      "rb": "85984",
+      "sets": {
+        "45678-1": 4
+      },
+      "colors": {
+        "14": "Yellow"
+      },
+      "rbname": "Brick Sloped 30° 1 x 2 x 2/3",
+      "dc": 14,
+      "dcs": {
+        "45678-1": 14
+      }
+    },
+    "11214": {
+      "name": "Technic Axle Pin Long with Friction with  2L Pin",
+      "rb": "11214",
+      "sets": {
+        "45681-1": 8,
+        "51515-1": 14
+      },
+      "colors": {
+        "4": "Red",
+        "72": "Dark_Bluish_Grey"
+      },
+      "rbname": "Technic Axle Pin 3L with Friction Ridges Lengthwise and 1L Axle",
+      "dc": 72,
+      "dcs": {
+        "45681-1": 4,
+        "51515-1": 72
+      }
+    },
+    "11215": {
+      "name": "Bracket  5 x  2 x  1.333 with Understud in Centre",
+      "rb": "11215",
+      "sets": {
+        "45681-1": 2
+      },
+      "colors": {
+        "15": "White"
+      },
+      "rbname": "Bracket 5 x 2 x 1 1/3 with Holes, Pin Bottom",
+      "dc": 15,
+      "dcs": {
+        "45681-1": 15
+      }
+    },
+    "15462": {
+      "name": "Technic Axle  5 with Stop",
+      "rb": "15462",
+      "sets": {
+        "45681-1": 2,
+        "51515-1": 2
+      },
+      "colors": {
+        "70": "Reddish_Brown"
+      },
+      "rbname": "Technic Axle 5 with Stop",
+      "dc": 70,
+      "dcs": {
+        "45681-1": 70,
+        "51515-1": 70
+      }
+    },
+    "18654": {
+      "name": "Technic Beam  1",
+      "rb": "18654",
+      "sets": {
+        "45681-1": 4,
+        "51515-1": 26
+      },
+      "colors": {
+        "0": "Black",
+        "3": "Dark_Turquoise",
+        "15": "White"
+      },
+      "rbname": "Technic Pin Connector Round 1L [Beam]",
+      "dc": 0,
+      "dcs": {
+        "45681-1": 0,
+        "51515-1": 3
+      }
+    },
+    "18938": {
+      "name": "Technic Turntable 60 Tooth Top",
+      "rb": "88738",
+      "sets": {
+        "45681-1": 2,
+        "51515-1": 1
+      },
+      "colors": {
+        "0": "Black"
+      },
+      "rbname": "Technic Turntable Large Type 4 Top, 60 Tooth",
+      "dc": 0,
+      "dcs": {
+        "45681-1": 0,
+        "51515-1": 0
+      }
+    },
+    "18939": {
+      "name": "Technic Turntable 60 Tooth Bottom",
+      "rb": "18939",
+      "sets": {
+        "45681-1": 2,
+        "51515-1": 1
+      },
+      "colors": {
+        "71": "Light_Bluish_Grey"
+      },
+      "rbname": "Technic Turntable Large Type 3 Base",
+      "dc": 71,
+      "dcs": {
+        "45681-1": 71,
+        "51515-1": 71
+      }
+    },
+    "22961": {
+      "name": "Technic Axle with Perpendicular Pin Hole",
+      "rb": "22961",
+      "sets": {
+        "45681-1": 4,
+        "51515-1": 4
+      },
+      "colors": {
+        "15": "White",
+        "0": "Black"
+      },
+      "rbname": "Technic Pin Connector Hub with 1 Axle",
+      "dc": 15,
+      "dcs": {
+        "45681-1": 15,
+        "51515-1": 0
+      }
+    },
+    "24119": {
+      "name": "Technic Panel Smooth  7 x  2 x  3",
+      "rb": "24119",
+      "sets": {
+        "45681-1": 4,
+        "51515-1": 2
+      },
+      "colors": {
+        "0": "Black",
+        "15": "White"
+      },
+      "rbname": "Technic Panel Curved 7 x 3 with 2 Pin Holes through Panel Surface",
+      "dc": 0,
+      "dcs": {
+        "45681-1": 0,
+        "51515-1": 15
+      }
+    },
+    "24121": {
+      "name": "Technic Gear Ring Quarter 11 x 11 with 35 Teeth",
+      "rb": "24121",
+      "sets": {
+        "45681-1": 8
+      },
+      "colors": {
+        "0": "Black"
+      },
+      "rbname": "Technic Gear Rack 1/4 Circle 11 x 11, 35 Teeth",
+      "dc": 0,
+      "dcs": {
+        "45681-1": 0
+      }
+    },
+    "3003": {
+      "name": "Brick  2 x  2",
+      "rb": "3003",
+      "sets": {
+        "45681-1": 6
+      },
+      "colors": {
+        "0": "Black",
+        "15": "White",
+        "322": "Medium_Azure"
+      },
+      "rbname": "Brick 2 x 2",
+      "dc": 0,
+      "dcs": {
+        "45681-1": 0
+      }
+    },
+    "35185": {
+      "name": "Technic Gear 20 Tooth Double Bevel with Clutch on Both Sides",
+      "rb": "35185",
+      "sets": {
+        "45681-1": 2
+      },
+      "colors": {
+        "1": "Blue"
+      },
+      "rbname": "Technic Gear 20 Tooth Double Bevel with Clutch on Both Sides",
+      "dc": 1,
+      "dcs": {
+        "45681-1": 1
+      }
+    },
+    "39888": {
+      "name": "Technic Pin Long without Friction Type 2",
+      "rb": "39888",
+      "sets": {
+        "45681-1": 8
+      },
+      "colors": {
+        "19": "Tan"
+      },
+      "rbname": "Technic Pin Long without Friction Ridges, with Anti-Roll Notch",
+      "dc": 19,
+      "dcs": {
+        "45681-1": 19
+      }
+    },
+    "42022": {
+      "name": "Slope Brick Curved  6 x  1",
+      "rb": "42022",
+      "sets": {
+        "45681-1": 4,
+        "45345-1": 5
+      },
+      "colors": {
+        "14": "Yellow",
+        "4": "Red"
+      },
+      "rbname": "Brick Curved 6 x 1",
+      "dc": 4,
+      "dcs": {
+        "45681-1": 14,
+        "45345-1": 4
+      }
+    },
+    "42135": {
+      "name": "Technic Connector (Axle/Bush) Type 2",
+      "rb": "42135",
+      "sets": {
+        "45681-1": 6,
+        "51515-1": 3
+      },
+      "colors": {
+        "0": "Black"
+      },
+      "rbname": "Technic Axle Connector with Axle Hole [Reinforced]",
+      "dc": 0,
+      "dcs": {
+        "45681-1": 0,
+        "51515-1": 0
+      }
+    },
+    "4274": {
+      "name": "Technic Pin  1/2",
+      "rb": "4274",
+      "sets": {
+        "45681-1": 16,
+        "51515-1": 10
+      },
+      "colors": {
+        "1": "Blue",
+        "71": "Light_Bluish_Grey"
+      },
+      "rbname": "Technic Pin 1/2 without Friction Ridges",
+      "dc": 1,
+      "dcs": {
+        "45681-1": 1,
+        "51515-1": 71
+      }
+    },
+    "49130": {
+      "name": "Technic Pin Connector Perpendicular  3 x  3 Bent 90 with 4 Pins, Slots Across Beam",
+      "rb": "49130",
+      "sets": {
+        "45681-1": 6,
+        "51515-1": 4
+      },
+      "colors": {
+        "71": "Light_Bluish_Grey"
+      },
+      "rbname": "Technic Pin Connector Hub Perpendicular 3 x 3 Bent with 4 Pins (Pin Ridges Along Part)",
+      "dc": 71,
+      "dcs": {
+        "45681-1": 71,
+        "51515-1": 71
+      }
+    },
+    "49295": {
+      "name": "Wheel 14 x 80 with  4 Spokes with Integral Tyre",
+      "rb": "49295pat0001",
+      "sets": {
+        "45681-1": 4
+      },
+      "colors": {
+        "0": "Black"
+      },
+      "rbname": "Wheel 88 x 14 with 4 Spokes with 4 Holes, 4 Inserts and Medium Azure Integral Tire",
+      "dc": 0,
+      "dcs": {
+        "45681-1": 0
+      }
+    },
+    "50450": {
+      "name": "Technic Axle 32",
+      "rb": "50450",
+      "sets": {
+        "45681-1": 2
+      },
+      "colors": {
+        "0": "Black"
+      },
+      "rbname": "Technic Axle 32",
+      "dc": 0,
+      "dcs": {
+        "45681-1": 0
+      }
+    },
+    "65489": {
+      "name": "Technic Cross Block 1 x 3 (Pin/Pin/Pin) with 4 Pins Rectangular Centre Hole",
+      "rb": "65489",
+      "sets": {
+        "45681-1": 10,
+        "51515-1": 12
+      },
+      "colors": {
+        "71": "Light_Bluish_Grey"
+      },
+      "rbname": "Technic Pin Connector Hub Perpendicular 3L with 4 Pins (Squared Holes)",
+      "dc": 71,
+      "dcs": {
+        "45681-1": 71,
+        "51515-1": 71
+      }
+    },
+    "65817": {
+      "name": "Technic Beam 15 x 11 with Perforated Centre Plate 13 x  9",
+      "rb": "65817",
+      "sets": {
+        "45681-1": 1
+      },
+      "colors": {
+        "26": "Magenta"
+      },
+      "rbname": "Technic Beam Frame 11 x 15 with Internal Structure (Maker Plate)",
+      "dc": 26,
+      "dcs": {
+        "45681-1": 26
+      }
+    },
+    "87761": {
+      "name": "Technic Gear Rack  1 x  7 with Pegholes and Axleholes",
+      "rb": "87761",
+      "sets": {
+        "45681-1": 2
+      },
+      "colors": {
+        "0": "Black"
+      },
+      "rbname": "Technic Gear Rack 1 x 7 with Axle and Pin Holes",
+      "dc": 0,
+      "dcs": {
+        "45681-1": 0
+      }
+    },
+    "95342": {
+      "name": "Animal Chicken",
+      "rb": "95342",
+      "sets": {
+        "45681-1": 1
+      },
+      "colors": {
+        "15": "White"
+      },
+      "rbname": "Animal, Chicken [Plain]",
+      "dc": 15,
+      "dcs": {
+        "45681-1": 15
+      }
+    },
+    "11055": {
+      "name": "Flag  2 x  2 Square (Thick C-Clip)",
+      "rb": "11055",
+      "sets": {
+        "45345-1": 2
+      },
+      "colors": {
+        "4": "Red"
+      },
+      "rbname": "Flag 2 x 2 Square, Flat Clip Edge [Thick Clips]",
+      "dc": 4,
+      "dcs": {
+        "45345-1": 4
+      }
+    },
+    "14417": {
+      "name": "Plate  1 x  2 with Ball Joint-8 on Side",
+      "rb": "14417",
+      "sets": {
+        "45345-1": 5
+      },
+      "colors": {
+        "72": "Dark_Bluish_Grey"
+      },
+      "rbname": "Plate Special 1 x 2 with 5.9mm Centre Side Towball",
+      "dc": 72,
+      "dcs": {
+        "45345-1": 72
+      }
+    },
+    "14704": {
+      "name": "Plate  1 x  2 with Socket Joint-8 with Friction Centre",
+      "rb": "14704",
+      "sets": {
+        "45345-1": 5
+      },
+      "colors": {
+        "71": "Light_Bluish_Grey"
+      },
+      "rbname": "Plate Special 1 x 2 5.9mm Centre Side Towball Socket",
+      "dc": 71,
+      "dcs": {
+        "45345-1": 71
+      }
+    },
+    "15068": {
+      "name": "Slope Brick Curved  2 x  2 x  0.667",
+      "rb": "15068",
+      "sets": {
+        "45345-1": 6
+      },
+      "colors": {
+        "25": "Orange"
+      },
+      "rbname": "Brick Curved 2 x 2 x 2/3",
+      "dc": 25,
+      "dcs": {
+        "45345-1": 25
+      }
+    },
+    "15279": {
+      "name": "Plant Grass Stem",
+      "rb": "15279",
+      "sets": {
+        "45345-1": 2
+      },
+      "colors": {
+        "10": "Bright_Green"
+      },
+      "rbname": "Plant, Grass Stem with Bar Hole [3.2mm]",
+      "dc": 10,
+      "dcs": {
+        "45345-1": 10
+      }
+    },
+    "18653": {
+      "name": "Arch  1 x  3 x  2 Inverted",
+      "rb": "18653",
+      "sets": {
+        "45345-1": 5
+      },
+      "colors": {
+        "25": "Orange"
+      },
+      "rbname": "Brick Curved 1 x 3 x 2 Inverted [Inside Bow]",
+      "dc": 25,
+      "dcs": {
+        "45345-1": 25
+      }
+    },
+    "18746": {
+      "name": "Minifig Snowboard  2 x  6",
+      "rb": "18746",
+      "sets": {
+        "45345-1": 2
+      },
+      "colors": {
+        "191": "Bright_Light_Orange"
+      },
+      "rbname": "Sports Snowboard Small",
+      "dc": 191,
+      "dcs": {
+        "45345-1": 191
+      }
+    },
+    "2431": {
+      "name": "Tile  1 x  4 with Groove",
+      "rb": "2431",
+      "sets": {
+        "45345-1": 5
+      },
+      "colors": {
+        "321": "Dark_Azure"
+      },
+      "rbname": "Tile 1 x 4 with Groove",
+      "dc": 321,
+      "dcs": {
+        "45345-1": 321
+      }
+    },
+    "24312": {
+      "name": "Minifig Wheelchair",
+      "rb": "24312",
+      "sets": {
+        "45345-1": 1
+      },
+      "colors": {
+        "71": "Light_Bluish_Grey"
+      },
+      "rbname": "Equipment Medical Wheelchair with Clips for Wheels",
+      "dc": 71,
+      "dcs": {
+        "45345-1": 71
+      }
+    },
+    "24946": {
+      "name": "Animal Egg  1.2 x  1.2 x  1.333 with Hole on Top",
+      "rb": "24946",
+      "sets": {
+        "45345-1": 1
+      },
+      "colors": {
+        "15": "White"
+      },
+      "rbname": "Food Egg with 1.5mm Hole [Plain]",
+      "dc": 15,
+      "dcs": {
+        "45345-1": 15
+      }
+    },
+    "2496": {
+      "name": "Wheel Trolley",
+      "rb": "2496",
+      "sets": {
+        "45345-1": 1
+      },
+      "colors": {
+        "0": "Black"
+      },
+      "rbname": "Wheel Skateboard / Trolley",
+      "dc": 0,
+      "dcs": {
+        "45345-1": 0
+      }
+    },
+    "27328": {
+      "name": "Hose Flexible 10L",
+      "rb": "27328pat0001",
+      "sets": {
+        "45345-1": 2
+      },
+      "colors": {
+        "47": "Trans_Clear"
+      },
+      "rbname": "Flexible Ribbed Hose 8mm Ends 10L and Blue Center Pattern",
+      "dc": 47,
+      "dcs": {
+        "45345-1": 47
+      }
+    },
+    "3004": {
+      "name": "Brick  1 x  2",
+      "rb": "3004",
+      "sets": {
+        "45345-1": 6
+      },
+      "colors": {
+        "1": "Blue"
+      },
+      "rbname": "Brick 1 x 2",
+      "dc": 1,
+      "dcs": {
+        "45345-1": 1
+      }
+    },
+    "30089b": {
+      "name": "Minifig Camera Snapshot Type 2",
+      "rb": "30089b",
+      "sets": {
+        "45345-1": 1
+      },
+      "colors": {
+        "0": "Black"
+      },
+      "rbname": "Equipment Camera Handheld with Central Viewfinder",
+      "dc": 0,
+      "dcs": {
+        "45345-1": 0
+      }
+    },
+    "3010": {
+      "name": "Brick  1 x  4",
+      "rb": "3010",
+      "sets": {
+        "45345-1": 5
+      },
+      "colors": {
+        "25": "Orange"
+      },
+      "rbname": "Brick 1 x 4",
+      "dc": 25,
+      "dcs": {
+        "45345-1": 25
+      }
+    },
+    "30145": {
+      "name": "Brick  2 x  2 x  3",
+      "rb": "30145",
+      "sets": {
+        "45345-1": 5
+      },
+      "colors": {
+        "4": "Red"
+      },
+      "rbname": "Brick 2 x 2 x 3",
+      "dc": 4,
+      "dcs": {
+        "45345-1": 4
+      }
+    },
+    "30162": {
+      "name": "Minifig Binoculars with Round Eyepiece",
+      "rb": "30162",
+      "sets": {
+        "45345-1": 1
+      },
+      "colors": {
+        "72": "Dark_Bluish_Grey"
+      },
+      "rbname": "Equipment Binoculars",
+      "dc": 72,
+      "dcs": {
+        "45345-1": 72
+      }
+    },
+    "30385": {
+      "name": "Rock  1 x  1 Crystal 5 Point",
+      "rb": "30385",
+      "sets": {
+        "45345-1": 2
+      },
+      "colors": {
+        "36": "Trans_Red",
+        "35": "Trans_Bright_Green"
+      },
+      "rbname": "Rock 1 x 1 Crystal 5 Point",
+      "dc": 36,
+      "dcs": {
+        "45345-1": 36
+      }
+    },
+    "3039": {
+      "name": "Slope Brick 45  2 x  2",
+      "rb": "3039",
+      "sets": {
+        "45345-1": 5
+      },
+      "colors": {
+        "26": "Magenta"
+      },
+      "rbname": "Brick Sloped 45° 2 x 2",
+      "dc": 26,
+      "dcs": {
+        "45345-1": 26
+      }
+    },
+    "3040b": {
+      "name": "Slope Brick 45  2 x  1",
+      "rb": "3040b",
+      "sets": {
+        "45345-1": 6
+      },
+      "colors": {
+        "10": "Bright_Green"
+      },
+      "rbname": "Brick Sloped 45° 2 x 1 with Bottom Pin",
+      "dc": 10,
+      "dcs": {
+        "45345-1": 10
+      }
+    },
+    "3069b": {
+      "name": "Tile  1 x  2 with Groove",
+      "rb": "3069b",
+      "sets": {
+        "45345-1": 6,
+        "51515-1": 4
+      },
+      "colors": {
+        "25": "Orange",
+        "3": "Dark_Turquoise",
+        "0": "Black"
+      },
+      "rbname": "Tile 1 x 2 with Groove",
+      "dc": 25,
+      "dcs": {
+        "45345-1": 25,
+        "51515-1": 3
+      }
+    },
+    "32001": {
+      "name": "Technic Plate  2 x  6 with Holes",
+      "rb": "32001",
+      "sets": {
+        "45345-1": 5
+      },
+      "colors": {
+        "321": "Dark_Azure"
+      },
+      "rbname": "Technic Plate 2 x 6 [5 Holes]",
+      "dc": 321,
+      "dcs": {
+        "45345-1": 321
+      }
+    },
+    "32059": {
+      "name": "Plate  4 x  6 without Corners",
+      "rb": "32059",
+      "sets": {
+        "45345-1": 2
+      },
+      "colors": {
+        "191": "Bright_Light_Orange"
+      },
+      "rbname": "Wedge Plate 4 x 6 Cut Corners",
+      "dc": 191,
+      "dcs": {
+        "45345-1": 191
+      }
+    },
+    "32064a": {
+      "name": "Technic Brick  1 x  2 with Axlehole with Open Sides and Stud Blocker",
+      "rb": "32064a",
+      "sets": {
+        "45345-1": 6
+      },
+      "colors": {
+        "14": "Yellow"
+      },
+      "rbname": "Technic Brick 1 x 2 with Axle Hole Type 1 [+ Opening] and Bottom Pin",
+      "dc": 14,
+      "dcs": {
+        "45345-1": 14
+      }
+    },
+    "32530": {
+      "name": "Technic Tile  1 x  2 with Two Holes",
+      "rb": "32530",
+      "sets": {
+        "45345-1": 6
+      },
+      "colors": {
+        "4": "Red"
+      },
+      "rbname": "Technic Pin Connector Plate 1 x 2 x 1 2/3 [Two Holes On Top]",
+      "dc": 4,
+      "dcs": {
+        "45345-1": 4
+      }
+    },
+    "32606": {
+      "name": "Plant Flower with  7 Alternate Petals with Bar and Pin Hole",
+      "rb": "32606",
+      "sets": {
+        "45345-1": 4
+      },
+      "colors": {
+        "5": "Dark_Pink",
+        "191": "Bright_Light_Orange"
+      },
+      "rbname": "Plant, Flower, Minifig Accessory with 7 Thick Petals and Pin",
+      "dc": 5,
+      "dcs": {
+        "45345-1": 5
+      }
+    },
+    "3298": {
+      "name": "Slope Brick 33  3 x  2",
+      "rb": "3298",
+      "sets": {
+        "45345-1": 5
+      },
+      "colors": {
+        "321": "Dark_Azure"
+      },
+      "rbname": "Brick Sloped 33° 3 x 2",
+      "dc": 321,
+      "dcs": {
+        "45345-1": 321
+      }
+    },
+    "33121": {
+      "name": "Animal Crab",
+      "rb": "33121",
+      "sets": {
+        "45345-1": 1
+      },
+      "colors": {
+        "191": "Bright_Light_Orange"
+      },
+      "rbname": "Animal, Crab",
+      "dc": 191,
+      "dcs": {
+        "45345-1": 191
+      }
+    },
+    "33320": {
+      "name": "Animal Frog",
+      "rb": "33320",
+      "sets": {
+        "45345-1": 2
+      },
+      "colors": {
+        "2": "Green"
+      },
+      "rbname": "Animal, Frog",
+      "dc": 2,
+      "dcs": {
+        "45345-1": 2
+      }
+    },
+    "35394": {
+      "name": "Dish  4 x  4 Inverted with Hollow Stud",
+      "rb": "35394",
+      "sets": {
+        "45345-1": 2
+      },
+      "colors": {
+        "41": "Trans_Medium_Blue"
+      },
+      "rbname": "Dish 4 x 4 Inverted with Open Stud [Radar]",
+      "dc": 41,
+      "dcs": {
+        "45345-1": 41
+      }
+    },
+    "3700": {
+      "name": "Technic Brick  1 x  2 with Hole",
+      "rb": "3700",
+      "sets": {
+        "45345-1": 6
+      },
+      "colors": {
+        "25": "Orange"
+      },
+      "rbname": "Technic Brick 1 x 2 [1 Pin Hole]",
+      "dc": 25,
+      "dcs": {
+        "45345-1": 25
+      }
+    },
+    "3701": {
+      "name": "Technic Brick  1 x  4 with Holes",
+      "rb": "3701",
+      "sets": {
+        "45345-1": 5
+      },
+      "colors": {
+        "26": "Magenta"
+      },
+      "rbname": "Technic Brick 1 x 4 [3 Pin Holes]",
+      "dc": 26,
+      "dcs": {
+        "45345-1": 26
+      }
+    },
+    "3702": {
+      "name": "Technic Brick  1 x  8 with Holes",
+      "rb": "3702",
+      "sets": {
+        "45345-1": 5
+      },
+      "colors": {
+        "321": "Dark_Azure"
+      },
+      "rbname": "Technic Brick 1 x 8 [7 Pin Holes]",
+      "dc": 321,
+      "dcs": {
+        "45345-1": 321
+      }
+    },
+    "3703": {
+      "name": "Technic Brick  1 x 16 with Holes",
+      "rb": "3703",
+      "sets": {
+        "45345-1": 2
+      },
+      "colors": {
+        "10": "Bright_Green"
+      },
+      "rbname": "Technic Brick 1 x 16 [15 Pin Holes]",
+      "dc": 10,
+      "dcs": {
+        "45345-1": 10
+      }
+    },
+    "3709b": {
+      "name": "Technic Plate  2 x  4 with Holes",
+      "rb": "3709",
+      "sets": {
+        "45345-1": 5
+      },
+      "colors": {
+        "191": "Bright_Light_Orange"
+      },
+      "rbname": "Technic Plate 2 x 4 [3 Holes]",
+      "dc": 191,
+      "dcs": {
+        "45345-1": 191
+      }
+    },
+    "38648": {
+      "name": "Minifig Tool Magnifying Glass with Thick Frame, Hollow Handle and Lens",
+      "rb": "38648pat0001",
+      "sets": {
+        "45345-1": 1
+      },
+      "colors": {
+        "0": "Black"
+      },
+      "rbname": "Equipment Magnifying Glass with Thick Frame, Hollow Handle, Trans-Clear Lens Pattern",
+      "dc": 0,
+      "dcs": {
+        "45345-1": 0
+      }
+    },
+    "3895": {
+      "name": "Technic Brick  1 x 12 with Holes",
+      "rb": "3895",
+      "sets": {
+        "45345-1": 2
+      },
+      "colors": {
+        "191": "Bright_Light_Orange"
+      },
+      "rbname": "Technic Brick 1 x 12 [11 Pin Holes]",
+      "dc": 191,
+      "dcs": {
+        "45345-1": 191
+      }
+    },
+    "3942c": {
+      "name": "Cone  2 x  2 x  2 with Hollow Stud Open",
+      "rb": "3942c",
+      "sets": {
+        "45345-1": 4
+      },
+      "colors": {
+        "25": "Orange"
+      },
+      "rbname": "Cone 2 x 2 x 2, Open Stud",
+      "dc": 25,
+      "dcs": {
+        "45345-1": 25
+      }
+    },
+    "3957b": {
+      "name": "Antenna  4H with Flat Top",
+      "rb": "3957b",
+      "sets": {
+        "45345-1": 2
+      },
+      "colors": {
+        "15": "White"
+      },
+      "rbname": "Antenna 1 x 4 with Flat Top",
+      "dc": 15,
+      "dcs": {
+        "45345-1": 15
+      }
+    },
+    "4006": {
+      "name": "Minifig Tool Spanner/Screwdriver",
+      "rb": "4006",
+      "sets": {
+        "45345-1": 1
+      },
+      "colors": {
+        "179": "Pearl_Silver"
+      },
+      "rbname": "Tool Screwdriver and Spanner / Wrench",
+      "dc": 179,
+      "dcs": {
+        "45345-1": 179
+      }
+    },
+    "4079": {
+      "name": "Minifig Seat  2 x  2",
+      "rb": "4079b",
+      "sets": {
+        "45345-1": 4
+      },
+      "colors": {
+        "4": "Red"
+      },
+      "rbname": "Seat / Chair 2 x 2 with Center Sprue Mark",
+      "dc": 4,
+      "dcs": {
+        "45345-1": 4
+      }
+    },
+    "41539": {
+      "name": "Plate  8 x  8",
+      "rb": "41539",
+      "sets": {
+        "45345-1": 2
+      },
+      "colors": {
+        "15": "White"
+      },
+      "rbname": "Plate 8 x 8",
+      "dc": 15,
+      "dcs": {
+        "45345-1": 15
+      }
+    },
+    "4162": {
+      "name": "Tile  1 x  8",
+      "rb": "4162",
+      "sets": {
+        "45345-1": 5,
+        "51515-1": 2
+      },
+      "colors": {
+        "2": "Green",
+        "0": "Black"
+      },
+      "rbname": "Tile 1 x 8 with Groove",
+      "dc": 2,
+      "dcs": {
+        "45345-1": 2,
+        "51515-1": 0
+      }
+    },
+    "4286": {
+      "name": "Slope Brick 33  3 x  1",
+      "rb": "4286",
+      "sets": {
+        "45345-1": 6
+      },
+      "colors": {
+        "191": "Bright_Light_Orange"
+      },
+      "rbname": "Brick Sloped 33° 3 x 1",
+      "dc": 191,
+      "dcs": {
+        "45345-1": 191
+      }
+    },
+    "44865": {
+      "name": "Brick  1 x  2 with Pin with Bottom Stud Holder",
+      "rb": "44865",
+      "sets": {
+        "45345-1": 6
+      },
+      "colors": {
+        "4": "Red"
+      },
+      "rbname": "Brick Special 1 x 2 with Pin - Bottom Stud Holder",
+      "dc": 4,
+      "dcs": {
+        "45345-1": 4
+      }
+    },
+    "4727": {
+      "name": "Plant Flower  2 x  2 Leaves",
+      "rb": "4727",
+      "sets": {
+        "45345-1": 2
+      },
+      "colors": {
+        "10": "Bright_Green"
+      },
+      "rbname": "Plant, Flower 2 x 2 Leaves - Angular",
+      "dc": 10,
+      "dcs": {
+        "45345-1": 10
+      }
+    },
+    "47457": {
+      "name": "Slope Brick Curved  2 x  2 x   2/3 Triple with Two Top Studs",
+      "rb": "47457",
+      "sets": {
+        "45345-1": 2
+      },
+      "colors": {
+        "1": "Blue"
+      },
+      "rbname": "Brick Curved 2 x 2 x 2/3 Two Studs and Curved Slope End",
+      "dc": 1,
+      "dcs": {
+        "45345-1": 1
+      }
+    },
+    "47592": {
+      "name": "Electric Powered Up LED Matrix",
+      "rb": "47592",
+      "sets": {
+        "45345-1": 1
+      },
+      "colors": {
+        "322": "Medium_Azure"
+      },
+      "rbname": "Light, Color Matrix Display, 3 x 3, SPIKE",
+      "dc": 322,
+      "dcs": {
+        "45345-1": 322
+      }
+    },
+    "48092": {
+      "name": "Brick  4 x  4 Corner Round",
+      "rb": "48092",
+      "sets": {
+        "45345-1": 4
+      },
+      "colors": {
+        "191": "Bright_Light_Orange"
+      },
+      "rbname": "Brick Round Corner 4 x 4 Macaroni Wide with 3 Studs",
+      "dc": 191,
+      "dcs": {
+        "45345-1": 191
+      }
+    },
+    "49153": {
+      "name": "Tile  2 x  2 with Pin with Square Hole",
+      "rb": "49153",
+      "sets": {
+        "45345-1": 6
+      },
+      "colors": {
+        "15": "White"
+      },
+      "rbname": "Tile Special 2 x 2 with Top Pin [Squared Holes]",
+      "dc": 15,
+      "dcs": {
+        "45345-1": 15
+      }
+    },
+    "60474": {
+      "name": "Plate  4 x  4 Round with Hole and Snapstud",
+      "rb": "60474",
+      "sets": {
+        "45345-1": 3
+      },
+      "colors": {
+        "26": "Magenta"
+      },
+      "rbname": "Plate Round 4 x 4 with Pin Hole",
+      "dc": 26,
+      "dcs": {
+        "45345-1": 26
+      }
+    },
+    "6064": {
+      "name": "~Plant Bush (Obsolete)",
+      "rb": "6064",
+      "sets": {
+        "45345-1": 2
+      },
+      "colors": {
+        "2": "Green"
+      },
+      "rbname": "Plant, Bush 2 x 2 x 4",
+      "dc": 2,
+      "dcs": {
+        "45345-1": 2
+      }
+    },
+    "6124": {
+      "name": "~Minifig Magic Wand (Obsolete)",
+      "rb": "6124",
+      "sets": {
+        "45345-1": 1
+      },
+      "colors": {
+        "45": "Trans_Pink"
+      },
+      "rbname": "Equipment Magic Wand",
+      "dc": 45,
+      "dcs": {
+        "45345-1": 45
+      }
+    },
+    "6256": {
+      "name": "Minifig Dinner Plate",
+      "rb": "6256",
+      "sets": {
+        "45345-1": 1
+      },
+      "colors": {
+        "191": "Bright_Light_Orange"
+      },
+      "rbname": "Equipment Dish / Plate / Bowl 3 x 3 [Plain]",
+      "dc": 191,
+      "dcs": {
+        "45345-1": 191
+      }
+    },
+    "65249": {
+      "name": "Technic Axle Pin Long without Friction with  2L Axle",
+      "rb": "65249",
+      "sets": {
+        "45345-1": 12
+      },
+      "colors": {
+        "15": "White"
+      },
+      "rbname": "Technic Axle Pin 3L without Friction Ridges and 2L Axle",
+      "dc": 15,
+      "dcs": {
+        "45345-1": 15
+      }
+    },
+    "65826": {
+      "name": "Technic Pin  1/2 with Stud Tube",
+      "rb": "65826",
+      "sets": {
+        "45345-1": 28
+      },
+      "colors": {
+        "10": "Bright_Green"
+      },
+      "rbname": "Technic Pin 1/2 with Anti-Stud",
+      "dc": 10,
+      "dcs": {
+        "45345-1": 10
+      }
+    },
+    "65834": {
+      "name": "Wheel 14 x 35 with 4 Spokes with Integral Tyre",
+      "rb": "65834pat0002",
+      "sets": {
+        "45345-1": 2
+      },
+      "colors": {
+        "15": "White"
+      },
+      "rbname": "Wheel 43 x 14 with 4 Spokes, Axle Hole, and Medium Azure Integral Tire",
+      "dc": 15,
+      "dcs": {
+        "45345-1": 15
+      }
+    },
+    "66757": {
+      "name": "Electric Powered Up 2 Port Hub Rechargeable Battery",
+      "rb": "66757",
+      "sets": {
+        "45345-1": 1
+      },
+      "colors": {
+        "14": "Yellow"
+      },
+      "rbname": "Battery Pack, Rechargeable, for Small SPIKE Hub",
+      "dc": 14,
+      "dcs": {
+        "45345-1": 14
+      }
+    },
+    "67351": {
+      "name": "Electric Powered Up 2 Port Hub with Yellow Bottom without Rechargeable Battery",
+      "rb": "67351",
+      "sets": {
+        "45345-1": 1
+      },
+      "colors": {
+        "14": "Yellow"
+      },
+      "rbname": "Hub, Programmable, SPIKE 2-Port (Small)",
+      "dc": 14,
+      "dcs": {
+        "45345-1": 14
+      }
+    },
+    "68488": {
+      "name": "Electric Powered Up Small Angular Motor with Medium Azure Back",
+      "rb": "68488",
+      "sets": {
+        "45345-1": 2
+      },
+      "colors": {
+        "15": "White"
+      },
+      "rbname": "Motor, Small Angular, SPIKE, White Housing, White Wire",
+      "dc": 15,
+      "dcs": {
+        "45345-1": 15
+      }
+    },
+    "87079": {
+      "name": "Tile  2 x  4",
+      "rb": "87079",
+      "sets": {
+        "45345-1": 14,
+        "51515-1": 1
+      },
+      "colors": {
+        "1": "Blue",
+        "322": "Medium_Azure",
+        "14": "Yellow",
+        "4": "Red",
+        "2": "Green",
+        "3": "Dark_Turquoise"
+      },
+      "rbname": "Tile 2 x 4 with Groove",
+      "dc": 1,
+      "dcs": {
+        "45345-1": 1,
+        "51515-1": 3
+      }
+    },
+    "87087": {
+      "name": "Brick  1 x  1 with Stud on 1 Side",
+      "rb": "87087",
+      "sets": {
+        "45345-1": 6
+      },
+      "colors": {
+        "4": "Red"
+      },
+      "rbname": "Brick Special 1 x 1 with Stud on 1 Side",
+      "dc": 4,
+      "dcs": {
+        "45345-1": 4
+      }
+    },
+    "91405": {
+      "name": "Plate 16 x 16 with Underside Ribs",
+      "rb": "91405",
+      "sets": {
+        "45345-1": 2
+      },
+      "colors": {
+        "15": "White"
+      },
+      "rbname": "Plate 16 x 16",
+      "dc": 15,
+      "dcs": {
+        "45345-1": 15
+      }
+    },
+    "92438": {
+      "name": "Plate  8 x 16",
+      "rb": "92438",
+      "sets": {
+        "45345-1": 2
+      },
+      "colors": {
+        "15": "White"
+      },
+      "rbname": "Plate 8 x 16",
+      "dc": 15,
+      "dcs": {
+        "45345-1": 15
+      }
+    },
+    "92586": {
+      "name": "Animal Dog German Shepherd",
+      "rb": "92586pr0001",
+      "sets": {
+        "45345-1": 1
+      },
+      "colors": {
+        "84": "Medium_Nougat"
+      },
+      "rbname": "Animal, Dog, Alsatian / German Shepherd (Police Dog) with Black Eyes and Forehead Print",
+      "dc": 84,
+      "dcs": {
+        "45345-1": 84
+      }
+    },
+    "93273": {
+      "name": "Slope Brick Curved  4 x  1 Double",
+      "rb": "93273",
+      "sets": {
+        "45345-1": 3
+      },
+      "colors": {
+        "191": "Bright_Light_Orange"
+      },
+      "rbname": "Brick Curved 4 x 1 Double, No Studs",
+      "dc": 191,
+      "dcs": {
+        "45345-1": 191
+      }
+    },
+    "95347": {
+      "name": "Support  2 x  2 x 10 Girder Triangular  3 Sections with Axlehole",
+      "rb": "95347",
+      "sets": {
+        "45345-1": 4
+      },
+      "colors": {
+        "14": "Yellow"
+      },
+      "rbname": "Support 2 x 2 x 10 Girder Triangular Vertical - Type 4 - 3 Posts, 3 Sections",
+      "dc": 14,
+      "dcs": {
+        "45345-1": 14
+      }
+    },
+    "96874": {
+      "name": "Brick Separator with Top Axle",
+      "rb": "96874",
+      "sets": {
+        "45345-1": 1
+      },
+      "colors": {
+        "25": "Orange"
+      },
+      "rbname": "Brick and Axle Separator v2.0",
+      "dc": 25,
+      "dcs": {
+        "45345-1": 25
+      }
+    },
+    "18948": {
+      "name": "Technic Axle Joiner  3L with Ridges for Driving Ring",
+      "rb": "18948",
+      "sets": {
+        "51515-1": 1
+      },
+      "colors": {
+        "15": "White"
+      },
+      "rbname": "Technic Driving Ring Connector",
+      "dc": 15,
+      "dcs": {
+        "51515-1": 15
+      }
+    },
+    "24116": {
+      "name": "Technic Panel Bent  4 x  5 x  3",
+      "rb": "24116",
+      "sets": {
+        "51515-1": 2
+      },
+      "colors": {
+        "15": "White"
+      },
+      "rbname": "Technic Panel Curved and Bent 6 x 3",
+      "dc": 15,
+      "dcs": {
+        "51515-1": 15
+      }
+    },
+    "24316": {
+      "name": "Technic Axle  3 with Stop",
+      "rb": "24316",
+      "sets": {
+        "51515-1": 12
+      },
+      "colors": {
+        "70": "Reddish_Brown"
+      },
+      "rbname": "Technic Axle 3 with Stop",
+      "dc": 70,
+      "dcs": {
+        "51515-1": 70
+      }
+    },
+    "2476a": {
+      "name": "Plate  2 x  2 with Pin Type 1",
+      "rb": "2476a",
+      "sets": {
+        "51515-1": 2
+      },
+      "colors": {
+        "71": "Light_Bluish_Grey"
+      },
+      "rbname": "Plate Special 2 x 2 with Pin on Bottom",
+      "dc": 71,
+      "dcs": {
+        "51515-1": 71
+      }
+    },
+    "25214": {
+      "name": "Cylinder  2 x  2 Elbow with Axle Holes",
+      "rb": "25214",
+      "sets": {
+        "51515-1": 8
+      },
+      "colors": {
+        "0": "Black"
+      },
+      "rbname": "Brick Round 1 x 1 Diameter Tube with 90 Degree Elbow (2 x 2 x 1) and Axle Holes (Crossholes) at Each End",
+      "dc": 0,
+      "dcs": {
+        "51515-1": 0
+      }
+    },
+    "2569": {
+      "name": "Antenna  8H Whip",
+      "rb": "2569",
+      "sets": {
+        "51515-1": 2
+      },
+      "colors": {
+        "0": "Black"
+      },
+      "rbname": "Antenna 8H Whip",
+      "dc": 0,
+      "dcs": {
+        "51515-1": 0
+      }
+    },
+    "32474": {
+      "name": "Technic Ball Joint with Axlehole Blind",
+      "rb": "32474",
+      "sets": {
+        "51515-1": 2
+      },
+      "colors": {
+        "3": "Dark_Turquoise"
+      },
+      "rbname": "Technic Ball Joint",
+      "dc": 3,
+      "dcs": {
+        "51515-1": 3
+      }
+    },
+    "3961": {
+      "name": "Dish  8 x  8 Inverted with Solid Studs",
+      "rb": "3961",
+      "sets": {
+        "51515-1": 1
+      },
+      "colors": {
+        "3": "Dark_Turquoise"
+      },
+      "rbname": "Dish 8 x 8 Inverted [Radar], Solid Studs, Rounded Anti-stud Underside",
+      "dc": 3,
+      "dcs": {
+        "51515-1": 3
+      }
+    },
+    "41250": {
+      "name": "~_Ball 52mm Diameter Red (Obsolete)",
+      "rb": "41250",
+      "sets": {
+        "51515-1": 1
+      },
+      "colors": {
+        "4": "Red"
+      },
+      "rbname": "Ball, Hard Plastic, 51mm (approx. 6 Studs Diameter)",
+      "dc": 4,
+      "dcs": {
+        "51515-1": 4
+      }
+    },
+    "44874": {
+      "name": "Technic Pin Long with Pin Hole Type 2",
+      "rb": "44874",
+      "sets": {
+        "51515-1": 4
+      },
+      "colors": {
+        "71": "Light_Bluish_Grey"
+      },
+      "rbname": "Technic Pin Connector Hub with 2 Pins with Friction Ridges Lengthwise [Small Squared Pin Holes]",
+      "dc": 71,
+      "dcs": {
+        "51515-1": 71
+      }
+    },
+    "46537": {
+      "name": "Technic Competition Arrow with Solid Shaft and Cross Shaped Rubber Black Tip",
+      "rb": "46537",
+      "sets": {
+        "51515-1": 2
+      },
+      "colors": {
+        "71": "Light_Bluish_Grey"
+      },
+      "rbname": "Projectile, Arrow with Shaft, Hollow Black Rubber End",
+      "dc": 71,
+      "dcs": {
+        "51515-1": 71
+      }
+    },
+    "46882": {
+      "name": "Technic Panel 15 x  2 x  7 Mudguard with Trapezoidal Arch",
+      "rb": "46882",
+      "sets": {
+        "51515-1": 2
+      },
+      "colors": {
+        "15": "White"
+      },
+      "rbname": "Technic Panel Car Mudguard 15 x 2 x 7",
+      "dc": 15,
+      "dcs": {
+        "51515-1": 15
+      }
+    },
+    "49743c01": {
+      "name": "Spring Shooter  2 x  6 x  1.333 with Dark Bluish Grey Bottom with Loaded Light Bluish Grey Arrow",
+      "rb": "49743c01",
+      "sets": {
+        "51515-1": 2
+      },
+      "colors": {
+        "72": "Dark_Bluish_Grey"
+      },
+      "rbname": "Launcher, Brick Special 2 x 6 Spring Shooter with Light Bluish Gray Top",
+      "dc": 72,
+      "dcs": {
+        "51515-1": 72
+      }
+    },
+    "55889": {
+      "name": "Wheel 12 x 18 Smooth",
+      "rb": "55889",
+      "sets": {
+        "51515-1": 4
+      },
+      "colors": {
+        "0": "Black"
+      },
+      "rbname": "Wheel 18 x 14 with Pin Hole",
+      "dc": 0,
+      "dcs": {
+        "51515-1": 0
+      }
+    },
+    "62531": {
+      "name": "Technic Panel Smooth 11 x  2 x  3",
+      "rb": "62531",
+      "sets": {
+        "51515-1": 3
+      },
+      "colors": {
+        "15": "White"
+      },
+      "rbname": "Technic Panel Curved 11 x 3 with 2 Pin Holes through Panel Surface",
+      "dc": 15,
+      "dcs": {
+        "51515-1": 15
+      }
+    },
+    "64782": {
+      "name": "Technic Panel  5 x 11",
+      "rb": "64782",
+      "sets": {
+        "51515-1": 4
+      },
+      "colors": {
+        "15": "White"
+      },
+      "rbname": "Technic Panel 5 x 11 x 1",
+      "dc": 15,
+      "dcs": {
+        "51515-1": 15
+      }
+    },
+    "65098": {
+      "name": "Technic Pin  3L Double with Axlehole and Pins with Rectangular Holes",
+      "rb": "65098",
+      "sets": {
+        "51515-1": 4
+      },
+      "colors": {
+        "71": "Light_Bluish_Grey"
+      },
+      "rbname": "Technic Pin Double with Axle Hole - Squared Holes",
+      "dc": 71,
+      "dcs": {
+        "51515-1": 71
+      }
+    },
+    "65413": {
+      "name": "Technic Gear 28 Tooth Double Bevel with Peghole",
+      "rb": "65413",
+      "sets": {
+        "51515-1": 1
+      },
+      "colors": {
+        "4": "Red"
+      },
+      "rbname": "Differential Gear - 28 Tooth with Round Axle Hole",
+      "dc": 4,
+      "dcs": {
+        "51515-1": 4
+      }
+    },
+    "65414": {
+      "name": "Technic Differential Casing for 5 Internal Gears",
+      "rb": "65414",
+      "sets": {
+        "51515-1": 1
+      },
+      "colors": {
+        "71": "Light_Bluish_Grey"
+      },
+      "rbname": "Differential Gear House",
+      "dc": 71,
+      "dcs": {
+        "51515-1": 71
+      }
+    },
+    "65487": {
+      "name": "Technic Pin with Friction with Perpendicular Pin Hole Type 2",
+      "rb": "65487",
+      "sets": {
+        "51515-1": 18
+      },
+      "colors": {
+        "15": "White"
+      },
+      "rbname": "Technic Pin Connector Hub with 1 Pin with Friction Ridges Lengthwise [Centered Friction Ridge]",
+      "dc": 15,
+      "dcs": {
+        "51515-1": 15
+      }
+    },
+    "6636": {
+      "name": "Tile  1 x  6",
+      "rb": "6636",
+      "sets": {
+        "51515-1": 2
+      },
+      "colors": {
+        "0": "Black"
+      },
+      "rbname": "Tile 1 x 6 with Groove",
+      "dc": 0,
+      "dcs": {
+        "51515-1": 0
+      }
+    },
+    "67704": {
+      "name": "=Electric Powered Up 6 Port Hub Rechargeable Battery",
+      "rb": "67704",
+      "sets": {
+        "51515-1": 1
+      },
+      "colors": {
+        "3": "Dark_Turquoise"
+      },
+      "rbname": "Battery Pack, Rechargeable, Mindstorms Robot Inventor",
+      "dc": 3,
+      "dcs": {
+        "51515-1": 3
+      }
+    },
+    "67718c01": {
+      "name": "Electric Powered Up 6 Port Hub with Dark Turquoise Bottom",
+      "rb": "67718",
+      "sets": {
+        "51515-1": 1
+      },
+      "colors": {
+        "3": "Dark_Turquoise"
+      },
+      "rbname": "Hub, Programmable, Mindstorms Robot Inventor",
+      "dc": 3,
+      "dcs": {
+        "51515-1": 3
+      }
+    }
+  },
+  "colors": {
+    "0": {
+      "name": "Black",
+      "rgb": "1B2A34",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "1": {
+      "name": "Blue",
+      "rgb": "1E5AA8",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "2": {
+      "name": "Green",
+      "rgb": "00852B",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "3": {
+      "name": "Dark_Turquoise",
+      "rgb": "069D9F",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "4": {
+      "name": "Red",
+      "rgb": "B40000",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "5": {
+      "name": "Dark_Pink",
+      "rgb": "D3359D",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "6": {
+      "name": "Brown",
+      "rgb": "543324",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "7": {
+      "name": "Light_Grey",
+      "rgb": "8A928D",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "8": {
+      "name": "Dark_Grey",
+      "rgb": "545955",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "9": {
+      "name": "Light_Blue",
+      "rgb": "97CBD9",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "10": {
+      "name": "Bright_Green",
+      "rgb": "58AB41",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "11": {
+      "name": "Light_Turquoise",
+      "rgb": "00AAA4",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "12": {
+      "name": "Salmon",
+      "rgb": "F06D61",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "13": {
+      "name": "Pink",
+      "rgb": "F6A9BB",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "14": {
+      "name": "Yellow",
+      "rgb": "FAC80A",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "15": {
+      "name": "White",
+      "rgb": "F4F4F4",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "17": {
+      "name": "Light_Green",
+      "rgb": "ADD9A8",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "18": {
+      "name": "Light_Yellow",
+      "rgb": "FFD67F",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "19": {
+      "name": "Tan",
+      "rgb": "D7BA8C",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "20": {
+      "name": "Light_Violet",
+      "rgb": "AFBED6",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "22": {
+      "name": "Purple",
+      "rgb": "671F81",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "23": {
+      "name": "Dark_Blue_Violet",
+      "rgb": "0E3E9A",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "25": {
+      "name": "Orange",
+      "rgb": "D67923",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "26": {
+      "name": "Magenta",
+      "rgb": "901F76",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "27": {
+      "name": "Lime",
+      "rgb": "A5CA18",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "28": {
+      "name": "Dark_Tan",
+      "rgb": "897D62",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "29": {
+      "name": "Bright_Pink",
+      "rgb": "FF9ECD",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "30": {
+      "name": "Medium_Lavender",
+      "rgb": "A06EB9",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "31": {
+      "name": "Lavender",
+      "rgb": "CDA4DE",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "68": {
+      "name": "Very_Light_Orange",
+      "rgb": "FDC383",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "69": {
+      "name": "Bright_Reddish_Lilac",
+      "rgb": "8A12A8",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "70": {
+      "name": "Reddish_Brown",
+      "rgb": "5F3109",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "71": {
+      "name": "Light_Bluish_Grey",
+      "rgb": "969696",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "72": {
+      "name": "Dark_Bluish_Grey",
+      "rgb": "646464",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "73": {
+      "name": "Medium_Blue",
+      "rgb": "7396C8",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "74": {
+      "name": "Medium_Green",
+      "rgb": "7FC475",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "77": {
+      "name": "Light_Pink",
+      "rgb": "FECCCF",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "78": {
+      "name": "Light_Nougat",
+      "rgb": "FFC995",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "84": {
+      "name": "Medium_Nougat",
+      "rgb": "AA7D55",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "85": {
+      "name": "Medium_Lilac",
+      "rgb": "441A91",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "86": {
+      "name": "Light_Brown",
+      "rgb": "7B5D41",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "89": {
+      "name": "Blue_Violet",
+      "rgb": "1C58A7",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "92": {
+      "name": "Nougat",
+      "rgb": "BB805A",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "100": {
+      "name": "Light_Salmon",
+      "rgb": "F9B7A5",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "110": {
+      "name": "Violet",
+      "rgb": "26469A",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "112": {
+      "name": "Medium_Violet",
+      "rgb": "4861AC",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "115": {
+      "name": "Medium_Lime",
+      "rgb": "B7D425",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "118": {
+      "name": "Aqua",
+      "rgb": "9CD6CC",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "120": {
+      "name": "Light_Lime",
+      "rgb": "DEEA92",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "121": {
+      "name": "Light_Orange",
+      "rgb": "F89A39",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "123": {
+      "name": "Dark_Salmon",
+      "rgb": "EE5434",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "125": {
+      "name": "Spud_Orange",
+      "rgb": "F9A777",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "128": {
+      "name": "Dark_Nougat",
+      "rgb": "AD6140",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "151": {
+      "name": "Very_Light_Bluish_Grey",
+      "rgb": "C8C8C8",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "180": {
+      "name": "Dark_Yellow",
+      "rgb": "DD982E",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "191": {
+      "name": "Bright_Light_Orange",
+      "rgb": "FCAC00",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "212": {
+      "name": "Bright_Light_Blue",
+      "rgb": "9DC3F7",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "213": {
+      "name": "Medium_Blue_Violet",
+      "rgb": "476FB6",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "216": {
+      "name": "Rust",
+      "rgb": "872B17",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "218": {
+      "name": "Reddish_Lilac",
+      "rgb": "8E5597",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "219": {
+      "name": "Lilac",
+      "rgb": "564E9D",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "220": {
+      "name": "Light_Lilac",
+      "rgb": "9195CA",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "225": {
+      "name": "Warm_Yellowish_Orange",
+      "rgb": "FAA964",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "226": {
+      "name": "Bright_Light_Yellow",
+      "rgb": "FFEC6C",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "232": {
+      "name": "Sky_Blue",
+      "rgb": "77C9D8",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "272": {
+      "name": "Dark_Blue",
+      "rgb": "19325A",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "288": {
+      "name": "Dark_Green",
+      "rgb": "00451A",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "295": {
+      "name": "Flamingo_Pink",
+      "rgb": "FF94C2",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "308": {
+      "name": "Dark_Brown",
+      "rgb": "352100",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "313": {
+      "name": "Maersk_Blue",
+      "rgb": "ABD9FF",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "320": {
+      "name": "Dark_Red",
+      "rgb": "720012",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "321": {
+      "name": "Dark_Azure",
+      "rgb": "469BC3",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "322": {
+      "name": "Medium_Azure",
+      "rgb": "68C3E2",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "323": {
+      "name": "Light_Aqua",
+      "rgb": "D3F2EA",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "326": {
+      "name": "Yellowish_Green",
+      "rgb": "E2F99A",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "330": {
+      "name": "Olive_Green",
+      "rgb": "77774E",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "335": {
+      "name": "Sand_Red",
+      "rgb": "88605E",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "351": {
+      "name": "Medium_Dark_Pink",
+      "rgb": "F785B1",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "353": {
+      "name": "Coral",
+      "rgb": "FF6D77",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "366": {
+      "name": "Earth_Orange",
+      "rgb": "D86D2C",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "368": {
+      "name": "Neon_Yellow",
+      "rgb": "EDFF21",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "370": {
+      "name": "Medium_Brown",
+      "rgb": "755945",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "371": {
+      "name": "Medium_Tan",
+      "rgb": "CCA373",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "373": {
+      "name": "Sand_Purple",
+      "rgb": "75657D",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "378": {
+      "name": "Sand_Green",
+      "rgb": "708E7C",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "379": {
+      "name": "Sand_Blue",
+      "rgb": "70819A",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "402": {
+      "name": "Reddish_Orange",
+      "rgb": "CA4C0B",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "422": {
+      "name": "Sienna_Brown",
+      "rgb": "915C3C",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "423": {
+      "name": "Umber_Brown",
+      "rgb": "543F33",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "424": {
+      "name": "Ochre_Yellow",
+      "rgb": "DD9E47",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "430": {
+      "name": "Warm_Pink",
+      "rgb": "F79B9B",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "431": {
+      "name": "Bright_Blue_Violet",
+      "rgb": "665EA7",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "450": {
+      "name": "Fabuland_Brown",
+      "rgb": "D27744",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "462": {
+      "name": "Medium_Orange",
+      "rgb": "F58624",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "484": {
+      "name": "Dark_Orange",
+      "rgb": "91501C",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "503": {
+      "name": "Very_Light_Grey",
+      "rgb": "BCB4A5",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "508": {
+      "name": "Fabuland_Red",
+      "rgb": "C65127",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "509": {
+      "name": "Fabuland_Orange",
+      "rgb": "CF8A47",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "510": {
+      "name": "Fabuland_Lime",
+      "rgb": "ACE35A",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "332": {
+      "name": "Fluorescent_Red_Ink",
+      "rgb": "D06D4F",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "333": {
+      "name": "Fluorescent_Green_Ink",
+      "rgb": "DBEA7A",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "75": {
+      "name": "Speckle_Black_Copper",
+      "rgb": "000000",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "76": {
+      "name": "Speckle_Dark_Bluish_Grey_Silver",
+      "rgb": "635F61",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "132": {
+      "name": "Speckle_Black_Silver",
+      "rgb": "000000",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "133": {
+      "name": "Speckle_Black_Gold",
+      "rgb": "000000",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "65": {
+      "name": "Rubber_Yellow",
+      "rgb": "FAC80A",
+      "alpha": 255,
+      "kind": "rubber"
+    },
+    "256": {
+      "name": "Rubber_Black",
+      "rgb": "1B2A34",
+      "alpha": 255,
+      "kind": "rubber"
+    },
+    "273": {
+      "name": "Rubber_Blue",
+      "rgb": "1E5AA8",
+      "alpha": 255,
+      "kind": "rubber"
+    },
+    "324": {
+      "name": "Rubber_Red",
+      "rgb": "B40000",
+      "alpha": 255,
+      "kind": "rubber"
+    },
+    "350": {
+      "name": "Rubber_Orange",
+      "rgb": "D67923",
+      "alpha": 255,
+      "kind": "rubber"
+    },
+    "375": {
+      "name": "Rubber_Light_Grey",
+      "rgb": "8A928D",
+      "alpha": 255,
+      "kind": "rubber"
+    },
+    "406": {
+      "name": "Rubber_Dark_Blue",
+      "rgb": "19325A",
+      "alpha": 255,
+      "kind": "rubber"
+    },
+    "449": {
+      "name": "Rubber_Purple",
+      "rgb": "671F81",
+      "alpha": 255,
+      "kind": "rubber"
+    },
+    "490": {
+      "name": "Rubber_Lime",
+      "rgb": "A5CA18",
+      "alpha": 255,
+      "kind": "rubber"
+    },
+    "496": {
+      "name": "Rubber_Light_Bluish_Grey",
+      "rgb": "969696",
+      "alpha": 255,
+      "kind": "rubber"
+    },
+    "504": {
+      "name": "Rubber_Flat_Silver",
+      "rgb": "898788",
+      "alpha": 255,
+      "kind": "rubber"
+    },
+    "511": {
+      "name": "Rubber_White",
+      "rgb": "F4F4F4",
+      "alpha": 255,
+      "kind": "rubber"
+    },
+    "507": {
+      "name": "Obsolete_Light_Orange_Brown",
+      "rgb": "FA9C1C",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "16": {
+      "name": "Main_Colour",
+      "rgb": "FFFF80",
+      "alpha": 255,
+      "kind": "solid"
+    },
+    "24": {
+      "name": "Edge_Colour",
+      "rgb": "7F7F7F",
+      "alpha": 255,
+      "kind": "solid"
+    }
+  }
+}

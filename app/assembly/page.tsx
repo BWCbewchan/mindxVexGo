@@ -1,5 +1,5 @@
-import AssemblyHome from './assembly-home';
-export const metadata = { title: 'Assembly Studio · Dự án của bạn · mindX' };
+import DefaultWorkspace from './default-workspace';
+export const metadata = { title: 'Assembly · Không gian lắp ráp · mindX' };
 export default function AssemblyPage() {
- return <AssemblyHome/>;
+ return <><script src="/assembly/api-bootstrap.js"/><DefaultWorkspace/></>;
 }

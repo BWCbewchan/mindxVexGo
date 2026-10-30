@@ -1,3 +1,4 @@
+import {createAIAssemblyPanel} from './ai-assembly-panel.js';
 import {HELP_TOPICS,SHORTCUTS,TOUR} from './help-content.js';
 import {PLATFORM} from './platform.js';
 import {describeAssemblyAPI} from './api-contract.js';
@@ -32,6 +33,7 @@ export function installAssemblyHelp(){
  function topicBody(topic){const section=node('article');section.append(node('h3',topic.title));const list=node('ol');for(const step of topic.steps)list.append(node('li',step));section.append(list);content.append(section);}
  function renderAI(){
   content.append(node('h3','Làm việc với AI bằng API / MCP'),node('p','AI gửi lệnh trực tiếp vào mô hình đang mở. Lệnh dùng chung kiểm tra kit, khóa layer, khớp và va chạm với giao diện; không cần dò tọa độ chuột.'));
+  content.append(createAIAssemblyPanel());
   const setup=node('section');setup.className='help-card';setup.append(node('h4','1. Kết nối MCP local (tùy chọn)'),node('p','Trong ứng dụng AI hỗ trợ MCP stdio, thêm server Node của repo theo docs/assembly-ai.md. Dùng tool assembly_pairing_info để lấy link ghép nối. Mỗi lần chạy server có mã mới; không chia sẻ link đó. Chỉ một mô hình được ghép nối tại một thời điểm.'));
   const config=node('pre',JSON.stringify({mcpServers:{'mindx-assembly':{command:'node',args:['ABSOLUTE_REPO_PATH/scripts/assembly-mcp.mjs']}}},null,2));setup.append(config,button('Sao chép cấu hình MCP',()=>copy(config.textContent)),node('p','Thay ABSOLUTE_REPO_PATH bằng thư mục repo trên máy bạn, chạy npm install trước. MCP server mở relay riêng tại 127.0.0.1; bản web trên Vercel vẫn cần companion local này.'));
   const form=node('form'),label=node('label','Link ghép nối từ MCP'),input=node('input');input.type='password';input.autocomplete='off';input.placeholder='http://127.0.0.1:3188/#token=…';input.setAttribute('aria-label','Link ghép nối MCP');label.append(input);
