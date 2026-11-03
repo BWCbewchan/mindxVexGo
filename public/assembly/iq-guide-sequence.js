@@ -4,7 +4,7 @@ import {analyzeIQInsertionPaths} from './iq-insertion-paths.js';
 
 // IQ mounting parts have integral pins and several simultaneous contacts. The
 // single editing mate is not an assembly dependency (and may point either way).
-export function generateIQGuide(input,{references={},nameFor=p=>p.label||p.sku,isElectronic=()=>false,inferConnections=false,objects=null,insertionPaths=null}={}){
+export function generateIQGuide(input,{references={},nameFor=p=>p.label||p.sku,isElectronic=()=>false,inferConnections=false,objects=null,insertionPaths=null,platformName='VEX IQ',rootId=null}={}){
  const parts=structuredClone(input),byId=new Map(parts.map(p=>[p.id,p])),links=new Map(parts.map(p=>[p.id,[]])),notes=[],blockers=[];
  if(!parts.length)return {ready:false,steps:[],blockers:['Add the parts for the model first.'],notes};
  const compare=(a,b)=>a.sku.localeCompare(b.sku)||a.position.reduce((n,v,i)=>n||v-b.position[i],0)||a.rotation.reduce((n,v,i)=>n||v-b.rotation[i],0)||a.id.localeCompare(b.id);
@@ -35,7 +35,8 @@ export function generateIQGuide(input,{references={},nameFor=p=>p.label||p.sku,i
  const bodies=members.filter(p=>p.kind==='body');
  const motors=members.filter(p=>p.kind==='motor'),shafts=members.filter(p=>p.kind==='shaft');
  const roots=bodies.length?bodies:motors.length?motors:shafts.length?shafts:members.filter(p=>p.kind!=='retainer');
- const root=[...(roots.length?roots:members)].sort((a,b)=>area(b)*(1+degree(b)*.05)-area(a)*(1+degree(a)*.05)||compare(a,b))[0];
+ if(rootId&&!members.some(p=>p.id===rootId))return {ready:false,steps:[],blockers:['Chi tiết gốc không thuộc cụm lắp ráp.'],notes};
+ const root=(rootId?members.find(p=>p.id===rootId):null)||[...(roots.length?roots:members)].sort((a,b)=>area(b)*(1+degree(b)*.05)-area(a)*(1+degree(a)*.05)||compare(a,b))[0];
  const pathAudit=insertionPaths||(objects&&members.every(p=>objects.has(p.id))?analyzeIQInsertionPaths(parts,references,links,objects):null);
  // Only snapshots are re-rooted. The document and all authored CAD poses stay intact.
  for(const p of parts)delete p.mate;
@@ -102,7 +103,7 @@ export function generateIQGuide(input,{references={},nameFor=p=>p.label||p.sku,i
    failed.add(key);return null;
   }
   planned=search(new Set([root.id]));
-  if(!planned)return {ready:false,steps:[],blockers:['Chưa tìm được đường lắp từng chi tiết mà không xuyên khung. Cần chuẩn bị cụm riêng trước khi đóng khung; không xuất thứ tự lắp chưa được kiểm tra.'],notes};
+  if(!planned)return {ready:false,steps:[],blockers:['Chưa tìm được đường lắp từng chi tiết mà không xuyên khung. Cần chuẩn bị cụm riêng trước khi đóng khung; không xuất thứ tự lắp chưa được kiểm tra.'],notes,pathSearch:{rootId:root.id,states:searches,budget:10000,budgetExceeded:searches>10000}};
  }
  function append(added,joint,requires,title,note){
   for(const p of added){included.add(p.id);emitted.add(p.id);}
@@ -111,7 +112,7 @@ export function generateIQGuide(input,{references={},nameFor=p=>p.label||p.sku,i
  }
  while(emitted.size<core.size){
   const available=members.filter(p=>!included.has(p.id)&&builtLinks(p).length&&!waiting(p)).sort((a,b)=>priority(a)-priority(b)||builtLinks(b).length-builtLinks(a).length||compare(a,b));
-  if(!available.length){if(core.size===1){append([root],null,[],`Đặt ${nameFor(root)} theo hình`,'Đặt chi tiết trên mặt phẳng theo hướng trong hình.');break;}return {ready:false,steps:[],blockers:['Không tìm được bước lắp VEX IQ có chi tiết đỡ hợp lệ. Kiểm tra các khớp và thứ tự cụm trên trục.'],notes};}
+  if(!available.length){if(core.size===1){append([root],null,[],`Đặt ${nameFor(root)} theo hình`,'Đặt chi tiết trên mặt phẳng theo hướng trong hình.');break;}return {ready:false,steps:[],blockers:[`Không tìm được bước lắp ${platformName} có chi tiết đỡ hợp lệ. Kiểm tra các khớp và thứ tự cụm trên trục.`],notes};}
   const action=planned?.shift(),part=action?byId.get(action.ids[0]):available[0],route=action?.routes.get(part.id),edge=primary(part,included,route),parent=byId.get(edge.target),targetRef=ref(parent,edge.targetRef);
   let batch=[part];
   if(action)batch=action.ids.map(id=>byId.get(id));

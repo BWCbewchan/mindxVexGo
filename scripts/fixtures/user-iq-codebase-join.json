@@ -1,0 +1,3345 @@
+{
+  "version": 1,
+  "platform": "vexiq",
+  "title": "Code base",
+  "hideCables": true,
+  "parts": [
+    {
+      "id": "0a37a5b0-2e68-4732-beed-045b8e2bc4ab",
+      "sku": "228-2500-1253",
+      "label": "Triple 2x Wide, 2x2 Corner Connector",
+      "kind": "body",
+      "position": [
+        -26.59518602471171,
+        37,
+        187.06668420499057
+      ],
+      "rotation": [
+        -180,
+        0,
+        179.99999999999991
+      ],
+      "snapBlocked": [
+        {
+          "target": "29b9112a-663e-431f-877d-259fc605aeac",
+          "sourceRef": "6",
+          "targetRef": "square-pin-walls-1"
+        },
+        {
+          "target": "d3ec6e97-b4fd-4258-865b-1d1f3bd6caf9",
+          "sourceRef": "52",
+          "targetRef": "4"
+        },
+        {
+          "target": "e76646d8-1011-4430-8dcd-779fc92002dc",
+          "sourceRef": "17",
+          "targetRef": "64"
+        }
+      ]
+    },
+    {
+      "id": "7a0282d4-8f11-46ea-b80a-ab970e5efb45",
+      "sku": "228-2500-1253",
+      "label": "Triple 2x Wide, 2x2 Corner Connector",
+      "kind": "body",
+      "position": [
+        -26.595186024711566,
+        11.599999999999874,
+        199.76668420499055
+      ],
+      "rotation": [
+        7.016709298534886e-15,
+        -6.361109362927035e-15,
+        -179.99999999999991
+      ],
+      "snapBlocked": [
+        {
+          "target": "d3ec6e97-b4fd-4258-865b-1d1f3bd6caf9",
+          "sourceRef": "17",
+          "targetRef": "9"
+        }
+      ]
+    },
+    {
+      "id": "2fb9513f-03d3-4d7b-afb8-719a169d6d1b",
+      "sku": "228-2500-1253",
+      "label": "Triple 2x Wide, 2x2 Corner Connector",
+      "kind": "body",
+      "position": [
+        11.504813975288357,
+        11.59999999999998,
+        187.0666842049905
+      ],
+      "rotation": [
+        -180,
+        90,
+        0
+      ],
+      "snapBlocked": [
+        {
+          "target": "c969d9f3-f3d5-4c35-8e41-6a56185e6e47",
+          "sourceRef": "59",
+          "targetRef": "25"
+        },
+        {
+          "target": "d3ec6e97-b4fd-4258-865b-1d1f3bd6caf9",
+          "sourceRef": "37",
+          "targetRef": "27"
+        }
+      ]
+    },
+    {
+      "id": "8b1ebe5e-fbec-4178-a486-f4d881c47ab4",
+      "sku": "228-2500-1253",
+      "label": "Triple 2x Wide, 2x2 Corner Connector",
+      "kind": "body",
+      "position": [
+        100.40481397528842,
+        11.599999999999966,
+        187.06668420499054
+      ],
+      "rotation": [
+        -180,
+        90,
+        0
+      ],
+      "snapBlocked": [
+        {
+          "target": "d3ec6e97-b4fd-4258-865b-1d1f3bd6caf9",
+          "sourceRef": "37",
+          "targetRef": "69"
+        }
+      ]
+    },
+    {
+      "id": "9fb17cfc-2805-433f-a45d-d11f311cd083",
+      "sku": "228-2500-060",
+      "label": "1x1 Connector Pin",
+      "kind": "pin",
+      "position": [
+        -26.595186024711577,
+        17.949999999999875,
+        206.1166842049906
+      ],
+      "rotation": [
+        90.00000000000001,
+        -1.2999136240621084e-14,
+        6.361109362927037e-15
+      ],
+      "mate": {
+        "target": "7a0282d4-8f11-46ea-b80a-ab970e5efb45",
+        "sourceRef": "1",
+        "targetRef": "4",
+        "depth": 4.5499999999999545,
+        "twist": 0,
+        "flip": false
+      }
+    },
+    {
+      "id": "1bb52bc4-946f-4022-a291-795e7bdba1ad",
+      "sku": "228-2500-060",
+      "label": "1x1 Connector Pin",
+      "kind": "pin",
+      "position": [
+        -39.2951860247116,
+        30.649999999999856,
+        206.11668420499058
+      ],
+      "rotation": [
+        90.00000000000001,
+        -1.2999136240621084e-14,
+        6.361109362927037e-15
+      ],
+      "mate": {
+        "target": "7a0282d4-8f11-46ea-b80a-ab970e5efb45",
+        "sourceRef": "1",
+        "targetRef": "12",
+        "depth": 4.549999999999983,
+        "twist": 0,
+        "flip": false
+      }
+    },
+    {
+      "id": "c969d9f3-f3d5-4c35-8e41-6a56185e6e47",
+      "sku": "228-2500-026",
+      "label": "2x12 Beam",
+      "kind": "body",
+      "position": [
+        30.55481397528836,
+        24.29999999999998,
+        209.29168420499053
+      ],
+      "rotation": [
+        90.00000000000001,
+        7.241789808156177e-15,
+        -1.2722218725854067e-14
+      ],
+      "visible": true,
+      "mate": {
+        "target": "2fb9513f-03d3-4d7b-afb8-719a169d6d1b",
+        "sourceRef": "25",
+        "targetRef": "59",
+        "depth": 4.549999999999983,
+        "twist": 0,
+        "flip": false
+      }
+    },
+    {
+      "id": "97d2a09f-f4af-43b8-b10d-b0896d75c6f2",
+      "sku": "228-2500-060",
+      "label": "1x1 Connector Pin",
+      "kind": "pin",
+      "position": [
+        -39.29518602471163,
+        17.94999999999997,
+        212.46668420499066
+      ],
+      "rotation": [
+        -90,
+        -0.0000014787793373138622,
+        1.2722218820641989e-14
+      ],
+      "mate": {
+        "target": "c969d9f3-f3d5-4c35-8e41-6a56185e6e47",
+        "sourceRef": "6",
+        "targetRef": "4",
+        "depth": 4.549999999999869,
+        "twist": 0,
+        "flip": false
+      }
+    },
+    {
+      "id": "b3c6649d-dfd3-4619-a6a6-579510061b51",
+      "sku": "228-2500-060",
+      "label": "1x1 Connector Pin",
+      "kind": "pin",
+      "position": [
+        -26.595186024711637,
+        30.64999999999997,
+        212.4666842049906
+      ],
+      "rotation": [
+        -90,
+        -0.0000014787793373138622,
+        1.2722218820641989e-14
+      ],
+      "mate": {
+        "target": "c969d9f3-f3d5-4c35-8e41-6a56185e6e47",
+        "sourceRef": "6",
+        "targetRef": "9",
+        "depth": 4.549999999999926,
+        "twist": 0,
+        "flip": false
+      }
+    },
+    {
+      "id": "cd70f64c-7232-480e-a947-d8dbe37d6043",
+      "sku": "228-2500-017",
+      "label": "2x2 Beam",
+      "kind": "body",
+      "position": [
+        -32.945186158527875,
+        24.30000013381621,
+        215.64168420499067
+      ],
+      "rotation": [
+        -90,
+        -0.0000012074182602349515,
+        1.2722218631066153e-14
+      ],
+      "mate": {
+        "target": "97d2a09f-f4af-43b8-b10d-b0896d75c6f2",
+        "sourceRef": "3",
+        "targetRef": "1",
+        "depth": 4.549999999999983,
+        "twist": 0,
+        "flip": false
+      }
+    },
+    {
+      "id": "ebab5e7c-08a7-4ef1-872b-cb656f954c1c",
+      "sku": "228-2500-060",
+      "label": "1x1 Connector Pin",
+      "kind": "pin",
+      "position": [
+        75.00481397528836,
+        17.949999999999985,
+        212.46668420499054
+      ],
+      "rotation": [
+        -90,
+        -0.0000014787793373138622,
+        1.2722218820641989e-14
+      ],
+      "mate": {
+        "target": "c969d9f3-f3d5-4c35-8e41-6a56185e6e47",
+        "sourceRef": "6",
+        "targetRef": "58",
+        "depth": 4.549999999999983,
+        "twist": 0,
+        "flip": false
+      }
+    },
+    {
+      "id": "8bfdd267-abfb-453d-830f-e67b3c59ca49",
+      "sku": "228-2500-060",
+      "label": "1x1 Connector Pin",
+      "kind": "pin",
+      "position": [
+        62.30481397528836,
+        30.649999999999984,
+        212.46668420499051
+      ],
+      "rotation": [
+        -89.99999999999999,
+        -8.537736491370001e-7,
+        1.2722218773248027e-14
+      ],
+      "mate": {
+        "target": "c969d9f3-f3d5-4c35-8e41-6a56185e6e47",
+        "sourceRef": "6",
+        "targetRef": "51",
+        "depth": 4.55,
+        "twist": 0,
+        "flip": false
+      }
+    },
+    {
+      "id": "b00682d9-a20e-4250-90b8-d1e9150e2470",
+      "sku": "228-2500-060",
+      "label": "1x1 Connector Pin",
+      "kind": "pin",
+      "position": [
+        62.30481397528836,
+        17.949999999999985,
+        204.33868420499044
+      ],
+      "rotation": [
+        -90,
+        -0.0000014787793373138622,
+        1.2722218820641989e-14
+      ],
+      "locked": false,
+      "mate": {
+        "target": "c969d9f3-f3d5-4c35-8e41-6a56185e6e47",
+        "sourceRef": "1",
+        "targetRef": "50",
+        "depth": 2.771999999999906,
+        "twist": 0,
+        "flip": false
+      }
+    },
+    {
+      "id": "b09669fc-0085-4733-8943-2aa0d334f0b8",
+      "sku": "228-2500-060",
+      "label": "1x1 Connector Pin",
+      "kind": "pin",
+      "position": [
+        75.00481397528836,
+        30.649999999999984,
+        206.11668420499046
+      ],
+      "rotation": [
+        -90,
+        -0.0000014787793373138622,
+        1.2722218820641989e-14
+      ],
+      "mate": {
+        "target": "c969d9f3-f3d5-4c35-8e41-6a56185e6e47",
+        "sourceRef": "1",
+        "targetRef": "55",
+        "depth": 4.549999999999926,
+        "twist": 0,
+        "flip": false
+      }
+    },
+    {
+      "id": "756fc7ab-869e-4fb1-b23d-865867f8d8cd",
+      "sku": "228-2560",
+      "label": "Smart Motor",
+      "kind": "motor",
+      "position": [
+        59.12981397528836,
+        24.299999999999905,
+        205.98813066588954
+      ],
+      "rotation": [
+        -180,
+        -8.501152635300602e-15,
+        -180
+      ],
+      "snapBlocked": [
+        {
+          "target": "ecd6d787-1b2e-47f9-8928-13c0470743b9",
+          "sourceRef": "motor-output",
+          "targetRef": "square-pin-walls-2"
+        }
+      ]
+    },
+    {
+      "id": "66dd8a8d-69c0-4c0e-abff-ba1d34fda8fd",
+      "sku": "228-2500-060",
+      "label": "1x1 Connector Pin",
+      "kind": "pin",
+      "position": [
+        49.604813975288366,
+        17.94999999999998,
+        206.11668420499052
+      ],
+      "rotation": [
+        -90,
+        -0.0000014787793373138622,
+        1.2722218820641989e-14
+      ],
+      "mate": {
+        "target": "c969d9f3-f3d5-4c35-8e41-6a56185e6e47",
+        "sourceRef": "1",
+        "targetRef": "44",
+        "depth": 4.549999999999983,
+        "twist": 0,
+        "flip": false
+      }
+    },
+    {
+      "id": "fface97c-65ea-4ebb-bbed-1b80ff292c84",
+      "sku": "228-2500-060",
+      "label": "1x1 Connector Pin",
+      "kind": "pin",
+      "position": [
+        49.604813975288366,
+        30.64999999999998,
+        206.11668420499052
+      ],
+      "rotation": [
+        -90,
+        -0.0000014787793373138622,
+        1.2722218820641989e-14
+      ],
+      "mate": {
+        "target": "c969d9f3-f3d5-4c35-8e41-6a56185e6e47",
+        "sourceRef": "1",
+        "targetRef": "43",
+        "depth": 4.549999999999983,
+        "twist": 0,
+        "flip": false
+      }
+    },
+    {
+      "id": "e76646d8-1011-4430-8dcd-779fc92002dc",
+      "sku": "228-2500-026",
+      "label": "2x12 Beam",
+      "kind": "body",
+      "position": [
+        30.554813975288326,
+        8.424999999999947,
+        193.4166842049906
+      ],
+      "rotation": [
+        -180,
+        1.1339180477402849e-14,
+        179.99999999999991
+      ],
+      "snapBlocked": [
+        {
+          "target": "0a37a5b0-2e68-4732-beed-045b8e2bc4ab",
+          "sourceRef": "70",
+          "targetRef": "37"
+        },
+        {
+          "target": "0a37a5b0-2e68-4732-beed-045b8e2bc4ab",
+          "sourceRef": "64",
+          "targetRef": "17"
+        }
+      ]
+    },
+    {
+      "id": "29b9112a-663e-431f-877d-259fc605aeac",
+      "sku": "228-2500-2225",
+      "label": "5x Pitch Capped Shaft",
+      "kind": "shaft",
+      "position": [
+        -32.94518602471169,
+        24.299999999999983,
+        180.07345232777303
+      ],
+      "rotation": [
+        -90,
+        -0.0000012074182602349515,
+        0
+      ],
+      "mate": {
+        "target": "75e6a1cb-24ea-459d-83e5-43cad79bd1aa",
+        "sourceRef": "square-pin-walls-1",
+        "targetRef": "3",
+        "depth": 0.9999999999998863,
+        "twist": 0,
+        "flip": false
+      }
+    },
+    {
+      "id": "3c8a5583-c195-4fd3-83f1-bc9229309ff8",
+      "sku": "228-2500-114",
+      "label": "0.25x Pitch Spacer",
+      "kind": "retainer",
+      "position": [
+        -32.94518602471169,
+        24.299999999999986,
+        219.88295232777315
+      ],
+      "rotation": [
+        90.00000000000001,
+        2.0735740507341018e-14,
+        0
+      ],
+      "mate": {
+        "target": "29b9112a-663e-431f-877d-259fc605aeac",
+        "sourceRef": "1",
+        "targetRef": "square-pin-walls-1",
+        "depth": 23.499999999999886,
+        "twist": 0,
+        "flip": false
+      }
+    },
+    {
+      "id": "ca5cee0f-5699-430a-98a9-f71a4a1a59f9",
+      "sku": "228-2536",
+      "label": "200mm Travel Omni-Directional Wheel",
+      "kind": "wheel",
+      "position": [
+        -32.94518602471169,
+        24.299999999999983,
+        238.41668420499053
+      ],
+      "rotation": [
+        6.3611093629270335e-15,
+        0,
+        0.0000012074182602349515
+      ],
+      "mate": {
+        "target": "29b9112a-663e-431f-877d-259fc605aeac",
+        "sourceRef": "square-hole-1",
+        "targetRef": "square-pin-walls-1",
+        "depth": 15.664768122782505,
+        "twist": 0,
+        "flip": false
+      }
+    },
+    {
+      "id": "75e6a1cb-24ea-459d-83e5-43cad79bd1aa",
+      "sku": "228-2500-168",
+      "label": "Rubber Shaft Collar v1",
+      "kind": "retainer",
+      "position": [
+        -28.030686024711684,
+        25.719979999999985,
+        235.78737232777314
+      ],
+      "rotation": [
+        -180,
+        0,
+        0
+      ],
+      "snapBlocked": [
+        {
+          "target": "29b9112a-663e-431f-877d-259fc605aeac",
+          "sourceRef": "3",
+          "targetRef": "square-pin-walls-1"
+        }
+      ]
+    },
+    {
+      "id": "047f90aa-c392-42df-b2e4-adc344f02655",
+      "sku": "228-2500-214",
+      "label": "36 Tooth Gear",
+      "kind": "gear",
+      "position": [
+        68.65481397528836,
+        24.29999999999992,
+        221.98813066588954
+      ],
+      "rotation": [
+        -90.0000000000001,
+        75.89552563135946,
+        7.830961179646974e-14
+      ],
+      "snapBlocked": [
+        {
+          "target": "ecd6d787-1b2e-47f9-8928-13c0470743b9",
+          "sourceRef": "square-hole-2",
+          "targetRef": "square-pin-walls-1"
+        }
+      ]
+    },
+    {
+      "id": "f320e35f-a7d8-4cff-b0d9-9ee2b95db084",
+      "sku": "228-2500-2223",
+      "label": "4x Pitch Capped Shaft",
+      "kind": "shaft",
+      "position": [
+        94.05481397528835,
+        24.29999999999992,
+        213.35568420499047
+      ],
+      "rotation": [
+        -90.00000000000001,
+        -2.118675023064076e-30,
+        8.501152635300602e-15
+      ],
+      "snapBlocked": [
+        {
+          "target": "1f7a4f4b-8c19-4447-8258-3ea0c3cdacdf",
+          "sourceRef": "square-pin-walls-1",
+          "targetRef": "18"
+        }
+      ]
+    },
+    {
+      "id": "733678ea-5e09-458d-92e2-30f193bca056",
+      "sku": "228-2500-023",
+      "label": "2x8 Beam",
+      "kind": "body",
+      "position": [
+        81.35481397528835,
+        24.29999999999998,
+        215.64168420499053
+      ],
+      "rotation": [
+        90.00000000000001,
+        -1.4124500153760508e-30,
+        -1.272221872585407e-14
+      ],
+      "mate": {
+        "target": "ebab5e7c-08a7-4ef1-872b-cb656f954c1c",
+        "sourceRef": "20",
+        "targetRef": "1",
+        "depth": 4.55,
+        "twist": 0,
+        "flip": false
+      }
+    },
+    {
+      "id": "eff57f1f-4b13-4930-9ebc-4482e28df9f3",
+      "sku": "228-2500-060",
+      "label": "1x1 Connector Pin",
+      "kind": "pin",
+      "position": [
+        43.25481397528835,
+        24.29999999999998,
+        212.46668420499054
+      ],
+      "rotation": [
+        -89.99999999999999,
+        -8.501152635300602e-15,
+        1.272221872585407e-14
+      ],
+      "snapBlocked": [
+        {
+          "target": "733678ea-5e09-458d-92e2-30f193bca056",
+          "sourceRef": "1",
+          "targetRef": "5"
+        }
+      ],
+      "mate": {
+        "target": "733678ea-5e09-458d-92e2-30f193bca056",
+        "sourceRef": "1",
+        "targetRef": "5",
+        "depth": 4.55,
+        "twist": 0,
+        "flip": false
+      }
+    },
+    {
+      "id": "e92a9487-ad2a-4e51-b7f1-85021c75bd15",
+      "sku": "228-2500-213",
+      "label": "12 Tooth Gear",
+      "kind": "gear",
+      "position": [
+        94.05481397528837,
+        24.299999999999926,
+        221.98813066588954
+      ],
+      "rotation": [
+        -89.9999999999999,
+        -44.999999999999986,
+        1.7991934265579774e-14
+      ],
+      "snapBlocked": [
+        {
+          "target": "f320e35f-a7d8-4cff-b0d9-9ee2b95db084",
+          "sourceRef": "4",
+          "targetRef": "square-pin-walls-1"
+        }
+      ]
+    },
+    {
+      "id": "ecd6d787-1b2e-47f9-8928-13c0470743b9",
+      "sku": "228-2500-2234",
+      "label": "2x Pitch Motor Shaft",
+      "kind": "shaft",
+      "position": [
+        68.65481397528836,
+        24.299999999999905,
+        202.93813066588953
+      ],
+      "rotation": [
+        -90.00000000000001,
+        -14.104474368640528,
+        9.838258132021292e-15
+      ],
+      "snapBlocked": [
+        {
+          "target": "756fc7ab-869e-4fb1-b23d-865867f8d8cd",
+          "sourceRef": "square-pin-walls-2",
+          "targetRef": "motor-output"
+        }
+      ]
+    },
+    {
+      "id": "18a6ddf1-83c2-483f-aa26-eb46f6b263bd",
+      "sku": "228-2500-064",
+      "label": "0.5x Pitch Standoff",
+      "kind": "body",
+      "position": [
+        125.80481397528835,
+        30.649999999999977,
+        225.1666842049905
+      ],
+      "rotation": [
+        90.00000000000001,
+        -8.501152635300605e-15,
+        -1.272221872585407e-14
+      ],
+      "mate": {
+        "target": "733678ea-5e09-458d-92e2-30f193bca056",
+        "sourceRef": "1",
+        "targetRef": "45",
+        "depth": 4.55,
+        "twist": 0,
+        "flip": false
+      }
+    },
+    {
+      "id": "9fbc8c54-74fd-4292-a092-12ccc1910630",
+      "sku": "228-2500-064",
+      "label": "0.5x Pitch Standoff",
+      "kind": "body",
+      "position": [
+        36.90481397528835,
+        30.649999999999977,
+        225.1666842049905
+      ],
+      "rotation": [
+        90.00000000000001,
+        -8.501152635300605e-15,
+        -1.272221872585407e-14
+      ],
+      "mate": {
+        "target": "733678ea-5e09-458d-92e2-30f193bca056",
+        "sourceRef": "1",
+        "targetRef": "3",
+        "depth": 4.55,
+        "twist": 0,
+        "flip": false
+      }
+    },
+    {
+      "id": "a54d5104-ba4d-4c14-b6e6-c8ad31eb72be",
+      "sku": "228-2500-064",
+      "label": "0.5x Pitch Standoff",
+      "kind": "body",
+      "position": [
+        125.80481397528835,
+        17.94999999999998,
+        225.1666842049905
+      ],
+      "rotation": [
+        90.00000000000001,
+        -8.501152635300605e-15,
+        -1.272221872585407e-14
+      ],
+      "mate": {
+        "target": "733678ea-5e09-458d-92e2-30f193bca056",
+        "sourceRef": "1",
+        "targetRef": "46",
+        "depth": 4.55,
+        "twist": 0,
+        "flip": false
+      }
+    },
+    {
+      "id": "1ecd6cb9-5137-43d4-b587-79a7a4ec2094",
+      "sku": "228-2500-064",
+      "label": "0.5x Pitch Standoff",
+      "kind": "body",
+      "position": [
+        36.90481397528835,
+        17.94999999999998,
+        225.1666842049905
+      ],
+      "rotation": [
+        90.00000000000001,
+        -8.501152635300605e-15,
+        -1.272221872585407e-14
+      ],
+      "mate": {
+        "target": "733678ea-5e09-458d-92e2-30f193bca056",
+        "sourceRef": "1",
+        "targetRef": "4",
+        "depth": 4.55,
+        "twist": 0,
+        "flip": false
+      }
+    },
+    {
+      "id": "5898bf53-5416-4403-a87b-a0897d24a753",
+      "sku": "228-2500-023",
+      "label": "2x8 Beam",
+      "kind": "body",
+      "position": [
+        81.35481397528835,
+        24.299999999999983,
+        228.3416842049905
+      ],
+      "rotation": [
+        -89.99999999999999,
+        -8.5011526353006e-15,
+        1.272221872585407e-14
+      ],
+      "mate": {
+        "target": "9fbc8c54-74fd-4292-a092-12ccc1910630",
+        "sourceRef": "4",
+        "targetRef": "6",
+        "depth": 4.55,
+        "twist": 0,
+        "flip": false
+      }
+    },
+    {
+      "id": "bbe572ba-fdbf-4cb1-befe-9e9f004e2172",
+      "sku": "228-2500-114",
+      "label": "0.25x Pitch Spacer",
+      "kind": "retainer",
+      "position": [
+        94.05481397528837,
+        24.299999999999926,
+        232.98813066588954
+      ],
+      "rotation": [
+        89.99999999999999,
+        -8.5011526353006e-15,
+        -8.501152635300602e-15
+      ],
+      "mate": {
+        "target": "f320e35f-a7d8-4cff-b0d9-9ee2b95db084",
+        "sourceRef": "1",
+        "targetRef": "square-pin-walls-1",
+        "depth": 30.97705353910095,
+        "twist": 0,
+        "flip": false
+      }
+    },
+    {
+      "id": "858f00b8-6f88-464a-b7dc-3e72d6c4073c",
+      "sku": "iq-200mm-travel-wheel",
+      "label": "200mm Travel Wheel (Tire + 44mm Hub)",
+      "kind": "wheel",
+      "position": [
+        94.05481397528837,
+        24.299999999999926,
+        237.98813066588954
+      ],
+      "rotation": [
+        -90.00000000000001,
+        -1.4124500153760508e-30,
+        -180
+      ],
+      "mate": {
+        "target": "f320e35f-a7d8-4cff-b0d9-9ee2b95db084",
+        "sourceRef": "square-hole-1",
+        "targetRef": "square-pin-walls-1",
+        "depth": 26.675553539100946,
+        "twist": 0,
+        "flip": false
+      }
+    },
+    {
+      "id": "07a1422e-c28b-4aa6-a3ab-f22d6c60f3a1",
+      "sku": "228-2500-168",
+      "label": "Rubber Shaft Collar v1",
+      "kind": "retainer",
+      "position": [
+        98.96931397528837,
+        22.88001999999993,
+        249.98813066588954
+      ],
+      "rotation": [
+        -1.2722218725854067e-14,
+        8.501152635300602e-15,
+        9.438175391563554e-31
+      ],
+      "mate": {
+        "target": "f320e35f-a7d8-4cff-b0d9-9ee2b95db084",
+        "sourceRef": "1",
+        "targetRef": "square-pin-walls-1",
+        "depth": 18.39763353910095,
+        "twist": 0,
+        "flip": false
+      }
+    },
+    {
+      "id": "52fa1eca-6e3b-45f5-bb5b-2686aa94d49b",
+      "sku": "228-2500-1253",
+      "label": "Triple 2x Wide, 2x2 Corner Connector",
+      "kind": "body",
+      "position": [
+        -58.12362423144073,
+        47.22484063345057,
+        113.0855152001018
+      ],
+      "rotation": [
+        -6.3611093629270335e-15,
+        3.947785609240264e-14,
+        180
+      ],
+      "mate": {
+        "target": "8e7a41ea-be68-4997-9e30-a0e8306b271d",
+        "sourceRef": "6",
+        "targetRef": "square-pin-walls-1",
+        "depth": 60.18976812278245,
+        "twist": 0,
+        "flip": false
+      },
+      "groupId": "870ff64c-92e3-46ab-b165-04c5b7b846de"
+    },
+    {
+      "id": "4408064e-0704-48e6-ad1c-e4b3372de976",
+      "sku": "228-2500-1253",
+      "label": "Triple 2x Wide, 2x2 Corner Connector",
+      "kind": "body",
+      "position": [
+        -58.12362423144066,
+        72.6248406334507,
+        100.38551520010178
+      ],
+      "rotation": [
+        -180,
+        -6.492229354411078e-14,
+        -180
+      ],
+      "groupId": "870ff64c-92e3-46ab-b165-04c5b7b846de"
+    },
+    {
+      "id": "272a5a28-be5e-4c4f-b425-e44bd731cf08",
+      "sku": "228-2500-1253",
+      "label": "Triple 2x Wide, 2x2 Corner Connector",
+      "kind": "body",
+      "position": [
+        -20.023624231440717,
+        72.62484063345062,
+        113.0855152001018
+      ],
+      "rotation": [
+        7.0167077104827355e-15,
+        90,
+        0
+      ],
+      "snapBlocked": [
+        {
+          "target": "69b8d368-73db-4641-aa7b-966a7548d019",
+          "sourceRef": "59",
+          "targetRef": "25"
+        }
+      ],
+      "groupId": "870ff64c-92e3-46ab-b165-04c5b7b846de"
+    },
+    {
+      "id": "d03824be-55dc-4fe6-ad33-39eb957c001c",
+      "sku": "228-2500-1253",
+      "label": "Triple 2x Wide, 2x2 Corner Connector",
+      "kind": "body",
+      "position": [
+        68.87637576855931,
+        72.62484063345079,
+        113.08551520010168
+      ],
+      "rotation": [
+        7.0167077104827355e-15,
+        90,
+        0
+      ],
+      "groupId": "870ff64c-92e3-46ab-b165-04c5b7b846de"
+    },
+    {
+      "id": "d73efe5c-92ab-4097-bdf0-5e9b652a2ed1",
+      "sku": "228-2500-060",
+      "label": "1x1 Connector Pin",
+      "kind": "pin",
+      "position": [
+        -58.123624231440665,
+        66.27484063345071,
+        94.03551520010177
+      ],
+      "rotation": [
+        -89.99999999999999,
+        -9.630450445495913e-14,
+        6.492229354411076e-14
+      ],
+      "mate": {
+        "target": "4408064e-0704-48e6-ad1c-e4b3372de976",
+        "sourceRef": "1",
+        "targetRef": "4",
+        "depth": 4.549999999999983,
+        "twist": 0,
+        "flip": false
+      },
+      "groupId": "870ff64c-92e3-46ab-b165-04c5b7b846de"
+    },
+    {
+      "id": "81e8fb53-5460-453f-b5a0-520043be83d7",
+      "sku": "228-2500-060",
+      "label": "1x1 Connector Pin",
+      "kind": "pin",
+      "position": [
+        -70.82362423144066,
+        53.574840633450705,
+        94.0355152001018
+      ],
+      "rotation": [
+        -89.99999999999999,
+        -9.630450445495913e-14,
+        6.492229354411076e-14
+      ],
+      "mate": {
+        "target": "4408064e-0704-48e6-ad1c-e4b3372de976",
+        "sourceRef": "1",
+        "targetRef": "12",
+        "depth": 4.549999999999997,
+        "twist": 0,
+        "flip": false
+      },
+      "groupId": "870ff64c-92e3-46ab-b165-04c5b7b846de"
+    },
+    {
+      "id": "69b8d368-73db-4641-aa7b-966a7548d019",
+      "sku": "228-2500-026",
+      "label": "2x12 Beam",
+      "kind": "body",
+      "position": [
+        -0.9736242314407342,
+        59.924840633450714,
+        90.86051520010176
+      ],
+      "rotation": [
+        -90.00000000000001,
+        -6.032063592379961e-14,
+        5.790558424557589e-14
+      ],
+      "visible": true,
+      "snapBlocked": [
+        {
+          "target": "272a5a28-be5e-4c4f-b425-e44bd731cf08",
+          "sourceRef": "25",
+          "targetRef": "59"
+        }
+      ],
+      "groupId": "870ff64c-92e3-46ab-b165-04c5b7b846de"
+    },
+    {
+      "id": "8357a9d8-a80c-4840-bc0c-7d9caa469d8e",
+      "sku": "228-2500-060",
+      "label": "1x1 Connector Pin",
+      "kind": "pin",
+      "position": [
+        -70.82362423144073,
+        66.27484063345064,
+        87.68551520010158
+      ],
+      "rotation": [
+        90,
+        -0.0000014787792639940901,
+        -5.790558431855146e-14
+      ],
+      "mate": {
+        "target": "69b8d368-73db-4641-aa7b-966a7548d019",
+        "sourceRef": "6",
+        "targetRef": "4",
+        "depth": 4.549999999999756,
+        "twist": 0,
+        "flip": false
+      },
+      "groupId": "870ff64c-92e3-46ab-b165-04c5b7b846de"
+    },
+    {
+      "id": "bbc169bb-63f5-4bbc-97fe-49b4fe14a21a",
+      "sku": "228-2500-060",
+      "label": "1x1 Connector Pin",
+      "kind": "pin",
+      "position": [
+        -58.12362423144073,
+        53.574840633450656,
+        87.68551520010163
+      ],
+      "rotation": [
+        90,
+        -0.0000014787792639940901,
+        -5.790558431855146e-14
+      ],
+      "mate": {
+        "target": "69b8d368-73db-4641-aa7b-966a7548d019",
+        "sourceRef": "6",
+        "targetRef": "9",
+        "depth": 4.549999999999827,
+        "twist": 0,
+        "flip": false
+      },
+      "groupId": "870ff64c-92e3-46ab-b165-04c5b7b846de"
+    },
+    {
+      "id": "4a8d4f5f-f27c-460c-8c8a-137f88dbd78e",
+      "sku": "228-2500-017",
+      "label": "2x2 Beam",
+      "kind": "body",
+      "position": [
+        -64.47362436525697,
+        59.924840499634406,
+        84.51051520010158
+      ],
+      "rotation": [
+        89.99999999999999,
+        -0.0000012074181689232455,
+        -5.790558441333936e-14
+      ],
+      "mate": {
+        "target": "8357a9d8-a80c-4840-bc0c-7d9caa469d8e",
+        "sourceRef": "3",
+        "targetRef": "1",
+        "depth": 4.55,
+        "twist": 0,
+        "flip": false
+      },
+      "groupId": "870ff64c-92e3-46ab-b165-04c5b7b846de"
+    },
+    {
+      "id": "3ed7735a-ae43-447f-9d8e-6e12007dabdf",
+      "sku": "228-2500-060",
+      "label": "1x1 Connector Pin",
+      "kind": "pin",
+      "position": [
+        43.476375768559265,
+        66.27484063345076,
+        87.6855152001016
+      ],
+      "rotation": [
+        90,
+        -0.0000014787792639940901,
+        -5.790558431855146e-14
+      ],
+      "mate": {
+        "target": "69b8d368-73db-4641-aa7b-966a7548d019",
+        "sourceRef": "6",
+        "targetRef": "58",
+        "depth": 4.549999999999898,
+        "twist": 0,
+        "flip": false
+      },
+      "groupId": "870ff64c-92e3-46ab-b165-04c5b7b846de"
+    },
+    {
+      "id": "641606e5-94b7-4e01-a4ad-e7b4d3128e5a",
+      "sku": "228-2500-060",
+      "label": "1x1 Connector Pin",
+      "kind": "pin",
+      "position": [
+        30.776375768559266,
+        53.57484063345075,
+        87.68551520010172
+      ],
+      "rotation": [
+        89.99999999999999,
+        -8.537735668212609e-7,
+        -5.790558417636957e-14
+      ],
+      "mate": {
+        "target": "69b8d368-73db-4641-aa7b-966a7548d019",
+        "sourceRef": "6",
+        "targetRef": "51",
+        "depth": 4.549999999999983,
+        "twist": 0,
+        "flip": false
+      },
+      "groupId": "870ff64c-92e3-46ab-b165-04c5b7b846de"
+    },
+    {
+      "id": "4620ec81-3fc5-428c-bac9-f3ed1aa4d9a8",
+      "sku": "228-2500-060",
+      "label": "1x1 Connector Pin",
+      "kind": "pin",
+      "position": [
+        30.776375768559266,
+        66.27484063345075,
+        95.81351520010195
+      ],
+      "rotation": [
+        90,
+        -0.0000014787792639940901,
+        -5.790558431855146e-14
+      ],
+      "locked": false,
+      "mate": {
+        "target": "69b8d368-73db-4641-aa7b-966a7548d019",
+        "sourceRef": "1",
+        "targetRef": "50",
+        "depth": 2.7719999999997924,
+        "twist": 0,
+        "flip": false
+      },
+      "groupId": "870ff64c-92e3-46ab-b165-04c5b7b846de"
+    },
+    {
+      "id": "bac78b52-34ca-433a-ae0e-e7ea67a4871d",
+      "sku": "228-2500-060",
+      "label": "1x1 Connector Pin",
+      "kind": "pin",
+      "position": [
+        43.47637576855928,
+        53.57484063345076,
+        94.03551520010187
+      ],
+      "rotation": [
+        90,
+        -0.0000014787792639940901,
+        -5.790558431855146e-14
+      ],
+      "mate": {
+        "target": "69b8d368-73db-4641-aa7b-966a7548d019",
+        "sourceRef": "1",
+        "targetRef": "55",
+        "depth": 4.549999999999855,
+        "twist": 0,
+        "flip": false
+      },
+      "groupId": "870ff64c-92e3-46ab-b165-04c5b7b846de"
+    },
+    {
+      "id": "a6e5fbb3-fa0b-4322-b2b7-03e8534c56a8",
+      "sku": "228-2560",
+      "label": "Smart Motor",
+      "kind": "motor",
+      "position": [
+        27.60137576855924,
+        59.92484063345074,
+        94.16406873920272
+      ],
+      "rotation": [
+        -1.5880521363879268e-21,
+        6.492229354411081e-14,
+        -179.99999999999991
+      ],
+      "groupId": "870ff64c-92e3-46ab-b165-04c5b7b846de"
+    },
+    {
+      "id": "621d7c69-3302-445b-a2d1-3cc7bb6824ac",
+      "sku": "228-2500-060",
+      "label": "1x1 Connector Pin",
+      "kind": "pin",
+      "position": [
+        18.076375768559267,
+        66.27484063345074,
+        94.03551520010186
+      ],
+      "rotation": [
+        90,
+        -0.0000014787792639940901,
+        -5.790558431855146e-14
+      ],
+      "mate": {
+        "target": "69b8d368-73db-4641-aa7b-966a7548d019",
+        "sourceRef": "1",
+        "targetRef": "44",
+        "depth": 4.5499999999998835,
+        "twist": 0,
+        "flip": false
+      },
+      "groupId": "870ff64c-92e3-46ab-b165-04c5b7b846de"
+    },
+    {
+      "id": "c2e0e752-1591-4679-9a97-e1fcf7f7b51d",
+      "sku": "228-2500-060",
+      "label": "1x1 Connector Pin",
+      "kind": "pin",
+      "position": [
+        18.07637576855928,
+        53.574840633450734,
+        94.03551520010186
+      ],
+      "rotation": [
+        90,
+        -0.0000014787792639940901,
+        -5.790558431855146e-14
+      ],
+      "mate": {
+        "target": "69b8d368-73db-4641-aa7b-966a7548d019",
+        "sourceRef": "1",
+        "targetRef": "43",
+        "depth": 4.549999999999898,
+        "twist": 0,
+        "flip": false
+      },
+      "groupId": "870ff64c-92e3-46ab-b165-04c5b7b846de"
+    },
+    {
+      "id": "59adb814-2132-4efc-995f-1aefea47cda9",
+      "sku": "228-2500-026",
+      "label": "2x12 Beam",
+      "kind": "body",
+      "position": [
+        -0.9736242314407342,
+        75.79984063345066,
+        106.73551520010172
+      ],
+      "rotation": [
+        -6.36110936292703e-15,
+        6.492229354411081e-14,
+        180
+      ],
+      "snapBlocked": [
+        {
+          "target": "52fa1eca-6e3b-45f5-bb5b-2686aa94d49b",
+          "sourceRef": "64",
+          "targetRef": "17"
+        }
+      ],
+      "groupId": "870ff64c-92e3-46ab-b165-04c5b7b846de"
+    },
+    {
+      "id": "8e7a41ea-be68-4997-9e30-a0e8306b271d",
+      "sku": "228-2500-2225",
+      "label": "5x Pitch Capped Shaft",
+      "kind": "shaft",
+      "position": [
+        -64.47362423144072,
+        59.92484063345056,
+        120.07874707731935
+      ],
+      "rotation": [
+        90,
+        -0.0000012074181689232455,
+        -3.947785609240265e-14
+      ],
+      "mate": {
+        "target": "513a15cf-6986-4b1d-8f52-f79f3733b9eb",
+        "sourceRef": "square-pin-walls-1",
+        "targetRef": "3",
+        "depth": 0.9999999999998437,
+        "twist": 0,
+        "flip": false
+      },
+      "groupId": "870ff64c-92e3-46ab-b165-04c5b7b846de"
+    },
+    {
+      "id": "b389a167-1590-47c4-821c-c461620647b1",
+      "sku": "228-2500-114",
+      "label": "0.25x Pitch Spacer",
+      "kind": "retainer",
+      "position": [
+        -64.47362423144075,
+        59.92484063345056,
+        80.26924707731918
+      ],
+      "rotation": [
+        -90.00000000000001,
+        -8.730853732216927e-14,
+        3.947785609240264e-14
+      ],
+      "mate": {
+        "target": "8e7a41ea-be68-4997-9e30-a0e8306b271d",
+        "sourceRef": "1",
+        "targetRef": "square-pin-walls-1",
+        "depth": 23.499999999999844,
+        "twist": 0,
+        "flip": false
+      },
+      "groupId": "870ff64c-92e3-46ab-b165-04c5b7b846de"
+    },
+    {
+      "id": "bdd14c94-c9fa-4fff-8d6d-404cb8b2a7df",
+      "sku": "228-2536",
+      "label": "200mm Travel Omni-Directional Wheel",
+      "kind": "wheel",
+      "position": [
+        -64.47362423144077,
+        59.92484063345056,
+        61.73551520010183
+      ],
+      "rotation": [
+        180,
+        -3.947785609240265e-14,
+        0.0000012074181689232455
+      ],
+      "mate": {
+        "target": "8e7a41ea-be68-4997-9e30-a0e8306b271d",
+        "sourceRef": "square-hole-1",
+        "targetRef": "square-pin-walls-1",
+        "depth": 15.66476812278249,
+        "twist": 0,
+        "flip": false
+      },
+      "groupId": "870ff64c-92e3-46ab-b165-04c5b7b846de"
+    },
+    {
+      "id": "513a15cf-6986-4b1d-8f52-f79f3733b9eb",
+      "sku": "228-2500-168",
+      "label": "Rubber Shaft Collar v1",
+      "kind": "retainer",
+      "position": [
+        -59.55912423144076,
+        58.50486063345056,
+        64.36482707731918
+      ],
+      "rotation": [
+        -1.5880521101628046e-21,
+        3.9477856092402686e-14,
+        7.633331235512438e-14
+      ],
+      "groupId": "870ff64c-92e3-46ab-b165-04c5b7b846de"
+    },
+    {
+      "id": "fd48d45f-ead8-45a3-bdf4-e68d2207e441",
+      "sku": "228-2500-214",
+      "label": "36 Tooth Gear",
+      "kind": "gear",
+      "position": [
+        37.12637576855924,
+        59.92484063345077,
+        78.16406873920272
+      ],
+      "rotation": [
+        90.00000000000027,
+        75.89552563135956,
+        -2.088256314572537e-13
+      ],
+      "groupId": "870ff64c-92e3-46ab-b165-04c5b7b846de"
+    },
+    {
+      "id": "6c2ddfa2-911d-492e-8940-c7e77a6fdcc4",
+      "sku": "228-2500-2223",
+      "label": "4x Pitch Capped Shaft",
+      "kind": "shaft",
+      "position": [
+        62.526375768559205,
+        59.9248406334508,
+        86.7965152001018
+      ],
+      "rotation": [
+        89.99999999999996,
+        7.381458662298447e-14,
+        -3.2461146793867783e-14
+      ],
+      "groupId": "870ff64c-92e3-46ab-b165-04c5b7b846de"
+    },
+    {
+      "id": "6d5428cd-0f94-4d76-ab43-d31229788d9d",
+      "sku": "228-2500-023",
+      "label": "2x8 Beam",
+      "kind": "body",
+      "position": [
+        49.82637576855927,
+        59.92484063345077,
+        84.51051520010161
+      ],
+      "rotation": [
+        -90.00000000000001,
+        -5.582265235740466e-14,
+        5.790558441333936e-14
+      ],
+      "mate": {
+        "target": "3ed7735a-ae43-447f-9d8e-6e12007dabdf",
+        "sourceRef": "20",
+        "targetRef": "1",
+        "depth": 4.55,
+        "twist": 0,
+        "flip": false
+      },
+      "groupId": "870ff64c-92e3-46ab-b165-04c5b7b846de"
+    },
+    {
+      "id": "c0097d91-edbd-4838-ad87-d9dc39ec1a72",
+      "sku": "228-2500-060",
+      "label": "1x1 Connector Pin",
+      "kind": "pin",
+      "position": [
+        11.726375768559265,
+        59.924840633450735,
+        87.68551520010172
+      ],
+      "rotation": [
+        89.99999999999999,
+        7.83125701893794e-14,
+        -5.790558441333938e-14
+      ],
+      "mate": {
+        "target": "6d5428cd-0f94-4d76-ab43-d31229788d9d",
+        "sourceRef": "1",
+        "targetRef": "5",
+        "depth": 4.549999999999926,
+        "twist": 0,
+        "flip": false
+      },
+      "groupId": "870ff64c-92e3-46ab-b165-04c5b7b846de"
+    },
+    {
+      "id": "0966bb4e-c0dc-4cec-a3c0-948be4edaa6c",
+      "sku": "228-2500-213",
+      "label": "12 Tooth Gear",
+      "kind": "gear",
+      "position": [
+        62.526375768559205,
+        59.9248406334508,
+        78.16406873920272
+      ],
+      "rotation": [
+        90.00000000000009,
+        -44.999999999999936,
+        -5.84737863631342e-14
+      ],
+      "groupId": "870ff64c-92e3-46ab-b165-04c5b7b846de"
+    },
+    {
+      "id": "018d8a4b-91e1-4a66-85af-14ff28ab9009",
+      "sku": "228-2500-2234",
+      "label": "2x Pitch Motor Shaft",
+      "kind": "shaft",
+      "position": [
+        37.12637576855926,
+        59.92484063345077,
+        97.21406873920273
+      ],
+      "rotation": [
+        89.99999999999994,
+        -14.104474368640464,
+        -3.607361315074473e-14
+      ],
+      "groupId": "870ff64c-92e3-46ab-b165-04c5b7b846de"
+    },
+    {
+      "id": "2f9f5e9a-0053-4c82-b90b-c626fa0d18c6",
+      "sku": "228-2500-064",
+      "label": "0.5x Pitch Standoff",
+      "kind": "body",
+      "position": [
+        94.27637576855926,
+        53.57484063345081,
+        74.98551520010156
+      ],
+      "rotation": [
+        -90.00000000000001,
+        -9.630450445495914e-14,
+        5.790558441333938e-14
+      ],
+      "mate": {
+        "target": "6d5428cd-0f94-4d76-ab43-d31229788d9d",
+        "sourceRef": "1",
+        "targetRef": "45",
+        "depth": 4.55,
+        "twist": 0,
+        "flip": false
+      },
+      "groupId": "870ff64c-92e3-46ab-b165-04c5b7b846de"
+    },
+    {
+      "id": "7a1145ca-0608-4c68-a166-704f365f4526",
+      "sku": "228-2500-064",
+      "label": "0.5x Pitch Standoff",
+      "kind": "body",
+      "position": [
+        5.376375768559264,
+        53.57484063345073,
+        74.98551520010164
+      ],
+      "rotation": [
+        -90.00000000000001,
+        -9.630450445495914e-14,
+        5.790558441333938e-14
+      ],
+      "mate": {
+        "target": "6d5428cd-0f94-4d76-ab43-d31229788d9d",
+        "sourceRef": "1",
+        "targetRef": "3",
+        "depth": 4.55,
+        "twist": 0,
+        "flip": false
+      },
+      "groupId": "870ff64c-92e3-46ab-b165-04c5b7b846de"
+    },
+    {
+      "id": "ea8e67fb-7bfd-41b0-bd98-0935393f867b",
+      "sku": "228-2500-064",
+      "label": "0.5x Pitch Standoff",
+      "kind": "body",
+      "position": [
+        94.27637576855925,
+        66.27484063345081,
+        74.98551520010156
+      ],
+      "rotation": [
+        -90.00000000000001,
+        -9.630450445495914e-14,
+        5.790558441333938e-14
+      ],
+      "mate": {
+        "target": "6d5428cd-0f94-4d76-ab43-d31229788d9d",
+        "sourceRef": "1",
+        "targetRef": "46",
+        "depth": 4.55,
+        "twist": 0,
+        "flip": false
+      },
+      "groupId": "870ff64c-92e3-46ab-b165-04c5b7b846de"
+    },
+    {
+      "id": "a668b251-5cc5-4988-95fb-b647bc651abf",
+      "sku": "228-2500-064",
+      "label": "0.5x Pitch Standoff",
+      "kind": "body",
+      "position": [
+        5.3763757685592495,
+        66.27484063345072,
+        74.98551520010164
+      ],
+      "rotation": [
+        -90.00000000000001,
+        -9.630450445495914e-14,
+        5.790558441333938e-14
+      ],
+      "mate": {
+        "target": "6d5428cd-0f94-4d76-ab43-d31229788d9d",
+        "sourceRef": "1",
+        "targetRef": "4",
+        "depth": 4.55,
+        "twist": 0,
+        "flip": false
+      },
+      "groupId": "870ff64c-92e3-46ab-b165-04c5b7b846de"
+    },
+    {
+      "id": "f335159f-e55c-4187-8f9f-6e748e644120",
+      "sku": "228-2500-023",
+      "label": "2x8 Beam",
+      "kind": "body",
+      "position": [
+        49.82637576855926,
+        59.924840633450785,
+        71.8105152001016
+      ],
+      "rotation": [
+        89.99999999999999,
+        7.83125701893794e-14,
+        -5.790558441333938e-14
+      ],
+      "mate": {
+        "target": "7a1145ca-0608-4c68-a166-704f365f4526",
+        "sourceRef": "4",
+        "targetRef": "6",
+        "depth": 4.549999999999997,
+        "twist": 0,
+        "flip": false
+      },
+      "groupId": "870ff64c-92e3-46ab-b165-04c5b7b846de"
+    },
+    {
+      "id": "4f952217-e3ec-4fb6-9630-54a20a87342d",
+      "sku": "228-2500-114",
+      "label": "0.25x Pitch Spacer",
+      "kind": "retainer",
+      "position": [
+        62.52637576855919,
+        59.92484063345078,
+        67.16406873920269
+      ],
+      "rotation": [
+        -90.00000000000004,
+        -9.180652088856421e-14,
+        3.246114679386779e-14
+      ],
+      "mate": {
+        "target": "6c2ddfa2-911d-492e-8940-c7e77a6fdcc4",
+        "sourceRef": "1",
+        "targetRef": "square-pin-walls-1",
+        "depth": 30.9770535391009,
+        "twist": 0,
+        "flip": false
+      },
+      "groupId": "870ff64c-92e3-46ab-b165-04c5b7b846de"
+    },
+    {
+      "id": "65abdc6e-94b7-46eb-9ff2-8f9717cae3f5",
+      "sku": "iq-200mm-travel-wheel",
+      "label": "200mm Travel Wheel (Tire + 44mm Hub)",
+      "kind": "wheel",
+      "position": [
+        62.52637576855919,
+        59.92484063345078,
+        62.16406873920269
+      ],
+      "rotation": [
+        89.99999999999996,
+        7.381458662298444e-14,
+        179.99999999999997
+      ],
+      "mate": {
+        "target": "6c2ddfa2-911d-492e-8940-c7e77a6fdcc4",
+        "sourceRef": "square-hole-1",
+        "targetRef": "square-pin-walls-1",
+        "depth": 26.675553539100896,
+        "twist": 0,
+        "flip": false
+      },
+      "groupId": "870ff64c-92e3-46ab-b165-04c5b7b846de"
+    },
+    {
+      "id": "2fb69908-18c6-4af4-ae60-6aca435795d0",
+      "sku": "228-2500-168",
+      "label": "Rubber Shaft Collar v1",
+      "kind": "retainer",
+      "position": [
+        67.44087576855924,
+        61.34482063345081,
+        50.16406873920265
+      ],
+      "rotation": [
+        -180,
+        -3.9477856092402686e-14,
+        -7.633331235512435e-14
+      ],
+      "snapBlocked": [
+        {
+          "target": "6c2ddfa2-911d-492e-8940-c7e77a6fdcc4",
+          "sourceRef": "1",
+          "targetRef": "square-pin-walls-1"
+        }
+      ],
+      "groupId": "870ff64c-92e3-46ab-b165-04c5b7b846de"
+    },
+    {
+      "id": "d3ec6e97-b4fd-4258-865b-1d1f3bd6caf9",
+      "sku": "228-2500-026",
+      "label": "2x12 Beam",
+      "kind": "body",
+      "position": [
+        30.554813975288383,
+        40.174999999999976,
+        193.41668420499056
+      ],
+      "rotation": [
+        -180,
+        1.9672150726980516e-31,
+        -8.905553108097847e-14
+      ],
+      "snapBlocked": [
+        {
+          "target": "2fb9513f-03d3-4d7b-afb8-719a169d6d1b",
+          "sourceRef": "27",
+          "targetRef": "37"
+        },
+        {
+          "target": "0a37a5b0-2e68-4732-beed-045b8e2bc4ab",
+          "sourceRef": "4",
+          "targetRef": "52"
+        },
+        {
+          "target": "7a0282d4-8f11-46ea-b80a-ab970e5efb45",
+          "sourceRef": "9",
+          "targetRef": "17"
+        },
+        {
+          "target": "8b1ebe5e-fbec-4178-a486-f4d881c47ab4",
+          "sourceRef": "69",
+          "targetRef": "37"
+        }
+      ],
+      "visible": true
+    },
+    {
+      "id": "6bf66714-edc4-4c8e-b029-1ea6efc8128d",
+      "sku": "228-2500-026",
+      "label": "2x12 Beam",
+      "kind": "body",
+      "position": [
+        -0.9736242314406773,
+        44.04984063345077,
+        106.73551520010173
+      ],
+      "rotation": [
+        -180,
+        -3.9477856092402686e-14,
+        -4.075785257140648e-31
+      ],
+      "snapBlocked": [
+        {
+          "target": "d03824be-55dc-4fe6-ad33-39eb957c001c",
+          "sourceRef": "68",
+          "targetRef": "37"
+        }
+      ],
+      "groupId": "870ff64c-92e3-46ab-b165-04c5b7b846de"
+    },
+    {
+      "id": "3d7d61a6-028d-4b76-9dde-2380fca6cbce",
+      "sku": "228-2500-060",
+      "label": "1x1 Connector Pin",
+      "kind": "pin",
+      "position": [
+        106.75481397528841,
+        30.649999999999967,
+        187.06668420499054
+      ],
+      "rotation": [
+        -1.272221872585407e-14,
+        1.272221872585406e-14,
+        -89.99999999999999
+      ],
+      "mate": {
+        "target": "8b1ebe5e-fbec-4178-a486-f4d881c47ab4",
+        "sourceRef": "1",
+        "targetRef": "2",
+        "depth": 4.549999999999997,
+        "twist": 0,
+        "flip": false
+      }
+    },
+    {
+      "id": "bc0a53c3-1bd2-4e80-a3ca-05e7e4e01151",
+      "sku": "228-2500-060",
+      "label": "1x1 Connector Pin",
+      "kind": "pin",
+      "position": [
+        106.75481397528841,
+        17.949999999999964,
+        199.76668420499053
+      ],
+      "rotation": [
+        -1.272221872585407e-14,
+        1.272221872585406e-14,
+        -89.99999999999999
+      ],
+      "mate": {
+        "target": "8b1ebe5e-fbec-4178-a486-f4d881c47ab4",
+        "sourceRef": "1",
+        "targetRef": "14",
+        "depth": 4.549999999999997,
+        "twist": 0,
+        "flip": false
+      }
+    },
+    {
+      "id": "11e440d1-a623-47ab-bc06-9dc2e7bff5fe",
+      "sku": "228-2500-060",
+      "label": "1x1 Connector Pin",
+      "kind": "pin",
+      "position": [
+        75.22637576855931,
+        66.2748406334508,
+        113.08551520010168
+      ],
+      "rotation": [
+        1.2722218725854073e-14,
+        -1.2722218725854064e-14,
+        -89.99999999999999
+      ],
+      "mate": {
+        "target": "d03824be-55dc-4fe6-ad33-39eb957c001c",
+        "sourceRef": "1",
+        "targetRef": "4",
+        "depth": 4.549999999999997,
+        "twist": 0,
+        "flip": false
+      },
+      "groupId": "870ff64c-92e3-46ab-b165-04c5b7b846de"
+    },
+    {
+      "id": "61acce9f-f10c-4c4c-9757-d11ac9fcf232",
+      "sku": "228-2500-060",
+      "label": "1x1 Connector Pin",
+      "kind": "pin",
+      "position": [
+        75.22637576855934,
+        53.574840633450776,
+        100.38551520010168
+      ],
+      "rotation": [
+        1.272221872585407e-14,
+        -1.272221872585406e-14,
+        -89.99999999999999
+      ],
+      "snapBlocked": [
+        {
+          "target": "d03824be-55dc-4fe6-ad33-39eb957c001c",
+          "sourceRef": "1",
+          "targetRef": "12"
+        }
+      ],
+      "groupId": "870ff64c-92e3-46ab-b165-04c5b7b846de"
+    },
+    {
+      "id": "da50a8db-c643-4b16-bb66-bc0a7eb04c23",
+      "sku": "228-2500-023",
+      "label": "2x8 Beam",
+      "kind": "body",
+      "position": [
+        109.9298139752884,
+        24.29999999999996,
+        155.3166842049905
+      ],
+      "rotation": [
+        90,
+        1.2722218725854067e-14,
+        89.99999999999999
+      ],
+      "mate": {
+        "target": "bc0a53c3-1bd2-4e80-a3ca-05e7e4e01151",
+        "sourceRef": "46",
+        "targetRef": "6",
+        "depth": 4.55,
+        "twist": 90,
+        "flip": false
+      }
+    }
+  ],
+  "groups": [
+    {
+      "id": "870ff64c-92e3-46ab-b165-04c5b7b846de",
+      "name": "Group 1",
+      "visible": true,
+      "locked": false
+    }
+  ],
+  "kit": null,
+  "guidePreferences": {
+    "steps": {},
+    "order": [
+      "3d2c5df4-a294-4a54-a4fd-2ea486cb649a|512c38ab-d3ab-49b7-b215-2fe5f86fec0a",
+      "01158e33-0aba-4cda-bde5-f46b513c1a55|13747c11-8c58-45f7-a7d4-a73e32ff11df|3428a476-eb91-4a14-abf3-485c84cda304|4a01c694-29bb-4f99-a6fb-ac649541873f|73815f80-a341-474f-9afc-2d279170e30b|a74d31bf-45cb-4786-999b-60f60a263fa8|db3b50fe-1086-412c-9435-513b7cc40d3e|fbd4e769-5ebb-438d-8010-5f456bb5c2ff",
+      "3651ec5e-cb53-4021-a601-e51148a1365b",
+      "9f9f1a40-0d8f-439d-84ef-b93b735c3162",
+      "f6a45aaf-5e4a-427d-9dbe-a5ae96bd5d94",
+      "340e84dc-b414-4ade-9f2f-1e98f00054e8",
+      "72a6fa8e-d1c1-4cf8-8cd9-2c72c626c48d",
+      "27312f66-b90e-4e4a-995e-48f6346aebd2|78c4d3bf-ed8e-4260-89d3-7ece6a6854d3|e79db998-eac4-463c-b068-9427027943ed",
+      "2b97f020-a956-4933-b5c0-52942feed4b8",
+      "3edc5cbf-3c2d-4f75-9833-5ddceb4212b1",
+      "5be45133-969d-46de-bcaf-caadf58f6a41",
+      "74b0acd5-842b-40fa-ab51-231be76f7b19",
+      "86dc1346-c1b1-40c9-9f93-fe6e6a67520b",
+      "fc2731bc-3af0-4460-9efc-d30ac175c14b",
+      "c551142d-3444-4faa-ab9b-afe35b362cdc",
+      "d3352309-08d5-4171-8e88-3cec825e53c0"
+    ]
+  },
+  "steps": [],
+  "connections": [
+    {
+      "part": "0a37a5b0-2e68-4732-beed-045b8e2bc4ab",
+      "target": "29b9112a-663e-431f-877d-259fc605aeac",
+      "sourceRef": "6",
+      "targetRef": "square-pin-walls-1",
+      "depth": 60.18976812278248,
+      "gap": 4.230207159247621e-16,
+      "profile": "square-drive"
+    },
+    {
+      "part": "7a0282d4-8f11-46ea-b80a-ab970e5efb45",
+      "target": "9fb17cfc-2805-433f-a45d-d11f311cd083",
+      "sourceRef": "4",
+      "targetRef": "1",
+      "depth": 4.5499999999999545,
+      "gap": 1.1295530397274979e-15,
+      "profile": "round"
+    },
+    {
+      "part": "7a0282d4-8f11-46ea-b80a-ab970e5efb45",
+      "target": "29b9112a-663e-431f-877d-259fc605aeac",
+      "sourceRef": "5",
+      "targetRef": "square-pin-walls-1",
+      "depth": 41.13976812278247,
+      "gap": 1.6454376509536457e-13,
+      "profile": "square-drive"
+    },
+    {
+      "part": "7a0282d4-8f11-46ea-b80a-ab970e5efb45",
+      "target": "1bb52bc4-946f-4022-a291-795e7bdba1ad",
+      "sourceRef": "12",
+      "targetRef": "1",
+      "depth": 4.549999999999983,
+      "gap": 1.129553039727505e-15,
+      "profile": "round"
+    },
+    {
+      "part": "8b1ebe5e-fbec-4178-a486-f4d881c47ab4",
+      "target": "3d7d61a6-028d-4b76-9dde-2380fca6cbce",
+      "sourceRef": "2",
+      "targetRef": "1",
+      "depth": 4.549999999999997,
+      "gap": 1.428784137402234e-15,
+      "profile": "round"
+    },
+    {
+      "part": "8b1ebe5e-fbec-4178-a486-f4d881c47ab4",
+      "target": "bc0a53c3-1bd2-4e80-a3ca-05e7e4e01151",
+      "sourceRef": "14",
+      "targetRef": "1",
+      "depth": 4.549999999999997,
+      "gap": 1.428784137402234e-15,
+      "profile": "round"
+    },
+    {
+      "part": "c969d9f3-f3d5-4c35-8e41-6a56185e6e47",
+      "target": "1bb52bc4-946f-4022-a291-795e7bdba1ad",
+      "sourceRef": "1",
+      "targetRef": "6",
+      "depth": 4.550000000000011,
+      "gap": 1.182976216377634e-13,
+      "profile": "round"
+    },
+    {
+      "part": "c969d9f3-f3d5-4c35-8e41-6a56185e6e47",
+      "target": "97d2a09f-f4af-43b8-b10d-b0896d75c6f2",
+      "sourceRef": "4",
+      "targetRef": "6",
+      "depth": 4.549999999999869,
+      "gap": 2.735793186137673e-15,
+      "profile": "round"
+    },
+    {
+      "part": "c969d9f3-f3d5-4c35-8e41-6a56185e6e47",
+      "target": "29b9112a-663e-431f-877d-259fc605aeac",
+      "sourceRef": "5",
+      "targetRef": "square-pin-walls-1",
+      "depth": 34.789768122782476,
+      "gap": 5.1814236238982316e-14,
+      "profile": "square-drive"
+    },
+    {
+      "part": "c969d9f3-f3d5-4c35-8e41-6a56185e6e47",
+      "target": "9fb17cfc-2805-433f-a45d-d11f311cd083",
+      "sourceRef": "8",
+      "targetRef": "6",
+      "depth": 4.550000000000068,
+      "gap": 1.1577761676279408e-13,
+      "profile": "round"
+    },
+    {
+      "part": "c969d9f3-f3d5-4c35-8e41-6a56185e6e47",
+      "target": "b3c6649d-dfd3-4619-a6a6-579510061b51",
+      "sourceRef": "9",
+      "targetRef": "6",
+      "depth": 4.549999999999926,
+      "gap": 1.4287841374022124e-15,
+      "profile": "round"
+    },
+    {
+      "part": "c969d9f3-f3d5-4c35-8e41-6a56185e6e47",
+      "target": "2fb9513f-03d3-4d7b-afb8-719a169d6d1b",
+      "sourceRef": "25",
+      "targetRef": "59",
+      "depth": 4.549999999999983,
+      "gap": 1.1537763321596113e-15,
+      "profile": "round"
+    },
+    {
+      "part": "c969d9f3-f3d5-4c35-8e41-6a56185e6e47",
+      "target": "2fb9513f-03d3-4d7b-afb8-719a169d6d1b",
+      "sourceRef": "26",
+      "targetRef": "60",
+      "depth": 4.549999999999983,
+      "gap": 3.161285912775139e-15,
+      "profile": "round"
+    },
+    {
+      "part": "c969d9f3-f3d5-4c35-8e41-6a56185e6e47",
+      "target": "eff57f1f-4b13-4930-9ebc-4482e28df9f3",
+      "sourceRef": "42",
+      "targetRef": "6",
+      "depth": 4.549999999999983,
+      "gap": 6.1782888869342e-15,
+      "profile": "round"
+    },
+    {
+      "part": "c969d9f3-f3d5-4c35-8e41-6a56185e6e47",
+      "target": "fface97c-65ea-4ebb-bbed-1b80ff292c84",
+      "sourceRef": "43",
+      "targetRef": "1",
+      "depth": 4.549999999999983,
+      "gap": 2.735793186137659e-15,
+      "profile": "round"
+    },
+    {
+      "part": "c969d9f3-f3d5-4c35-8e41-6a56185e6e47",
+      "target": "66dd8a8d-69c0-4c0e-abff-ba1d34fda8fd",
+      "sourceRef": "44",
+      "targetRef": "1",
+      "depth": 4.549999999999983,
+      "gap": 1.4287841374022301e-15,
+      "profile": "round"
+    },
+    {
+      "part": "c969d9f3-f3d5-4c35-8e41-6a56185e6e47",
+      "target": "b00682d9-a20e-4250-90b8-d1e9150e2470",
+      "sourceRef": "50",
+      "targetRef": "1",
+      "depth": 2.771999999999906,
+      "gap": 3.001004656233303e-15,
+      "profile": "round"
+    },
+    {
+      "part": "c969d9f3-f3d5-4c35-8e41-6a56185e6e47",
+      "target": "8bfdd267-abfb-453d-830f-e67b3c59ca49",
+      "sourceRef": "51",
+      "targetRef": "6",
+      "depth": 4.550000000000011,
+      "gap": 1.1295530430938423e-15,
+      "profile": "round"
+    },
+    {
+      "part": "c969d9f3-f3d5-4c35-8e41-6a56185e6e47",
+      "target": "ecd6d787-1b2e-47f9-8928-13c0470743b9",
+      "sourceRef": "53",
+      "targetRef": "square-pin-walls-1",
+      "depth": 23.61844646089901,
+      "gap": 7.28521636654672e-14,
+      "profile": "square-drive"
+    },
+    {
+      "part": "c969d9f3-f3d5-4c35-8e41-6a56185e6e47",
+      "target": "b09669fc-0085-4733-8943-2aa0d334f0b8",
+      "sourceRef": "55",
+      "targetRef": "1",
+      "depth": 4.549999999999926,
+      "gap": 1.4287841374022124e-15,
+      "profile": "round"
+    },
+    {
+      "part": "c969d9f3-f3d5-4c35-8e41-6a56185e6e47",
+      "target": "ebab5e7c-08a7-4ef1-872b-cb656f954c1c",
+      "sourceRef": "58",
+      "targetRef": "6",
+      "depth": 4.549999999999983,
+      "gap": 2.735793186137659e-15,
+      "profile": "round"
+    },
+    {
+      "part": "c969d9f3-f3d5-4c35-8e41-6a56185e6e47",
+      "target": "8b1ebe5e-fbec-4178-a486-f4d881c47ab4",
+      "sourceRef": "67",
+      "targetRef": "59",
+      "depth": 4.550000000000011,
+      "gap": 6.089663003567494e-14,
+      "profile": "round"
+    },
+    {
+      "part": "c969d9f3-f3d5-4c35-8e41-6a56185e6e47",
+      "target": "8b1ebe5e-fbec-4178-a486-f4d881c47ab4",
+      "sourceRef": "68",
+      "targetRef": "60",
+      "depth": 4.55000000000004,
+      "gap": 6.240005545886184e-14,
+      "profile": "round"
+    },
+    {
+      "part": "cd70f64c-7232-480e-a947-d8dbe37d6043",
+      "target": "97d2a09f-f4af-43b8-b10d-b0896d75c6f2",
+      "sourceRef": "3",
+      "targetRef": "1",
+      "depth": 4.549999999999983,
+      "gap": 1.4287841374022301e-15,
+      "profile": "round"
+    },
+    {
+      "part": "cd70f64c-7232-480e-a947-d8dbe37d6043",
+      "target": "29b9112a-663e-431f-877d-259fc605aeac",
+      "sourceRef": "6",
+      "targetRef": "square-pin-walls-1",
+      "depth": 28.439768122782368,
+      "gap": 1.892446913218617e-7,
+      "profile": "square-drive"
+    },
+    {
+      "part": "cd70f64c-7232-480e-a947-d8dbe37d6043",
+      "target": "b3c6649d-dfd3-4619-a6a6-579510061b51",
+      "sourceRef": "10",
+      "targetRef": "1",
+      "depth": 4.549999999999926,
+      "gap": 3.7848948365401185e-7,
+      "profile": "round"
+    },
+    {
+      "part": "756fc7ab-869e-4fb1-b23d-865867f8d8cd",
+      "target": "b09669fc-0085-4733-8943-2aa0d334f0b8",
+      "sourceRef": "5",
+      "targetRef": "6",
+      "depth": 4.5464464608990625,
+      "gap": 8.07092144702263e-14,
+      "profile": "round"
+    },
+    {
+      "part": "756fc7ab-869e-4fb1-b23d-865867f8d8cd",
+      "target": "66dd8a8d-69c0-4c0e-abff-ba1d34fda8fd",
+      "sourceRef": "13",
+      "targetRef": "6",
+      "depth": 4.546446460899006,
+      "gap": 7.404350312316008e-14,
+      "profile": "round"
+    },
+    {
+      "part": "756fc7ab-869e-4fb1-b23d-865867f8d8cd",
+      "target": "fface97c-65ea-4ebb-bbed-1b80ff292c84",
+      "sourceRef": "15",
+      "targetRef": "6",
+      "depth": 4.546446460899006,
+      "gap": 7.757579280806679e-14,
+      "profile": "round"
+    },
+    {
+      "part": "756fc7ab-869e-4fb1-b23d-865867f8d8cd",
+      "target": "ecd6d787-1b2e-47f9-8928-13c0470743b9",
+      "sourceRef": "motor-output",
+      "targetRef": "square-pin-walls-2",
+      "depth": 5.461000000000013,
+      "gap": 1.5157319843694985e-15,
+      "profile": "square-drive"
+    },
+    {
+      "part": "e76646d8-1011-4430-8dcd-779fc92002dc",
+      "target": "8b1ebe5e-fbec-4178-a486-f4d881c47ab4",
+      "sourceRef": "3",
+      "targetRef": "52",
+      "depth": 4.550000000000084,
+      "gap": 1.306556615264611e-13,
+      "profile": "round"
+    },
+    {
+      "part": "e76646d8-1011-4430-8dcd-779fc92002dc",
+      "target": "8b1ebe5e-fbec-4178-a486-f4d881c47ab4",
+      "sourceRef": "4",
+      "targetRef": "32",
+      "depth": 4.550000000000084,
+      "gap": 1.1429614175322195e-13,
+      "profile": "round"
+    },
+    {
+      "part": "e76646d8-1011-4430-8dcd-779fc92002dc",
+      "target": "2fb9513f-03d3-4d7b-afb8-719a169d6d1b",
+      "sourceRef": "45",
+      "targetRef": "52",
+      "depth": 4.54999999999994,
+      "gap": 9.185645400394254e-14,
+      "profile": "round"
+    },
+    {
+      "part": "e76646d8-1011-4430-8dcd-779fc92002dc",
+      "target": "2fb9513f-03d3-4d7b-afb8-719a169d6d1b",
+      "sourceRef": "46",
+      "targetRef": "32",
+      "depth": 4.54999999999994,
+      "gap": 9.054167232270025e-14,
+      "profile": "round"
+    },
+    {
+      "part": "e76646d8-1011-4430-8dcd-779fc92002dc",
+      "target": "7a0282d4-8f11-46ea-b80a-ab970e5efb45",
+      "sourceRef": "63",
+      "targetRef": "32",
+      "depth": 4.54999999999999,
+      "gap": 1.1063428541615357e-13,
+      "profile": "round"
+    },
+    {
+      "part": "e76646d8-1011-4430-8dcd-779fc92002dc",
+      "target": "0a37a5b0-2e68-4732-beed-045b8e2bc4ab",
+      "sourceRef": "64",
+      "targetRef": "17",
+      "depth": 4.549999999999864,
+      "gap": 4.077363058619303e-15,
+      "profile": "round"
+    },
+    {
+      "part": "e76646d8-1011-4430-8dcd-779fc92002dc",
+      "target": "7a0282d4-8f11-46ea-b80a-ab970e5efb45",
+      "sourceRef": "69",
+      "targetRef": "52",
+      "depth": 4.549999999999991,
+      "gap": 1.1063428541615357e-13,
+      "profile": "round"
+    },
+    {
+      "part": "e76646d8-1011-4430-8dcd-779fc92002dc",
+      "target": "0a37a5b0-2e68-4732-beed-045b8e2bc4ab",
+      "sourceRef": "70",
+      "targetRef": "37",
+      "depth": 4.549999999999862,
+      "gap": 7.396405918117308e-16,
+      "profile": "round"
+    },
+    {
+      "part": "3c8a5583-c195-4fd3-83f1-bc9229309ff8",
+      "target": "29b9112a-663e-431f-877d-259fc605aeac",
+      "sourceRef": "1",
+      "targetRef": "square-pin-walls-1",
+      "depth": 23.499999999999886,
+      "gap": 9.436895709313957e-16,
+      "profile": "square-drive"
+    },
+    {
+      "part": "ca5cee0f-5699-430a-98a9-f71a4a1a59f9",
+      "target": "29b9112a-663e-431f-877d-259fc605aeac",
+      "sourceRef": "37",
+      "targetRef": "square-pin-walls-1",
+      "depth": 16.553768122782515,
+      "gap": 1.8378374514219103e-15,
+      "profile": "square-drive"
+    },
+    {
+      "part": "ca5cee0f-5699-430a-98a9-f71a4a1a59f9",
+      "target": "29b9112a-663e-431f-877d-259fc605aeac",
+      "sourceRef": "39",
+      "targetRef": "square-pin-walls-1",
+      "depth": 11.092768122782502,
+      "gap": 1.231544657674111e-15,
+      "profile": "square-drive"
+    },
+    {
+      "part": "ca5cee0f-5699-430a-98a9-f71a4a1a59f9",
+      "target": "29b9112a-663e-431f-877d-259fc605aeac",
+      "sourceRef": "square-hole-1",
+      "targetRef": "square-pin-walls-1",
+      "depth": 15.664768122782505,
+      "gap": 1.7391386245327328e-15,
+      "profile": "square-drive"
+    },
+    {
+      "part": "75e6a1cb-24ea-459d-83e5-43cad79bd1aa",
+      "target": "29b9112a-663e-431f-877d-259fc605aeac",
+      "sourceRef": "3",
+      "targetRef": "square-pin-walls-1",
+      "depth": 0.9999999999998863,
+      "gap": 1.1102230246250303e-16,
+      "profile": "square-drive"
+    },
+    {
+      "part": "047f90aa-c392-42df-b2e4-adc344f02655",
+      "target": "ecd6d787-1b2e-47f9-8928-13c0470743b9",
+      "sourceRef": "9",
+      "targetRef": "square-pin-walls-1",
+      "depth": 6.349999999999994,
+      "gap": 5.0741147392570065e-15,
+      "profile": "square-drive"
+    },
+    {
+      "part": "047f90aa-c392-42df-b2e4-adc344f02655",
+      "target": "ecd6d787-1b2e-47f9-8928-13c0470743b9",
+      "sourceRef": "14",
+      "targetRef": "square-pin-walls-1",
+      "depth": 11.811000000000007,
+      "gap": 6.480965544035051e-15,
+      "profile": "square-drive"
+    },
+    {
+      "part": "047f90aa-c392-42df-b2e4-adc344f02655",
+      "target": "ecd6d787-1b2e-47f9-8928-13c0470743b9",
+      "sourceRef": "square-hole-2",
+      "targetRef": "square-pin-walls-1",
+      "depth": 10.921999999999997,
+      "gap": 6.2484738849535665e-15,
+      "profile": "square-drive"
+    },
+    {
+      "part": "733678ea-5e09-458d-92e2-30f193bca056",
+      "target": "9fbc8c54-74fd-4292-a092-12ccc1910630",
+      "sourceRef": "3",
+      "targetRef": "1",
+      "depth": 4.550000000000011,
+      "gap": 1.428784137402239e-15,
+      "profile": "round"
+    },
+    {
+      "part": "733678ea-5e09-458d-92e2-30f193bca056",
+      "target": "1ecd6cb9-5137-43d4-b587-79a7a4ec2094",
+      "sourceRef": "4",
+      "targetRef": "1",
+      "depth": 4.550000000000011,
+      "gap": 1.428784137402239e-15,
+      "profile": "round"
+    },
+    {
+      "part": "733678ea-5e09-458d-92e2-30f193bca056",
+      "target": "eff57f1f-4b13-4930-9ebc-4482e28df9f3",
+      "sourceRef": "5",
+      "targetRef": "1",
+      "depth": 4.550000000000011,
+      "gap": 1.4287841374022388e-15,
+      "profile": "round"
+    },
+    {
+      "part": "733678ea-5e09-458d-92e2-30f193bca056",
+      "target": "8bfdd267-abfb-453d-830f-e67b3c59ca49",
+      "sourceRef": "13",
+      "targetRef": "1",
+      "depth": 4.549999999999983,
+      "gap": 9.750459048396432e-15,
+      "profile": "round"
+    },
+    {
+      "part": "733678ea-5e09-458d-92e2-30f193bca056",
+      "target": "ecd6d787-1b2e-47f9-8928-13c0470743b9",
+      "sourceRef": "17",
+      "targetRef": "square-pin-walls-1",
+      "depth": 17.268446460899014,
+      "gap": 6.872443399317508e-14,
+      "profile": "square-drive"
+    },
+    {
+      "part": "733678ea-5e09-458d-92e2-30f193bca056",
+      "target": "ebab5e7c-08a7-4ef1-872b-cb656f954c1c",
+      "sourceRef": "20",
+      "targetRef": "1",
+      "depth": 4.550000000000011,
+      "gap": 1.4287841374022392e-15,
+      "profile": "round"
+    },
+    {
+      "part": "733678ea-5e09-458d-92e2-30f193bca056",
+      "target": "f320e35f-a7d8-4cff-b0d9-9ee2b95db084",
+      "sourceRef": "29",
+      "targetRef": "square-pin-walls-1",
+      "depth": 49.02199999999996,
+      "gap": 5.749044198872109e-14,
+      "profile": "square-drive"
+    },
+    {
+      "part": "733678ea-5e09-458d-92e2-30f193bca056",
+      "target": "18a6ddf1-83c2-483f-aa26-eb46f6b263bd",
+      "sourceRef": "45",
+      "targetRef": "1",
+      "depth": 4.550000000000011,
+      "gap": 1.428784137402239e-15,
+      "profile": "round"
+    },
+    {
+      "part": "733678ea-5e09-458d-92e2-30f193bca056",
+      "target": "a54d5104-ba4d-4c14-b6e6-c8ad31eb72be",
+      "sourceRef": "46",
+      "targetRef": "1",
+      "depth": 4.550000000000011,
+      "gap": 1.428784137402239e-15,
+      "profile": "round"
+    },
+    {
+      "part": "e92a9487-ad2a-4e51-b7f1-85021c75bd15",
+      "target": "f320e35f-a7d8-4cff-b0d9-9ee2b95db084",
+      "sourceRef": "2",
+      "targetRef": "square-pin-walls-1",
+      "depth": 38.10355353910094,
+      "gap": 6.0655865744328104e-15,
+      "profile": "square-drive"
+    },
+    {
+      "part": "e92a9487-ad2a-4e51-b7f1-85021c75bd15",
+      "target": "f320e35f-a7d8-4cff-b0d9-9ee2b95db084",
+      "sourceRef": "4",
+      "targetRef": "square-pin-walls-1",
+      "depth": 43.564553539100956,
+      "gap": 1.1634132779550547e-14,
+      "profile": "square-drive"
+    },
+    {
+      "part": "e92a9487-ad2a-4e51-b7f1-85021c75bd15",
+      "target": "f320e35f-a7d8-4cff-b0d9-9ee2b95db084",
+      "sourceRef": "square-hole-1",
+      "targetRef": "square-pin-walls-1",
+      "depth": 42.675553539100946,
+      "gap": 8.670459582862273e-15,
+      "profile": "square-drive"
+    },
+    {
+      "part": "5898bf53-5416-4403-a87b-a0897d24a753",
+      "target": "1ecd6cb9-5137-43d4-b587-79a7a4ec2094",
+      "sourceRef": "3",
+      "targetRef": "6",
+      "depth": 4.550000000000011,
+      "gap": 4.6735246690629194e-15,
+      "profile": "round"
+    },
+    {
+      "part": "5898bf53-5416-4403-a87b-a0897d24a753",
+      "target": "9fbc8c54-74fd-4292-a092-12ccc1910630",
+      "sourceRef": "4",
+      "targetRef": "6",
+      "depth": 4.550000000000011,
+      "gap": 1.428784137402239e-15,
+      "profile": "round"
+    },
+    {
+      "part": "5898bf53-5416-4403-a87b-a0897d24a753",
+      "target": "ecd6d787-1b2e-47f9-8928-13c0470743b9",
+      "sourceRef": "18",
+      "targetRef": "square-pin-walls-1",
+      "depth": 4.568446460899054,
+      "gap": 6.982363928292563e-14,
+      "profile": "square-drive"
+    },
+    {
+      "part": "5898bf53-5416-4403-a87b-a0897d24a753",
+      "target": "f320e35f-a7d8-4cff-b0d9-9ee2b95db084",
+      "sourceRef": "30",
+      "targetRef": "square-pin-walls-1",
+      "depth": 36.322,
+      "gap": 6.198674689467567e-14,
+      "profile": "square-drive"
+    },
+    {
+      "part": "5898bf53-5416-4403-a87b-a0897d24a753",
+      "target": "a54d5104-ba4d-4c14-b6e6-c8ad31eb72be",
+      "sourceRef": "45",
+      "targetRef": "6",
+      "depth": 4.550000000000011,
+      "gap": 6.1782888869341945e-15,
+      "profile": "round"
+    },
+    {
+      "part": "5898bf53-5416-4403-a87b-a0897d24a753",
+      "target": "18a6ddf1-83c2-483f-aa26-eb46f6b263bd",
+      "sourceRef": "46",
+      "targetRef": "6",
+      "depth": 4.550000000000011,
+      "gap": 1.3239157031239806e-14,
+      "profile": "round"
+    },
+    {
+      "part": "bbe572ba-fdbf-4cb1-befe-9e9f004e2172",
+      "target": "f320e35f-a7d8-4cff-b0d9-9ee2b95db084",
+      "sourceRef": "1",
+      "targetRef": "square-pin-walls-1",
+      "depth": 30.97705353910095,
+      "gap": 4.601770714139976e-15,
+      "profile": "square-drive"
+    },
+    {
+      "part": "858f00b8-6f88-464a-b7dc-3e72d6c4073c",
+      "target": "f320e35f-a7d8-4cff-b0d9-9ee2b95db084",
+      "sourceRef": "7",
+      "targetRef": "square-pin-walls-1",
+      "depth": 27.564553539100956,
+      "gap": 4.206749426806519e-15,
+      "profile": "square-drive"
+    },
+    {
+      "part": "858f00b8-6f88-464a-b7dc-3e72d6c4073c",
+      "target": "f320e35f-a7d8-4cff-b0d9-9ee2b95db084",
+      "sourceRef": "12",
+      "targetRef": "square-pin-walls-1",
+      "depth": 22.103553539100943,
+      "gap": 3.947707652264869e-15,
+      "profile": "square-drive"
+    },
+    {
+      "part": "858f00b8-6f88-464a-b7dc-3e72d6c4073c",
+      "target": "f320e35f-a7d8-4cff-b0d9-9ee2b95db084",
+      "sourceRef": "square-hole-1",
+      "targetRef": "square-pin-walls-1",
+      "depth": 26.675553539100946,
+      "gap": 4.130738005993615e-15,
+      "profile": "square-drive"
+    },
+    {
+      "part": "07a1422e-c28b-4aa6-a3ab-f22d6c60f3a1",
+      "target": "f320e35f-a7d8-4cff-b0d9-9ee2b95db084",
+      "sourceRef": "1",
+      "targetRef": "square-pin-walls-1",
+      "depth": 18.39763353910095,
+      "gap": 2.7811451995301548e-15,
+      "profile": "square-drive"
+    },
+    {
+      "part": "52fa1eca-6e3b-45f5-bb5b-2686aa94d49b",
+      "target": "8e7a41ea-be68-4997-9e30-a0e8306b271d",
+      "sourceRef": "6",
+      "targetRef": "square-pin-walls-1",
+      "depth": 60.18976812278245,
+      "gap": 7.6173975850072e-15,
+      "profile": "square-drive"
+    },
+    {
+      "part": "4408064e-0704-48e6-ad1c-e4b3372de976",
+      "target": "d73efe5c-92ab-4097-bdf0-5e9b652a2ed1",
+      "sourceRef": "4",
+      "targetRef": "1",
+      "depth": 4.549999999999983,
+      "gap": 2.195992084323999e-15,
+      "profile": "round"
+    },
+    {
+      "part": "4408064e-0704-48e6-ad1c-e4b3372de976",
+      "target": "8e7a41ea-be68-4997-9e30-a0e8306b271d",
+      "sourceRef": "5",
+      "targetRef": "square-pin-walls-1",
+      "depth": 41.13976812278244,
+      "gap": 1.548451606101169e-13,
+      "profile": "square-drive"
+    },
+    {
+      "part": "4408064e-0704-48e6-ad1c-e4b3372de976",
+      "target": "81e8fb53-5460-453f-b5a0-520043be83d7",
+      "sourceRef": "12",
+      "targetRef": "1",
+      "depth": 4.549999999999997,
+      "gap": 5.2536977447412416e-15,
+      "profile": "round"
+    },
+    {
+      "part": "d03824be-55dc-4fe6-ad33-39eb957c001c",
+      "target": "11e440d1-a623-47ab-bc06-9dc2e7bff5fe",
+      "sourceRef": "4",
+      "targetRef": "1",
+      "depth": 4.549999999999997,
+      "gap": 1.4287841374022343e-15,
+      "profile": "round"
+    },
+    {
+      "part": "d03824be-55dc-4fe6-ad33-39eb957c001c",
+      "target": "61acce9f-f10c-4c4c-9757-d11ac9fcf232",
+      "sourceRef": "12",
+      "targetRef": "1",
+      "depth": 4.549999999999983,
+      "gap": 1.3239157031239811e-14,
+      "profile": "round"
+    },
+    {
+      "part": "69b8d368-73db-4641-aa7b-966a7548d019",
+      "target": "81e8fb53-5460-453f-b5a0-520043be83d7",
+      "sourceRef": "1",
+      "targetRef": "6",
+      "depth": 4.550000000000026,
+      "gap": 9.883932019559022e-14,
+      "profile": "round"
+    },
+    {
+      "part": "69b8d368-73db-4641-aa7b-966a7548d019",
+      "target": "8357a9d8-a80c-4840-bc0c-7d9caa469d8e",
+      "sourceRef": "4",
+      "targetRef": "6",
+      "depth": 4.549999999999741,
+      "gap": 4.8417068174990176e-15,
+      "profile": "round"
+    },
+    {
+      "part": "69b8d368-73db-4641-aa7b-966a7548d019",
+      "target": "8e7a41ea-be68-4997-9e30-a0e8306b271d",
+      "sourceRef": "5",
+      "targetRef": "square-pin-walls-1",
+      "depth": 34.789768122782476,
+      "gap": 8.861995901177218e-14,
+      "profile": "square-drive"
+    },
+    {
+      "part": "69b8d368-73db-4641-aa7b-966a7548d019",
+      "target": "d73efe5c-92ab-4097-bdf0-5e9b652a2ed1",
+      "sourceRef": "8",
+      "targetRef": "6",
+      "depth": 4.55000000000004,
+      "gap": 9.447374143284985e-14,
+      "profile": "round"
+    },
+    {
+      "part": "69b8d368-73db-4641-aa7b-966a7548d019",
+      "target": "bbc169bb-63f5-4bbc-97fe-49b4fe14a21a",
+      "sourceRef": "9",
+      "targetRef": "6",
+      "depth": 4.549999999999812,
+      "gap": 2.9294465911439017e-15,
+      "profile": "round"
+    },
+    {
+      "part": "69b8d368-73db-4641-aa7b-966a7548d019",
+      "target": "272a5a28-be5e-4c4f-b425-e44bd731cf08",
+      "sourceRef": "25",
+      "targetRef": "59",
+      "depth": 4.549999999999983,
+      "gap": 7.225846633117775e-14,
+      "profile": "round"
+    },
+    {
+      "part": "69b8d368-73db-4641-aa7b-966a7548d019",
+      "target": "272a5a28-be5e-4c4f-b425-e44bd731cf08",
+      "sourceRef": "26",
+      "targetRef": "60",
+      "depth": 4.549999999999983,
+      "gap": 7.548140432533931e-14,
+      "profile": "round"
+    },
+    {
+      "part": "69b8d368-73db-4641-aa7b-966a7548d019",
+      "target": "c0097d91-edbd-4838-ad87-d9dc39ec1a72",
+      "sourceRef": "42",
+      "targetRef": "6",
+      "depth": 4.549999999999969,
+      "gap": 6.5905687705939905e-15,
+      "profile": "round"
+    },
+    {
+      "part": "69b8d368-73db-4641-aa7b-966a7548d019",
+      "target": "c2e0e752-1591-4679-9a97-e1fcf7f7b51d",
+      "sourceRef": "43",
+      "targetRef": "1",
+      "depth": 4.5499999999998835,
+      "gap": 1.841226937385759e-15,
+      "profile": "round"
+    },
+    {
+      "part": "69b8d368-73db-4641-aa7b-966a7548d019",
+      "target": "621d7c69-3302-445b-a2d1-3cc7bb6824ac",
+      "sourceRef": "44",
+      "targetRef": "1",
+      "depth": 4.549999999999869,
+      "gap": 1.8412269373857472e-15,
+      "profile": "round"
+    },
+    {
+      "part": "69b8d368-73db-4641-aa7b-966a7548d019",
+      "target": "4620ec81-3fc5-428c-bac9-f3ed1aa4d9a8",
+      "sourceRef": "50",
+      "targetRef": "1",
+      "depth": 2.771999999999778,
+      "gap": 1.1902645496422107e-15,
+      "profile": "round"
+    },
+    {
+      "part": "69b8d368-73db-4641-aa7b-966a7548d019",
+      "target": "641606e5-94b7-4e01-a4ad-e7b4d3128e5a",
+      "sourceRef": "51",
+      "targetRef": "6",
+      "depth": 4.549999999999983,
+      "gap": 1.4540380070824907e-15,
+      "profile": "round"
+    },
+    {
+      "part": "69b8d368-73db-4641-aa7b-966a7548d019",
+      "target": "018d8a4b-91e1-4a66-85af-14ff28ab9009",
+      "sourceRef": "53",
+      "targetRef": "square-pin-walls-1",
+      "depth": 23.618446460898994,
+      "gap": 1.7959700963092985e-14,
+      "profile": "square-drive"
+    },
+    {
+      "part": "69b8d368-73db-4641-aa7b-966a7548d019",
+      "target": "bac78b52-34ca-433a-ae0e-e7ea67a4871d",
+      "sourceRef": "55",
+      "targetRef": "1",
+      "depth": 4.549999999999841,
+      "gap": 2.9294465911438816e-15,
+      "profile": "round"
+    },
+    {
+      "part": "69b8d368-73db-4641-aa7b-966a7548d019",
+      "target": "3ed7735a-ae43-447f-9d8e-6e12007dabdf",
+      "sourceRef": "58",
+      "targetRef": "6",
+      "depth": 4.5499999999998835,
+      "gap": 2.9294465911438524e-15,
+      "profile": "round"
+    },
+    {
+      "part": "69b8d368-73db-4641-aa7b-966a7548d019",
+      "target": "d03824be-55dc-4fe6-ad33-39eb957c001c",
+      "sourceRef": "67",
+      "targetRef": "59",
+      "depth": 4.550000000000011,
+      "gap": 5.583589633622079e-14,
+      "profile": "round"
+    },
+    {
+      "part": "69b8d368-73db-4641-aa7b-966a7548d019",
+      "target": "d03824be-55dc-4fe6-ad33-39eb957c001c",
+      "sourceRef": "68",
+      "targetRef": "60",
+      "depth": 4.550000000000011,
+      "gap": 5.583589633622079e-14,
+      "profile": "round"
+    },
+    {
+      "part": "4a8d4f5f-f27c-460c-8c8a-137f88dbd78e",
+      "target": "8357a9d8-a80c-4840-bc0c-7d9caa469d8e",
+      "sourceRef": "3",
+      "targetRef": "1",
+      "depth": 4.549999999999997,
+      "gap": 4.84170681749929e-15,
+      "profile": "round"
+    },
+    {
+      "part": "4a8d4f5f-f27c-460c-8c8a-137f88dbd78e",
+      "target": "8e7a41ea-be68-4997-9e30-a0e8306b271d",
+      "sourceRef": "6",
+      "targetRef": "square-pin-walls-1",
+      "depth": 28.43976812278224,
+      "gap": 1.8924466693678843e-7,
+      "profile": "square-drive"
+    },
+    {
+      "part": "4a8d4f5f-f27c-460c-8c8a-137f88dbd78e",
+      "target": "bbc169bb-63f5-4bbc-97fe-49b4fe14a21a",
+      "sourceRef": "10",
+      "targetRef": "1",
+      "depth": 4.549999999999926,
+      "gap": 3.784894768452228e-7,
+      "profile": "round"
+    },
+    {
+      "part": "a6e5fbb3-fa0b-4322-b2b7-03e8534c56a8",
+      "target": "bac78b52-34ca-433a-ae0e-e7ea67a4871d",
+      "sourceRef": "5",
+      "targetRef": "6",
+      "depth": 4.546446460899162,
+      "gap": 3.096934492333958e-14,
+      "profile": "round"
+    },
+    {
+      "part": "a6e5fbb3-fa0b-4322-b2b7-03e8534c56a8",
+      "target": "621d7c69-3302-445b-a2d1-3cc7bb6824ac",
+      "sourceRef": "13",
+      "targetRef": "6",
+      "depth": 4.546446460899119,
+      "gap": 4.0100774285872306e-14,
+      "profile": "round"
+    },
+    {
+      "part": "a6e5fbb3-fa0b-4322-b2b7-03e8534c56a8",
+      "target": "c2e0e752-1591-4679-9a97-e1fcf7f7b51d",
+      "sourceRef": "15",
+      "targetRef": "6",
+      "depth": 4.546446460899119,
+      "gap": 3.493533081618018e-14,
+      "profile": "round"
+    },
+    {
+      "part": "a6e5fbb3-fa0b-4322-b2b7-03e8534c56a8",
+      "target": "018d8a4b-91e1-4a66-85af-14ff28ab9009",
+      "sourceRef": "motor-output",
+      "targetRef": "square-pin-walls-2",
+      "depth": 5.461000000000027,
+      "gap": 1.4752284441020918e-14,
+      "profile": "square-drive"
+    },
+    {
+      "part": "59adb814-2132-4efc-995f-1aefea47cda9",
+      "target": "d03824be-55dc-4fe6-ad33-39eb957c001c",
+      "sourceRef": "3",
+      "targetRef": "52",
+      "depth": 4.5500000000001535,
+      "gap": 7.072134998404156e-14,
+      "profile": "round"
+    },
+    {
+      "part": "59adb814-2132-4efc-995f-1aefea47cda9",
+      "target": "d03824be-55dc-4fe6-ad33-39eb957c001c",
+      "sourceRef": "4",
+      "targetRef": "32",
+      "depth": 4.550000000000125,
+      "gap": 7.072134998404156e-14,
+      "profile": "round"
+    },
+    {
+      "part": "59adb814-2132-4efc-995f-1aefea47cda9",
+      "target": "272a5a28-be5e-4c4f-b425-e44bd731cf08",
+      "sourceRef": "45",
+      "targetRef": "52",
+      "depth": 4.549999999999969,
+      "gap": 6.305497923021771e-14,
+      "profile": "round"
+    },
+    {
+      "part": "59adb814-2132-4efc-995f-1aefea47cda9",
+      "target": "272a5a28-be5e-4c4f-b425-e44bd731cf08",
+      "sourceRef": "46",
+      "targetRef": "32",
+      "depth": 4.5499999999999545,
+      "gap": 5.728641033551235e-14,
+      "profile": "round"
+    },
+    {
+      "part": "59adb814-2132-4efc-995f-1aefea47cda9",
+      "target": "4408064e-0704-48e6-ad1c-e4b3372de976",
+      "sourceRef": "63",
+      "targetRef": "32",
+      "depth": 4.550000000000026,
+      "gap": 8.470974667412127e-14,
+      "profile": "round"
+    },
+    {
+      "part": "59adb814-2132-4efc-995f-1aefea47cda9",
+      "target": "52fa1eca-6e3b-45f5-bb5b-2686aa94d49b",
+      "sourceRef": "64",
+      "targetRef": "17",
+      "depth": 4.549999999999898,
+      "gap": 1.6591471161425603e-14,
+      "profile": "round"
+    },
+    {
+      "part": "59adb814-2132-4efc-995f-1aefea47cda9",
+      "target": "4408064e-0704-48e6-ad1c-e4b3372de976",
+      "sourceRef": "69",
+      "targetRef": "52",
+      "depth": 4.55000000000004,
+      "gap": 7.049926138077574e-14,
+      "profile": "round"
+    },
+    {
+      "part": "59adb814-2132-4efc-995f-1aefea47cda9",
+      "target": "52fa1eca-6e3b-45f5-bb5b-2686aa94d49b",
+      "sourceRef": "70",
+      "targetRef": "37",
+      "depth": 4.549999999999898,
+      "gap": 7.521075607365461e-16,
+      "profile": "round"
+    },
+    {
+      "part": "b389a167-1590-47c4-821c-c461620647b1",
+      "target": "8e7a41ea-be68-4997-9e30-a0e8306b271d",
+      "sourceRef": "1",
+      "targetRef": "square-pin-walls-1",
+      "depth": 23.499999999999844,
+      "gap": 3.275926045949181e-15,
+      "profile": "square-drive"
+    },
+    {
+      "part": "bdd14c94-c9fa-4fff-8d6d-404cb8b2a7df",
+      "target": "8e7a41ea-be68-4997-9e30-a0e8306b271d",
+      "sourceRef": "37",
+      "targetRef": "square-pin-walls-1",
+      "depth": 16.553768122782486,
+      "gap": 3.3534575423563203e-15,
+      "profile": "square-drive"
+    },
+    {
+      "part": "bdd14c94-c9fa-4fff-8d6d-404cb8b2a7df",
+      "target": "8e7a41ea-be68-4997-9e30-a0e8306b271d",
+      "sourceRef": "39",
+      "targetRef": "square-pin-walls-1",
+      "depth": 11.092768122782488,
+      "gap": 7.741707500086512e-15,
+      "profile": "square-drive"
+    },
+    {
+      "part": "bdd14c94-c9fa-4fff-8d6d-404cb8b2a7df",
+      "target": "8e7a41ea-be68-4997-9e30-a0e8306b271d",
+      "sourceRef": "square-hole-1",
+      "targetRef": "square-pin-walls-1",
+      "depth": 15.66476812278249,
+      "gap": 3.834602075875522e-15,
+      "profile": "square-drive"
+    },
+    {
+      "part": "513a15cf-6986-4b1d-8f52-f79f3733b9eb",
+      "target": "8e7a41ea-be68-4997-9e30-a0e8306b271d",
+      "sourceRef": "3",
+      "targetRef": "square-pin-walls-1",
+      "depth": 0.9999999999998437,
+      "gap": 6.979058260656571e-16,
+      "profile": "square-drive"
+    },
+    {
+      "part": "fd48d45f-ead8-45a3-bdf4-e68d2207e441",
+      "target": "018d8a4b-91e1-4a66-85af-14ff28ab9009",
+      "sourceRef": "9",
+      "targetRef": "square-pin-walls-1",
+      "depth": 6.349999999999994,
+      "gap": 1.6833982681155718e-14,
+      "profile": "square-drive"
+    },
+    {
+      "part": "fd48d45f-ead8-45a3-bdf4-e68d2207e441",
+      "target": "018d8a4b-91e1-4a66-85af-14ff28ab9009",
+      "sourceRef": "14",
+      "targetRef": "square-pin-walls-1",
+      "depth": 11.810999999999993,
+      "gap": 1.411834650951287e-14,
+      "profile": "square-drive"
+    },
+    {
+      "part": "fd48d45f-ead8-45a3-bdf4-e68d2207e441",
+      "target": "018d8a4b-91e1-4a66-85af-14ff28ab9009",
+      "sourceRef": "square-hole-2",
+      "targetRef": "square-pin-walls-1",
+      "depth": 10.921999999999997,
+      "gap": 1.4458242743349245e-14,
+      "profile": "square-drive"
+    },
+    {
+      "part": "6d5428cd-0f94-4d76-ab43-d31229788d9d",
+      "target": "7a1145ca-0608-4c68-a166-704f365f4526",
+      "sourceRef": "3",
+      "targetRef": "1",
+      "depth": 4.549999999999997,
+      "gap": 1.0225111361675975e-15,
+      "profile": "round"
+    },
+    {
+      "part": "6d5428cd-0f94-4d76-ab43-d31229788d9d",
+      "target": "a668b251-5cc5-4988-95fb-b647bc651abf",
+      "sourceRef": "4",
+      "targetRef": "1",
+      "depth": 4.549999999999997,
+      "gap": 1.0225111361675975e-15,
+      "profile": "round"
+    },
+    {
+      "part": "6d5428cd-0f94-4d76-ab43-d31229788d9d",
+      "target": "c0097d91-edbd-4838-ad87-d9dc39ec1a72",
+      "sourceRef": "5",
+      "targetRef": "1",
+      "depth": 4.549999999999926,
+      "gap": 1.246817264966264e-15,
+      "profile": "round"
+    },
+    {
+      "part": "6d5428cd-0f94-4d76-ab43-d31229788d9d",
+      "target": "641606e5-94b7-4e01-a4ad-e7b4d3128e5a",
+      "sourceRef": "13",
+      "targetRef": "1",
+      "depth": 4.549999999999898,
+      "gap": 1.450763637206572e-14,
+      "profile": "round"
+    },
+    {
+      "part": "6d5428cd-0f94-4d76-ab43-d31229788d9d",
+      "target": "018d8a4b-91e1-4a66-85af-14ff28ab9009",
+      "sourceRef": "17",
+      "targetRef": "square-pin-walls-1",
+      "depth": 17.2684464608989,
+      "gap": 1.8959741430811788e-14,
+      "profile": "square-drive"
+    },
+    {
+      "part": "6d5428cd-0f94-4d76-ab43-d31229788d9d",
+      "target": "3ed7735a-ae43-447f-9d8e-6e12007dabdf",
+      "sourceRef": "20",
+      "targetRef": "1",
+      "depth": 4.549999999999997,
+      "gap": 2.929446591143773e-15,
+      "profile": "round"
+    },
+    {
+      "part": "6d5428cd-0f94-4d76-ab43-d31229788d9d",
+      "target": "6c2ddfa2-911d-492e-8940-c7e77a6fdcc4",
+      "sourceRef": "29",
+      "targetRef": "square-pin-walls-1",
+      "depth": 49.0219999999998,
+      "gap": 6.531762214532155e-14,
+      "profile": "square-drive"
+    },
+    {
+      "part": "6d5428cd-0f94-4d76-ab43-d31229788d9d",
+      "target": "2f9f5e9a-0053-4c82-b90b-c626fa0d18c6",
+      "sourceRef": "45",
+      "targetRef": "1",
+      "depth": 4.549999999999997,
+      "gap": 4.708103103911537e-15,
+      "profile": "round"
+    },
+    {
+      "part": "6d5428cd-0f94-4d76-ab43-d31229788d9d",
+      "target": "ea8e67fb-7bfd-41b0-bd98-0935393f867b",
+      "sourceRef": "46",
+      "targetRef": "1",
+      "depth": 4.549999999999997,
+      "gap": 4.708103103911537e-15,
+      "profile": "round"
+    },
+    {
+      "part": "0966bb4e-c0dc-4cec-a3c0-948be4edaa6c",
+      "target": "6c2ddfa2-911d-492e-8940-c7e77a6fdcc4",
+      "sourceRef": "2",
+      "targetRef": "square-pin-walls-1",
+      "depth": 38.10355353910092,
+      "gap": 2.125423490560718e-14,
+      "profile": "square-drive"
+    },
+    {
+      "part": "0966bb4e-c0dc-4cec-a3c0-948be4edaa6c",
+      "target": "6c2ddfa2-911d-492e-8940-c7e77a6fdcc4",
+      "sourceRef": "4",
+      "targetRef": "square-pin-walls-1",
+      "depth": 43.56455353910092,
+      "gap": 4.096227350400565e-15,
+      "profile": "square-drive"
+    },
+    {
+      "part": "0966bb4e-c0dc-4cec-a3c0-948be4edaa6c",
+      "target": "6c2ddfa2-911d-492e-8940-c7e77a6fdcc4",
+      "sourceRef": "square-hole-1",
+      "targetRef": "square-pin-walls-1",
+      "depth": 42.675553539100925,
+      "gap": 4.856549366109858e-15,
+      "profile": "square-drive"
+    },
+    {
+      "part": "f335159f-e55c-4187-8f9f-6e748e644120",
+      "target": "a668b251-5cc5-4988-95fb-b647bc651abf",
+      "sourceRef": "3",
+      "targetRef": "6",
+      "depth": 4.549999999999997,
+      "gap": 1.2468172649662347e-15,
+      "profile": "round"
+    },
+    {
+      "part": "f335159f-e55c-4187-8f9f-6e748e644120",
+      "target": "7a1145ca-0608-4c68-a166-704f365f4526",
+      "sourceRef": "4",
+      "targetRef": "6",
+      "depth": 4.549999999999997,
+      "gap": 1.2468172649662347e-15,
+      "profile": "round"
+    },
+    {
+      "part": "f335159f-e55c-4187-8f9f-6e748e644120",
+      "target": "018d8a4b-91e1-4a66-85af-14ff28ab9009",
+      "sourceRef": "18",
+      "targetRef": "square-pin-walls-1",
+      "depth": 4.5684464608988975,
+      "gap": 2.5668361180718142e-14,
+      "profile": "square-drive"
+    },
+    {
+      "part": "f335159f-e55c-4187-8f9f-6e748e644120",
+      "target": "6c2ddfa2-911d-492e-8940-c7e77a6fdcc4",
+      "sourceRef": "30",
+      "targetRef": "square-pin-walls-1",
+      "depth": 36.3219999999998,
+      "gap": 6.627120051065211e-14,
+      "profile": "square-drive"
+    },
+    {
+      "part": "f335159f-e55c-4187-8f9f-6e748e644120",
+      "target": "ea8e67fb-7bfd-41b0-bd98-0935393f867b",
+      "sourceRef": "45",
+      "targetRef": "6",
+      "depth": 4.549999999999997,
+      "gap": 4.2717811394451344e-14,
+      "profile": "round"
+    },
+    {
+      "part": "f335159f-e55c-4187-8f9f-6e748e644120",
+      "target": "2f9f5e9a-0053-4c82-b90b-c626fa0d18c6",
+      "sourceRef": "46",
+      "targetRef": "6",
+      "depth": 4.549999999999997,
+      "gap": 3.482179404935317e-14,
+      "profile": "round"
+    },
+    {
+      "part": "4f952217-e3ec-4fb6-9630-54a20a87342d",
+      "target": "6c2ddfa2-911d-492e-8940-c7e77a6fdcc4",
+      "sourceRef": "1",
+      "targetRef": "square-pin-walls-1",
+      "depth": 30.9770535391009,
+      "gap": 4.33082818392191e-15,
+      "profile": "square-drive"
+    },
+    {
+      "part": "65abdc6e-94b7-46eb-9ff2-8f9717cae3f5",
+      "target": "6c2ddfa2-911d-492e-8940-c7e77a6fdcc4",
+      "sourceRef": "7",
+      "targetRef": "square-pin-walls-1",
+      "depth": 27.564553539100892,
+      "gap": 1.40991647250057e-15,
+      "profile": "square-drive"
+    },
+    {
+      "part": "65abdc6e-94b7-46eb-9ff2-8f9717cae3f5",
+      "target": "6c2ddfa2-911d-492e-8940-c7e77a6fdcc4",
+      "sourceRef": "12",
+      "targetRef": "square-pin-walls-1",
+      "depth": 22.103553539100893,
+      "gap": 4.469390752781982e-15,
+      "profile": "square-drive"
+    },
+    {
+      "part": "65abdc6e-94b7-46eb-9ff2-8f9717cae3f5",
+      "target": "6c2ddfa2-911d-492e-8940-c7e77a6fdcc4",
+      "sourceRef": "square-hole-1",
+      "targetRef": "square-pin-walls-1",
+      "depth": 26.675553539100896,
+      "gap": 1.0754486982049849e-15,
+      "profile": "square-drive"
+    },
+    {
+      "part": "2fb69908-18c6-4af4-ae60-6aca435795d0",
+      "target": "6c2ddfa2-911d-492e-8940-c7e77a6fdcc4",
+      "sourceRef": "1",
+      "targetRef": "square-pin-walls-1",
+      "depth": 18.39763353910086,
+      "gap": 6.056274698532637e-14,
+      "profile": "square-drive"
+    },
+    {
+      "part": "d3ec6e97-b4fd-4258-865b-1d1f3bd6caf9",
+      "target": "7a0282d4-8f11-46ea-b80a-ab970e5efb45",
+      "sourceRef": "3",
+      "targetRef": "37",
+      "depth": 4.549999999999983,
+      "gap": 6.642444767764315e-15,
+      "profile": "round"
+    },
+    {
+      "part": "d3ec6e97-b4fd-4258-865b-1d1f3bd6caf9",
+      "target": "0a37a5b0-2e68-4732-beed-045b8e2bc4ab",
+      "sourceRef": "4",
+      "targetRef": "52",
+      "depth": 4.550000000000111,
+      "gap": 9.285862284397014e-14,
+      "profile": "round"
+    },
+    {
+      "part": "d3ec6e97-b4fd-4258-865b-1d1f3bd6caf9",
+      "target": "7a0282d4-8f11-46ea-b80a-ab970e5efb45",
+      "sourceRef": "9",
+      "targetRef": "17",
+      "depth": 4.549999999999983,
+      "gap": 3.1165358758389582e-15,
+      "profile": "round"
+    },
+    {
+      "part": "d3ec6e97-b4fd-4258-865b-1d1f3bd6caf9",
+      "target": "0a37a5b0-2e68-4732-beed-045b8e2bc4ab",
+      "sourceRef": "10",
+      "targetRef": "32",
+      "depth": 4.550000000000111,
+      "gap": 9.996393136700357e-14,
+      "profile": "round"
+    },
+    {
+      "part": "d3ec6e97-b4fd-4258-865b-1d1f3bd6caf9",
+      "target": "2fb9513f-03d3-4d7b-afb8-719a169d6d1b",
+      "sourceRef": "27",
+      "targetRef": "37",
+      "depth": 4.550000000000033,
+      "gap": 6.255637166765333e-14,
+      "profile": "round"
+    },
+    {
+      "part": "d3ec6e97-b4fd-4258-865b-1d1f3bd6caf9",
+      "target": "2fb9513f-03d3-4d7b-afb8-719a169d6d1b",
+      "sourceRef": "28",
+      "targetRef": "17",
+      "depth": 4.550000000000033,
+      "gap": 6.405174668558714e-14,
+      "profile": "round"
+    },
+    {
+      "part": "d3ec6e97-b4fd-4258-865b-1d1f3bd6caf9",
+      "target": "8b1ebe5e-fbec-4178-a486-f4d881c47ab4",
+      "sourceRef": "69",
+      "targetRef": "37",
+      "depth": 4.5499999999998835,
+      "gap": 4.263620542916802e-14,
+      "profile": "round"
+    },
+    {
+      "part": "d3ec6e97-b4fd-4258-865b-1d1f3bd6caf9",
+      "target": "8b1ebe5e-fbec-4178-a486-f4d881c47ab4",
+      "sourceRef": "70",
+      "targetRef": "17",
+      "depth": 4.549999999999876,
+      "gap": 5.1549137197741254e-14,
+      "profile": "round"
+    },
+    {
+      "part": "6bf66714-edc4-4c8e-b029-1ea6efc8128d",
+      "target": "52fa1eca-6e3b-45f5-bb5b-2686aa94d49b",
+      "sourceRef": "1",
+      "targetRef": "52",
+      "depth": 4.550000000000203,
+      "gap": 6.282890284407655e-14,
+      "profile": "round"
+    },
+    {
+      "part": "6bf66714-edc4-4c8e-b029-1ea6efc8128d",
+      "target": "4408064e-0704-48e6-ad1c-e4b3372de976",
+      "sourceRef": "2",
+      "targetRef": "37",
+      "depth": 4.550000000000068,
+      "gap": 2.088520348232663e-14,
+      "profile": "round"
+    },
+    {
+      "part": "6bf66714-edc4-4c8e-b029-1ea6efc8128d",
+      "target": "52fa1eca-6e3b-45f5-bb5b-2686aa94d49b",
+      "sourceRef": "7",
+      "targetRef": "32",
+      "depth": 4.550000000000203,
+      "gap": 6.282890284407655e-14,
+      "profile": "round"
+    },
+    {
+      "part": "6bf66714-edc4-4c8e-b029-1ea6efc8128d",
+      "target": "4408064e-0704-48e6-ad1c-e4b3372de976",
+      "sourceRef": "8",
+      "targetRef": "17",
+      "depth": 4.550000000000068,
+      "gap": 2.639215234763294e-14,
+      "profile": "round"
+    },
+    {
+      "part": "6bf66714-edc4-4c8e-b029-1ea6efc8128d",
+      "target": "272a5a28-be5e-4c4f-b425-e44bd731cf08",
+      "sourceRef": "25",
+      "targetRef": "17",
+      "depth": 4.5500000000001535,
+      "gap": 7.150082655242386e-14,
+      "profile": "round"
+    },
+    {
+      "part": "6bf66714-edc4-4c8e-b029-1ea6efc8128d",
+      "target": "272a5a28-be5e-4c4f-b425-e44bd731cf08",
+      "sourceRef": "26",
+      "targetRef": "37",
+      "depth": 4.5500000000001535,
+      "gap": 6.570537577106625e-14,
+      "profile": "round"
+    },
+    {
+      "part": "6bf66714-edc4-4c8e-b029-1ea6efc8128d",
+      "target": "d03824be-55dc-4fe6-ad33-39eb957c001c",
+      "sourceRef": "67",
+      "targetRef": "17",
+      "depth": 4.549999999999983,
+      "gap": 5.572141675008832e-16,
+      "profile": "round"
+    },
+    {
+      "part": "6bf66714-edc4-4c8e-b029-1ea6efc8128d",
+      "target": "d03824be-55dc-4fe6-ad33-39eb957c001c",
+      "sourceRef": "68",
+      "targetRef": "37",
+      "depth": 4.549999999999983,
+      "gap": 5.572141675008832e-16,
+      "profile": "round"
+    },
+    {
+      "part": "da50a8db-c643-4b16-bb66-bc0a7eb04c23",
+      "target": "3d7d61a6-028d-4b76-9dde-2380fca6cbce",
+      "sourceRef": "39",
+      "targetRef": "6",
+      "depth": 4.549999999999997,
+      "gap": 3.0530450887054794e-14,
+      "profile": "round"
+    },
+    {
+      "part": "da50a8db-c643-4b16-bb66-bc0a7eb04c23",
+      "target": "bc0a53c3-1bd2-4e80-a3ca-05e7e4e01151",
+      "sourceRef": "46",
+      "targetRef": "6",
+      "depth": 4.549999999999997,
+      "gap": 3.166063704384447e-14,
+      "profile": "round"
+    }
+  ]
+}

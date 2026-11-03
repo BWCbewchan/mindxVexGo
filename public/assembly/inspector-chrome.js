@@ -8,7 +8,7 @@ export function installInspectorChrome(){
  rule?.remove();
  const sections=[['Properties',[$('selection'),$('precision-fields'),inspector.querySelector('.collision-panel'),$('warnings'),footer]],['Layers',[$('layer-panel'),partsHeading,$('objects')]],['Guide',[$('guide-export'),inspector.querySelector('.student-guide')]]];
  const rows=[];
- function activate(index,focus=false){rows.forEach((row,i)=>{const selected=i===index;row.button.setAttribute('aria-selected',String(selected));row.button.tabIndex=selected?0:-1;row.panel.hidden=!selected;});if(focus)rows[index].button.focus();}
+ function activate(index,focus=false){document.body.classList.toggle('guide-active',index===2);rows.forEach((row,i)=>{const selected=i===index;row.button.setAttribute('aria-selected',String(selected));row.button.tabIndex=selected?0:-1;row.panel.hidden=!selected;});if(focus)rows[index].button.focus();}
  sections.forEach(([name,nodes],index)=>{
   const button=document.createElement('button'),panel=document.createElement('section');
   button.id='inspector-tab-'+index;button.textContent=name;button.setAttribute('role','tab');button.setAttribute('aria-controls','inspector-content-'+index);

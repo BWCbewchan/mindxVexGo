@@ -46,7 +46,7 @@ const guide = (await window.assemblyAPI.getState()).buildGuide;
 console.log(guide.ready, guide.blockers);
 ```
 
-If WebGL globals are missing or context creation fails, menus, library, inspector, CPU CAD fit checks, JSON operations and history remain available. The viewport becomes **2D / Data Fallback View**, listing parts, coordinates, connections and generated steps. `?view=data` on an editor HTML URL forces this mode for debugging. `getState().viewMode` is `data` or `webgl`. Fallback PDF output is explicitly a **data guide** with inventory/coordinates/connections/text steps; it does not fabricate 3D renderings. Normal WebGL guide rendering stays unchanged. LEGO's existing guide limitations still apply.
+If WebGL globals are missing or context creation fails, menus, library, inspector, CPU CAD fit checks, JSON operations and history remain available. The viewport becomes **2D / Data Fallback View**, listing parts, coordinates, connections and generated steps. `?view=data` on an editor HTML URL forces this mode for debugging. `getState().viewMode` is `data` or `webgl`. Fallback PDF output is explicitly a **data guide** with inventory/coordinates/connections/text steps; it does not fabricate 3D renderings. Normal WebGL guide rendering stays unchanged. LEGO now generates connected-part guides with the shared sampled CAD path planner; unverified routes are labeled as draft in the editor. See `assembly-guide-tools.md`.
 
 Validation: `node scripts/test-assembly-document.mjs`, `node scripts/test-assembly-headless-ui.mjs`, `node scripts/test-assembly-webgl-document.mjs`. UI tests accept `BASE_URL`; default dev port is 3131. The headless suite disables WebGL and independently tests missing globals and failed contexts.
 
@@ -175,3 +175,9 @@ MCP cancellation signals remove queued commands (`CANCELLED`, no model change). 
 - `npm run build`, `npm run typecheck`, `python scripts/check-encoding.py`.
 
 MCP SDK reference: https://github.com/modelcontextprotocol/typescript-sdk/blob/main/docs/get-started/first-server.md. Local MCP is an optional adapter; there is no built-in paid AI provider or automatic upload of models to an AI service.
+
+## Guide images and offline export
+
+`mindxAssembly.execute("exportGuide", {format: "zip"})` downloads PNG steps, offline HTML, native JSON and (for LEGO) LDR. Default/`pdf` retains print/PDF. Custom cameras use `guidePreferences.steps[stepKey].view="custom"` with finite, nonparallel `camera.direction` and `camera.up` vectors. LEGO grid preset is `editorSettings.snapPreset`: `stud`, `half`, `plate` or `mm`. Full UI and interchange notes: [Assembly guide tools](assembly-guide-tools.md).
+
+Inline Guide card (the main CAD workspace remains editable): `camera.zoom` is a zoom factor from 0.25 to 3. `guidePreferences.defaultCamera` applies to new steps unless a step explicitly selects `auto` or another view. `editorSettings.liveGuidePreview=false` pauses images only; the planner always runs. Guide/File exposes the same per-step controls interactively.

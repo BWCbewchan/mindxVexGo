@@ -23,8 +23,10 @@ export function analyzeIQInsertionPaths(parts,references,links,objects){
   for(let i=0;i<count;i+=3){const ids=[0,1,2].map(j=>index?index.getX(i+j):i+j);if(!ids.every(within))keep.push(...ids);}
   const positions=[];for(const i of keep)positions.push(attr.getX(i),attr.getY(i),attr.getZ(i));geometry.setAttribute('position',new THREE.Float32BufferAttribute(positions,3));const mesh=new THREE.Mesh(geometry);mesh.matrixAutoUpdate=false;mesh.matrixWorld.copy(source.matrixWorld);owned.push(geometry);filtered.set(key,mesh);return mesh;
  }
+ const boundsCache=new WeakMap();
+ function bounds(mesh){if(!boundsCache.has(mesh))boundsCache.set(mesh,new THREE.Box3().setFromBufferAttribute(mesh.geometry.attributes.position).applyMatrix4(mesh.matrixWorld));return boundsCache.get(mesh);}
  function corridor(a,b,axis){
-  const aa=new THREE.Box3().setFromBufferAttribute(a.geometry.attributes.position).applyMatrix4(a.matrixWorld),bb=new THREE.Box3().setFromBufferAttribute(b.geometry.attributes.position).applyMatrix4(b.matrixWorld);
+  const aa=bounds(a),bb=bounds(b);
   let lo=0,hi=Infinity;
   for(const key of axes){const speed=axis[key];if(Math.abs(speed)<1e-8){if(aa.max[key]<bb.min[key]||aa.min[key]>bb.max[key])return null;continue;}const ends=[(bb.min[key]-aa.max[key])/speed,(bb.max[key]-aa.min[key])/speed].sort((a,b)=>a-b);lo=Math.max(lo,ends[0]);hi=Math.min(hi,ends[1]);}
   return hi>=lo&&hi>=0?{lo:Math.max(0,lo*1000),hi:hi*1000}:null;

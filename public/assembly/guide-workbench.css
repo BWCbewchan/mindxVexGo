@@ -1,0 +1,49 @@
+/* Inline step card: the assembly remains editable beside this dock. */
+.guide-live-editor{margin:10px 0 14px;min-width:0;contain:layout style}
+.guide-live-heading{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:11px;color:#c1cccc;margin-bottom:8px}
+.guide-live-heading label{display:flex;align-items:center;gap:3px;white-space:nowrap;cursor:pointer}
+.guide-live-heading input{accent-color:#80c7b6;margin:0}
+#guide-live-status{font-size:10px;color:#92aca7;text-align:right}
+.guide-live-strip{display:flex;gap:5px;overflow:auto;padding:3px 1px 8px;scrollbar-width:thin;scrollbar-color:#556362 transparent}
+.studio-inspector #guide-workbench .guide-live-strip>button{position:relative;flex:0 0 55px;padding:0;height:45px;border:1px solid #55605e;background:#eef2f0;border-radius:3px;overflow:hidden}
+.guide-live-strip img{display:block;width:100%;height:100%;object-fit:contain;pointer-events:none}
+.guide-live-strip span{position:absolute;right:2px;bottom:1px;min-width:14px;border-radius:2px;background:#263c37;color:#fff;font:10px/14px system-ui;text-align:center}
+.studio-inspector #guide-workbench .guide-live-strip>button[aria-current=true]{border:2px solid #8cdbc6;box-shadow:0 0 0 1px #182a25}
+.guide-live-tools{display:flex;flex-wrap:wrap;gap:3px;margin:3px 0 5px}
+.studio-inspector #guide-workbench .guide-live-tools>button,.studio-inspector #guide-workbench .guide-live-footer>button{display:inline-flex;align-items:center;justify-content:center;width:27px;height:27px;padding:4px;border:1px solid #53615f;background:#303b3b;color:#d6e4e0;border-radius:3px;cursor:pointer}
+.studio-inspector #guide-workbench .guide-live-tools>button:hover:not(:disabled),.studio-inspector #guide-workbench .guide-live-footer>button:hover:not(:disabled){background:#445a53;color:#fff;border-color:#87c8b4}
+.studio-inspector #guide-workbench button:disabled{opacity:.35;cursor:default}
+#guide-workbench svg{width:15px;height:15px;stroke-width:1.7;pointer-events:none}
+.studio-inspector #guide-workbench #guide-view-all{width:auto;flex:1;min-width:80px;font-size:10px;white-space:nowrap;padding:4px 6px}
+#guide-view-readout{display:block;min-height:18px;font:10px/1.5 system-ui;color:#91aaa4;margin-bottom:4px}
+.guide-live-card{background:#fff;color:#172b27;border:1px solid #e0e7e4;border-radius:4px;overflow:hidden;box-shadow:0 2px 6px #0002}
+.guide-live-card-header{display:flex;align-items:baseline;gap:8px;padding:12px 12px 2px;line-height:1.4}
+.guide-live-card-header>b{font-size:19px;flex-shrink:0;color:#709386;font-weight:600}
+.guide-live-card-header>span{font-size:12px;font-weight:600;flex:1}
+.guide-live-card-header>small{font-size:9px;white-space:nowrap;color:#74857f}
+.guide-live-stage{position:relative;width:100%;aspect-ratio:4/3;cursor:grab;touch-action:none;outline-offset:-3px;background:#fff;overflow:hidden}
+.guide-live-stage:active{cursor:grabbing}
+.guide-live-stage>canvas{display:block;width:100%!important;height:100%!important}
+.guide-live-placeholder{position:absolute;inset:0;display:grid;place-content:center;z-index:1;padding:20px;text-align:center;font-size:11px;color:#658178;background:#ffffffdd;pointer-events:none}
+.guide-live-placeholder[hidden]{display:none}
+.guide-live-pli{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;padding:12px 10px 6px;border-top:1px solid #e9eeeb}
+.guide-live-pli>figure{position:relative;flex:0 1 76px;margin:0;text-align:center;min-width:52px;font:10px/1.4 system-ui}
+.guide-live-pli img{width:46px;height:46px;object-fit:contain;display:inline-block}
+.guide-live-pli b{display:inline-block;vertical-align:top;font-size:10px;margin-left:2px;color:#1c3931}
+.guide-live-pli figcaption{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;color:#304b42;margin-top:2px;overflow-wrap:anywhere}
+.guide-live-pli code{display:block;color:#93a39d;font:8px/1.4 system-ui;overflow-wrap:anywhere}
+.guide-live-note{margin:0;padding:8px 13px 12px;font:11px/1.6 system-ui;color:#64796e;text-align:center}
+.guide-live-footer{display:flex;align-items:center;gap:4px;margin-top:7px}
+.guide-live-footer>span{font-size:10px;flex:1;color:#92a6a0;text-align:center}
+.guide-live-editor.is-stale #guide-live-status{color:#e2c987}
+.guide-live-editor.is-stale .guide-live-card{opacity:.65}
+.studio-inspector .guide-export-tools{display:flex;gap:6px;position:static;margin-bottom:10px}
+.studio-inspector .guide-export-tools #guide-export,.studio-inspector .guide-export-tools #guide-zip{position:static;flex:1;width:auto;margin:0;padding:8px 10px;box-shadow:none;border-radius:4px;font-size:12px}
+.studio-inspector .guide-export-tools #guide-export{background:#386352;color:#ebfff3;border-color:#587a6a}
+.guide-advanced-settings{margin:12px 0;border-top:1px solid #45514e;padding-top:10px}
+.guide-advanced-settings>summary{cursor:pointer;font-size:11px;color:#a7b9b1;padding:4px 0;list-style-position:inside}
+.guide-advanced-settings:not([open]) #guide-steps{display:none}
+#guide-workbench :focus-visible{outline:2px solid #83cdb6;outline-offset:2px}
+@media(min-width:751px){body.guide-active main{grid-template-columns:240px minmax(0,1fr) 370px}body.guide-active.hide-library main{grid-template-columns:0 minmax(0,1fr) 370px}body.guide-active.guide-wide main{grid-template-columns:240px minmax(0,1fr) min(550px,48vw)}body.guide-active.guide-wide.hide-library main{grid-template-columns:0 minmax(0,1fr) min(550px,48vw)}body.guide-active.hide-panel main,body.guide-active.guide-wide.hide-panel main{grid-template-columns:240px minmax(0,1fr) 0}body.guide-active.hide-panel.hide-library main{grid-template-columns:0 minmax(0,1fr) 0}}
+@media(min-width:751px) and (max-width:1050px){body.guide-active main{grid-template-columns:170px minmax(0,1fr) 340px}body.guide-active.hide-library main{grid-template-columns:0 minmax(0,1fr) 340px}body.guide-active.guide-wide main{grid-template-columns:170px minmax(0,1fr) min(500px,48vw)}}
+@media(max-width:750px){.guide-live-strip{gap:4px}.guide-live-card-header{padding-top:9px}.guide-live-heading{margin-top:0}.guide-live-stage{max-height:240px;aspect-ratio:4/3}.guide-live-tools{flex-wrap:nowrap}.studio-inspector #guide-workbench .guide-live-tools>button{width:25px;height:25px;padding:3px;flex-shrink:0}.studio-inspector #guide-workbench #guide-view-all{font-size:9px;min-width:70px}.guide-live-pli{padding-top:8px}.guide-live-note{padding-top:4px}}

@@ -1,3 +1,4 @@
+import {jointMetrics} from './assembly-review.js';
 import * as THREE from 'three';
 import {worldReference,matingPose,nearestMate,insideSnapReleaseZone,SNAP_DISTANCE_MM} from './mating.js?v=fit-tolerance-36';
 
@@ -7,6 +8,7 @@ export {compatibleReferences} from './connector-policy.js?v=compatibility-27';
 import {compatibleReferences,insertionLimit} from './connector-policy.js?v=compatibility-27';
 // An established joint keeps its axis. Sliding is allowed only within its original
 // insertion interval; moving sideways can choose another real hole on the same part.
+function sameRigidMove(old,part,oldTarget,target){const q=p=>new THREE.Quaternion().setFromEuler(new THREE.Euler(...p.rotation.map(THREE.MathUtils.degToRad))),delta=q(target).multiply(q(oldTarget).invert()),position=v(old.position).sub(v(oldTarget.position)).applyQuaternion(delta).add(v(target.position));return position.distanceTo(v(part.position))<.001&&q(part).angleTo(delta.multiply(q(old)))<.00001;}
 export function constrainJoints(parts,before,references,{autoAttach=true}={}){
  const prior=new Map(before.map(p=>[p.id,p])),changed=new Set(parts.filter(p=>prior.has(p.id)&&JSON.stringify([p.position,p.rotation])!==JSON.stringify([prior.get(p.id).position,prior.get(p.id).rotation])).map(p=>p.id));
  const corrections=[];
@@ -15,6 +17,8 @@ export function constrainJoints(parts,before,references,{autoAttach=true}={}){
   const target=parts.find(p=>p.id===mate.target),old=prior.get(part.id),oldTarget=prior.get(mate.target);
   const sourceRef=references[part.sku]?.find(r=>r.id===mate.sourceRef),targetRef=references[target?.sku]?.find(r=>r.id===mate.targetRef);
   if(!old||!oldTarget||!compatibleReferences(sourceRef,targetRef,part.sku,target.sku))return {ok:false,reason:'This joint has no compatible mounting reference. Unlink it before repositioning.'};
+  const fresh=!old.mate||old.mate.target!==mate.target||old.mate.sourceRef!==mate.sourceRef||old.mate.targetRef!==mate.targetRef;
+  if(jointMetrics(part,target,sourceRef,targetRef).valid&&(fresh||changed.has(part.id)&&changed.has(target.id)&&sameRigidMove(old,part,oldTarget,target)))continue;
   const a=worldReference(part,sourceRef),b=worldReference(target,targetRef),delta=a.point.clone().sub(b.point),lateral=delta.clone().addScaledVector(b.normal,-delta.dot(b.normal)).length();
   const oldA=worldReference(old,sourceRef),oldB=worldReference(oldTarget,targetRef),oldDepth=-oldA.point.sub(oldB.point).dot(oldB.normal);
   if(changed.has(target.id)&&!changed.has(part.id)){

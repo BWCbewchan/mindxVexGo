@@ -21,6 +21,6 @@ export function installDocumentAPI(app){
  });
  // The bootstrap facade retains identity for callers already waiting on ready.
  if(window.assemblyAPI)window.dispatchEvent(new CustomEvent('assembly-api-ready',{detail:api}));
- else{window.assemblyAPI=api;if(window.parent!==window)try{if(window.parent.location.origin===location.origin)window.parent.assemblyAPI=api;}catch{}}
+ else{window.assemblyAPI=api;if(new URLSearchParams(location.search).get('hosted')!=='1'&&window.parent!==window)try{if(window.parent.location.origin===location.origin)window.parent.assemblyAPI=api;}catch{}}
  return api;
 }

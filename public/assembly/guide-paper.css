@@ -1,0 +1,73 @@
+/* Shared physical page. Preview scales this DOM; print uses it at 1:1. */
+.guide-paper{print-color-adjust:exact;-webkit-print-color-adjust:exact;box-sizing:border-box;position:relative;display:flex;flex-direction:column;width:16in;height:9in;min-height:9in;max-height:9in;margin:0;padding:13mm 17mm 12mm;overflow:hidden;background:#fff;color:#151515;font-family:Arial,sans-serif;flex:none}
+.guide-paper *{box-sizing:border-box}
+.guide-paper p{line-height:1.6;white-space:pre-wrap}
+.guide-paper .guide-document-header{display:flex;align-items:center;justify-content:space-between;min-height:18mm}
+.guide-paper .guide-document-title{display:flex;align-items:center;gap:3mm;white-space:nowrap;font-size:26pt;font-weight:750;line-height:1;color:#111}
+.guide-paper .guide-document-icon{display:inline-flex;width:10mm;height:10mm;color:#ed1c24;flex:none}
+.guide-paper .guide-document-icon svg{width:100%;height:100%}
+.guide-paper .guide-document-logo{width:35mm;height:16mm;max-height:16mm;object-fit:contain}
+.guide-paper .guide-document-rule{position:relative;width:48%;height:1mm;margin-top:1mm;background:#ed1c24;flex:none}
+.guide-paper .guide-document-rule span{position:absolute;right:-2.2mm;top:50%;width:4.4mm;height:4.4mm;border:1mm solid #ed1c24;border-radius:50%;background:#fff;transform:translateY(-50%)}
+.guide-paper .guide-step-title{display:flex;align-items:center;gap:4mm;margin:5mm 0 2mm;font-size:20pt;font-weight:650}
+.guide-paper .guide-step-number{display:inline-flex;align-items:center;justify-content:center;width:11mm;height:11mm;flex:none;border-radius:50%;background:#18823b;color:#fff;font-size:16pt;font-weight:750}
+.guide-paper .guide-step-content{position:relative;flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8mm;margin-top:2mm}
+.guide-paper .guide-main-figure{grid-column:2;grid-row:1;margin:0;display:flex;flex-direction:column;min-height:0;min-width:0;overflow:hidden}
+.guide-paper .guide-step-side{grid-column:1;grid-row:1;display:flex;flex-direction:column;min-height:0;border-left:0;border-right:.3mm solid #e4e8eb;padding-left:0;padding-right:5mm}
+.guide-paper .guide-needed h3{margin:0 0 4mm;font-size:18pt;font-weight:750;color:#222}
+.guide-paper .guide-needed-part{display:flex;align-items:center;gap:4mm;font-size:15pt;font-weight:650;margin-bottom:4mm;break-inside:avoid}
+.guide-paper .guide-needed-part img{flex:none;width:42mm;height:32mm;max-height:32mm;object-fit:contain}
+.guide-paper .guide-detail-figure{display:flex;flex:1;min-height:0;flex-direction:column;margin:3mm 0 0;overflow:hidden}
+.guide-paper .guide-image-viewport{position:relative;display:flex;flex:1;min-height:0;width:100%;overflow:hidden;background:#fff}
+.guide-paper .guide-frame-svg,.guide-paper .guide-image-viewport>img{display:block;width:100%;height:100%;min-height:0;object-fit:contain;max-height:none;flex:1}
+.guide-paper .guide-step-content figcaption{flex:none;font-size:10pt;line-height:1.2;color:#52606b;text-align:center;margin-top:1mm}
+.guide-paper figure[data-frame-layout=custom]{position:absolute!important;grid-column:auto!important;grid-row:auto!important;margin:0!important;z-index:1;padding:0!important;max-width:none;max-height:none}
+.guide-paper .guide-step-instruction{width:100%;flex:none;margin:4mm 0 0;padding:3mm 5mm;background:#f4f6f7;border-radius:2mm;text-align:left;font-size:12pt;line-height:1.35;color:#222;white-space:pre-wrap}
+.guide-paper .guide-page-number{position:absolute;right:17mm;bottom:4mm;display:flex;align-items:center;gap:2.2mm;min-width:22mm;height:7mm;padding:0 3mm;border:0.25mm solid #e2e7eb;border-radius:2mm;background:#f6f8fa;color:#73808c;font-size:9pt;line-height:1;font-variant-numeric:tabular-nums;justify-content:center}
+.guide-paper .guide-page-number:before{content:"";width:.8mm;height:3mm;border-radius:.4mm;background:#ed1c24;margin-right:.5mm}
+.guide-paper .guide-page-number strong{font-size:12pt;font-weight:750;color:#202b35}
+.guide-paper .guide-page-number>span:first-of-type{color:#bcc4cc}
+.guide-paper.guide-prep>h1{margin:7mm 0 1mm;text-align:center;font-size:21pt;font-weight:650}
+.guide-paper .guide-droplet-inventory{flex:1;min-height:0;display:flex;flex-direction:column;justify-content:center;gap:3mm;padding:2mm 8mm}
+.guide-paper .guide-droplet-row{display:flex;justify-content:center;gap:4mm;align-items:center}
+.guide-paper .guide-droplet-row:nth-child(even){transform:translateX(3mm)}
+.guide-paper .guide-droplet-part{position:relative;flex:0 1 calc(100% / var(--droplet-columns));min-width:0;text-align:center;display:flex;flex-direction:column;align-items:center;gap:1mm;padding:1mm 2mm;border:0;background:none}
+.guide-paper .guide-droplet-part img{width:100%;height:var(--droplet-image-height,38mm);max-height:none;object-fit:contain}
+.guide-paper .droplet-quantity{position:absolute;top:0;right:1mm;display:flex;align-items:center;justify-content:center;min-width:9mm;height:9mm;padding:1mm;background:#f0f3f5;color:#172734;border-radius:55% 55% 55% 12%;font-size:13pt}
+.guide-paper .guide-droplet-part>span{font-size:11pt;font-weight:600;line-height:1.15;color:#26323c}
+.guide-paper .guide-droplet-part>small{font-size:8pt;color:#75818b;line-height:1.1}
+.guide-paper.guide-prep>p{font-size:9pt;text-align:center;color:#65717a;margin:2mm 0}
+.guide-paper.guide-finished>h2{font-size:22pt;margin:4mm 0;text-align:center}
+.guide-paper .guide-finished-image{width:100%;flex:1;min-height:0;height:100%;max-height:none;object-fit:contain}
+@media print{.guide-paper{break-after:page;page-break-after:always}.guide-paper:last-child{break-after:auto;page-break-after:auto}}
+
+.guide-paper .guide-step-title>span:last-child{min-width:0;overflow-wrap:anywhere}
+
+.guide-paper .guide-review-label{font-size:9pt;line-height:1.3;margin:0 0 1mm;color:#80602c;flex:none}
+
+/* Compact parts strip shares the assembly heading row. */
+.guide-paper .guide-document-header .guide-needed{display:flex;align-items:center;gap:3mm;flex:1;justify-content:center;margin:0 4mm;min-width:0}
+.guide-paper .guide-document-header .guide-needed h3{font-size:10pt;margin:0;max-width:30mm}
+.guide-paper .guide-document-header .guide-needed-part{font-size:9pt;gap:1mm;margin:0;max-width:45mm}
+.guide-paper .guide-document-header .guide-needed-part img,#print-guide .guide-paper .guide-document-header .guide-needed-part img{width:15mm;height:14mm;max-height:14mm;mix-blend-mode:multiply;filter:contrast(1.15) brightness(1.08)}
+
+/* Preparation occupies the upper-right panel, including the brand mark. */
+.guide-paper.guide-assembly-step .guide-document-header{align-items:flex-start;min-height:36mm;gap:8mm}
+.guide-paper.guide-assembly-step .guide-document-title{padding-top:5mm}
+.guide-paper.guide-assembly-step .guide-document-rule{position:absolute;top:31mm;left:17mm;width:calc((100% - 34mm - 8mm)/2);margin:0}
+.guide-paper .guide-preparation-box{display:flex;align-items:flex-start;justify-content:space-between;gap:3mm;width:48%;min-height:32mm;padding:3mm;border:1mm solid #ed1c24;flex:none;background:#fff}
+.guide-paper .guide-preparation-box .guide-needed{justify-content:flex-start;align-items:center;flex-wrap:wrap;margin:0;gap:2mm;flex:1}
+.guide-paper .guide-preparation-box .guide-needed h3{flex-basis:100%;max-width:none;font-size:10pt}
+.guide-paper .guide-preparation-box .guide-needed-part{max-width:48mm}
+.guide-paper .guide-preparation-box .guide-document-logo{width:30mm;height:14mm;flex:none}
+
+/* Clear part identity: large image, quantity beside it, name underneath. */
+.guide-paper .guide-preparation-box{border-radius:3mm;padding:3mm 4mm;gap:4mm}
+.guide-paper .guide-preparation-box .guide-needed{display:flex;align-items:flex-start;justify-content:flex-start;gap:3mm 5mm}
+.guide-paper .guide-preparation-box .guide-needed h3{margin:0;font-size:10pt;font-weight:700;color:#52606b}
+.guide-paper .guide-preparation-box .guide-needed-part{display:grid;grid-template-columns:24mm auto;grid-template-rows:22mm auto;align-items:center;column-gap:2mm;row-gap:1.5mm;width:43mm;max-width:43mm;margin:0;break-inside:avoid}
+.guide-paper .guide-preparation-box .guide-needed-part img,#print-guide .guide-paper .guide-preparation-box .guide-needed-part img{grid-column:1;grid-row:1;width:24mm;height:22mm;max-height:22mm;object-fit:contain}
+.guide-paper .guide-preparation-box .guide-needed-quantity{grid-column:2;grid-row:1;font-size:16pt;font-weight:750;white-space:nowrap;color:#172734;font-variant-numeric:tabular-nums}
+.guide-paper .guide-preparation-box .guide-needed-name{grid-column:1 / -1;grid-row:2;text-align:center;font-size:9pt;font-weight:600;line-height:1.25;overflow-wrap:anywhere;color:#26323c}
+
+.guide-paper .guide-preparation-box .guide-needed-part img,#print-guide .guide-paper .guide-preparation-box .guide-needed-part img{filter:none;mix-blend-mode:normal}

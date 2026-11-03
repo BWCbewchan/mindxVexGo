@@ -65,7 +65,7 @@ export function generateStudentGuide(parts, {
   objects = null,
   insertionPaths = null,
 } = {}) {
-  if(PLATFORM.id==='lego')return {ready:false,steps:[],blockers:['Thư viện LEGO đã hỗ trợ lắp và lưu dự án. Xuất guide LEGO chưa được kiểm chứng về thứ tự lắp.'],notes:[]};
+  if(PLATFORM.id==='lego')return generateIQGuide(parts,{platformName:'LEGO',references,nameFor,isElectronic:()=>false,inferConnections,objects,insertionPaths});
   if(PLATFORM.id==='vexiq')return generateIQGuide(parts,{references,nameFor,isElectronic,inferConnections,objects,insertionPaths});
   if (!parts.length) return { ready: false, steps: [], blockers: ['Add the parts for the model first.'], notes: [] };
   parts=structuredClone(parts);

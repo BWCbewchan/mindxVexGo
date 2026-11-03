@@ -1,3 +1,4 @@
+import {guidePage} from './guide-page-settings.js';
 import {validateProjectFile,projectIdValid} from './project-store.js';
 import {matingPose} from './mating.js';
 import {compatibleReferences,recommendedInsertionDepth,insertionLimit} from './connector-policy.js';
@@ -20,7 +21,8 @@ export function buildAssemblyDocument(current,input,{mode='replace',platform,cat
  const data=parse(input),append=mode==='append';
  if(!['replace','append'].includes(mode))throw Error('Chế độ nạp không hợp lệ.');
  if(data.platform&&data.platform!==platform)throw Error('JSON thuộc bộ linh kiện khác.');
- const entries=new Map(catalog.map(p=>[p.id,p])),draft=append?clone(current):{version:1,platform,title:data.title??current.title,hideCables:current.hideCables??true,kit:Object.hasOwn(data,'kit')?clone(data.kit):clone(current.kit??null),parts:[],groups:[],steps:[],guidePreferences:clone(data.guidePreferences||{})};
+ const entries=new Map(catalog.map(p=>[p.id,p])),draft=append?clone(current):{version:1,platform,title:data.title??current.title,hideCables:current.hideCables??true,kit:Object.hasOwn(data,'kit')?clone(data.kit):clone(current.kit??null),parts:[],groups:[],steps:[],editorSettings:clone(data.editorSettings??current.editorSettings??{}),guidePreferences:clone(data.guidePreferences||{})};
+ for(const row of Object.values(draft.guidePreferences?.steps||{}))if(record(row)&&row.page!==undefined)row.page=guidePage(row.page);
  const initial=new Set(draft.parts.map(p=>p.id)),used=new Set([...initial,...draft.groups.map(g=>g.id)]),idMap=Object.create(null),groupMap=Object.create(null),seen=new Set(),pending=[];
  function allocate(id){if(id===undefined)return idFactory();if(!projectIdValid(id))throw Error('ID không hợp lệ: '+String(id));if(seen.has(id))throw Error('ID bị lặp trong JSON: '+id);seen.add(id);let next=id;while(used.has(next))next=idFactory();used.add(next);idMap[id]=next;return next;}
  function add(row){

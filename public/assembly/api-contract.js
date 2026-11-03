@@ -30,7 +30,7 @@ export const ASSEMBLY_COMMANDS={
  getGuide:define('Đọc bước hướng dẫn và các lỗi cần sửa',true),
  exportProject:define('Đọc toàn bộ dữ liệu dự án để lưu JSON',true),
  flushProject:define('Lưu các chỉnh sửa hiện tại',false),
- exportGuide:define('Tạo bản in/PDF khi hướng dẫn hợp lệ',false),
+ exportGuide:define('Xuất PDF hoặc bộ ảnh/HTML ZIP khi hướng dẫn hợp lệ',false,{format:{type:'string',enum:['pdf','zip']}},[],{format:'pdf'}),
  undo:define('Hoàn tác một lần sửa',false),
  redo:define('Làm lại lần sửa vừa hoàn tác',false),
 };

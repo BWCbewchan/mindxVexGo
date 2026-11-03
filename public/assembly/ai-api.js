@@ -68,7 +68,7 @@ export function installAssemblyAPI(app){
   }),
   exportProject:()=>clone(app.project()),
   flushProject:async()=>{if(app.busy())throw Error('Editor is busy. Finish the current edit before syncing.');if(!await app.save())throw Error('Could not save the current edit.');return clone(app.project());},
-  exportGuide:()=>{if(app.busy())throw Error('Editor is busy');if(!app.guide().ready)fail('GUIDE_NOT_READY',app.guide().blockers.join('; ')||'Guide is not ready');const result=app.exportGuide();return result;},
+  exportGuide:({format='pdf'}={})=>{if(app.busy())throw Error('Editor is busy');if(!app.guide().ready)fail('GUIDE_NOT_READY',app.guide().blockers.join('; ')||'Guide is not ready');const result=app.exportGuide({format});return result;},
   undo:()=>{if(app.busy())throw Error('Editor is busy');return app.undo(false);},
   redo:()=>{if(app.busy())throw Error('Editor is busy');return app.undo(true);},
  };
@@ -82,6 +82,6 @@ export function installAssemblyAPI(app){
  }});
  window.mindxAssembly=api;
  // Only a same-origin hosting page can reach the editor API.
- if(window.parent!==window)try{if(window.parent.location.origin===location.origin)window.parent.mindxAssembly=api;}catch{}
+ if(new URLSearchParams(location.search).get('hosted')!=='1'&&window.parent!==window)try{if(window.parent.location.origin===location.origin)window.parent.mindxAssembly=api;}catch{}
  return api;
 }
