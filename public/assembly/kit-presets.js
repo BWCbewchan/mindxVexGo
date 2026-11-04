@@ -5,7 +5,7 @@ export const GO_KIT_QUANTITIES={'Red Pin':53,'Green Pin':7,'Pink Pin':5,'Gray Pi
 
 Object.assign(GO_KIT_QUANTITIES,{'Orange Knob':2,'Red North Magnet':1,'Black South Magnet':1,'Gray Slide Beam and Block':2,'Pink Slotted Beam':4,'Blue Thin Beam':2,'Astronaut':1,'Orange Rubber Band':2,'Name Plate':2,'Long Rope':2,'Short Rope':2});
 export const IQ_KIT_QUANTITIES={
- 'Smart Motor':4,'Touch LED':1,'Bumper Switch':1,
+ 'Smart Motor':4,'Touch LED':1,'Bumper Switch':1,'Cable Anchor':11,
  'Robot Brain (2nd generation)':1,'Controller (2nd generation)':1,'Robot Battery (2nd generation)':1,'Optical Sensor':1,'Distance Sensor (2nd generation)':1,'2m USB Cable':1,
  '1x Pitch Plastic Motor Snap Shaft':5,'2x Pitch Capped Shaft':3,'3x Pitch Capped Shaft':3,'4x Pitch Capped Shaft':3,'5x Pitch Capped Shaft':2,'3x Pitch Capped Plastic Shaft':6,'5x Pitch Capped Plastic Shaft':4,'4x Pitch Shaft':2,'6x Pitch Shaft':4,
  '2x Pitch Motor Shaft':4,'3x Pitch Motor Shaft':4,'4x Pitch Motor Shaft':4,'2x Pitch Plastic Motor Shaft':6,'3x Pitch Plastic Motor Shaft':6,'4x Pitch Plastic Motor Shaft':6,'Rubber Shaft Collar':32,'0.25x Pitch Spacer':28,'Washer':24,

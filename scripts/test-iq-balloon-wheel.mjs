@@ -1,0 +1,42 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs/promises';
+import * as THREE from 'three';
+import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
+import {chromium} from '@playwright/test';
+import {defaultKitProfile,kitReport,kitAssemblyReport,assertKitChange} from '../public/assembly/kit-policy.js';
+import {compatibleReferences} from '../public/assembly/connector-policy.js';
+import {matingPose,attachmentReferences} from '../public/assembly/mating.js';
+import {seatedConnections} from '../public/assembly/assembly-review.js';
+import {seatedConnectorContact} from '../public/assembly/collision.js';
+
+const base=process.env.BASE_URL||'http://localhost:3131',root='public/assembly/iq';
+const catalog=JSON.parse(await fs.readFile(root+'/parts.json','utf8')),references=JSON.parse(await fs.readFile(root+'/connectors.json','utf8')).parts;
+const wheel=catalog.find(p=>p.id==='iq-balloon-wheel'),kit=defaultKitProfile(catalog,'vexiq'),components=['228-2500-1953','228-2500-1958'];
+assert.deepEqual(wheel.components,components.map(sku=>({sku,quantity:1})));
+const stock=kitReport([{sku:wheel.id}],catalog,kit);for(const sku of components)assert.equal(stock.find(r=>r.skus.includes(sku)).used,1);
+const capacity=kitAssemblyReport([],catalog,kit).find(r=>r.sku===wheel.id).available;assert.equal(capacity,Math.min(...components.map(sku=>kit.items[sku])));assert.equal(capacity,2);
+assert.throws(()=>assertKitChange(Array.from({length:capacity},()=>({sku:wheel.id})),Array.from({length:capacity+1},()=>({sku:wheel.id})),catalog,kit),/Vượt/);
+const hub={id:'hub',sku:components[0],position:[0,60,0],rotation:[0,0,0]},tire={id:'tire',sku:components[1],position:[100,60,0],rotation:[0,0,0]};
+const hr=references[hub.sku].find(r=>r.id==='balloon-rim'),tr=references[tire.sku].find(r=>r.id==='balloon-rim');
+assert.equal(compatibleReferences(hr,tr,hub.sku,tire.sku),true);assert.ok(attachmentReferences(references[hub.sku]).some(r=>r.id===hr.id));
+assert.equal(compatibleReferences(hr,references['228-2500-060'][0],hub.sku,'228-2500-060'),false,'Rim cannot act as a kit pin');
+Object.assign(tire,matingPose(tire,tr,hub,hr));assert.ok(Math.hypot(...tire.position.map((v,i)=>v-hub.position[i]))<1e-5);assert.equal(seatedConnections([hub,tire],references).length,1);assert.equal(seatedConnectorContact(hub,tire,references),true);
+const bytes=await fs.readFile(`${root}/parts/${wheel.id}/model.glb`),scene=(await new GLTFLoader().parseAsync(bytes.buffer.slice(bytes.byteOffset,bytes.byteOffset+bytes.byteLength),'')).scene;
+const modelBox=new THREE.Box3().setFromObject(scene),size=modelBox.getSize(new THREE.Vector3()).multiplyScalar(1000);assert.ok(size.x>63&&size.x<64&&size.y>24&&size.y<25&&size.z>63&&size.z<64,'Original wheel dimensions and units retained');
+const browser=await chromium.launch({channel:'chrome',headless:true,args:['--use-angle=swiftshader','--enable-unsafe-swiftshader']});
+try{
+ const page=await browser.newPage({viewport:{width:1500,height:1000}}),errors=[];page.on('pageerror',e=>errors.push(e.message));await page.route('https://*.supabase.co/**',r=>r.abort());
+ await page.addInitScript(kit=>{window.print=()=>{window.testPrintRequested=true;};if(!localStorage.getItem('mindx-vexiq-assembly-v1'))localStorage.setItem('mindx-vexiq-assembly-v1',JSON.stringify({version:1,platform:'vexiq',title:'Balloon wheel',parts:[],groups:[],steps:[],kit}));},kit);
+ await page.goto(base+'/assembly/iq/editor.html');await page.waitForFunction(()=>window.mindxAssembly);
+ const call=(name,args={})=>page.evaluate(({name,args})=>window.mindxAssembly.execute(name,args),{name,args});
+ const execute=async(name,args)=>{await page.waitForFunction(()=>window.mindxAssembly.execute('getState').then(r=>!r.result.busy));const r=await call(name,args);assert.equal(r.ok,true,JSON.stringify(r));return r.result;};
+ const h=await execute('addPart',{sku:hub.sku,position:hub.position}),t=await execute('addPart',{sku:tire.sku,position:[100,60,0]});
+ await execute('attach',{id:t.id,targetId:h.id,sourceRef:tr.id,targetRef:hr.id});assert.ok((await execute('getConnections')).some(c=>c.profile==='iq-balloon-rim'));
+ assert.ok(!(await execute('checkFit')).issues.some(i=>i.kind==='penetration'));
+ const guide=await execute('getGuide');assert.equal(guide.ready,true,JSON.stringify(guide.blockers));await execute('exportGuide',{format:'pdf'});assert.equal(await page.evaluate(()=>window.testPrintRequested),true);
+ await page.locator('#search').fill(wheel.id);const button=page.locator(`#parts [data-sku="${wheel.id}"]`);assert.equal(await button.isEnabled(),true);assert.match(await button.innerText(),/Còn 1 \/ 2/);
+ const composite=await execute('addPart',{sku:wheel.id,position:[180,60,0]});assert.ok(composite.id);assert.match(await button.innerText(),/Còn 0 \/ 2/);
+ await execute('flushProject');await page.reload();await page.waitForFunction(()=>window.mindxAssembly);assert.equal((await execute('getState')).project.parts.length,3);
+ await page.locator('#search').fill(wheel.id);await page.waitForFunction(()=>{const img=document.querySelector('[data-sku="iq-balloon-wheel"] img');return img?.complete&&img.naturalWidth>0;});await page.locator('#fit').click();await page.screenshot({path:'artifacts/multiple-kits/balloon-wheel.png'});
+ assert.deepEqual(errors,[]);console.log('PASS: original tire/hub snap into a wheel, valid rim contact, composite CAD dimensions, square axle bores, shared kit stock, actual WebGL assembly and saved reload.');
+}finally{await browser.close();}

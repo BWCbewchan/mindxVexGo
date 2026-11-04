@@ -4,11 +4,11 @@ import {assetUrl} from './platform.js';
 const geometries=new Map();
 const references=fetch(assetUrl('connectors.json?v=platform-73'),{cache:'no-store'}).then(r=>r.json()).then(r=>r.parts);
 self.onmessage=async e=>{
- const {id,parts,groups,geometryData}=e.data;
+ const {id,parts,groups,geometryData,referenceData={}}=e.data;
  try{
   for(const g of geometryData){const geometry=new THREE.BufferGeometry();geometry.setAttribute('position',new THREE.BufferAttribute(g.position,3));if(g.index)geometry.setIndex(new THREE.BufferAttribute(g.index,1));geometries.set(g.id,geometry);}
   const objects=new Map();
   for(const record of groups){const group=new THREE.Group();for(const item of record.meshes){const mesh=new THREE.Mesh(geometries.get(item.geometry));mesh.matrixAutoUpdate=false;mesh.matrix.fromArray(item.matrix);group.add(mesh);}objects.set(record.id,group);}
-  self.postMessage({id,report:analyzeCollisions(parts,objects,{references:await references})});
+  const refs=await references;Object.assign(refs,referenceData);self.postMessage({id,report:analyzeCollisions(parts,objects,{references:refs})});
  }catch(error){self.postMessage({id,error:error.message});}
 };

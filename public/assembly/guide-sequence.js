@@ -1,6 +1,8 @@
+import {generateChainDriveGuide} from './chain-drive-guide.js';
 import {nearestMate,worldReference,seatedPinMatches} from './mating.js?v=fit-tolerance-36';
 import { compatibleReferences } from './connector-policy.js';
 import {PLATFORM} from './platform.js';
+import {isElectronicSku} from './electronics.js';
 import {generateIQGuide} from './iq-guide-sequence.js';
 
 const defaultElectronics = new Set([
@@ -60,11 +62,12 @@ function jointDescription(part, parent, sourceRef, targetRef, nameFor) {
 export function generateStudentGuide(parts, {
   references = {},
   nameFor = part => part.label || part.sku,
-  isElectronic = sku => PLATFORM.electronics.includes(sku),
+  isElectronic = sku => isElectronicSku(sku),
   inferConnections = false,
   objects = null,
   insertionPaths = null,
 } = {}) {
+  const chainGuide=generateChainDriveGuide(parts,{references,nameFor,isElectronic,inferConnections,objects,insertionPaths},generateStudentGuide);if(chainGuide)return chainGuide;
   if(PLATFORM.id==='lego')return generateIQGuide(parts,{platformName:'LEGO',references,nameFor,isElectronic:()=>false,inferConnections,objects,insertionPaths});
   if(PLATFORM.id==='vexiq')return generateIQGuide(parts,{references,nameFor,isElectronic,inferConnections,objects,insertionPaths});
   if (!parts.length) return { ready: false, steps: [], blockers: ['Add the parts for the model first.'], notes: [] };

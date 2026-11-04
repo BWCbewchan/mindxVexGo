@@ -1,0 +1,358 @@
+{
+  "id": "228-6480",
+  "sku": "228-6480",
+  "name": "Robot Brain (2nd generation)",
+  "category": "electronics",
+  "source": "https://www.vexrobotics.com/cadmodels/upload/download/upload_id/7d42a45b-a84e-4a94-8acd-750ef2c6aed0",
+  "sourceFile": "VEX IQ Robot Brain Gen 2 (228-6480).step",
+  "sourceUrl": "https://www.vexrobotics.com/cadmodels/upload/download/upload_id/7d42a45b-a84e-4a94-8acd-750ef2c6aed0",
+  "manufacturerSource": "https://www.vexrobotics.com/228-6480.html",
+  "sourceHash": "0276ff59546d2e7d75dd1936f7f4ff3a945436586481fcfbf78c9a6e5c3fead6",
+  "bounds": {
+    "min": [
+      -50.85,
+      -12.4,
+      -38.15
+    ],
+    "max": [
+      50.85,
+      21.815,
+      38.15
+    ]
+  },
+  "references": [
+    {
+      "point": [
+        -44.45,
+        -6.2,
+        -37.1941
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 2.1,
+      "depth": 5.4105,
+      "kind": "hole",
+      "id": "1",
+      "label": "IQ mounting hole · original CAD",
+      "evidence": "2.1 mm analytic bore and unobstructed outward 3.7 mm diameter insertion corridor."
+    },
+    {
+      "point": [
+        -44.45,
+        -6.2,
+        37.1941
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 2.1,
+      "depth": 5.4105,
+      "kind": "hole",
+      "id": "4",
+      "label": "IQ mounting hole · original CAD",
+      "evidence": "2.1 mm analytic bore and unobstructed outward 3.7 mm diameter insertion corridor."
+    },
+    {
+      "point": [
+        -31.75,
+        -6.2,
+        -37.1941
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 2.1,
+      "depth": 5.4105,
+      "kind": "hole",
+      "id": "5",
+      "label": "IQ mounting hole · original CAD",
+      "evidence": "2.1 mm analytic bore and unobstructed outward 3.7 mm diameter insertion corridor."
+    },
+    {
+      "point": [
+        -31.75,
+        -6.2,
+        37.1941
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 2.1,
+      "depth": 5.4105,
+      "kind": "hole",
+      "id": "8",
+      "label": "IQ mounting hole · original CAD",
+      "evidence": "2.1 mm analytic bore and unobstructed outward 3.7 mm diameter insertion corridor."
+    },
+    {
+      "point": [
+        -19.05,
+        -6.2,
+        -37.1941
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 2.1,
+      "depth": 5.4105,
+      "kind": "hole",
+      "id": "9",
+      "label": "IQ mounting hole · original CAD",
+      "evidence": "2.1 mm analytic bore and unobstructed outward 3.7 mm diameter insertion corridor."
+    },
+    {
+      "point": [
+        -19.05,
+        -6.2,
+        37.1941
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 2.1,
+      "depth": 5.4105,
+      "kind": "hole",
+      "id": "12",
+      "label": "IQ mounting hole · original CAD",
+      "evidence": "2.1 mm analytic bore and unobstructed outward 3.7 mm diameter insertion corridor."
+    },
+    {
+      "point": [
+        -6.35,
+        -6.2,
+        -37.1941
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 2.1,
+      "depth": 5.4105,
+      "kind": "hole",
+      "id": "13",
+      "label": "IQ mounting hole · original CAD",
+      "evidence": "2.1 mm analytic bore and unobstructed outward 3.7 mm diameter insertion corridor."
+    },
+    {
+      "point": [
+        -6.35,
+        -6.2,
+        37.1941
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 2.1,
+      "depth": 5.4105,
+      "kind": "hole",
+      "id": "16",
+      "label": "IQ mounting hole · original CAD",
+      "evidence": "2.1 mm analytic bore and unobstructed outward 3.7 mm diameter insertion corridor."
+    },
+    {
+      "point": [
+        6.35,
+        -6.2,
+        -37.1941
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 2.1,
+      "depth": 5.4105,
+      "kind": "hole",
+      "id": "17",
+      "label": "IQ mounting hole · original CAD",
+      "evidence": "2.1 mm analytic bore and unobstructed outward 3.7 mm diameter insertion corridor."
+    },
+    {
+      "point": [
+        6.35,
+        -6.2,
+        37.1941
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 2.1,
+      "depth": 5.4105,
+      "kind": "hole",
+      "id": "20",
+      "label": "IQ mounting hole · original CAD",
+      "evidence": "2.1 mm analytic bore and unobstructed outward 3.7 mm diameter insertion corridor."
+    },
+    {
+      "point": [
+        19.05,
+        -6.2,
+        -37.1941
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 2.1,
+      "depth": 5.4105,
+      "kind": "hole",
+      "id": "21",
+      "label": "IQ mounting hole · original CAD",
+      "evidence": "2.1 mm analytic bore and unobstructed outward 3.7 mm diameter insertion corridor."
+    },
+    {
+      "point": [
+        19.05,
+        -6.2,
+        37.1941
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 2.1,
+      "depth": 5.4105,
+      "kind": "hole",
+      "id": "24",
+      "label": "IQ mounting hole · original CAD",
+      "evidence": "2.1 mm analytic bore and unobstructed outward 3.7 mm diameter insertion corridor."
+    },
+    {
+      "point": [
+        31.75,
+        -6.2,
+        -37.1941
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 2.1,
+      "depth": 5.4105,
+      "kind": "hole",
+      "id": "25",
+      "label": "IQ mounting hole · original CAD",
+      "evidence": "2.1 mm analytic bore and unobstructed outward 3.7 mm diameter insertion corridor."
+    },
+    {
+      "point": [
+        31.75,
+        -6.2,
+        37.1941
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 2.1,
+      "depth": 5.4105,
+      "kind": "hole",
+      "id": "28",
+      "label": "IQ mounting hole · original CAD",
+      "evidence": "2.1 mm analytic bore and unobstructed outward 3.7 mm diameter insertion corridor."
+    },
+    {
+      "point": [
+        44.45,
+        -6.2,
+        -37.1941
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "radius": 2.1,
+      "depth": 5.4105,
+      "kind": "hole",
+      "id": "29",
+      "label": "IQ mounting hole · original CAD",
+      "evidence": "2.1 mm analytic bore and unobstructed outward 3.7 mm diameter insertion corridor."
+    },
+    {
+      "point": [
+        44.45,
+        -6.2,
+        37.1941
+      ],
+      "normal": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "radius": 2.1,
+      "depth": 5.4105,
+      "kind": "hole",
+      "id": "32",
+      "label": "IQ mounting hole · original CAD",
+      "evidence": "2.1 mm analytic bore and unobstructed outward 3.7 mm diameter insertion corridor."
+    }
+  ],
+  "status": "ok",
+  "bytes": 1588016,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "electronic",
+  "referenceAudit": {
+    "rawCount": 40,
+    "acceptedCount": 16,
+    "excludedCount": 24,
+    "method": "Original analytic mounting bores; exclude bosses, latch/electrical details and blocked internal/reverse mouths via five outward ray corridors.",
+    "status": "exterior-mounting-references-verified"
+  },
+  "originalConservativeBounds": {
+    "min": [
+      -51.90175,
+      -12.40747,
+      -39.20175
+    ],
+    "max": [
+      51.90175,
+      21.815,
+      39.20175
+    ]
+  },
+  "validation": {
+    "glbBoundsMeters": [
+      [
+        -0.050850000232458115,
+        -0.012400000356137753,
+        -0.03815000131726265
+      ],
+      [
+        0.050850000232458115,
+        0.021815000101923943,
+        0.03815000131726265
+      ]
+    ],
+    "maximumBoundsErrorMm": 1e-06,
+    "originalMaterials": 5,
+    "triangleCount": 39513,
+    "glbSha256": "514c905b47d2f1f78a04c33ea4c660593f211d26dc81dc167f4d08f1cfaea6e2",
+    "status": "ok"
+  }
+}

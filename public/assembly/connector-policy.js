@@ -1,15 +1,19 @@
 // VEX GO distinguishes a torque-transmitting square drive from a free-spinning
 // square shaft in a round bore. A round peg must never enter a square socket.
 import {PLATFORM_ID} from './platform.js';
+import {partSource} from './part-source.js';
 export function compatibleReferences(a,b,skuA,skuB){
  if(!a||!b||a.kind===b.kind)return false;
+ if(a.excludedPartSkus?.includes(skuB)||b.excludedPartSkus?.includes(skuA))return false;
+ const sourceA=partSource(PLATFORM_ID,skuA),sourceB=partSource(PLATFORM_ID,skuB);skuA=sourceA.id;skuB=sourceB.id;
  // Collared shafts drive the motor with their short tip; wheels belong on
  // the long free section, even when both ends fit a square socket geometrically.
  const wheelSkus=['228-2500-1383','228-2500-1384'];
- if(PLATFORM_ID==='vexgo'&&(a.id==='short-drive-end'&&wheelSkus.includes(skuB)||b.id==='short-drive-end'&&wheelSkus.includes(skuA)))return false;
- if(PLATFORM_ID==='vexiq'&&(a.id==='motor-output'&&b.driveRole==='long'||b.id==='motor-output'&&a.driveRole==='long'))return false;
- if(a.excludedPartSkus?.includes(skuB)||b.excludedPartSkus?.includes(skuA))return false;
+ if((sourceA.platform==='vexgo'||sourceB.platform==='vexgo')&&(a.id==='short-drive-end'&&wheelSkus.includes(skuB)||b.id==='short-drive-end'&&wheelSkus.includes(skuA)))return false;
+ if((sourceA.platform==='vexiq'||sourceB.platform==='vexiq')&&(a.id==='motor-output'&&b.driveRole==='long'||b.id==='motor-output'&&a.driveRole==='long'))return false;
  if(a.excludedProfiles?.includes(b.profile)||b.excludedProfiles?.includes(a.profile))return false;
+ if(a.profile==='iq-chain-hinge'||b.profile==='iq-chain-hinge')return a.profile===b.profile&&skuA==='228-2500-230'&&skuB==='228-2500-230';
+ if(a.profile==='iq-balloon-rim'||b.profile==='iq-balloon-rim')return a.profile===b.profile&&a.width===b.width;
  if(a.profile==='lego-stud'||b.profile==='lego-stud')return a.profile==='lego-stud'&&b.profile==='lego-stud';
  const squarePin=ref=>['square-drive','lego-cross'].includes(ref.profile)&&ref.kind==='pin';
  const squareSocket=ref=>['square-drive','lego-cross'].includes(ref.profile)&&ref.kind==='hole';
@@ -38,6 +42,7 @@ export function insertionLimit(a,b,previous=0){
  return depths.length?Math.max(...depths):Math.max(0,previous);
 }
 export function recommendedInsertionDepth(a,b,skuA,skuB){
+ skuA=partSource(PLATFORM_ID,skuA).id;skuB=partSource(PLATFORM_ID,skuB).id;
  const limit=insertionLimit(a,b);
  const pin=a.kind==='pin'?a:b.kind==='pin'?b:null;
  const wheel=['228-2500-1383','228-2500-1384'].includes(skuA)||['228-2500-1383','228-2500-1384'].includes(skuB);

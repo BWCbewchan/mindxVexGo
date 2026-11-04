@@ -1,8 +1,8 @@
 import {PLATFORM} from './platform.js';
-import {kitReport,kitAssemblyReport,parseKitFile,validateKitProfile} from './kit-policy.js';
+import {kitReport,kitAssemblyReport,parseKitFile,validateKitProfile,totalKitCount} from './kit-policy.js';
 
 export function installKitSettings(api){
- const fileMenu=document.querySelector('.app-menu .app-menu-panel'),settings=document.createElement('button'),importButton=document.createElement('button'),input=document.createElement('input');
+ const fileMenu=document.getElementById('new').closest('.app-menu-panel'),settings=document.createElement('button'),importButton=document.createElement('button'),input=document.createElement('input');
  settings.id='kit-settings';settings.textContent='Cài đặt bộ kit…';importButton.id='kit-import';importButton.textContent='Import bộ kit…';input.type='file';input.accept='.json,.csv';input.hidden=true;
  fileMenu.append(importButton,settings);document.body.append(input);
  const badge=document.createElement('button');badge.id='kit-status';badge.className='kit-status';document.querySelector('.library h2').after(badge);
@@ -19,17 +19,18 @@ export function installKitSettings(api){
    if(event.data?.type==='assembly-kit-ready')frame.contentWindow.postMessage({type:'assembly-kit-init',context:{platform:PLATFORM.id,catalog:api.catalog(),parts:api.project().parts,profile}},location.origin);
    if(event.data?.type==='assembly-kit-cancel')close();
    if(event.data?.type==='assembly-kit-apply'){
-    try{const kit=validateKitProfile(event.data.profile,api.catalog(),PLATFORM.id);await api.configure(kit);close();render();}
+    try{await api.prepareKit?.(event.data.profile);const kit=validateKitProfile(event.data.profile,api.catalog(),PLATFORM.id);await api.configure(kit);close();render();}
     catch(error){frame?.contentWindow.postMessage({type:'assembly-kit-error',error:error.message},location.origin);}
    }
   };
   window.addEventListener('message',listener);modal.addEventListener('close',()=>window.removeEventListener('message',listener),{once:true});
  }
  settings.onclick=()=>open();badge.onclick=()=>open();importButton.onclick=()=>{if(!blocked())input.click();};
- input.onchange=async()=>{const file=input.files[0];if(!file)return;try{if(file.size>1e6)throw Error('File bộ kit phải nhỏ hơn 1 MB.');open(parseKitFile(await file.text(),file.name,api.catalog(),PLATFORM.id));}catch(error){api.status('Không import được bộ kit: '+error.message);}finally{input.value='';}};
+ input.onchange=async()=>{const file=input.files[0];if(!file)return;try{if(file.size>1e6)throw Error('File bộ kit phải nhỏ hơn 1 MB.');const text=await file.text();if(file.name.toLowerCase().endsWith('.json'))await api.prepareKit?.(JSON.parse(text));open(parseKitFile(text,file.name,api.catalog(),PLATFORM.id));}catch(error){api.status('Không import được bộ kit: '+error.message);}finally{input.value='';}};
  function render(){
   const profile=api.project().kit,rows=profile?kitReport(api.project().parts,api.catalog(),profile):[],missing=rows.filter(row=>row.remaining<0);
-  badge.textContent=profile?`${profile.count} bộ · ${profile.name}${missing.length?` · thiếu ${missing.length} loại`:profile.enforce?' · đang giới hạn':' · chỉ cảnh báo'}`:'Bộ kit: chưa cấu hình · Cài đặt';badge.classList.toggle('kit-missing',missing.length>0);badge.disabled=settings.disabled=importButton.disabled=blocked();
+  const kitNames=profile?.additionalKits?.length?[profile,...profile.additionalKits].map(k=>`${k.count}× ${k.platform==='lego'?k.name.replace(/^LEGO /,'').replace(/ · .*/, ''):k.platform==='vexgo'?'VEX GO':'VEX IQ'}`).join(' + '):profile?.name;
+  badge.textContent=profile?`${totalKitCount(profile)} bộ · ${kitNames}${missing.length?` · thiếu ${missing.length} loại`:profile.enforce?' · đang giới hạn':' · chỉ cảnh báo'}`:'Bộ kit: chưa cấu hình · Cài đặt';badge.classList.toggle('kit-missing',missing.length>0);badge.disabled=settings.disabled=importButton.disabled=blocked();
   const assemblies=profile?kitAssemblyReport(api.project().parts,api.catalog(),profile):[];
   const bySku=new Map([...rows,...assemblies].flatMap(row=>row.skus.map(sku=>[sku,row])));
   for(const button of document.querySelectorAll('#parts button[data-sku]')){

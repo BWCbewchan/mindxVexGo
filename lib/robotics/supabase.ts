@@ -1,6 +1,8 @@
 'use client';
+import {cloudScope} from './cloud-scope';
+import {roboticsFetch} from './cloud-transport';
 import {createClient} from '@supabase/supabase-js';
-function createRoboticsClient(url:string,key:string){return createClient(url,key,{db:{schema:'robotics'},auth:{storageKey:'mindx-robotics-auth-v1',persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});}
+function createRoboticsClient(url:string,key:string){return createClient(url,key,{global:{fetch:roboticsFetch},db:{schema:'robotics'},auth:{storageKey:'mindx-robotics-auth:'+cloudScope(),persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});}
 let client:ReturnType<typeof createRoboticsClient>|null=null;
 export function roboticsClient(){
  const url=process.env.NEXT_PUBLIC_ROBOTICS_SUPABASE_URL,key=process.env.NEXT_PUBLIC_ROBOTICS_SUPABASE_PUBLISHABLE_KEY;

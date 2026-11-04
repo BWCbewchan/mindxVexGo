@@ -1,3 +1,4 @@
+const base=process.env.BASE_URL||'http://localhost:3131';
 import {chromium} from '@playwright/test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
@@ -12,7 +13,7 @@ async function configure(count,quantity){await page.locator('#kit-status').click
 try{
  await fs.mkdir('artifacts/assembly-tests',{recursive:true});
  await page.addInitScript(project=>{if(!sessionStorage.getItem('kit-test-seeded')){localStorage.setItem('mindx-vexgo-assembly-v1',JSON.stringify(project));sessionStorage.setItem('kit-test-seeded','1');}},fixture);
- await page.goto('http://localhost:3120/assembly/editor.html');await ready();await page.locator('#status').filter({hasText:'Draft saved locally'}).waitFor();
+ await page.goto(base+'/assembly/editor.html');await ready();await page.locator('#status').filter({hasText:'Draft saved locally'}).waitFor();
  await configure(1,1);
  assert.equal((await call('getKit')).result.count,1);
  assert.equal(await page.getByRole('button',{name:'Add Red Beam',exact:true}).isDisabled(),true,'Library must disable exhausted stock');
@@ -30,7 +31,7 @@ try{
  await page.getByRole('button',{name:'Add Red Beam',exact:true}).click();await page.waitForFunction(async()=>(await window.mindxAssembly.execute('getState')).result.project.parts.length===2);await page.waitForFunction(async()=>!(await window.mindxAssembly.execute('getState')).result.busy);
  await page.reload();await ready();assert.equal((await call('getKit')).result.count,2);assert.equal((await state()).project.parts.length,2);
  console.log('PASS: two-kit multiplication, Ctrl+J, Undo, reused stock and persisted settings');
- await page.locator('.app-menu').first().locator('summary').click();assert.equal(await page.locator('#kit-import').isVisible(),true);assert.equal(await page.locator('#kit-settings').isVisible(),true);
+ await page.locator('.app-menu>summary').filter({hasText:'File'}).click();assert.equal(await page.locator('#kit-import').isVisible(),true);assert.equal(await page.locator('#kit-settings').isVisible(),true);
  await page.locator('input[type=file][accept=".json,.csv"]').setInputFiles({name:'One beam.csv',mimeType:'text/csv',buffer:Buffer.from('sku,quantity\n228-2500-001,1')});
  await panel().getByRole('heading',{name:'Cài đặt bộ kit',exact:true}).waitFor();assert.equal(await panel().getByRole('textbox',{name:'Tên bộ kit',exact:true}).inputValue(),'One beam');
  await panel().getByRole('button',{name:'Hủy',exact:true}).click();await page.locator('.kit-settings-dialog').waitFor({state:'detached'});assert.equal((await call('getKit')).result.count,2,'Cancelled import must keep current stock');

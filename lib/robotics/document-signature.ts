@@ -7,6 +7,9 @@ function canonical(value:unknown):unknown{
 }
 // PostgreSQL jsonb reorders object keys. Compare content, preserving array order.
 export function documentSignature(document:ProjectData){
- const {savedAt:_,createdAt:__,projectId:___,...data}=document;
+ const {savedAt:_,createdAt:__,projectId:___,connections:____,steps:_____,...data}=document;
  return JSON.stringify(canonical(data));
 }
+
+// Persist authored CAD state, not generated contacts, guide snapshots or local dates.
+export function compactCloudDocument(document:ProjectData):ProjectData{const {savedAt:_,createdAt:__,projectId:___,connections:____,steps:_____,...data}=document;return {...data,steps:[]};}

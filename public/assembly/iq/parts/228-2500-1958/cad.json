@@ -18,7 +18,29 @@
       31.78902
     ]
   },
-  "references": [],
+  "references": [
+    {
+      "id": "balloon-rim",
+      "kind": "hole",
+      "profile": "iq-balloon-rim",
+      "label": "Lắp vào vành 48.5 mm",
+      "point": [
+        0,
+        9.525,
+        0
+      ],
+      "normal": [
+        0,
+        -1,
+        0
+      ],
+      "radius": 24.25,
+      "width": 48.5,
+      "depth": 0,
+      "maxDepth": 0,
+      "evidence": "Original hub/tire axial seating ranges; reverse tire aligns -21.336 to +2.286 mm."
+    }
+  ],
   "status": "ok",
   "bytes": 187580,
   "meshes": 1,

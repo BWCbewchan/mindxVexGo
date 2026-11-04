@@ -1,5 +1,6 @@
 'use client';
-import {platformName,platformEditorUrl,platformCatalogUrl} from '../../public/assembly/platform-registry';
+import {projectCatalog} from '../../public/assembly/project-catalog';
+import {platformName,platformEditorUrl} from '../../public/assembly/platform-registry';
 import {useEffect,useRef,useState} from 'react';
 import CloudSync from '../components/robotics/cloud-sync';
 import Link from 'next/link';import {useRouter} from 'next/navigation';
@@ -35,7 +36,7 @@ export default function AssemblyClient({platform,projectId}:{platform:Platform;p
    setNavigating(true);router.push(`/assembly/${nextPlatform}/${nextId}`);return;
   }
   if(event.data?.type==='assembly-project-saved'&&typeof event.data.title==='string')document.title=event.data.title+' · '+platformName(platform)+' · mindX';
-  if(event.data?.type==='assembly-import-request'&&!opening){opening=true;setImporting(true);setNotice('');try{const data=event.data.project as ProjectData,nextPlatform=data?.platform||platform;if(!platformValid(nextPlatform)||data?.version!==1||!Array.isArray(data.parts)||JSON.stringify(data).length>5e6)throw Error('Dự án nhập không hợp lệ.');const response=await fetch(platformCatalogUrl(nextPlatform));if(!response.ok)throw Error('Chưa đọc được bộ linh kiện của file.');const validated=validateProjectFile(data,nextPlatform,await response.json());if(!active)return;const id=createProject(nextPlatform,validated.title,validated);setNavigating(true);router.push(`/assembly/${nextPlatform}/${id}`);}catch(e){if(active)setNotice(e instanceof Error?e.message:'Chưa nhập được dự án.');}finally{opening=false;if(active)setImporting(false);}}
+  if(event.data?.type==='assembly-import-request'&&!opening){opening=true;setImporting(true);setNotice('');try{const data=event.data.project as ProjectData,nextPlatform=data?.platform||platform;if(!platformValid(nextPlatform)||data?.version!==1||!Array.isArray(data.parts)||JSON.stringify(data).length>5e6)throw Error('Dự án nhập không hợp lệ.');const validated=validateProjectFile(data,nextPlatform,await projectCatalog(nextPlatform,data));if(!active)return;const id=createProject(nextPlatform,validated.title,validated);setNavigating(true);router.push(`/assembly/${nextPlatform}/${id}`);}catch(e){if(active)setNotice(e instanceof Error?e.message:'Chưa nhập được dự án.');}finally{opening=false;if(active)setImporting(false);}}
  };window.addEventListener('message',listener);return()=>{active=false;window.removeEventListener('message',listener);};},[router,platform,projectId]);
  const error=workspace.identity===identity?workspace.error:'';
  if(error)return <main style={{minHeight:'100dvh',display:'grid',placeContent:'center',gap:20,padding:30,background:'#22272e',color:'#e4edf6'}}><h1>Chưa mở được dự án</h1><p role="alert">{error}</p><Link href="/assembly/projects">← Về các dự án</Link></main>;

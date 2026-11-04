@@ -18,3 +18,8 @@ parts[1].mate={target:'a',sourceRef:'1',targetRef:'1'};assert.equal(analyzeColli
 const crossedBeamA=box([.12,.018,.006],[0,0,0]),crossedBeamB=box([.12,.018,.006],[0,0,0]);crossedBeamB.rotation.z=Math.PI/2;crossedBeamB.updateMatrixWorld(true);
 assert.equal(meshContact(crossedBeamA,crossedBeamB),'penetration','crossing beam bodies are detected even when connector parts are elsewhere');
 console.log('Collision tests passed: touching, separated, containment, rotated and crossing solids, plus explicit connector-mate classification.');
+
+// A long chain can fill the joint-contact display limit before a later collision.
+const denseParts=[{id:'p0',sku:'228-2500-2260',mate:{target:'p1'}},{id:'p1',sku:'228-2500-001'},{id:'p2',sku:'228-2500-001'},{id:'p3',sku:'269-6690-000'}];
+const denseObjects=new Map([['p0',box([.02,.02,.02],[0,0,0])],['p1',box([.02,.02,.02],[.01,0,0])],['p2',box([.02,.02,.02],[.1,0,0])],['p3',box([.02,.02,.02],[.11,0,0])]]);
+assert.ok(analyzeCollisions(denseParts,denseObjects,{limit:1}).issues.some(i=>i.kind==='penetration'),'Valid joints must not hide later unrelated body penetration');

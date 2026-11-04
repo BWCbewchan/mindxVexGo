@@ -18,3 +18,19 @@ const guarded=structuredClone(result.parts),guardPoses=JSON.stringify(guarded.ma
 assert.throws(()=>previewAssemblyConnection(file.parts,references,{sourceId,targetId:otherPin,sourceRef:'6',targetRef:'6',movingIds:ids}),/tương thích|cùng cụm/);
 const shifted=structuredClone(result.parts);for(const p of shifted)if(set.has(p.id))p.position[0]-=5;const start=performance.now();const nearest=nearestAssemblyMate(shifted,references,ids,{distance:8,context});const ms=performance.now()-start;assert.ok(nearest);assert.ok(nearest.support>=2);assert.equal(nearest.target.id,targetId);assert.equal(nearest.movingIds.length,39);
 console.log(`PASS: actual 79-part IQ file; two 39/40-part chassis sides, rigid 39-member join, two aligned pins, valid rerooted mates, no cycles, no static/authoring changes; nearest probe ${ms.toFixed(1)} ms.`);
+
+const {releaseAssemblyBoundary}=await import('../public/assembly/assembly-mating.js');
+const released=structuredClone(result.parts),internal=released.filter(p=>p.mate&&set.has(p.id)===set.has(p.mate.target)).map(p=>[p.id,structuredClone(p.mate)]);
+releaseAssemblyBoundary(released,references,ids);
+assert.ok(released.every(p=>!p.mate||set.has(p.id)===set.has(p.mate.target)),'Only cross-group links are released');
+for(const [id,mate] of internal)assert.deepEqual(released.find(p=>p.id===id).mate,mate,'All internal links preserved');
+assert.equal(nearestAssemblyMate(released,references,ids,{distance:1}),null,'Released boundary does not snap back immediately');
+for(const p of released)if(set.has(p.id))p.position[0]-=40;
+const releaseGuard=constrainJoints(released,result.parts,references,{autoAttach:false});assert.ok(releaseGuard.ok,releaseGuard.reason);
+for(const p of released){const before=result.parts.find(q=>q.id===p.id);assert.ok(Math.abs(p.position[0]-before.position[0]-(set.has(p.id)?-40:0))<1e-5,'Selected chassis moves out; static chassis stays still');}
+console.log('PASS: selected group can separate again; internal mates preserved, boundary released, no immediate snap-back.');
+
+const retry=structuredClone(result.parts);releaseAssemblyBoundary(retry,references,ids);for(const p of retry)if(set.has(p.id))p.position[0]-=3;
+releaseAssemblyBoundary(retry,references,ids);const retryMate=nearestAssemblyMate(retry,references,ids,{distance:8});assert.ok(retryMate&&retryMate.support>=2,'A new intentional group drag reconnects both pins without requiring a wide retreat');
+const excursion=structuredClone(result.parts);releaseAssemblyBoundary(excursion,references,ids);for(const p of excursion)if(set.has(p.id))p.position[0]-=40;nearestAssemblyMate(excursion,references,ids,{distance:8});for(const p of excursion)if(set.has(p.id))p.position[0]+=37;assert.ok(nearestAssemblyMate(excursion,references,ids,{distance:8})?.support>=2,'Moving out then back in the same drag re-enables the released seat');
+console.log('PASS: easy two-pin reconnect on the next drag and after moving out/back; no permanent connector lock.');

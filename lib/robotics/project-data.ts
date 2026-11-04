@@ -1,14 +1,15 @@
-import {platformCatalogUrl} from '../../public/assembly/platform-registry';
+import {cloudScope} from './cloud-scope';
+import {projectCatalog} from '../../public/assembly/project-catalog';
 import {validateProjectFile,saveProject,loadProject,listProjects,createProject,type ProjectData,type Platform} from '../../public/assembly/project-store';
 import type {CloudProject} from './models';
 import {documentSignature} from './document-signature';
 import {assertProjectIdentity,ownsProject,type ProjectIdentity} from './project-identity';
 export {documentSignature} from './document-signature';
-export function bindingKey(userId:string,platform:Platform,id:string){return 'mindx-robotics-binding:'+userId+':'+platform+':'+id;}
-export function readBinding(userId:string,platform:Platform,id:string):{id:string;revision:number;signature:string}|null{try{return JSON.parse(localStorage.getItem(bindingKey(userId,platform,id))||'null');}catch{return null;}}
+export function bindingKey(userId:string,platform:Platform,id:string){return 'mindx-robotics-binding:'+cloudScope()+':'+userId+':'+platform+':'+id;}
+export function readBinding(userId:string,platform:Platform,id:string):{id:string;revision:number;signature:string}|null{try{return JSON.parse(localStorage.getItem(bindingKey(userId,platform,id))||localStorage.getItem('mindx-robotics-binding:'+userId+':'+platform+':'+id)||'null');}catch{return null;}}
 export function setBinding(userId:string,row:CloudProject){localStorage.setItem(bindingKey(userId,row.platform,row.local_id),JSON.stringify({id:row.id,revision:row.revision,signature:documentSignature(row.document)}));}
-export async function checkedDocument(document:ProjectData,platform:Platform){const response=await fetch(platformCatalogUrl(platform));if(!response.ok)throw Error('Chưa đọc được thư viện CAD.');const catalog=await response.json();return {document:validateProjectFile(document,platform,catalog),catalog};}
-export function boundToAnotherIdentity(key:string,platform:Platform,id:string){if(readBinding(key,platform,id))return false;for(let i=0;i<localStorage.length;i++){const name=localStorage.key(i);if(name?.startsWith('mindx-robotics-binding:')&&name.endsWith(':'+platform+':'+id))return true;}return false;}
+export async function checkedDocument(document:ProjectData,platform:Platform){const catalog=await projectCatalog(platform,document);return {document:validateProjectFile(document,platform,catalog),catalog};}
+export function boundToAnotherIdentity(key:string,platform:Platform,id:string){if(readBinding(key,platform,id))return false;for(let i=0;i<localStorage.length;i++){const name=localStorage.key(i);if((name?.startsWith('mindx-robotics-binding:'+cloudScope()+':')||/^mindx-robotics-binding:(?:guest:)?[0-9a-f-]{36}:/.test(name||''))&&name?.endsWith(':'+platform+':'+id))return true;}return false;}
 export async function restoreProject(row:CloudProject,identity:ProjectIdentity){
  if(!ownsProject(identity,row))throw Error('Bản lưu không thuộc không gian hiện tại.');
  const {document}=await checkedDocument(row.document,row.platform);

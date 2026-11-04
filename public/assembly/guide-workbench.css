@@ -47,3 +47,32 @@
 @media(min-width:751px){body.guide-active main{grid-template-columns:240px minmax(0,1fr) 370px}body.guide-active.hide-library main{grid-template-columns:0 minmax(0,1fr) 370px}body.guide-active.guide-wide main{grid-template-columns:240px minmax(0,1fr) min(550px,48vw)}body.guide-active.guide-wide.hide-library main{grid-template-columns:0 minmax(0,1fr) min(550px,48vw)}body.guide-active.hide-panel main,body.guide-active.guide-wide.hide-panel main{grid-template-columns:240px minmax(0,1fr) 0}body.guide-active.hide-panel.hide-library main{grid-template-columns:0 minmax(0,1fr) 0}}
 @media(min-width:751px) and (max-width:1050px){body.guide-active main{grid-template-columns:170px minmax(0,1fr) 340px}body.guide-active.hide-library main{grid-template-columns:0 minmax(0,1fr) 340px}body.guide-active.guide-wide main{grid-template-columns:170px minmax(0,1fr) min(500px,48vw)}}
 @media(max-width:750px){.guide-live-strip{gap:4px}.guide-live-card-header{padding-top:9px}.guide-live-heading{margin-top:0}.guide-live-stage{max-height:240px;aspect-ratio:4/3}.guide-live-tools{flex-wrap:nowrap}.studio-inspector #guide-workbench .guide-live-tools>button{width:25px;height:25px;padding:3px;flex-shrink:0}.studio-inspector #guide-workbench #guide-view-all{font-size:9px;min-width:70px}.guide-live-pli{padding-top:8px}.guide-live-note{padding-top:4px}}
+
+/* A single paged instruction card; the number edits the assembly order. */
+#inspector-content-2 .student-guide{padding:0;border:0;background:transparent}#inspector-content-2 #guide-workbench{margin:0}
+.guide-live-card-header{align-items:center;flex-wrap:wrap;padding:10px 10px 5px;gap:6px}.guide-live-card-header>span{min-width:100px}.guide-card-navigation{display:flex;gap:3px;margin-left:auto}
+.studio-inspector #guide-workbench .guide-card-navigation button{width:25px;height:25px;padding:0;border:1px solid #d5dfda;background:#f5f8f6;color:#285747;border-radius:4px;font-size:21px;line-height:1;cursor:pointer}
+.studio-inspector #guide-workbench #guide-step-order{width:39px;min-width:0;border:1px solid transparent;border-radius:4px;background:#edf4f0;color:#386352;font:600 16px system-ui;text-align:center;padding:3px 1px;appearance:textfield}
+#guide-step-order::-webkit-inner-spin-button{appearance:none}.studio-inspector #guide-workbench #guide-step-order:focus{border-color:#548977;outline:2px solid #b7dbce}.guide-card-error{color:#9b3c28;background:#fff2ea}
+#guide-legacy-controls[hidden],#inspector-content-2>.guide-export-tools[hidden]{display:none!important}
+
+/* Stacked instruction pages, automatically rendered while building. */
+.guide-vertical-feed{display:flex;flex-direction:column;gap:14px}
+.guide-vertical-feed>.guide-live-card{flex:none;scroll-margin-top:12px}
+.guide-live-stage>.guide-live-preview{display:block;width:100%;height:100%;object-fit:contain}
+.guide-live-stage>.guide-live-preview[hidden]{display:none}
+.studio-inspector #guide-workbench .guide-step-order{width:39px;min-width:0;border:1px solid transparent;border-radius:4px;background:#edf4f0;color:#386352;font:600 16px system-ui;text-align:center;padding:3px 1px;appearance:textfield}
+.guide-step-order::-webkit-inner-spin-button{appearance:none}
+.studio-inspector #guide-workbench .guide-step-order:focus{border-color:#548977;outline:2px solid #b7dbce}
+
+.guide-live-note[role=button]{cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.studio-inspector #guide-workbench .guide-connection-help{display:block;width:calc(100% - 24px);margin:0 12px 14px;padding:10px;border-radius:5px;border:1px solid #719b87;background:#e6f3eb;color:#214e3b;font-size:12px;cursor:pointer}
+.connection-suggestions{width:min(720px,94vw);max-height:85vh;padding:0;border:1px solid #54635d;border-radius:12px;background:#252d2b;color:#e6eeea;box-shadow:0 20px 80px #0008}
+.connection-suggestions::backdrop{background:#0008}.connection-suggestions>header{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 20px;background:#303a36;border-bottom:1px solid #4b5951}
+.connection-suggestions h2{font:600 17px system-ui;margin:0}.connection-suggestions-body{padding:16px 20px;font:13px/1.6 system-ui}
+.connection-suggestions button{padding:8px 12px;margin:3px;border:1px solid #657d6e;border-radius:5px;background:#3c5e4c;color:#f0fff5;cursor:pointer}.connection-suggestions button:hover{background:#4d7962}.connection-suggestions details button{display:block;width:100%;text-align:left}
+.connection-suggestion{padding:14px;margin:14px 0;border:1px solid #526158;border-radius:8px;background:#303a35}.connection-suggestion-pair{display:flex;align-items:center;justify-content:center;gap:20px}.connection-suggestion figure{margin:0;text-align:center;flex:1;min-width:0}.connection-suggestion img{width:100px;height:85px;object-fit:contain}.connection-suggestion figcaption{font-weight:600}.connection-suggestion p{color:#c2d2c9;margin:10px 0}
+
+#chain-builder label{display:block;margin:10px 0}#chain-builder input,#chain-builder select{display:block;width:100%;box-sizing:border-box;padding:9px;margin-top:5px;background:#1f2924;color:#effff4;border:1px solid #637c6a;border-radius:5px}#chain-builder .chain-builder-diagram{background:#1f2924;border-radius:8px;margin:16px 0}#chain-builder svg{display:block;width:100%;max-height:150px}#chain-create{width:100%;margin:8px 0}#chain-create:disabled{opacity:.45;cursor:default}
+
+.chain-pick-bar{position:absolute;left:50%;top:14px;transform:translateX(-50%);z-index:12;display:flex;align-items:center;gap:16px;width:max-content;max-width:calc(100% - 32px);box-sizing:border-box;padding:10px 12px;border:1px solid #80b69c;border-radius:8px;background:#243c31f5;color:#e1fbe9;box-shadow:0 5px 20px #0003;font:13px/1.5 system-ui}.chain-pick-bar[hidden]{display:none}.chain-pick-bar button{padding:4px 10px;border:1px solid #92b7a2;border-radius:4px;background:#365b47;color:#f1fff5;cursor:pointer}#chain-connect-selection{width:100%;margin:8px 0;padding:10px;border:1px solid #6a9b7e;border-radius:5px;background:#345640;color:#e1ffeb}#chain-connect-selection[hidden]{display:none!important}

@@ -1,0 +1,20 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs/promises';
+import {installAutomaticGuideRepair} from '../public/assembly/automatic-guide-repair.js';
+import {repairAssemblyLinks} from '../public/assembly/repair-links.js';
+import {matingPose} from '../public/assembly/mating.js';
+
+const until=async predicate=>{const end=Date.now()+2000;while(!predicate()){if(Date.now()>end)throw Error('Timed out');await new Promise(r=>setTimeout(r,5));}};
+let key='original',blocked=true,runs=0;
+const repair=installAutomaticGuideRepair({key:()=>key,blocked:()=>blocked,delay:5,run:async()=>{runs++;key='repaired-'+runs;}});
+for(let i=0;i<8;i++)repair.schedule();await new Promise(r=>setTimeout(r,20));assert.equal(runs,0,'Do not repair an active gesture');
+blocked=false;await until(()=>runs===1&&!repair.active());repair.schedule();await new Promise(r=>setTimeout(r,20));assert.equal(runs,1,'Stable model does not loop');
+key='original';repair.schedule();await new Promise(r=>setTimeout(r,20));assert.equal(runs,1,'Undo does not instantly reapply an automatic change');
+key='edited';repair.schedule();await until(()=>runs===2&&!repair.active());repair.dispose();key='disposed';repair.schedule();await new Promise(r=>setTimeout(r,15));assert.equal(runs,2);
+const refs=JSON.parse(await fs.readFile('public/assembly/iq/connectors.json','utf8')).parts;
+const beam={id:'beam',sku:'228-2500-026',position:[0,50,0],rotation:[0,0,0]},pin={id:'pin',sku:'228-2500-060',position:[0,0,0],rotation:[0,0,0]},a=refs[pin.sku].find(r=>r.id==='1'),b=refs[beam.sku].find(r=>r.kind==='hole'&&r.normal[1]===1);
+Object.assign(pin,matingPose(pin,a,beam,b,{depth:4.55}));const input=[beam,pin],before=JSON.stringify(input);
+assert.equal(repairAssemblyLinks(input,refs,{respectReleased:true}).recovered,1);assert.equal(JSON.stringify(input),before,'Repair does not mutate its input');
+pin.snapBlocked=[{target:beam.id,sourceRef:a.id,targetRef:b.id}];assert.equal(repairAssemblyLinks(input,refs,{respectReleased:true}).recovered,0,'User-released components stay released');
+assert.equal(repairAssemblyLinks(input,refs).recovered,1,'Explicit repair remains available');assert.equal(repairAssemblyLinks(input,refs,{isLocked:()=>true}).recovered,0);
+console.log('PASS: automatic repair debounce, gesture deferral, stable-state deduplication, Undo, disposal, immutable recovery and respect for released/locked components.');

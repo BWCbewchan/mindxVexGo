@@ -1,0 +1,8 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs/promises';
+import {buildChain,CHAIN_PITCH_MM,isChainLink} from '../public/assembly/chain-builder.js';
+import {seatedConnections,jointMetrics} from '../public/assembly/assembly-review.js';
+import {compatibleReferences} from '../public/assembly/connector-policy.js';
+const refs=JSON.parse(await fs.readFile('public/assembly/iq/connectors.json','utf8')).parts,part={id:'228-2500-230',name:'Chain Link',kind:'accessory'};
+for(const shape of ['straight','loop']){let id=0;const {parts,group}=buildChain(part,{shape,count:20,position:[100,80,0],id:()=>String(++id)});assert.equal(parts.length,20);assert.ok(parts.every(p=>p.groupId===group.id));const contacts=seatedConnections(parts,refs);assert.equal(contacts.length,shape==='loop'?20:19);for(let i=1;i<parts.length;i++){const a=parts[i],b=parts[i-1];assert.ok(Math.abs(Math.hypot(...a.position.map((v,j)=>v-b.position[j]))-CHAIN_PITCH_MM)<1e-8);assert.ok(jointMetrics(a,b,refs[part.id][0],refs[part.id][1]).valid);}if(shape==='straight')assert.ok(parts.every(p=>Math.abs(p.position[1]-80)<1e-8));}
+assert.ok(isChainLink('vexiq',part.id));assert.ok(isChainLink('vexgo','vexiq__'+part.id));assert.throws(()=>buildChain(part,{count:1}));assert.throws(()=>buildChain(part,{count:12,shape:'loop'}));assert.throws(()=>buildChain(part,{count:201}));assert.equal(compatibleReferences(refs[part.id][0],refs['228-2500-026'][0],part.id,'228-2500-026'),false);console.log('PASS: chain pitch, straight/closed geometry, every hinge seated, exact group/count, isolated hinge profile, validation and mixed-kit recognition.');

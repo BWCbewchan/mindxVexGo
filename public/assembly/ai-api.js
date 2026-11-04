@@ -61,7 +61,7 @@ export function installAssemblyAPI(app){
   reviewMechanics:()=>clone(app.review().mechanics),
   getInventory:()=>kitInventory(app.project().parts,app.catalog(),app.project().kit||null),
   getKit:()=>clone(app.project().kit||null),
-  setKit:({profile})=>change(()=>{app.project().kit=validateKitProfile(profile,app.catalog(),app.project().platform);return {profile:clone(app.project().kit)};}),
+  setKit:({profile})=>change(async()=>{await app.prepareKit?.(profile);app.project().kit=validateKitProfile(profile,app.catalog(),app.project().platform);return {profile:clone(app.project().kit)};}),
   setGroup:args=>change(()=>{const group=app.project().groups.find(g=>g.id===args.id);if(!group)throw Error('Unknown group');
    if(args.parentId!==undefined){if(app.locked(group))throw Error('Group is locked');const parent=args.parentId===null?undefined:args.parentId;if(parent&&(!app.project().groups.some(g=>g.id===parent)||app.locked(app.project().groups.find(g=>g.id===parent))))throw Error('Invalid or locked parent group');if(!validGroupTree(app.project().groups.map(g=>g===group?{...g,parentId:parent}:g)))throw Error('Group cycle rejected');if(parent)group.parentId=parent;else delete group.parentId;}
    for(const key of ['visible','locked','collapsed'])if(args[key]!==undefined){if(typeof args[key]!=='boolean')throw Error(key+' must be boolean');group[key]=args[key];}if(args.name!==undefined){if(typeof args.name!=='string'||!args.name.trim())throw Error('Group name required');group.name=args.name.trim().slice(0,120);}return {group:clone(group)};

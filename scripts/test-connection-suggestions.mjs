@@ -1,0 +1,10 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs/promises';
+import {suggestAssemblyConnections} from '../public/assembly/connection-suggestions.js';
+const refs=JSON.parse(await fs.readFile('public/assembly/connectors.json','utf8')).parts;
+const beam={id:'beam',sku:'228-2500-001',position:[0,40,0],rotation:[0,0,0]},pin={id:'pin',sku:'228-2500-2260',position:[80,40,0],rotation:[0,0,0]};
+const parts=[beam,pin],before=JSON.stringify(parts),result=suggestAssemblyConnections(parts,refs);assert.equal(result.components.length,2);assert.ok(result.candidates.length);assert.equal(JSON.stringify(parts),before);assert.ok(result.candidates.every(c=>c.sourceId!==c.targetId&&c.distance>0));
+const locked=suggestAssemblyConnections(parts,refs,{isLocked:id=>id==='pin'});assert.equal(locked.candidates.length,0);
+const holes=suggestAssemblyConnections([beam,{...beam,id:'other',position:[100,40,0]}],refs);assert.equal(holes.candidates.length,0);assert.equal(holes.holes.length,1);
+assert.equal(suggestAssemblyConnections([],refs).components.length,0);assert.equal(suggestAssemblyConnections([beam],refs).candidates.length,0);
+console.log('PASS: disconnected compatible suggestions, distance, occupied/locked filtering, missing connector fallback, immutable poses and empty/single-component handling.');

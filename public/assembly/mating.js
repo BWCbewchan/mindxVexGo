@@ -5,7 +5,7 @@ export const SNAP_DISTANCE_MM=8;
 // Cylinder extraction includes the shoulder as well as the insertion tip.
 // Only the furthest point facing out along each pin axis is an attachable end.
 export function attachmentReferences(rows=[]){
- return rows.filter(r=>r.kind==='hole'||r.kind==='pin'&&r.radius<=2.6&&!rows.some(other=>other!==r&&other.kind==='pin'&&vector(other.normal).dot(vector(r.normal))>.999&&vector(other.point).sub(vector(r.point)).cross(vector(r.normal)).length()<.15&&vector(other.point).sub(vector(r.point)).dot(vector(r.normal))>.15));
+ return rows.filter(r=>r.kind==='hole'||r.kind==='pin'&&(r.profile==='iq-balloon-rim'||r.radius<=2.6)&&!rows.some(other=>other!==r&&other.kind==='pin'&&vector(other.normal).dot(vector(r.normal))>.999&&vector(other.point).sub(vector(r.point)).cross(vector(r.normal)).length()<.15&&vector(other.point).sub(vector(r.point)).dot(vector(r.normal))>.15));
 }
 export function worldReference(part,ref){
  const q=new THREE.Quaternion().setFromEuler(new THREE.Euler(...part.rotation.map(THREE.MathUtils.degToRad)));

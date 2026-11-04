@@ -10,3 +10,5 @@ public/editor/dist/main.*.bundle.js
 .env
 .env.*
 !.env.example
+
+.vercel

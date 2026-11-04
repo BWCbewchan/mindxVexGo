@@ -1,0 +1,160 @@
+{
+  "id": "228-7106",
+  "sku": "228-7106",
+  "name": "Distance Sensor (2nd generation)",
+  "category": "electronics",
+  "source": "https://www.vexrobotics.com/cadmodels/upload/download/upload_id/40dadcb3-a212-462f-8bad-3201b56ad22d",
+  "sourceFile": "VEX IQ Distance Sensor (228-7106).step",
+  "sourceUrl": "https://www.vexrobotics.com/cadmodels/upload/download/upload_id/40dadcb3-a212-462f-8bad-3201b56ad22d",
+  "manufacturerSource": "https://www.vexrobotics.com/228-7106.html",
+  "sourceHash": "83090e5830681e628c1fe44ed4ad4354c1e2f1e7c74a9fa71357e44b58c916bc",
+  "bounds": {
+    "min": [
+      -12.55,
+      -12.55,
+      -25.2
+    ],
+    "max": [
+      12.55,
+      12.55,
+      -0.0
+    ]
+  },
+  "references": [
+    {
+      "point": [
+        -6.35,
+        -6.35,
+        -0.764
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "2",
+      "label": "IQ mounting hole · original CAD",
+      "evidence": "2.1 mm analytic bore and unobstructed outward 3.7 mm diameter insertion corridor."
+    },
+    {
+      "point": [
+        -6.35,
+        6.35,
+        -0.764
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "4",
+      "label": "IQ mounting hole · original CAD",
+      "evidence": "2.1 mm analytic bore and unobstructed outward 3.7 mm diameter insertion corridor."
+    },
+    {
+      "point": [
+        0.0,
+        0.0,
+        -0.764
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "6",
+      "label": "IQ mounting hole · original CAD",
+      "evidence": "2.1 mm analytic bore and unobstructed outward 3.7 mm diameter insertion corridor."
+    },
+    {
+      "point": [
+        6.35,
+        -6.35,
+        -0.764
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "8",
+      "label": "IQ mounting hole · original CAD",
+      "evidence": "2.1 mm analytic bore and unobstructed outward 3.7 mm diameter insertion corridor."
+    },
+    {
+      "point": [
+        6.35,
+        6.35,
+        -0.764
+      ],
+      "normal": [
+        -0.0,
+        -0.0,
+        1.0
+      ],
+      "radius": 2.1,
+      "depth": 4.572,
+      "kind": "hole",
+      "id": "10",
+      "label": "IQ mounting hole · original CAD",
+      "evidence": "2.1 mm analytic bore and unobstructed outward 3.7 mm diameter insertion corridor."
+    }
+  ],
+  "status": "ok",
+  "bytes": 315328,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "electronic",
+  "referenceAudit": {
+    "rawCount": 14,
+    "acceptedCount": 5,
+    "excludedCount": 9,
+    "method": "Original analytic mounting bores; exclude bosses, latch/electrical details and blocked internal/reverse mouths via five outward ray corridors.",
+    "status": "exterior-mounting-references-verified"
+  },
+  "originalConservativeBounds": {
+    "min": [
+      -12.55729,
+      -12.55729,
+      -25.20729
+    ],
+    "max": [
+      12.55729,
+      12.55729,
+      0.00723
+    ]
+  },
+  "validation": {
+    "glbBoundsMeters": [
+      [
+        -0.012550000101327896,
+        -0.012550000101327896,
+        -0.025200000032782555
+      ],
+      [
+        0.012550000101327896,
+        0.012550000101327896,
+        0.0
+      ]
+    ],
+    "maximumBoundsErrorMm": 0.0,
+    "originalMaterials": 4,
+    "triangleCount": 6423,
+    "glbSha256": "59ca9a1c716b6c2b9a815fe5108b9070e44e2120d049483878cfc92aed7eec34",
+    "status": "ok"
+  }
+}

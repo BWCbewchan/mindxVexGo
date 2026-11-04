@@ -1,3 +1,4 @@
+import {chainSprocketContact} from './chain-route.js';
 import * as THREE from './vendor/three.module.js';
 import {MeshBVH} from './vendor/mesh-bvh.js';
 import {compatibleReferences,insertionLimit} from './connector-policy.js?v=motor-pair-29';
@@ -108,15 +109,16 @@ export function seatedConnectorContact(a,b,references={},lateralTolerance=.15){
  for(const ar of references[a.sku]||[])for(const br of references[b.sku]||[]){
   if(!compatibleReferences(ar,br,a.sku,b.sku))continue;
   const pin=ar.kind==='pin'?ar:br,hole=pin===ar?br:ar;
-  if(pin.radius>2.6||hole.kind!=='hole')continue;
+  const rim=pin.profile==='iq-balloon-rim'&&hole.profile===pin.profile;
+  if((!rim&&pin.radius>2.6)||hole.kind!=='hole')continue;
   const p=world(pin===ar?a:b,pin),h=world(hole===ar?a:b,hole),offset=p.point.sub(h.point),depth=-offset.dot(h.normal);
   const lateral=offset.addScaledVector(h.normal,depth).length();
-  if(lateral<=lateralTolerance&&p.normal.dot(h.normal)<-.999&&depth>.15&&depth<=insertionLimit(pin,hole)+.15)return true;
+  if(lateral<=lateralTolerance&&p.normal.dot(h.normal)<-.999&&(rim?Math.abs(depth)<=.15:depth>.15&&depth<=insertionLimit(pin,hole)+.15))return true;
  }
  return false;
 }
 export function analyzeCollisions(parts,objects,{limit=80,references={}}={}){
- const groups=new Map(),issues=[];
+ const groups=new Map(),issues=[];let omitted=false;
  const tolerantParts=new Set(parts.filter(part=>!connector.test(part.sku)&&parts.filter(pin=>pin.id!==part.id&&seatedConnectorContact(part,pin,references,1)).length>=2).map(part=>part.id));
  for(const p of parts){const obj=objects.get(p.id);if(obj)groups.set(p.id,meshes(obj));}
  for(let i=0;i<parts.length;i++)for(let j=i+1;j<parts.length;j++){
@@ -128,9 +130,12 @@ export function analyzeCollisions(parts,objects,{limit=80,references={}}={}){
   // Only a recorded compatible mate is an intentional connector contact. Merely
   // containing a connector SKU must not hide an unrelated body collision.
   const linked=a.mate?.target===b.id||b.mate?.target===a.id;
-  const joint=(linked&&(connector.test(a.sku)||connector.test(b.sku)))||seatedConnectorContact(a,b,references,tolerantParts.has(a.id)||tolerantParts.has(b.id)?1:.15);
+  const joint=chainSprocketContact(a,b)||(linked&&(connector.test(a.sku)||connector.test(b.sku)))||seatedConnectorContact(a,b,references,tolerantParts.has(a.id)||tolerantParts.has(b.id)?1:.15);
+  // Dense chains have many valid hinge contacts. Keep scanning so these
+  // cannot exhaust the report before a later body penetration is checked.
+  if(joint&&issues.length>=limit){omitted=true;continue;}
   issues.push({a:a.id,b:b.id,key:[a.id,b.id].sort().join('|'),kind:joint?'joint':result,label:joint?'Connector contact · verify seating':result==='penetration'?'Detected mesh penetration':'Surface intersection · review'});
-  if(issues.length>=limit)return {issues,truncated:true};
+  if(!joint&&issues.length>=limit)return {issues,truncated:true};
  }
- return {issues,truncated:false};
+ return {issues,truncated:omitted};
 }

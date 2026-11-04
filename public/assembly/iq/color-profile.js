@@ -14,8 +14,8 @@ const explicit={
  '087':['darkGray','pins-and-standoffs-0x3-connector-pin'],
  '073':['orange','pins-and-standoffs-1x1-idler-pin'],
  '084':['green','pins-and-standoffs-0x2-idler-pin'],
- '063':['black','pins-and-standoffs-0.25x-pitch-standoff'],
- '064':['white','pins-and-standoffs-pitch-standoffs-inner'],
+ '063':['white','pins-and-standoffs-0.25x-pitch-standoff'],
+ '064':['black','pins-and-standoffs-pitch-standoffs-inner'],
  '109':['black','pins-and-standoffs-0.5x-pitch-standoff-extender'],
  '328':['orange','shafts-1x-pitch-plastic-motor-snap-shaft'],
  '078':['orange','shafts-pitch-plastic-motor-shafts-inner'],
@@ -59,7 +59,9 @@ const explicit={
 };
 export function iqAppearance(entry){
  if(!entry?.id)return null;
+ if(entry.id==='iq-balloon-wheel')return rule('white','wheels-2x-wide-48.5mm-diameter-hub','kit',[{match:'balloon-tire',color:IQ_PALETTE.black}]);
  if(entry.id==='iq-200mm-travel-wheel')return rule('lightGray','wheels-wheel-hub','kit',[{match:'travel-tire',color:IQ_PALETTE.black}]);
+ if(['228-6480','228-7045','228-7082','228-7106'].includes(entry.id))return {source:'https://www.vexrobotics.com/'+entry.id+'.html',evidence:'manufacturer-cad',regions:[],preserveOriginal:true};
  if(entry.id==='228-2536')return {color:IQ_PALETTE.lightGray,colorName:'lightGray / black rubber',source:'https://www.vexrobotics.com/228-2536.html',evidence:'manufacturer-cad',regions:[],preserveOriginal:true};
  const id=entry.sku||entry.id.split('--')[0],tail=id.startsWith('228-2500-')?id.slice(9):null,name=entry.name||'';
  if(variantOf[tail]){const canonical='228-2500-'+variantOf[tail],appearance=iqAppearance({...entry,id:canonical,sku:canonical,name:name.replace(/\s*\(Weak\)/,'')});return appearance?{...appearance,evidence:'family',variantOf:canonical}:null;}

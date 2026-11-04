@@ -3,7 +3,7 @@ import {nearestMate,worldReference} from './mating.js?v=fit-tolerance-36';
 import {compatibleReferences,insertionLimit} from './connector-policy.js';
 
 // Repair connection metadata first; only nudge already aligned components by <=2 mm.
-export function repairAssemblyLinks(input,references,{isLocked=()=>false,maxDistance=2}={}){
+export function repairAssemblyLinks(input,references,{isLocked=()=>false,maxDistance=2,respectReleased=false}={}){
  const parts=structuredClone(input),byId=new Map(parts.map(p=>[p.id,p]));
  let removed=0,recovered=0,moved=0;
  const graph=()=>{const g=new Map(parts.map(p=>[p.id,[]]));for(const p of parts)if(byId.has(p.mate?.target)){g.get(p.id).push(p.mate.target);g.get(p.mate.target).push(p.id);}return g;};
@@ -19,7 +19,12 @@ export function repairAssemblyLinks(input,references,{isLocked=()=>false,maxDist
   let best=null;
   for(const p of parts){const members=component(p.id);if([...members].some(id=>isLocked(byId.get(id))))continue;
    const moving={...p};delete moving.mate;
-   const match=nearestMate(moving,parts,references,{distance:maxDistance,excluded:[...members]});if(!match)continue;
+   const released=[];
+   if(respectReleased)for(const other of parts){
+    if(members.has(other.id))for(const block of other.snapBlocked||[])if(byId.has(block.target))released.push(...component(block.target));
+    if(other.snapBlocked?.some(block=>members.has(block.target)))released.push(...component(other.id));
+   }
+   const match=nearestMate(moving,parts,references,{distance:maxDistance,excluded:[...members,...released]});if(!match)continue;
    const a=worldReference(p,match.sourceRef),b=worldReference(match.target,match.targetRef);if(a.normal.dot(b.normal)>-.9999)continue;
    if(match.sourceRef.key&&match.targetRef.key){
     const key=(part,ref)=>new THREE.Vector3().fromArray(ref.key).applyEuler(new THREE.Euler(...part.rotation.map(THREE.MathUtils.degToRad)));

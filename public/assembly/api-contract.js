@@ -1,5 +1,8 @@
 export const ASSEMBLY_API_VERSION='1.2';
 const str={type:'string',minLength:1,maxLength:200},bool={type:'boolean'},num={type:'number'},ids={type:'array',minItems:1,maxItems:250,uniqueItems:true,items:str},vec={type:'array',minItems:3,maxItems:3,items:{type:'number',minimum:-10000,maximum:10000}};
+const kitProperties={version:{type:'integer',enum:[1]},platform:{type:'string',enum:['vexgo','vexiq','lego']},kitId:{type:'string',enum:['269-6911','228-7755','45544-1','45560-1','31313-1','45678-1','45681-1','45345-1','51515-1']},name:{type:'string',minLength:1,maxLength:120},count:{type:'integer',minimum:1,maximum:100},enforce:bool,items:{type:'object',additionalProperties:{type:'integer',minimum:0,maximum:10000}}};
+const kitRequired=['version','platform','name','count','enforce','items'];
+const additionalKitSchema={type:'object',properties:kitProperties,required:[...kitRequired,'kitId'],additionalProperties:false};
 const define=(title,readOnly,properties={},required=[],example={})=>({title,readOnly,inputSchema:{type:'object',properties,required,additionalProperties:false},example});
 export const ASSEMBLY_COMMANDS={
  getCapabilities:define('Phiên bản, lệnh và quy tắc API',true),
@@ -26,7 +29,7 @@ export const ASSEMBLY_COMMANDS={
  reviewMechanics:define('Kiểm tra giữ trục và cơ cấu truyền động',true),
  getInventory:define('Linh kiện và tồn kho kit',true),
  getKit:define('Đọc cấu hình bộ kit',true),
- setKit:define('Áp dụng cấu hình kit đã kiểm tra',false,{profile:{type:'object',properties:{version:{type:'integer',enum:[1]},platform:{type:'string',enum:['vexgo','vexiq','lego']},kitId:{type:'string',enum:['45544-1','45560-1','31313-1','45678-1','45681-1','45345-1','51515-1']},name:{type:'string',minLength:1,maxLength:120},count:{type:'integer',minimum:1,maximum:100},enforce:bool,items:{type:'object',additionalProperties:{type:'integer',minimum:0,maximum:10000}}},required:['version','platform','name','count','enforce','items'],additionalProperties:false}},['profile'],{profile:{version:1,platform:'vexgo',name:'Example custom kit',count:1,enforce:false,items:{}}}),
+ setKit:define('Áp dụng cấu hình kit đã kiểm tra',false,{profile:{type:'object',properties:{...kitProperties,additionalKits:{type:'array',maxItems:6,items:additionalKitSchema}},required:kitRequired,additionalProperties:false}},['profile'],{profile:{version:1,platform:'vexgo',name:'Example custom kit',count:1,enforce:false,items:{}}}),
  getGuide:define('Đọc bước hướng dẫn và các lỗi cần sửa',true),
  exportProject:define('Đọc toàn bộ dữ liệu dự án để lưu JSON',true),
  flushProject:define('Lưu các chỉnh sửa hiện tại',false),

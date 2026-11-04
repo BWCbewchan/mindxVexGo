@@ -1,12 +1,13 @@
 import {GO_KIT_QUANTITIES,IQ_KIT_QUANTITIES,IQ_STOCK_ALIASES} from './kit-presets.js';
 import {LEGO_KITS} from './lego/kit-presets.js';
+import {sourcePartId} from './part-source.js';
 
 export function kitCatalog(catalog,platform){
  const rows=new Map(),byId=new Map(catalog.map(part=>[part.id,part]));
  for(const part of catalog){
   if(part.components?.length)continue;
-  const canonical=platform==='vexiq'?byId.get(IQ_STOCK_ALIASES[part.id])||part:part,key=platform==='lego'?canonical.id:canonical.name;
-  if(!rows.has(key))rows.set(key,{sku:canonical.id,skus:[],name:canonical.name,category:canonical.kind||canonical.category||'other'});
+  const source=part.sourcePlatform||platform,alias=source==='vexiq'?IQ_STOCK_ALIASES[part.sourceId||part.id]:null,canonical=alias?byId.get(part.sourceId?source+'__'+alias:alias)||part:part,key=platform==='lego'?canonical.id:source+':'+canonical.name;
+  if(!rows.has(key))rows.set(key,{sku:canonical.id,skus:[],name:canonical.name,category:canonical.kind||canonical.category||'other',sourcePlatform:source});
   rows.get(key).skus.push(part.id);
  }
  return [...rows.values()];
@@ -14,9 +15,16 @@ export function kitCatalog(catalog,platform){
 export function defaultKitProfile(catalog,platform,kitId='45544-1'){
  if(platform==='lego'){const kit=LEGO_KITS.find(k=>k.id===kitId);if(!kit)throw Error('Bộ LEGO không hợp lệ.');return {version:1,platform,kitId,name:`LEGO ${kit.name} · ${kitId}`,count:1,enforce:true,items:Object.fromEntries(catalog.map(p=>[p.id,p.sets?.[kitId]||0]))};}
  const quantities=platform==='vexgo'?GO_KIT_QUANTITIES:IQ_KIT_QUANTITIES;
- return {version:1,platform,name:platform==='vexgo'?'VEX GO · 269-6911':'VEX IQ (2nd gen) · 228-7755',count:1,enforce:true,items:Object.fromEntries(kitCatalog(catalog,platform).map(row=>[row.sku,quantities[row.name]??0]))};
+ return {version:1,platform,name:platform==='vexgo'?'VEX GO · 269-6911':'VEX IQ (2nd gen) · 228-7755',count:1,enforce:true,items:Object.fromEntries(kitCatalog(catalog,platform).map(row=>[row.sku,row.sourcePlatform===platform?(quantities[row.name]??0):0]))};
 }
-export function kitCoverage(catalog,platform){if(platform==='lego')return [];const names=new Set(kitCatalog(catalog,platform).map(row=>row.name));return Object.entries(platform==='vexgo'?GO_KIT_QUANTITIES:IQ_KIT_QUANTITIES).filter(([name])=>!names.has(name)).map(([name,quantity])=>({name,quantity}));}
+export function additionalKitProfile(catalog,basePlatform,platform,kitId){
+ if(basePlatform==='lego'&&platform!=='lego'||basePlatform!=='lego'&&platform==='lego')throw Error('Không thể phối bộ VEX với LEGO.');
+ const subset=platform===basePlatform?catalog:catalog.filter(p=>p.sourcePlatform===platform);
+ return {...defaultKitProfile(subset,platform,kitId),kitId:platform==='lego'?kitId:platform==='vexgo'?'269-6911':'228-7755'};
+}
+export function legoPartKit(part,profile){return [profile,...(profile?.additionalKits||[])].find(k=>k&&(k.items[part?.id]||0)>0)?.kitId||profile?.kitId;}
+export function totalKitCount(profile){return profile?profile.count+(profile.additionalKits||[]).reduce((sum,k)=>sum+k.count,0):0;}
+export function kitCoverage(catalog,platform){if(platform==='lego')return [];const names=new Set(kitCatalog(catalog,platform).filter(row=>row.sourcePlatform===platform).map(row=>row.name));return Object.entries(platform==='vexgo'?GO_KIT_QUANTITIES:IQ_KIT_QUANTITIES).filter(([name])=>!names.has(name)).map(([name,quantity])=>({name,quantity}));}
 export function validateKitProfile(value,catalog,platform){
  if(!value||value.version!==1||!['vexgo','vexiq','lego'].includes(platform)||value.platform!==platform)throw Error('Bộ kit không thuộc thư viện của dự án này.');
  if(platform==='lego'&&value.kitId&&!LEGO_KITS.some(k=>k.id===value.kitId))throw Error('Mã bộ LEGO không hợp lệ.');
@@ -35,8 +43,23 @@ export function validateKitProfile(value,catalog,platform){
  // missing entries, while preserving explicit zeroes and custom kit omissions.
  const standardName=platform==='vexgo'?'VEX GO · 269-6911':'VEX IQ (2nd gen) · 228-7755';
  const stock=platform==='vexgo'?GO_KIT_QUANTITIES:IQ_KIT_QUANTITIES;
- for(const row of rows)if(!Object.hasOwn(items,row.sku))items[row.sku]=value.name===standardName?(stock[row.name]??0):0;
- return {version:1,platform,...(platform==='lego'&&value.kitId?{kitId:value.kitId}:{}),name:value.name.trim(),count:value.count,enforce:value.enforce,items};
+ for(const row of rows)if(!Object.hasOwn(items,row.sku))items[row.sku]=value.name===standardName&&row.sourcePlatform===platform?(stock[row.name]??0):0;
+ const additional=[];
+ if(value.additionalKits!==undefined){
+  if(!Array.isArray(value.additionalKits)||value.additionalKits.length>6)throw Error('Tối đa 6 bộ kit bổ sung.');
+  const ownId=platform==='lego'?value.kitId||'45544-1':platform==='vexgo'?'269-6911':'228-7755',seen=new Set([ownId]);
+  for(const line of value.additionalKits){
+   if(!line||!['vexgo','vexiq','lego'].includes(line.platform)||!!line.additionalKits?.length||platform==='lego'&&line.platform!=='lego'||platform!=='lego'&&line.platform==='lego')throw Error('Bộ kit bổ sung không cùng hệ VEX hoặc LEGO.');
+   const expected=line.platform==='lego'?line.kitId:line.platform==='vexgo'?'269-6911':'228-7755';
+   if(!expected||line.kitId!==expected||seen.has(expected))throw Error('Bộ kit bị lặp hoặc mã không hợp lệ. Tăng số lượng ở dòng đã có.');
+   seen.add(expected);
+   const subset=line.platform===platform?catalog:catalog.filter(p=>p.sourcePlatform===line.platform);
+   if(!subset.length)throw Error('Chưa tải CAD của bộ kit bổ sung.');
+   const clean=validateKitProfile({...line,additionalKits:undefined},subset,line.platform);
+   additional.push({...clean,kitId:expected});
+  }
+ }
+ return {version:1,platform,...(platform==='lego'&&value.kitId?{kitId:value.kitId}:{}),name:value.name.trim(),count:value.count,enforce:value.enforce,items,...(additional.length?{additionalKits:additional}:{})};
 }
 export function parseKitFile(text,filename,catalog,platform){
  text=text.replace(/^\uFEFF/,'').trim();
@@ -60,11 +83,11 @@ export function kitReport(parts,catalog,profile){
   if(components?.length){for(const component of components)counts.set(component.sku,(counts.get(component.sku)||0)+component.quantity);}
   else counts.set(part.sku,(counts.get(part.sku)||0)+1);
  }
- const integrated=platform==='vexgo'?(counts.get('228-2500-1383')||0):0;
- if(integrated)counts.set('228-2500-207',(counts.get('228-2500-207')||0)+integrated);
+ const goWheel=sourcePartId('228-2500-1383','vexgo',platform),goTire=sourcePartId('228-2500-207','vexgo',platform),integrated=platform!=='lego'?(counts.get(goWheel)||0):0;
+ if(integrated)counts.set(goTire,(counts.get(goTire)||0)+integrated);
  return kitCatalog(catalog,platform).map(row=>{
-  const used=row.skus.reduce((sum,sku)=>sum+(counts.get(sku)||0),0),available=profile?(profile.items[row.sku]??0)*profile.count:null;
-  return {...row,used,available,remaining:available===null?null:available-used,integrated:row.skus.includes('228-2500-207')?integrated:0};
+  const used=row.skus.reduce((sum,sku)=>sum+(counts.get(sku)||0),0),additionalAvailable=(profile?.additionalKits||[]).reduce((sum,k)=>sum+(k.items[row.sku]??0)*k.count,0),available=profile?(profile.items[row.sku]??0)*profile.count+additionalAvailable:null;
+  return {...row,additionalAvailable,used,available,remaining:available===null?null:available-used,integrated:row.skus.includes(goTire)?integrated:0};
  });
 }
 // Composite CAD has no independent stock. Its capacity comes from the same
@@ -75,7 +98,7 @@ export function kitAssemblyReport(parts,catalog,profile){
   const needs=new Map();
   for(const component of part.components){const row=bySku.get(component.sku),sku=row?.sku||component.sku;const need=needs.get(sku)||{sku,name:row?.name||sku,quantity:0,row};need.quantity+=component.quantity;needs.set(sku,need);}
   const required=[...needs.values()],capacity=key=>Math.min(...required.map(need=>Math.floor((need.row?.[key]??0)/need.quantity)));
-  return {sku:part.id,skus:[part.id],name:part.name,category:part.kind||part.category||'other',derived:true,
+  return {sku:part.id,skus:[part.id],name:part.name,category:part.kind||part.category||'other',sourcePlatform:part.sourcePlatform||profile?.platform||'vexgo',derived:true,
    components:required.map(({sku,name,quantity})=>({sku,name,quantity})),
    perKit:profile?Math.min(...required.map(need=>Math.floor((profile.items[need.sku]??0)/need.quantity))):null,
    available:profile?capacity('available'):null,remaining:profile?capacity('remaining'):null,

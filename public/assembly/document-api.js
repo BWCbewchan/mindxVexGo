@@ -6,8 +6,8 @@ export function installDocumentAPI(app){
   const task=tail.then(async()=>{
    if(app.busy())throw Error('Editor đang bận. Kết thúc thao tác hiện tại rồi thử lại.');
    const value=producer?await input():input;
-   const result=buildAssemblyDocument(app.project(),value,{mode,platform:app.platform,catalog:app.catalog(),references:app.references});
-   await app.transaction(()=>app.replace(result.document),{replaceAll:mode==='replace'});
+   const incoming=typeof value==='string'?JSON.parse(value):value;let result;
+   await app.transaction(async()=>{await app.prepareKit?.(incoming?.kit,incoming?.parts||[]);result=buildAssemblyDocument(app.project(),value,{mode,platform:app.platform,catalog:app.catalog(),references:app.references});app.replace(result.document);},{replaceAll:mode==='replace'});
    return {partCount:app.project().parts.length,addedIds:result.addedIds,idMap:result.idMap,mode:app.mode};
   });tail=task.catch(()=>{});return task;
  }

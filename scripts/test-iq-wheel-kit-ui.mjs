@@ -1,3 +1,4 @@
+const base=process.env.BASE_URL||'http://localhost:3131';
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 import {chromium} from '@playwright/test';
@@ -9,7 +10,7 @@ try{
  const page=await browser.newPage({viewport:{width:1500,height:1000}}),errors=[];
  page.on('pageerror',e=>errors.push(e.message));
  await page.addInitScript(({key,kit})=>{if(!localStorage.getItem(key))localStorage.setItem(key,JSON.stringify({version:1,platform:'vexiq',title:'Wheel kit UI regression',parts:[],groups:[],steps:[],kit}));},{key,kit:defaultKitProfile(catalog,'vexiq')});
- await page.goto('http://localhost:3120/assembly/iq/editor.html?project=wheel-kit-ui');
+ await page.goto(base+'/assembly/iq/editor.html?project=wheel-kit-ui');
  await page.waitForFunction(()=>window.mindxAssembly,null,{timeout:60000});
  const button=page.locator(`[data-sku="${sku}"]`);
  assert.equal(await button.isEnabled(),true,'Travel Wheel must be enabled when its hub and tire are in stock');

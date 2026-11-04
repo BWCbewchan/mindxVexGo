@@ -1,0 +1,69 @@
+{
+  "id": "228-7045",
+  "sku": "228-7045",
+  "name": "Robot Battery (2nd generation)",
+  "category": "electronics",
+  "source": "https://www.vexrobotics.com/cadmodels/upload/download/upload_id/b537b395-4a33-4c42-bfb4-79f11b5a0527",
+  "sourceFile": "Robot Battery (Li-Ion) (228-7045).step",
+  "sourceUrl": "https://www.vexrobotics.com/cadmodels/upload/download/upload_id/b537b395-4a33-4c42-bfb4-79f11b5a0527",
+  "manufacturerSource": "https://www.vexrobotics.com/228-7045.html",
+  "sourceHash": "843dcbf9fc354975ddaec2f9145f6c8e76aa8da21832a8cd6f8105cea9ede72e",
+  "bounds": {
+    "min": [
+      -5.8,
+      -28.8,
+      -8.775
+    ],
+    "max": [
+      99.65,
+      28.8,
+      15.125
+    ]
+  },
+  "references": [],
+  "status": "ok",
+  "bytes": 418448,
+  "meshes": 1,
+  "units": "millimeters",
+  "axes": "Y up",
+  "materialPolicy": "Original STEP/XCAF materials; no guessed recoloring",
+  "kind": "electronic",
+  "referenceAudit": {
+    "rawCount": 6,
+    "acceptedCount": 0,
+    "excludedCount": 6,
+    "method": "Original analytic mounting bores; exclude bosses, latch/electrical details and blocked internal/reverse mouths via five outward ray corridors.",
+    "status": "no-kit-pin-mounting-hole-in-original-CAD"
+  },
+  "originalConservativeBounds": {
+    "min": [
+      -5.80597,
+      -28.80614,
+      -8.77982
+    ],
+    "max": [
+      99.65,
+      28.80614,
+      15.17739
+    ]
+  },
+  "validation": {
+    "glbBoundsMeters": [
+      [
+        -0.005799999926239252,
+        -0.02879999950528145,
+        -0.008775000460445881
+      ],
+      [
+        0.09965000301599503,
+        0.02879999950528145,
+        0.015124999918043613
+      ]
+    ],
+    "maximumBoundsErrorMm": 3e-06,
+    "originalMaterials": 4,
+    "triangleCount": 12527,
+    "glbSha256": "395fe02400ccbe65b7c0c355291b850dd2429e35a8239b4a6f28d1ad29824074",
+    "status": "ok"
+  }
+}
