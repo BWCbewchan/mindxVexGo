@@ -61,3 +61,18 @@
 #guide-pdf-preview .pdf-pages button[draggable=true]{cursor:grab}
 #guide-pdf-preview .pdf-pages button.pdf-page-dragging{opacity:.4}
 #guide-pdf-preview .pdf-pages button.pdf-page-drop{border-top:3px solid #99d5b8;background:#41584f}
+
+#guide-pdf-preview .pdf-page-tile{position:relative;margin-bottom:10px}
+#guide-pdf-preview .pdf-page-tile>button{margin:0}
+#guide-pdf-preview .pdf-page-tile:has(.pdf-page-number-input) .pdf-page-thumb-number{visibility:hidden}
+#guide-pdf-preview .pdf-page-number-input{position:absolute;bottom:4px;left:50%;transform:translateX(-50%);width:48px;height:22px;margin:0;padding:0 3px;text-align:center;font:inherit;font-size:11px;font-variant-numeric:tabular-nums;color:#e9f1f5;background:#20272e;border:1px solid #566370;border-radius:5px;appearance:textfield}
+#guide-pdf-preview .pdf-page-number-input::-webkit-inner-spin-button{appearance:none;margin:0}
+#guide-pdf-preview .pdf-page-number-input:hover{border-color:#9badba}
+#guide-pdf-preview .pdf-page-number-input:focus-visible{outline:2px solid #99d5b8;outline-offset:1px}
+#guide-pdf-preview .pdf-page-number-input[aria-invalid=true]{border-color:#ff9e94}
+#guide-pdf-preview .pdf-page-number-input:disabled{opacity:.75}
+@media(max-width:700px){
+ #guide-pdf-preview .pdf-body{grid-template-rows:92px minmax(0,1fr) 160px}
+ #guide-pdf-preview .pdf-page-tile{flex:none;margin:0}
+ #guide-pdf-preview .pdf-page-tile>button{width:96px;padding:6px}
+}

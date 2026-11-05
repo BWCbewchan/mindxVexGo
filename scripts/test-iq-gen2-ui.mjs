@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
-import {chromium} from '@playwright/test';
+import {chromium,expect} from '@playwright/test';
 import {defaultKitProfile,kitReport} from '../public/assembly/kit-policy.js';
 import {seatedIQPowerPack} from '../public/assembly/iq-power-pack.js';
 
@@ -16,31 +16,32 @@ try{
  const ready=()=>page.waitForFunction(()=>window.mindxAssembly);
  const call=(name,args={})=>page.evaluate(({name,args})=>window.mindxAssembly.execute(name,args),{name,args});
  const state=async()=>(await call('getState')).result.project;
- const execute=async(name,args)=>{await page.waitForFunction(()=>window.mindxAssembly.execute('getState').then(r=>!r.result.busy));const r=await call(name,args);assert.equal(r.ok,true,JSON.stringify(r));return r.result;};
+ const waitForState=predicate=>expect.poll(async()=>{const {result}=await call('getState');return !result.busy&&predicate(result.project);},{timeout:30000}).toBe(true);
+ const execute=async(name,args)=>{await waitForState(()=>true);const r=await call(name,args);assert.equal(r.ok,true,JSON.stringify(r));return r.result;};
  await page.goto(base+'/assembly/iq/editor.html');await ready();
  const pack=page.getByRole('button',{name:'Add Robot Brain + Battery (Gen 2)',exact:true});
  assert.equal(await page.locator('#parts [data-sku="228-7045"]').count(),0);
  await pack.dragTo(page.locator('#viewport canvas'));
- await page.waitForFunction(()=>window.mindxAssembly.execute('getState').then(r=>r.result.project.parts.length===2&&!r.result.busy));
+ await waitForState(project=>project.parts.length===2);
  let pair=(await state()).parts;
  assert.ok(seatedIQPowerPack(...pair));
  await page.locator('#undo').click();
- await page.waitForFunction(()=>window.mindxAssembly.execute('getState').then(r=>r.result.project.parts.length===0&&!r.result.busy));
+ await waitForState(project=>project.parts.length===0);
  await pack.click();
- await page.waitForFunction(()=>window.mindxAssembly.execute('getState').then(r=>r.result.project.parts.length===2&&!r.result.busy));
+ await waitForState(project=>project.parts.length===2);
  pair=(await state()).parts;
  assert.ok(seatedIQPowerPack(...pair));
  const positionX=page.locator('#transforms input').first();
  await positionX.fill(String(pair[0].position[0]+20));await positionX.press('Enter');await positionX.press('Tab');
- await page.waitForFunction(x=>window.mindxAssembly.execute('getState').then(r=>r.result.project.parts.every(p=>p.position[0]>=x)&&!r.result.busy),pair[0].position[0]+20-.001);
+ await waitForState(project=>project.parts.length===2&&project.parts.every(p=>p.position[0]>=pair[0].position[0]+20-.001));
  const moved=(await state()).parts;
  for(const [index,part] of moved.entries())assert.ok(Math.abs(part.position[0]-pair[index].position[0]-20)<.001);
  assert.ok(seatedIQPowerPack(...moved));
  const stock=kitReport(moved,catalog,defaultKitProfile(catalog,'vexiq'));
  for(const id of ['228-6480','228-7045'])assert.equal(stock.find(row=>row.skus.includes(id)).used,1);
  await page.locator('#parts [data-sku="228-2560"]').click();
- await page.waitForFunction(()=>window.mindxAssembly.execute('getState').then(r=>r.result.project.parts.length===3));
- await page.waitForFunction(()=>window.mindxAssembly.execute('getState').then(r=>!r.result.busy));if((await state()).parts.length!==3)console.log('Motor add status:',await page.locator('#status').innerText());assert.deepEqual(new Set((await state()).parts.map(p=>p.sku)),new Set(['228-2560','228-6480','228-7045']),'Motor uses Gen2 Brain/Battery in standard IQ kit');
+ await waitForState(project=>project.parts.length===3);
+ assert.deepEqual(new Set((await state()).parts.map(p=>p.sku)),new Set(['228-2560','228-6480','228-7045']),'Motor uses Gen2 Brain/Battery in standard IQ kit');
  const sensors=[];
  for(const [i,sku] of ['228-7082','228-7106'].entries())sensors.push({sku,...await execute('addPart',{sku,position:[i*100,60,200]})});
  assert.equal((await state()).parts.length,5,'Companion electronics are not duplicated');
@@ -55,7 +56,7 @@ try{
  }
  assert.equal((await execute('getConnectors',{id:(await state()).parts.find(p=>p.sku==='228-7045').id})).length,0,'Battery latch detail must not act as a connector');
  const inventory=await execute('getInventory');assert.ok(inventory);
- const saved=await state();await execute('flushProject');await page.reload();await ready();assert.equal(JSON.stringify((await state()).parts),JSON.stringify(saved.parts));
+ const saved=await state();await execute('flushProject');await page.reload();await ready();await waitForState(project=>project.parts.length===saved.parts.length);assert.equal(JSON.stringify((await state()).parts),JSON.stringify(saved.parts));
  await page.locator('#kit-status').click();
  const settings=page.frameLocator('iframe[title="Cài đặt số lượng bộ kit"]');
  for(const sku of ['228-6480','228-7045','228-7082','228-7106']){

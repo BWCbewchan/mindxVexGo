@@ -58,7 +58,7 @@ export function installPDFPreview(api){
  function message(text){status.textContent=text;}
  function fitPaper(){if(!paper)return;scale=viewZoom.value==='fit'?Math.max(.15,Math.min(1.3,(workspace.clientWidth-44)/1536,(workspace.clientHeight-36)/864)):Number(viewZoom.value);holder.style.width=1536*scale+'px';holder.style.height=864*scale+'px';paper.style.transform=`scale(${scale})`;paper.style.transformOrigin='top left';paper.style.setProperty('--paper-scale',scale);}
  const resize=new ResizeObserver(fitPaper);resize.observe(workspace);
- function syncTools(){print.textContent=guide?.reviewRequired?'Xuất PDF nháp':'Xuất PDF';heading.textContent=guide?.reviewRequired?'Preview hướng dẫn nháp · cần rà soát đường lắp':'Xem trước & chỉnh trang PDF';dialog.dataset.loading=String(loading);dialog.dataset.mode=mode;for(const [name,b] of Object.entries(modeButtons))b.setAttribute('aria-pressed',String(name===mode));frameSelect.value=selected;const enabled=canEdit();stepOrderForm.hidden=!step();stepOrder.disabled=stepOrderSubmit.disabled=loading||printing;gapScopeLabel.hidden=gapLabel.hidden=!step();for(const el of inspector.querySelectorAll('input,button,select'))el.disabled=!enabled;print.disabled=loading||printing||failed;undo.disabled=loading||printing||undoCount===0;redo.disabled=loading||printing||redoCount===0;for(const b of pages.querySelectorAll('button'))b.setAttribute('aria-current',String(Number(b.dataset.page)===index));hint.textContent=mode==='orbit'?'Kéo để xoay · Ctrl + lăn chuột để thu/phóng. Thả chuột để lưu góc và cập nhật ảnh PDF.':mode==='image'?'Kéo ảnh trong từng khung. Thu/phóng và góc 3D chỉ áp dụng cho khung đang chọn.':mode==='frame'?'Kéo khung để đổi vị trí. Kéo tay nắm ở góc dưới phải để đổi kích thước.':'Bấm lên ảnh để thêm chấm. Kéo chấm để đổi vị trí; Delete để xóa chấm đã chọn.';frameSelect.disabled=loading||printing||!step();const detailOption=frameSelect.querySelector('[value=detail]');detailOption.disabled=!paper?.querySelector('[data-paper-frame=detail]');if(!enabled){coordinates.textContent='Trang này dùng bố cục tự động.';return;}const value=config();outline.checked=value.redOutline!==false;outlineStrength.disabled=!outline.checked;outlineStrength.value=Math.round((value.redOutlineOpacity??.85)*100);outlineStrengthValue.textContent=outlineStrength.value+'%';const distance=frameSettings(state,'detail').explodeMM;gap.value=distance??20;gapValue.textContent=distance===undefined?'Tự động':distance+' mm';zoom.value=value.image.zoom*100;zoomValue.textContent=Math.round(value.image.zoom*100)+'%';const list=value.markers??figure()._paperFrame.autoMarkers;remove.disabled=selectedMarker===null||!list[selectedMarker];radius.disabled=remove.disabled;radius.value=(list[selectedMarker]?.r??.012)*1000;coordinates.textContent=`${selected==='detail'?'Hướng lắp':'Tổng thể'} · ${list.length} chấm · kéo ảnh ${Math.round(value.image.x*100)}%, ${Math.round(value.image.y*100)}%`;for(const f of paper.querySelectorAll('[data-paper-frame]')){f.classList.toggle('pdf-selected-frame',f.dataset.paperFrame===selected);for(const c of f.querySelectorAll('[data-marker-index]'))c.classList.toggle('pdf-selected-dot',f.dataset.paperFrame===selected&&Number(c.dataset.markerIndex)===selectedMarker);}}
+ function syncTools(){print.textContent=guide?.reviewRequired?'Xuất PDF nháp':'Xuất PDF';heading.textContent=guide?.reviewRequired?'Preview hướng dẫn nháp · cần rà soát đường lắp':'Xem trước & chỉnh trang PDF';dialog.dataset.loading=String(loading);dialog.dataset.mode=mode;for(const [name,b] of Object.entries(modeButtons))b.setAttribute('aria-pressed',String(name===mode));frameSelect.value=selected;const enabled=canEdit();stepOrderForm.hidden=!step();stepOrder.disabled=stepOrderSubmit.disabled=loading||printing;for(const input of pages.querySelectorAll('.pdf-page-number-input'))input.disabled=loading||printing;gapScopeLabel.hidden=gapLabel.hidden=!step();for(const el of inspector.querySelectorAll('input,button,select'))el.disabled=!enabled;print.disabled=loading||printing||failed;undo.disabled=loading||printing||undoCount===0;redo.disabled=loading||printing||redoCount===0;for(const b of pages.querySelectorAll('button'))b.setAttribute('aria-current',String(Number(b.dataset.page)===index));hint.textContent=mode==='orbit'?'Kéo để xoay · Ctrl + lăn chuột để thu/phóng. Thả chuột để lưu góc và cập nhật ảnh PDF.':mode==='image'?'Kéo ảnh trong từng khung. Thu/phóng và góc 3D chỉ áp dụng cho khung đang chọn.':mode==='frame'?'Kéo khung để đổi vị trí. Kéo tay nắm ở góc dưới phải để đổi kích thước.':'Bấm lên ảnh để thêm chấm. Kéo chấm để đổi vị trí; Delete để xóa chấm đã chọn.';frameSelect.disabled=loading||printing||!step();const detailOption=frameSelect.querySelector('[value=detail]');detailOption.disabled=!paper?.querySelector('[data-paper-frame=detail]');if(!enabled){coordinates.textContent='Trang này dùng bố cục tự động.';return;}const value=config();outline.checked=value.redOutline!==false;outlineStrength.disabled=!outline.checked;outlineStrength.value=Math.round((value.redOutlineOpacity??.85)*100);outlineStrengthValue.textContent=outlineStrength.value+'%';const distance=frameSettings(state,'detail').explodeMM;gap.value=distance??20;gapValue.textContent=distance===undefined?'Tự động':distance+' mm';zoom.value=value.image.zoom*100;zoomValue.textContent=Math.round(value.image.zoom*100)+'%';const list=value.markers??figure()._paperFrame.autoMarkers;remove.disabled=selectedMarker===null||!list[selectedMarker];radius.disabled=remove.disabled;radius.value=(list[selectedMarker]?.r??.012)*1000;coordinates.textContent=`${selected==='detail'?'Hướng lắp':'Tổng thể'} · ${list.length} chấm · kéo ảnh ${Math.round(value.image.x*100)}%, ${Math.round(value.image.y*100)}%`;for(const f of paper.querySelectorAll('[data-paper-frame]')){f.classList.toggle('pdf-selected-frame',f.dataset.paperFrame===selected);for(const c of f.querySelectorAll('[data-marker-index]'))c.classList.toggle('pdf-selected-dot',f.dataset.paperFrame===selected&&Number(c.dataset.markerIndex)===selectedMarker);}}
  function apply(){if(!paper)return;for(const f of paper.querySelectorAll('[data-paper-frame]'))applyPaperFrame(f,frameSettings(state,f.dataset.paperFrame));syncTools();}
  function row(){state.frames||={};return state.frames[selected]||=(clone(config()));}
  function markers(){const r=row();r.markers??=clone(figure()._paperFrame.autoMarkers);return r.markers;}
@@ -83,13 +83,74 @@ export function installPDFPreview(api){
  function paintThumbnail(i,source){const button=pages.querySelector(`[data-page="${i}"]`);if(!button)return;const host=button.querySelector('.pdf-page-mini'),copy=source.cloneNode(true);copy.removeAttribute('id');copy.querySelectorAll('[data-paper-frame]').forEach(el=>el.removeAttribute('data-paper-frame'));copy.querySelectorAll('.pdf-frame-badge,.pdf-frame-resize,canvas').forEach(el=>el.remove());for(const el of copy.querySelectorAll('[id]')){const old=el.id,newId='thumb-'+i+'-'+old;el.id=newId;for(const clipped of copy.querySelectorAll('[clip-path]'))if(clipped.getAttribute('clip-path')==='url(#'+old+')')clipped.setAttribute('clip-path','url(#'+newId+')');}copy.style.transform='scale('+((host.clientWidth||150)/1536)+')';host.replaceChildren(copy);button.dataset.thumbReady='true';thumbQueue.delete(i);}
  function scheduleThumbs(){clearTimeout(thumbTimer);if(dialog.open&&thumbQueue.size)thumbTimer=setTimeout(renderThumb,300);}
  async function renderThumb(){if(thumbRunning)return;if(loading||printing||drag){scheduleThumbs();return;}const epoch=thumbEpoch,i=thumbQueue.values().next().value;if(i===undefined||!dialog.open)return;thumbQueue.delete(i);thumbRunning=true;try{let miniature;if(i<0)miniature=prepPaper(project,api.catalog(),api.platform);else if(i>=guide.steps.length)miniature=finishedPaper(project,await api.completed());else{const s=guide.steps[i],shot=await api.render(s);miniature=stepPaper(s,i,guide.steps.length,shot,api.platform,project.kit?.kitId);}await readyPaperImages(miniature);if(epoch===thumbEpoch&&dialog.open)paintThumbnail(i,miniature);}catch{}finally{thumbRunning=false;scheduleThumbs();}}
- function rebuildPages(){++thumbEpoch;thumbObserver.disconnect();thumbQueue.clear();pages.replaceChildren();for(let i=-1;i<=guide.steps.length;i++){const text=i<0?'Chuẩn bị linh kiện':i===guide.steps.length?'Sản phẩm hoàn chỉnh':`${i+1}. ${guide.steps[i].title}`,b=node('button');b.title=text;b.setAttribute('aria-label',text);const mini=node('div'),label=node('span',i<0?'Chuẩn bị':i===guide.steps.length?'Hoàn thành':String(i+1).padStart(2,'0'));mini.className='pdf-page-mini';label.className='pdf-page-thumb-number';b.append(mini,label);b.type='button';b.dataset.page=i;b.draggable=i>=0&&i<guide.steps.length;b.onclick=()=>navigate(i);pages.append(b);thumbObserver.observe(b);}updatePageLabels();}
+ function rebuildPages(){
+  ++thumbEpoch;
+  thumbObserver.disconnect();
+  thumbQueue.clear();
+  pages.replaceChildren();
+  for(let i=-1;i<=guide.steps.length;i++){
+   const isStep=i>=0&&i<guide.steps.length;
+   const title=i<0?'Chuẩn bị linh kiện':isStep?`${i+1}. ${guide.steps[i].title}`:'Sản phẩm hoàn chỉnh';
+   const tile=node('div'),button=node('button'),mini=node('div');
+   tile.className='pdf-page-tile';
+   button.type='button';
+   button.title=title;
+   button.setAttribute('aria-label',title);
+   button.dataset.page=i;
+   button.draggable=isStep;
+   button.onclick=()=>navigate(i);
+   mini.className='pdf-page-mini';
+   const number=String(i+1).padStart(2,'0');
+   const label=node('span',i<0?'Chuẩn bị':isStep?number:'Hoàn thành');
+   label.className='pdf-page-thumb-number';
+   button.append(mini,label);
+   tile.append(button);
+   if(isStep){
+    label.setAttribute('aria-hidden','true');
+    const input=node('input');
+    input.className='pdf-page-number-input';
+    input.type='number';
+    input.inputMode='numeric';
+    input.min='1';
+    input.max=String(guide.steps.length);
+    input.step='1';
+    input.value=number;
+    input.setAttribute('aria-label',`Chuyển bước ${i+1} đến`);
+    input.title='Nhập vị trí mới rồi nhấn Enter';
+    input.onfocus=()=>input.select();
+    input.oninput=()=>input.removeAttribute('aria-invalid');
+    input.onblur=()=>{input.value=number;input.removeAttribute('aria-invalid');};
+    input.onkeydown=async e=>{
+     if(e.isComposing)return;
+     if(e.key==='Escape'){
+      e.preventDefault();
+      e.stopPropagation();
+      input.value=number;
+      input.removeAttribute('aria-invalid');
+      return;
+     }
+     if(e.key!=='Enter')return;
+     e.preventDefault();
+     if(await applyOrderInput(input,i)){
+      pages.querySelector(`button[data-page="${index}"]`)?.nextElementSibling?.focus({preventScroll:true});
+     }
+    };
+    tile.append(input);
+   }
+   pages.append(tile);
+   thumbObserver.observe(button);
+  }
+  updatePageLabels();
+ }
  function updatePageLabels(){for(const b of pages.querySelectorAll('button[data-page]')){const i=Number(b.dataset.page);b.classList.toggle('pdf-page-edited',!!guide.steps[i]?.page?.frames&&Object.keys(guide.steps[i].page.frames).length>0);}}
  function decorate(){for(const f of paper.querySelectorAll('[data-paper-frame]')){f.tabIndex=0;const badge=node('span',f.dataset.paperFrame==='detail'?'Hướng lắp':'Tổng thể');badge.className='pdf-frame-badge';const handle=node('button');handle.type='button';handle.className='pdf-frame-resize';handle.setAttribute('aria-label','Đổi kích thước khung '+f.dataset.paperFrame);f.append(badge,handle);}}
  let draggedPage=null;
+ function clearPageDrag(){
+  for(const button of pages.querySelectorAll('button[data-page]'))button.classList.remove('pdf-page-dragging','pdf-page-drop');
+ }
  pages.addEventListener('dragstart',e=>{const b=e.target.closest('button[data-page]'),i=Number(b?.dataset.page);if(loading||printing||!b||i<0||i>=guide.steps.length){e.preventDefault();return;}flushKeyboard();draggedPage=i;e.dataTransfer.effectAllowed='move';e.dataTransfer.setData('application/x-guide-page',String(i));b.classList.add('pdf-page-dragging');});
- pages.addEventListener('dragover',e=>{const b=e.target.closest('button[data-page]'),i=Number(b?.dataset.page);if(draggedPage===null||!b||i<0||i>=guide.steps.length)return;e.preventDefault();e.dataTransfer.dropEffect='move';for(const row of pages.children)row.classList.toggle('pdf-page-drop',row===b);});
- pages.addEventListener('dragend',()=>{draggedPage=null;for(const b of pages.children)b.classList.remove('pdf-page-dragging','pdf-page-drop');});
+ pages.addEventListener('dragover',e=>{const b=e.target.closest('.pdf-page-tile')?.firstElementChild,i=Number(b?.dataset.page);if(draggedPage===null||!b||i<0||i>=guide.steps.length)return;e.preventDefault();e.dataTransfer.dropEffect='move';for(const button of pages.querySelectorAll('button[data-page]'))button.classList.toggle('pdf-page-drop',button===b);});
+ pages.addEventListener('dragend',()=>{draggedPage=null;clearPageDrag();});
  async function reorderPages(from,to){
   if(from===to||loading||printing)return false;
   flushKeyboard();
@@ -104,31 +165,38 @@ export function installPDFPreview(api){
    selectedMarker=null;
    cache.clear();
    rebuildPages();
+   pages.querySelector(`button[data-page="${to}"]`)?.scrollIntoView({block:'nearest',inline:'nearest'});
    await showPage();
    if(!failed)message('Đã đổi thứ tự và dựng lại các bước sau. Ctrl+Z để hoàn tác.');
    return true;
   }catch(error){message(error.message);return false;}
  }
  pages.addEventListener('drop',e=>{
-  const button=e.target.closest('button[data-page]');
+  const button=e.target.closest('.pdf-page-tile')?.firstElementChild;
   const to=Number(button?.dataset.page),from=draggedPage;
   if(from===null||!button||to<0||to>=guide.steps.length)return;
   e.preventDefault();
   draggedPage=null;
-  for(const page of pages.children)page.classList.remove('pdf-page-dragging','pdf-page-drop');
+  clearPageDrag();
   void reorderPages(from,to);
  });
  stepOrder.oninput=()=>stepOrder.removeAttribute('aria-invalid');
- stepOrderForm.onsubmit=async e=>{
-  e.preventDefault();
-  if(!step()||loading||printing)return;
-  const to=stepOrder.valueAsNumber-1;
+ async function applyOrderInput(input,from){
+  if(loading||printing)return false;
+  const to=input.valueAsNumber-1;
   if(!Number.isInteger(to)||to<0||to>=guide.steps.length){
-   stepOrder.setAttribute('aria-invalid','true');
+   input.setAttribute('aria-invalid','true');
    message(`Nhập số bước từ 1 đến ${guide.steps.length}.`);
-   return;
+   return false;
   }
-  if(to!==index&&!await reorderPages(index,to))stepOrder.setAttribute('aria-invalid','true');
+  if(to===from)return false;
+  const moved=await reorderPages(from,to);
+  if(!moved)input.setAttribute('aria-invalid','true');
+  return moved;
+ }
+ stepOrderForm.onsubmit=e=>{
+  e.preventDefault();
+  if(step())void applyOrderInput(stepOrder,index);
  };
  stepOrder.onkeydown=e=>{
   if(e.key!=='Escape')return;
@@ -169,6 +237,6 @@ export function installPDFPreview(api){
  resetImage.onclick=()=>{row().image={x:0,y:0,zoom:1};delete row().camera;apply();commit();showPage();};resetFrame.onclick=()=>{delete row().layout;apply();commit();};automatic.onclick=()=>{delete row().markers;selectedMarker=null;apply();commit();};clear.onclick=()=>{row().markers=[];selectedMarker=null;apply();commit();};function deleteMarker(){if(selectedMarker===null||!canEdit())return;markers().splice(selectedMarker,1);selectedMarker=null;apply();commit();}remove.onclick=deleteMarker;
  async function printPDF(){if(loading||printing||failed)return;flushKeyboard();cancelGesture();printing=true;syncTools();try{await api.export();message('Bản in đã được dựng theo các chỉnh sửa. Chọn Save as PDF.');}catch(error){message(error.message);}finally{printing=false;syncTools();}}print.onclick=printPDF;
  function flushKeyboard(){if(settingsTimer){clearTimeout(settingsTimer);settingsTimer=0;commit();}}
- function shut(){++thumbEpoch;clearTimeout(thumbTimer);thumbQueue.clear();++orbitTicket;orbitSession=null;if(orbitRAF)cancelAnimationFrame(orbitRAF);orbitRAF=0;flushKeyboard();cancelGesture();++token;dialog.close();api.focus?.();}close.onclick=shut;dialog.addEventListener('cancel',e=>{e.preventDefault();shut();});dialog.addEventListener('keydown',e=>{e.stopPropagation();if(e.target===stepOrder)return;if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='p'){e.preventDefault();printPDF();return;}if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='z'){e.preventDefault();history(e.shiftKey);return;}if(/INPUT|SELECT|TEXTAREA/.test(e.target.tagName))return;if(e.key==='Delete'||e.key==='Backspace'){e.preventDefault();deleteMarker();}if(['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(e.key)&&canEdit()){e.preventDefault();const delta=e.shiftKey?.01:.002,dx=e.key==='ArrowLeft'?-delta:e.key==='ArrowRight'?delta:0,dy=e.key==='ArrowUp'?-delta:e.key==='ArrowDown'?delta:0;if(selectedMarker!==null){const m=markers()[selectedMarker];m.x=clamp(m.x+dx,0,1);m.y=clamp(m.y+dy,0,1);}else{row().image.x=clamp(config().image.x+dx,-1,1);row().image.y=clamp(config().image.y+dy,-1,1);}apply();clearTimeout(settingsTimer);settingsTimer=setTimeout(()=>{settingsTimer=0;commit();},180);}});
+ function shut(){++thumbEpoch;clearTimeout(thumbTimer);thumbQueue.clear();++orbitTicket;orbitSession=null;if(orbitRAF)cancelAnimationFrame(orbitRAF);orbitRAF=0;flushKeyboard();cancelGesture();++token;dialog.close();api.focus?.();}close.onclick=shut;dialog.addEventListener('cancel',e=>{e.preventDefault();shut();});dialog.addEventListener('keydown',e=>{e.stopPropagation();if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='p'){e.preventDefault();printPDF();return;}if(e.target===stepOrder||e.target.classList.contains('pdf-page-number-input'))return;if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='z'){e.preventDefault();history(e.shiftKey);return;}if(/INPUT|SELECT|TEXTAREA/.test(e.target.tagName))return;if(e.key==='Delete'||e.key==='Backspace'){e.preventDefault();deleteMarker();}if(['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(e.key)&&canEdit()){e.preventDefault();const delta=e.shiftKey?.01:.002,dx=e.key==='ArrowLeft'?-delta:e.key==='ArrowRight'?delta:0,dy=e.key==='ArrowUp'?-delta:e.key==='ArrowDown'?delta:0;if(selectedMarker!==null){const m=markers()[selectedMarker];m.x=clamp(m.x+dx,0,1);m.y=clamp(m.y+dy,0,1);}else{row().image.x=clamp(config().image.x+dx,-1,1);row().image.y=clamp(config().image.y+dy,-1,1);}apply();clearTimeout(settingsTimer);settingsTimer=setTimeout(()=>{settingsTimer=0;commit();},180);}});
  return {active:()=>dialog.open,async open(start=0){if(dialog.open)return;undoCount=0;redoCount=0;gapScope.value='page';guide=api.guide();project=api.project();if(!guide.ready||!guide.steps.length)return;index=clamp(start,0,guide.steps.length-1);rebuildPages();dialog.showModal();await showPage();},dispose(){thumbObserver.disconnect();clearTimeout(thumbTimer);++thumbEpoch;++token;clearTimeout(settingsTimer);resize.disconnect();dialog.remove();cache.clear();}};
 }

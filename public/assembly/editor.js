@@ -48,7 +48,7 @@ import {createRenderScheduler} from './render-scheduler.js';
 import {loadPool} from './load-pool.js';
 let renderLoop=null;
 import {generateStudentGuide} from './guide-sequence.js?v=guide-tools-83';
-import {installPDFPreview} from './guide-pdf-preview.js?v=step-controls-89';
+import {installPDFPreview} from './guide-pdf-preview.js?v=step-numbers-90';
 import {prepPaper,stepPaper,finishedPaper,readyPaperImages} from './guide-paper.js';
 import {guidePage} from './guide-page-settings.js';
 import {createGuideRenderer} from './guide-renderer.js?v=pdf-page-86';
