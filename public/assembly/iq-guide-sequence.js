@@ -65,11 +65,13 @@ export function generateIQGuide(input,{references={},nameFor=p=>p.label||p.sku,i
   }
   return false;
  }
- const primary=(p,built=included,route=null)=>[...(route?route.contacts.filter(c=>built.has(c.target)):builtLinks(p,built))].sort((a,b)=>{
+ // Keep an unaudited shaft anchored to its earliest installed support rather
+ // than re-parenting it to a later closing beam with the same bore geometry.
+ const primary=(p,built=included,route=null)=>{const supportOrder=p.kind==='shaft'&&!route?new Map([...built].map((id,i)=>[id,i])):null;return [...(route?route.contacts.filter(c=>built.has(c.target)):builtLinks(p,built))].sort((a,b)=>{
   const ta=byId.get(a.target),tb=byId.get(b.target);
   const motorScore=c=>ref(byId.get(c.target),c.targetRef)?.id==='motor-output'?1:0;
-  return (p.kind==='shaft'&&route?b.depth-a.depth:0)||(p.kind==='shaft'?motorScore(b)-motorScore(a):0)||Number(tb.kind==='body')-Number(ta.kind==='body')||degree(tb)-degree(ta)||compare(ta,tb)||a.sourceRef.localeCompare(b.sourceRef,undefined,{numeric:true});
- })[0];
+  return (p.kind==='shaft'&&route?b.depth-a.depth:0)||(p.kind==='shaft'?motorScore(b)-motorScore(a):0)||Number(tb.kind==='body')-Number(ta.kind==='body')||(supportOrder?supportOrder.get(a.target)-supportOrder.get(b.target):0)||degree(tb)-degree(ta)||compare(ta,tb)||a.sourceRef.localeCompare(b.sourceRef,undefined,{numeric:true});
+ })[0];};
  function priority(p,built=included){
   if(p.kind==='pin')return 0;
   if(p.kind==='retainer')return 6;
@@ -122,7 +124,12 @@ export function generateIQGuide(input,{references={},nameFor=p=>p.label||p.sku,i
    return n.dot(axis)>.999;
   });
   const requires=[];
-  for(const p of batch){const c=primary(p,included,action?.routes.get(p.id));requires.push(...builtLinks(p).map(c=>c.target));p.mate={target:c.target,sourceRef:c.sourceRef,targetRef:c.targetRef,depth:c.depth,twist:0,flip:false};}
+  for(const p of batch){const c=primary(p,included,action?.routes.get(p.id));
+   // A shaft needs its first support, not every secondary bore along its length.
+   // Later closing beams can be slid onto the supported shaft. Keep all mounting
+   // prerequisites for bodies/pins and the audited blocked-path constraints.
+   requires.push(...(p.kind==='shaft'?[c.target]:builtLinks(p).map(c=>c.target)));
+   p.mate={target:c.target,sourceRef:c.sourceRef,targetRef:c.targetRef,depth:c.depth,twist:0,flip:false};}
   const first=emitted.size===0;if(first)batch.unshift(root);
   const support=parent.kind==='pin'?byId.get(parent.mate?.target)||parent:parent;
   const count=batch.filter(p=>p.kind==='pin').length;
