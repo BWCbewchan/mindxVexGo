@@ -4,9 +4,12 @@ import {execFileSync} from 'node:child_process';
 import {createHash} from 'node:crypto';
 import * as THREE from 'three';
 import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
+import {MeshBVH} from 'three-mesh-bvh';
 import {defaultKitProfile,validateKitProfile,kitCoverage} from '../public/assembly/kit-policy.js';
 import {electronicsCompanions} from '../public/assembly/electronics.js';
 import {applyIQAppearance} from '../public/assembly/iq/color-profile.js';
+import {iqBatteryPose} from '../public/assembly/iq-power-pack.js';
+import {collisionMesh} from '../public/assembly/collision.js';
 
 const root='public/assembly/iq',read=async file=>JSON.parse(await fs.readFile(file,'utf8'));
 const catalog=await read(root+'/parts.json'),refs=await read(root+'/connectors.json');
@@ -15,6 +18,7 @@ const byId=new Map(catalog.map(p=>[p.id,p]));
 for(const row of before)assert.deepEqual(byId.get(row.id),row,'Existing CAD unchanged: '+row.id);
 const stock=defaultKitProfile(catalog,'vexiq'),ids=['228-6480','228-7045','228-7082','228-7106'];
 const loader=new GLTFLoader();
+const powerModels=[];
 for(const [index,id] of ids.entries()){
  const row=byId.get(id),meta=await read(`${root}/parts/${id}/cad.json`),bytes=await fs.readFile(`${root}/parts/${id}/model.glb`);
  assert.equal(stock.items[id],1);assert.ok(!kitCoverage(catalog,'vexiq').some(r=>r.name===row.name));
@@ -23,12 +27,21 @@ for(const [index,id] of ids.entries()){
  assert.equal(refs.parts[id].length,[16,0,5,5][index]);
  for(const ref of refs.parts[id]){assert.equal(ref.kind,'hole');assert.equal(ref.radius,2.1);assert.ok(Math.abs(Math.hypot(...ref.normal)-1)<1e-5);}
  const scene=(await loader.parseAsync(bytes.buffer.slice(bytes.byteOffset,bytes.byteOffset+bytes.byteLength),'')).scene;
+ if(index<2)powerModels.push(scene);
  const colors=[];scene.traverse(m=>{if(m.isMesh)colors.push(m.material.color.getHexString());});
  applyIQAppearance(scene,row);const after=[];scene.traverse(m=>{if(m.isMesh)after.push(m.material.color.getHexString());});assert.deepEqual(after,colors);
  const box=new THREE.Box3().setFromObject(scene);
  for(const [axis,key] of ['x','y','z'].entries())for(const side of ['min','max'])assert.ok(Math.abs(box[side][key]*1000-row.bounds[side][axis])<.2,'GLB mm scale matches exact CAD bounds');
  assert.ok((await fs.stat(`${root}/parts/${id}/preview.png`)).size>5000);
 }
+const [brainModel,batteryModel]=powerModels;
+const fitted=iqBatteryPose({position:[0,0,0],rotation:[0,0,0]});
+batteryModel.position.fromArray(fitted.position.map(mm=>mm/1000));
+batteryModel.rotation.set(...fitted.rotation.map(THREE.MathUtils.degToRad));
+const brainMesh=collisionMesh(brainModel),batteryMesh=collisionMesh(batteryModel);
+const brainTree=new MeshBVH(brainMesh.geometry.clone()),batteryTree=new MeshBVH(batteryMesh.geometry.clone());
+const relative=batteryMesh.matrixWorld.clone().premultiply(brainMesh.matrixWorld.clone().invert());
+assert.equal(brainTree.intersectsGeometry(batteryTree.geometry,relative),false,'The original battery shell fits the Brain bay without crossing its CAD surfaces');
 const older={...stock,items:{...stock.items}};for(const id of ids)delete older.items[id];
 const migrated=validateKitProfile(older,catalog,'vexiq');for(const id of ids)assert.equal(migrated.items[id],1);
 const explicit={...stock,items:{...stock.items,'228-6480':0}};assert.equal(validateKitProfile(explicit,catalog,'vexiq').items['228-6480'],0);

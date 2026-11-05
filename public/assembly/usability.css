@@ -44,6 +44,8 @@ body .library .library-group>summary>small{border:1px solid #34404c;border-radiu
 body .library .library-group-parts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;padding-bottom:12px}
 body .library #parts button[data-sku],body .library .library-missing-part{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:7px 5px;border-radius:6px;text-align:center;min-width:0;gap:0}
 body .library #parts img{height:72px;flex:none;padding:2px;width:100%;object-fit:contain}
+body .library #parts .library-power-pack-preview{display:grid;grid-template-columns:1fr 1fr;gap:2px;align-items:center}
+body .library #parts .library-power-pack-preview img{min-width:0}
 body .library #parts button>span,body .library .library-missing-part>span{font-size:10px;line-height:1.35;margin:6px 0 2px;overflow-wrap:anywhere}
 body .library #parts .library-part-code{font-size:8px;font-variant-numeric:tabular-nums;line-height:1.4;color:#8e9ca9;overflow-wrap:anywhere}
 body .library #parts .kit-quota{font-size:9px;color:#a1cfba;margin-top:4px}

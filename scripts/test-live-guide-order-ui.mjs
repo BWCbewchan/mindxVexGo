@@ -29,7 +29,7 @@ try{
  assert.ok(await page.locator('#guide-export').isVisible());assert.ok(await page.locator('#guide-zip').isVisible());
  assert.equal(await page.locator('#guide-repair:visible,#guide-summary:visible,.guide-advanced-settings:visible').count(),0);
  assert.ok(await page.locator('.guide-live-preview').evaluateAll(imgs=>imgs.every(i=>i.complete&&i.naturalWidth>0)));
- const keys=guide.steps.map(stepKey);await page.locator('.guide-step-order').nth(1).fill('3');await page.waitForTimeout(900);await ready();
+ const keys=guide.steps.map(stepKey);await page.locator('.guide-step-order').nth(1).fill('3');await page.locator('.guide-step-order').nth(1).press('Enter');await ready();
  guide=(await call('getGuide')).result;assert.equal(stepKey(guide.steps[2]),keys[1]);
  let included=new Set();for(const step of guide.steps){for(const part of step.added)included.add(part.id);assert.deepEqual(new Set(step.parts.map(p=>p.id)),included);}
  const row=page.locator('.guide-live-card').nth(2),stage=row.locator('.guide-live-stage');await stage.scrollIntoViewIfNeeded();await stage.press('ArrowRight');

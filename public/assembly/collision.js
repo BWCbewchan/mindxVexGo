@@ -1,4 +1,5 @@
 import {chainSprocketContact} from './chain-route.js';
+import {seatedIQPowerPack} from './iq-power-pack.js';
 import * as THREE from './vendor/three.module.js';
 import {MeshBVH} from './vendor/mesh-bvh.js';
 import {compatibleReferences,insertionLimit} from './connector-policy.js?v=motor-pair-29';
@@ -123,6 +124,9 @@ export function analyzeCollisions(parts,objects,{limit=80,references={}}={}){
  for(const p of parts){const obj=objects.get(p.id);if(obj)groups.set(p.id,meshes(obj));}
  for(let i=0;i<parts.length;i++)for(let j=i+1;j<parts.length;j++){
   const a=parts[i],b=parts[j];let result=null;
+  // CAD shell parity treats the open battery bay as solid. The measured seated
+  // pose has clear surfaces. Other poses and all surrounding parts still collide normally.
+  if(seatedIQPowerPack(a,b))continue;
   for(const ma of groups.get(a.id)||[])for(const mb of groups.get(b.id)||[]){
    const contact=meshContact(ma,mb);if(contact==='penetration')result=contact;else if(contact&&!result)result=contact;
   }

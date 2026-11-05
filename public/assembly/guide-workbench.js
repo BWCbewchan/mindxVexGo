@@ -34,9 +34,10 @@ export function installGuideWorkbench(api){
  }
  function note(row){row.note.textContent=row.error||row.step.note||'';row.note.classList.toggle('guide-card-error',!!row.error);row.note.hidden=!row.note.textContent;}
  function move(row){
-  clearTimeout(row.orderTimer);row.orderTimer=0;if(disposed||blocked||rows.get(row.key)!==row)return;
+  if(disposed||blocked||rows.get(row.key)!==row)return;
   const to=Number(row.number.value)-1;if(!Number.isInteger(to)||to<0||to>=guide.steps.length){row.error=`Nhập số bước từ 1 đến ${guide.steps.length}.`;row.number.value=String(row.index+1);row.number.setAttribute('aria-invalid','true');note(row);return;}
-  if(to===row.index)return;const result=api.reorder?.(row.index,to);
+  if(to===row.index)return;
+  const result=api.reorder?.(row.index,to);
   if(result===false||result?.ok===false){row.error=result?.error||'Bước này cần chi tiết đỡ được lắp trước.';row.number.value=String(row.index+1);row.number.setAttribute('aria-invalid','true');note(row);return;}
   row.error='';note(row);row.number.value=String(row.index+1);row.number.setAttribute('aria-invalid','false');currentIndex=row.index;row.article.scrollIntoView({block:'nearest',behavior:'smooth'});
  }
@@ -59,11 +60,17 @@ export function installGuideWorkbench(api){
   schedule();
  },{rootMargin:'180px 0px'});
  function create(step,index){
-  const key=stepKey(step),article=el('article');article.className='guide-live-card';article.dataset.stepKey=key;const header=el('div');header.className='guide-live-card-header';const number=el('input');number.type='number';number.min='1';number.step='1';number.className='guide-step-order';number.setAttribute('aria-label','Thứ tự bước lắp');number.title='Đổi số để chuyển bước đến vị trí mới';const title=el('span'),counter=el('small');counter.className='guide-page-counter';header.append(number,title,counter);
+  const key=stepKey(step),article=el('article');article.className='guide-live-card';article.dataset.stepKey=key;const header=el('div');header.className='guide-live-card-header';const number=el('input');number.type='number';number.inputMode='numeric';number.min='1';number.step='1';number.className='guide-step-order';number.setAttribute('aria-label','Thứ tự bước lắp');number.title='Nhập vị trí mới rồi nhấn Enter';const title=el('span'),counter=el('small');counter.className='guide-page-counter';header.append(number,title,counter);
   const stage=el('div');stage.className='guide-live-stage';stage.tabIndex=0;stage.setAttribute('aria-label','Hướng lắp · kéo để xoay, Ctrl + lăn chuột để phóng');const img=el('img');img.className='guide-live-preview';img.alt='';img.draggable=false;img.hidden=true;const pending=el('span','Đang chuẩn bị hướng lắp…');pending.className='guide-live-placeholder';stage.append(img,pending);
   const pli=el('div');pli.className='guide-live-pli';pli.setAttribute('aria-label','Linh kiện thêm ở bước này');const description=el('p');description.className='guide-live-note';description.setAttribute('role','status');article.append(header,stage,pli,description);
   const row={key,article,header,number,title,counter,stage,img,pending,pli,note:description,step,index,inView:false,error:'',imageKey:'',geometryKey:''};
-  number.onfocus=()=>{currentIndex=row.index;};number.oninput=()=>{clearTimeout(row.orderTimer);row.error='';note(row);const value=Number(number.value);if(number.value&&Number.isInteger(value)&&value>=1&&value<=guide.steps.length)row.orderTimer=setTimeout(()=>move(row),450);};number.onchange=()=>move(row);number.onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();move(row);number.blur();}if(e.key==='Escape'){e.stopPropagation();clearTimeout(row.orderTimer);row.orderTimer=0;number.value=String(row.index+1);number.blur();}};
+  number.onfocus=()=>{currentIndex=row.index;};
+  number.oninput=()=>{row.error='';number.removeAttribute('aria-invalid');note(row);};
+  number.onblur=()=>move(row);
+  number.onkeydown=e=>{
+   if(e.key==='Enter'&&!e.isComposing){e.preventDefault();move(row);number.blur();}
+   if(e.key==='Escape'){e.preventDefault();e.stopPropagation();number.value=String(row.index+1);number.blur();}
+  };
   stage.addEventListener('pointerdown',e=>{if(e.button!==0||blocked||!api.enabled)return;e.preventDefault();const already=active===row&&session;if(!already)deactivate();drag={row,id:e.pointerId,x:e.clientX,y:e.clientY,camera:already?structuredClone(camera):null};stage.setPointerCapture(e.pointerId);stage.focus({preventScroll:true});if(!already){const gesture=drag;activate(row).then(()=>{if(!drag&&gesture.id===e.pointerId)draw();});drag=gesture;}});
   stage.addEventListener('pointermove',e=>{if(drag?.row!==row||e.pointerId!==drag.id||!drag.camera)return;camera=orbitGuideCamera(drag.camera,{yaw:(e.clientX-drag.x)*.4,elevation:-(e.clientY-drag.y)*.3});scheduleFrame();});
   stage.addEventListener('pointerup',e=>{if(drag?.row!==row||e.pointerId!==drag.id)return;stage.releasePointerCapture?.(e.pointerId);const changed=camera&&drag.camera&&JSON.stringify(camera)!==JSON.stringify(drag.camera);drag=null;if(changed)commit();else draw();snapshot();schedule();});
@@ -74,7 +81,7 @@ export function installGuideWorkbench(api){
  }
  function update(next,{busy=false}={}){
   guide=next;blocked=busy;const scroll=document.querySelector('.inspector-body'),oldCount=rows.size,follow=oldCount>0&&document.body.classList.contains('guide-active')&&scroll&&scroll.scrollHeight-scroll.scrollTop-scroll.clientHeight<80;
-  const wanted=new Set(next.steps.map(stepKey));for(const [key,row] of rows)if(!wanted.has(key)){clearTimeout(row.orderTimer);if(active===row)deactivate();cardVisibility.unobserve(row.article);row.article.remove();rows.delete(key);}
+  const wanted=new Set(next.steps.map(stepKey));for(const [key,row] of rows)if(!wanted.has(key)){if(active===row)deactivate();cardVisibility.unobserve(row.article);row.article.remove();rows.delete(key);}
   root.querySelector('.guide-empty-card')?.remove();
   for(const [index,step] of next.steps.entries()){
    const row=rows.get(stepKey(step))||create(step,index),previousGeometry=row.geometryKey;row.step=step;row.index=index;row.article.dataset.index=String(index);row.number.max=String(next.steps.length);row.number.disabled=busy;if(document.activeElement!==row.number)row.number.value=String(index+1);row.title.textContent=step.title;row.title.title=step.title;row.counter.textContent=`${index+1} / ${next.steps.length}`;note(row);
@@ -89,5 +96,5 @@ export function installGuideWorkbench(api){
  }
  const visibility=new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;if(visible)schedule();else{clearTimeout(backgroundTimer);snapshot();}},{rootMargin:'0px'});visibility.observe(root);
  const resize=new ResizeObserver(scheduleFrame);resize.observe(root);const onVisibility=()=>{if(!suspended()){schedule();scheduleFrame();}};document.addEventListener('visibilitychange',onVisibility);
- return {element:root,update,currentIndex:()=>Math.min(currentIndex,Math.max(0,(guide?.steps.length||1)-1)),open(){if(document.getElementById('panel-toggle')?.getAttribute('aria-expanded')==='false')document.getElementById('panel-toggle').click();document.getElementById('inspector-tab-2')?.click();schedule();},resume(){schedule();scheduleFrame();},dispose(){disposed=true;for(const row of rows.values())clearTimeout(row.orderTimer);deactivate();clearTimeout(backgroundTimer);visibility.disconnect();cardVisibility.disconnect();resize.disconnect();document.removeEventListener('visibilitychange',onVisibility);queue.clear();cache.clear();root.remove();}};
+ return {element:root,update,currentIndex:()=>Math.min(currentIndex,Math.max(0,(guide?.steps.length||1)-1)),open(){if(document.getElementById('panel-toggle')?.getAttribute('aria-expanded')==='false')document.getElementById('panel-toggle').click();document.getElementById('inspector-tab-2')?.click();schedule();},resume(){schedule();scheduleFrame();},dispose(){disposed=true;deactivate();clearTimeout(backgroundTimer);visibility.disconnect();cardVisibility.disconnect();resize.disconnect();document.removeEventListener('visibilitychange',onVisibility);queue.clear();cache.clear();root.remove();}};
 }

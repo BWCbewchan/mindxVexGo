@@ -8,6 +8,10 @@
 #guide-pdf-preview .pdf-top h2{font-size:16px;margin:0 auto 0 0}
 #guide-pdf-preview .pdf-toolbar{display:flex;align-items:center;gap:6px;padding:6px 16px;background:#2c3239;border-bottom:1px solid #161b20}
 #guide-pdf-preview .pdf-toolbar button{padding:5px 12px;font-size:12px}
+#guide-pdf-preview .pdf-step-order-form{display:flex;align-items:center;gap:6px;flex:none;margin:0}
+#guide-pdf-preview .pdf-step-order-form[hidden],#guide-pdf-preview .pdf-controls label[hidden]{display:none}
+#guide-pdf-preview #pdf-step-order{box-sizing:border-box;width:56px;min-width:0;padding:4px 5px;border:1px solid #697783;border-radius:4px;background:#23272c;color:#fff;font:inherit}
+#guide-pdf-preview #pdf-step-order[aria-invalid=true]{border-color:#ff9d90}
 #guide-pdf-preview .pdf-body{display:grid;grid-template-columns:190px minmax(0,1fr) 230px;min-height:0}
 #guide-pdf-preview .pdf-pages{overflow:auto;padding:12px 8px;border-right:1px solid #131b20;background:#292f36}
 #guide-pdf-preview .pdf-pages button{display:block;text-align:left;width:100%;font-size:11px;line-height:1.5;margin:0 0 6px;padding:9px;border-color:transparent;background:transparent}

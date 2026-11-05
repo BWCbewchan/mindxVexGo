@@ -1,7 +1,7 @@
-import {collisionMesh} from './collision.js?v=integral-pegs-61';
+import {collisionMesh} from './collision.js?v=iq-power-pack-89';
 import {PLATFORM} from './platform.js';
 export function collisionClient(getReferences=()=>null){
- const address=new URL('./collision-worker.js?v=platform-73',import.meta.url);address.searchParams.set('platform',PLATFORM.id);
+ const address=new URL('./collision-worker.js?v=iq-power-pack-89',import.meta.url);address.searchParams.set('platform',PLATFORM.id);
  const worker=new Worker(address,{type:'module'}),sent=new Set(),sentReferences=new Set(),geometryBySku=new Map(),pending=new Map();let sequence=0;
  worker.onmessage=({data})=>{const entry=pending.get(data.id);if(!entry)return;pending.delete(data.id);data.error?entry.reject(Error(data.error)):entry.resolve(data.report);};
  worker.onerror=e=>{for(const entry of pending.values())entry.reject(Error(e.message||'Collision worker failed'));pending.clear();};

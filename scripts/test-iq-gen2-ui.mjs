@@ -1,7 +1,8 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 import {chromium} from '@playwright/test';
-import {defaultKitProfile} from '../public/assembly/kit-policy.js';
+import {defaultKitProfile,kitReport} from '../public/assembly/kit-policy.js';
+import {seatedIQPowerPack} from '../public/assembly/iq-power-pack.js';
 
 const base=process.env.BASE_URL||'http://localhost:3131',out='artifacts/iq-gen2-ui';
 await fs.mkdir(out,{recursive:true});
@@ -17,6 +18,26 @@ try{
  const state=async()=>(await call('getState')).result.project;
  const execute=async(name,args)=>{await page.waitForFunction(()=>window.mindxAssembly.execute('getState').then(r=>!r.result.busy));const r=await call(name,args);assert.equal(r.ok,true,JSON.stringify(r));return r.result;};
  await page.goto(base+'/assembly/iq/editor.html');await ready();
+ const pack=page.getByRole('button',{name:'Add Robot Brain + Battery (Gen 2)',exact:true});
+ assert.equal(await page.locator('#parts [data-sku="228-7045"]').count(),0);
+ await pack.dragTo(page.locator('#viewport canvas'));
+ await page.waitForFunction(()=>window.mindxAssembly.execute('getState').then(r=>r.result.project.parts.length===2&&!r.result.busy));
+ let pair=(await state()).parts;
+ assert.ok(seatedIQPowerPack(...pair));
+ await page.locator('#undo').click();
+ await page.waitForFunction(()=>window.mindxAssembly.execute('getState').then(r=>r.result.project.parts.length===0&&!r.result.busy));
+ await pack.click();
+ await page.waitForFunction(()=>window.mindxAssembly.execute('getState').then(r=>r.result.project.parts.length===2&&!r.result.busy));
+ pair=(await state()).parts;
+ assert.ok(seatedIQPowerPack(...pair));
+ const positionX=page.locator('#transforms input').first();
+ await positionX.fill(String(pair[0].position[0]+20));await positionX.press('Enter');await positionX.press('Tab');
+ await page.waitForFunction(x=>window.mindxAssembly.execute('getState').then(r=>r.result.project.parts.every(p=>p.position[0]>=x)&&!r.result.busy),pair[0].position[0]+20-.001);
+ const moved=(await state()).parts;
+ for(const [index,part] of moved.entries())assert.ok(Math.abs(part.position[0]-pair[index].position[0]-20)<.001);
+ assert.ok(seatedIQPowerPack(...moved));
+ const stock=kitReport(moved,catalog,defaultKitProfile(catalog,'vexiq'));
+ for(const id of ['228-6480','228-7045'])assert.equal(stock.find(row=>row.skus.includes(id)).used,1);
  await page.locator('#parts [data-sku="228-2560"]').click();
  await page.waitForFunction(()=>window.mindxAssembly.execute('getState').then(r=>r.result.project.parts.length===3));
  await page.waitForFunction(()=>window.mindxAssembly.execute('getState').then(r=>!r.result.busy));if((await state()).parts.length!==3)console.log('Motor add status:',await page.locator('#status').innerText());assert.deepEqual(new Set((await state()).parts.map(p=>p.sku)),new Set(['228-2560','228-6480','228-7045']),'Motor uses Gen2 Brain/Battery in standard IQ kit');

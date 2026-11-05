@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 import {chromium} from '@playwright/test';
 import {IQ_STANDARD_PREFERRED,IQ_MISSING_PARTS,IQ_IMPROVED_WHEELS} from '../public/assembly/iq/library-reference.js';
-const expectedCAD=Object.keys(IQ_STANDARD_PREFERRED).length+IQ_IMPROVED_WHEELS.filter(id=>!Object.values(IQ_STANDARD_PREFERRED).includes(id)).length,expectedMissing=IQ_MISSING_PARTS.length,totalCAD=JSON.parse(await fs.readFile('public/assembly/iq/parts.json','utf8')).length;
+const expectedCAD=Object.keys(IQ_STANDARD_PREFERRED).length+IQ_IMPROVED_WHEELS.filter(id=>!Object.values(IQ_STANDARD_PREFERRED).includes(id)).length-1,expectedMissing=IQ_MISSING_PARTS.length,totalCAD=JSON.parse(await fs.readFile('public/assembly/iq/parts.json','utf8')).length-1;
 const base=process.env.BASE_URL||'http://localhost:3131',out='artifacts/kit-parts-library';await fs.mkdir(out,{recursive:true});
 const browser=await chromium.launch({channel:'chrome',headless:true,args:['--disable-webgl','--disable-gpu']});
 try{
@@ -13,7 +13,7 @@ try{
  for(const sku of ['228-2536','iq-200mm-travel-wheel'])assert.equal(await page.locator(`#parts [data-sku="${sku}"]`).count(),1);
  assert.equal(await page.locator('#parts [data-sku="228-2540"]').count(),0);assert.equal(await page.locator('#parts [data-sku="228-2500-2260"]').count(),0);
  assert.ok(await page.locator('#parts [data-sku="228-6480"]').count());assert.equal(await page.locator('.library').evaluate(el=>getComputedStyle(el).backgroundColor),'rgb(17, 19, 21)');
- await page.locator('#category').selectOption('wheels');assert.ok(await page.locator('#parts [data-sku="iq-200mm-travel-wheel"]').isVisible());assert.equal(await page.locator('.library-group').count(),1);await page.locator('#category').selectOption('electronics');await page.waitForFunction(()=>{const img=document.querySelector('#parts [data-sku="228-6480"] img');return img?.dataset.backgroundRemoved==='true'&&img.complete&&img.naturalWidth>0;});await page.locator('.library').screenshot({path:out+'/iq-electronics.png'});assert.equal(await page.locator('#parts button[data-sku]').count(),7);await page.locator('#category').selectOption('');
+ await page.locator('#category').selectOption('wheels');assert.ok(await page.locator('#parts [data-sku="iq-200mm-travel-wheel"]').isVisible());assert.equal(await page.locator('.library-group').count(),1);await page.locator('#category').selectOption('electronics');await page.waitForFunction(()=>{const img=document.querySelector('#parts [data-sku="228-6480"] img');return img?.dataset.backgroundRemoved==='true'&&img.complete&&img.naturalWidth>0;});await page.locator('.library').screenshot({path:out+'/iq-electronics.png'});assert.equal(await page.locator('#parts button[data-sku]').count(),6);await page.locator('#category').selectOption('');
  const unchanged=JSON.stringify((await state()).parts);await page.locator('[data-scope=extras]').click();assert.ok(await page.locator('#parts [data-sku="228-2540"]').count());
  await page.locator('#search').fill('228-2500-2260');await page.waitForFunction(()=>document.querySelectorAll('#parts button[data-sku]').length===1);assert.equal(await page.locator('#parts button[data-sku]').getAttribute('data-sku'),'228-2500-2260');
  await page.locator('[data-scope=all]').click();await page.locator('#search').fill('');await page.waitForFunction(total=>document.querySelectorAll('#parts button[data-sku]').length===total,totalCAD);

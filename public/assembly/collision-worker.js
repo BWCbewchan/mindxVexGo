@@ -1,5 +1,5 @@
 import * as THREE from './vendor/three.module.js';
-import {analyzeCollisions} from './collision.js?v=integral-pegs-61';
+import {analyzeCollisions} from './collision.js?v=iq-power-pack-89';
 import {assetUrl} from './platform.js';
 const geometries=new Map();
 const references=fetch(assetUrl('connectors.json?v=platform-73'),{cache:'no-store'}).then(r=>r.json()).then(r=>r.parts);

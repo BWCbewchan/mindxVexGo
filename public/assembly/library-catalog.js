@@ -3,6 +3,8 @@ import {GO_KIT_QUANTITIES,IQ_KIT_QUANTITIES} from './kit-presets.js';
 import {kitCatalog,kitReport,kitAssemblyReport,legoPartKit} from './kit-policy.js';
 import {LEGO_KITS} from './lego/kit-presets.js';
 import {IQ_STANDARD_PREFERRED,IQ_MISSING_PARTS,IQ_IMPROVED_WHEELS} from './iq/library-reference.js';
+import {IQ_POWER_PACK_BRAIN,IQ_POWER_PACK_BATTERY,IQ_POWER_PACK_NAME} from './iq-power-pack.js';
+import {partSource} from './part-source.js';
 
 export const LIBRARY_GROUPS=[
  ['beams','Thanh & tấm','Beams · Plates · Frames'],
@@ -61,13 +63,19 @@ export function libraryView(catalog,platform,{scope,profile=null,query='',catego
   const byId=new Map(catalog.map(p=>[p.id,p])),stock=[...kitReport([],catalog,profile),...kitAssemblyReport([],catalog,profile)].filter(r=>(r.available||0)>0);
   rows=stock.map(r=>preferredRow(catalog.filter(p=>(p.sourcePlatform||platform)===(r.sourcePlatform||platform)),r,r.sourcePlatform||platform)||byId.get(r.sku)).filter(Boolean).map(p=>({...p,...(platform==='lego'?{libraryKitId:legoPartKit(p,profile)}:{})}));missing=[];
  }
- const all=[...rows,...missing],categories=LIBRARY_GROUPS.map(([id,title,subtitle])=>({id,title,subtitle,count:all.filter(p=>libraryGroup(p)===id).length})).filter(g=>g.count);
+ const iqPart=(part,id)=>{const source=partSource(platform,part.id);return source.platform==='vexiq'&&source.id===id;};
+ const brain=rows.find(part=>iqPart(part,IQ_POWER_PACK_BRAIN));
+ const battery=rows.find(part=>iqPart(part,IQ_POWER_PACK_BATTERY));
+ const libraryRows=brain&&battery?rows.filter(part=>part!==battery).map(part=>part===brain?{
+  ...part,name:IQ_POWER_PACK_NAME,powerPack:battery.id,searchNames:[brain.name,battery.name,battery.id]
+ }:part):rows;
+ const all=[...libraryRows,...missing],categories=LIBRARY_GROUPS.map(([id,title,subtitle])=>({id,title,subtitle,count:all.filter(p=>libraryGroup(p)===id).length})).filter(g=>g.count);
  const q=searchText(query).trim(),tokens=q.split(/\s+/).filter(Boolean);
  const filtered=all.filter(p=>{
   const group=libraryGroup(p),labels=LIBRARY_GROUPS.find(g=>g[0]===group)||[];
-  const text=searchText([p.name,p.id,p.sku,...labels,isChainLink(platform,p.id)?'sợi xích mắt xích vòng xích tạo xích quấn nhông sprocket chain assembly chain builder':'',group==='pins'?'đinh chốt':group==='shafts'?'thanh sắt trục':''].join(' '));
+  const text=searchText([p.name,p.id,p.sku,...(p.searchNames||[]),...labels,isChainLink(platform,p.id)?'sợi xích mắt xích vòng xích tạo xích quấn nhông sprocket chain assembly chain builder':'',group==='pins'?'đinh chốt':group==='shafts'?'thanh sắt trục':''].join(' '));
   return (!category||category===group||category===p.category||category==='kind-'+p.kind)&&tokens.every(token=>text.includes(token));
  });
  const groups=LIBRARY_GROUPS.map(([id,title,subtitle])=>({id,title,subtitle,parts:filtered.filter(p=>libraryGroup(p)===id).sort((a,b)=>Number(isChainLink(platform,b.id))-Number(isChainLink(platform,a.id))||Number(!!a.missing)-Number(!!b.missing)||collator.compare(a.name,b.name)||collator.compare(a.id,b.id))})).filter(g=>g.parts.length);
- return {scope,groups,categories,total:all.length,shown:filtered.length,available:rows.length,missing:missing.length,shownMissing:filtered.filter(p=>p.missing).length};
+ return {scope,groups,categories,total:all.length,shown:filtered.length,available:libraryRows.length,missing:missing.length,shownMissing:filtered.filter(p=>p.missing).length};
 }
