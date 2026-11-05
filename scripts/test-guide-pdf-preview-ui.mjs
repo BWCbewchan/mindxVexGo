@@ -41,11 +41,33 @@ try{
  const dotX=liveDot.x+liveDot.width/2,dotY=liveDot.y+liveDot.height/2;
  await page.mouse.move(dotX,dotY);await page.mouse.down();await page.mouse.move(dotX+65,dotY+20,{steps:8});
  await expect.poll(()=>live.evaluate(c=>c.toDataURL())).not.toBe(liveBefore);
+ const draggedPixels=await live.evaluate(c=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(()=>resolve(c.toDataURL())))));
+ const orbitChild=page.frames().find(f=>f.url().includes('/assembly/lego/editor.html'));
+ await orbitChild.evaluate(()=>{
+  const holder=document.querySelector('.pdf-paper-holder');
+  window.orbitFallbacks=0;
+  window.orbitObserver=new MutationObserver(()=>{if(!holder.querySelector('[data-paper-frame=detail] .pdf-orbit-canvas'))window.orbitFallbacks++;});
+  window.orbitObserver.observe(holder,{childList:true,subtree:true});
+ });
  await page.mouse.up();await ready();await live.waitFor();
+ assert.equal(await orbitChild.evaluate(()=>{window.orbitObserver.disconnect();return window.orbitFallbacks;}),0,'Release must keep the live angle visible throughout the PDF redraw');
+ assert.equal(await live.evaluate(c=>c.toDataURL()),draggedPixels,'The visible angle after release matches the end of the drag');
+ const savedOrbit=(await readPage()).frames.detail.camera;
  assert.deepEqual((await readPage()).frames.detail.markers,originalMarkers,'Orbit from a purple dot must leave markers intact');
+ const gap=frame.locator('#pdf-explode-distance'),gapBox=await gap.boundingBox(),gapY=gapBox.y+gapBox.height/2;
+ await page.mouse.move(gapBox.x+gapBox.width*.36,gapY);await page.mouse.down();
+ await page.mouse.move(gapBox.x+gapBox.width*.6,gapY,{steps:4});
+ await expect.poll(()=>live.evaluate(c=>c.toDataURL())).not.toBe(draggedPixels);
+ assert.ok(await live.isVisible(),'3D remains visible while dragging the gap slider');
+ const liveGap=Number(await gap.inputValue());
+ await page.mouse.up();await ready();await live.waitFor();
+ assert.equal((await readPage()).frames.detail.explodeMM,liveGap);
+ const gapOrbit=(await readPage()).frames.detail.camera;
+ for(const name of ['direction','up'])assert.ok(gapOrbit[name].every((n,i)=>Math.abs(n-savedOrbit[name][i])<1e-12),'Spacing must preserve the saved orbit');
+ assert.equal(gapOrbit.zoom,savedOrbit.zoom);
  const beforeWheel=await picture.getAttribute('href'),wheelTarget=detail.locator('.guide-image-viewport');
  await wheelTarget.dispatchEvent('wheel',{ctrlKey:true,deltaY:-200,bubbles:true,cancelable:true});
  await expect.poll(async()=>(await readPage()).frames.detail.camera.zoom).toBeGreaterThan(1);
  await ready();assert.notEqual(await picture.getAttribute('href'),beforeWheel,'Ctrl wheel must visibly zoom above 100%');const leftCamera=JSON.stringify((await readPage()).frames.detail.camera),leftImage=await frame.locator('[data-paper-frame=detail] svg image').getAttribute('href');const rightBox=await frame.locator('[data-paper-frame=assembled] .guide-image-viewport').boundingBox();await page.mouse.move(rightBox.x+rightBox.width*.5,rightBox.y+rightBox.height*.5);await page.mouse.down();await page.mouse.move(rightBox.x+rightBox.width*.5+55,rightBox.y+rightBox.height*.5-20,{steps:8});assert.equal(await frame.locator('[data-paper-frame=detail] .pdf-orbit-canvas').count(),0,'Direct right-frame drag removes the left live canvas');await page.mouse.up();await ready();{const actual=(await readPage()).frames.detail.camera,expected=JSON.parse(leftCamera);assert.equal(actual.zoom,expected.zoom);for(const field of ['direction','up'])assert.ok(actual[field].every((n,i)=>Math.abs(n-expected[field][i])<1e-12),'Right orbit preserves left camera');}assert.equal(await frame.locator('[data-paper-frame=detail] svg image').getAttribute('href'),leftImage,'Right orbit preserves left image');await frame.locator('#pdf-preview-close').click();assert.equal(JSON.stringify((await api('getState')).parts),original);
- const download=page.waitForEvent('download');const result=await page.evaluate(()=>window.mindxAssembly.execute('exportGuide',{format:'zip'}));assert.ok(result.ok,JSON.stringify(result));await (await download).saveAs(out+'/edited-guide.zip');assert.deepEqual(errors,[]);console.log('PASS: actual PDF preview, live outline, orbit from markers, visible Ctrl+wheel zoom, independent image pan/frame move/resize/camera, marker clear/add/drag, zero PNG/GPU during 2D drag, single undo/redo, unchanged CAD, matching screen/print marker positions, PDF, persisted settings and raster ZIP.');
+ const download=page.waitForEvent('download');const result=await page.evaluate(()=>window.mindxAssembly.execute('exportGuide',{format:'zip'}));assert.ok(result.ok,JSON.stringify(result));await (await download).saveAs(out+'/edited-guide.zip');assert.deepEqual(errors,[]);console.log('PASS: actual PDF preview, live outline, orbit retained through redraw, live 3D gap, visible Ctrl+wheel zoom, independent image pan/frame move/resize/camera, marker clear/add/drag, zero PNG/GPU during 2D drag, single undo/redo, unchanged CAD, matching screen/print marker positions, PDF, persisted settings and raster ZIP.');
 }finally{await browser.close();}

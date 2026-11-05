@@ -40,7 +40,12 @@ try{
  assert.equal((await state()).guidePreferences.steps[shaft].page.frames.detail.explodeMM,draggedGap);
  await setGap(35);assert.equal((await state()).guidePreferences.steps[shaft].page.frames.detail.explodeMM,35);assert.equal((await state()).guidePreferences.steps[other]?.page?.frames?.detail?.explodeMM,beforeGap);
  await target.click();await pdfReady();const nextPageBefore=await detailImage.getAttribute('href');
- await source.click();await pdfReady();await page.locator('#pdf-frame-select').selectOption('assembled');await scope.selectOption('all');await setGap(45);
+ await source.click();await pdfReady();await page.locator('#pdf-frame-select').selectOption('assembled');
+ await page.locator('#pdf-mode-orbit').click();
+ const overviewCanvas=page.locator('#pdf-preview-paper [data-paper-frame=assembled] .pdf-orbit-canvas');
+ await overviewCanvas.waitFor();
+ await scope.selectOption('all');await setGap(45);
+ await overviewCanvas.waitFor();
  assert.ok((await guide()).steps.every(s=>s.page.frames.detail.explodeMM===45));
  await target.click();await pdfReady();assert.notEqual(await detailImage.getAttribute('href'),nextPageBefore,'All pages updates the illustration when opening the next step');
  await source.click();await pdfReady();
