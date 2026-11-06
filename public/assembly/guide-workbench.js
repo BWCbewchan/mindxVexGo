@@ -10,13 +10,13 @@ export function installGuideWorkbench(api){
  const root=el('section');root.id='guide-workbench';root.className='guide-live-editor guide-vertical-feed';root.setAttribute('aria-label','Các trang hướng dẫn lắp');
  const rows=new Map(),queue=new Map(),cache=new Map();let guide=null,blocked=false,visible=false,disposed=false,backgroundTimer=0,backgroundBusy=false,epoch=0,currentIndex=0,active=null,session=null,camera=null,autoCamera=null,drag=null,raf=0;
  const suspended=()=>document.hidden||!!api.suspended?.(),frame=step=>step?.page?.frames?.detail||{};
- const geometryKey=step=>JSON.stringify([step.parts.map(p=>[p.id,p.sku,p.position,p.rotation,p.ldrawColorHex,p.legoKitId]),step.added.map(p=>p.id),step.joint,step.insertion,frame(step).explodeMM,frame(step).redOutline,frame(step).redOutlineOpacity,api.appearance()]);
+ const geometryKey=step=>JSON.stringify([step.parts.map(p=>[p.id,p.sku,p.position,p.rotation,p.ldrawColorHex,p.legoKitId]),step.added.map(p=>p.id),step.joint,step.insertion,step.insertionBlocked,!!step.closingNote,step.guideSupport,frame(step).explodeMM,frame(step).redOutline,frame(step).redOutlineOpacity,api.appearance()]);
  const imageKey=step=>geometryKey(step)+'|'+JSON.stringify(frame(step).camera||step.camera||step.view);
  const preferred=step=>guideCamera(frame(step).camera)||(step.view==='custom'?guideCamera(step.camera):null)||autoCamera;
  function remember(key,value){cache.set(key,value);if(cache.size>90)cache.delete(cache.keys().next().value);}
  function snapshot(){if(!active||!session)return;try{const src=session.canvas.toDataURL('image/png');active.img.src=src;active.img.hidden=false;remember(active.imageKey,src);}catch{}}
  function deactivate(save=true){++epoch;if(raf)cancelAnimationFrame(raf);raf=0;if(save)snapshot();session?.canvas.remove();session=null;active=null;camera=null;drag=null;}
- function schedule(){clearTimeout(backgroundTimer);if(!disposed&&visible&&!blocked&&!backgroundBusy&&!drag&&!suspended()&&queue.size)backgroundTimer=setTimeout(renderNext,20);}
+ function schedule(){clearTimeout(backgroundTimer);if(!disposed&&visible&&!blocked&&!backgroundBusy&&!drag&&!suspended()&&queue.size)backgroundTimer=setTimeout(renderNext,[...queue.values()].some(job=>job.row.inView)?35:450);}
  async function renderNext(){
   backgroundTimer=0;if(disposed||!visible||blocked||drag||suspended())return;
   const job=[...queue.values()].sort((a,b)=>Number(b.row.inView)-Number(a.row.inView)||a.row.index-b.row.index)[0];if(!job)return;queue.delete(job.key);backgroundBusy=true;
@@ -38,7 +38,7 @@ export function installGuideWorkbench(api){
   const to=Number(row.number.value)-1;if(!Number.isInteger(to)||to<0||to>=guide.steps.length){row.error=`Nhập số bước từ 1 đến ${guide.steps.length}.`;row.number.value=String(row.index+1);row.number.setAttribute('aria-invalid','true');note(row);return;}
   if(to===row.index)return;
   const result=api.reorder?.(row.index,to);
-  if(result===false||result?.ok===false){row.error=result?.error||'Bước này cần chi tiết đỡ được lắp trước.';row.number.value=String(row.index+1);row.number.setAttribute('aria-invalid','true');note(row);return;}
+  if(result===false||result?.ok===false){row.error=result?.error||'Chờ hướng dẫn cập nhật rồi thử đổi số lại.';row.number.value=String(row.index+1);row.number.setAttribute('aria-invalid','true');note(row);return;}
   row.error='';note(row);row.number.value=String(row.index+1);row.number.setAttribute('aria-invalid','false');currentIndex=row.index;row.article.scrollIntoView({block:'nearest',behavior:'smooth'});
  }
  function size(row){const width=Math.max(240,Math.min(drag?420:720,Math.round((row.stage.clientWidth||320)*(drag?1:Math.min(devicePixelRatio||1,2)))));return {width,height:Math.round(width*(row.stage.clientHeight||width*.75)/(row.stage.clientWidth||width))};}

@@ -1,3 +1,4 @@
+import {guidePartPriority} from './guide-priority.js';
 import {chainDriveGroups} from './chain-route.js';
 import {seatedConnections,jointMetrics} from './assembly-review.js';
 // A closed drive chain is wrapped after its sprockets are prepared. It is not
@@ -11,5 +12,33 @@ export function generateChainDriveGuide(parts,options,generate){
   const steps=[],included=new Set(),notes=[];for(const ids of components){const subset=ids.map(id=>byId.get(id)),component=generate(subset,options);if(!component.ready){if(subset.every(p=>options.isElectronic?.(p.sku))){subset.forEach(p=>included.add(p.id));steps.push({title:'Chuẩn bị thiết bị điện tử',note:'Gắn thiết bị vào khung theo mô hình.',added:subset.map(p=>({id:p.id,sku:p.sku,name:options.nameFor(p)})),requires:[],parts:core.filter(p=>included.has(p.id)),joint:null,type:'electronics'});continue;}return base;}notes.push(...component.notes);for(const s of component.steps){s.added.forEach(p=>included.add(p.id));steps.push({...s,parts:core.filter(p=>included.has(p.id)).map(p=>structuredClone(p))});}}
   base={ready:true,steps,notes,blockers:[]};
  }
- const included=new Set(base.steps.at(-1)?.parts.map(p=>p.id)||[]),byId=new Map(parts.map(p=>[p.id,p]));for(const d of drives){const added=d.ids.map(id=>byId.get(id));added.forEach(p=>included.add(p.id));base.steps.push({title:`Quấn xích nối ${d.gears.map(id=>options.nameFor(byId.get(id))).join(' ↔ ')}`,note:`Chuẩn bị ${added.length} mắt xích, quấn quanh hai nhông theo hình rồi bấm hai đầu xích lại. Kiểm tra độ chùng và quay nhông bằng tay để kiểm tra xích chạy đều.`,added:added.map(p=>({id:p.id,sku:p.sku,name:options.nameFor(p)})),requires:d.gears,parts:parts.filter(p=>included.has(p.id)).map(p=>structuredClone(p)),joint:null,type:'chain-drive',view:'auto'});}return base;
+ const byId=new Map(parts.map(p=>[p.id,p])),wraps=new Map();
+ const installedAt=new Map(base.steps.flatMap((step,i)=>step.added.map(part=>[part.id,i])));
+ for(const drive of drives){
+  const chain=new Set(drive.ids);
+  // Keep a checked insertion ahead of the chain when its sweep crosses a link.
+  const blockers=base.steps.flatMap((step,i)=>step.insertion?.blockedBy?.some(id=>chain.has(id))?[i]:[]);
+  let next=Math.max(...drive.gears.map(id=>installedAt.get(id)??base.steps.length-1),...blockers)+1;
+  while(next<base.steps.length){
+   const step=base.steps[next],part=byId.get(step.joint?.part||step.added[0]?.id);
+   if(!part||guidePartPriority(part,options.nameFor(part))>2)break;
+   next++;
+  }
+  const added=drive.ids.map(id=>byId.get(id));
+  const step={
+   title:'Quấn xích nối '+drive.gears.map(id=>options.nameFor(byId.get(id))).join(' ↔ '),
+   note:'Chuẩn bị '+added.length+' mắt xích, quấn quanh hai nhông theo hình rồi bấm hai đầu xích lại. Kiểm tra độ chùng và quay nhông bằng tay để kiểm tra xích chạy đều.',
+   added:added.map(p=>({id:p.id,sku:p.sku,name:options.nameFor(p)})),requires:drive.gears,joint:null,type:'chain-drive',view:'auto'
+  };
+  if(!wraps.has(next))wraps.set(next,[]);
+  wraps.get(next).push(step);
+ }
+ const ordered=base.steps.flatMap((step,i)=>[...(wraps.get(i)||[]),step]);
+ ordered.push(...(wraps.get(base.steps.length)||[]));
+ const full=[...base.steps.at(-1).parts,...parts.filter(p=>chainIds.has(p.id))],included=new Set();
+ const steps=ordered.map(step=>{
+  step.added.forEach(p=>included.add(p.id));
+  return {...step,parts:full.filter(p=>included.has(p.id)).map(p=>structuredClone(p))};
+ });
+ return {...base,steps};
 }

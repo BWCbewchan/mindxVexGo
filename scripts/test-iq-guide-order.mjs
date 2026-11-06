@@ -39,4 +39,27 @@ Object.assign(wheel,matingPose(wheel,hole,axle,tip,{depth:20}));
 const collar={id:'collar',sku:'228-2500-168',kind:'retainer',position:[0,0,0],rotation:[0,0,0]},bore=refs[collar.sku].find(r=>r.kind==='hole'&&r.radius>=2&&r.radius<=2.6);
 Object.assign(collar,matingPose(collar,bore,axle,tip,{depth:5}));
 const axial=plan([collar,wheel,axle]);assert.equal(axial.ready,true,JSON.stringify(axial.blockers));assert.ok(axial.steps[0].added.some(p=>p.id==='axle'));assert.ok(axial.steps.findIndex(s=>s.added.some(p=>p.id==='wheel'))<axial.steps.findIndex(s=>s.added.some(p=>p.id==='collar')));
-console.log('PASS: supplied 26-part IQ model, structural anchor, supported same-face pin batches, cumulative complete poses, stable order and unchanged input.');
+const {generateIQGuide}=await import('../public/assembly/iq-guide-sequence.js');
+const socket={id:'socket',kind:'hole',point:[0,0,0],normal:[0,1,0],radius:2.2,depth:8};
+const plug={id:'plug',kind:'pin',point:[0,0,0],normal:[0,-1,0],radius:2.2,depth:8};
+const fixtureRefs={anchor:[0,20,40,60,80].map((x,i)=>({...socket,id:'socket-'+i,point:[x,0,0]}))};
+const anchor={id:'anchor',sku:'anchor',kind:'body',label:'Support Beam',position:[0,0,0],rotation:[0,0,0]};
+const categories=[
+ ['new-beam','body','Beam'],['gear','gear','Gear'],['axle','shaft','Shaft'],
+ ['standoff','body','Standoff'],['pin','pin','Pin']
+].map(([id,kind,label],i)=>{
+ fixtureRefs[id]=[plug];
+ const part={id,sku:id,kind,label,position:[0,0,0],rotation:[0,0,0]},target=fixtureRefs.anchor[i];
+ return {...part,...matingPose(part,plug,anchor,target,{depth:2}),mate:{target:anchor.id,sourceRef:plug.id,targetRef:target.id,depth:2}};
+});
+const prioritized=generateIQGuide([anchor,...categories],{references:fixtureRefs,rootId:anchor.id});
+assert.ok(prioritized.ready,JSON.stringify(prioritized.blockers));
+assert.deepEqual(prioritized.steps.flatMap(s=>s.added.map(p=>p.id)).filter(id=>id!==anchor.id),['pin','standoff','axle','gear','new-beam']);
+const gear={id:'outer-gear',sku:'228-2500-213',kind:'gear',position:[0,0,0],rotation:[0,0,0]};
+const gearHole=refs[gear.sku].find(r=>r.kind==='hole'&&r.profile==='square-drive');
+const seat=(part,opening,depth)=>({...part,...matingPose(part,opening,axle,tip,{depth}),mate:{target:axle.id,sourceRef:opening.id,targetRef:tip.id,depth}});
+const stack=generateIQGuide([axle,seat(wheel,hole,20),seat(gear,gearHole,10),seat(collar,bore,5)],{references:refs,rootId:axle.id,inferConnections:true});
+assert.ok(stack.ready,JSON.stringify(stack.blockers));
+assert.deepEqual(stack.steps.flatMap(s=>s.added.map(p=>p.id)),[axle.id,wheel.id,gear.id,collar.id]);
+assert.ok(stack.steps.find(s=>s.added.some(p=>p.id===gear.id)).requires.includes(wheel.id));
+console.log('PASS: stable VEX IQ build order, requested category priorities, and inner-to-outer insertion on a shared shaft.');

@@ -47,10 +47,37 @@ try{
  await scope.selectOption('all');await setGap(45);
  await overviewCanvas.waitFor();
  assert.ok((await guide()).steps.every(s=>s.page.frames.detail.explodeMM===45));
- await target.click();await pdfReady();assert.notEqual(await detailImage.getAttribute('href'),nextPageBefore,'All pages updates the illustration when opening the next step');
+ await target.click();await pdfReady();
+ const nextImage=await detailImage.getAttribute('href');
+ if((await guide()).steps[18].insertionBlocked){
+  assert.ok(nextImage===nextPageBefore,'Global spacing must keep a blocked step seated');
+  assert.match(await page.locator('#pdf-preview-paper .guide-step-instruction').innerText(),/Chưa tìm được đường lắp/);
+ }else assert.ok(nextImage!==nextPageBefore,'Global spacing changes a verified insertion illustration');
  await source.click();await pdfReady();
  assert.deepEqual((await state()).guidePreferences.steps[shaft].page.frames.detail.camera,JSON.parse(camera).page.frames.detail.camera);
  await page.locator('#pdf-preview-undo').click();await pdfReady();assert.equal((await state()).guidePreferences.steps[shaft].page.frames.detail.explodeMM,35);assert.equal((await state()).guidePreferences.steps[other]?.page?.frames?.detail?.explodeMM,beforeGap);
  await page.screenshot({path:out+'/pdf-step-18.png'});await page.locator('#pdf-preview-close').click();
- assert.deepEqual((await state()).parts.map(p=>[p.id,p.position,p.rotation]),before);await page.reload();await page.waitForFunction(()=>window.mindxAssembly,null,{timeout:90000});await idle();g=await guide();assert.equal(key(g.steps[17]),shaft);assert.equal(g.steps.at(-1).parts.length,108);assert.deepEqual(errors,[]);console.log('PASS: supplied windmill slow keyboard entry in Guide, PDF toolbar and thumbnail, PDF drag/drop, live drag and rendered single/all step spacing, Undo, camera settings, CAD poses and reload persistence.');
+ const touch=key((await guide()).steps[66]),sourceOrder=page.locator('.guide-step-order').nth(66);
+ await sourceOrder.fill('4');await sourceOrder.press('Enter');await expectStepAt(touch,3);
+ assert.equal((await state()).guidePreferences.order[3],touch);
+ await page.locator('#guide-export').click();await pdfReady();
+ await page.getByRole('spinbutton',{name:'Chuyển bước 4 đến',exact:true}).fill('67');
+ await page.getByRole('spinbutton',{name:'Chuyển bước 4 đến',exact:true}).press('Enter');
+ await expectStepAt(touch,66);await pdfReady();
+ const touchOrder=page.getByRole('spinbutton',{name:'Chuyển bước 67 đến',exact:true});
+ await touchOrder.fill('4');await touchOrder.press('Enter');
+ await expectStepAt(touch,3);await pdfReady();
+ assert.equal(await page.locator('.pdf-pages button[data-page="3"]').getAttribute('aria-current'),'true');
+ const moved=(await guide()).steps[3],movedDetail=page.locator('#pdf-preview-paper [data-paper-frame=detail]');
+ assert.ok(await movedDetail.isVisible(),'The moved step retains its assembly position');
+ if(moved.insertionBlocked){
+  assert.match(await movedDetail.locator('figcaption').innerText(),/chuẩn bị cụm/);
+  assert.match(await page.locator('#pdf-preview-paper .guide-step-instruction').innerText(),/Chưa tìm được đường lắp/);
+ }else{
+  assert.ok(moved.insertion,'The preview only animates a checked insertion direction');
+  if(moved.guideSupport)assert.match(await movedDetail.locator('figcaption').innerText(),/làm mờ/);
+  assert.ok(await movedDetail.locator('.guide-hole-dot').count()>0,'The destination hole stays marked');
+ }
+ await page.locator('#pdf-preview-close').click();
+ assert.deepEqual((await state()).parts.map(p=>[p.id,p.position,p.rotation]),before);await page.reload();await page.waitForFunction(()=>window.mindxAssembly,null,{timeout:90000});await idle();g=await guide();assert.equal(key(g.steps[3]),touch);assert.equal(key(g.steps[18]),shaft);assert.equal(g.steps.at(-1).parts.length,108);assert.deepEqual(errors,[]);console.log('PASS: supplied windmill step 67 → 4 and slow keyboard entry in Guide, PDF toolbar and thumbnail, PDF drag/drop, live drag and rendered single/all step spacing, Undo, camera settings, CAD poses and reload persistence.');
 }catch(e){await page.screenshot({path:out+'/failure.png'});console.log('Guide status:',await page.locator('#status').textContent().catch(()=>''));throw e;}finally{await browser.close();}

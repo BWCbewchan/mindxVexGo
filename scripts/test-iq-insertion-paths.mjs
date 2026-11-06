@@ -40,6 +40,21 @@ for(const step of guide.steps){
 assert.equal(included.size,26);
 const impossible=new Map([...audit].map(([id,rows])=>[id,rows.map(r=>({...r,blockedBy:[...r.blockedBy,project.parts[7].id]}))]));
 assert.equal(generateStudentGuide(project.parts,{references:refs,inferConnections:true,insertionPaths:impossible}).ready,false,'A blocked route must not be exported as a verified instruction');
+const {editGuide,stepKey}=await import('../public/assembly/guide-editing.js');
+const draft=generateStudentGuide(project.parts,{references:refs,inferConnections:true,prioritizeMountedElectronics:true});
+assert.ok(draft.ready,JSON.stringify(draft.blockers));
+const checkedDraft=editGuide(draft,{},audit,refs);
+const driveAt=checkedDraft.steps.findIndex(s=>s.joint?.part===drive.id);
+const motorAt=checkedDraft.steps.findIndex(s=>s.joint?.part===motor.id);
+assert.ok(driveAt>=0&&driveAt<motorAt,'Even the fallback guide must install the motor shaft before the motor');
+assert.equal(checkedDraft.steps[motorAt].joint.sourceRef,'motor-output','Use the motor drive socket to anchor the instruction');
+assert.ok(checkedDraft.steps[motorAt].insertion.contacts.some(c=>c.target===drive.id));
+assert.match(checkedDraft.steps[motorAt].note,/đầu ngắn của trục/);
+const edited=editGuide(guide,{order:guide.steps.map(stepKey)},impossible);
+assert.equal(edited.reviewRequired,true,'The manually ordered guide must also reflect blocked routes');
+assert.ok(edited.steps.some(s=>s.insertionBlocked&&!s.insertion),'Blocked illustrations must lose their insertion arrow');
+assert.deepEqual(edited.steps.map(stepKey),guide.steps.map(stepKey),'An audit must retain the manual sequence');
+
 await fs.mkdir('artifacts/iq-route-review',{recursive:true});await fs.writeFile('artifacts/iq-route-review/guide.json',JSON.stringify(guide,null,2));
 console.log('PASS: all 26 parts have supported CAD-sampled insertion routes; both complete shaft sweeps clear every earlier body; motor cannot precede its shaft; blocked paths fail closed.');
 for(const [i,s] of guide.steps.entries())console.log(i+1,s.title);

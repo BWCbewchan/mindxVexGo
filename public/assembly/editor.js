@@ -11,7 +11,7 @@ import {assemblyMatingContext,movingAssemblyIds} from './assembly-mating.js';
 import {installChainBuilder,buildChain,isChainLink} from './chain-builder.js';
 import {installConnectionSuggestions} from './connection-suggestions.js';
 import {installAutomaticGuideRepair} from './automatic-guide-repair.js';
-import {installGuideWorkbench} from './guide-workbench.js?v=step-controls-89';
+import {installGuideWorkbench} from './guide-workbench.js?v=guide-drive-100';
 import {SNAP_PRESETS,snapPreset,snapPosition} from './snap-settings.js';
 import {guideCamera} from './guide-camera.js';
 import {installGuidePreviews} from './guide-previews.js';
@@ -33,7 +33,7 @@ import {installSimulationLauncher} from '../simulation/assembly-launcher.js';
 import {installAssemblyAssistant} from './assembly-assistant.js?v=kit-79';
 import {seatedConnections,groupAncestors,groupMembers,layerLocked,layerVisible,validGroupTree,groupSelection as groupParts} from './assembly-review.js';
 import {copySelection,ungroupSelection as ungroupParts} from './selection-operations.js';
-import {editGuide,stepKey} from './guide-editing.js';
+import {editGuide,stepKey} from './guide-editing.js?v=guide-drive-100';
 import {installDrivePreview} from './drive-preview.js';
 import {renderLayers} from './layers-tree-panel.js?v=group-target-77';
 let layerAnchor=null;
@@ -47,13 +47,13 @@ import {optimizeStaticModel} from './render-model.js';
 import {createRenderScheduler} from './render-scheduler.js';
 import {loadPool} from './load-pool.js';
 let renderLoop=null;
-import {generateStudentGuide} from './guide-sequence.js?v=guide-tools-83';
-import {installPDFPreview} from './guide-pdf-preview.js?v=orbit-gap-92';
-import {prepPaper,stepPaper,finishedPaper,readyPaperImages} from './guide-paper.js';
+import {generateStudentGuide} from './guide-sequence.js?v=guide-drive-100';
+import {installPDFPreview} from './guide-pdf-preview.js?v=guide-drive-100';
+import {prepPaper,stepPaper,finishedPaper,readyPaperImages} from './guide-paper.js?v=guide-routes-95';
 import {guidePage} from './guide-page-settings.js';
-import {createGuideRenderer} from './guide-renderer.js?v=preview-tools-91';
+import {createGuideRenderer} from './guide-renderer.js?v=guide-drive-100';
 import {repairAssemblyLinks} from './repair-links.js?v=repair-depth-38';
-import {collisionClient} from './collision-client.js?v=integral-pegs-61';
+import {collisionClient} from './collision-client.js?v=guide-drive-100';
 const fitChecker=collisionClient(()=>jointReferences);
 import {stagingPosition} from './staging-position.js';
 import {withElectronics as withRequiredElectronics,missingElectronics} from './electronics.js';
@@ -125,14 +125,35 @@ let snapSelect=null;
 if(PLATFORM.id==='lego'){$('snap').closest('label').lastChild.textContent=' Snap LEGO / 15°';$('snap').setAttribute('aria-label','Snap LEGO / 15°');const label=node('label','Lưới LEGO ');snapSelect=node('select');snapSelect.id='lego-snap-preset';snapSelect.setAttribute('aria-label','Bước snap LEGO');for(const [id,preset] of Object.entries(SNAP_PRESETS)){const option=node('option',preset.label);option.value=id;snapSelect.append(option);}label.append(snapSelect);optionsBody.prepend(label);snapSelect.onchange=()=>{if(busy||preview)return;checkpoint();project.editorSettings={...project.editorSettings,snapPreset:snapSelect.value};syncSnapSettings();save(false);};}
 function syncSnapSettings(){const preset=snapPreset(project.editorSettings,PLATFORM.id);if(snapSelect)snapSelect.value=preset;controls.setTranslationSnap(PLATFORM.id==='lego'?null:$('snap').checked?.001:null);controls.setRotationSnap($('snap').checked?THREE.MathUtils.degToRad(15):null);}
 function snapForDrag(position,origin){return PLATFORM.id==='lego'?snapPosition(position,snapPreset(project.editorSettings,PLATFORM.id),$('snap').checked,origin):position;}
-async function prepareGuideObjects(step,kitId=project.kit?.kitId){const models=await loadPool(step.parts,p=>model(p.sku,p.ldrawColorHex,p.legoKitId||kitId)),result=new Map();for(let i=0;i<step.parts.length;i++){const p=step.parts[i],obj=models[i];transform(obj,p);obj.traverse(mesh=>{if(mesh.userData.cable)mesh.visible=false;});result.set(p.id,obj);}return result;}
-async function renderGuideCard(step,options={}){const map=await prepareGuideObjects(step,Object.hasOwn(options,'kitId')?options.kitId||null:project.kit?.kitId);if(options.alive&&!options.alive())return null;previewRenderer??=createGuideRenderer();const current=new Map(project.parts.map(p=>[p.id,p])),same=step.parts.every(p=>JSON.stringify([p.position,p.rotation])===JSON.stringify([current.get(p.id)?.position,current.get(p.id)?.rotation]));const contacts=same?guideContacts():seatedConnections(step.parts,jointReferences);if(options.frame==='detail'){const shot=previewRenderer.render(map,step,jointReferences,{width:420,height:315,detail:true,live:true,liveFrame:'detail',contacts});previewRenderer.drawView(shot.detailFrame?.camera||shot.framing,420,315);return previewRenderer.renderCanvas.toDataURL('image/png');}return previewRenderer.render(map,step,jointReferences,{width:options.width||1000,height:options.height||680,detail:false,contacts});}
+const guideObjects=new Map();
+async function prepareGuideObjects(step,kitId=project.kit?.kitId){
+ const parts=step.guideSupport?[...step.parts,step.guideSupport]:step.parts;
+ const models=await loadPool(parts,p=>{
+  const kit=p.legoKitId||kitId,key=JSON.stringify([p.sku,p.ldrawColorHex,kit,p.position,p.rotation]);
+  let task=guideObjects.get(key);
+  if(task)guideObjects.delete(key);
+  else task=model(p.sku,p.ldrawColorHex,kit).then(obj=>{
+   transform(obj,p);obj.traverse(mesh=>{if(mesh.userData.cable)mesh.visible=false;});return obj;
+  }).catch(error=>{if(guideObjects.get(key)===task)guideObjects.delete(key);throw error;});
+  guideObjects.set(key,task);
+  if(guideObjects.size>192)guideObjects.delete(guideObjects.keys().next().value);
+  return task;
+ });
+ return new Map(parts.map((p,i)=>[p.id,models[i]]));
+}
+async function renderGuideCard(step,options={}){const map=await prepareGuideObjects(step,Object.hasOwn(options,'kitId')?options.kitId||null:project.kit?.kitId);if(options.alive&&!options.alive())return null;previewRenderer??=createGuideRenderer();const current=new Map(project.parts.map(p=>[p.id,p])),same=step.parts.every(p=>JSON.stringify([p.position,p.rotation])===JSON.stringify([current.get(p.id)?.position,current.get(p.id)?.rotation]));const contacts=same?guideContacts():seatedConnections(step.parts,jointReferences);if(options.frame==='detail'){const shot=previewRenderer.render(map,step,jointReferences,{width:320,height:240,detailScale:.4,detail:true,live:true,liveFrame:'detail',contacts});previewRenderer.drawView(shot.detailFrame?.camera||shot.framing,320,240);return previewRenderer.renderCanvas.toDataURL('image/png');}return previewRenderer.render(map,step,jointReferences,{width:options.width||1000,height:options.height||680,detail:false,contacts});}
 guidePreviews=installGuidePreviews({enabled:!renderer.isDataRenderer,prepare:prepareGuideObjects,render(map,step){previewRenderer??=createGuideRenderer();return previewRenderer.render(map,step,jointReferences,{width:400,height:300,detail:false,contacts:guideContacts()}).assembled;}});
 guideWorkbench=installGuideWorkbench({platform:PLATFORM.id,enabled:!renderer.isDataRenderer,suspended:()=>!!pdfPreview?.active(),appearance:()=>project.kit?.kitId||'',live:()=>project.editorSettings?.liveGuidePreview!==false,setLive(value){checkpoint();project.editorSettings={...project.editorSettings,liveGuidePreview:!!value};save(false);guideUIStamp='';renderStudentGuide();},render:renderGuideCard,prepareLive:async(step,appearance,alive)=>{const map=await prepareGuideObjects(step,appearance||null);if(!alive())return null;liveGuideRenderer??=createGuideRenderer();const shot=liveGuideRenderer.render(map,{...step,view:'auto',camera:undefined},jointReferences,{width:480,height:360,detail:true,live:true,liveFrame:'detail',contacts:guideContacts()});return {canvas:liveGuideRenderer.renderCanvas,framing:shot.detailFrame?.camera||shot.framing,draw:(camera,w,h)=>liveGuideRenderer.drawView(camera,w,h),thumbnail:()=>liveGuideRenderer.thumbnail()};},sceneCamera:()=>guideCamera({direction:camera.position.clone().sub(orbit.target).normalize().toArray(),up:new THREE.Vector3(0,1,0).applyQuaternion(camera.quaternion).toArray(),zoom:1}),camera(key,value,all){const preferences=copy(project.guidePreferences||{});preferences.steps||={};const keys=all?studentGuide.steps.map(stepKey):[key];if(all&&value)preferences.defaultCamera=value;for(const id of keys){const row={...preferences.steps[id]},page=copy(row.page||{});page.frames||={};page.frames.detail={...page.frames.detail};if(value)page.frames.detail.camera=value;else delete page.frames.detail.camera;row.page=page;Object.defineProperty(preferences.steps,id,{value:row,enumerable:true,writable:true,configurable:true});}return changeGuidePreferences(preferences,{allowPreview:true,cameraOnly:true});},suggest:()=>connectionSuggestions?.open(),reorder:reorderInlineGuide,export:zip=>exportStudentGuide({zip})});$('guide-summary').before(guideWorkbench.element);const guideAdvanced=node('details');guideAdvanced.className='guide-advanced-settings';const guideAdvancedLabel=node('summary','Thứ tự & ghi chú bước');guideAdvanced.append(guideAdvancedLabel);$('guide-steps').before(guideAdvanced);guideAdvanced.append($('guide-steps'));
 let pdfOrbitRenderer=null;
-async function preparePDFOrbit(step,name,alive){const map=await prepareGuideObjects(step);if(!alive())return null;pdfOrbitRenderer??=createGuideRenderer();pdfOrbitRenderer.render(map,step,jointReferences,{live:true,liveFrame:name,detail:name==='detail',width:480,height:360,contacts:guideContacts()});return {canvas:pdfOrbitRenderer.renderCanvas,draw:(camera,w,h)=>pdfOrbitRenderer.drawView(camera,w,h)};}
-async function renderPDFStep(step,{quick=false}={}){const map=await prepareGuideObjects(step);previewRenderer??=createGuideRenderer();return previewRenderer.render(map,step,jointReferences,{markers2D:true,contacts:guideContacts(),quick,...(quick?{width:450,height:450}:{})});}
-pdfPreview=installPDFPreview({platform:PLATFORM,guide:()=>studentGuide,project:()=>copy(project),catalog:()=>catalog,render:renderPDFStep,prepareLive:preparePDFOrbit,completed:async()=>{const map=await prepareGuideObjects({parts:project.parts});previewRenderer??=createGuideRenderer();return previewRenderer.completed(map,{width:1400,height:764});},reorder(from,to){
+async function preparePDFOrbit(step,name,alive){const map=await prepareGuideObjects(step);if(!alive())return null;pdfOrbitRenderer??=createGuideRenderer();pdfOrbitRenderer.render(map,step,jointReferences,{live:true,liveFrame:name,detail:name==='detail',width:480,height:360,detailScale:.55,contextEdges:step.parts.length<=32,contacts:guideContacts()});return {canvas:pdfOrbitRenderer.renderCanvas,draw:(camera,w,h)=>pdfOrbitRenderer.drawView(camera,w,h)};}
+async function renderPDFStep(step,{quick=false,thumbnail=false,alive}={}){
+ const map=await prepareGuideObjects(step);
+ if(alive&&!alive())return null;
+ previewRenderer??=createGuideRenderer();
+ const width=thumbnail?200:quick?420:900;
+ return previewRenderer.render(map,step,jointReferences,{markers2D:true,contacts:guideContacts(),width,height:width,detailScale:thumbnail?.23:quick?.5:1,contextEdges:!thumbnail&&step.parts.length<=32});
+}
+pdfPreview=installPDFPreview({platform:PLATFORM,guide:()=>studentGuide,project:()=>copy(project),catalog:()=>catalog,render:renderPDFStep,prepareLive:preparePDFOrbit,completed:async({thumbnail=false,alive}={})=>{const map=await prepareGuideObjects({parts:project.parts});if(alive&&!alive())return null;previewRenderer??=createGuideRenderer();return previewRenderer.completed(map,thumbnail?{width:280,height:153,contextEdges:false}:{width:1000,height:546,contextEdges:project.parts.length<=32});},reorder(from,to){
  const result=reorderInlineGuide(from,to);
  if(result?.ok===false)throw Error(result.error);
  return result;
@@ -148,7 +169,13 @@ function saveExplodeForAll(mm){
  }
  return changeGuidePreferences(preferences,{allowPreview:true,cameraOnly:true});
 }
-function openPDFPreview(){if(busy)return;renderStudentGuide();if(!studentGuide.ready){status(studentGuide.blockers.join(' '));return;}if(renderer.isDataRenderer)return exportStudentGuide();return pdfPreview.open(guideWorkbench.currentIndex());}
+async function openPDFPreview(){
+ if(busy)return;
+ renderStudentGuide();
+ if(!studentGuide.ready){status(studentGuide.blockers.join(' '));return;}
+ if(renderer.isDataRenderer)return exportStudentGuide();
+ return pdfPreview.open(guideWorkbench.currentIndex(),ensureGuideAudit);
+}
 const guideShortcut=node('button','Guide / PDF');guideShortcut.id='guide-shortcut';guideShortcut.title='Hướng dẫn lắp, xem trước và xuất PDF';guideShortcut.onclick=()=>{if(document.body.classList.contains('hide-panel'))$('panel-toggle').click();$('inspector-tab-2')?.click();renderStudentGuide();};document.querySelector('header').append(guideShortcut);const guideReadiness=node('p');guideReadiness.id='guide-readiness';guideReadiness.setAttribute('role','status');$('guide-summary').before(guideReadiness);$('student-guide-title').firstChild.textContent='Hướng dẫn lắp ';
 guideAdvanced.addEventListener('toggle',()=>{guideUIStamp='';renderStudentGuide();});
 const workbenchMenu=node('button','Ảnh bước & góc nhìn…');workbenchMenu.id='guide-workbench-menu';workbenchMenu.onclick=()=>{workbenchMenu.closest('details').open=false;guideWorkbench.open();};$('new').closest('.app-menu-panel').append(workbenchMenu);
@@ -219,20 +246,17 @@ function warnings(){
 
 function renderGroups(){const list=$('groups');if(!list)return;list.replaceChildren();$('group-count').textContent=String(project.groups.length);for(const group of project.groups){const row=document.createElement('div');row.className='layer-row';const selectButton=document.createElement('button');selectButton.className='layer-select';selectButton.textContent=group.name;selectButton.setAttribute('aria-label',`Select group ${group.name}`);selectButton.setAttribute('aria-pressed',String(project.parts.filter(part=>part.groupId===group.id).every(part=>selectedIds.has(part.id))&&selectedIds.size>0));selectButton.onclick=()=>{const ids=project.parts.filter(part=>part.groupId===group.id).map(part=>part.id);if(!ids.length)return;selectGroupMember(ids[0]);};const rename=document.createElement('input');rename.value=group.name;rename.maxLength=60;rename.setAttribute('aria-label',`Rename group ${group.name}`);rename.onchange=()=>{const name=rename.value.trim();if(!name){rename.value=group.name;return;}checkpoint();group.name=name;renderLists();save();};const visible=document.createElement('button');visible.textContent=group.visible?'◉':'○';visible.title=group.visible?'Hide group':'Show group';visible.setAttribute('aria-label',`${group.visible?'Hide':'Show'} group ${group.name}`);visible.onclick=()=>{checkpoint();group.visible=!group.visible;for(const part of project.parts.filter(part=>part.groupId===group.id)){const obj=objects.get(part.id);if(obj)obj.visible=group.visible;}if(!group.visible&&[...selectedIds].some(id=>project.parts.some(part=>part.id===id&&part.groupId===group.id)))select(null);else renderLists();save();};const lock=document.createElement('button');lock.textContent=group.locked?'🔒':'🔓';lock.title=group.locked?'Unlock group':'Lock group';lock.setAttribute('aria-label',`${group.locked?'Unlock':'Lock'} group ${group.name}`);lock.setAttribute('aria-pressed',String(group.locked));lock.onclick=()=>{checkpoint();group.locked=!group.locked;refreshSelection();save();};const remove=document.createElement('button');remove.textContent='Ungroup';remove.title=`Ungroup ${group.name}`;remove.onclick=()=>ungroup(group.id);for(const control of [selectButton,rename,visible,lock,remove])control.disabled=busy||preview;row.append(selectButton,rename,visible,lock,remove);list.append(row);}}
 function reorderInlineGuide(from,to){
- const order=studentGuide.steps.map(stepKey);if(!Number.isInteger(to)||from<0||to<0||from>=order.length||to>=order.length)return {ok:false,error:'Số thứ tự không hợp lệ.'};
- const [id]=order.splice(from,1);order.splice(to,0,id);const preferences={...copy(project.guidePreferences||{}),order},candidate=editGuide(baseStudentGuide(),preferences);
- if(candidate.editError)return {ok:false,error:candidate.editError};const changed=changeGuidePreferences(preferences,{allowPreview:true,cameraOnly:true});if(changed)status(`Đã chuyển bước ${from+1} đến ${to+1}; đã cập nhật các bước và ảnh phía sau. Ctrl+Z để hoàn tác.`);return changed;
+ const order=studentGuide.steps.map(stepKey);if(!Number.isInteger(from)||!Number.isInteger(to)||from<0||to<0||from>=order.length||to>=order.length)return {ok:false,error:'Số thứ tự không hợp lệ.'};
+ const [id]=order.splice(from,1);order.splice(to,0,id);const preferences={...copy(project.guidePreferences||{}),order};
+ const changed=changeGuidePreferences(preferences,{allowPreview:true,cameraOnly:true});if(changed)status(`Đã chuyển bước ${from+1} đến ${to+1}; đã cập nhật các bước và ảnh phía sau. Ctrl+Z để hoàn tác.`);return changed;
 }
 function changeGuidePreferences(preferences,{allowPreview=false,cameraOnly=false}={}){
  if(busy||preview&&!allowPreview)return false;
- const generated=baseStudentGuide();
- const candidate=editGuide(generated,preferences);if(candidate.editError){status(candidate.editError);return false;}
+ const candidate=editGuide(baseStudentGuide(preferences),preferences,guidePaths(),jointReferences);
  checkpoint();project.guidePreferences=preferences;studentGuide=candidate;guideDataStamp=JSON.stringify([project.parts,project.guidePreferences,catalog]);save(false,{skipThumbnail:cameraOnly});renderLists();status('Đã cập nhật hướng dẫn. Ctrl+Z để hoàn tác.');return true;
 }
 function moveGuideStep(from,to){
- if(from<0||to<0||to>=studentGuide.steps.length)return;
- const order=studentGuide.steps.map(stepKey),[id]=order.splice(from,1);order.splice(to,0,id);
- changeGuidePreferences({...copy(project.guidePreferences||{}),order});
+ if(!preview)reorderInlineGuide(from,to);
 }
 function installGuideEditing(article,step,index){
  const actions=node('div');actions.className='guide-step-actions';
@@ -245,16 +269,36 @@ function installGuideEditing(article,step,index){
  const capture=node('button','Dùng góc nhìn này');capture.className='guide-camera-capture';capture.setAttribute('aria-label',`Dùng góc nhìn này cho bước ${index+1}`);capture.disabled=busy||renderer.isDataRenderer||preview&&previewStepIndex!==index;capture.onclick=()=>{const direction=camera.position.clone().sub(orbit.target).normalize().toArray(),value=guideCamera({direction,up:new THREE.Vector3(0,1,0).applyQuaternion(camera.quaternion).toArray()});if(!value){status('Góc nhìn không hợp lệ.');return;}const preferences=copy(project.guidePreferences||{});preferences.steps||={};preferences.steps[stepKey(step)]={...preferences.steps[stepKey(step)],view:'custom',camera:value};changeGuidePreferences(preferences,{allowPreview:true});};article.append(capture);
  article.draggable=!busy&&!preview;article.ondragstart=e=>{if(e.target.closest('input,textarea,select')){e.preventDefault();return;}e.dataTransfer.setData('application/x-vex-guide',String(index));};article.ondragover=e=>e.preventDefault();article.ondrop=e=>{e.preventDefault();const raw=e.dataTransfer.getData('application/x-vex-guide');if(raw!==''&&Number.isInteger(Number(raw)))moveGuideStep(Number(raw),index);};
 }
-let guideDataStamp='',guideUIStamp='',guideBaseStamp='',guideBase=null,guideAuditResult=null;
-function baseStudentGuide(){
- const poseStamp=JSON.stringify(project.parts),stamp=JSON.stringify([project.parts,catalog]);
+let guideDataStamp='',guideUIStamp='',guideBaseStamp='',guideBase=null,guideAuditResult=null,guideAuditPending=null,guideChecker=null;
+let guideDraftStamp='',guideDrafts=new Map();
+const guidePaths=()=>guideAuditResult?.stamp===JSON.stringify(project.parts)?guideAuditResult.paths:null;
+function baseStudentGuide(preferences=project.guidePreferences){
+ const poseStamp=JSON.stringify(project.parts),audited=guideAuditResult?.stamp===poseStamp?guideAuditResult:null,checked=audited?.guide;
+ // A saved manual order can refer to step batches from the draft plan.
+ const manualKeys=new Set([...(preferences?.order||[]),...Object.keys(preferences?.steps||{})]);
+ const matchingKeys=guide=>guide?.ready?guide.steps.reduce((count,step)=>count+Number(manualKeys.has(stepKey(step))),0):-1;
+ const useChecked=matchingKeys(checked)===manualKeys.size;
+ const draftStamp=JSON.stringify([poseStamp,catalog]);
+ const stamp=JSON.stringify([draftStamp,useChecked,[...manualKeys].sort()]);
  if(stamp!==guideBaseStamp){
-  const checked=guideAuditResult?.stamp===poseStamp?guideAuditResult.guide:null;
-  guideBase=checked?.ready?checked:generateStudentGuide(project.parts,{references:jointReferences,nameFor:partName,inferConnections:true,objects:null});
-  if(guideBase.ready&&['vexiq','lego'].includes(PLATFORM.id)&&!checked?.ready){guideBase.reviewRequired=true;guideBase.auditBlockers=checked?.blockers||[];}
+  if(guideDraftStamp!==draftStamp){guideDrafts.clear();guideDraftStamp=draftStamp;}
+  const draft=prioritizeMountedElectronics=>{
+   if(!guideDrafts.has(prioritizeMountedElectronics))guideDrafts.set(prioritizeMountedElectronics,generateStudentGuide(project.parts,{references:jointReferences,nameFor:partName,inferConnections:true,prioritizeMountedElectronics}));
+   return guideDrafts.get(prioritizeMountedElectronics);
+  };
+  let base=checked;
+  if(!useChecked){
+   base=draft(true);
+   if(PLATFORM.id==='vexiq'&&matchingKeys(base)<manualKeys.size){
+    const legacy=draft(false);
+    if(matchingKeys(legacy)>matchingKeys(base))base=legacy;
+   }
+  }
+  guideBase={...base,steps:base.steps.map(step=>({...step}))};
+  if(guideBase.ready&&(!audited||checked&&!checked.ready)){guideBase.reviewRequired=true;guideBase.auditBlockers=checked?.blockers||[];}
   for(const step of guideBase.steps)step.reviewRequired=!!guideBase.reviewRequired;
   guideBaseStamp=stamp;
-  if(guideAuditResult&&!checked&&$('guide-path-audit-status'))$('guide-path-audit-status').textContent='Mô hình đã thay đổi; cần kiểm tra lại đường lắp.';
+  if(guideAuditResult&&!audited&&$('guide-path-audit-status'))$('guide-path-audit-status').textContent='Mô hình đã thay đổi; cần kiểm tra lại đường lắp.';
  }
  return guideBase;
 }
@@ -263,11 +307,10 @@ function renderStudentGuide(){
  const uiStamp=dataStamp+':'+busy+':'+preview;
  if(uiStamp===guideUIStamp)return;guideUIStamp=uiStamp;
  if(repairReportParts!==null&&repairReportParts!==JSON.stringify(project.parts)){repairReportParts=null;if($('guide-repair-status'))$('guide-repair-status').textContent='';}
- if(dataStamp!==guideDataStamp){studentGuide=editGuide(baseStudentGuide(),project.guidePreferences);guideDataStamp=dataStamp;}
+ if(dataStamp!==guideDataStamp){studentGuide=editGuide(baseStudentGuide(),project.guidePreferences,guidePaths(),jointReferences);guideDataStamp=dataStamp;}
  const count=$('guide-count'),summary=$('guide-summary'),list=$('guide-steps');
  count.textContent=studentGuide.ready?`${studentGuide.steps.length} bước`:'';
  guidePreviews?.begin();list.replaceChildren();
- if(studentGuide.editError){const warning=node('p',studentGuide.editError+' Đang dùng thứ tự tự động để giữ đúng phụ thuộc.');warning.className='guide-warning';list.append(warning);}
  if(!studentGuide.ready){summary.textContent=studentGuide.blockers[0]||'Connect the model parts to generate a build sequence.';for(const issue of studentGuide.blockers.slice(1)){const p=node('p',issue);p.className='guide-blocker';list.append(p);}}
  else summary.textContent=`${studentGuide.steps.length} steps generated from the saved part connections. Preview a step or export the complete PDF.`;
  for(const note of studentGuide.notes){const warning=node('p',note);warning.className='guide-warning';list.append(warning);}
@@ -281,8 +324,49 @@ function renderStudentGuide(){
  zipMenu.disabled=zipButton.disabled=busy||!studentGuide.ready||renderer.isDataRenderer;zipButton.title=renderer.isDataRenderer?'Xuất ảnh cần WebGL; PDF dữ liệu vẫn dùng được.':'';syncSnapSettings();
  $('export').disabled=busy||!studentGuide.ready;if($('guide-export'))$('guide-export').disabled=busy||!studentGuide.ready;
  if($('guide-repair'))$('guide-repair').disabled=busy||preview||project.parts.length<2;if($('guide-path-audit'))$('guide-path-audit').disabled=busy||preview||!studentGuide.ready;
+ if($('guide-auto-order')){
+  $('guide-auto-order').hidden=!project.guidePreferences?.order?.length;
+  $('guide-auto-order').disabled=busy||preview||!studentGuide.ready;
+ }
+ if(!busy&&!preview&&studentGuide.ready&&document.body.classList.contains('guide-active'))queueMicrotask(()=>{if(!busy&&!preview)void ensureGuideAudit();});
 }
-const auditGuide=node('button','Kiểm tra đường lắp 3D (thử nghiệm)');auditGuide.id='guide-path-audit';auditGuide.hidden=!['vexiq','lego'].includes(PLATFORM.id)||renderer.isDataRenderer;const auditResult=node('p');auditResult.id='guide-path-audit-status';auditResult.className='hint';auditResult.setAttribute('role','status');$('guide-summary').after(auditGuide,auditResult);auditGuide.onclick=async()=>{if(busy||preview||!studentGuide.ready)return;const stamp=JSON.stringify(project.parts);setBusy(true);auditResult.textContent='Đang kiểm tra CAD. Bước này có thể mất thời gian; không thay đổi mô hình.';await new Promise(requestAnimationFrame);await new Promise(resolve=>setTimeout(resolve,0));try{const result=generateStudentGuide(project.parts,{references:jointReferences,nameFor:partName,inferConnections:true,objects});if(stamp!==JSON.stringify(project.parts))return;guideAuditResult={stamp,guide:result};auditResult.textContent=result.ready?'Đã tìm được thứ tự có đường lắp CAD. Vẫn cần thử bộ thật.':'Chưa tìm được chuỗi đường lắp riêng từng chi tiết. Có thể cần lắp cụm riêng; preview/PDF kết nối vẫn dùng dưới dạng bản nháp.';}catch(error){auditResult.textContent='Chưa kiểm tra được: '+error.message;}finally{guideBaseStamp='';guideDataStamp='';guideUIStamp='';setBusy(false);renderLists();}};
+const auditGuide=node('button','Kiểm tra đường lắp 3D');auditGuide.id='guide-path-audit';auditGuide.hidden=renderer.isDataRenderer;
+const autoOrder=node('button','Sắp xếp lại tự động');autoOrder.id='guide-auto-order';autoOrder.hidden=true;
+const auditResult=node('p');auditResult.id='guide-path-audit-status';auditResult.className='hint';$('guide-summary').after(auditGuide,autoOrder,auditResult);
+async function ensureGuideAudit(){
+ if(renderer.isDataRenderer||project.parts.length<2)return true;
+ const stamp=JSON.stringify(project.parts);
+ if(guideAuditResult?.stamp===stamp)return true;
+ if(guideAuditPending?.stamp===stamp)return guideAuditPending.task;
+ if(!project.parts.every(p=>objects.has(p.id)))return false;
+ const parts=project.parts,names=Object.fromEntries(parts.map(p=>[p.id,partName(p)]));
+ auditResult.textContent='Đang kiểm tra đường lắp trong nền…';
+ const job={stamp};
+ job.task=(async()=>{
+  try{
+   guideChecker??=collisionClient(()=>jointReferences);
+   const result=await guideChecker.auditGuide(parts,objects,names);
+   if(stamp!==JSON.stringify(project.parts))return false;
+   guideAuditResult={...result,stamp};
+   guideBaseStamp='';guideDataStamp='';guideUIStamp='';
+   renderStudentGuide();
+   const blocked=studentGuide.steps.filter(step=>step.insertionBlocked).length;
+   auditResult.textContent=blocked?blocked+' bước cần chuẩn bị cụm riêng hoặc đổi thứ tự.':'Đã kiểm tra các đường lắp thẳng trong CAD.';
+   return true;
+  }catch(error){auditResult.textContent='Chưa kiểm tra được đường lắp: '+error.message;status(auditResult.textContent);return false;}
+  finally{if(guideAuditPending===job)guideAuditPending=null;}
+ })();
+ guideAuditPending=job;
+ return job.task;
+}
+auditGuide.onclick=()=>{if(!busy&&!preview&&studentGuide.ready)void ensureGuideAudit();};
+autoOrder.onclick=async()=>{
+ if(busy||preview||!await ensureGuideAudit()||busy||preview)return;
+ const preferences=copy(project.guidePreferences||{});
+ delete preferences.order;
+ if(changeGuidePreferences(preferences,{cameraOnly:true}))status('Đã áp dụng thứ tự lắp tự động. Ctrl+Z để hoàn tác.');
+};
+$('inspector-tab-2').addEventListener('click',()=>{if(!busy&&!preview&&studentGuide.ready)void ensureGuideAudit();});
 const repairButton=node('button','✦ Tự sửa liên kết');repairButton.id='guide-repair';repairButton.className='primary';repairButton.title='Khôi phục khớp hợp lệ và chỉnh cụm lệch tối đa 2 mm. Ctrl+Z để hoàn tác.';$('guide-summary').before(repairButton);
 const repairStatus=node('p');repairStatus.id='guide-repair-status';repairStatus.className='hint';repairStatus.setAttribute('role','status');repairButton.after(repairStatus);
 repairButton.onclick=async()=>{
@@ -302,6 +386,8 @@ repairButton.onclick=async()=>{
 // Keep PDF/ZIP above the instruction feed; retain legacy IDs for existing consumers.
 const guidePanel=$('inspector-content-2'),guideSection=document.querySelector('.student-guide'),legacyGuide=node('div');guidePanel.prepend(guideTools);guideTools.hidden=false;legacyGuide.hidden=true;legacyGuide.id='guide-legacy-controls';
 for(const child of [...guideSection.children])if(child!==guideWorkbench.element)legacyGuide.append(child);guideSection.append(legacyGuide);
+const guidePlanning=node('div');guidePlanning.className='guide-export-tools';guidePlanning.append(auditGuide,autoOrder);
+guideSection.prepend(guidePlanning,auditResult);
 for(const child of [...guidePanel.children])if(child!==guideSection)child.hidden=!child.classList.contains('guide-export-tools');
 function guideRepairKey(){return JSON.stringify(project.parts.map(p=>[p.id,p.sku,p.position,p.rotation,p.mate,p.snapBlocked,locked(p)]));}
 async function repairGuideAutomatically(){
@@ -511,13 +597,14 @@ async function exportStudentGuide({zip=false}={}){
  if(project.kit?.enforce&&kitReport(project.parts,catalog,project.kit).some(row=>row.remaining<0)){status('Guide export failed: Mô hình vượt số lượng bộ kit. Mở File → Cài đặt bộ kit để xem linh kiện đang thiếu.');return false;}
  renderStudentGuide();
  if(!studentGuide.ready){status(studentGuide.blockers.join(' '));return false;}
+ if(!renderer.isDataRenderer&&!await ensureGuideAudit())return false;
  if(renderer.isDataRenderer&&zip){status('Xuất ảnh ZIP cần WebGL. Bạn vẫn có thể xuất PDF dữ liệu.');return false;}
  if(renderer.isDataRenderer){printDataGuide(project,studentGuide,$('print-guide'));status('Bản hướng dẫn dữ liệu sẵn sàng. Chọn Save as PDF trong hộp in.');return true;}
  const savedPose=guideReturnPose||pose(),container=$('print-guide');container.replaceChildren();preview=false;setBusy(true);exportingGuide=true;
  const savedBackground=scene.background.clone(),savedGridVisible=grid.visible;let printRenderer=null;
  try{
   printRenderer=createGuideRenderer();
-  const fullParts=project.parts,counts=new Map();for(const part of fullParts)counts.set(part.sku,(counts.get(part.sku)||0)+1);
+  const fullParts=project.parts,finalParts=new Map(fullParts.map(p=>[p.id,p]));
   preview=true;await show(fullParts);setBusy(true);applyPose(savedPose);const fitResult=await inspectFit(fullParts);
   if(fitResult.issues.some(issue=>issue.kind==='penetration'))throw Error('Resolve detected body penetration before exporting. Select a pair in Fit review.');
   scene.background.set('#ffffff');grid.visible=false;
@@ -527,7 +614,12 @@ async function exportStudentGuide({zip=false}={}){
    const step=studentGuide.steps[i],stepObjects=new Map();
    // A cumulative step is a subset of the checked final poses. Removing pieces
    // cannot introduce new geometric intersections; reject any edited pose instead.
-   for(const part of step.parts){const final=fullParts.find(p=>p.id===part.id);if(!final||JSON.stringify([part.position,part.rotation])!==JSON.stringify([final.position,final.rotation]))throw Error('A guide step changed the saved CAD pose. Regenerate the guide.');const obj=objects.get(part.id);if(!obj)throw Error('Missing CAD object for guide step.');stepObjects.set(part.id,obj);}
+   for(const part of step.parts){const final=finalParts.get(part.id);if(!final||JSON.stringify([part.position,part.rotation])!==JSON.stringify([final.position,final.rotation]))throw Error('A guide step changed the saved CAD pose. Regenerate the guide.');const obj=objects.get(part.id);if(!obj)throw Error('Missing CAD object for guide step.');stepObjects.set(part.id,obj);}
+   if(step.guideSupport){
+    const support=objects.get(step.guideSupport.id);
+    if(!support)throw Error('Missing reference CAD object for guide step.');
+    stepObjects.set(step.guideSupport.id,support);
+   }
    status(`Đang xuất bước ${i+1} / ${studentGuide.steps.length}…`);await new Promise(requestAnimationFrame);
    controls.detach();box.visible=false;const shots=printRenderer.render(stepObjects,step,jointReferences,{contacts:guideContacts(),markers2D:true});
    container.append(stepPaper(step,i,studentGuide.steps.length,shots,PLATFORM,project.kit?.kitId));

@@ -1,10 +1,11 @@
+import {guidePartPriority,isGuideElectronic} from './guide-priority.js';
 import {seatedConnections,jointMetrics} from './assembly-review.js';
 import {worldReference} from './mating.js';
 import {analyzeIQInsertionPaths} from './iq-insertion-paths.js';
 
 // IQ mounting parts have integral pins and several simultaneous contacts. The
 // single editing mate is not an assembly dependency (and may point either way).
-export function generateIQGuide(input,{references={},nameFor=p=>p.label||p.sku,isElectronic=()=>false,inferConnections=false,objects=null,insertionPaths=null,platformName='VEX IQ',rootId=null}={}){
+export function generateIQGuide(input,{references={},nameFor=p=>p.label||p.sku,isElectronic=()=>false,inferConnections=false,objects=null,insertionPaths=null,platformName='VEX IQ',rootId=null,prioritizeMountedElectronics=false}={}){
  const parts=structuredClone(input),byId=new Map(parts.map(p=>[p.id,p])),links=new Map(parts.map(p=>[p.id,[]])),notes=[],blockers=[];
  if(!parts.length)return {ready:false,steps:[],blockers:['Add the parts for the model first.'],notes};
  const compare=(a,b)=>a.sku.localeCompare(b.sku)||a.position.reduce((n,v,i)=>n||v-b.position[i],0)||a.rotation.reduce((n,v,i)=>n||v-b.rotation[i],0)||a.id.localeCompare(b.id);
@@ -30,67 +31,96 @@ export function generateIQGuide(input,{references={},nameFor=p=>p.label||p.sku,i
  if(blockers.length)return {ready:false,steps:[],blockers:[...new Set(blockers)],notes};
  const core=mechanical[0],loose=parts.filter(p=>!core.has(p.id)),members=parts.filter(p=>core.has(p.id));
  const span=p=>{const rows=references[p.sku]||[];return [0,1,2].map(i=>rows.length?Math.max(...rows.map(r=>r.point[i]))-Math.min(...rows.map(r=>r.point[i])):0).sort((a,b)=>b-a);};
- const area=p=>{const s=span(p);return s[0]*Math.max(s[1],1);};
+ const areas=new Map(members.map(p=>{const s=span(p);return [p.id,s[0]*Math.max(s[1],1)];}));
+ const area=p=>areas.get(p.id);
  const degree=p=>new Set(links.get(p.id).map(c=>c.target)).size;
  const bodies=members.filter(p=>p.kind==='body');
  const motors=members.filter(p=>p.kind==='motor'),shafts=members.filter(p=>p.kind==='shaft');
- const roots=bodies.length?bodies:motors.length?motors:shafts.length?shafts:members.filter(p=>p.kind!=='retainer');
+ const pathAudit=insertionPaths||(objects&&members.every(p=>objects.has(p.id))?analyzeIQInsertionPaths(parts,references,links,objects):null);
+ const shaftFirst=prioritizeMountedElectronics||!!pathAudit;
+ const driveShafts=new Map(motors.map(motor=>[motor.id,links.get(motor.id).filter(c=>c.sourceRef==='motor-output'&&byId.get(c.target)?.kind==='shaft').map(c=>c.target)]));
+ const driven=new Set([...driveShafts.values()].flat());
+ const supportedDriveShafts=new Set(shafts.filter(shaft=>driven.has(shaft.id)&&links.get(shaft.id).some(c=>{
+  const target=byId.get(c.target);
+  return target?.kind==='body'&&ref(target,c.targetRef)?.kind==='hole';
+ })).map(shaft=>shaft.id));
+ const driveRoots=shaftFirst?shafts.filter(shaft=>driven.has(shaft.id)):[];
+ const roots=bodies.length?bodies:driveRoots.length?driveRoots:motors.length?motors:shafts.length?shafts:members.filter(p=>p.kind!=='retainer');
  if(rootId&&!members.some(p=>p.id===rootId))return {ready:false,steps:[],blockers:['Chi tiết gốc không thuộc cụm lắp ráp.'],notes};
  const root=(rootId?members.find(p=>p.id===rootId):null)||[...(roots.length?roots:members)].sort((a,b)=>area(b)*(1+degree(b)*.05)-area(a)*(1+degree(a)*.05)||compare(a,b))[0];
- const pathAudit=insertionPaths||(objects&&members.every(p=>objects.has(p.id))?analyzeIQInsertionPaths(parts,references,links,objects):null);
  // Only snapshots are re-rooted. The document and all authored CAD poses stay intact.
  for(const p of parts)delete p.mate;
  const included=new Set([root.id]),emitted=new Set(),steps=[];
  const builtLinks=(p,built=included)=>links.get(p.id).filter(c=>built.has(c.target));
+ const isShaftMount=(part,contact)=>byId.get(contact.target)?.kind==='shaft'&&
+  ref(byId.get(contact.target),contact.targetRef)?.kind==='pin'&&ref(part,contact.sourceRef)?.kind==='hole';
+ // Through bores can match either tip. The nearer tip is the default entry
+ // so that parts on opposite ends do not become prerequisites of each other.
+ const shaftEnds=new Map(parts.map(part=>{
+  const ends=new Map();
+  for(const contact of links.get(part.id)){
+   if(!isShaftMount(part,contact))continue;
+   const current=ends.get(contact.target);
+   if(!current||contact.depth<current.depth||contact.depth===current.depth&&contact.targetRef<current.targetRef)ends.set(contact.target,contact);
+  }
+  return [part.id,ends];
+ }));
+ const preferredShaftEnd=(part,shaftId)=>shaftEnds.get(part.id)?.get(shaftId)?.targetRef;
+
+ function innerShaftParts(part,contact){
+  const shaft=byId.get(contact.target);
+  if(!isShaftMount(part,contact))return [];
+  return links.get(shaft.id).filter(other=>{
+   if(other.target===part.id||other.sourceRef!==contact.targetRef)return false;
+   const inner=byId.get(other.target);
+   if(ref(inner,other.targetRef)?.kind!=='hole'||preferredShaftEnd(inner,shaft.id)!==contact.targetRef)return false;
+   if(part.kind==='retainer'&&inner.kind!=='retainer')return true;
+   if(part.kind!=='retainer'&&inner.kind==='retainer')return false;
+   return other.depth>contact.depth+.15;
+  }).map(other=>other.target);
+ }
+ function mountable(part,contact,built){
+  if(!built.has(contact.target))return false;
+  if(!pathAudit&&isShaftMount(part,contact)&&preferredShaftEnd(part,contact.target)!==contact.targetRef)return false;
+  return innerShaftParts(part,contact).every(id=>built.has(id));
+ }
+
  const supportedElsewhere=(p,except,built=included)=>links.get(p.id).some(c=>c.target!==except&&built.has(c.target));
  function waiting(p,built=included){
+  if(shaftFirst&&driveShafts.get(p.id)?.some(id=>supportedDriveShafts.has(id)&&!built.has(id)))return true;
   for(const c of links.get(p.id)){
    const target=byId.get(c.target),a=ref(p,c.sourceRef),b=ref(target,c.targetRef);
    if(built.has(target.id))continue;
    // A pin can be inserted into its first support; the next plate must wait.
    // Integral connector pegs follow the same rule as loose mounting pins.
    if(p.kind!=='pin'&&a.kind==='hole'&&b.kind==='pin'&&!b.profile&&['pin','body'].includes(target.kind)&&supportedElsewhere(target,p.id,built))return true;
-   if(p.kind==='shaft'&&b.id==='motor-output'&&!pathAudit)return true;
+   if(p.kind==='shaft'&&b.id==='motor-output'&&!pathAudit&&!(shaftFirst&&supportedDriveShafts.has(p.id)))return true;
    if(p.kind==='retainer'&&target.kind==='shaft')return true;
-  }
-  if(p.kind==='retainer'){
-   for(const c of builtLinks(p,built)){
-    const shaft=byId.get(c.target);if(shaft.kind!=='shaft')continue;
-    // Every bore/support/hub inside this retainer must be installed first.
-    for(const other of links.get(shaft.id)){
-     const item=byId.get(other.target);if(item.id===p.id||built.has(item.id))continue;
-     if(item.kind!=='retainer'||other.sourceRef===c.targetRef&&other.depth>c.depth+.15)return true;
-    }
-   }
   }
   return false;
  }
  // Keep an unaudited shaft anchored to its earliest installed support rather
  // than re-parenting it to a later closing beam with the same bore geometry.
- const primary=(p,built=included,route=null)=>{const supportOrder=p.kind==='shaft'&&!route?new Map([...built].map((id,i)=>[id,i])):null;return [...(route?route.contacts.filter(c=>built.has(c.target)):builtLinks(p,built))].sort((a,b)=>{
+ const primary=(p,built=included,route=null)=>{const supportOrder=p.kind==='shaft'&&!route?new Map([...built].map((id,i)=>[id,i])):null;return [...((route?route.contacts:builtLinks(p,built)).filter(c=>mountable(p,c,built)))].sort((a,b)=>{
   const ta=byId.get(a.target),tb=byId.get(b.target);
+  const driveSocket=c=>Number(p.kind==='motor'&&c.sourceRef==='motor-output'&&byId.get(c.target)?.kind==='shaft');
   const motorScore=c=>ref(byId.get(c.target),c.targetRef)?.id==='motor-output'?1:0;
-  return (p.kind==='shaft'&&route?b.depth-a.depth:0)||(p.kind==='shaft'?motorScore(b)-motorScore(a):0)||Number(tb.kind==='body')-Number(ta.kind==='body')||(supportOrder?supportOrder.get(a.target)-supportOrder.get(b.target):0)||degree(tb)-degree(ta)||compare(ta,tb)||a.sourceRef.localeCompare(b.sourceRef,undefined,{numeric:true});
+  return (shaftFirst?driveSocket(b)-driveSocket(a):0)||(p.kind==='shaft'&&route?b.depth-a.depth:0)||(p.kind==='shaft'?motorScore(b)-motorScore(a):0)||Number(tb.kind==='body')-Number(ta.kind==='body')||(supportOrder?supportOrder.get(a.target)-supportOrder.get(b.target):0)||degree(tb)-degree(ta)||compare(ta,tb)||a.sourceRef.localeCompare(b.sourceRef,undefined,{numeric:true});
  })[0];};
- function priority(p,built=included){
-  if(p.kind==='pin')return 0;
-  if(p.kind==='retainer')return 6;
-  if(p.kind==='shaft')return 4;
-  if(p.kind==='wheel')return 5;
-  if(builtLinks(p,built).some(c=>ref(p,c.sourceRef)?.kind==='pin'))return 1;
-  return p.kind==='motor'||area(p)<area(root)*.45?2:3;
- }
+ const electronics=new Set(members.filter(p=>isElectronic(p.sku)||isGuideElectronic(p,nameFor(p))).map(p=>p.id));
+ const priorities=new Map(members.map(p=>[p.id,prioritizeMountedElectronics&&electronics.has(p.id)?2.5:guidePartPriority(p,nameFor(p))]));
+ const priority=(part,recent)=>electronics.has(part.id)&&links.get(part.id).some(c=>recent.has(c.target))?-1:priorities.get(part.id);
  // Search whole-model consequences, not just the next available contact. Adding
  // the motor first traps its flanged shaft between the housing and frame.
  let planned=null;
  if(pathAudit&&core.size>1){
   const failed=new Set();let searches=0;
   const clear=(route,built)=>route.blockedBy.every(id=>!built.has(id));
-  const options=(p,built)=>(pathAudit.get(p.id)||[]).filter(r=>clear(r,built)&&r.contacts.some(c=>built.has(c.target)));
-  function search(built){
+  const options=(p,built)=>(pathAudit.get(p.id)||[]).filter(r=>clear(r,built)&&r.contacts.some(c=>mountable(p,c,built)));
+  function search(built,recent){
    if(built.size===core.size)return [];
    const key=members.map(p=>built.has(p.id)?'1':'0').join('');if(failed.has(key)||++searches>10000)return null;
-   const candidates=members.filter(p=>!built.has(p.id)&&!waiting(p,built)&&options(p,built).length).sort((a,b)=>priority(a,built)-priority(b,built)||builtLinks(b,built).length-builtLinks(a,built).length||compare(a,b));
+   const candidates=members.filter(p=>!built.has(p.id)&&!waiting(p,built)&&options(p,built).length).sort((a,b)=>priority(a,recent)-priority(b,recent)||area(a)-area(b)||builtLinks(b,built).length-builtLinks(a,built).length||compare(a,b));
    for(const p of candidates)for(const route of options(p,built)){
     const parent=primary(p,built,route).target,axis=route.axis;
     const cohort=p.kind==='pin'?candidates.filter(other=>other.kind==='pin'&&other.sku===p.sku&&options(other,built).some(r=>r.axis.every((v,i)=>Math.abs(v-axis[i])<.001)&&primary(other,built,r).target===parent)):[p];
@@ -98,13 +128,13 @@ export function generateIQGuide(input,{references={},nameFor=p=>p.label||p.sku,i
     for(const batch of batches){
      const next=new Set([...built,...batch.map(p=>p.id)]);
      if(members.some(other=>!next.has(other.id)&&!(pathAudit.get(other.id)||[]).some(r=>clear(r,next))))continue;
-     const tail=search(next);if(!tail)continue;
+     const tail=search(next,new Set(batch.map(p=>p.id)));if(!tail)continue;
      return [{ids:batch.map(p=>p.id),routes:new Map(batch.map(other=>[other.id,options(other,built).find(r=>r.axis.every((v,i)=>Math.abs(v-axis[i])<.001)&&primary(other,built,r).target===parent)||route]))},...tail];
     }
    }
    failed.add(key);return null;
   }
-  planned=search(new Set([root.id]));
+  planned=search(new Set([root.id]),new Set([root.id]));
   if(!planned)return {ready:false,steps:[],blockers:['Chưa tìm được đường lắp từng chi tiết mà không xuyên khung. Cần chuẩn bị cụm riêng trước khi đóng khung; không xuất thứ tự lắp chưa được kiểm tra.'],notes,pathSearch:{rootId:root.id,states:searches,budget:10000,budgetExceeded:searches>10000}};
  }
  function append(added,joint,requires,title,note){
@@ -113,7 +143,9 @@ export function generateIQGuide(input,{references={},nameFor=p=>p.label||p.sku,i
    overviewDirection:[1,.8,1],parts:parts.filter(p=>emitted.has(p.id)).sort(compare).map(p=>structuredClone(p))});
  }
  while(emitted.size<core.size){
-  const available=members.filter(p=>!included.has(p.id)&&builtLinks(p).length&&!waiting(p)).sort((a,b)=>priority(a)-priority(b)||builtLinks(b).length-builtLinks(a).length||compare(a,b));
+  const recent=prioritizeMountedElectronics?new Set(steps.at(-1)?.added.map(p=>p.id)):null;
+  const rank=p=>recent?priority(p,recent):priorities.get(p.id);
+  const available=members.filter(p=>!included.has(p.id)&&builtLinks(p).some(c=>mountable(p,c,included))&&!waiting(p)).sort((a,b)=>rank(a)-rank(b)||area(a)-area(b)||builtLinks(b).length-builtLinks(a).length||compare(a,b));
   if(!available.length){if(core.size===1){append([root],null,[],`Đặt ${nameFor(root)} theo hình`,'Đặt chi tiết trên mặt phẳng theo hướng trong hình.');break;}return {ready:false,steps:[],blockers:[`Không tìm được bước lắp ${platformName} có chi tiết đỡ hợp lệ. Kiểm tra các khớp và thứ tự cụm trên trục.`],notes};}
   const action=planned?.shift(),part=action?byId.get(action.ids[0]):available[0],route=action?.routes.get(part.id),edge=primary(part,included,route),parent=byId.get(edge.target),targetRef=ref(parent,edge.targetRef);
   let batch=[part];
@@ -128,7 +160,7 @@ export function generateIQGuide(input,{references={},nameFor=p=>p.label||p.sku,i
    // A shaft needs its first support, not every secondary bore along its length.
    // Later closing beams can be slid onto the supported shaft. Keep all mounting
    // prerequisites for bodies/pins and the audited blocked-path constraints.
-   requires.push(...(p.kind==='shaft'?[c.target]:builtLinks(p).map(c=>c.target)));
+   requires.push(...(p.kind==='shaft'?[c.target]:builtLinks(p).map(c=>c.target)),...innerShaftParts(p,c));
    p.mate={target:c.target,sourceRef:c.sourceRef,targetRef:c.targetRef,depth:c.depth,twist:0,flip:false};}
   const first=emitted.size===0;if(first)batch.unshift(root);
   const support=parent.kind==='pin'?byId.get(parent.mate?.target)||parent:parent;
@@ -137,6 +169,7 @@ export function generateIQGuide(input,{references={},nameFor=p=>p.label||p.sku,i
   let note=part.kind==='pin'?`Cắm ${count} chốt vào các lỗ được đánh dấu trên ${nameFor(parent)}, theo cùng một hướng. Lắp từng chốt vào chi tiết đỡ trước khi ghép mảnh tiếp theo.`:
    part.kind==='shaft'?`Canh đầu trục với các lỗ đỡ${targetRef.id==='motor-output'?' và lỗ truyền động của motor':''}, rồi luồn trục theo hướng mũi tên. Chưa lắp vòng chặn ngoài ở bước này.`:
    part.kind==='retainer'?`${/spacer/i.test(nameFor(part))?'Luồn vòng đệm':'Lắp vòng chặn'} vào trục sau các chi tiết phía trong. Giữ đúng vị trí trong hình; chừa khe cho cụm quay tự do.`:
+   parent.kind==='shaft'&&ref(part,edge.sourceRef)?.kind==='hole'?`Luồn lỗ của ${nameFor(part)} vào ${nameFor(parent)} theo mũi tên. Đẩy đến vị trí trong hình bên phải.`:
    `Canh các lỗ và chốt đã lắp trên ${nameFor(support)}, rồi ghép ${nameFor(part)} theo hướng mũi tên. Giữ cụm để các chốt không tuột.`;
   const joint={part:part.id,...part.mate};append(batch,joint,requires,title,note);
   if(route){const step=steps.at(-1),prior=new Set(step.parts.filter(p=>!batch.some(a=>a.id===p.id)).map(p=>p.id));if(first)prior.add(root.id);step.insertion={axis:route.axis,clearance:Math.max(5,...[...prior].map(id=>route.clearanceByPart[id]||0)),blockedBy:[...new Set(batch.flatMap(p=>action.routes.get(p.id)?.blockedBy||[]))],method:'sampled-cad-path'};

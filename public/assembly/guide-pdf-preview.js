@@ -1,7 +1,7 @@
 import {stepKey} from './guide-editing.js';
 import {guidePage,frameSettings,markerPoint} from './guide-page-settings.js';
 import {orbitGuideCamera} from './guide-camera.js';
-import {stepPaper,prepPaper,finishedPaper,applyPaperFrame,readyPaperImages} from './guide-paper.js';
+import {stepPaper,prepPaper,finishedPaper,applyPaperFrame,readyPaperImages} from './guide-paper.js?v=guide-routes-95';
 const clone=value=>structuredClone(value),clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
 export function installPDFPreview(api){
  const node=(tag,text)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;return n;};
@@ -47,7 +47,7 @@ export function installPDFPreview(api){
  }
  function orbitGeometry(source,name){
   const frame=source.page?.frames?.[name];
-  return JSON.stringify([source.parts.map(p=>p.id),frame?.redOutline,frame?.redOutlineOpacity,name==='detail'?frame?.explodeMM:undefined]);
+  return JSON.stringify([source.parts.map(p=>p.id),source.guideSupport?.id,source.insertion,source.insertionBlocked,!!source.closingNote,frame?.redOutline,frame?.redOutlineOpacity,name==='detail'?frame?.explodeMM:undefined]);
  }
  async function prepareOrbit(source=step(),isCurrent=()=>true){
   const ticket=++orbitTicket,owner=selected,key=source&&stepKey(source);
@@ -119,7 +119,7 @@ export function installPDFPreview(api){
  function message(text){status.textContent=text;}
  function fitPaper(){if(!paper)return;scale=viewZoom.value==='fit'?Math.max(.15,Math.min(1.3,(workspace.clientWidth-44)/1536,(workspace.clientHeight-36)/864)):Number(viewZoom.value);holder.style.width=1536*scale+'px';holder.style.height=864*scale+'px';paper.style.transform=`scale(${scale})`;paper.style.transformOrigin='top left';paper.style.setProperty('--paper-scale',scale);}
  const resize=new ResizeObserver(fitPaper);resize.observe(workspace);
- function syncTools(){print.textContent=guide?.reviewRequired?'Xuất PDF nháp':'Xuất PDF';heading.textContent=guide?.reviewRequired?'Preview hướng dẫn nháp · cần rà soát đường lắp':'Xem trước & chỉnh trang PDF';dialog.dataset.loading=String(loading);dialog.dataset.mode=mode;for(const [name,b] of Object.entries(modeButtons))b.setAttribute('aria-pressed',String(name===mode));frameSelect.value=selected;const enabled=canEdit();stepOrderForm.hidden=!step();stepOrder.disabled=stepOrderSubmit.disabled=loading||printing;for(const input of pages.querySelectorAll('.pdf-page-number-input'))input.disabled=loading||printing;gapScopeLabel.hidden=gapLabel.hidden=!step();for(const el of inspector.querySelectorAll('input,button,select'))el.disabled=!enabled;print.disabled=loading||printing||failed;undo.disabled=loading||printing||undoCount===0;redo.disabled=loading||printing||redoCount===0;for(const b of pages.querySelectorAll('button'))b.setAttribute('aria-current',String(Number(b.dataset.page)===index));hint.textContent=mode==='orbit'?'Kéo để xoay · Ctrl + lăn chuột để thu/phóng. Thả chuột để lưu góc và cập nhật ảnh PDF.':mode==='image'?'Kéo ảnh trong từng khung. Thu/phóng và góc 3D chỉ áp dụng cho khung đang chọn.':mode==='frame'?'Kéo khung để đổi vị trí. Kéo tay nắm ở góc dưới phải để đổi kích thước.':'Bấm lên ảnh để thêm chấm. Kéo chấm để đổi vị trí; Delete để xóa chấm đã chọn.';frameSelect.disabled=loading||printing||!step();const detailOption=frameSelect.querySelector('[value=detail]');detailOption.disabled=!paper?.querySelector('[data-paper-frame=detail]');gap.disabled=!enabled||detailOption.disabled&&gapScope.value==='page';gap.title=gap.disabled&&enabled?'Bước này không có hình tách chi tiết.':'';if(!enabled){coordinates.textContent='Trang này dùng bố cục tự động.';return;}const value=config();outline.checked=value.redOutline!==false;outlineStrength.disabled=!outline.checked;outlineStrength.value=Math.round((value.redOutlineOpacity??.85)*100);outlineStrengthValue.textContent=outlineStrength.value+'%';const distance=frameSettings(state,'detail').explodeMM;gap.value=distance??20;gapValue.textContent=distance===undefined?'Tự động':distance+' mm';zoom.value=value.image.zoom*100;zoomValue.textContent=Math.round(value.image.zoom*100)+'%';const list=value.markers??figure()._paperFrame.autoMarkers;remove.disabled=selectedMarker===null||!list[selectedMarker];radius.disabled=remove.disabled;radius.value=(list[selectedMarker]?.r??.012)*1000;coordinates.textContent=`${selected==='detail'?'Hướng lắp':'Tổng thể'} · ${list.length} chấm · kéo ảnh ${Math.round(value.image.x*100)}%, ${Math.round(value.image.y*100)}%`;for(const f of paper.querySelectorAll('[data-paper-frame]')){f.classList.toggle('pdf-selected-frame',f.dataset.paperFrame===selected);for(const c of f.querySelectorAll('[data-marker-index]'))c.classList.toggle('pdf-selected-dot',f.dataset.paperFrame===selected&&Number(c.dataset.markerIndex)===selectedMarker);}}
+ function syncTools(){print.textContent=guide?.reviewRequired?'Xuất PDF nháp':'Xuất PDF';heading.textContent=guide?.reviewRequired?'Preview hướng dẫn nháp · cần rà soát đường lắp':'Xem trước & chỉnh trang PDF';dialog.dataset.loading=String(loading);dialog.dataset.mode=mode;for(const [name,b] of Object.entries(modeButtons))b.setAttribute('aria-pressed',String(name===mode));frameSelect.value=selected;const enabled=canEdit();stepOrderForm.hidden=!step();stepOrder.disabled=stepOrderSubmit.disabled=loading||printing;for(const input of pages.querySelectorAll('.pdf-page-number-input'))input.disabled=loading||printing;gapScopeLabel.hidden=gapLabel.hidden=!step();for(const el of inspector.querySelectorAll('input,button,select'))el.disabled=!enabled;print.disabled=loading||printing||failed;undo.disabled=loading||printing||undoCount===0;redo.disabled=loading||printing||redoCount===0;for(const b of pages.querySelectorAll('button'))b.setAttribute('aria-current',String(Number(b.dataset.page)===index));hint.textContent=mode==='orbit'?'Kéo để xoay · Ctrl + lăn chuột để thu/phóng. Thả chuột để lưu góc và cập nhật ảnh PDF.':mode==='image'?'Kéo ảnh trong từng khung. Thu/phóng và góc 3D chỉ áp dụng cho khung đang chọn.':mode==='frame'?'Kéo khung để đổi vị trí. Kéo tay nắm ở góc dưới phải để đổi kích thước.':'Bấm lên ảnh để thêm chấm. Kéo chấm để đổi vị trí; Delete để xóa chấm đã chọn.';frameSelect.disabled=loading||printing||!step();const detailOption=frameSelect.querySelector('[value=detail]');detailOption.disabled=!paper?.querySelector('[data-paper-frame=detail]');gap.disabled=!enabled||(detailOption.disabled||step()?.insertionBlocked)&&gapScope.value==='page';gap.title=gap.disabled&&enabled?'Bước này không có hình tách theo đường lắp.':'';if(!enabled){coordinates.textContent='Trang này dùng bố cục tự động.';return;}const value=config();outline.checked=value.redOutline!==false;outlineStrength.disabled=!outline.checked;outlineStrength.value=Math.round((value.redOutlineOpacity??.85)*100);outlineStrengthValue.textContent=outlineStrength.value+'%';const distance=frameSettings(state,'detail').explodeMM;gap.value=distance??20;gapValue.textContent=distance===undefined?'Tự động':distance+' mm';zoom.value=value.image.zoom*100;zoomValue.textContent=Math.round(value.image.zoom*100)+'%';const list=value.markers??figure()._paperFrame.autoMarkers;remove.disabled=selectedMarker===null||!list[selectedMarker];radius.disabled=remove.disabled;radius.value=(list[selectedMarker]?.r??.012)*1000;coordinates.textContent=`${selected==='detail'?'Hướng lắp':'Tổng thể'} · ${list.length} chấm · kéo ảnh ${Math.round(value.image.x*100)}%, ${Math.round(value.image.y*100)}%`;for(const f of paper.querySelectorAll('[data-paper-frame]')){f.classList.toggle('pdf-selected-frame',f.dataset.paperFrame===selected);for(const c of f.querySelectorAll('[data-marker-index]'))c.classList.toggle('pdf-selected-dot',f.dataset.paperFrame===selected&&Number(c.dataset.markerIndex)===selectedMarker);}}
  function apply(){if(!paper)return;for(const f of paper.querySelectorAll('[data-paper-frame]'))applyPaperFrame(f,frameSettings(state,f.dataset.paperFrame));positionOrbitCanvas();syncTools();}
  let frameDraft=null,draftTimer=0,draftRunning=false;
  function queueFrameDraft(name,patch){
@@ -184,7 +184,34 @@ export function installPDFPreview(api){
  const thumbObserver=new IntersectionObserver(entries=>{for(const e of entries)if(e.isIntersecting&&!e.target.dataset.thumbReady)thumbQueue.add(Number(e.target.dataset.page));scheduleThumbs();},{root:pages,rootMargin:'100px'});
  function paintThumbnail(i,source){const button=pages.querySelector(`[data-page="${i}"]`);if(!button)return;const host=button.querySelector('.pdf-page-mini'),copy=source.cloneNode(true);copy.removeAttribute('id');copy.querySelectorAll('[data-paper-frame]').forEach(el=>el.removeAttribute('data-paper-frame'));copy.querySelectorAll('.pdf-frame-badge,.pdf-frame-resize,canvas').forEach(el=>el.remove());for(const el of copy.querySelectorAll('[id]')){const old=el.id,newId='thumb-'+i+'-'+old;el.id=newId;for(const clipped of copy.querySelectorAll('[clip-path]'))if(clipped.getAttribute('clip-path')==='url(#'+old+')')clipped.setAttribute('clip-path','url(#'+newId+')');}copy.style.transform='scale('+((host.clientWidth||150)/1536)+')';host.replaceChildren(copy);button.dataset.thumbReady='true';thumbQueue.delete(i);}
  function scheduleThumbs(){clearTimeout(thumbTimer);if(dialog.open&&thumbQueue.size)thumbTimer=setTimeout(renderThumb,300);}
- async function renderThumb(){if(thumbRunning)return;if(loading||printing||drag){scheduleThumbs();return;}const epoch=thumbEpoch,i=thumbQueue.values().next().value;if(i===undefined||!dialog.open)return;thumbQueue.delete(i);thumbRunning=true;try{let miniature;if(i<0)miniature=prepPaper(project,api.catalog(),api.platform);else if(i>=guide.steps.length)miniature=finishedPaper(project,await api.completed());else{const s=guide.steps[i],shot=await api.render(s);miniature=stepPaper(s,i,guide.steps.length,shot,api.platform,project.kit?.kitId);}await readyPaperImages(miniature);if(epoch===thumbEpoch&&dialog.open)paintThumbnail(i,miniature);}catch{}finally{thumbRunning=false;scheduleThumbs();}}
+ async function renderThumb(){
+  if(thumbRunning)return;
+  if(loading||printing||drag||draftRunning){scheduleThumbs();return;}
+  const epoch=thumbEpoch,i=thumbQueue.values().next().value;
+  if(i===undefined||!dialog.open)return;
+  thumbQueue.delete(i);thumbRunning=true;
+  let interrupted=false;
+  const alive=()=>epoch===thumbEpoch&&dialog.open&&!loading&&!printing&&!drag&&!draftRunning;
+  try{
+   let miniature;
+   if(i<0)miniature=prepPaper(project,api.catalog(),api.platform);
+   else if(i>=guide.steps.length){
+    const image=await api.completed({thumbnail:true,alive});
+    if(!image){interrupted=true;return;}
+    miniature=finishedPaper(project,image);
+   }else{
+    const s=guide.steps[i],shot=await api.render(s,{thumbnail:true,alive});
+    if(!shot){interrupted=true;return;}
+    miniature=stepPaper(s,i,guide.steps.length,shot,api.platform,project.kit?.kitId);
+   }
+   await readyPaperImages(miniature);
+   if(alive())paintThumbnail(i,miniature);
+   else interrupted=true;
+  }catch{}finally{
+   if(epoch===thumbEpoch&&dialog.open&&interrupted&&!pages.querySelector('[data-page="'+i+'"]')?.dataset.thumbReady)thumbQueue.add(i);
+   thumbRunning=false;scheduleThumbs();
+  }
+ }
  function rebuildPages(){
   ++thumbEpoch;
   thumbObserver.disconnect();
@@ -307,13 +334,13 @@ export function installPDFPreview(api){
   stepOrder.value=String(index+1);
   stepOrder.removeAttribute('aria-invalid');
  };
- function navigate(i){if(loading||printing)return;flushKeyboard();cancelGesture();index=i;selectedMarker=null;showPage();}
- async function showPage({keepOrbit=false}={}){cancelFrameDraft();const ticket=++token;loading=true;failed=false;stepOrder.value=step()?String(index+1):'';stepOrder.max=String(guide.steps.length);stepOrder.removeAttribute('aria-invalid');syncTools();message('Đang dựng trang xem trước…');try{let next;
+ function navigate(i){if(printing)return;flushKeyboard();cancelGesture();index=i;selectedMarker=null;showPage();}
+ async function showPage({keepOrbit=false}={}){cancelFrameDraft();const ticket=++token,alive=()=>ticket===token&&dialog.open;loading=true;failed=false;stepOrder.value=step()?String(index+1):'';stepOrder.max=String(guide.steps.length);stepOrder.removeAttribute('aria-invalid');syncTools();message('Đang dựng trang xem trước…');try{let next;
    if(index<0)next=prepPaper(project,api.catalog(),api.platform);
-   else if(index>=guide.steps.length){const key='finished|'+JSON.stringify([project.parts,project.kit]);let src=cache.get(key);if(!src){src=await api.completed();cache.set(key,src);}next=finishedPaper(project,src);}
-   else{const s=step(),key=JSON.stringify([s.parts,s.view,s.camera,s.page?.frames?.assembled?.camera,s.page?.frames?.detail?.camera,s.page?.frames?.detail?.explodeMM,s.page?.frames?.detail?.redOutline,s.page?.frames?.assembled?.redOutline,s.page?.frames?.detail?.redOutlineOpacity,s.page?.frames?.assembled?.redOutlineOpacity,project.kit]);shots=cache.get(key);if(!shots){shots=await api.render(s);cache.set(key,shots);if(cache.size>12)cache.delete(cache.keys().next().value);}next=stepPaper(s,index,guide.steps.length,shots,api.platform,project.kit?.kitId);}
+   else if(index>=guide.steps.length){const key='finished|'+JSON.stringify([project.parts,project.kit]);let src=cache.get(key);if(!src){src=await api.completed({alive});if(!alive()||!src)return;cache.set(key,src);}next=finishedPaper(project,src);}
+   else{const s=step(),key=JSON.stringify([s.parts,s.joint,s.insertion,s.insertionBlocked,!!s.closingNote,s.guideSupport,s.view,s.camera,s.page?.frames?.assembled?.camera,s.page?.frames?.detail?.camera,s.page?.frames?.detail?.explodeMM,s.page?.frames?.detail?.redOutline,s.page?.frames?.assembled?.redOutline,s.page?.frames?.detail?.redOutlineOpacity,s.page?.frames?.assembled?.redOutlineOpacity,project.kit]);shots=cache.get(key);if(!shots){shots=await api.render(s,{alive});if(!alive()||!shots)return;cache.set(key,shots);if(cache.size>12)cache.delete(cache.keys().next().value);}next=stepPaper(s,index,guide.steps.length,shots,api.platform,project.kit?.kitId);}
    if(ticket!==token||!dialog.open)return;await readyPaperImages(next);if(ticket!==token||!dialog.open)return;paper=next;paper.id='pdf-preview-paper';holder.replaceChildren(paper);state=guidePage(step()?.page);if(!paper.querySelector(`[data-paper-frame="${selected}"]`))selected='assembled';decorate();apply();fitPaper();mountOrbit();paintThumbnail(index,paper);scheduleThumbs();message(index<0?'Trang chuẩn bị · cùng bố cục với PDF.':index>=guide.steps.length?'Trang sản phẩm hoàn chỉnh · cùng bố cục với PDF.':'Trang xem trước đúng bố cục PDF. Chọn khung để căn chỉnh.');
-  }catch(error){failed=true;message('Không dựng được trang: '+error.message);}finally{if(ticket===token){loading=false;syncTools();if(!keepOrbit||!mountOrbit()||orbitSession.geometry!==orbitGeometry(step(),selected))prepareOrbit();}}}
+  }catch(error){if(alive()){failed=true;message('Không dựng được trang: '+error.message);}}finally{if(ticket===token){loading=false;syncTools();if(!keepOrbit||!mountOrbit()||orbitSession.geometry!==orbitGeometry(step(),selected))prepareOrbit();}}}
  async function rotate(delta){if(!canEdit())return;const base=config().camera||figure()._paperFrame.camera;if(!base)return;row().camera=orbitGuideCamera(base,delta);await commit();await showPage();if(config().markers)message('Đã đổi góc khung. Chấm tự chỉnh giữ vị trí; kéo lại chấm hoặc khôi phục tự động nếu cần.');}
  async function history(redo=false){if(loading||printing)return;flushKeyboard();if(redo?redoCount===0:undoCount===0)return;cancelGesture();loading=true;syncTools();await api.undo(redo);if(redo){redoCount--;undoCount++;}else{undoCount--;redoCount++;}guide=api.guide();project=api.project();index=clamp(index,-1,guide.steps.length);selectedMarker=null;rebuildPages();await showPage();}
  function point(e,f){const meta=f._paperFrame,p=new DOMPoint(e.clientX,e.clientY).matrixTransform(meta.svg.getScreenCTM().inverse());return {x:p.x/meta.width,y:p.y/meta.height};}
@@ -370,5 +397,27 @@ export function installPDFPreview(api){
  async function printPDF(){if(loading||printing||failed)return;flushKeyboard();cancelGesture();printing=true;syncTools();try{await api.export();message('Bản in đã được dựng theo các chỉnh sửa. Chọn Save as PDF.');}catch(error){message(error.message);}finally{printing=false;syncTools();}}print.onclick=printPDF;
  function flushKeyboard(){if(settingsTimer){clearTimeout(settingsTimer);settingsTimer=0;commit();}}
  function shut(){cancelFrameDraft();++thumbEpoch;clearTimeout(thumbTimer);thumbQueue.clear();++orbitTicket;stopOrbitDraw();orbitSession?.canvas.remove();orbitSession=null;flushKeyboard();cancelGesture();++token;dialog.close();api.focus?.();}close.onclick=shut;dialog.addEventListener('cancel',e=>{e.preventDefault();shut();});dialog.addEventListener('keydown',e=>{e.stopPropagation();if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='p'){e.preventDefault();printPDF();return;}if(e.target===stepOrder||e.target.classList.contains('pdf-page-number-input'))return;if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='z'){e.preventDefault();history(e.shiftKey);return;}if(/INPUT|SELECT|TEXTAREA/.test(e.target.tagName))return;if(e.key==='Delete'||e.key==='Backspace'){e.preventDefault();deleteMarker();}if(['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(e.key)&&canEdit()){e.preventDefault();const delta=e.shiftKey?.01:.002,dx=e.key==='ArrowLeft'?-delta:e.key==='ArrowRight'?delta:0,dy=e.key==='ArrowUp'?-delta:e.key==='ArrowDown'?delta:0;if(selectedMarker!==null){const m=markers()[selectedMarker];m.x=clamp(m.x+dx,0,1);m.y=clamp(m.y+dy,0,1);}else{row().image.x=clamp(config().image.x+dx,-1,1);row().image.y=clamp(config().image.y+dy,-1,1);}apply();clearTimeout(settingsTimer);settingsTimer=setTimeout(()=>{settingsTimer=0;commit();},180);}});
- return {active:()=>dialog.open,async open(start=0){if(dialog.open)return;undoCount=0;redoCount=0;gapScope.value='page';guide=api.guide();project=api.project();if(!guide.ready||!guide.steps.length)return;index=clamp(start,0,guide.steps.length-1);rebuildPages();dialog.showModal();await showPage();},dispose(){cancelFrameDraft();++orbitTicket;stopOrbitDraw();thumbObserver.disconnect();clearTimeout(thumbTimer);++thumbEpoch;++token;clearTimeout(settingsTimer);resize.disconnect();dialog.remove();cache.clear();}};
+ return {active:()=>dialog.open,async open(start=0,check){
+  if(dialog.open)return;
+  undoCount=0;redoCount=0;gapScope.value='page';
+  guide=api.guide();project=api.project();
+  if(!guide.ready||!guide.steps.length)return;
+  const ticket=++token;
+  loading=!!check;failed=false;
+  paper=null;pages.replaceChildren();holder.replaceChildren();
+  dialog.showModal();
+  if(check){
+   syncTools();message('Đang kiểm tra đường lắp 3D…');
+   const checked=await check();
+   if(!dialog.open||ticket!==token)return;
+   guide=api.guide();project=api.project();
+   if(!checked||!guide.ready){
+    guide={...guide,steps:[]};loading=false;failed=true;syncTools();
+    message('Chưa kiểm tra được đường lắp. Đóng Preview rồi thử lại.');
+    return;
+   }
+  }
+  index=clamp(start,0,guide.steps.length-1);rebuildPages();
+  await showPage();
+ },dispose(){cancelFrameDraft();++orbitTicket;stopOrbitDraw();thumbObserver.disconnect();clearTimeout(thumbTimer);++thumbEpoch;++token;clearTimeout(settingsTimer);resize.disconnect();dialog.remove();cache.clear();}};
 }

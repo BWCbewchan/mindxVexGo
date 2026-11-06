@@ -1,8 +1,9 @@
-import * as THREE from 'three';
+import * as THREE from './vendor/three.module.js';
 import {collisionMesh,meshContact} from './collision.js';
 import {worldReference} from './mating.js';
 
 const axes=['x','y','z'];
+const rubber=part=>part.kind==='retainer'&&(part.sku==='228-2500-168'||/rubber/i.test(part.label||''));
 // Sampled rigid withdrawal paths, reversed for assembly. Final-pose contact is
 // insufficient: a shaft shoulder must not travel through a closed bearing.
 export function analyzeIQInsertionPaths(parts,references,links,objects){
@@ -37,10 +38,14 @@ export function analyzeIQInsertionPaths(parts,references,links,objects){
    for(const c of links.get(p.id)||[]){const r=references[p.sku].find(r=>r.id===c.sourceRef),axis=worldReference(p,r).normal.negate();let option=options.find(o=>o.vector.dot(axis)>.9999);if(!option){option={vector:axis,contacts:[],blockedBy:[],clearance:5,clearanceByPart:{}};options.push(option);}option.contacts.push(c);}
    for(const option of options){
     for(const other of parts){if(p.id===other.id)continue;
-     const rubber=row=>row.kind==='retainer'&&(row.sku==='228-2500-168'||/rubber/i.test(row.label||''));
      const elastic=(rubber(p)&&other.kind==='shaft')||(rubber(other)&&p.kind==='shaft');
      if(elastic&&(links.get(p.id)||[]).some(c=>c.target===other.id))continue;
-     const moving=pairMesh(p,other),fixed=pairMesh(other,p),base=moving.matrixWorld.clone(),range=corridor(moving,fixed,option.vector);if(!range)continue;
+     const roughRange=corridor(meshes.get(p.id),meshes.get(other.id),option.vector);
+     if(!roughRange)continue;
+     const moving=pairMesh(p,other),fixed=pairMesh(other,p);
+     const range=moving===meshes.get(p.id)&&fixed===meshes.get(other.id)?roughRange:corridor(moving,fixed,option.vector);
+     if(!range)continue;
+     const base=moving.matrixWorld.clone();
      option.clearance=Math.max(option.clearance,range.hi+5);
      option.clearanceByPart[other.id]=range.hi+5;
      for(let mm=Math.max(.5,Math.floor(range.lo));mm<=range.hi+.5;mm+=1){

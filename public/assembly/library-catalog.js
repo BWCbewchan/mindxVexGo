@@ -5,6 +5,9 @@ import {LEGO_KITS} from './lego/kit-presets.js';
 import {IQ_STANDARD_PREFERRED,IQ_MISSING_PARTS,IQ_IMPROVED_WHEELS} from './iq/library-reference.js';
 import {IQ_POWER_PACK_BRAIN,IQ_POWER_PACK_BATTERY,IQ_POWER_PACK_NAME} from './iq-power-pack.js';
 import {partSource} from './part-source.js';
+import {libraryGroup} from './part-group.js';
+
+export {libraryGroup};
 
 export const LIBRARY_GROUPS=[
  ['beams','Thanh & tấm','Beams · Plates · Frames'],
@@ -24,21 +27,6 @@ export const LIBRARY_KITS=[
 ];
 const collator=new Intl.Collator('en',{numeric:true,sensitivity:'base'});
 export const searchText=value=>String(value||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/đ/g,'d').replace(/Đ/g,'D').toLowerCase();
-export function libraryGroup(part){
- const name=part.name||'';
- if(part.category==='electronics'||['motor','electronic'].includes(part.kind))return 'electronics';
- if(/shaft collar|spacer|washer|bushing|bush\b/i.test(name)||part.kind==='retainer')return 'retainers';
- if(/pin tool/i.test(name))return 'specialty';
- if(/connector|joiner/i.test(name)&&!/connector pin|standoff/i.test(name))return 'connectors';
- if(/shaft|axle/i.test(name)||part.kind==='shaft')return 'shafts';
- if(/\bmotor\b|sensor|\bbrain\b|battery|controller|smart cable|\bradio\b|\bled\b/i.test(name))return 'electronics';
- if(/connector pin|idler pin|standoff|\bpin\b/i.test(name)||part.kind==='pin')return 'pins';
- if(/wheel|tire|tyre|\bhub\b/i.test(name)||part.kind==='wheel')return 'wheels';
- if(/gear|sprocket|chain|pulley|belt|worm/i.test(name)||part.kind==='gear')return 'transmission';
- if(/connector|joiner/i.test(name))return 'connectors';
- if(/beam|plate|frame|panel|liftarm|brick|tile/i.test(name))return 'beams';
- return 'specialty';
-}
 function preferredRow(catalog,row,platform){const id=platform==='vexiq'?IQ_STANDARD_PREFERRED[row.name]:null;return (id?catalog.find(p=>p.id===id||p.sourceId===id):null)||catalog.find(p=>p.id===row.sku);}
 function standardRows(catalog,platform){
  const stock=platform==='vexgo'?GO_KIT_QUANTITIES:IQ_KIT_QUANTITIES;

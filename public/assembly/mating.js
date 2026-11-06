@@ -1,5 +1,5 @@
 import {compatibleReferences,insertionLimit,recommendedInsertionDepth} from './connector-policy.js?v=deep-seat-49';
-import * as THREE from 'three';
+import * as THREE from './vendor/three.module.js';
 const vector=a=>new THREE.Vector3().fromArray(a);
 export const SNAP_DISTANCE_MM=8;
 // Cylinder extraction includes the shoulder as well as the insertion tip.

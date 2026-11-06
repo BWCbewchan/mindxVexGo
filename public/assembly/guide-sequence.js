@@ -1,9 +1,10 @@
-import {generateChainDriveGuide} from './chain-drive-guide.js';
+import {guidePartPriority} from './guide-priority.js';
+import {generateChainDriveGuide} from './chain-drive-guide.js?v=guide-priority-96';
 import {nearestMate,worldReference,seatedPinMatches} from './mating.js?v=fit-tolerance-36';
 import { compatibleReferences } from './connector-policy.js';
 import {PLATFORM} from './platform.js';
 import {isElectronicSku} from './electronics.js';
-import {generateIQGuide} from './iq-guide-sequence.js';
+import {generateIQGuide} from './iq-guide-sequence.js?v=guide-drive-100';
 
 const defaultElectronics = new Set([
   '269-6685-000', '269-6686-000', '269-6687-000', '269-6690-000',
@@ -66,10 +67,12 @@ export function generateStudentGuide(parts, {
   inferConnections = false,
   objects = null,
   insertionPaths = null,
+  rootId = null,
+  prioritizeMountedElectronics = false,
 } = {}) {
-  const chainGuide=generateChainDriveGuide(parts,{references,nameFor,isElectronic,inferConnections,objects,insertionPaths},generateStudentGuide);if(chainGuide)return chainGuide;
-  if(PLATFORM.id==='lego')return generateIQGuide(parts,{platformName:'LEGO',references,nameFor,isElectronic:()=>false,inferConnections,objects,insertionPaths});
-  if(PLATFORM.id==='vexiq')return generateIQGuide(parts,{references,nameFor,isElectronic,inferConnections,objects,insertionPaths});
+  const chainGuide=generateChainDriveGuide(parts,{references,nameFor,isElectronic,inferConnections,objects,insertionPaths,prioritizeMountedElectronics},generateStudentGuide);if(chainGuide)return chainGuide;
+  if(PLATFORM.id==='lego')return generateIQGuide(parts,{platformName:'LEGO',references,nameFor,isElectronic:()=>false,inferConnections,objects,insertionPaths,rootId});
+  if(PLATFORM.id==='vexiq')return generateIQGuide(parts,{references,nameFor,isElectronic,inferConnections,objects,insertionPaths,rootId,prioritizeMountedElectronics});
   if (!parts.length) return { ready: false, steps: [], blockers: ['Add the parts for the model first.'], notes: [] };
   parts=structuredClone(parts);
   let inferred=0;
@@ -139,8 +142,18 @@ export function generateStudentGuide(parts, {
   // Re-root real drive assemblies on a motor/chassis, never a wheel retainer.
   const collar = part => PLATFORM.id==='vexiq'?part.kind==='retainer':['228-2500-143','228-2500-154'].includes(part.sku);
   const motor = part => part.sku === PLATFORM.motor;
-  const rank = part => collar(part) ? 100 : PLATFORM.id==='vexiq'?(part.kind==='wheel'?40:part.kind==='shaft'?20:0): /Wheel/.test(nameFor(part)) || ['228-2500-1383','228-2500-1384'].includes(part.sku) ? 40 : /Shaft/.test(nameFor(part)) || ['228-2500-124','228-2500-2221','228-2500-2234','228-2500-2238'].includes(part.sku) ? 20 : 0;
-  const orderParts=(a,b)=>rank(a)-rank(b)||nameFor(a).localeCompare(nameFor(b))||a.id.localeCompare(b.id);
+  const priorities=new Map(parts.map(part=>{
+    const name=nameFor(part);
+    const shaft=['228-2500-124','228-2500-2221','228-2500-2234','228-2500-2238'].includes(part.sku);
+    const wheel=['228-2500-1383','228-2500-1384'].includes(part.sku);
+    return [part.id,collar(part)?6:shaft?1:wheel?5:guidePartPriority(part,name)];
+  }));
+  const sizes=new Map(parts.map(part=>{
+    const points=(references[part.sku]||[]).map(ref=>ref.point).filter(Array.isArray);
+    const spans=[0,1,2].map(axis=>points.length?Math.max(...points.map(point=>point[axis]))-Math.min(...points.map(point=>point[axis])):0);
+    return [part.id,Math.hypot(...spans)];
+  }));
+  const orderParts=(a,b)=>priorities.get(a.id)-priorities.get(b.id)||sizes.get(a.id)-sizes.get(b.id)||nameFor(a).localeCompare(nameFor(b))||a.id.localeCompare(b.id);
   const adjacency = new Map(parts.map(part => [part.id, []]));
   const originalMates = new Map(parts.filter(part=>part.mate).map(part=>[part.id,{...part.mate}]));
   for (const [parentId, childId] of edges) {
