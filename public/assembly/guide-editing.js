@@ -2,14 +2,16 @@ export const stepKey=step=>step.added.map(p=>p.id).sort().join('|');
 import {guidePage} from './guide-page-settings.js';
 import {guideCamera} from './guide-camera.js';
 import {isGuideElectronic} from './guide-priority.js';
+import {guideSpatialOrder} from './guide-spatial-order.js';
 // A step can keep its joint but use a different clear axis after reordering.
-function clearInsertion(step,built,byId,paths,obstacles=null){
+function clearInsertion(step,built,byId,paths,obstacles=null,allowGhost=false){
  const joint=step.joint,added=new Set(step.added.map(p=>p.id));
  const routes=paths.get(joint.part)||[];
  const sameContact=(a,b)=>a.target===b.target&&a.sourceRef===b.sourceRef&&a.targetRef===b.targetRef;
  // Prefer the original mounting point. If a different point is already
  // installed, it can provide a clear approach without reopening the assembly.
- const candidates=routes.flatMap(route=>route.contacts.filter(contact=>sameContact(contact,joint)||built.has(contact.target)).map(contact=>({route,contact})));
+ const candidates=routes.flatMap(route=>route.contacts.filter(contact=>built.has(contact.target)||
+  (allowGhost||added.has(contact.target))&&sameContact(contact,joint)).map(contact=>({route,contact})));
  const motor=byId.get(joint.part)?.kind==='motor';
  const driveTargets=new Set(motor?routes.flatMap(route=>route.contacts).filter(contact=>contact.sourceRef==='motor-output'&&
   byId.get(contact.target)?.kind==='shaft'&&(built.has(contact.target)||added.has(contact.target))).map(contact=>contact.target):[]);
@@ -72,7 +74,7 @@ function driveInstructions(step,byId,paths,references,names){
  }
 }
 
-function orderOpenSteps(steps,byId,paths){
+function orderOpenSteps(steps,byId,paths,spatial=null){
  const owner=new Map(steps.flatMap(step=>step.added.map(part=>[part.id,step])));
  const requirements=new Map(steps.map(step=>[step,new Set([...(step.requires||[]),step.joint?.target].filter(id=>id&&owner.get(id)!==step))]));
  const closedAfter=new Map();
@@ -111,6 +113,7 @@ function orderOpenSteps(steps,byId,paths){
  while(pending.length){
   const recent=new Set(ordered.at(-1)?.added.map(p=>p.id));
   const readySteps=pending.filter(ready);
+  if(spatial)readySteps.sort((a,b)=>(spatial.ranks.get(a)??Infinity)-(spatial.ranks.get(b)??Infinity));
   const clear=step=>!step.joint||clearInsertion(step,built,byId,paths);
   const mountsNow=step=>step.joint&&step.added.some(part=>isGuideElectronic(byId.get(part.id),part.name))&&
    (recent.has(step.joint.target)||[...requirements.get(step)].some(id=>recent.has(id)));
@@ -143,6 +146,15 @@ function orderOpenSteps(steps,byId,paths){
  return ordered;
 }
 
+function unresolvedSteps(steps,byId,paths){
+ const built=new Set(),unresolved=new Set();
+ for(const step of steps){
+  if(step.joint&&(trappedDriveShaft(step,built,byId,paths)||!clearInsertion(step,built,byId,paths)))unresolved.add(stepKey(step));
+  step.added.forEach(part=>built.add(part.id));
+ }
+ return unresolved;
+}
+
 // Rebuild snapshots from actions. Never reorder previously captured cumulative images.
 export function editGuide(guide,preferences={},paths=null,references={}){
  if(!guide.ready)return guide;
@@ -150,14 +162,26 @@ export function editGuide(guide,preferences={},paths=null,references={}){
  let steps=guide.steps.map(({parts,...step})=>structuredClone(step));
  const order=Array.isArray(preferences.order)?preferences.order:[],position=new Map(order.map((id,i)=>[id,i]));
  steps.sort((a,b)=>(position.get(stepKey(a))??1e6)-(position.get(stepKey(b))??1e6));
- if(paths&&!order.length&&!guide.pathCheck)steps=orderOpenSteps(steps,byId,paths);
+ let assemblyAxis=null;
+ if(paths&&!order.length){
+  const spatial=guideSpatialOrder(steps,byId,paths,references);
+  if(!spatial){
+   if(!guide.pathCheck)steps=orderOpenSteps(steps,byId,paths);
+  }else{
+   const original=structuredClone(steps),candidate=orderOpenSteps(steps,byId,paths,spatial);
+   const baseline=guide.pathCheck?original:orderOpenSteps(original,byId,paths);
+   const unresolved=unresolvedSteps(baseline,byId,paths);
+   if([...unresolvedSteps(candidate,byId,paths)].every(key=>unresolved.has(key))){steps=candidate;assemblyAxis=spatial.axis;}
+   else steps=baseline;
+  }
+ }
  const included=new Set(),defaultCamera=guideCamera(preferences.defaultCamera);
  const names=new Map(steps.flatMap(step=>step.added.map(p=>[p.id,p.name])));
  for(const step of steps){
   if(paths&&step.joint){
    const obstacles=new Set();
    const trappedShaft=trappedDriveShaft(step,included,byId,paths);
-   const approach=trappedShaft?null:clearInsertion(step,included,byId,paths,obstacles);
+   const approach=trappedShaft?null:clearInsertion(step,included,byId,paths,obstacles,order.length>0);
    if(approach){
     if(approach.joint.target!==step.joint.target){
      step.title='Lắp '+(names.get(step.joint.part)||'chi tiết mới')+' vào '+(names.get(approach.joint.target)||'cụm đã chuẩn bị');
@@ -186,5 +210,5 @@ export function editGuide(guide,preferences={},paths=null,references={}){
   }
   const edit=preferences.steps?.[stepKey(step)];if(edit?.page)step.page=guidePage(edit.page);else delete step.page;if(defaultCamera&&!edit?.view){step.view='custom';step.camera=defaultCamera;}if(edit){if(typeof edit.title==='string'&&edit.title.trim())step.title=edit.title.slice(0,160);if(typeof edit.note==='string')step.note=edit.note.slice(0,1200);if(['auto','front','rear','left','right','top','bottom'].includes(edit.view))step.view=edit.view;const camera=guideCamera(edit.camera);if(edit.view==='custom'&&camera){step.view='custom';step.camera=camera;}else if(edit.view)delete step.camera;}
  }
- return {...guide,steps,reviewRequired:guide.reviewRequired||steps.some(step=>step.insertionBlocked),editError:null};
+ return {...guide,steps,assemblyAxis,reviewRequired:guide.reviewRequired||steps.some(step=>step.insertionBlocked),editError:null};
 }

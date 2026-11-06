@@ -33,7 +33,7 @@ import {installSimulationLauncher} from '../simulation/assembly-launcher.js';
 import {installAssemblyAssistant} from './assembly-assistant.js?v=kit-79';
 import {seatedConnections,groupAncestors,groupMembers,layerLocked,layerVisible,validGroupTree,groupSelection as groupParts} from './assembly-review.js';
 import {copySelection,ungroupSelection as ungroupParts} from './selection-operations.js';
-import {editGuide,stepKey} from './guide-editing.js?v=guide-drive-100';
+import {editGuide,stepKey} from './guide-editing.js?v=guide-spatial-101';
 import {installDrivePreview} from './drive-preview.js';
 import {renderLayers} from './layers-tree-panel.js?v=group-target-77';
 let layerAnchor=null;
@@ -319,7 +319,8 @@ function renderStudentGuide(){
   const open=node('button',`Step ${i+1} · ${step.title}`);open.className='student-guide-open';open.disabled=busy;open.setAttribute('aria-label',`Preview guide step ${i+1}: ${step.title}`);open.onclick=()=>viewGuideStep(i);article.append(open,node('p',step.note));
   const added=node('div');added.className='guide-added';for(const part of step.added){const item=node('span'),thumb=node('img');thumb.src=partPreviewSrc(PLATFORM.id,part.sku,step.parts.find(p=>p.id===part.id)?.legoKitId);thumb.alt='';thumb.loading='lazy';item.append(thumb,node('span',part.name));added.append(item);}article.append(added);installGuideEditing(article,step,i);list.append(article);if(!busy&&!exportingGuide)guidePreviews?.add(article,step,JSON.stringify([step.parts,step.added,step.view,step.camera,project.kit?.kitId]),{paused:project.editorSettings?.liveGuidePreview===false});
  }
- guideReadiness.className=studentGuide.ready?'guide-ready':'guide-pending';guideReadiness.textContent=busy?'Đang kiểm tra và tạo hướng dẫn…':studentGuide.ready?`${studentGuide.steps.length} bước tự động · ${studentGuide.reviewRequired?'Preview / PDF nháp · chưa xác nhận đường lắp':'Preview và PDF sẵn sàng'}`:/separate mechanical|separate .*assembl|starting part/i.test(studentGuide.blockers.join(' '))?'Guide vẫn hoạt động: mô hình còn cụm rời hoặc thiếu khớp. Ghép cụm / Tự sửa liên kết trước khi xuất PDF.':studentGuide.blockers[0]||'Thêm và nối các chi tiết để tự tạo bước.';
+ const orderLabel=studentGuide.assemblyAxis?`từ trong ra hai phía theo trục ${studentGuide.assemblyAxis} · `:'';
+ guideReadiness.className=studentGuide.ready?'guide-ready':'guide-pending';guideReadiness.textContent=busy?'Đang kiểm tra và tạo hướng dẫn…':studentGuide.ready?`${studentGuide.steps.length} bước · ${orderLabel}${studentGuide.reviewRequired?'Preview / PDF nháp · chưa xác nhận đường lắp':'Preview và PDF sẵn sàng'}`:/separate mechanical|separate .*assembl|starting part/i.test(studentGuide.blockers.join(' '))?'Guide vẫn hoạt động: mô hình còn cụm rời hoặc thiếu khớp. Ghép cụm / Tự sửa liên kết trước khi xuất PDF.':studentGuide.blockers[0]||'Thêm và nối các chi tiết để tự tạo bước.';
  guideWorkbench?.update(studentGuide,{busy});workbenchMenu.disabled=busy||!studentGuide.ready;
  zipMenu.disabled=zipButton.disabled=busy||!studentGuide.ready||renderer.isDataRenderer;zipButton.title=renderer.isDataRenderer?'Xuất ảnh cần WebGL; PDF dữ liệu vẫn dùng được.':'';syncSnapSettings();
  $('export').disabled=busy||!studentGuide.ready;if($('guide-export'))$('guide-export').disabled=busy||!studentGuide.ready;
