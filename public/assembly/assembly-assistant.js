@@ -23,19 +23,31 @@ export function installAssemblyAssistant(api){
  viewBody.append(xray,isolate);const reset=button('Khôi phục góc nhìn',()=>{transparent=isolated=false;clearMaterials();xray.setAttribute('aria-pressed','false');isolate.setAttribute('aria-pressed','false');api.fit();});viewBody.append(reset);
  let stamp=null,connections=[],mechanics=[];
  function data(){const current=JSON.stringify(api.project().parts);if(current!==stamp){stamp=current;connections=seatedConnections(api.project().parts,api.references);mechanics=reviewMechanics(api.project().parts,api.references,connections);}return {connections,mechanics};}
+ let renderedConnections=null,renderedSelection=null,inventoryStamp='';
  function render(){
-  const project=api.project(),{connections,mechanics}=data();panel.replaceChildren(make('h3','Khớp lắp & giữ trục'));const selected=project.parts.find(p=>p.id===api.selected());
+  const project=api.project(),{connections,mechanics}=data(),selection=api.selected();
+  if(connections!==renderedConnections||selection!==renderedSelection){
+  renderedConnections=connections;renderedSelection=selection;panel.replaceChildren(make('h3','Khớp lắp & giữ trục'));const selected=project.parts.find(p=>p.id===selection);
   if(selected){const contacts=connections.filter(c=>c.part===selected.id||c.target===selected.id),pins=new Set(contacts.map(c=>`${c.target}:${c.targetRef}`));panel.append(make('p',`${pins.size} chốt / đầu trục đã khớp theo CAD`));
    if(!contacts.length)panel.append(make('p','Chưa nhận diện khớp đã cắm. Chọn dấu + tại lỗ/chốt hoặc đưa đến khớp tương thích.'));
    for(const c of contacts){const row=button(`${c.part===selected.id?'Lỗ '+c.sourceRef:'Đầu '+c.targetRef} ↔ ${api.name(project.parts.find(p=>p.id===(c.part===selected.id?c.target:c.part)))} · ${c.depth.toFixed(2)} mm`,()=>{api.select(c.part===selected.id?c.target:c.part);});row.className='connection-row';panel.append(row);}
   }else panel.append(make('p','Chọn chi tiết để xem lỗ, đầu trục và độ sâu từng khớp.'));
   for(const issue of mechanics.filter(i=>!selected||i.ids.includes(selected.id))){const row=button(issue.message,()=>api.select(issue.ids[0]));row.className='mechanical-warning';panel.append(row);}
   panel.append(make('small','Khớp CAD là kiểm tra hình học; độ bền cần thử với bộ thật.'));
+  applyTransparency();
+  }
+  renderInventory();
+ }
+ function renderInventory(){
+  if(!inventory.open)return;
+  const project=api.project(),catalog=api.catalog(),key=JSON.stringify([catalog.length,project.kit,project.parts.map(part=>part.sku)]);
+  if(key===inventoryStamp)return;
+  inventoryStamp=key;
   let body=inventory.querySelector('.kit-rows');if(!body){body=make('div');body.className='kit-rows';inventory.append(body);}body.replaceChildren();const rows=kitInventory(project.parts,api.catalog(),project.kit||null);let last='';
   for(const row of rows){if(row.category!==last){last=row.category;body.append(make('h4',last));}const item=make('div');item.className='kit-row';item.classList.toggle('over-quota',row.remaining!==null&&row.remaining<0);item.append(make('span',row.name),make('strong',`${row.used} / ${row.available??'?'}`));item.title=row.available===null?'Chưa xác minh số lượng trong bộ':row.remaining<0?`Thiếu ${-row.remaining}`:`Còn ${row.remaining}`;body.append(item);if(row.integrated)body.append(make('small',`${row.integrated} lốp đã nằm trong CAD Gray Wheel, tính riêng khi chuẩn bị bộ thật.`));}
   if(!rows.length)body.append(make('p','Chưa dùng linh kiện.'));const source=make('a','Nguồn linh kiện VEX');source.href=PLATFORM.id==='vexgo'?KIT_SOURCE:'https://www.vexrobotics.com/iq/1st-gen';source.target='_blank';source.rel='noopener';body.append(source,make('small','Dấu ? = chưa xác minh số lượng bộ kit / biến thể CAD.'));
-  applyTransparency();
  }
+ inventory.addEventListener('toggle',renderInventory);
  return {render,data,visible:id=>!isolated||isolatedIds.has(id),reset:()=>{transparent=isolated=false;clearMaterials();xray.setAttribute('aria-pressed','false');isolate.setAttribute('aria-pressed','false');},frame,
   fitProjection(){if(!orthographic)return;const bounds=new THREE.Box3();for(const obj of api.objects.values())if(obj.visible)bounds.union(api.bounds(obj));if(bounds.isEmpty())return;orthoSpan=Math.max(.02,bounds.getSize(new THREE.Vector3()).length()*1.15/Math.min(1,api.camera.aspect||1));api.camera.zoom=1;projection();},
   projectionState:()=>({orthographic,orthoSpan,zoom:api.camera.zoom}),restoreProjection(value){if(!value)return;orthographic=!!value.orthographic;orthoSpan=value.orthoSpan||.25;api.camera.zoom=value.zoom||1;api.camera.isPerspectiveCamera=!orthographic;api.camera.isOrthographicCamera=orthographic;api.camera.updateProjectionMatrix=orthographic?projection:perspectiveProjection;api.camera.updateProjectionMatrix();ortho.setAttribute('aria-pressed',String(orthographic));}

@@ -39,8 +39,11 @@ for(const step of guide.steps){
 }
 assert.equal(included.size,26);
 const impossible=new Map([...audit].map(([id,rows])=>[id,rows.map(r=>({...r,blockedBy:[...r.blockedBy,project.parts[7].id]}))]));
-assert.equal(generateStudentGuide(project.parts,{references:refs,inferConnections:true,insertionPaths:impossible}).ready,false,'A blocked route must not be exported as a verified instruction');
-const {editGuide,stepKey}=await import('../public/assembly/guide-editing.js');
+const impossibleGuide=generateStudentGuide(project.parts,{references:refs,inferConnections:true,insertionPaths:impossible});
+assert.equal(impossibleGuide.reviewRequired,true,'A blocked route must not be exported as a verified instruction');
+assert.equal(impossibleGuide.pathCheck.bestEffort,true,'The best-effort fallback is labelled as such');
+assert.ok(impossibleGuide.steps.some(s=>s.pathConflict==='forced'&&s.insertion.blockedBy.includes(project.parts[7].id)),'Only the colliding insertions are flagged, naming the installed obstacle');
+const {createGuideEditor,editGuide,stepKey}=await import('../public/assembly/guide-editing.js');
 const draft=generateStudentGuide(project.parts,{references:refs,inferConnections:true,prioritizeMountedElectronics:true});
 assert.ok(draft.ready,JSON.stringify(draft.blockers));
 const checkedDraft=editGuide(draft,{},audit,refs);
@@ -55,6 +58,16 @@ assert.equal(edited.reviewRequired,true,'The manually ordered guide must also re
 assert.ok(edited.steps.some(s=>s.insertionBlocked&&!s.insertion),'Blocked illustrations must lose their insertion arrow');
 assert.deepEqual(edited.steps.map(stepKey),guide.steps.map(stepKey),'An audit must retain the manual sequence');
 
+const editPresentation=createGuideEditor();
+const first=editPresentation(draft,{},audit,refs),key=stepKey(first.steps[motorAt]);
+const changed=editPresentation(draft,{steps:{[key]:{page:{frames:{detail:{explodeMM:25}}}}}},audit,refs);
+assert.equal(changed.steps[motorAt].page.frames.detail.explodeMM,25);
+assert.equal(first.steps[motorAt].page,undefined,'Editing presentation does not change earlier results');
+assert.equal(changed.steps[motorAt].parts,first.steps[motorAt].parts,'A layout edit reuses the assembly snapshot');
+const manualOrder=first.steps.map(stepKey).reverse();
+assert.deepEqual(editPresentation(draft,{order:manualOrder},audit,refs).steps.map(stepKey),manualOrder,'Manual order invalidates the cached plan');
+assert.ok(editPresentation(draft,{},impossible,refs).steps.some(step=>step.insertionBlocked),'A new CAD audit replaces the cached route plan');
+
 await fs.mkdir('artifacts/iq-route-review',{recursive:true});await fs.writeFile('artifacts/iq-route-review/guide.json',JSON.stringify(guide,null,2));
-console.log('PASS: all 26 parts have supported CAD-sampled insertion routes; both complete shaft sweeps clear every earlier body; motor cannot precede its shaft; blocked paths fail closed.');
+console.log('PASS: all 26 parts have supported CAD-sampled insertion routes; both complete shaft sweeps clear every earlier body; motor cannot precede its shaft; blocked paths are flagged for review instead of passing as verified.');
 for(const [i,s] of guide.steps.entries())console.log(i+1,s.title);

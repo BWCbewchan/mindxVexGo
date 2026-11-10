@@ -10,12 +10,17 @@ export function seatedConnections(parts,references,tolerance=.25){
  for(const part of parts)for(const ref of attachmentReferences(references[part.sku]||[])){
   const item={part,ref,...worldReference(part,ref)};(ref.kind==='pin'?pins:holes).push(item);
  }
+ const limitSquared=tolerance*tolerance;
  for(const a of holes)for(const b of pins){
-  if(a.part.id===b.part.id||!compatibleReferences(a.ref,b.ref,a.part.sku,b.part.sku)||a.normal.dot(b.normal)>-.999)continue;
-  const offset=a.point.clone().sub(b.point),depth=-offset.dot(b.normal),gap=offset.addScaledVector(b.normal,depth).length();
-  if(gap>tolerance||(b.ref.profile==='iq-balloon-rim'?Math.abs(depth)>.15:depth<.1||depth>insertionLimit(a.ref,b.ref)+.15))continue;
+  if(a.part.id===b.part.id||a.normal.dot(b.normal)>-.999)continue;
+  const {x:nx,y:ny,z:nz}=b.normal;
+  const dx=a.point.x-b.point.x,dy=a.point.y-b.point.y,dz=a.point.z-b.point.z;
+  const depth=-(dx*nx+dy*ny+dz*nz),rim=b.ref.profile==='iq-balloon-rim';
+  if(rim?Math.abs(depth)>.15:depth<.1)continue;
+  const x=dx+depth*nx,y=dy+depth*ny,z=dz+depth*nz,gapSquared=x*x+y*y+z*z;
+  if(gapSquared>limitSquared||!compatibleReferences(a.ref,b.ref,a.part.sku,b.part.sku)||!rim&&depth>insertionLimit(a.ref,b.ref)+.15)continue;
   // A through bore has two analytic faces. Keep the entry face facing the pin tip.
-  result.push({part:a.part.id,target:b.part.id,sourceRef:a.ref.id,targetRef:b.ref.id,depth,gap,profile:b.ref.profile||'round'});
+  result.push({part:a.part.id,target:b.part.id,sourceRef:a.ref.id,targetRef:b.ref.id,depth,gap:Math.sqrt(gapSquared),profile:b.ref.profile||'round'});
  }
  return result;
 }

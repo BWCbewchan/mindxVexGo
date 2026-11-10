@@ -31,7 +31,10 @@ function clearInsertion(step,built,byId,paths,obstacles=null,allowGhost=false){
    if(item.id===joint.part)continue;
    const mate=byId.get(item.id)?.mate;
    if(!mate||added.has(mate.target)||!fixed.has(mate.target))continue;
-   others.push((paths.get(item.id)||[]).find(option=>sameAxis(route.axis,option.axis)&&clear(option)&&option.contacts.some(c=>sameContact(c,mate))));
+   // Pin batches share one axis. A simultaneous pair (two parts that lock each
+   // other) may each follow its own clear approach.
+   const own=(paths.get(item.id)||[]).filter(option=>clear(option)&&option.contacts.some(c=>sameContact(c,mate)));
+   others.push(own.find(option=>sameAxis(route.axis,option.axis))||(step.pathConflict==='together'?own[0]:undefined));
   }
   if(others.some(option=>!option))continue;
   const sweep=[route,...others];
@@ -104,9 +107,13 @@ function orderOpenSteps(steps,byId,paths,spatial=null){
    closedAfter.get(closing).set(part.id,part.name);
   }
  }
- const pending=[...steps],ordered=[],built=new Set();
+ const pending=[...steps],ordered=[],built=new Set(),originalIndex=new Map(steps.map((step,i)=>[step,i]));
+ // Jointless steps (a chain wrap, electronics without a modeled mount) have no
+ // insertion route to score. Keep them after every step that preceded them,
+ // otherwise a loose battery check jumps into the middle of the frame build.
  const ready=step=>{
   const added=new Set(step.added.map(p=>p.id));
+  if(!step.joint&&pending.some(other=>other!==step&&originalIndex.get(other)<originalIndex.get(step)))return false;
   return (!step.joint||built.has(step.joint.target)||added.has(step.joint.target))&&
    [...requirements.get(step)].every(id=>built.has(id)||added.has(id));
  };
@@ -131,7 +138,7 @@ function orderOpenSteps(steps,byId,paths,spatial=null){
    if(score<best){step=candidate;best=score;}
    if(score===0)break;
   }
-  step||=readySteps[0]||pending[0];
+  step||=readySteps[0]||pending.find(candidate=>candidate.joint)||pending[0];
   pending.splice(pending.indexOf(step),1);
   step.requires=[...requirements.get(step)];
   const closedParts=closedAfter.get(step),cover=step.added.find(part=>/\b(plate|panel|cover)\b/i.test(part.name));
@@ -156,11 +163,10 @@ function unresolvedSteps(steps,byId,paths){
 }
 
 // Rebuild snapshots from actions. Never reorder previously captured cumulative images.
-export function editGuide(guide,preferences={},paths=null,references={}){
- if(!guide.ready)return guide;
+function prepareGuideOrder(guide,order,paths,references){
  const full=structuredClone(guide.steps.at(-1).parts),byId=new Map(full.map(p=>[p.id,p]));
  let steps=guide.steps.map(({parts,...step})=>structuredClone(step));
- const order=Array.isArray(preferences.order)?preferences.order:[],position=new Map(order.map((id,i)=>[id,i]));
+ const position=new Map(order.map((id,i)=>[id,i]));
  steps.sort((a,b)=>(position.get(stepKey(a))??1e6)-(position.get(stepKey(b))??1e6));
  let assemblyAxis=null;
  if(paths&&!order.length){
@@ -175,7 +181,7 @@ export function editGuide(guide,preferences={},paths=null,references={}){
    else steps=baseline;
   }
  }
- const included=new Set(),defaultCamera=guideCamera(preferences.defaultCamera);
+ const included=new Set();
  const names=new Map(steps.flatMap(step=>step.added.map(p=>[p.id,p.name])));
  for(const step of steps){
   if(paths&&step.joint){
@@ -208,7 +214,48 @@ export function editGuide(guide,preferences={},paths=null,references={}){
    step.guideSupport=byId.get(step.joint.target);
    if(step.guideSupport&&!step.insertionBlocked)step.note='Chuẩn bị chi tiết mới. Hình mờ chỉ vị trí ghép với chi tiết ở bước sau.';
   }
-  const edit=preferences.steps?.[stepKey(step)];if(edit?.page)step.page=guidePage(edit.page);else delete step.page;if(defaultCamera&&!edit?.view){step.view='custom';step.camera=defaultCamera;}if(edit){if(typeof edit.title==='string'&&edit.title.trim())step.title=edit.title.slice(0,160);if(typeof edit.note==='string')step.note=edit.note.slice(0,1200);if(['auto','front','rear','left','right','top','bottom'].includes(edit.view))step.view=edit.view;const camera=guideCamera(edit.camera);if(edit.view==='custom'&&camera){step.view='custom';step.camera=camera;}else if(edit.view)delete step.camera;}
  }
  return {...guide,steps,assemblyAxis,reviewRequired:guide.reviewRequired||steps.some(step=>step.insertionBlocked),editError:null};
+}
+
+const orderOf=preferences=>Array.isArray(preferences.order)?preferences.order:[];
+const emptyReferences={};
+
+function presentGuide(plan,preferences){
+ const defaultCamera=guideCamera(preferences.defaultCamera);
+ const steps=plan.steps.map(base=>{
+  const step={...base};
+  const edit=preferences.steps?.[stepKey(step)];
+  if(edit?.page)step.page=guidePage(edit.page);
+  else delete step.page;
+  if(defaultCamera&&!edit?.view){step.view='custom';step.camera=defaultCamera;}
+  if(!edit)return step;
+  if(typeof edit.title==='string'&&edit.title.trim())step.title=edit.title.slice(0,160);
+  if(typeof edit.note==='string')step.note=edit.note.slice(0,1200);
+  if(['auto','front','rear','left','right','top','bottom'].includes(edit.view))step.view=edit.view;
+  const camera=guideCamera(edit.camera);
+  if(edit.view==='custom'&&camera){step.view='custom';step.camera=camera;}
+  else if(edit.view)delete step.camera;
+  return step;
+ });
+ return {...plan,steps};
+}
+
+export function editGuide(guide,preferences={},paths=null,references=emptyReferences){
+ return guide.ready?presentGuide(prepareGuideOrder(guide,orderOf(preferences),paths,references),preferences):guide;
+}
+
+// The editor replaces its immutable CAD guide/path inputs when the model changes.
+// Reuse the computed order and snapshots across edits to text, framing, and camera.
+export function createGuideEditor(){
+ let cached;
+ return (guide,preferences={},paths=null,references=emptyReferences)=>{
+  if(!guide.ready){cached=null;return guide;}
+  const order=orderOf(preferences);
+  if(cached?.guide!==guide||cached.paths!==paths||cached.references!==references||
+   cached.order.length!==order.length||cached.order.some((key,i)=>key!==order[i])){
+   cached={guide,paths,references,order:[...order],plan:prepareGuideOrder(guide,order,paths,references)};
+  }
+  return presentGuide(cached.plan,preferences);
+ };
 }

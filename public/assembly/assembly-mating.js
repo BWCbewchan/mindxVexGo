@@ -1,12 +1,19 @@
 import {chainDriveContacts} from './chain-route.js';
 import * as THREE from 'three';
-import {attachmentReferences,worldReference,matingPose,insideSnapReleaseZone} from './mating.js';
+import {attachmentReferences,referenceRows,matingPose,insideSnapReleaseZone} from './mating.js';
 import {compatibleReferences,insertionLimit,recommendedInsertionDepth} from './connector-policy.js';
 import {seatedConnections,jointMetrics} from './assembly-review.js';
 
 const clone=value=>structuredClone(value),cache=new WeakMap();
 const quaternion=part=>new THREE.Quaternion().setFromEuler(new THREE.Euler(...part.rotation.map(THREE.MathUtils.degToRad)));
-function worldRows(parts,references){const rows=[];for(const part of parts)for(const ref of attachmentReferences(references[part.sku]||[]))rows.push({part,ref,...worldReference(part,ref)});return rows;}
+export function worldRows(parts,references){
+ const rows=[],bySku=new Map();
+ for(const part of parts){
+  if(!bySku.has(part.sku))bySku.set(part.sku,attachmentReferences(references[part.sku]));
+  for(const row of referenceRows(part,bySku.get(part.sku)))rows.push({part,...row});
+ }
+ return rows;
+}
 function edgeKey(edge){return [edge.part,edge.sourceRef,edge.target,edge.targetRef].join('|');}
 // Capture at gesture start: topology stays unchanged while a component moves rigidly.
 export function assemblyMatingContext(parts,references){
@@ -18,7 +25,7 @@ export function assemblyMatingContext(parts,references){
  // Preserve every acyclic authored edge before using geometric contacts to bridge
  // metadata fragments. A breadth-first walk of all contacts can discard good mates.
  const parent=new Map(parts.map(p=>[p.id,p.id])),treeLinks=new Map(parts.map(p=>[p.id,[]]));const find=id=>{let next=id;while(parent.get(next)!==next)next=parent.get(next);return next;};for(const edge of edges){const a=find(edge.part),b=find(edge.target);if(a===b)continue;parent.set(a,b);treeLinks.get(edge.part).push(edge);treeLinks.get(edge.target).push(edge);}
- const result={stamp,references,byId,links,treeLinks,edges,contacts,world:worldRows(parts,references)};cache.set(parts,result);return result;
+ const result={stamp,references,byId,links,treeLinks,edges,contacts};cache.set(parts,result);return result;
 }
 export function movingAssemblyIds(parts,references,id,selection=[],context=assemblyMatingContext(parts,references)){
  if(!context.byId.has(id))return [];const included=new Set([id,...selection.filter(next=>context.byId.has(next))]),queue=[...included];for(const current of queue)for(const edge of context.links.get(current)||[]){const other=edge.part===current?edge.target:edge.part;if(!included.has(other)){included.add(other);queue.push(other);}}return parts.filter(p=>included.has(p.id)).map(p=>p.id);
@@ -49,22 +56,93 @@ function reroot(parts,references,ids,root,context){
   for(const current of queue)for(const edge of context.treeLinks.get(current)||[]){const next=edge.part===current?edge.target:edge.part;if(!ids.has(next)||visited.has(next))continue;const child=byId.get(next),parent=byId.get(current),forward=edge.part===next,aId=forward?edge.sourceRef:edge.targetRef,bId=forward?edge.targetRef:edge.sourceRef,a=references[child.sku]?.find(r=>r.id===aId),b=references[parent.sku]?.find(r=>r.id===bId),metrics=jointMetrics(child,parent,a,b);if(!metrics.valid)continue;child.mate=forward&&edge.saved?{...clone(edge.saved)}:{target:current,sourceRef:aId,targetRef:bId,depth:Math.max(0,metrics.depth),twist:0,flip:false};visited.add(next);queue.push(next);}
  }
 }
-export function previewAssemblyConnection(parts,references,{sourceId,targetId,sourceRef,targetRef,depth,twist=0,flip=false,movingIds,context=assemblyMatingContext(parts,references)}={}){
+export function previewAssemblyConnection(parts,references,{sourceId,targetId,sourceRef,targetRef,depth,twist=0,flip=false,movingIds,context=assemblyMatingContext(parts,references),world}={}){
  const source=parts.find(p=>p.id===sourceId),target=parts.find(p=>p.id===targetId);if(!source||!target)throw Error('Không tìm thấy chi tiết cần nối.');const a=typeof sourceRef==='string'?references[source.sku]?.find(r=>r.id===sourceRef):sourceRef,b=typeof targetRef==='string'?references[target.sku]?.find(r=>r.id===targetRef):targetRef;if(!compatibleReferences(a,b,source.sku,target.sku))throw Error('Hai điểm nối không tương thích.');
  const moving=new Set(movingIds||movingAssemblyIds(parts,references,sourceId,[],context));moving.add(sourceId);if(moving.has(targetId))throw Error('Điểm đích nằm trong cùng cụm đang di chuyển.');const chosen=depth??recommendedInsertionDepth(a,b,source.sku,target.sku);if(!Number.isFinite(chosen)||chosen<0||chosen>insertionLimit(a,b)+1e-6||!Number.isFinite(twist))throw Error('Độ sâu hoặc góc nối không hợp lệ.');
- const pose=matingPose(source,a,target,b,{depth:chosen,twist,flip}),transformed=transformedParts(parts,source,pose,moving),result=transformed.parts;reroot(result,references,moving,sourceId,context);const moved=result.find(p=>p.id===sourceId);moved.mate={target:targetId,sourceRef:a.id,targetRef:b.id,depth:chosen,twist,flip};delete moved.snapBlocked;
- const rows=transformedRows(worldRows(parts,references),source,pose,moving),contacts=crossContacts(rows,moving);return {parts:result,movingIds:[...moving],source:moved,target:result.find(p=>p.id===targetId),sourceRef:a,targetRef:b,depth:chosen,pose,support:contacts.length,contacts};
+ const pose=matingPose(source,a,target,b,{depth:chosen,twist,flip,references}),transformed=transformedParts(parts,source,pose,moving),result=transformed.parts;reroot(result,references,moving,sourceId,context);const moved=result.find(p=>p.id===sourceId);moved.mate={target:targetId,sourceRef:a.id,targetRef:b.id,depth:chosen,twist,flip};delete moved.snapBlocked;
+ const rows=transformedRows(world??worldRows(parts,references),source,pose,moving),contacts=crossContacts(rows,moving);return {parts:result,movingIds:[...moving],source:moved,target:result.find(p=>p.id===targetId),sourceRef:a,targetRef:b,depth:chosen,pose,support:contacts.length,contacts};
+}
+function samePort(a,b){
+ if(!b)return false;
+ const normal=new THREE.Vector3(...a.normal),delta=new THREE.Vector3(...a.point).sub(new THREE.Vector3(...b.point)),axial=delta.dot(normal);
+ return Math.abs(normal.dot(new THREE.Vector3(...b.normal)))>.999&&delta.addScaledVector(normal,-axial).length()<.25&&Math.abs(axial)<=(a.depth||0)+(b.depth||0)+.25;
+}
+function blockedPort(part,other,sourceRef,targetRef,references){
+ return (part.snapBlocked||[]).some(block=>{
+  if(block.target!==other.id)return false;
+  const a=references[part.sku]?.find(ref=>ref.id===block.sourceRef),b=references[other.sku]?.find(ref=>ref.id===block.targetRef);
+  return samePort(sourceRef,a)&&samePort(targetRef,b)&&insideSnapReleaseZone(part,a,other,b);
+ });
+}
+function sameSideOccupancy(context,moving,references){
+ const key=JSON.stringify([...moving].sort());
+ if(context.references===references&&context.dragOccupancy?.key===key)return context.dragOccupancy.occupied;
+ const contacts=context.contacts.filter(contact=>moving.has(contact.part)===moving.has(contact.target));
+ const occupied=occupiedAssemblyReferences({...context,occupiedReferences:null,contacts},references);
+ if(context.references===references)context.dragOccupancy={key,occupied};
+ return occupied;
 }
 export function nearestAssemblyMate(parts,references,movingIds,{distance=8,excludedMates=[],context}={}){
- context||=assemblyMatingContext(parts,references);const moving=new Set(movingIds),currentById=new Map(parts.map(p=>[p.id,p]));for(const part of parts){part.snapBlocked=(part.snapBlocked||[]).filter(block=>{const target=currentById.get(block.target),a=references[part.sku]?.find(r=>r.id===block.sourceRef),b=references[target?.sku]?.find(r=>r.id===block.targetRef);return target&&a&&b&&insideSnapReleaseZone(part,a,target,b);});if(!part.snapBlocked.length)delete part.snapBlocked;}const occupied=occupiedAssemblyReferences({...context,occupiedReferences:null,contacts:context.contacts.filter(c=>moving.has(c.part)===moving.has(c.target))},references),world=worldRows(parts,references),from=world.filter(r=>moving.has(r.part.id)&&!occupied.has(r.part.id+'|'+r.ref.id)),targets=world.filter(r=>!moving.has(r.part.id)&&!occupied.has(r.part.id+'|'+r.ref.id)),candidates=[],byId=new Map(parts.map(p=>[p.id,p])),keyed=new Map(parts.map(p=>[p.id,new Set(world.filter(r=>r.part.id===p.id&&['square-drive','lego-cross'].includes(r.ref.profile)).map(r=>r.ref.profile))]));
- for(const a of from)for(const b of targets){if(a.ref.kind===b.ref.kind)continue;const samePort=(a,b)=>{if(!b)return false;const n=new THREE.Vector3(...a.normal),d=new THREE.Vector3(...a.point).sub(new THREE.Vector3(...b.point)),axial=d.dot(n);return Math.abs(n.dot(new THREE.Vector3(...b.normal)))>.999&&d.addScaledVector(n,-axial).length()<.25&&Math.abs(axial)<=(a.depth||0)+(b.depth||0)+.25;};const blocked=(part,other,sourceRef,targetRef)=>(part.snapBlocked||[]).some(block=>{if(block.target!==other.id)return false;const oldA=references[part.sku]?.find(r=>r.id===block.sourceRef),oldB=references[other.sku]?.find(r=>r.id===block.targetRef);return samePort(sourceRef,oldA)&&samePort(targetRef,oldB)&&insideSnapReleaseZone(part,oldA,other,oldB);});if(blocked(a.part,b.part,a.ref,b.ref)||blocked(b.part,a.part,b.ref,a.ref))continue;const pin=a.ref.kind==='pin'?a.ref:b.ref,span=pin.maxDepth??pin.depth??Math.max(a.ref.depth||0,b.ref.depth||0),reach=distance+span,dx=a.point.x-b.point.x,dy=a.point.y-b.point.y,dz=a.point.z-b.point.z;if(dx*dx+dy*dy+dz*dz>reach*reach||!compatibleReferences(a.ref,b.ref,a.part.sku,b.part.sku))continue;if(excludedMates.some(block=>(!block.source||block.source===a.part.id)&&block.target===b.part.id&&block.sourceRef===a.ref.id&&block.targetRef===b.ref.id))continue;
-  if(['square-drive','lego-cross'].includes(a.ref.profile)&&!b.ref.profile&&keyed.get(b.part.id).has(a.ref.profile)||['square-drive','lego-cross'].includes(b.ref.profile)&&!a.ref.profile&&keyed.get(a.part.id).has(b.ref.profile))continue;
-  const depth=recommendedInsertionDepth(a.ref,b.ref,a.part.sku,b.part.sku),end=a.point.distanceTo(b.point),seated=a.point.distanceTo(b.point.clone().addScaledVector(b.normal,-depth));let gap=Math.min(end,seated/.85),chosen=depth;const shaft=['square-drive','lego-cross'].includes(a.ref.profile)&&a.ref.kind==='pin'?a.ref:['square-drive','lego-cross'].includes(b.ref.profile)&&b.ref.kind==='pin'?b.ref:null;
-  if(shaft){const bore=shaft===a.ref?b.ref:a.ref;if(bore.kind==='hole'&&bore.id!=='motor-output'){const axial=-a.point.clone().sub(b.point).dot(b.normal),clamped=Math.max(0,Math.min(insertionLimit(a.ref,b.ref),axial)),segment=a.point.distanceTo(b.point.clone().addScaledVector(b.normal,-clamped));if(segment<=gap){gap=segment;chosen=clamped;}}}
-  if(gap>distance)continue;const score=gap+(1+a.normal.dot(b.normal))*distance*.35,pose=matingPose(a.part,a.ref,b.part,b.ref,{depth:chosen});candidates.push({sourceId:a.part.id,targetId:b.part.id,sourceRef:a.ref,targetRef:b.ref,depth:chosen,gap,score,pose});
+ context||=assemblyMatingContext(parts,references);
+ const moving=new Set(movingIds),byId=new Map(parts.map(part=>[part.id,part]));
+ for(const part of parts){
+  if(!part.snapBlocked?.length)continue;
+  part.snapBlocked=part.snapBlocked.filter(block=>{
+   const target=byId.get(block.target),a=references[part.sku]?.find(ref=>ref.id===block.sourceRef),b=references[target?.sku]?.find(ref=>ref.id===block.targetRef);
+   return target&&a&&b&&insideSnapReleaseZone(part,a,target,b);
+  });
+  if(!part.snapBlocked.length)delete part.snapBlocked;
  }
- candidates.sort((a,b)=>a.score-b.score);let best=null;const supportCache=new Map();for(const candidate of candidates.slice(0,12)){const source=byId.get(candidate.sourceId),delta=quaternion(candidate.pose).multiply(quaternion(source).invert()),translation=new THREE.Vector3(...candidate.pose.position).sub(new THREE.Vector3(...source.position).applyQuaternion(delta)),sign=delta.w<0?-1:1,key=[...delta.toArray().map(v=>Math.round(v*sign*1e6)),...translation.toArray().map(v=>Math.round(v*1e4))].join('|');let support=supportCache.get(key);if(support===undefined){support=crossContacts(transformedRows(world,source,candidate.pose,moving),moving).length;supportCache.set(key,support);}if(!best||support>best.support||support===best.support&&candidate.score<best.score)best={...candidate,support};}
- if(!best)return null;const result=previewAssemblyConnection(parts,references,{...best,movingIds,context:context||assemblyMatingContext(parts,references)});return {...result,gap:best.gap,score:best.score};
+ const occupied=sameSideOccupancy(context,moving,references),world=worldRows(parts,references);
+ const from=[],targets={hole:[],pin:[]},keyed=new Map(),candidates=[];
+ for(const row of world){
+  const {part,ref}=row;
+  if(ref.profile==='square-drive'||ref.profile==='lego-cross'){
+   if(!keyed.has(part.id))keyed.set(part.id,new Set());
+   keyed.get(part.id).add(ref.profile);
+  }
+  if(occupied.has(part.id+'|'+ref.id))continue;
+  if(moving.has(part.id))from.push(row);
+  else targets[ref.kind].push(row);
+ }
+ const seat=new THREE.Vector3();
+ for(const a of from)for(const b of targets[a.ref.kind==='pin'?'hole':'pin']){
+  const pin=a.ref.kind==='pin'?a.ref:b.ref,span=pin.maxDepth??pin.depth??Math.max(a.ref.depth||0,b.ref.depth||0),reach=distance+span;
+  const distanceSquared=a.point.distanceToSquared(b.point);
+  if(distanceSquared>reach*reach||!compatibleReferences(a.ref,b.ref,a.part.sku,b.part.sku))continue;
+  if(blockedPort(a.part,b.part,a.ref,b.ref,references)||blockedPort(b.part,a.part,b.ref,a.ref,references))continue;
+  if(excludedMates.some(block=>(!block.source||block.source===a.part.id)&&block.target===b.part.id&&block.sourceRef===a.ref.id&&block.targetRef===b.ref.id))continue;
+  if(a.ref.profile&&!b.ref.profile&&keyed.get(b.part.id)?.has(a.ref.profile)||b.ref.profile&&!a.ref.profile&&keyed.get(a.part.id)?.has(b.ref.profile))continue;
+  const depth=recommendedInsertionDepth(a.ref,b.ref,a.part.sku,b.part.sku);
+  let gap=Math.min(Math.sqrt(distanceSquared),a.point.distanceTo(seat.copy(b.point).addScaledVector(b.normal,-depth))/.85),chosen=depth;
+  const shaft=(pin.profile==='square-drive'||pin.profile==='lego-cross')?pin:null;
+  if(shaft){
+   const bore=shaft===a.ref?b.ref:a.ref;
+   if(bore.id!=='motor-output'){
+    const axial=-seat.copy(a.point).sub(b.point).dot(b.normal),clamped=Math.max(0,Math.min(insertionLimit(a.ref,b.ref),axial));
+    const segment=a.point.distanceTo(seat.copy(b.point).addScaledVector(b.normal,-clamped));
+    if(segment<=gap){gap=segment;chosen=clamped;}
+   }
+  }
+  if(gap>distance)continue;
+  const score=gap+(1+a.normal.dot(b.normal))*distance*.35;
+  candidates.push({sourceId:a.part.id,targetId:b.part.id,sourceRef:a.ref,targetRef:b.ref,depth:chosen,gap,score});
+ }
+ candidates.sort((a,b)=>a.score-b.score);
+ let best=null;
+ const supportCache=new Map();
+ for(const candidate of candidates.slice(0,12)){
+  const source=byId.get(candidate.sourceId),target=byId.get(candidate.targetId);
+  const pose=matingPose(source,candidate.sourceRef,target,candidate.targetRef,{depth:candidate.depth,references});
+  const delta=quaternion(pose).multiply(quaternion(source).invert()),translation=new THREE.Vector3(...pose.position).sub(new THREE.Vector3(...source.position).applyQuaternion(delta)),sign=delta.w<0?-1:1;
+  const key=[...delta.toArray().map(v=>Math.round(v*sign*1e6)),...translation.toArray().map(v=>Math.round(v*1e4))].join('|');
+  let support=supportCache.get(key);
+  if(support===undefined){support=crossContacts(transformedRows(world,source,pose,moving),moving).length;supportCache.set(key,support);}
+  if(!best||support>best.support||support===best.support&&candidate.score<best.score)best={...candidate,support};
+ }
+ if(!best)return null;
+ const result=previewAssemblyConnection(parts,references,{...best,movingIds,context,world});
+ return {...result,gap:best.gap,score:best.score};
 }
 
 // Moving a selected group releases only its boundary; internal mates stay intact.

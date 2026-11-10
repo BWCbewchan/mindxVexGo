@@ -1,9 +1,34 @@
 import {partPreviewSrc} from './part-preview.js?v=library-color-75';
 import {assetUrl,PLATFORM} from './platform.js';
 import {groupAncestors,groupMembers,layerLocked,validGroupTree} from './assembly-review.js';
-let filter='';
+let filter='',tree=null;
+function syncSelection(root,api,project,selection){
+ const selected=project.parts.filter(part=>selection.has(part.id));
+ const disabled=api.disabled(),editable=selected.length>0&&!selected.some(api.locked),groupId=api.selectedGroup?.();
+ const buttons=root.querySelectorAll('.layers-tools button');
+ const states=[!editable||selection.size<2,!editable||!selected.some(part=>part.groupId),!editable,!editable,!editable||(!groupId&&selection.size!==1)];
+ buttons.forEach((button,i)=>{button.disabled=disabled||states[i];});
+ const changedIds=new Set([...tree.selection,...selection]);
+ for(const id of changedIds){
+  const row=tree.rows.get(id);
+  if(row&&tree.selection.has(id)!==selection.has(id)){
+   row.classList.toggle('is-selected',selection.has(id));
+   row.querySelector('.part-layer-select').setAttribute('aria-pressed',String(selection.has(id)));
+  }
+ }
+ if(tree.groupId!==groupId)for(const id of [tree.groupId,groupId]){
+  const row=tree.groupRows.get(id);
+  if(row){row.classList.toggle('is-selected',id===groupId);row.querySelector('.group-layer-select').setAttribute('aria-pressed',String(id===groupId));}
+ }
+ tree.selection=new Set(selection);tree.groupId=groupId;
+}
 export function renderLayers(api){
- const root=document.getElementById('objects'),project=api.project(),selection=api.selection();root.replaceChildren();root.classList.add('ps-layers');
+ const root=document.getElementById('objects'),project=api.project(),selection=api.selection();
+ const shape=JSON.stringify([filter,api.disabled(),project.groups,project.parts.map(p=>[p.id,p.sku,p.label,p.groupId,p.locked,p.visible]),api.labelVersion?.()]);
+ if(tree?.root===root&&tree.project===project&&tree.shape===shape&&tree.parts.every((part,i)=>part===project.parts[i])){
+  syncSelection(root,api,project,selection);return;
+ }
+ root.replaceChildren();root.classList.add('ps-layers');
  document.getElementById('groups').replaceChildren();document.getElementById('group-count').textContent=project.groups.length;document.getElementById('layer-panel').hidden=true;root.previousElementSibling.hidden=true;
  const make=(tag,cls)=>{const el=document.createElement(tag);el.className=cls;return el;},icon=name=>{const el=make('i','');el.dataset.lucide=name;return el;};
  function button(name,label,action){const b=make('button','layer-icon');b.title=label;b.setAttribute('aria-label',label);b.append(icon(name));b.onclick=action;b.disabled=api.disabled();return b;}
@@ -11,7 +36,7 @@ export function renderLayers(api){
  const selectedParts=project.parts.filter(part=>selection.has(part.id)),editable=selectedParts.length>0&&!selectedParts.some(api.locked);
  const toolbar=make('div','layers-tools'),groupButton=button('folder-plus','Group selection · Ctrl+G',()=>api.group()),ungroupButton=button('folder-minus','Ungroup selection · Ctrl+Shift+G',()=>api.ungroup()),duplicateButton=button('copy','Duplicate · Ctrl+J',()=>document.getElementById('duplicate').click()),deleteButton=button('trash-2','Delete selection',()=>document.getElementById('delete').click());
  groupButton.disabled||=!editable||selection.size<2;ungroupButton.disabled||=!editable||!selectedParts.some(part=>part.groupId);duplicateButton.disabled||=!editable;deleteButton.disabled||=!editable;toolbar.append(groupButton,ungroupButton,duplicateButton,deleteButton);
- const renameButton=button('pencil','Rename selected layer',()=>{const item=project.groups.find(group=>group.id===api.selectedGroup?.())||(selection.size===1?project.parts.find(part=>selection.has(part.id)):null);if(!item)return;const row=[...root.querySelectorAll('[data-part-id],[data-group-id]')].find(r=>r.dataset.partId===item.id||r.dataset.groupId===item.id);if(row)rename(row.querySelector('.layer-name'),item);});renameButton.disabled||=!editable||(!api.selectedGroup?.()&&selection.size!==1);toolbar.append(renameButton);root.append(toolbar);
+ const renameButton=button('pencil','Rename selected layer',()=>{const current=api.selection(),item=project.groups.find(group=>group.id===api.selectedGroup?.())||(current.size===1?project.parts.find(part=>current.has(part.id)):null);if(!item)return;const row=tree.rows.get(item.id)||tree.groupRows.get(item.id);if(row)rename(row.querySelector('.layer-name'),item);});renameButton.disabled||=!editable||(!api.selectedGroup?.()&&selection.size!==1);toolbar.append(renameButton);root.append(toolbar);
  const search=make('input','layer-search');search.type='search';search.placeholder='Tìm trong mô hình…';search.setAttribute('aria-label','Tìm Layers');search.value=filter;root.append(search);search.oninput=()=>{filter=search.value;api.refresh();root.querySelector('.layer-search').focus();};
  const help=make('p','layers-help');help.textContent='Ctrl: chọn nhiều · Shift: chọn dải · Kéo vào thư mục để nhóm';root.append(help);
  const visibleParts=project.parts.filter(p=>(api.name(p)+' '+p.sku+' '+groupAncestors(project,p).map(g=>g.name).join(' ')).toLowerCase().includes(filter.toLowerCase()));const visibleIds=new Set(visibleParts.map(p=>p.id)),rendered=[];
@@ -23,7 +48,7 @@ export function renderLayers(api){
   if(payload.group){const group=project.groups.find(g=>g.id===payload.group);if(!group||layerLocked(project,group))return;const proposed=project.groups.map(g=>g===group?{...g,parentId:groupId}:g);if(!validGroupTree(proposed))return;commit(()=>{if(groupId)group.parentId=groupId;else delete group.parentId;});return;}
   const ids=Array.isArray(payload)?payload:payload.parts;if(!Array.isArray(ids))return;const moving=project.parts.filter(p=>ids.includes(p.id));if(!moving.length||moving.some(api.locked))return;commit(()=>{for(const p of moving){if(groupId)p.groupId=groupId;else delete p.groupId;}const rest=project.parts.filter(p=>!ids.includes(p.id)),index=beforeId?rest.findIndex(p=>p.id===beforeId):rest.length;rest.splice(index<0?rest.length:index,0,...moving);project.parts=rest;});
  };}
- function partRow(part,depth){rendered.push(part.id);const row=make('div','part-layer-row ps-layer');row.style.paddingLeft=depth*14+'px';row.dataset.partId=part.id;row.classList.toggle('is-selected',selection.has(part.id));drag(row,()=>({parts:selection.has(part.id)?[...selection]:[part.id]}));if(api.locked(part))row.draggable=false;
+ function partRow(part,depth){rendered.push(part.id);const row=make('div','part-layer-row ps-layer');row.style.paddingLeft=depth*14+'px';row.dataset.partId=part.id;row.classList.toggle('is-selected',selection.has(part.id));drag(row,()=>{const current=api.selection();return {parts:current.has(part.id)?[...current]:[part.id]};});if(api.locked(part))row.draggable=false;
   row.append(button(part.visible===false?'eye-off':'eye',`${part.visible===false?'Show':'Hide'} part ${api.name(part)}`,()=>commit(()=>{part.visible=part.visible===false;})));
   const choose=make('button','part-layer-select');choose.setAttribute('aria-pressed',String(selection.has(part.id)));choose.disabled=api.disabled();const thumb=make('img','part-layer-thumb');thumb.src=partPreviewSrc(PLATFORM.id,part.sku);thumb.alt='';const label=make('span','layer-name');label.textContent=api.name(part);choose.append(thumb,label);choose.onclick=e=>{const anchor=api.anchor();if(e.shiftKey&&anchor&&rendered.includes(anchor)){const a=rendered.indexOf(anchor),b=rendered.indexOf(part.id);api.selectRange(rendered.slice(Math.min(a,b),Math.max(a,b)+1));}else{api.setAnchor(part.id);api.select(part.id,e.ctrlKey||e.metaKey);}};label.ondblclick=e=>{e.stopPropagation();rename(label,part);};row.append(choose,button(api.locked(part)?'lock-keyhole':'lock-keyhole-open',`${api.locked(part)?'Unlock':'Lock'} part ${api.name(part)}`,()=>{if(groupAncestors(project,part).some(g=>g.locked))return;commit(()=>{part.locked=!part.locked;});}));drop(row,part.groupId,part.id);root.append(row);
  }
@@ -33,4 +58,7 @@ export function renderLayers(api){
   row.append(button(group.visible===false?'eye-off':'eye',`${group.visible===false?'Show':'Hide'} group ${group.name}`,()=>commit(()=>{group.visible=group.visible===false;})),button(group.collapsed?'chevron-right':'chevron-down',`Toggle group ${group.name}`,()=>{group.collapsed=!group.collapsed;api.refresh();api.save(false);}));const select=make('button','group-layer-select');select.setAttribute('aria-pressed',String(api.selectedGroup?.()===group.id));select.append(icon('folder'));const label=make('span','layer-name');label.textContent=group.name+' · '+members.length;select.append(label);select.disabled=api.disabled();select.onclick=()=>api.selectGroup(group.id);label.ondblclick=e=>{e.stopPropagation();rename(label,group);};row.append(select,button(api.locked(group)?'lock-keyhole':'lock-keyhole-open',`${api.locked(group)?'Unlock':'Lock'} group ${group.name}`,()=>{if(groupAncestors(project,group).some(g=>g.locked))return;commit(()=>{group.locked=!group.locked;});}));drop(row,group.id);root.append(row);if(!group.collapsed||filter)branch(group.id,depth+1);
  }for(const part of visibleParts.filter(p=>(p.groupId||undefined)===parentId))partRow(part,depth);}
  branch(undefined,0);if(!visibleParts.length){const empty=make('p','layers-help');empty.textContent='Không tìm thấy chi tiết.';root.append(empty);}const outside=make('div','layers-ungroup-drop');outside.textContent='Kéo vào đây để đưa ra khỏi nhóm';drop(outside,undefined);root.append(outside);globalThis.lucide?.createIcons({root});
+ tree={root,project,shape,parts:[...project.parts],selection:new Set(selection),groupId:api.selectedGroup?.(),
+  rows:new Map([...root.querySelectorAll('[data-part-id]')].map(row=>[row.dataset.partId,row])),
+  groupRows:new Map([...root.querySelectorAll('[data-group-id]')].map(row=>[row.dataset.groupId,row]))};
 }

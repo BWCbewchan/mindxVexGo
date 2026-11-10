@@ -13,7 +13,7 @@ export function createGuideRenderer(){
  for(const p of [[2,3,2],[-2,2,2],[-2,2,-2],[2,2,-2]]){const light=new THREE.DirectionalLight(0xffffff,.65);light.position.set(...p);scene.add(light);}
  const group=new THREE.Group();scene.add(group);
  const directions=[[1,.8,1],[-1,.8,1],[1,.8,-1],[-1,.8,-1],[1,.3,1],[-1,.3,1],[1,-.5,1],[-1,-.5,-1]].map(p=>new THREE.Vector3(...p).normalize());
- const owned=[],edgeCache=new Map();let lastCamera=null,liveState=null;
+ const owned=[],edgeCache=new Map(),camera=new THREE.OrthographicCamera(-1,1,1,-1,.00001,10),corner=new THREE.Vector3();let lastCamera=null,liveState=null;
  function clear(){group.clear();for(const r of owned.splice(0))r.dispose();}
  function bodyMeshes(roots){const meshes=[];for(const root of roots)root.traverseVisible(obj=>{if(obj.isMesh&&!obj.userData.guideAnnotation)meshes.push(obj);});return meshes;}
  function build(objects,addedIds,referenceId,contextEdges=true){
@@ -32,15 +32,14 @@ export function createGuideRenderer(){
    });
    group.add(copy);copies.set(id,copy);
   }
-  group.updateMatrixWorld(true);return copies;
+  return copies;
  }
  function cameraFor(bounds,direction,width,height,up,zoom=1){
   const center=bounds.getCenter(new THREE.Vector3()),size=bounds.getSize(new THREE.Vector3());
-  const camera=new THREE.OrthographicCamera(-1,1,1,-1,.00001,10);
-  if(up)camera.up.fromArray(up);
+  if(up)camera.up.fromArray(up);else camera.up.set(0,1,0);
   camera.position.copy(center).addScaledVector(direction,Math.max(.1,size.length()*3));camera.lookAt(center);camera.updateMatrixWorld(true);
   const inverse=camera.matrixWorldInverse;let minX=Infinity,maxX=-Infinity,minY=Infinity,maxY=-Infinity;
-  for(const x of [bounds.min.x,bounds.max.x])for(const y of [bounds.min.y,bounds.max.y])for(const z of [bounds.min.z,bounds.max.z]){const p=new THREE.Vector3(x,y,z).applyMatrix4(inverse);minX=Math.min(minX,p.x);maxX=Math.max(maxX,p.x);minY=Math.min(minY,p.y);maxY=Math.max(maxY,p.y);}
+  for(const x of [bounds.min.x,bounds.max.x])for(const y of [bounds.min.y,bounds.max.y])for(const z of [bounds.min.z,bounds.max.z]){corner.set(x,y,z).applyMatrix4(inverse);minX=Math.min(minX,corner.x);maxX=Math.max(maxX,corner.x);minY=Math.min(minY,corner.y);maxY=Math.max(maxY,corner.y);}
   const halfHeight=Math.max((maxY-minY)/2,(maxX-minX)/2/(width/height),.002)*1.06/Math.max(.25,Math.min(3,zoom)),halfWidth=halfHeight*width/height;
   // Projected AABB center is often different from the orbit target: center both axes.
   camera.left=(minX+maxX)/2-halfWidth;camera.right=(minX+maxX)/2+halfWidth;camera.bottom=(minY+maxY)/2-halfHeight;camera.top=(minY+maxY)/2+halfHeight;camera.updateProjectionMatrix();return camera;
@@ -48,7 +47,7 @@ export function createGuideRenderer(){
  function choose(bounds,point,approach=null,landingPoints=[]){
   if(!point)return directions[0];
   const center=bounds.getCenter(new THREE.Vector3()),distance=Math.max(bounds.getSize(new THREE.Vector3()).length()*3,.2);
-  const ray=new THREE.Raycaster(),meshes=bodyMeshes([group]);
+  const ray=new THREE.Raycaster(undefined,undefined,0,distance-.0015),meshes=bodyMeshes([group]);
   let candidates=directions;
   if(approach){
    const up=new THREE.Vector3(0,1,0),side=new THREE.Vector3().crossVectors(approach,up);
@@ -65,17 +64,17 @@ export function createGuideRenderer(){
   for(let i=0;i<candidates.length;i++){
    const d=candidates[i],origin=point.clone().addScaledVector(d,distance);
    ray.set(origin,d.clone().negate());
-   const hits=ray.intersectObjects(meshes,false).filter(h=>h.distance<distance-.0015);
+   const hits=ray.intersectObjects(meshes,false).length;
    let covered=0,crowded=0;
    for(const [j,landing] of landingPoints.entries()){
     ray.set(landing.clone().addScaledVector(d,distance),d.clone().negate());
-    if(ray.intersectObjects(meshes,false).some(h=>h.distance<distance-.0015))covered++;
+    if(ray.intersectObjects(meshes,false).length)covered++;
     for(let k=0;k<j;k++){
      const gap=landing.clone().sub(landingPoints[k]);
      if(gap.addScaledVector(d,-gap.dot(d)).length()<.004)crowded++;
     }
    }
-   const value=-hits.length*20-covered*3-crowded*12-i*.1+point.clone().sub(center).dot(d);
+   const value=-hits*20-covered*3-crowded*12-i*.1+point.clone().sub(center).dot(d);
    if(value>score){score=value;best=d;}
   }
   return best;
@@ -85,6 +84,8 @@ export function createGuideRenderer(){
  return {
   completed(objects,options={}){build(objects,null,null,options.contextEdges);const bounds=visibleBounds(group);return capture(bounds,directions[0],options.width||2200,options.height||1200);},
   render(objects,step,references,options={}){
+   const frameOnly=options.frameOnly||(options.live?options.liveFrame:null);
+   const drawDetail=frameOnly!=='assembled'&&options.detail!==false;
    const joint=step.joint,reference=step.guideSupport,addedSet=new Set(step.added.map(p=>p.id));
    const copies=build(objects,addedSet,reference?.id,options.contextEdges),bounds=visibleBounds(group);
    const part=step.parts.find(p=>p.id===joint?.part),target=step.parts.find(p=>p.id===joint?.target)||reference;
@@ -94,8 +95,21 @@ export function createGuideRenderer(){
    const views={front:[0,.15,1],rear:[0,.15,-1],left:[-1,.15,0],right:[1,.15,0],top:[0,1,.001],bottom:[0,-1,.001]};
    const custom=step.view==='custom'?guideCamera(step.camera):null,assembledCustom=guideCamera(step.page?.frames?.assembled?.camera)||custom,detailCustom=guideCamera(step.page?.frames?.detail?.camera)||custom;
    const point=socket?.point.clone().multiplyScalar(.001),direction=assembledCustom?new THREE.Vector3(...assembledCustom.direction):views[step.view]?new THREE.Vector3(...views[step.view]).normalize():step.overviewDirection?new THREE.Vector3(...step.overviewDirection).normalize():choose(bounds,point);
-   const markerLocations=[];let chainClosing=false;const markHole=(location)=>{if(step.type==='chain-drive'&&!chainClosing)return;markerLocations.push(location.clone());if(options.markers2D)return;const geometry=new THREE.SphereGeometry(.0018,20,12),material=new THREE.MeshBasicMaterial({color:0xa855f7,depthTest:false,depthWrite:false});const dot=new THREE.Mesh(geometry,material);dot.userData.guideAnnotation=true;dot.userData.guideHoleDot=true;dot.position.copy(location);dot.renderOrder=1100;group.add(dot);owned.push(geometry,material);};
-   if(!step.insertionBlocked&&step.insertion?.contacts){
+   const markerLocations=[];
+   let chainClosing=false,markerGeometry,markerMaterial;
+   const markHole=location=>{
+    if(step.type==='chain-drive'&&!chainClosing)return;
+    markerLocations.push(location.clone());
+    if(options.markers2D)return;
+    if(!markerGeometry){
+     markerGeometry=new THREE.SphereGeometry(.0018,20,12);
+     markerMaterial=new THREE.MeshBasicMaterial({color:0xa855f7,depthTest:false,depthWrite:false});
+     owned.push(markerGeometry,markerMaterial);
+    }
+    const dot=new THREE.Mesh(markerGeometry,markerMaterial);
+    dot.userData.guideAnnotation=true;dot.userData.guideHoleDot=true;dot.position.copy(location);dot.renderOrder=1100;group.add(dot);
+   };
+   if(drawDetail&&!step.insertionBlocked&&step.insertion?.contacts){
     // Only label mating holes actually used by this insertion direction.
     const byId=new Map(step.parts.map(row=>[row.id,row]));
     if(reference)byId.set(reference.id,reference);
@@ -111,7 +125,7 @@ export function createGuideRenderer(){
      if(marked.has(key))continue;
      marked.add(key);markHole(worldReference(row,landing).point.multiplyScalar(.001));
     }
-   }else if(!step.insertionBlocked){
+   }else if(drawDetail&&!step.insertionBlocked){
     if(socket){
      const sourceRef=references[part?.sku]?.find(r=>r.id===joint.sourceRef);
      const hole=ref.kind==='hole'?socket:sourceRef?.kind==='hole'?worldReference(part,sourceRef):null;
@@ -124,14 +138,18 @@ export function createGuideRenderer(){
      if(hole)markHole(worldReference(row,hole).point.multiplyScalar(.001));
     }
    }
-   const outline=name=>group.traverse(o=>{if(o.userData.guideHoleDot)o.visible=name==='detail';if(o.userData.guideNewEdge){o.visible=step.page?.frames?.[name]?.redOutline!==false;o.material.opacity=step.page?.frames?.[name]?.redOutlineOpacity??.85;}});outline('assembled');
-   const assembled=capture(bounds,direction,options.width||1400,options.height||1400,assembledCustom?.up,assembledCustom?.zoom,!options.live);
+   const outline=name=>group.traverse(o=>{if(o.userData.guideHoleDot)o.visible=name==='detail';if(o.userData.guideNewEdge){o.visible=step.page?.frames?.[name]?.redOutline!==false;o.material.opacity=step.page?.frames?.[name]?.redOutlineOpacity??.85;}});
+   const width=options.width||1400,height=options.height||1400;
+   const captureAssembled=()=>{outline('assembled');return capture(bounds,direction,width,height,assembledCustom?.up,assembledCustom?.zoom,!options.live);};
+   let assembled=null;
+   if(frameOnly==='detail'&&drawDetail)lastCamera=cameraFor(bounds,direction,width,height,assembledCustom?.up,assembledCustom?.zoom);
+   else assembled=captureAssembled();
    if(options.live)liveState={bounds:bounds.clone(),direction:direction.clone(),up:assembledCustom?.up,zoom:assembledCustom?.zoom??1};
    const framing={direction:direction.toArray(),up:new THREE.Vector3(0,1,0).applyQuaternion(lastCamera.quaternion).toArray(),zoom:assembledCustom?.zoom??1};
    const markers=()=>{const unique=new Map();for(const location of markerLocations){const p=location.clone().project(lastCamera),x=(p.x+1)/2,y=(1-p.y)/2;if(x>=0&&x<=1&&y>=0&&y<=1)unique.set(Math.round(x*10000)+'|'+Math.round(y*10000),{x,y,r:.012});}return [...unique.values()];};
-   const assembledFrame={width:options.width||1400,height:options.height||1400,markers:markers(),camera:framing};let detailFrame=null;
+   const assembledFrame={width,height,markers:[],camera:framing};let detailFrame=null;
    const captureDetail=(focus,fallback,width,height)=>{width=Math.round(width*(options.detailScale??1));height=Math.round(height*(options.detailScale??1));outline('detail');const image=capture(focus,detailCustom?new THREE.Vector3(...detailCustom.direction):fallback,width,height,detailCustom?.up,detailCustom?.zoom,!options.live);if(options.live&&options.liveFrame==='detail')liveState={bounds:focus.clone()};detailFrame={width,height,markers:markers(),camera:{direction:lastCamera.position.clone().sub(focus.getCenter(new THREE.Vector3())).normalize().toArray(),up:new THREE.Vector3(0,1,0).applyQuaternion(lastCamera.quaternion).toArray(),zoom:detailCustom?.zoom??1}};return image;};
-   if(options.detail===false)return {assembled,detail:null,framing,assembledFrame,canvas:options.live?renderer.domElement:undefined};
+   if(!drawDetail)return {assembled,detail:null,framing,assembledFrame,canvas:options.live?renderer.domElement:undefined};
    let detail=null;
    if(step.type==='chain-drive'){
     const closing=step.parts.find(p=>p.id===step.added.at(-1)?.id),closingObject=copies.get(closing?.id),chainIds=new Set(step.added.map(p=>p.id)),focus=new THREE.Box3();
@@ -158,13 +176,16 @@ export function createGuideRenderer(){
      for(const [id,obj] of copies)if(!addedSet.has(id))obj.visible=false;
      group.add(targetObject);group.updateMatrixWorld(true);
     }
-    if(!targetObject)return {assembled,detail:null,framing,assembledFrame,detailFrame};
+    if(!targetObject){if(frameOnly==='detail')assembled=captureAssembled();return {assembled,detail:null,framing,assembledFrame,detailFrame};}
     const axis=step.insertion?new THREE.Vector3(...step.insertion.axis).normalize():socket.normal;
     const offset=step.page?.frames?.detail?.explodeMM!==undefined?step.page.frames.detail.explodeMM/1000:step.insertion?Math.max(step.closingNote ? .024 : motorDrive ? .022 : .012,step.insertion.clearance/1000):Math.max(.012,Math.min(.035,new THREE.Box3().setFromObject(added).getSize(new THREE.Vector3()).length()*.45));
-    const ray=new THREE.Raycaster(point.clone().addScaledVector(axis,.001),axis,.001,offset);
-    const obstacles=[...copies].filter(([id])=>!step.added.some(p=>p.id===id)&&id!==target.id).map(([,obj])=>obj);
-    const obstructed=!referenceObject&&!step.insertion&&ray.intersectObjects(bodyMeshes(obstacles),false).length>0;
-    if(step.insertionBlocked||step.reviewRequired&&!step.insertion||obstructed){const focus=new THREE.Box3().setFromObject(added).union(new THREE.Box3().setFromObject(targetObject));return {assembled,detail:captureDetail(focus,custom?new THREE.Vector3(...custom.direction):choose(focus,point),900,900),seatedDetail:true,framing,assembledFrame,get detailFrame(){return detailFrame;}};}
+    let obstructed=false;
+    if(!step.insertionBlocked&&!step.reviewRequired&&!referenceObject&&!step.insertion){
+     const ray=new THREE.Raycaster(point.clone().addScaledVector(axis,.001),axis,.001,offset);
+     const obstacles=[...copies].filter(([id])=>!addedSet.has(id)&&id!==target.id).map(([,obj])=>obj);
+     obstructed=ray.intersectObjects(bodyMeshes(obstacles),false).length>0;
+    }
+    if(step.insertionBlocked||step.reviewRequired&&!step.insertion||obstructed){const focus=new THREE.Box3().setFromObject(added).union(new THREE.Box3().setFromObject(targetObject));return {assembled,detail:captureDetail(focus,detailCustom?null:choose(focus,point),900,900),seatedDetail:true,framing,assembledFrame,get detailFrame(){return detailFrame;}};}
     for(const [id,obj] of copies)if(addedSet.has(id)&&id!==target.id)obj.position.addScaledVector(axis,offset);group.updateMatrixWorld(true);
     const arrowPoints=[point];for(const item of step.added){if(item.id===part.id||item.id===target.id)continue;const row=step.parts.find(p=>p.id===item.id),anchor=step.parts.find(p=>p.id===row?.mate?.target),r=references[anchor?.sku]?.find(r=>r.id===row?.mate?.targetRef);if(!r)continue;const socket=worldReference(anchor,r);if(socket.normal.dot(axis)>.999)arrowPoints.push(socket.point.multiplyScalar(.001));}
     if(offset>0)for(const location of arrowPoints){const arrow=new THREE.ArrowHelper(axis.clone().negate(),location.clone().addScaledVector(axis,offset*.92),offset*.8,0xed1c24,.004,.003);group.add(arrow);for(const mesh of [arrow.line,arrow.cone]){mesh.userData.guideAnnotation=true;mesh.material.depthTest=false;mesh.material.depthWrite=false;mesh.renderOrder=1000;}owned.push(arrow.line.material,arrow.cone.material);}
@@ -180,8 +201,9 @@ export function createGuideRenderer(){
     if(size.length()>max*2&&step.added.filter(p=>p.id!==target.id).length===1){focus.setFromCenterAndSize(point.clone().addScaledVector(axis,offset/2),new THREE.Vector3(max,max,max));if(step.page?.frames?.detail?.explodeMM!==undefined)focus.union(addedBounds).expandByPoint(point);}
     const motorSocket=motorDrive&&references[part.sku]?.find(ref=>ref.id===joint.sourceRef);
     const landingPoints=motorSocket?[...markerLocations,worldReference(part,motorSocket).point.multiplyScalar(.001).addScaledVector(axis,offset)]:[];
-    detail=captureDetail(focus,custom?new THREE.Vector3(...custom.direction):choose(focus,point,step.closingNote||motorDrive?axis:null,landingPoints),900,650);
+    detail=captureDetail(focus,detailCustom?null:choose(focus,point,step.closingNote||motorDrive?axis:null,landingPoints),900,650);
    }
+   if(frameOnly==='detail'&&!detailFrame)assembled=captureAssembled();
    return {assembled,detail,framing,assembledFrame,detailFrame};
   },
   get renderCanvas(){return renderer.domElement;},

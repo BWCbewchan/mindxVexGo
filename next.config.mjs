@@ -8,6 +8,7 @@ const config={
   // CAD and vendor URLs are stable names; revalidate after a short freshness
   // window instead of leaving an obsolete kit model cached indefinitely.
   {source:'/assembly/:path*/:file(model.glb|preview.png)',headers:[{key:'Cache-Control',value:'public, max-age=3600, must-revalidate'}]},
+  {source:'/assembly/:path*/:file(parts.json|connectors.json)',headers:[{key:'Cache-Control',value:'public, max-age=300, must-revalidate'}]},
   {source:'/assembly/vendor/:path*',headers:[{key:'Cache-Control',value:'public, max-age=3600, must-revalidate'}]},
  ];},
 };

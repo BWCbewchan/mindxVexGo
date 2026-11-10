@@ -11,7 +11,7 @@ import {assemblyMatingContext,movingAssemblyIds} from './assembly-mating.js';
 import {installChainBuilder,buildChain,isChainLink} from './chain-builder.js';
 import {installConnectionSuggestions} from './connection-suggestions.js';
 import {installAutomaticGuideRepair} from './automatic-guide-repair.js';
-import {installGuideWorkbench} from './guide-workbench.js?v=guide-drive-100';
+import {installGuideWorkbench} from './guide-workbench.js?v=assembly-perf-102';
 import {SNAP_PRESETS,snapPreset,snapPosition} from './snap-settings.js';
 import {guideCamera} from './guide-camera.js';
 import {installGuidePreviews} from './guide-previews.js';
@@ -24,23 +24,24 @@ import {printDataGuide} from './data-guide.js';
 import {applyLEGOAppearance} from './lego/appearance.js';
 import {partPreviewSrc} from './part-preview.js?v=library-color-75';
 import {applyIQAppearance,iqAppearance} from './iq/color-profile.js?v=library-color-75';
-import {PLATFORM,PROJECT_ID,assetUrl} from './platform.js';
+import {PLATFORM,PROJECT_ID} from './platform.js';
 import {projectKey,saveProject,loadProject} from './project-store.js';
 import {installAssemblyAPI} from './ai-api.js?v=guide-tools-83';
 import {assertKitChange,kitReport,validateKitProfile} from './kit-policy.js';
-import {installKitSettings} from './kit-settings.js';
+import {installKitSettings} from './kit-settings.js?v=assembly-perf-102';
 import {installSimulationLauncher} from '../simulation/assembly-launcher.js';
-import {installAssemblyAssistant} from './assembly-assistant.js?v=kit-79';
+import {installAssemblyAssistant} from './assembly-assistant.js?v=assembly-perf-102';
 import {seatedConnections,groupAncestors,groupMembers,layerLocked,layerVisible,validGroupTree,groupSelection as groupParts} from './assembly-review.js';
 import {copySelection,ungroupSelection as ungroupParts} from './selection-operations.js';
-import {editGuide,stepKey} from './guide-editing.js?v=guide-spatial-101';
+import {createGuideEditor,stepKey} from './guide-editing.js?v=assembly-perf-102';
+const editGuide=createGuideEditor();
 import {installDrivePreview} from './drive-preview.js';
-import {renderLayers} from './layers-tree-panel.js?v=group-target-77';
+import {renderLayers} from './layers-tree-panel.js?v=assembly-perf-102';
 let layerAnchor=null;
-import {visibleBounds,VisibleBoxHelper} from './visible-bounds.js';
+import {visibleBounds,VisibleBoxHelper,invalidateVisibleBounds} from './visible-bounds.js?v=assembly-perf-102';
 import {installWiring} from './wiring.js?v=toggle-59';
-import {installWiring3D} from './wiring-3d.js?v=soft-cable-55';
-import {installInspectorChrome} from './inspector-chrome.js?v=guide-export-top-76';
+import {installWiring3D} from './wiring-3d.js?v=assembly-perf-102';
+import {installInspectorChrome} from './inspector-chrome.js?v=assembly-perf-102';
 import {installEditorChrome} from './editor-chrome.js?v=group-toolbar-78';
 import {installCameraNavigation} from './camera-navigation.js?v=free-nav-17';
 import {optimizeStaticModel} from './render-model.js';
@@ -48,20 +49,25 @@ import {createRenderScheduler} from './render-scheduler.js';
 import {loadPool} from './load-pool.js';
 let renderLoop=null;
 import {generateStudentGuide} from './guide-sequence.js?v=guide-drive-100';
-import {installPDFPreview} from './guide-pdf-preview.js?v=guide-drive-100';
-import {prepPaper,stepPaper,finishedPaper,readyPaperImages} from './guide-paper.js?v=guide-routes-95';
+import {installPDFPreview} from './guide-pdf-preview.js?v=assembly-perf-102';
+import {prepPaper,stepPaper,finishedPaper,readyPaperImages} from './guide-paper.js?v=assembly-perf-102';
 import {guidePage} from './guide-page-settings.js';
-import {createGuideRenderer} from './guide-renderer.js?v=guide-drive-100';
+import {createGuideRenderer} from './guide-renderer.js?v=assembly-perf-102';
 import {repairAssemblyLinks} from './repair-links.js?v=repair-depth-38';
-import {collisionClient} from './collision-client.js?v=guide-drive-100';
+import {collisionClient} from './collision-client.js?v=asset-startup-102';
 const fitChecker=collisionClient(()=>jointReferences);
 import {stagingPosition} from './staging-position.js';
 import {withElectronics as withRequiredElectronics,missingElectronics} from './electronics.js';
-import {installDirectTools} from './direct-tools.js?v=guide-tools-83';
+import {installDirectTools} from './direct-tools.js?v=assembly-perf-102';
 import {installQuickAttach} from './quick-attach.js?v=kit-79';
 import {linkedPoses,normalizeMatedJoints} from './mating.js?v=fit-tolerance-36';
 import {constrainJoints} from './joint-constraints.js?v=compatibility-27';
-const jointReferences=(await(await fetch(assetUrl('connectors.json?v=compatibility-27'), {cache:'no-store'})).json()).parts;
+import {platformConnectorsUrl} from './platform-registry.js?v=assembly-perf-102';
+import {readAssemblyCatalog} from './project-catalog.js?v=assembly-perf-102';
+const [jointReferences,initialCatalog]=await Promise.all([
+ fetch(platformConnectorsUrl(PLATFORM.id)).then(response=>{if(!response.ok)throw Error('Không tải được dữ liệu khớp CAD.');return response.json();}).then(data=>data.parts),
+ readAssemblyCatalog(PLATFORM.id),
+]);
 import {installConnectTool} from './connect-tool.js?v=compatibility-27';
 import * as THREE from 'three';
 import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
@@ -70,8 +76,7 @@ import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 const $=id=>document.getElementById(id),copy=v=>structuredClone(v),key=PROJECT_ID?projectKey(PLATFORM.id,PROJECT_ID):['api-cart','competition','original-platform'].includes(new URLSearchParams(location.search).get('demo'))?'mindx-vexgo-demo-'+new URLSearchParams(location.search).get('demo'):PLATFORM.id==='lego'?'mindx-lego-assembly-v1':PLATFORM.id==='vexiq'?'mindx-vexiq-assembly-v1':'mindx-vexgo-assembly-v1';
 let shownParts=null,repairReportParts=null,dataView=null;
 let assemblyAssistant=null;
-let guideContactStamp='',guideContactRows=[];
-function guideContacts(){const stamp=JSON.stringify(project.parts);if(stamp!==guideContactStamp){guideContactStamp=stamp;guideContactRows=seatedConnections(project.parts,jointReferences);}return guideContactRows;}
+function guideContacts(){return assemblyAssistant?.data().connections||seatedConnections(project.parts,jointReferences);}
 let automaticGuideRepair=null;
 let exportingGuide=false,guidePreviews=null,guideWorkbench=null,pdfPreview=null,liveGuideRenderer=null,previewRenderer=null,previewStepIndex=-1;
 const printMedia=matchMedia('print');
@@ -96,16 +101,29 @@ const nativePointerHover=controls.pointerHover.bind(controls);controls.pointerHo
 const box=new VisibleBoxHelper(new THREE.Object3D(),0x1686ed);box.visible=false;scene.add(box);
 const loader=new GLTFLoader(),ray=new THREE.Raycaster(),mouse=new THREE.Vector2();
 function status(message){$('status').textContent=message;}
-function visibleTransformAxisAt(pointer){if(controls.getMode()!=='translate')return null;const rect=renderer.domElement.getBoundingClientRect();if(!rect.width||!rect.height)return null;camera.updateMatrixWorld(true);scene.updateMatrixWorld(true);const px=rect.left+(pointer.x+1)*rect.width/2,py=rect.top+(1-pointer.y)*rect.height/2,root=controls.getHelper();let nearest=null;root.traverse(object=>{if(!object.isMesh||!['X','Y','Z'].includes(object.name)||object.tag==='helper')return;for(let parent=object;parent&&parent!==root;parent=parent.parent)if(!parent.visible)return;const materials=Array.isArray(object.material)?object.material:[object.material];if(!materials.some(material=>material?.opacity===undefined||material.opacity>.8))return;const bounds=new THREE.Box3().setFromObject(object);if(bounds.isEmpty())return;let left=Infinity,top=Infinity,right=-Infinity,bottom=-Infinity;for(const x of [bounds.min.x,bounds.max.x])for(const y of [bounds.min.y,bounds.max.y])for(const z of [bounds.min.z,bounds.max.z]){const point=new THREE.Vector3(x,y,z).project(camera);if(point.z<-1||point.z>1)continue;const sx=rect.left+(point.x+1)*rect.width/2,sy=rect.top+(1-point.y)*rect.height/2;left=Math.min(left,sx);right=Math.max(right,sx);top=Math.min(top,sy);bottom=Math.max(bottom,sy);}const dx=Math.max(left-px,0,px-right),dy=Math.max(top-py,0,py-bottom);if(dx>9||dy>9)return;const distance=Math.hypot(dx,dy);if(!nearest||distance<nearest.distance)nearest={axis:object.name,distance};});return nearest?.axis||null;}
+function visibleTransformAxisAt(pointer){if(controls.getMode()!=='translate')return null;const rect=renderer.domElement.getBoundingClientRect();if(!rect.width||!rect.height)return null;camera.updateMatrixWorld(true);const px=rect.left+(pointer.x+1)*rect.width/2,py=rect.top+(1-pointer.y)*rect.height/2,root=controls.getHelper();root.updateMatrixWorld(true);let nearest=null;root.traverse(object=>{if(!object.isMesh||!['X','Y','Z'].includes(object.name)||object.tag==='helper')return;for(let parent=object;parent&&parent!==root;parent=parent.parent)if(!parent.visible)return;const materials=Array.isArray(object.material)?object.material:[object.material];if(!materials.some(material=>material?.opacity===undefined||material.opacity>.8))return;const bounds=new THREE.Box3().setFromObject(object);if(bounds.isEmpty())return;let left=Infinity,top=Infinity,right=-Infinity,bottom=-Infinity;for(const x of [bounds.min.x,bounds.max.x])for(const y of [bounds.min.y,bounds.max.y])for(const z of [bounds.min.z,bounds.max.z]){const point=new THREE.Vector3(x,y,z).project(camera);if(point.z<-1||point.z>1)continue;const sx=rect.left+(point.x+1)*rect.width/2,sy=rect.top+(1-point.y)*rect.height/2;left=Math.min(left,sx);right=Math.max(right,sx);top=Math.min(top,sy);bottom=Math.max(bottom,sy);}const dx=Math.max(left-px,0,px-right),dy=Math.max(top-py,0,py-bottom);if(dx>9||dy>9)return;const distance=Math.hypot(dx,dy);if(!nearest||distance<nearest.distance)nearest={axis:object.name,distance};});return nearest?.axis||null;}
 let collisionTimer=null,collisionReport={issues:[],truncated:false};
 const issuePanel=document.createElement('section');issuePanel.className='collision-panel';issuePanel.setAttribute('aria-label','Fit review');$('precision-fields').after(issuePanel,$('warnings'));
 const protection=document.createElement('label'),protectInput=document.createElement('input');protectInput.type='checkbox';protectInput.checked=true;protectInput.id='collision-protection';protection.append(protectInput,document.createTextNode(' Prevent new body penetration'));document.querySelector('nav').append(protection);
 function inspectFit(parts=preview?(shownParts||project.parts):project.parts){return fitChecker.check(parts,objects);}
-function partName(part){return part?.label&&part.label!==part.sku&&!/^\d{3}-\d{4}-/.test(part.label)?part.label:catalog.find(item=>item.id===part?.sku)?.name||part?.sku||'Part';}
-function instanceName(part){const name=partName(part),same=project.parts.filter(p=>partName(p)===name);return same.length>1?`${name} · ${same.findIndex(p=>p.id===part.id)+1}`:name;}
+let indexedCatalog=null,catalogSize=-1,catalogById=new Map(),instanceNames=new Map(),instanceNamesKey='',instanceNamesCatalog=null;
+function catalogIndex(){
+ if(indexedCatalog!==catalog||catalogSize!==catalog.length){indexedCatalog=catalog;catalogSize=catalog.length;catalogById=new Map(catalog.map(part=>[part.id,part]));}
+ return catalogById;
+}
+function partName(part){return part?.label&&part.label!==part.sku&&!/^\d{3}-\d{4}-/.test(part.label)?part.label:catalogIndex().get(part?.sku)?.name||part?.sku||'Part';}
+function refreshInstanceNames(){
+ const key=JSON.stringify([catalog.length,project.parts.map(p=>[p.id,p.sku,p.label])]);
+ if(key===instanceNamesKey&&instanceNamesCatalog===catalog)return;
+ instanceNamesKey=key;instanceNamesCatalog=catalog;instanceNames=new Map();
+ const groups=new Map();
+ for(const part of project.parts){const name=partName(part);if(!groups.has(name))groups.set(name,[]);groups.get(name).push(part.id);}
+ for(const [name,ids] of groups)ids.forEach((id,i)=>instanceNames.set(id,ids.length>1?`${name} · ${i+1}`:name));
+}
+function instanceName(part){return instanceNames.get(part?.id)||partName(part);}
 function groupFor(part){return project.groups.find(group=>group.id===part?.groupId);}
 function locked(part){return layerLocked(project,part);}
-function selectLayerGroup(id,activeId){const group=project.groups.find(group=>group.id===id),ids=groupMembers(project,id).map(part=>part.id);if(!group||!ids.length)return false;select(ids.includes(activeId)?activeId:ids.at(-1));selectedIds=new Set(ids);selectedGroupId=id;renderLists();return true;}
+function selectLayerGroup(id,activeId){const group=project.groups.find(group=>group.id===id),ids=groupMembers(project,id).map(part=>part.id);if(!group||!ids.length)return false;select(ids.includes(activeId)?activeId:ids.at(-1),false,false);selectedIds=new Set(ids);selectedGroupId=id;renderLists();return true;}
 function selectGroupMember(id){const part=project.parts.find(row=>row.id===id),group=groupFor(part);if(!group){select(id);return false;}return selectLayerGroup(group.id,id);}
 function cleanGroups(){const used=new Set(project.parts.flatMap(part=>[part.groupId,...groupAncestors(project,part).map(g=>g.id)]).filter(Boolean));project.groups=project.groups.filter(group=>used.has(group.id));}
 const toolOptions=document.createElement('details');toolOptions.className='tool-options';
@@ -141,17 +159,17 @@ async function prepareGuideObjects(step,kitId=project.kit?.kitId){
  });
  return new Map(parts.map((p,i)=>[p.id,models[i]]));
 }
-async function renderGuideCard(step,options={}){const map=await prepareGuideObjects(step,Object.hasOwn(options,'kitId')?options.kitId||null:project.kit?.kitId);if(options.alive&&!options.alive())return null;previewRenderer??=createGuideRenderer();const current=new Map(project.parts.map(p=>[p.id,p])),same=step.parts.every(p=>JSON.stringify([p.position,p.rotation])===JSON.stringify([current.get(p.id)?.position,current.get(p.id)?.rotation]));const contacts=same?guideContacts():seatedConnections(step.parts,jointReferences);if(options.frame==='detail'){const shot=previewRenderer.render(map,step,jointReferences,{width:320,height:240,detailScale:.4,detail:true,live:true,liveFrame:'detail',contacts});previewRenderer.drawView(shot.detailFrame?.camera||shot.framing,320,240);return previewRenderer.renderCanvas.toDataURL('image/png');}return previewRenderer.render(map,step,jointReferences,{width:options.width||1000,height:options.height||680,detail:false,contacts});}
+async function renderGuideCard(step,options={}){const map=await prepareGuideObjects(step,Object.hasOwn(options,'kitId')?options.kitId||null:project.kit?.kitId);if(options.alive&&!options.alive())return null;previewRenderer??=createGuideRenderer();const current=new Map(project.parts.map(p=>[p.id,p])),same=step.parts.every(p=>JSON.stringify([p.position,p.rotation])===JSON.stringify([current.get(p.id)?.position,current.get(p.id)?.rotation]));const contacts=same?guideContacts():seatedConnections(step.parts,jointReferences);if(options.frame==='detail'){const shot=previewRenderer.render(map,step,jointReferences,{width:320,height:240,detailScale:.4,frameOnly:'detail',contacts});return shot.detail||shot.assembled;}return previewRenderer.render(map,step,jointReferences,{width:options.width||1000,height:options.height||680,detail:false,contacts});}
 guidePreviews=installGuidePreviews({enabled:!renderer.isDataRenderer,prepare:prepareGuideObjects,render(map,step){previewRenderer??=createGuideRenderer();return previewRenderer.render(map,step,jointReferences,{width:400,height:300,detail:false,contacts:guideContacts()}).assembled;}});
 guideWorkbench=installGuideWorkbench({platform:PLATFORM.id,enabled:!renderer.isDataRenderer,suspended:()=>!!pdfPreview?.active(),appearance:()=>project.kit?.kitId||'',live:()=>project.editorSettings?.liveGuidePreview!==false,setLive(value){checkpoint();project.editorSettings={...project.editorSettings,liveGuidePreview:!!value};save(false);guideUIStamp='';renderStudentGuide();},render:renderGuideCard,prepareLive:async(step,appearance,alive)=>{const map=await prepareGuideObjects(step,appearance||null);if(!alive())return null;liveGuideRenderer??=createGuideRenderer();const shot=liveGuideRenderer.render(map,{...step,view:'auto',camera:undefined},jointReferences,{width:480,height:360,detail:true,live:true,liveFrame:'detail',contacts:guideContacts()});return {canvas:liveGuideRenderer.renderCanvas,framing:shot.detailFrame?.camera||shot.framing,draw:(camera,w,h)=>liveGuideRenderer.drawView(camera,w,h),thumbnail:()=>liveGuideRenderer.thumbnail()};},sceneCamera:()=>guideCamera({direction:camera.position.clone().sub(orbit.target).normalize().toArray(),up:new THREE.Vector3(0,1,0).applyQuaternion(camera.quaternion).toArray(),zoom:1}),camera(key,value,all){const preferences=copy(project.guidePreferences||{});preferences.steps||={};const keys=all?studentGuide.steps.map(stepKey):[key];if(all&&value)preferences.defaultCamera=value;for(const id of keys){const row={...preferences.steps[id]},page=copy(row.page||{});page.frames||={};page.frames.detail={...page.frames.detail};if(value)page.frames.detail.camera=value;else delete page.frames.detail.camera;row.page=page;Object.defineProperty(preferences.steps,id,{value:row,enumerable:true,writable:true,configurable:true});}return changeGuidePreferences(preferences,{allowPreview:true,cameraOnly:true});},suggest:()=>connectionSuggestions?.open(),reorder:reorderInlineGuide,export:zip=>exportStudentGuide({zip})});$('guide-summary').before(guideWorkbench.element);const guideAdvanced=node('details');guideAdvanced.className='guide-advanced-settings';const guideAdvancedLabel=node('summary','Thứ tự & ghi chú bước');guideAdvanced.append(guideAdvancedLabel);$('guide-steps').before(guideAdvanced);guideAdvanced.append($('guide-steps'));
 let pdfOrbitRenderer=null;
 async function preparePDFOrbit(step,name,alive){const map=await prepareGuideObjects(step);if(!alive())return null;pdfOrbitRenderer??=createGuideRenderer();pdfOrbitRenderer.render(map,step,jointReferences,{live:true,liveFrame:name,detail:name==='detail',width:480,height:360,detailScale:.55,contextEdges:step.parts.length<=32,contacts:guideContacts()});return {canvas:pdfOrbitRenderer.renderCanvas,draw:(camera,w,h)=>pdfOrbitRenderer.drawView(camera,w,h)};}
-async function renderPDFStep(step,{quick=false,thumbnail=false,alive}={}){
+async function renderPDFStep(step,{quick=false,thumbnail=false,frame,alive}={}){
  const map=await prepareGuideObjects(step);
  if(alive&&!alive())return null;
  previewRenderer??=createGuideRenderer();
  const width=thumbnail?200:quick?420:900;
- return previewRenderer.render(map,step,jointReferences,{markers2D:true,contacts:guideContacts(),width,height:width,detailScale:thumbnail?.23:quick?.5:1,contextEdges:!thumbnail&&step.parts.length<=32});
+ return previewRenderer.render(map,step,jointReferences,{markers2D:true,frameOnly:frame,contacts:guideContacts(),width,height:width,detailScale:thumbnail?.23:quick?.5:1,contextEdges:!thumbnail&&step.parts.length<=32});
 }
 pdfPreview=installPDFPreview({platform:PLATFORM,guide:()=>studentGuide,project:()=>copy(project),catalog:()=>catalog,render:renderPDFStep,prepareLive:preparePDFOrbit,completed:async({thumbnail=false,alive}={})=>{const map=await prepareGuideObjects({parts:project.parts});if(alive&&!alive())return null;previewRenderer??=createGuideRenderer();return previewRenderer.completed(map,thumbnail?{width:280,height:153,contextEdges:false}:{width:1000,height:546,contextEdges:project.parts.length<=32});},reorder(from,to){
  const result=reorderInlineGuide(from,to);
@@ -171,7 +189,7 @@ function saveExplodeForAll(mm){
 }
 async function openPDFPreview(){
  if(busy)return;
- renderStudentGuide();
+ renderStudentGuide(true);
  if(!studentGuide.ready){status(studentGuide.blockers.join(' '));return;}
  if(renderer.isDataRenderer)return exportStudentGuide();
  return pdfPreview.open(guideWorkbench.currentIndex(),ensureGuideAudit);
@@ -220,28 +238,87 @@ async function guardTransform({autoAttach=true}={}){
  }finally{setBusy(false);renderLists();}
 }
 let pendingProjectSaves=0;
-async function save(check=true,options={}){pendingProjectSaves++;try{try{if(check&&!await guardTransform(options))return false;}catch(error){status('Fit check failed. Edit not saved: '+error.message);return false;}try{project.connections=assemblyAssistant?.data().connections||[];renderStudentGuide();project.steps=[];project.platform=PLATFORM.id;if(PROJECT_ID){saveProject(PLATFORM.id,PROJECT_ID,project);window.parent.postMessage({type:'assembly-project-saved',title:project.title,projectId:PROJECT_ID,platform:PLATFORM.id},location.origin);if(!options.skipThumbnail)scheduleProjectThumbnail();}else localStorage.setItem(key,JSON.stringify(project));status(`Draft saved locally · ${project.parts.length} parts · ${studentGuide.ready?`${studentGuide.steps.length} guide steps generated`:'guide needs review'}`);if(!options.skipAutoRepair)automaticGuideRepair?.schedule();return true;}catch{status('Browser storage is full. Save project to a file.');return false;}}finally{pendingProjectSaves--;}}
+async function save(check=true,options={}){pendingProjectSaves++;try{try{if(check&&!await guardTransform(options))return false;}catch(error){status('Fit check failed. Edit not saved: '+error.message);return false;}try{project.connections=assemblyAssistant?.data().connections||[];renderStudentGuide();project.steps=[];project.platform=PLATFORM.id;if(PROJECT_ID){saveProject(PLATFORM.id,PROJECT_ID,project);window.parent.postMessage({type:'assembly-project-saved',title:project.title,projectId:PROJECT_ID,platform:PLATFORM.id},location.origin);if(!options.skipThumbnail)scheduleProjectThumbnail();}else localStorage.setItem(key,JSON.stringify(project));status(`Draft saved locally · ${project.parts.length} parts · ${document.body.classList.contains('guide-active')&&studentGuide.ready?`${studentGuide.steps.length} guide steps generated`:'changes saved'}`);if(!options.skipAutoRepair)automaticGuideRepair?.schedule();return true;}catch{status('Browser storage is full. Save project to a file.');return false;}}finally{pendingProjectSaves--;}}
 let thumbnailTimer=null;function scheduleProjectThumbnail(){if(renderer.isDataRenderer)return;clearTimeout(thumbnailTimer);if(!PROJECT_ID||!project.parts.length)return;thumbnailTimer=setTimeout(()=>{if(busy||preview||controls.dragging||exportingGuide||pdfPreview?.active())return;try{const canvas=document.createElement('canvas');canvas.width=400;canvas.height=240;canvas.getContext('2d').drawImage(renderer.domElement,0,0,400,240);saveProject(PLATFORM.id,PROJECT_ID,project,{thumbnail:canvas.toDataURL('image/jpeg',.7)});}catch{}},1500);}
 function withElectronics(parts,item,entries){if(PLATFORM.id==='lego'&&!item.legoKitId)item.legoKitId=legoPartKit(entries.find(p=>p.id===item.sku),project.kit);if(!project.kit?.enforce)return withRequiredElectronics(parts,item,entries);const stock=new Map(kitReport([],entries,project.kit).flatMap(row=>row.skus.map(sku=>[sku,row.available])));return withRequiredElectronics(parts,item,entries,undefined,sku=>(stock.get(sku)||0)>0);}
 function assertAdditions(additions){assertKitChange(project.parts,[...project.parts,...additions],catalog,project.kit);}
 function checkpoint(){history.push(copy(project));if(history.length>60)history.shift();future=[];}
-function setBusy(value){busy=value;controls.enabled=!value;for(const el of document.querySelectorAll('#objects button,#parts button,#groups button,#groups input,#guide-steps button'))el.disabled=value||preview;if($('connect'))$('connect').disabled=value||preview||!selected||locked(project.parts.find(part=>part.id===selected));$('save').disabled=value;for(const el of $('transforms').querySelectorAll('input'))el.disabled=value;if($('guide-return'))$('guide-return').disabled=value;for(const id of ['open','export','guide-export','guide-repair','new','move','rotate','group','ungroup','duplicate','delete','undo','redo','fit','title','lego-ldr-import','lego-ldr-export','guide-zip','guide-zip-menu','guide-workbench-open','guide-workbench-menu'])if($(id))$(id).disabled=value;kitSettings?.render();}
-async function model(id,instanceColor,kitId){if(PLATFORM.id==='lego')kitId||=legoPartKit(catalog.find(p=>p.id===id),project.kit);if(!cache.has(id))cache.set(id,loader.loadAsync(partModelUrl(PLATFORM.id,id)).then(g=>{g.scene.traverse(obj=>{if(!obj.isMesh)return;obj.castShadow=false;obj.receiveShadow=false;for(const material of Array.isArray(obj.material)?obj.material:[obj.material]){if(material.isMeshStandardMaterial){material.metalness=0;material.roughness=.85;material.needsUpdate=true;}}});const source=partSource(PLATFORM.id,id);if(source.platform==='vexgo'&&markOriginalGOCables(g.scene,source.id,{[source.id]:jointReferences[id]}))return g.scene;if(source.platform==='vexiq')applyIQAppearance(g.scene,{...catalog.find(part=>part.id===id),id:source.id,sku:source.id});return optimizeStaticModel(g.scene);}));const instance=(await cache.get(id)).clone(true);if(PLATFORM.id==='lego')applyLEGOAppearance(instance,catalog.find(p=>p.id===id),kitId,instanceColor);return instance;}
+function setBusy(value){busy=value;controls.enabled=!value;for(const el of document.querySelectorAll('#objects button,#groups button,#groups input,#guide-steps button'+(kitSettings?'':',#parts button')))el.disabled=value||preview;if($('connect'))$('connect').disabled=value||preview||!selected||locked(project.parts.find(part=>part.id===selected));$('save').disabled=value;for(const el of $('transforms').querySelectorAll('input'))el.disabled=value;if($('guide-return'))$('guide-return').disabled=value;for(const id of ['open','export','guide-export','guide-repair','new','move','rotate','group','ungroup','duplicate','delete','undo','redo','fit','title','lego-ldr-import','lego-ldr-export','guide-zip','guide-zip-menu','guide-workbench-open','guide-workbench-menu'])if($(id))$(id).disabled=value;kitSettings?.render();}
+const modelKeys=new WeakMap(),embeddedCables=new WeakMap();
+function effectiveModelKit(id,kitId){return PLATFORM.id==='lego'?kitId||legoPartKit(catalogIndex().get(id),project.kit):null;}
+function modelKey(id,color,kitId){return JSON.stringify([id,color,kitId]);}
+function setEmbeddedCableVisibility(obj,visible){
+ let cables=embeddedCables.get(obj);
+ if(!cables){cables=[];obj.traverse(mesh=>{if(mesh.userData.cable)cables.push(mesh);});embeddedCables.set(obj,cables);}
+ let changed=false;
+ for(const cable of cables)if(cable.visible!==visible){cable.visible=visible;changed=true;}
+ if(changed)invalidateVisibleBounds(obj);
+}
+async function model(id,instanceColor,kitId){
+ kitId=effectiveModelKit(id,kitId);
+ if(!cache.has(id)){
+  const task=loader.loadAsync(partModelUrl(PLATFORM.id,id)).then(({scene:modelScene})=>{
+   modelScene.traverse(obj=>{if(!obj.isMesh)return;obj.castShadow=false;obj.receiveShadow=false;for(const material of Array.isArray(obj.material)?obj.material:[obj.material]){if(material.isMeshStandardMaterial){material.metalness=0;material.roughness=.85;material.needsUpdate=true;}}});
+   const source=partSource(PLATFORM.id,id);
+   if(source.platform==='vexgo'&&markOriginalGOCables(modelScene,source.id,{[source.id]:jointReferences[id]}))return modelScene;
+   if(source.platform==='vexiq')applyIQAppearance(modelScene,{...catalogIndex().get(id),id:source.id,sku:source.id});
+   return optimizeStaticModel(modelScene);
+  }).catch(error=>{if(cache.get(id)===task)cache.delete(id);throw error;});
+  cache.set(id,task);
+ }
+ const instance=(await cache.get(id)).clone(true);
+ if(PLATFORM.id==='lego')applyLEGOAppearance(instance,catalogIndex().get(id),kitId,instanceColor);
+ modelKeys.set(instance,modelKey(id,instanceColor,kitId));
+ return instance;
+}
 function moveJoined(before,id){const changed=project.parts.find(p=>p.id===id),ids=dragStart?.assemblyIds||[...selectedIds],graph=!dragStart?.assemblyIds&&$('move-joined').checked?before:before.map(p=>({...p,mate:undefined}));for(const [otherId,pose] of linkedPoses(graph,id,changed,ids)){const part=project.parts.find(p=>p.id===otherId);if(locked(part))continue;Object.assign(part,pose);const obj=objects.get(otherId);if(obj)transform(obj,part);}}
-function transform(obj,part){renderLoop?.invalidate();obj.position.fromArray(part.position.map(v=>v/1000));obj.rotation.set(...part.rotation.map(THREE.MathUtils.degToRad));obj.updateMatrixWorld(true);}
-async function show(parts=project.parts){assemblyAssistant?.reset();shownParts=parts;setBusy(true);controls.detach();box.visible=false;for(const h of highlights){scene.remove(h);h.geometry.dispose();h.material.dispose();}highlights=[];for(const obj of objects.values())scene.remove(obj);objects.clear();try{const models=await loadPool(parts,part=>model(part.sku,part.ldrawColorHex,part.legoKitId));for(const [index,part] of parts.entries()){const obj=models[index];obj.userData.instance=part.id;const cableMeshes=[];obj.traverse(mesh=>{if(mesh.userData.cable)cableMeshes.push(mesh);});for(const mesh of cableMeshes)mesh.visible=false;transform(obj,part);obj.visible=preview||layerVisible(project,part);objects.set(part.id,obj);scene.add(obj);}select(null);renderLists();}catch(error){status('Could not load CAD part: '+error.message);}finally{setBusy(false);renderLists();}}
-function refreshSelection(){const ids=new Set(selectedIds),groupId=selectedGroupId;select(selected);selectedIds=ids;const members=groupMembers(project,groupId);selectedGroupId=project.groups.some(group=>group.id===groupId)&&members.length===ids.size&&members.every(part=>ids.has(part.id))?groupId:null;renderLists();}
-function select(id,additive=false){selectedGroupId=null;if(quickAttach?.active())quickAttach.close();if(connectTool?.active())connectTool.cancel();if(additive&&id){if(selectedIds.has(id))selectedIds.delete(id);else selectedIds.add(id);if(!selectedIds.has(id))id=[...selectedIds].at(-1)||null;}else selectedIds=new Set(id?[id]:[]);selected=id;controls.detach();box.visible=false;const part=project.parts.find(p=>p.id===id),obj=objects.get(id);$('selection').textContent=part?`${partName(part)}${groupFor(part)?` · ${groupFor(part).name}`:''}${locked(part)?' · Locked':''}`:'Select a part in the scene.';$('transforms').replaceChildren();if(part&&obj&&!preview&&!locked(part)){controls.attach(obj);box.setFromObject(obj);box.visible=true;for(const kind of ['position','rotation'])for(let axis=0;axis<3;axis++){const label=document.createElement('label');label.textContent=(kind==='position'?'mm ':'° ')+['X','Y','Z'][axis];const input=document.createElement('input');input.type='number';input.step=kind==='position'?'1':'15';input.value=part[kind][axis].toFixed(2);let committed=input.value;const commit=()=>{if(input.value===committed)return;committed=input.value;const v=Number(input.value);if(!Number.isFinite(v)||Math.abs(v)>10000){input.value=part[kind][axis];return;}const before=copy(project.parts);checkpoint();part[kind][axis]=v;transform(obj,part);moveJoined(before,part.id);box.update();save();warnings();};input.onchange=commit;input.onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();commit();}};label.append(input);$('transforms').append(label);}}renderLists();}
+const rad=THREE.MathUtils.degToRad;
+function sameScenePose(obj,{position:[x,y,z],rotation:[rx,ry,rz]}){
+ return obj.position.x===x/1000&&obj.position.y===y/1000&&obj.position.z===z/1000&&obj.rotation.x===rad(rx)&&obj.rotation.y===rad(ry)&&obj.rotation.z===rad(rz);
+}
+function transform(obj,{position:[x,y,z],rotation:[rx,ry,rz]}){
+ obj.position.set(x/1000,y/1000,z/1000);obj.rotation.set(rad(rx),rad(ry),rad(rz));obj.updateMatrixWorld(true);
+ renderLoop?.invalidate();
+}
+async function show(parts=project.parts){
+ assemblyAssistant?.reset();setBusy(true);controls.detach();box.visible=false;
+ for(const h of highlights){scene.remove(h);h.geometry.dispose();h.material.dispose();}highlights=[];
+ try{
+  const next=new Map();
+  const missing=parts.filter(part=>{
+   const existing=objects.get(part.id);
+   if(existing&&modelKeys.get(existing)===modelKey(part.sku,part.ldrawColorHex,effectiveModelKit(part.sku,part.legoKitId))){next.set(part.id,existing);return false;}
+   return true;
+  });
+  const models=await loadPool(missing,part=>model(part.sku,part.ldrawColorHex,part.legoKitId));
+  missing.forEach((part,i)=>next.set(part.id,models[i]));
+  for(const [id,obj] of objects)if(next.get(id)!==obj)scene.remove(obj);
+  objects.clear();shownParts=parts;
+  for(const part of parts){
+   const obj=next.get(part.id);obj.userData.instance=part.id;
+   setEmbeddedCableVisibility(obj,!preview&&!part.wiring&&!project.hideCables);
+   if(!obj.parent||!sameScenePose(obj,part))transform(obj,part);
+   obj.visible=preview||layerVisible(project,part);objects.set(part.id,obj);
+   if(obj.parent!==scene)scene.add(obj);
+  }
+  select(null,false,false);
+ }catch(error){status('Could not load CAD part: '+error.message);}
+ finally{setBusy(false);renderLists();renderLoop?.invalidate();}
+}
+function refreshSelection(){const ids=new Set(selectedIds),groupId=selectedGroupId;select(selected,false,false);selectedIds=ids;const members=groupMembers(project,groupId);selectedGroupId=project.groups.some(group=>group.id===groupId)&&members.length===ids.size&&members.every(part=>ids.has(part.id))?groupId:null;renderLists();}
+function select(id,additive=false,render=true){selectedGroupId=null;if(quickAttach?.active())quickAttach.close();if(connectTool?.active())connectTool.cancel();if(additive&&id){if(selectedIds.has(id))selectedIds.delete(id);else selectedIds.add(id);if(!selectedIds.has(id))id=[...selectedIds].at(-1)||null;}else selectedIds=new Set(id?[id]:[]);selected=id;controls.detach();box.visible=false;const part=project.parts.find(p=>p.id===id),obj=objects.get(id);$('selection').textContent=part?`${partName(part)}${groupFor(part)?` · ${groupFor(part).name}`:''}${locked(part)?' · Locked':''}`:'Select a part in the scene.';$('transforms').replaceChildren();if(part&&obj&&!preview&&!locked(part)){controls.attach(obj);box.setFromObject(obj);box.visible=true;for(const kind of ['position','rotation'])for(let axis=0;axis<3;axis++){const label=document.createElement('label');label.textContent=(kind==='position'?'mm ':'° ')+['X','Y','Z'][axis];const input=document.createElement('input');input.type='number';input.step=kind==='position'?'1':'15';input.value=part[kind][axis].toFixed(2);let committed=input.value;const commit=()=>{if(input.value===committed)return;committed=input.value;const v=Number(input.value);if(!Number.isFinite(v)||Math.abs(v)>10000){input.value=part[kind][axis];return;}const before=copy(project.parts);checkpoint();part[kind][axis]=v;transform(obj,part);moveJoined(before,part.id);box.update();save();warnings();};input.onchange=commit;input.onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();commit();}};label.append(input);$('transforms').append(label);}}if(render)renderLists();}
 function warnings(){
  clearTimeout(collisionTimer);$('warnings').textContent='Đang kiểm tra hình học…';
- collisionTimer=setTimeout(async()=>{
+ const check=async()=>{
+  if(busy||controls.dragging||directTools?.active()){collisionTimer=setTimeout(check,140);return;}
   try{const stamp=JSON.stringify(project.parts),result=await inspectFit();if(stamp!==JSON.stringify(project.parts))return;collisionReport=result;issuePanel.replaceChildren(node('h3','Kiểm tra lắp ráp'));
    const expected=result.issues.filter(i=>i.kind==='joint'),remaining=result.issues.filter(i=>i.kind!=='joint');
    for(const issue of remaining){const button=node('button');button.className='fit-issue '+issue.kind;const names=[issue.a,issue.b].map(id=>instanceName(project.parts.find(p=>p.id===id)));button.textContent=(issue.kind==='penetration'?'Cấn thân: ':'Tiếp xúc cần xem: ')+names.join(' / ');button.onclick=()=>{select(issue.a);select(issue.b,true);status('Kiểm tra cặp đang chọn; đổi góc nhìn để thấy vùng tiếp xúc.');};issuePanel.append(button);}
    if(expected.length){const details=node('details');details.append(node('summary',`${expected.length} tiếp xúc tại khớp lắp`),node('p','Tiếp xúc chốt/lỗ có thể là bình thường. Xem từng khớp và độ sâu ở phần Khớp lắp & giữ trục.'));issuePanel.append(details);}
    const hard=result.issues.filter(i=>i.kind==='penetration').length;$('warnings').textContent=`${hard} lỗi cấn thân phát hiện · ${expected.length} tiếp xúc tại khớp${result.truncated?' · danh sách rút gọn':''}. Kiểm tra CAD có lấy mẫu, cần thử độ chắc bằng bộ thật.`;assemblyAssistant?.render();
   }catch(error){$('warnings').textContent='Chưa kiểm tra được: '+error.message;}
- },120);
+ };
+ collisionTimer=setTimeout(check,120);
 }
 
 function renderGroups(){const list=$('groups');if(!list)return;list.replaceChildren();$('group-count').textContent=String(project.groups.length);for(const group of project.groups){const row=document.createElement('div');row.className='layer-row';const selectButton=document.createElement('button');selectButton.className='layer-select';selectButton.textContent=group.name;selectButton.setAttribute('aria-label',`Select group ${group.name}`);selectButton.setAttribute('aria-pressed',String(project.parts.filter(part=>part.groupId===group.id).every(part=>selectedIds.has(part.id))&&selectedIds.size>0));selectButton.onclick=()=>{const ids=project.parts.filter(part=>part.groupId===group.id).map(part=>part.id);if(!ids.length)return;selectGroupMember(ids[0]);};const rename=document.createElement('input');rename.value=group.name;rename.maxLength=60;rename.setAttribute('aria-label',`Rename group ${group.name}`);rename.onchange=()=>{const name=rename.value.trim();if(!name){rename.value=group.name;return;}checkpoint();group.name=name;renderLists();save();};const visible=document.createElement('button');visible.textContent=group.visible?'◉':'○';visible.title=group.visible?'Hide group':'Show group';visible.setAttribute('aria-label',`${group.visible?'Hide':'Show'} group ${group.name}`);visible.onclick=()=>{checkpoint();group.visible=!group.visible;for(const part of project.parts.filter(part=>part.groupId===group.id)){const obj=objects.get(part.id);if(obj)obj.visible=group.visible;}if(!group.visible&&[...selectedIds].some(id=>project.parts.some(part=>part.id===id&&part.groupId===group.id)))select(null);else renderLists();save();};const lock=document.createElement('button');lock.textContent=group.locked?'🔒':'🔓';lock.title=group.locked?'Unlock group':'Lock group';lock.setAttribute('aria-label',`${group.locked?'Unlock':'Lock'} group ${group.name}`);lock.setAttribute('aria-pressed',String(group.locked));lock.onclick=()=>{checkpoint();group.locked=!group.locked;refreshSelection();save();};const remove=document.createElement('button');remove.textContent='Ungroup';remove.title=`Ungroup ${group.name}`;remove.onclick=()=>ungroup(group.id);for(const control of [selectButton,rename,visible,lock,remove])control.disabled=busy||preview;row.append(selectButton,rename,visible,lock,remove);list.append(row);}}
@@ -274,10 +351,12 @@ let guideDraftStamp='',guideDrafts=new Map();
 const guidePaths=()=>guideAuditResult?.stamp===JSON.stringify(project.parts)?guideAuditResult.paths:null;
 function baseStudentGuide(preferences=project.guidePreferences){
  const poseStamp=JSON.stringify(project.parts),audited=guideAuditResult?.stamp===poseStamp?guideAuditResult:null,checked=audited?.guide;
- // A saved manual order can refer to step batches from the draft plan.
- const manualKeys=new Set([...(preferences?.order||[]),...Object.keys(preferences?.steps||{})]);
+ // A saved manual order can refer to step batches from the draft plan. Per-step
+ // page/camera edits are presentation only: they follow matching steps and must
+ // never pull the guide back to an unchecked draft sequence.
+ const manualKeys=new Set(preferences?.order||[]);
  const matchingKeys=guide=>guide?.ready?guide.steps.reduce((count,step)=>count+Number(manualKeys.has(stepKey(step))),0):-1;
- const useChecked=matchingKeys(checked)===manualKeys.size;
+ const useChecked=!!checked?.ready&&matchingKeys(checked)===manualKeys.size;
  const draftStamp=JSON.stringify([poseStamp,catalog]);
  const stamp=JSON.stringify([draftStamp,useChecked,[...manualKeys].sort()]);
  if(stamp!==guideBaseStamp){
@@ -295,14 +374,21 @@ function baseStudentGuide(preferences=project.guidePreferences){
    }
   }
   guideBase={...base,steps:base.steps.map(step=>({...step}))};
-  if(guideBase.ready&&(!audited||checked&&!checked.ready)){guideBase.reviewRequired=true;guideBase.auditBlockers=checked?.blockers||[];}
+  // A draft kept for a manual order, or a best-effort checked plan, is never a verified sequence.
+ if(guideBase.ready&&(!audited||!useChecked||checked?.reviewRequired||checked&&!checked.ready)){guideBase.reviewRequired=true;guideBase.auditBlockers=checked?.ready?[]:checked?.blockers||[];}
   for(const step of guideBase.steps)step.reviewRequired=!!guideBase.reviewRequired;
   guideBaseStamp=stamp;
   if(guideAuditResult&&!audited&&$('guide-path-audit-status'))$('guide-path-audit-status').textContent='Mô hình đã thay đổi; cần kiểm tra lại đường lắp.';
  }
  return guideBase;
 }
-function renderStudentGuide(){
+function renderStudentGuide(force=false){
+ if(!force&&!document.body.classList.contains('guide-active')&&!pdfPreview?.active()&&!renderer.isDataRenderer){
+  const unavailable=busy||!project.parts.length;
+  $('export').disabled=unavailable;
+  zipMenu.disabled=unavailable||renderer.isDataRenderer;
+  return;
+ }
  const dataStamp=JSON.stringify([project.parts,project.guidePreferences,catalog]);
  const uiStamp=dataStamp+':'+busy+':'+preview;
  if(uiStamp===guideUIStamp)return;guideUIStamp=uiStamp;
@@ -319,8 +405,9 @@ function renderStudentGuide(){
   const open=node('button',`Step ${i+1} · ${step.title}`);open.className='student-guide-open';open.disabled=busy;open.setAttribute('aria-label',`Preview guide step ${i+1}: ${step.title}`);open.onclick=()=>viewGuideStep(i);article.append(open,node('p',step.note));
   const added=node('div');added.className='guide-added';for(const part of step.added){const item=node('span'),thumb=node('img');thumb.src=partPreviewSrc(PLATFORM.id,part.sku,step.parts.find(p=>p.id===part.id)?.legoKitId);thumb.alt='';thumb.loading='lazy';item.append(thumb,node('span',part.name));added.append(item);}article.append(added);installGuideEditing(article,step,i);list.append(article);if(!busy&&!exportingGuide)guidePreviews?.add(article,step,JSON.stringify([step.parts,step.added,step.view,step.camera,project.kit?.kitId]),{paused:project.editorSettings?.liveGuidePreview===false});
  }
+ const detachedNames=(studentGuide.detached||[]).slice(0,4).map(ids=>{const p=project.parts.find(part=>part.id===ids[0]);return p?partName(p)+(ids.length>1?` (+${ids.length-1})`:''):null;}).filter(Boolean).join(', ');
  const orderLabel=studentGuide.assemblyAxis?`từ trong ra hai phía theo trục ${studentGuide.assemblyAxis} · `:'';
- guideReadiness.className=studentGuide.ready?'guide-ready':'guide-pending';guideReadiness.textContent=busy?'Đang kiểm tra và tạo hướng dẫn…':studentGuide.ready?`${studentGuide.steps.length} bước · ${orderLabel}${studentGuide.reviewRequired?'Preview / PDF nháp · chưa xác nhận đường lắp':'Preview và PDF sẵn sàng'}`:/separate mechanical|separate .*assembl|starting part/i.test(studentGuide.blockers.join(' '))?'Guide vẫn hoạt động: mô hình còn cụm rời hoặc thiếu khớp. Ghép cụm / Tự sửa liên kết trước khi xuất PDF.':studentGuide.blockers[0]||'Thêm và nối các chi tiết để tự tạo bước.';
+ guideReadiness.className=studentGuide.ready?'guide-ready':'guide-pending';guideReadiness.textContent=busy?'Đang kiểm tra và tạo hướng dẫn…':studentGuide.ready?`${studentGuide.steps.length} bước · ${orderLabel}${studentGuide.reviewRequired?'Preview / PDF nháp · chưa xác nhận đường lắp':'Preview và PDF sẵn sàng'}`:/separate mechanical|separate .*assembl|starting part/i.test(studentGuide.blockers.join(' '))?`Guide vẫn hoạt động: mô hình còn cụm rời${detachedNames?` (${detachedNames})`:''} hoặc thiếu khớp. Ghép cụm, xoá chi tiết thừa hoặc Tự sửa liên kết trước khi xuất PDF.`:studentGuide.blockers[0]||'Thêm và nối các chi tiết để tự tạo bước.';
  guideWorkbench?.update(studentGuide,{busy});workbenchMenu.disabled=busy||!studentGuide.ready;
  zipMenu.disabled=zipButton.disabled=busy||!studentGuide.ready||renderer.isDataRenderer;zipButton.title=renderer.isDataRenderer?'Xuất ảnh cần WebGL; PDF dữ liệu vẫn dùng được.':'';syncSnapSettings();
  $('export').disabled=busy||!studentGuide.ready;if($('guide-export'))$('guide-export').disabled=busy||!studentGuide.ready;
@@ -367,7 +454,7 @@ autoOrder.onclick=async()=>{
  delete preferences.order;
  if(changeGuidePreferences(preferences,{cameraOnly:true}))status('Đã áp dụng thứ tự lắp tự động. Ctrl+Z để hoàn tác.');
 };
-$('inspector-tab-2').addEventListener('click',()=>{if(!busy&&!preview&&studentGuide.ready)void ensureGuideAudit();});
+document.addEventListener('assembly-inspector-change',()=>{if(document.body.classList.contains('guide-active'))renderStudentGuide();});
 const repairButton=node('button','✦ Tự sửa liên kết');repairButton.id='guide-repair';repairButton.className='primary';repairButton.title='Khôi phục khớp hợp lệ và chỉnh cụm lệch tối đa 2 mm. Ctrl+Z để hoàn tác.';$('guide-summary').before(repairButton);
 const repairStatus=node('p');repairStatus.id='guide-repair-status';repairStatus.className='hint';repairStatus.setAttribute('role','status');repairButton.after(repairStatus);
 repairButton.onclick=async()=>{
@@ -405,9 +492,9 @@ async function repairGuideAutomatically(){
 }
 automaticGuideRepair=installAutomaticGuideRepair({key:guideRepairKey,blocked:()=>busy||preview||exportingGuide||!!pdfPreview?.active()||controls.dragging||!!directTools?.active()||!!quickAttach?.active()||pendingProjectSaves>0,run:repairGuideAutomatically,onError:error=>status('Chưa thể tự sửa liên kết: '+error.message)});
 function renderLists(){
- syncSceneBackground();if(chainPickButton){chainPickButton.hidden=!sprocketTeeth(project.parts.find(p=>p.id===selected));chainPickButton.disabled=busy||preview;}
- for(const el of $('parts').querySelectorAll('button'))el.disabled=busy||preview;
- renderLayers({project:()=>project,selection:()=>selectedIds,selectedGroup:()=>selectedGroupId,selectGroup:selectLayerGroup,disabled:()=>busy||preview,locked,name:instanceName,checkpoint,refresh:refreshSelection,save,group:groupSelection,ungroup,select,clean:cleanGroups,anchor:()=>layerAnchor,setAnchor:id=>layerAnchor=id,selectRange:ids=>{select(ids.at(-1)||null);selectedIds=new Set(ids);renderLists();}});renderStudentGuide();assemblyAssistant?.render();kitSettings?.render();dataView?.render();
+ refreshInstanceNames();syncSceneBackground();if(chainPickButton){chainPickButton.hidden=!sprocketTeeth(project.parts.find(p=>p.id===selected));chainPickButton.disabled=busy||preview;}
+ if(!kitSettings)for(const el of $('parts').querySelectorAll('button'))el.disabled=busy||preview;
+ renderLayers({project:()=>project,selection:()=>selectedIds,selectedGroup:()=>selectedGroupId,selectGroup:selectLayerGroup,disabled:()=>busy||preview,locked,name:instanceName,labelVersion:()=>catalog.length,checkpoint,refresh:refreshSelection,save,group:groupSelection,ungroup,select,clean:cleanGroups,anchor:()=>layerAnchor,setAnchor:id=>layerAnchor=id,selectRange:ids=>{select(ids.at(-1)||null,false,false);selectedIds=new Set(ids);renderLists();}});renderStudentGuide();assemblyAssistant?.render();kitSettings?.render();dataView?.render();
  for(const id of ['move','rotate','group','ungroup','duplicate','delete'])$(id).disabled=busy||preview;
  document.body.classList.toggle('group-selection',selectedIds.size>1);
  if(selectedIds.size>1)$('selection').textContent=`${selectedIds.size} parts selected · Ctrl / ⌘ / Shift to change selection`;
@@ -434,7 +521,7 @@ function libraryCard(part){const b=document.createElement('button'),img=document
  packImage.append(img,batteryImage);b.append(packImage,name);
 }else b.append(img,name);if(isChainLink(PLATFORM.id,part.id)){const hint=document.createElement('small');hint.className='library-part-tag';hint.textContent='Quấn qua 2 nhông';b.append(hint);}b.disabled=busy||preview;b.draggable=true;img.draggable=false;b.addEventListener('pointerenter',()=>{if(!busy&&!preview)model(part.id).catch(()=>{});},{once:true});b.ondragstart=e=>{if(busy||preview){e.preventDefault();return;}e.dataTransfer.effectAllowed='copy';e.dataTransfer.setData('application/x-mindx-part',part.id);if(part.powerPack)e.dataTransfer.setData('application/x-mindx-power-pack','1');if(img.complete)e.dataTransfer.setDragImage(img,img.width/2,img.height/2);model(part.id).catch(()=>{});status('Kéo vào vùng 3D rồi thả để thêm '+part.name+'.');};b.ondragend=()=>$('viewport').classList.remove('library-drop-active');b.onclick=()=>add(part);const sku=document.createElement('small');sku.className='library-part-code';sku.textContent=(part.sourcePlatform?part.sourcePlatform.toUpperCase()+' · ':'')+(part.sourceId||part.id);b.append(sku);return b;}
 const partsLibrary=installPartsLibrary({platform:PLATFORM.id,catalog:()=>catalog,project:()=>project,card:libraryCard,refresh:()=>renderCatalog(),async navigateKit(kit){if(!await beforeWorkspaceNavigate())return;const target='/assembly/projects?create='+kit.platform+(kit.platform==='lego'?'&kit='+encodeURIComponent(kit.id):'');window.parent.location.assign(target);}});
-function renderCatalog(){if(PLATFORM.id==='lego')document.documentElement.dataset.legoKit=project.kit?.kitId||'';partsLibrary.render();kitSettings?.render();}
+function renderCatalog(){if(PLATFORM.id==='lego')document.documentElement.dataset.legoKit=project.kit?.kitId||'';partsLibrary.render();kitSettings?.render(true);}
 
 const libraryDrop=$('viewport');
 libraryDrop.addEventListener('dragover',e=>{if(!e.dataTransfer.types.includes('application/x-mindx-part')||busy||preview)return;e.preventDefault();e.dataTransfer.dropEffect='copy';libraryDrop.classList.add('library-drop-active');});
@@ -542,8 +629,62 @@ async function undo(redo=false){if(busy)return;const from=redo?future:history,to
 $('undo').onclick=()=>undo();$('redo').onclick=()=>undo(true);
 function mode(value){controls.setMode(value);$('move').setAttribute('aria-pressed',String(value==='translate'));$('rotate').setAttribute('aria-pressed',String(value==='rotate'));}
 $('move').onclick=()=>mode('translate');$('rotate').onclick=()=>mode('rotate');$('snap').onchange=syncSnapSettings;
-controls.addEventListener('dragging-changed',async e=>{orbit.enabled=!e.value;if(quickAttach?.handlesTransform()){if(!e.value)quickAttach.settlePreview();return;}if(e.value){const context=assemblyMatingContext(project.parts,jointReferences),ids=selected&&$('move-joined').checked?[...movingAssemblyIds(project.parts,jointReferences,selected,[...selectedIds],context)]:selectedIds.size>1?[...selectedIds]:null;if(ids?.some(id=>locked(project.parts.find(p=>p.id===id)))){dragStart={blocked:true};status('Cụm có layer bị khóa. Mở khóa trước khi di chuyển.');return;}checkpoint();dragStart={moved:false,assemblyIds:ids,assemblyContext:context};}else if(dragStart){if(dragStart.blocked){dragStart=null;refreshSelection();return;}if(dragStart.moved&&controls.mode==='translate')directTools?.finishTransform();dragStart=null;await save();refreshSelection();warnings();}});
-controls.addEventListener('objectChange',()=>{if(quickAttach?.handlesTransform()){quickAttach.previewChanged();return;}if(!selected)return;if(dragStart?.blocked){transform(objects.get(selected),project.parts.find(p=>p.id===selected));return;}const before=copy(project.parts),obj=objects.get(selected),part=project.parts.find(p=>p.id===selected);if(dragStart&&!dragStart.moved){dragStart.moved=true;if(controls.mode==='translate'&&!$('move-joined').checked){if(selectedIds.size>1)directTools?.releaseGroup([...selectedIds]);else directTools?.releasePart(part);}}part.position=controls.mode==='translate'?snapForDrag(obj.position.toArray().map(v=>v*1000),history.at(-1)?.parts.find(p=>p.id===selected)?.position):obj.position.toArray().map(v=>v*1000);obj.position.fromArray(part.position.map(v=>v/1000));part.rotation=[obj.rotation.x,obj.rotation.y,obj.rotation.z].map(THREE.MathUtils.radToDeg);moveJoined(before,selected);if(controls.mode==='translate')directTools?.previewTransform(dragStart?.assemblyIds||[selected],dragStart?.assemblyContext);box.update();});
+const deg=THREE.MathUtils.radToDeg;
+const gizmoDelta=new THREE.Quaternion(),gizmoPosition=new THREE.Vector3(),gizmoRotation=new THREE.Euler();
+function flushGizmoMove(){
+ const drag=dragStart;
+ if(!drag?.pending)return;
+ drag.pending=false;
+ const {part,obj}=drag,translate=controls.mode==='translate';
+ if(!drag.moved){
+  drag.moved=true;
+  if(translate&&!$('move-joined').checked){
+   if(selectedIds.size>1)directTools?.releaseGroup([...selectedIds]);else directTools?.releasePart(part);
+  }
+ }
+ const mm=obj.position.toArray().map(value=>value*1000);
+ part.position=translate?snapForDrag(mm,drag.startPosition):mm;
+ obj.position.set(part.position[0]/1000,part.position[1]/1000,part.position[2]/1000);
+ obj.updateMatrixWorld(true);
+ part.rotation=[deg(obj.rotation.x),deg(obj.rotation.y),deg(obj.rotation.z)];
+ if(drag.members.length){
+  gizmoDelta.copy(obj.quaternion).multiply(drag.inverseRotation);
+  for(const member of drag.members){
+   member.part.position=gizmoPosition.copy(member.offset).applyQuaternion(gizmoDelta).add(obj.position).multiplyScalar(1000).toArray();
+   gizmoRotation.setFromQuaternion(member.rotation.copy(gizmoDelta).multiply(member.startRotation));
+   member.part.rotation=[deg(gizmoRotation.x),deg(gizmoRotation.y),deg(gizmoRotation.z)];
+   transform(member.obj,member.part);
+  }
+ }
+ if(translate)directTools?.previewTransform(drag.ids,drag.context);
+}
+controls.addEventListener('dragging-changed',async e=>{
+ orbit.enabled=!e.value;
+ if(quickAttach?.handlesTransform()){if(!e.value)quickAttach.settlePreview();return;}
+ if(e.value){
+  const part=project.parts.find(row=>row.id===selected),obj=objects.get(selected);
+  if(!part||!obj)return;
+  const moveJoined=$('move-joined').checked,context=controls.mode==='translate'||moveJoined?assemblyMatingContext(project.parts,jointReferences):null;
+  const ids=moveJoined?[...movingAssemblyIds(project.parts,jointReferences,selected,[...selectedIds],context)]:selectedIds.size>1?[...selectedIds]:[selected];
+  if(ids.some(id=>locked(project.parts.find(row=>row.id===id)))){dragStart={blocked:true};status('Cụm có layer bị khóa. Mở khóa trước khi di chuyển.');return;}
+  checkpoint();
+  const members=ids.filter(id=>id!==selected).flatMap(id=>{
+   const member=objects.get(id),row=project.parts.find(p=>p.id===id);
+   return member&&row?[{obj:member,part:row,offset:member.position.clone().sub(obj.position),startRotation:member.quaternion.clone(),rotation:new THREE.Quaternion()}]:[];
+  });
+  dragStart={part,obj,ids,context,members,startPosition:[...part.position],inverseRotation:obj.quaternion.clone().invert(),moved:false,pending:false};
+ }else if(dragStart){
+  if(dragStart.blocked){dragStart=null;refreshSelection();return;}
+  flushGizmoMove();
+  if(dragStart.moved&&controls.mode==='translate')directTools?.finishTransform();
+  dragStart=null;await save();refreshSelection();warnings();
+ }
+});
+controls.addEventListener('objectChange',()=>{
+ if(quickAttach?.handlesTransform()){quickAttach.previewChanged();return;}
+ if(dragStart?.blocked){const part=project.parts.find(row=>row.id===selected),obj=objects.get(selected);if(part&&obj)transform(obj,part);return;}
+ if(dragStart){dragStart.pending=true;renderLoop?.invalidate();}
+});
 const marquee=document.createElement('div');marquee.className='selection-marquee';marquee.hidden=true;$('viewport').append(marquee);let boxGesture=null,clickDown;
 function projectedBounds(obj,rect){const bounds=visibleBounds(obj);if(bounds.isEmpty())return null;let left=Infinity,top=Infinity,right=-Infinity,bottom=-Infinity;for(const x of [bounds.min.x,bounds.max.x])for(const y of [bounds.min.y,bounds.max.y])for(const z of [bounds.min.z,bounds.max.z]){const point=new THREE.Vector3(x,y,z).project(camera);if(point.z<-1||point.z>1)continue;const px=(point.x+1)*rect.width/2,py=(1-point.y)*rect.height/2;left=Math.min(left,px);right=Math.max(right,px);top=Math.min(top,py);bottom=Math.max(bottom,py);}return Number.isFinite(left)?{left,top,right,bottom}:null;}
 function finishBoxSelection(e){const gesture=boxGesture;if(!gesture||e.pointerId!==gesture.pointer)return;boxGesture=null;marquee.hidden=true;renderer.domElement.releasePointerCapture?.(e.pointerId);const dx=e.clientX-gesture.x,dy=e.clientY-gesture.y;if(Math.hypot(dx,dy)<4){const rect=renderer.domElement.getBoundingClientRect();mouse.set((e.clientX-rect.left)/rect.width*2-1,-(e.clientY-rect.top)/rect.height*2+1);ray.setFromCamera(mouse,camera);const hit=ray.intersectObjects([...objects.values()].filter(obj=>obj.visible),true).find(h=>h.object.isMesh);let obj=hit?.object;while(obj&&!obj.userData.instance)obj=obj.parent;select(obj?.userData.instance||null,gesture.additive);return;}const rect=renderer.domElement.getBoundingClientRect(),selection={left:Math.min(gesture.x,e.clientX)-rect.left,top:Math.min(gesture.y,e.clientY)-rect.top,right:Math.max(gesture.x,e.clientX)-rect.left,bottom:Math.max(gesture.y,e.clientY)-rect.top},ids=gesture.additive?new Set(gesture.original):new Set();for(const [id,obj] of objects){if(!obj.visible)continue;const bounds=projectedBounds(obj,rect);if(bounds&&bounds.right>=selection.left&&bounds.left<=selection.right&&bounds.bottom>=selection.top&&bounds.top<=selection.bottom)ids.add(id);}if(!ids.size&&!gesture.additive){select(null);return;}const first=[...ids][0]||null;select(first);selectedIds=ids;renderLists();status(`${ids.size} part${ids.size===1?'':'s'} selected · Ctrl+G to group.`);}
@@ -587,7 +728,7 @@ const smallScreen=matchMedia('(max-width:650px)');if(smallScreen.matches)documen
 new ResizeObserver(()=>{document.body.style.setProperty('--header-height',document.querySelector('header').getBoundingClientRect().height+'px');document.body.style.setProperty('--panel-top',($('viewport').getBoundingClientRect().top)+'px');const r=$('viewport').getBoundingClientRect();if(!r.width||!r.height)return;camera.aspect=r.width/r.height;camera.updateProjectionMatrix();renderer.setSize(r.width,r.height);renderLoop?.invalidate();}).observe($('viewport'));
 const cameraNavigation=installCameraNavigation({canvas:renderer.domElement,camera,orbit,blocked:()=>busy||!!pdfPreview?.active()||preview||controls.dragging||!!directTools?.active()});
 renderer.domElement.title='W/A/S/D: move camera · Right mouse: look around · Q/E: down/up · Shift: faster';
-renderLoop=createRenderScheduler(time=>{if(printMedia.matches||exportingGuide||pdfPreview?.active())return false;connectedWires.update(preview?[]:(shownParts||project.parts),!!project.hideCables);for(const part of shownParts||project.parts){const obj=objects.get(part.id);if(obj){obj.visible=(preview||layerVisible(project,part))&&(preview||assemblyAssistant?.visible(part.id)!==false);obj.traverse(mesh=>{if(mesh.userData.cable)mesh.visible=!preview&&!part.wiring&&!project.hideCables;});}}if(box.visible)box.update();cameraNavigation.update(time);const orbitMoving=orbit.update(),interacting=orbitMoving||cameraNavigation.moving()||controls.dragging||!!directTools?.active(),ratio=Math.min(devicePixelRatio,interacting?1:1.5);if(ratio!==renderDPR){renderDPR=ratio;renderer.setPixelRatio(ratio);}connectTool?.updateMarkers();quickAttach?.update();directTools?.update();renderer.render(scene,camera);return orbitMoving||cameraNavigation.moving();},{inputFilter:event=>!event.target?.closest?.('#guide-workbench,#guide-pdf-preview')});
+renderLoop=createRenderScheduler(time=>{if(printMedia.matches||exportingGuide||pdfPreview?.active())return false;directTools?.flushMove?.();flushGizmoMove();for(const part of shownParts||project.parts){const obj=objects.get(part.id);if(obj){obj.visible=(preview||layerVisible(project,part))&&(preview||assemblyAssistant?.visible(part.id)!==false);setEmbeddedCableVisibility(obj,!preview&&!part.wiring&&!project.hideCables);}}connectedWires.update(preview?[]:(shownParts||project.parts),!!project.hideCables);if(box.visible)box.update();cameraNavigation.update(time);const orbitMoving=orbit.update(),interacting=orbitMoving||cameraNavigation.moving()||controls.dragging||!!directTools?.active(),ratio=Math.min(devicePixelRatio,interacting?1:1.5);if(ratio!==renderDPR){renderDPR=ratio;renderer.setPixelRatio(ratio);}connectTool?.updateMarkers();quickAttach?.update();directTools?.update();renderer.render(scene,camera);return orbitMoving||cameraNavigation.moving();},{inputFilter:event=>!event.target?.closest?.('#guide-workbench,#guide-pdf-preview')});
 orbit.addEventListener('change',()=>renderLoop.invalidate());controls.addEventListener('change',()=>renderLoop.invalidate());
 // Asynchronous library, guide and inspector changes may complete after input.
 new MutationObserver(records=>{const changed=records.filter(row=>!(row.target.closest?.('#guide-workbench,#guide-pdf-preview')||row.target.parentElement?.closest('#guide-workbench,#guide-pdf-preview')));if(changed.length){renderLoop.invalidate();}}).observe(document.body,{childList:true,subtree:true,characterData:true});
@@ -596,7 +737,7 @@ function node(tag,text){const el=document.createElement(tag);if(text!==undefined
 async function exportStudentGuide({zip=false}={}){
  if(busy)return false;
  if(project.kit?.enforce&&kitReport(project.parts,catalog,project.kit).some(row=>row.remaining<0)){status('Guide export failed: Mô hình vượt số lượng bộ kit. Mở File → Cài đặt bộ kit để xem linh kiện đang thiếu.');return false;}
- renderStudentGuide();
+ renderStudentGuide(true);
  if(!studentGuide.ready){status(studentGuide.blockers.join(' '));return false;}
  if(!renderer.isDataRenderer&&!await ensureGuideAudit())return false;
  if(renderer.isDataRenderer&&zip){status('Xuất ảnh ZIP cần WebGL. Bạn vẫn có thể xuất PDF dữ liệu.');return false;}
@@ -607,7 +748,10 @@ async function exportStudentGuide({zip=false}={}){
   printRenderer=createGuideRenderer();
   const fullParts=project.parts,finalParts=new Map(fullParts.map(p=>[p.id,p]));
   preview=true;await show(fullParts);setBusy(true);applyPose(savedPose);const fitResult=await inspectFit(fullParts);
-  if(fitResult.issues.some(issue=>issue.kind==='penetration'))throw Error('Resolve detected body penetration before exporting. Select a pair in Fit review.');
+  // Overlapping bodies (a flexed diagonal brace, an off-grid connector) are a
+   // model warning, not a reason to withhold the whole guide. Name the pairs.
+   const overlaps=fitResult.issues.filter(issue=>issue.kind==='penetration');
+   const overlapNote=overlaps.length?` Lưu ý: mô hình còn ${overlaps.length} cặp chi tiết chồng lấn (${overlaps.slice(0,3).map(issue=>[issue.a,issue.b].map(id=>partName(finalParts.get(id)||{sku:id})).join(' / ')).join('; ')}${overlaps.length>3?'; …':''}) — xem Fit review và kiểm tra khi lắp thật.`:'';
   scene.background.set('#ffffff');grid.visible=false;
   controls.detach();box.visible=false;
   container.append(prepPaper(project,catalog,PLATFORM));
@@ -626,7 +770,7 @@ async function exportStudentGuide({zip=false}={}){
    container.append(stepPaper(step,i,studentGuide.steps.length,shots,PLATFORM,project.kit?.kitId));
   }
   await show(fullParts);setBusy(true);for(const obj of objects.values())obj.traverse(mesh=>{if(mesh.userData.cable)mesh.visible=false;});container.append(finishedPaper(project,printRenderer.completed(objects)));
-  await readyPaperImages(container);if(zip){const bytes=await packageGuide(container,project,studentGuide,catalog);downloadFile(bytes,'application/zip','build-guide.zip');status('Đã xuất ZIP: ảnh từng bước, HTML offline và mô hình JSON.');}else{window.print();status('Student guide is ready. Choose Save as PDF in the print dialog.');}return true;
+  await readyPaperImages(container);if(zip){const bytes=await packageGuide(container,project,studentGuide,catalog);downloadFile(bytes,'application/zip','build-guide.zip');status('Đã xuất ZIP: ảnh từng bước, HTML offline và mô hình JSON.'+overlapNote);}else{window.print();status('Student guide is ready. Choose Save as PDF in the print dialog.'+overlapNote);}return true;
  }catch(error){status('Guide export failed: '+error.message);return false;}
  finally{exportingGuide=false;printRenderer?.dispose();scene.background.copy(savedBackground);grid.visible=savedGridVisible;preview=false;previewStepIndex=-1;await show();applyPose(savedPose);guideReturnPose=null;$('guide-return').hidden=true;warnings();}
 }
@@ -637,7 +781,7 @@ connectionSuggestions=installConnectionSuggestions({parts:()=>project.parts,refe
 installDrivePreview({project:()=>project,references:jointReferences,objects,selected:()=>selected,connections:()=>assemblyAssistant.data().connections,blocked:()=>busy||!!pdfPreview?.active()||preview||controls.dragging||!!directTools?.active(),closePreviews:()=>{quickAttach?.close();connectTool?.cancel();},resetInspection:()=>assemblyAssistant.reset(),setBusy,detach:()=>{controls.detach();box.visible=false;},check:inspectFit,transform,refresh:refreshSelection});
 setBusy(true);
 let startupError=null;
-try{catalog=await(await fetch(assetUrl('parts.json?v=library-names-1'),{cache:'no-store'})).json();kitCatalogLoader=createKitCatalogLoader({platform:PLATFORM.id,catalog,references:jointReferences});$('count').textContent=catalog.length;renderCatalog();connectTool=await installConnectTool({references:jointReferences,scene,camera,canvas:renderer.domElement,objects,controls,box,project:()=>project,selected:()=>selected,selection:()=>selectedIds,isLocked:id=>locked(project.parts.find(p=>p.id===id)),reveal:()=>{if(document.body.classList.contains('hide-panel'))$('panel-toggle').click();$('inspector-tab-0')?.click();},busy:()=>busy||!!chainPicker?.active(),preview:()=>preview,transform,select,checkpoint,save,warnings,status});quickAttach=await installQuickAttach({references:jointReferences,selection:()=>selectedIds,isLocked:id=>locked(project.parts.find(p=>p.id===id)),captureSelection:()=>({active:selected,ids:[...selectedIds],groupId:selectedGroupId}),restoreSelection(snapshot){const ids=snapshot.ids.filter(id=>project.parts.some(p=>p.id===id));select(ids.includes(snapshot.active)?snapshot.active:ids.at(-1)||null);selectedIds=new Set(ids);selectedGroupId=project.groups.some(g=>g.id===snapshot.groupId)?snapshot.groupId:null;renderLists();},scene,camera,orbit,canvas:renderer.domElement,objects,controls,box,catalog,project:()=>project,selected:()=>selected,busy:()=>busy||!!chainPicker?.active(),preview:()=>preview,connectActive:()=>connectTool.active()||!!directTools?.active(),fit,model,transform,select,checkpoint,show,save,warnings,status,withElectronics,assertAdditions,pose,applyPose,connectExisting:(id,ref)=>connectTool.begin({sourceId:id,sourceRef:ref})});directTools=await installDirectTools({references:jointReferences,snapPosition:snapForDrag,scene,camera,canvas:renderer.domElement,objects,controls,orbit,box,project:()=>project,selected:()=>selected,selection:()=>selectedIds,busy:()=>busy||!!chainPicker?.active(),preview:()=>preview,quickActive:()=>quickAttach.active(),connectActive:()=>connectTool.active(),transform,select,selectGroup:selectGroupMember,checkpoint:()=>{const redo=copy(future);checkpoint();return redo;},discardCheckpoint:redo=>{history.pop();future=redo||[];},refreshSelection,moveOthers:moveJoined,openPinAt:(id,point)=>quickAttach.openPinAt(id,point),closePreviews:()=>{quickAttach.close();connectTool.cancel();},isLocked:id=>locked(project.parts.find(part=>part.id===id)),assertAdditions,save,warnings,status});let draft=localStorage.getItem(key);if(!PROJECT_ID){const legacy=localStorage.getItem('mindx-vexgo-assembly-v1');if(legacy){try{if(JSON.parse(legacy).platform==='vexiq'){if(!localStorage.getItem('mindx-vexiq-assembly-v1'))localStorage.setItem('mindx-vexiq-assembly-v1',legacy);if(PLATFORM.id==='vexiq'&&!draft)draft=legacy;if(PLATFORM.id==='vexgo'&&key==='mindx-vexgo-assembly-v1')draft=null;}}catch{}}}if(draft){const data=JSON.parse(draft);await kitCatalogLoader.ensure(data.kit,data.parts);project=validate(data);}else if(PROJECT_ID)throw Error('Không tìm thấy dự án trên trình duyệt này. Mở từ màn hình dự án.');$('title').value=project.title;renderCatalog();await show();save();warnings();}catch(error){startupError=error;status('Không mở được editor: '+error.message);}
+try{catalog=initialCatalog;kitCatalogLoader=createKitCatalogLoader({platform:PLATFORM.id,catalog,references:jointReferences});$('count').textContent=catalog.length;renderCatalog();connectTool=await installConnectTool({references:jointReferences,scene,camera,canvas:renderer.domElement,objects,controls,box,project:()=>project,selected:()=>selected,selection:()=>selectedIds,isLocked:id=>locked(project.parts.find(p=>p.id===id)),reveal:()=>{if(document.body.classList.contains('hide-panel'))$('panel-toggle').click();$('inspector-tab-0')?.click();},busy:()=>busy||!!chainPicker?.active(),preview:()=>preview,transform,select,checkpoint,save,warnings,status});quickAttach=await installQuickAttach({references:jointReferences,selection:()=>selectedIds,isLocked:id=>locked(project.parts.find(p=>p.id===id)),captureSelection:()=>({active:selected,ids:[...selectedIds],groupId:selectedGroupId}),restoreSelection(snapshot){const ids=snapshot.ids.filter(id=>project.parts.some(p=>p.id===id));select(ids.includes(snapshot.active)?snapshot.active:ids.at(-1)||null);selectedIds=new Set(ids);selectedGroupId=project.groups.some(g=>g.id===snapshot.groupId)?snapshot.groupId:null;renderLists();},scene,camera,orbit,canvas:renderer.domElement,objects,controls,box,catalog,project:()=>project,selected:()=>selected,busy:()=>busy||!!chainPicker?.active(),preview:()=>preview,connectActive:()=>connectTool.active()||!!directTools?.active(),fit,model,transform,select,checkpoint,show,save,warnings,status,withElectronics,assertAdditions,pose,applyPose,connectExisting:(id,ref)=>connectTool.begin({sourceId:id,sourceRef:ref})});directTools=await installDirectTools({references:jointReferences,invalidate:()=>renderLoop?.invalidate(),snapPosition:snapForDrag,scene,camera,canvas:renderer.domElement,objects,controls,orbit,box,project:()=>project,selected:()=>selected,selection:()=>selectedIds,busy:()=>busy||!!chainPicker?.active(),preview:()=>preview,quickActive:()=>quickAttach.active(),connectActive:()=>connectTool.active(),transform,select,selectGroup:selectGroupMember,checkpoint:()=>{const redo=copy(future);checkpoint();return redo;},discardCheckpoint:redo=>{history.pop();future=redo||[];},refreshSelection,moveOthers:moveJoined,openPinAt:(id,point)=>quickAttach.openPinAt(id,point),closePreviews:()=>{quickAttach.close();connectTool.cancel();},isLocked:id=>locked(project.parts.find(part=>part.id===id)),assertAdditions,save,warnings,status});let draft=localStorage.getItem(key);if(!PROJECT_ID){const legacy=localStorage.getItem('mindx-vexgo-assembly-v1');if(legacy){try{if(JSON.parse(legacy).platform==='vexiq'){if(!localStorage.getItem('mindx-vexiq-assembly-v1'))localStorage.setItem('mindx-vexiq-assembly-v1',legacy);if(PLATFORM.id==='vexiq'&&!draft)draft=legacy;if(PLATFORM.id==='vexgo'&&key==='mindx-vexgo-assembly-v1')draft=null;}}catch{}}}if(draft){const data=JSON.parse(draft);await kitCatalogLoader.ensure(data.kit,data.parts);project=validate(data);}else if(PROJECT_ID)throw Error('Không tìm thấy dự án trên trình duyệt này. Mở từ màn hình dự án.');$('title').value=project.title;renderCatalog();await show();save();warnings();}catch(error){startupError=error;status('Không mở được editor: '+error.message);}
 if(startupError){setBusy(true);throw startupError;}
 kitSettings=installKitSettings({project:()=>project,catalog:()=>catalog,busy:()=>busy||!!chainPicker?.active(),preview:()=>preview,gesture:()=>controls.dragging||!!directTools?.active(),closePreviews:()=>{quickAttach?.close();connectTool?.cancel();},status,
  async prepareKit(kit){await kitCatalogLoader.ensure(kit,project.parts);},
@@ -645,7 +789,11 @@ kitSettings=installKitSettings({project:()=>project,catalog:()=>catalog,busy:()=
 });kitSettings.render();
 if(PLATFORM.id!=='lego')installSimulationLauncher({blocked:()=>busy||!!pdfPreview?.active()||preview||controls.dragging||!!directTools?.active(),closePreviews:()=>{quickAttach?.close();connectTool?.cancel();},save,status});
 
-const editorBindings={prepareKit:(kit,parts=project.parts)=>kitCatalogLoader.ensure(kit,parts),context:{projectId:PROJECT_ID,platform:PLATFORM.id},save,project:()=>project,catalog:()=>catalog,references:jointReferences,locked,selection:()=>[...selectedIds],select:ids=>{select(ids.at(-1));selectedIds=new Set(ids);renderLists();},busy:()=>busy||!!pdfPreview?.active()||pendingProjectSaves>0||preview||controls.dragging||!!directTools?.active()||!!quickAttach?.active()||!!kitSettings?.active()||!!chainPicker?.active(),clean:cleanGroups,withElectronics:(item,additions=[])=>withElectronics([...project.parts,...additions],item,catalog),assertAdditions,staging:async sku=>stagingPosition(await model(sku),objects),fitReport:inspectFit,review:()=>assemblyAssistant.data(),guide:()=>studentGuide,exportGuide:async({format='pdf'}={})=>{if(!['pdf','zip'].includes(format))throw Error('Định dạng guide không hợp lệ.');if(format==='zip'&&renderer.isDataRenderer)throw Error('Xuất ảnh ZIP cần WebGL.');const success=await exportStudentGuide({zip:format==='zip'});if(!success)throw Error($('status').textContent||'Guide export failed.');return {printRequested:format==='pdf',downloadRequested:format==='zip',format,requiresReview:!!studentGuide.reviewRequired};},undo,
+const editorBindings={prepareKit:(kit,parts=project.parts)=>kitCatalogLoader.ensure(kit,parts),context:{projectId:PROJECT_ID,platform:PLATFORM.id},save,project:()=>project,catalog:()=>catalog,references:jointReferences,locked,selection:()=>[...selectedIds],select:ids=>{select(ids.at(-1),false,false);selectedIds=new Set(ids);renderLists();},busy:()=>busy||!!pdfPreview?.active()||pendingProjectSaves>0||preview||controls.dragging||!!directTools?.active()||!!quickAttach?.active()||!!kitSettings?.active()||!!chainPicker?.active(),clean:cleanGroups,withElectronics:(item,additions=[])=>withElectronics([...project.parts,...additions],item,catalog),assertAdditions,staging:async sku=>stagingPosition(await model(sku),objects),fitReport:inspectFit,review:()=>assemblyAssistant.data(),guide:()=>{renderStudentGuide(true);return studentGuide;},auditGuide:async()=>{
+  // Startup repair can change poses while a check is running; retry on the settled model.
+  for(let attempt=0;attempt<5;attempt++){for(let i=0;i<600&&(busy||preview||!project.parts.every(p=>objects.has(p.id)));i++)await new Promise(resolve=>setTimeout(resolve,100));if(busy||preview)return false;if(await ensureGuideAudit()&&guideAuditResult?.stamp===JSON.stringify(project.parts))return true;}
+  return false;
+ },exportGuide:async({format='pdf'}={})=>{if(!['pdf','zip'].includes(format))throw Error('Định dạng guide không hợp lệ.');if(format==='zip'&&renderer.isDataRenderer)throw Error('Xuất ảnh ZIP cần WebGL.');const success=await exportStudentGuide({zip:format==='zip'});if(!success)throw Error($('status').textContent||'Guide export failed.');return {printRequested:format==='pdf',downloadRequested:format==='zip',format,requiresReview:!!studentGuide.reviewRequired};},undo,
  async transaction(fn,{replaceAll=false}={}){const before=copy(project),redo=copy(future),historyBefore=copy(history),selectionBefore=[...selectedIds];setBusy(true);
   try{const baseline=await inspectFit();const old=new Set(baseline.issues.filter(i=>i.kind==='penetration').map(i=>i.key));const result=await fn();assertKitChange(before.parts,project.parts,catalog,project.kit);if(JSON.stringify(before.kit)!==JSON.stringify(project.kit))renderCatalog();await show();setBusy(true);const check=await inspectFit();const collisions=check.issues.filter(i=>i.kind==='penetration'&&(replaceAll||!old.has(i.key)));if(collisions.length)throw Error('New body penetration: '+collisions.map(i=>i.key).join(', '));history.push(before);if(history.length>60)history.shift();future=[];if(!await save(false))throw Error('Could not save project');warnings();return result;}
   catch(error){project=before;history=historyBefore;future=redo;await show();select(selectionBefore.at(-1)||null);selectedIds=new Set(selectionBefore);await save(false);throw error;}

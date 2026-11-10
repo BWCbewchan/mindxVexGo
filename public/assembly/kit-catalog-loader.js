@@ -1,4 +1,4 @@
-import {platformAssetRoot} from './platform-registry.js';
+import {platformCatalogUrl,platformConnectorsUrl} from './platform-registry.js';
 import {partSource,sourceCatalog,sourcePartId} from './part-source.js';
 
 export function createKitCatalogLoader({platform,catalog,references,fetcher=globalThis.fetch}){
@@ -7,7 +7,7 @@ export function createKitCatalogLoader({platform,catalog,references,fetcher=glob
   if(loaded.has(source))return;
   if(!['vexgo','vexiq'].includes(source)||platform==='lego')throw Error('Không thể phối bộ VEX với LEGO.');
   if(!pending.has(source))pending.set(source,(async()=>{
-   const root=platformAssetRoot(source),responses=await Promise.all([fetcher(root+'parts.json',{cache:'no-store'}),fetcher(root+'connectors.json',{cache:'no-store'})]);
+   const responses=await Promise.all([fetcher(platformCatalogUrl(source)),fetcher(platformConnectorsUrl(source))]);
    if(responses.some(r=>!r.ok))throw Error('Không tải được thư viện '+source.toUpperCase()+'. Thử lại trước khi áp dụng.');
    const [parts,refs]=await Promise.all(responses.map(r=>r.json()));
    const existing=new Set(catalog.map(p=>p.id));

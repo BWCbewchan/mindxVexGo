@@ -1,4 +1,4 @@
-import {assemblyMatingContext,occupiedAssemblyReferences} from './assembly-mating.js';
+import {assemblyMatingContext,occupiedAssemblyReferences,worldRows} from './assembly-mating.js';
 import {compatibleReferences} from './connector-policy.js';
 
 // Read-only diagnostic: geometry establishes components, never group membership.
@@ -7,7 +7,7 @@ export function suggestAssemblyConnections(parts,references,{isLocked=()=>false,
  for(const p of parts){if(seen.has(p.id))continue;const ids=[p.id];seen.add(p.id);for(const id of ids)for(const edge of context.links.get(id)||[]){const next=edge.part===id?edge.target:edge.part;if(!seen.has(next)){seen.add(next);ids.push(next);}}components.push(ids);}
  components.sort((a,b)=>b.length-a.length);components.forEach((ids,i)=>ids.forEach(id=>componentOf.set(id,i)));
  if(components.length<2)return {components,candidates:[],holes:[]};
- const occupied=occupiedAssemblyReferences(context),rows=context.world.filter(r=>!occupied.has(r.part.id+'|'+r.ref.id)&&!isLocked(r.part.id));
+ const occupied=occupiedAssemblyReferences(context),rows=(context.world||worldRows(parts,references)).filter(r=>!occupied.has(r.part.id+'|'+r.ref.id)&&!isLocked(r.part.id));
  // Spatial search avoids the quadratic port-pair scan on large assemblies.
  const build=(items,depth=0)=>{if(!items.length)return null;const axis=depth%3,dim=['x','y','z'][axis];items.sort((a,b)=>a.point[dim]-b.point[dim]);const i=items.length>>1;return {row:items[i],dim,left:build(items.slice(0,i),depth+1),right:build(items.slice(i+1),depth+1)};};
  const trees={pin:build(rows.filter(r=>r.ref.kind==='pin')),hole:build(rows.filter(r=>r.ref.kind==='hole'))};
