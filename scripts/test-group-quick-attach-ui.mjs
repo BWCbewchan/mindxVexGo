@@ -20,7 +20,7 @@ try{
  const single=await page.locator('.quick-point-hit:visible').count();assert.ok(single>0);await selectGroup();
  await page.waitForFunction(()=>document.querySelectorAll('.quick-point-hit').length>0&&[...document.querySelectorAll('.quick-point-hit')].every(b=>b.dataset.partId==='beam-b'));
  const original=await state();assert.equal(original.selectedIds.length,3);
- for(const [owner,kind,heading,sku] of [['beam-a','hole','Choose a pin for this hole','228-2500-2260'],['pin','pin','Choose a part for this pin','228-2500-001']]){
+ for(const [owner,kind,heading,sku] of [['beam-a','hole','Chọn chốt cho lỗ này','228-2500-2260'],['pin','pin','Chọn chi tiết gắn vào chốt này','228-2500-001']]){
   await execute('select',{ids:fixture.parts.map(p=>p.id).filter(id=>id!==owner).concat(owner)});await page.waitForFunction(id=>document.querySelectorAll('.quick-point-hit').length>0&&[...document.querySelectorAll('.quick-point-hit')].every(b=>b.dataset.partId===id),owner);
   const point=()=>page.locator(`.quick-point-hit[data-part-id="${owner}"][data-ref-kind="${kind}"]:visible`).first();
   await point().click();await page.locator('#quick-heading').filter({hasText:heading}).waitFor();assert.equal(await page.locator('#quick-target-marker').getAttribute('data-part-id'),owner);
@@ -36,7 +36,7 @@ try{
  await execute('select',{ids:['beam-a','beam-b','pin']});await page.waitForFunction(()=>document.querySelector('.quick-point-hit[data-part-id=pin]'));
  const pinPoint=await page.locator('.quick-point-hit[data-part-id="pin"][data-ref-kind="pin"]:visible').first().boundingBox();assert.ok(pinPoint);await selectGroup();
  await page.keyboard.press('Escape');await page.mouse.click(pinPoint.x+pinPoint.width/2+3,pinPoint.y+pinPoint.height/2);
- await page.locator('#quick-heading').filter({hasText:'Choose a part for this pin'}).waitFor({timeout:4000});assert.equal(await page.locator('#quick-target-marker').getAttribute('data-part-id'),'pin');
+ await page.locator('#quick-heading').filter({hasText:'Chọn chi tiết gắn vào chốt này'}).waitFor({timeout:4000});assert.equal(await page.locator('#quick-target-marker').getAttribute('data-part-id'),'pin');
  await page.locator('#quick-close').click();assert.deepEqual((await state()).selectedIds.slice().sort(),['beam-a','pin'],'Tapping the pin body preserves its nested group on cancel');
  await execute('setGroup',{id:'inner',locked:true});await selectGroup();await page.waitForFunction(()=>![...document.querySelectorAll('.quick-point-hit')].some(b=>['beam-a','pin'].includes(b.dataset.partId)));
  assert.ok(await page.locator('.quick-point-hit[data-part-id="beam-b"]:visible').count(),'Unlocked members remain attachable');assert.deepEqual(errors,[]);

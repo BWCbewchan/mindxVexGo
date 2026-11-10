@@ -47,7 +47,7 @@ try{
   await page.locator('[data-part-id="beam-a"] .part-layer-select').click();
   await page.locator('#fit').click();
   await page.getByRole('button',{name:/Quick attach at hole/}).first().dispatchEvent('click');
-  await page.locator('#quick-heading').filter({hasText:'Choose a pin for this hole'}).waitFor();
+  await page.locator('#quick-heading').filter({hasText:'Chọn chốt cho lỗ này'}).waitFor();
   await page.locator('#quick-target-marker').waitFor({state:'visible',timeout:3000});
   assert.equal(await page.locator('#quick-target-marker').getAttribute('data-part-id'),'beam-a');
   await page.locator('#quick-search').fill('228-2500-2260');
@@ -99,7 +99,7 @@ try{
  await scenario('nearby-hole-buttons-are-clickable',async page=>{
   await page.locator('[data-part-id="beam-a"] .part-layer-select').click();await page.locator('#fit').click();
   await page.getByRole('button',{name:'Quick attach at hole 2',exact:true}).click({timeout:3000});
-  await page.locator('#quick-heading').filter({hasText:'Choose a pin'}).waitFor();
+  await page.locator('#quick-heading').filter({hasText:'Chọn chốt'}).waitFor();
  });
 }finally{await browser.close();}
 assert.deepEqual(failures,[],failures.join('\n'));

@@ -15,3 +15,20 @@
 .quick-target-marker[hidden]{display:none}
 .quick-target-marker span{position:absolute;left:34px;top:0;white-space:nowrap;background:#6730a7;color:#fff;border:1px solid #fff;border-radius:5px;padding:3px 7px;font-size:11px;line-height:16px}
 @media print{.quick-target-marker{display:none!important}}
+/* Guided attach: structure of the selected end, steps, free positions along a shaft. */
+.quick-attach .quick-structure{margin:0 0 8px;padding:6px 9px;border-radius:8px;background:#fff;border:1px solid #cfe3d6;font-size:12px;font-weight:600;color:#1f4d33}
+.quick-attach .quick-steps{display:flex;gap:4px;list-style:none;margin:0 0 10px;padding:0;counter-reset:qstep}
+.quick-attach .quick-steps li{flex:1;counter-increment:qstep;font-size:11px;text-align:center;padding:4px 2px;border-radius:999px;background:#dfe7e2;color:#4a5a50}
+.quick-attach .quick-steps li::before{content:counter(qstep) ". "}
+.quick-attach .quick-steps li[aria-current=step]{background:#167bbf;color:#fff;font-weight:700}
+.quick-attach .quick-station-row{margin:8px 0;padding:8px;border-radius:8px;background:#fff;border:1px solid #b5d7c4}
+.quick-attach .quick-station-head{display:flex;justify-content:space-between;gap:8px;font-size:12px;font-weight:700;margin-bottom:6px}
+.quick-attach .quick-station-head output{font-weight:500;color:#40604c}
+.quick-attach .quick-station-nav{display:flex;align-items:center;gap:6px}
+.quick-attach #quick-stations{display:flex;flex-wrap:wrap;gap:4px;flex:1}
+.quick-attach #quick-stations button{min-width:28px;padding:3px 6px;border-radius:6px;background:#eaf7ef;border:1px solid #23ca7b;font-weight:700}
+.quick-attach #quick-stations button[aria-pressed=true]{background:#ff7a00;border-color:#d96400;color:#fff}
+.quick-attach .quick-station-nav>button{padding:3px 8px}
+.quick-attach .quick-advanced{margin:6px 0;font-size:12px}.quick-attach .quick-advanced summary{cursor:pointer;font-weight:600}
+.quick-attach .quick-actions{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:8px}
+.quick-attach .quick-actions #quick-apply{grid-column:2}.quick-attach .quick-actions #quick-apply-next{grid-column:1}

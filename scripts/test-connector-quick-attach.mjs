@@ -9,7 +9,7 @@ try{
  await f.locator('#search').fill('228-2500-2308');await f.locator('#parts button').click();await f.locator('#selection').filter({hasText:'Green Connector'}).waitFor();await f.locator('#fit').click();
  const pins=f.locator('button.quick-point-hit[aria-label*="pin"]');await pins.first().waitFor({state:'attached'});assert.equal(await pins.count(),4);
  for(let i=0;i<4;i++){
- await pins.nth(i).evaluate(el=>el.click());await f.locator('#quick-heading').filter({hasText:'Choose a part for this pin'}).waitFor();
+ await pins.nth(i).evaluate(el=>el.click());await f.locator('#quick-heading').filter({hasText:'Chọn chi tiết gắn vào chốt này'}).waitFor();
  await f.locator('#quick-search').fill('228-2500-001');await f.locator('#quick-options button').click();await f.locator('#quick-move[aria-pressed="true"]').waitFor();assert.equal(await f.locator('#quick-apply').isEnabled(),true);await f.locator('#quick-close').click();
  }
  await f.locator('#wiring-visibility').click();const frame=page.frames().find(frame=>frame.url().includes('editor.html'));assert.equal(await frame.evaluate(()=>JSON.parse(localStorage.getItem('mindx-vexgo-assembly-v1')).hideCables),true);await f.locator('#wiring-visibility').click();assert.equal(await frame.evaluate(()=>JSON.parse(localStorage.getItem('mindx-vexgo-assembly-v1')).hideCables),false);

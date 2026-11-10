@@ -15,16 +15,25 @@ export function repairAssemblyLinks(input,references,{isLocked=()=>false,maxDist
   if(!t||!a||!b||!compatibleReferences(a,b,p.sku,t.sku)||reaches(p.id,t.id)){if(!isLocked(p)){delete p.mate;removed++;}continue;}
   accepted.get(p.id).add(t.id);accepted.get(t.id).add(p.id);
  }
+ // Ref-point bounds per part: a mate is only possible between parts whose
+ // connector spheres come within a pin's reach (shaft travel stays inside its span).
+ const bounds=part=>{const rows=(references[part.sku]||[]).map(ref=>worldReference(part,ref).point);if(!rows.length)return null;const c=rows.reduce((a,v)=>a.add(v),new THREE.Vector3()).divideScalar(rows.length);return {c,r:Math.max(...rows.map(v=>v.distanceTo(c)))};};
  for(let pass=0;pass<parts.length;pass++){
   let best=null;
-  for(const p of parts){const members=component(p.id);if([...members].some(id=>isLocked(byId.get(id))))continue;
+  const g=graph(),componentOf=new Map();for(const p of parts)if(!componentOf.has(p.id)){const c=component(p.id,g);for(const id of c)componentOf.set(id,c);}
+  const sphere=new Map(parts.map(p=>[p.id,bounds(p)]));
+  for(const p of parts){const members=componentOf.get(p.id);if([...members].some(id=>isLocked(byId.get(id))))continue;
    const moving={...p};delete moving.mate;
+   const own=sphere.get(p.id);if(!own)continue;
+   // Far parts are excluded as targets; the full list still feeds pin-support counting.
+   const far=[];let reachable=false;for(const o of parts){if(members.has(o.id))continue;const b=sphere.get(o.id);if(b&&b.c.distanceTo(own.c)<=b.r+own.r+maxDistance+35)reachable=true;else far.push(o.id);}
+   if(!reachable)continue;
    const released=[];
    if(respectReleased)for(const other of parts){
-    if(members.has(other.id))for(const block of other.snapBlocked||[])if(byId.has(block.target))released.push(...component(block.target));
-    if(other.snapBlocked?.some(block=>members.has(block.target)))released.push(...component(other.id));
+    if(members.has(other.id))for(const block of other.snapBlocked||[])if(byId.has(block.target))released.push(...componentOf.get(block.target));
+    if(other.snapBlocked?.some(block=>members.has(block.target)))released.push(...componentOf.get(other.id));
    }
-   const match=nearestMate(moving,parts,references,{distance:maxDistance,excluded:[...members,...released]});if(!match)continue;
+   const match=nearestMate(moving,parts,references,{distance:maxDistance,excluded:[...members,...released,...far]});if(!match)continue;
    const a=worldReference(p,match.sourceRef),b=worldReference(match.target,match.targetRef);if(a.normal.dot(b.normal)>-.9999)continue;
    if(match.sourceRef.key&&match.targetRef.key){
     const key=(part,ref)=>new THREE.Vector3().fromArray(ref.key).applyEuler(new THREE.Euler(...part.rotation.map(THREE.MathUtils.degToRad)));
@@ -40,10 +49,10 @@ export function repairAssemblyLinks(input,references,{isLocked=()=>false,maxDist
    if(!best||delta.length()<best.delta.length())best={part:p,match,members,delta};
   }
   if(!best)break;
-  const {part,match,members,delta}=best,g=graph(),records=new Map(parts.filter(p=>p.mate).map(p=>[p.id,{...p.mate}]));
+  const {part,match,members,delta}=best,links=graph(),records=new Map(parts.filter(p=>p.mate).map(p=>[p.id,{...p.mate}]));
   // Re-root this component so adding a link cannot overwrite an existing internal joint.
   const seen=new Set([part.id]),queue=[part.id];delete part.mate;
-  while(queue.length){const parent=queue.shift();for(const id of g.get(parent)||[]){if(seen.has(id))continue;seen.add(id);queue.push(id);const child=byId.get(id),saved=records.get(id)?.target===parent?records.get(id):records.get(parent);child.mate=records.get(id)?.target===parent?{...saved}:{...saved,target:parent,sourceRef:saved.targetRef,targetRef:saved.sourceRef,twist:-(saved.twist||0)};}}
+  while(queue.length){const parent=queue.shift();for(const id of links.get(parent)||[]){if(seen.has(id))continue;seen.add(id);queue.push(id);const child=byId.get(id),saved=records.get(id)?.target===parent?records.get(id):records.get(parent);child.mate=records.get(id)?.target===parent?{...saved}:{...saved,target:parent,sourceRef:saved.targetRef,targetRef:saved.sourceRef,twist:-(saved.twist||0)};}}
   if(delta.length()>.0001){for(const id of members){const p=byId.get(id);p.position=p.position.map((v,i)=>v+delta.getComponent(i));}moved++;}
   part.mate={target:match.target.id,sourceRef:match.sourceRef.id,targetRef:match.targetRef.id,depth:match.depth,twist:0,flip:false};recovered++;
  }

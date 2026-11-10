@@ -62,8 +62,8 @@ export async function installDirectTools(api){
    copy.visible=api.objects.get(row.id)?.visible!==false;api.transform(copy,row);
   }
   if(!marker){marker=new THREE.Mesh(new THREE.SphereGeometry(.0018,16,12),new THREE.MeshBasicMaterial({color:0x23ca7b,depthTest:false}));marker.renderOrder=30;api.scene.add(marker);}
-  marker.position.copy(worldReference(candidate.target,candidate.targetRef).point).multiplyScalar(.001);
-  api.status(`Thả để ghép ${ids?.length>1?ids.length+' chi tiết thành cụm':'chi tiết'} · ${candidate.support||1} điểm khớp · đích ${candidate.target.label||candidate.target.sku}.`);
+  {const seat=worldReference(candidate.target,candidate.targetRef);if(candidate.targetRef.kind==='pin'&&Number.isFinite(candidate.depth))seat.point.addScaledVector(seat.normal,-candidate.depth);marker.position.copy(seat.point).multiplyScalar(.001);}
+  api.status(`Thả để ghép ${ids?.length>1?ids.length+' chi tiết thành cụm':'chi tiết'} · ${candidate.support||1} điểm khớp · đích ${candidate.target.label||candidate.target.sku}${candidate.targetRef.profile&&candidate.targetRef.kind==='pin'?` · cách đầu trục ${candidate.depth.toFixed(1)} mm (kéo dọc trục để đổi vị trí)`:''}.`);
  }
 
  function startSurface(e){

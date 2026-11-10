@@ -119,6 +119,8 @@ export function seatedPinMatches(moving,parts,references,tolerance=1){
  const getRefs=refsBySku(references),holes=getRefs(moving.sku).filter(ref=>ref.kind==='hole'&&!ref.profile);
  return holes.length?indexedPinMatches(moving,holes,pinIndex(moving.id,parts,getRefs,tolerance),tolerance):[];
 }
+const radiusCache=new WeakMap();
+function refRadius(rows){let r=radiusCache.get(rows);if(r===undefined){r=0;for(const ref of rows)r=Math.max(r,Math.hypot(...ref.point));radiusCache.set(rows,r);}return r;}
 export function nearestMate(moving,parts,references,{distance=SNAP_DISTANCE_MM,excluded=[],excludedMates=[]}={}){
  const getRefs=refsBySku(references),candidates=getRefs(moving.sku);
  if(!candidates.length)return null;
@@ -127,9 +129,14 @@ export function nearestMate(moving,parts,references,{distance=SNAP_DISTANCE_MM,e
  const coaxial=(a,b)=>a&&b&&Math.abs(vector(a.normal).dot(vector(b.normal)))>.99&&vector(a.point).sub(vector(b.point)).cross(vector(b.normal)).length()<.15;
  const seatPoint=new THREE.Vector3();
  let best=null,findPins;
+ // Broad phase: connector points lie within a per-SKU radius of the part origin;
+ // a mate needs the two spheres within snap distance plus a pin's reach.
+ const movingRadius=refRadius(candidates),origin=vector(moving.position),skip=new Set(excluded);
  for(const target of parts){
-  if(target.id===moving.id||excluded.includes(target.id))continue;
-  const targets=getRefs(target.sku),toRows=referenceRows(target,targets);
+  if(target.id===moving.id||skip.has(target.id))continue;
+  const targets=getRefs(target.sku);
+  if(!targets.length||origin.distanceTo(vector(target.position))>movingRadius+refRadius(targets)+distance+35)continue;
+  const toRows=referenceRows(target,targets);
   const blockedRefs=excludedMates.filter(block=>block.target===target.id).map(block=>({
    source:references[moving.sku]?.find(ref=>ref.id===block.sourceRef),
    target:references[target.sku]?.find(ref=>ref.id===block.targetRef)
