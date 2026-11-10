@@ -138,7 +138,7 @@ export function createGuideRenderer(){
      if(hole)markHole(worldReference(row,hole).point.multiplyScalar(.001));
     }
    }
-   const outline=name=>group.traverse(o=>{if(o.userData.guideHoleDot)o.visible=name==='detail';if(o.userData.guideNewEdge){o.visible=step.page?.frames?.[name]?.redOutline!==false;o.material.opacity=step.page?.frames?.[name]?.redOutlineOpacity??.85;}});
+   const outline=name=>group.traverse(o=>{if(o.userData.guideHoleDot)o.visible=name==='detail';if(o.userData.guideNewEdge){o.visible=name==='detail'?step.page?.frames?.detail?.redOutline===true:step.page?.frames?.[name]?.redOutline!==false;o.material.opacity=step.page?.frames?.[name]?.redOutlineOpacity??.85;}});
    const width=options.width||1400,height=options.height||1400;
    const captureAssembled=()=>{outline('assembled');return capture(bounds,direction,width,height,assembledCustom?.up,assembledCustom?.zoom,!options.live);};
    let assembled=null;
@@ -157,7 +157,7 @@ export function createGuideRenderer(){
     if(closing&&closingObject){
      const axis=worldReference(closing,{point:[0,0,0],normal:[1,0,0]}).normal,offset=(step.page?.frames?.detail?.explodeMM??12)/1000,location=new THREE.Vector3(...closing.position).multiplyScalar(.001);closingObject.position.addScaledVector(axis,offset);group.updateMatrixWorld(true);focus.union(visibleBounds(closingObject));chainClosing=true;
      for(const r of references[closing.sku]||[])if(r.profile==='iq-chain-hinge')markHole(worldReference(closing,r).point.multiplyScalar(.001));
-     if(offset>.001){const arrow=new THREE.ArrowHelper(axis.clone().negate(),location.clone().addScaledVector(axis,offset*.95),offset*.8,0xed1c24,.004,.003);group.add(arrow);for(const mesh of [arrow.line,arrow.cone]){mesh.userData.guideAnnotation=true;mesh.material.depthTest=false;mesh.material.depthWrite=false;mesh.renderOrder=1000;}owned.push(arrow.line.material,arrow.cone.material);}
+     if(offset>.001){const arrow=new THREE.ArrowHelper(axis.clone().negate(),location.clone().addScaledVector(axis,offset*.95),offset*.8,0xed1c24,.0065,.0045);group.add(arrow);for(const mesh of [arrow.line,arrow.cone]){mesh.userData.guideAnnotation=true;mesh.material.depthTest=false;mesh.material.depthWrite=false;mesh.renderOrder=1000;}owned.push(arrow.line.material,arrow.cone.material);}
      const tangent=worldReference(closing,{point:[0,0,0],normal:[0,-1,0]}).normal,side=worldReference(closing,{point:[0,0,0],normal:[0,0,1]}).normal,direction=axis.multiplyScalar(.75).addScaledVector(tangent,.25).addScaledVector(side,.45).normalize();detail=captureDetail(focus,direction,900,650);
     }else detail=captureDetail(bounds,direction,900,650);
     return {assembled,detail,framing,assembledFrame,detailFrame};
@@ -178,7 +178,7 @@ export function createGuideRenderer(){
     }
     if(!targetObject){if(frameOnly==='detail')assembled=captureAssembled();return {assembled,detail:null,framing,assembledFrame,detailFrame};}
     const axis=step.insertion?new THREE.Vector3(...step.insertion.axis).normalize():socket.normal;
-    const offset=step.page?.frames?.detail?.explodeMM!==undefined?step.page.frames.detail.explodeMM/1000:step.insertion?Math.max(step.closingNote ? .024 : motorDrive ? .022 : .012,step.insertion.clearance/1000):Math.max(.012,Math.min(.035,new THREE.Box3().setFromObject(added).getSize(new THREE.Vector3()).length()*.45));
+    const offset=step.page?.frames?.detail?.explodeMM!==undefined?step.page.frames.detail.explodeMM/1000:step.insertion?Math.max(step.closingNote ? .03 : motorDrive ? .026 : .02,step.insertion.clearance/1000):Math.max(.012,Math.min(.035,new THREE.Box3().setFromObject(added).getSize(new THREE.Vector3()).length()*.45));
     let obstructed=false;
     if(!step.insertionBlocked&&!step.reviewRequired&&!referenceObject&&!step.insertion){
      const ray=new THREE.Raycaster(point.clone().addScaledVector(axis,.001),axis,.001,offset);
@@ -188,7 +188,7 @@ export function createGuideRenderer(){
     if(step.insertionBlocked||step.reviewRequired&&!step.insertion||obstructed){const focus=new THREE.Box3().setFromObject(added).union(new THREE.Box3().setFromObject(targetObject));return {assembled,detail:captureDetail(focus,detailCustom?null:choose(focus,point),900,900),seatedDetail:true,framing,assembledFrame,get detailFrame(){return detailFrame;}};}
     for(const [id,obj] of copies)if(addedSet.has(id)&&id!==target.id)obj.position.addScaledVector(axis,offset);group.updateMatrixWorld(true);
     const arrowPoints=[point];for(const item of step.added){if(item.id===part.id||item.id===target.id)continue;const row=step.parts.find(p=>p.id===item.id),anchor=step.parts.find(p=>p.id===row?.mate?.target),r=references[anchor?.sku]?.find(r=>r.id===row?.mate?.targetRef);if(!r)continue;const socket=worldReference(anchor,r);if(socket.normal.dot(axis)>.999)arrowPoints.push(socket.point.multiplyScalar(.001));}
-    if(offset>0)for(const location of arrowPoints){const arrow=new THREE.ArrowHelper(axis.clone().negate(),location.clone().addScaledVector(axis,offset*.92),offset*.8,0xed1c24,.004,.003);group.add(arrow);for(const mesh of [arrow.line,arrow.cone]){mesh.userData.guideAnnotation=true;mesh.material.depthTest=false;mesh.material.depthWrite=false;mesh.renderOrder=1000;}owned.push(arrow.line.material,arrow.cone.material);}
+    if(offset>0)for(const location of arrowPoints){const arrow=new THREE.ArrowHelper(axis.clone().negate(),location.clone().addScaledVector(axis,offset*.92),offset*.8,0xed1c24,.0065,.0045);group.add(arrow);for(const mesh of [arrow.line,arrow.cone]){mesh.userData.guideAnnotation=true;mesh.material.depthTest=false;mesh.material.depthWrite=false;mesh.renderOrder=1000;}owned.push(arrow.line.material,arrow.cone.material);}
     const detailBounds=(row,obj)=>{
      if(!row.sku.startsWith('269-')||!references[row.sku]?.length)return new THREE.Box3().setFromObject(obj);
      // Motor CAD includes a long straight cable. Close-ups frame its original mounting
@@ -197,8 +197,15 @@ export function createGuideRenderer(){
     };
     const addedBounds=detailBounds(part,added);if(part.sku.startsWith('269-'))addedBounds.translate(axis.clone().multiplyScalar(offset));
     const focus=addedBounds.clone().union(detailBounds(target,targetObject));for(const item of step.added){if(item.id===target.id||item.id===part.id)continue;const obj=copies.get(item.id);if(obj)focus.union(visibleBounds(obj));}
-    const size=focus.getSize(new THREE.Vector3());const max=Math.max(.025,addedBounds.getSize(new THREE.Vector3()).length()*1.6);
+    const size=focus.getSize(new THREE.Vector3());const max=Math.max(.05,addedBounds.getSize(new THREE.Vector3()).length()*3);
     if(size.length()>max*2&&step.added.filter(p=>p.id!==target.id).length===1){focus.setFromCenterAndSize(point.clone().addScaledVector(axis,offset/2),new THREE.Vector3(max,max,max));if(step.page?.frames?.detail?.explodeMM!==undefined)focus.union(addedBounds).expandByPoint(point);}
+    // VEX close-ups keep the whole sub-assembly when it is small; otherwise leave a
+    // margin so the support part is not cut at the page edge.
+    if(step.page?.frames?.detail?.explodeMM===undefined){
+     const whole=new THREE.Box3();for(const obj of copies.values())if(obj.visible)whole.union(visibleBounds(obj));whole.union(focus);
+     if(!whole.isEmpty()&&whole.getSize(new THREE.Vector3()).length()<=focus.getSize(new THREE.Vector3()).length()*2.4)focus.copy(whole);
+     else{const c=focus.getCenter(new THREE.Vector3()),sz=focus.getSize(new THREE.Vector3()).multiplyScalar(1.35);focus.setFromCenterAndSize(c,sz);}
+    }
     const motorSocket=motorDrive&&references[part.sku]?.find(ref=>ref.id===joint.sourceRef);
     const landingPoints=motorSocket?[...markerLocations,worldReference(part,motorSocket).point.multiplyScalar(.001).addScaledVector(axis,offset)]:[];
     detail=captureDetail(focus,detailCustom?null:choose(focus,point,step.closingNote||motorDrive?axis:null,landingPoints),900,650);

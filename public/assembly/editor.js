@@ -437,6 +437,16 @@ async function ensureGuideAudit(){
    if(stamp!==JSON.stringify(project.parts))return false;
    guideAuditResult={...result,stamp};
    guideBaseStamp='';guideDataStamp='';guideUIStamp='';
+   // A manual order saved for an older step plan would pull the guide back to
+   // the unchecked draft. Drop it (undoable) and keep the CAD-checked order.
+   const savedOrder=project.guidePreferences?.order||[];
+   if(result.guide?.ready&&savedOrder.length){
+    const keys=new Set(result.guide.steps.map(stepKey));
+    if(savedOrder.some(key=>!keys.has(key))){
+     const preferences=copy(project.guidePreferences);delete preferences.order;
+     if(changeGuidePreferences(preferences,{cameraOnly:true}))status('Thứ tự chỉnh tay cũ không còn khớp mô hình nên đã dùng thứ tự lắp tự động đã kiểm tra. Ctrl+Z để hoàn tác.');
+    }
+   }
    renderStudentGuide();
    const blocked=studentGuide.steps.filter(step=>step.insertionBlocked).length;
    auditResult.textContent=blocked?blocked+' bước cần chuẩn bị cụm riêng hoặc đổi thứ tự.':'Đã kiểm tra các đường lắp thẳng trong CAD.';

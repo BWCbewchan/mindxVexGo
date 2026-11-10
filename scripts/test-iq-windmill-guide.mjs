@@ -86,4 +86,8 @@ const moduleSteps=edited.steps.map((s,i)=>[s,i]).filter(([s])=>s.phase===2);
 assert.ok(moduleSteps.length>=2&&moduleSteps.every(([,i],k)=>i===moduleSteps[0][1]+k),'Brain module steps are contiguous');
 assert.ok(moduleSteps.at(-1)[0].attachModule&&/đặt cả module Brain lên khung/.test(moduleSteps.at(-1)[0].note));
 assert.equal(edited.steps.filter(s=>s.pathConflict&&s.added.some(p=>p.id===brain.id||guide.modules.brainModule.includes(p.id))).length,0,'No forced insertions around the Brain any more');
+// Frame parts that CAD flags as overlapping are placed where their support is, not at the end.
+for(const [s,i] of edited.steps.map((s,i)=>[s,i]).filter(([s])=>s.pathConflict==='forced'&&(s.region??0)<=2))assert.ok(i<edited.steps.length/2,`Flagged frame step ${i+1} (${s.added[0].name}) stays with the base`);
+// "2X" steps are drawn and counted for one copy.
+assert.ok(edited.steps.filter(s=>s.mirrored).every(s=>s.twinIds.length*2===s.added.length&&!s.parts.some(p=>s.twinIds.includes(p.id))),'2X steps draw one half');
 console.log(`PASS: named spare parts, keyed hub roll repair, no self-blocking sockets, ${guide.steps.length} steps (${grouped.length} grouped VEX-style) with ${conflicts.length} flagged conflicts, chain after sprockets, battery inside the Brain module, 1:1 pin rulers.`);

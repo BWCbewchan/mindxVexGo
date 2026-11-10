@@ -125,7 +125,7 @@ function orderOpenSteps(steps,byId,paths,spatial=null){
   // manual never jumps to the top mechanism while the base is unfinished.
   readySteps.sort((a,b)=>(a.phase??1)-(b.phase??1)||(a.region??0)-(b.region??0)||(spatial?(spatial.ranks.get(a)??Infinity)-(spatial.ranks.get(b)??Infinity):0));
   // Twin sides and the Brain module were checked on the table (their own part set).
-  const clear=step=>!step.joint||step.verifiedInModule||clearInsertion(step,built,byId,paths);
+  const clear=step=>!step.joint||step.verifiedInModule||step.pathConflict||clearInsertion(step,built,byId,paths);
   const mountsNow=step=>step.joint&&step.added.some(part=>isGuideElectronic(byId.get(part.id),part.name))&&
    (recent.has(step.joint.target)||[...requirements.get(step)].some(id=>recent.has(id)));
   // A cover can close the last remaining approach even when it was not a
@@ -195,7 +195,7 @@ function prepareGuideOrder(guide,order,paths,references){
  const included=new Set();
  const names=new Map(steps.flatMap(step=>step.added.map(p=>[p.id,p.name])));
  for(const step of steps){
-  if(paths&&step.joint&&!step.verifiedInModule){
+  if(paths&&step.joint&&!step.verifiedInModule&&!step.pathConflict){
    const obstacles=new Set();
    const trappedShaft=trappedDriveShaft(step,included,byId,paths);
    const approach=trappedShaft?null:clearInsertion(step,included,byId,paths,obstacles,order.length>0);
@@ -223,6 +223,8 @@ function prepareGuideOrder(guide,order,paths,references){
   // A module prepared on the table (VEX rule A4) is drawn on its own; its last
   // step shows it mounted on the machine.
   if(step.phase===2&&step.moduleIds&&!step.attachModule){const own=new Set(step.moduleIds);step.parts=step.parts.filter(p=>own.has(p.id));step.onTable=true;}
+  // A "2X" step is drawn once, as in VEX manuals: one half, counts for one copy.
+  if(step.mirrored&&step.twinIds?.length){const twin=new Set(step.twinIds);step.parts=step.parts.filter(p=>!twin.has(p.id));}
   // The support is reference geometry for the close-up, never a cumulative part.
   if(order.length&&step.joint&&!included.has(step.joint.target)){
    step.guideSupport=byId.get(step.joint.target);

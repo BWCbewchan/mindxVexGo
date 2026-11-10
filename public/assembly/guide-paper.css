@@ -11,7 +11,7 @@
 .guide-paper .guide-document-rule span{position:absolute;right:-2.2mm;top:50%;width:4.4mm;height:4.4mm;border:1mm solid #ed1c24;border-radius:50%;background:#fff;transform:translateY(-50%)}
 .guide-paper .guide-step-title{display:flex;align-items:center;gap:4mm;margin:5mm 0 2mm;font-size:20pt;font-weight:650}
 .guide-paper .guide-step-number{display:inline-flex;align-items:center;justify-content:center;width:11mm;height:11mm;flex:none;border-radius:50%;background:#18823b;color:#fff;font-size:16pt;font-weight:750}
-.guide-paper .guide-step-content{position:relative;flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8mm;margin-top:2mm}
+.guide-paper .guide-step-content{position:relative;flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,1.7fr) minmax(0,1fr);gap:8mm;margin-top:2mm}
 .guide-paper .guide-main-figure{grid-column:2;grid-row:1;margin:0;display:flex;flex-direction:column;min-height:0;min-width:0;overflow:hidden}
 .guide-paper .guide-step-side{grid-column:1;grid-row:1;display:flex;flex-direction:column;min-height:0;border-left:0;border-right:.3mm solid #e4e8eb;padding-left:0;padding-right:5mm}
 .guide-paper .guide-needed h3{margin:0 0 4mm;font-size:18pt;font-weight:750;color:#222}
@@ -91,12 +91,13 @@
 .guide-paper .guide-pair-panel .guide-preparation-box{align-self:flex-end;max-width:100%;margin-bottom:2mm}
 .guide-paper .guide-pair-panel .guide-needed{display:flex;flex-wrap:wrap;align-items:center;gap:2mm}
 .guide-paper .guide-pair-panel .guide-needed h3{font-size:9pt;margin:0;width:100%}
-.guide-paper .guide-pair-panel .guide-step-content{grid-template-columns:minmax(0,1fr);flex:1;margin-top:0}
-.guide-paper .guide-pair-panel .guide-step-side{grid-column:1!important;border:0!important;padding:0!important}
-.guide-paper .guide-pair-panel .guide-main-figure{position:absolute;right:0;bottom:0;width:38%;height:40%;grid-column:auto!important;grid-row:auto!important;min-width:0;z-index:2;background:#fff;border:.3mm solid #c9d3d9;border-radius:2mm;padding:1mm;box-sizing:border-box}
+.guide-paper .guide-pair-panel .guide-step-content{grid-template-columns:minmax(0,1fr) 27%!important;grid-template-rows:minmax(0,1fr)!important;flex:1;margin-top:0;gap:2mm}
+.guide-paper .guide-pair-panel .guide-step-side{grid-column:1!important;grid-row:1!important;border:0!important;padding:0!important}
+/* The "after" view sits in its own narrow column so it never covers the exploded view. */
+.guide-paper .guide-pair-panel .guide-main-figure{position:static;align-self:end;width:auto;height:34%;grid-column:2!important;grid-row:1!important;min-width:0;background:#fff;border:.3mm solid #c9d3d9;border-radius:2mm;padding:1mm;box-sizing:border-box}
 .guide-paper .guide-pair-panel .guide-main-figure .guide-image-viewport{flex:1;min-height:0;width:100%}
 .guide-paper .guide-pair-panel .guide-main-figure figcaption{font-size:7pt}
-.guide-paper .guide-pair-panel .guide-step-content:not(:has(.guide-detail-figure)) .guide-main-figure{position:static;width:auto;height:auto;border:0;grid-column:1}
+.guide-paper .guide-pair-panel .guide-step-content:not(:has(.guide-detail-figure)) .guide-main-figure{height:auto;border:0;grid-column:1/-1!important}
 .guide-paper .guide-pair-panel .guide-step-instruction{font-size:10.5pt;margin-top:2mm;padding:2mm 3mm}
 .guide-paper .guide-pair-panel .guide-detail-figure figcaption{display:none}
 .guide-paper .guide-pair-panel.guide-on-table .guide-step-content{outline:.6mm dashed #7fbfe6;outline-offset:1.5mm;border-radius:2mm}

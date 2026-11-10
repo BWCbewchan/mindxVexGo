@@ -148,7 +148,7 @@ export function generateIQGuide(input,{references={},nameFor=p=>p.label||p.sku,i
    const ok=take(plan,0,step=>{
     const twins=step.added.map(item=>halves.partner.get(item.id)).filter(Boolean).map(id=>byId.get(id));
     return {...step,added:[...step.added,...twins.map(entry)],
-     title:step.title+' · làm 2 bên',note:step.note+(' Lắp tương tự cho bên còn lại (đối diện).'),mirrored:true,verifiedInModule:true,grouped:true,
+     title:step.title+' · làm 2 bên',note:step.note+(' Làm 2 cụm như vậy (cụm thứ hai đối xứng).'),mirrored:true,twinIds:twins.map(p=>p.id),verifiedInModule:true,grouped:true,
      moduleIds:[...halves.half,...halves.twin]};
    });
    if(!ok)return null;
@@ -336,6 +336,18 @@ export function generateIQGuide(input,{references={},nameFor=p=>p.label||p.sku,i
    const recent=new Set(plan.at(-1)?.ids||[root.id]);
    const candidates=remaining.filter(p=>!waiting(p,built)&&options(p,built).length).map(p=>({p,kills:kills(p)}))
     .sort((a,b)=>a.kills.length-b.kills.length||region(a.p)-region(b.p)||priority(a.p,recent)-priority(b.p,recent)||area(a.p)-area(b.p)||compare(a.p,b.p));
+   // A part whose every approach already crosses installed parts only gets
+   // worse with time: flag it where its support is, in its own region, instead
+   // of leaving the frame piece for the end of the book.
+   const floorRegion=candidates.length?Math.min(...candidates.map(c=>region(c.p))):Infinity;
+   const dead=remaining.filter(p=>!waiting(p,built)&&!lateKind(p)&&region(p)<=floorRegion&&!alive.get(p.id).length).flatMap(p=>routesOf(p)
+    .filter(r=>r.contacts.some(c=>built.has(c.target)))
+    .map(r=>({p,r,hits:r.blockedBy.filter(id=>built.has(id))})))
+    .sort((a,b)=>region(a.p)-region(b.p)||a.hits.length-b.hits.length||compare(a.p,b.p))[0];
+   if(dead){
+    plan.push({ids:[dead.p.id],routes:new Map([[dead.p.id,dead.r]]),mode:dead.hits.length?'forced':null,hits:dead.hits});
+    built.add(dead.p.id);continue;
+   }
    if(candidates.length){
     const best=candidates[0],route=options(best.p,built)[0];
     let batch=[best.p],routes=new Map([[best.p.id,route]]),mode=null;
