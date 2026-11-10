@@ -108,20 +108,24 @@ function orderOpenSteps(steps,byId,paths,spatial=null){
   }
  }
  const pending=[...steps],ordered=[],built=new Set(),originalIndex=new Map(steps.map((step,i)=>[step,i]));
- // Jointless steps (a chain wrap, electronics without a modeled mount) have no
- // insertion route to score. Keep them after every step that preceded them,
- // otherwise a loose battery check jumps into the middle of the frame build.
+ // Jointless electronics steps (no modeled mount) have no insertion route to
+ // score. Keep them after every step that preceded them, otherwise a loose
+ // battery check jumps into the middle of the frame build.
  const ready=step=>{
   const added=new Set(step.added.map(p=>p.id));
-  if(!step.joint&&pending.some(other=>other!==step&&originalIndex.get(other)<originalIndex.get(step)))return false;
+  // A chain/belt wrap only needs its sprockets (its requires); it follows them.
+  if(!step.joint&&step.type!=='chain-drive'&&pending.some(other=>other!==step&&originalIndex.get(other)<originalIndex.get(step)))return false;
   return (!step.joint||built.has(step.joint.target)||added.has(step.joint.target))&&
    [...requirements.get(step)].every(id=>built.has(id)||added.has(id));
  };
  while(pending.length){
   const recent=new Set(ordered.at(-1)?.added.map(p=>p.id));
   const readySteps=pending.filter(ready);
-  if(spatial)readySteps.sort((a,b)=>(spatial.ranks.get(a)??Infinity)-(spatial.ranks.get(b)??Infinity));
-  const clear=step=>!step.joint||clearInsertion(step,built,byId,paths);
+  // Region (bottom-up, Brain late) comes before the read-out axis: a VEX
+  // manual never jumps to the top mechanism while the base is unfinished.
+  readySteps.sort((a,b)=>(a.phase??1)-(b.phase??1)||(a.region??0)-(b.region??0)||(spatial?(spatial.ranks.get(a)??Infinity)-(spatial.ranks.get(b)??Infinity):0));
+  // Twin sides and the Brain module were checked on the table (their own part set).
+  const clear=step=>!step.joint||step.verifiedInModule||clearInsertion(step,built,byId,paths);
   const mountsNow=step=>step.joint&&step.added.some(part=>isGuideElectronic(byId.get(part.id),part.name))&&
    (recent.has(step.joint.target)||[...requirements.get(step)].some(id=>recent.has(id)));
   // A cover can close the last remaining approach even when it was not a
@@ -134,10 +138,17 @@ function orderOpenSteps(steps,byId,paths,spatial=null){
    if(!clear(candidate))continue;
    const added=new Set(candidate.added.map(p=>p.id));
    const traps=open.filter(row=>row.step!==candidate&&row.routes.every(route=>route.blockedBy.some(id=>added.has(id)))&&!dependsOn(row.step,candidate)).length;
-   const score=traps*2+Number(!mountsNow(candidate));
+   // Never close off another part first; then build region by region (base
+   // before towers, Brain module late); only then prefer mounting electronics
+   // right after their support.
+   const late=(candidate.region??0)>=90&&readySteps.some(other=>(other.region??0)<90&&clear(other));
+   const score=(late?1e9:0)+(candidate.phase??1)*1e8+(traps?1e6+traps*1e3:0)+(candidate.region??0)*10+Number(!mountsNow(candidate));
    if(score<best){step=candidate;best=score;}
-   if(score===0)break;
   }
+  // An earlier phase never waits behind a later one (the Brain module stays
+  // last even when a structural step has no clear path: it only gets worse).
+  const earlier=step&&readySteps.find(candidate=>(candidate.phase??1)<(step.phase??1));
+  if(earlier)step=earlier;
   step||=readySteps[0]||pending.find(candidate=>candidate.joint)||pending[0];
   pending.splice(pending.indexOf(step),1);
   step.requires=[...requirements.get(step)];
@@ -156,7 +167,7 @@ function orderOpenSteps(steps,byId,paths,spatial=null){
 function unresolvedSteps(steps,byId,paths){
  const built=new Set(),unresolved=new Set();
  for(const step of steps){
-  if(step.joint&&(trappedDriveShaft(step,built,byId,paths)||!clearInsertion(step,built,byId,paths)))unresolved.add(stepKey(step));
+  if(step.joint&&!step.verifiedInModule&&(trappedDriveShaft(step,built,byId,paths)||!clearInsertion(step,built,byId,paths)))unresolved.add(stepKey(step));
   step.added.forEach(part=>built.add(part.id));
  }
  return unresolved;
@@ -184,7 +195,7 @@ function prepareGuideOrder(guide,order,paths,references){
  const included=new Set();
  const names=new Map(steps.flatMap(step=>step.added.map(p=>[p.id,p.name])));
  for(const step of steps){
-  if(paths&&step.joint){
+  if(paths&&step.joint&&!step.verifiedInModule){
    const obstacles=new Set();
    const trappedShaft=trappedDriveShaft(step,included,byId,paths);
    const approach=trappedShaft?null:clearInsertion(step,included,byId,paths,obstacles,order.length>0);
@@ -209,6 +220,9 @@ function prepareGuideOrder(guide,order,paths,references){
   if(step.closingNote&&!step.insertionBlocked)step.note=step.closingNote+' '+(step.note||'');
   step.added.forEach(p=>included.add(p.id));
   step.parts=full.filter(p=>included.has(p.id));
+  // A module prepared on the table (VEX rule A4) is drawn on its own; its last
+  // step shows it mounted on the machine.
+  if(step.phase===2&&step.moduleIds&&!step.attachModule){const own=new Set(step.moduleIds);step.parts=step.parts.filter(p=>own.has(p.id));step.onTable=true;}
   // The support is reference geometry for the close-up, never a cumulative part.
   if(order.length&&step.joint&&!included.has(step.joint.target)){
    step.guideSupport=byId.get(step.joint.target);

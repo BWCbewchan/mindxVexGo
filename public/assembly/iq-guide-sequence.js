@@ -5,7 +5,7 @@ import {analyzeIQInsertionPaths} from './iq-insertion-paths.js';
 
 // IQ mounting parts have integral pins and several simultaneous contacts. The
 // single editing mate is not an assembly dependency (and may point either way).
-export function generateIQGuide(input,{references={},nameFor=p=>p.label||p.sku,isElectronic=()=>false,inferConnections=false,objects=null,insertionPaths=null,platformName='VEX IQ',rootId=null,prioritizeMountedElectronics=false}={}){
+export function generateIQGuide(input,{references={},nameFor=p=>p.label||p.sku,isElectronic=()=>false,inferConnections=false,objects=null,insertionPaths=null,platformName='VEX IQ',rootId=null,prioritizeMountedElectronics=false,prebuilt=null}={}){
  const parts=structuredClone(input),byId=new Map(parts.map(p=>[p.id,p])),links=new Map(parts.map(p=>[p.id,[]])),notes=[],blockers=[];
  if(!parts.length)return {ready:false,steps:[],blockers:['Add the parts for the model first.'],notes};
  const compare=(a,b)=>a.sku.localeCompare(b.sku)||a.position.reduce((n,v,i)=>n||v-b.position[i],0)||a.rotation.reduce((n,v,i)=>n||v-b.rotation[i],0)||a.id.localeCompare(b.id);
@@ -55,10 +55,133 @@ export function generateIQGuide(input,{references={},nameFor=p=>p.label||p.sku,i
  const driveRoots=shaftFirst?shafts.filter(shaft=>driven.has(shaft.id)):[];
  const roots=bodies.length?bodies:driveRoots.length?driveRoots:motors.length?motors:shafts.length?shafts:members.filter(p=>p.kind!=='retainer');
  if(rootId&&!members.some(p=>p.id===rootId))return {ready:false,steps:[],blockers:['Chi tiết gốc không thuộc cụm lắp ráp.'],notes};
- const root=(rootId?members.find(p=>p.id===rootId):null)||[...(roots.length?roots:members)].sort((a,b)=>area(b)*(1+degree(b)*.05)-area(a)*(1+degree(a)*.05)||compare(a,b))[0];
+ // Official VEX IQ manuals build by region, bottom-up: the frame that rests on
+ // the table first, then bearings and drive, towers, mechanisms on top, and the
+ // Brain module late (docs/assembly-guide-rules.md, rules A1/A9). Heights come
+ // from the connector rows in world space; +Y is up in the editor.
+ const heights=new Map(members.map(p=>{
+  const ys=(references[p.sku]||[]).filter(r=>Array.isArray(r.point)).map(r=>worldReference(p,r).point.y);
+  if(!ys.length)ys.push(p.position[1]);
+  const low=Math.min(...ys),high=Math.max(...ys);return [p.id,{low,mid:(low+high)/2}];
+ }));
+ const lateKind=p=>p.kind==='electronic'||p.kind==='sensor'||p.kind==='brain'||p.kind==='battery';
+ const floor=Math.min(...members.filter(p=>!lateKind(p)).map(p=>heights.get(p.id).low));
+ const BAND=25.4;
+ const regionOf=p=>lateKind(p)?90:Math.max(0,Math.floor((heights.get(p.id).mid-floor)/BAND));
+ const regions=new Map(members.map(p=>[p.id,regionOf(p)]));
+ const region=p=>regions.get(p.id);
+ // Start from the longest body lying on the table, not the largest plate in
+ // the middle of the model.
+ const grounded=(roots.length?roots:members).filter(p=>!lateKind(p)&&heights.get(p.id).low<=floor+6.35);
+ const root=(rootId?members.find(p=>p.id===rootId):null)||[...(grounded.length?grounded:roots.length?roots:members)].sort((a,b)=>span(b)[0]-span(a)[0]||area(b)*(1+degree(b)*.05)-area(a)*(1+degree(a)*.05)||compare(a,b))[0];
+ // Rules A2-A4: mirrored halves are built side by side ("2X"), the Brain module
+ // is prepared on the table and mounted late. Each phase is planned on its own
+ // part set with the same CAD routes, then the phases are concatenated.
+ const options=arguments[1]||{};
+ if(!options.phase&&!rootId&&!prebuilt){
+  const modular=modularPlan();
+  if(modular)return modular;
+ }
  // Only snapshots are re-rooted. The document and all authored CAD poses stay intact.
  for(const p of parts)delete p.mate;
- const included=new Set([root.id]),emitted=new Set(),steps=[];
+ const included=new Set(prebuilt?[...prebuilt].filter(id=>core.has(id)):[root.id]),emitted=new Set(prebuilt?[...prebuilt].filter(id=>core.has(id)):[]),steps=[];
+ // Step part entries; pins and shafts carry their true length for the 1:1
+ // ruler that VEX manuals print next to them.
+ function entry(p){const row={id:p.id,sku:p.sku,name:nameFor(p)};if(p.kind==='pin'||p.kind==='shaft'){const length=span(p)[0];if(length>0&&length<230)row.lengthMM=Math.round(length*10)/10;}return row;}
+ function modularPlan(){
+  const sizeOf=p=>span(p)[0];
+  // E3: Brain module = Brain + parts held only by it (its pins, the small
+  // connectors on those pins) — the mounting brackets stay in the module.
+  const brain=members.find(p=>lateKind(p)&&/brain/i.test(nameFor(p)));
+  const moduleIds=new Set();
+  if(brain){
+   moduleIds.add(brain.id);
+   for(const c of links.get(brain.id)){const p=byId.get(c.target);if(p?.kind==='pin')moduleIds.add(p.id);}
+   for(const id of [...moduleIds])for(const c of links.get(id)){const p=byId.get(c.target);if(p&&!moduleIds.has(p.id)&&p.kind==='body'&&sizeOf(p)<=26&&links.get(p.id).some(l=>moduleIds.has(l.target)&&byId.get(l.target).kind==='pin'))moduleIds.add(p.id);}
+   if(moduleIds.size<2||moduleIds.size>members.length*.3)moduleIds.clear();
+  }
+  // A battery sitting against the Brain (no modeled joint) goes in first, as
+  // in every VEX manual, instead of a loose "check position" page at the end.
+  const battery=moduleIds.size?loose.find(p=>/battery/i.test(nameFor(p))&&Math.hypot(...p.position.map((v,i)=>v-brain.position[i]))<90):null;
+  if(battery)moduleIds.add(battery.id);
+  // E4: two identical sides built at once ("2X"). VEX uses it for mirror
+  // images and for translated copies; try mirror planes X/Z and the offset
+  // between identical grounded frame members.
+  const rest=members.filter(p=>!moduleIds.has(p.id)&&!lateKind(p));
+  // A twin is the same SKU at the same place in the cross-section, on the other
+  // side of the mid plane (mirror image or translated copy alike).
+  const transforms=[0,2].map(axis=>{const values=rest.map(p=>p.position[axis]),mid=(Math.min(...values)+Math.max(...values))/2;return {kind:'side',axis,mid,onPlane:p=>Math.abs(p.position[axis]-mid)<1,side:p=>p.position[axis]<mid-1};});
+  let halves=null;
+  for(const t of transforms){
+   const partner=new Map(),taken=new Set();
+   const others=[0,1,2].filter(i=>i!==t.axis);
+   for(const p of [...rest].sort(compare)){
+    if(t.onPlane(p)||!t.side(p))continue;
+    const mirror=2*t.mid-p.position[t.axis];
+    const twin=rest.filter(q=>!taken.has(q.id)&&q.sku===p.sku&&q.position[t.axis]>t.mid+1&&others.every(i=>Math.abs(q.position[i]-p.position[i])<1.5))
+     .sort((a,b)=>Math.abs(a.position[t.axis]-mirror)-Math.abs(b.position[t.axis]-mirror)||compare(a,b))[0];
+    if(twin){partner.set(p.id,twin.id);taken.add(twin.id);}
+   }
+   if(partner.size<rest.length*.3)continue;
+   const images=new Set(partner.values()),inA=p=>partner.has(p.id)&&!images.has(p.id);
+   const seed=rest.filter(p=>inA(p)&&heights.get(p.id).low<=floor+6.35).sort((a,b)=>sizeOf(b)-sizeOf(a)||compare(a,b))[0];
+   if(!seed)continue;
+   const half=new Set([seed.id]),queue=[seed.id];
+   while(queue.length)for(const c of links.get(queue.shift())){const p=byId.get(c.target);if(p&&!half.has(p.id)&&inA(p))half.add(p.id),queue.push(p.id);}
+   const twin=new Set([...half].map(id=>partner.get(id)));
+   // The twin side must itself be one connected piece.
+   const tq=[[...twin][0]],tseen=new Set(tq);while(tq.length)for(const c of links.get(tq.shift()))if(twin.has(c.target)&&!tseen.has(c.target))tseen.add(c.target),tq.push(c.target);
+   if(half.size<4||half.size>rest.length*.45||tseen.size!==twin.size||[...twin].some(id=>half.has(id)))continue;
+   if(!halves||half.size>halves.half.size)halves={kind:t.kind,half,twin,partner};
+  }
+  if(!halves&&!moduleIds.size)return null;
+  const sub=(rows,extra={})=>generateIQGuide(rows,{...options,...extra,phase:true});
+  const phases=[];let reviewRequired=false,pathCheck=null,pathSearch=null;
+  const take=(guide,phase,decorate)=>{
+   if(!guide.ready)return false;
+   reviewRequired||=!!guide.reviewRequired;pathCheck||=guide.pathCheck;pathSearch||=guide.pathSearch;notes.push(...guide.notes.filter(n=>!notes.includes(n)));
+   for(const step of guide.steps){if(step.type==='electronics'){step.added=step.added.filter(p=>!moduleIds.has(p.id));if(!step.added.length)continue;}if(step.type!=='electronics'||phase>=1)phases.push({...decorate?.(step)||step,phase:step.type==='electronics'?3:phase});}
+   return true;
+  };
+  if(halves){
+   const halfRows=parts.filter(p=>halves.half.has(p.id)),plan=sub(halfRows);
+   const ok=take(plan,0,step=>{
+    const twins=step.added.map(item=>halves.partner.get(item.id)).filter(Boolean).map(id=>byId.get(id));
+    return {...step,added:[...step.added,...twins.map(entry)],
+     title:step.title+' · làm 2 bên',note:step.note+(' Lắp tương tự cho bên còn lại (đối diện).'),mirrored:true,verifiedInModule:true,grouped:true,
+     moduleIds:[...halves.half,...halves.twin]};
+   });
+   if(!ok)return null;
+  }
+  const builtHalves=halves?new Set([...halves.half,...halves.twin]):null;
+  const mainRows=parts.filter(p=>!moduleIds.has(p.id));
+  if(!take(sub(mainRows,builtHalves?{prebuilt:builtHalves}:{}),1))return null;
+  if(moduleIds.size){
+   // A battery sitting against the Brain (no modeled joint) goes in first, as
+   // in every VEX manual, instead of a loose "check position" page at the end.
+   const moduleRows=parts.filter(p=>moduleIds.has(p.id)&&p.id!==battery?.id),plan=sub(moduleRows,{rootId:brain.id});
+   if(battery&&plan.ready&&plan.steps.length){const first=plan.steps[0];first.added=[...first.added,entry(battery)];first.title='Lắp pin vào Robot Brain, '+first.title.charAt(0).toLowerCase()+first.title.slice(1);first.note='Đẩy pin vào khe dưới Robot Brain cho đến khi khớp. '+first.note;}
+   const ok=take(plan,2,(step,i)=>({...step,verifiedInModule:true,moduleIds:[...moduleIds],
+    title:(phases.some(s=>s.phase===2)?'':'Chuẩn bị module Brain trên bàn: ')+step.title}));
+   if(!ok)return null;
+   const last=phases.filter(s=>s.phase===2).at(-1);
+   if(last){last.attachModule=true;last.note+=' Sau đó đặt cả module Brain lên khung, canh các chốt của góc nối vào lỗ trên khung và ấn đều.';}
+  }
+  phases.sort((a,b)=>a.phase-b.phase);
+  // Rebuild cumulative snapshots across phases; give mirrored twins a support.
+  const included=new Set(),steps=[];
+  for(const step of phases){
+   step.added.forEach(p=>included.add(p.id));
+   const snapshot=parts.filter(p=>included.has(p.id)).sort(compare).map(p=>structuredClone(p));
+   for(const row of snapshot){if(!step.added.some(a=>a.id===row.id))continue;const prior=step.parts?.find(p=>p.id===row.id);if(prior?.mate)row.mate=prior.mate;else if(!row.mate){const c=links.get(row.id).find(l=>included.has(l.target));if(c)row.mate={target:c.target,sourceRef:c.sourceRef,targetRef:c.targetRef,depth:c.depth,twist:0,flip:false};}}
+   // Earlier steps' parts keep the joint chosen when they were added.
+   for(const row of snapshot){const owner=steps.find(s=>s.parts.find(p=>p.id===row.id&&s.added.some(a=>a.id===row.id)));const prev=owner?.parts.find(p=>p.id===row.id);if(prev?.mate&&!step.added.some(a=>a.id===row.id))row.mate=prev.mate;}
+   steps.push({...step,parts:snapshot,requires:(step.requires||[]).filter(id=>included.has(id)&&!step.added.some(a=>a.id===id))});
+  }
+  const modules=[halves&&`hai nửa đối xứng làm song song (${halves.half.size} chi tiết mỗi bên)`,moduleIds.size&&`module Brain làm trên bàn (${moduleIds.size} chi tiết)`].filter(Boolean);
+  notes.push('Thứ tự theo hướng dẫn VEX IQ: '+modules.join('; ')+'.');
+  return {ready:true,steps,blockers:[],notes,pathSearch,...(reviewRequired?{reviewRequired:true}:{}),pathCheck,modules:{twinSides:halves?halves.kind:null,mirroredParts:halves?halves.half.size*2:0,brainModule:[...moduleIds]}};
+ }
  const builtLinks=(p,built=included)=>links.get(p.id).filter(c=>built.has(c.target));
  const isShaftMount=(part,contact)=>byId.get(contact.target)?.kind==='shaft'&&
   ref(byId.get(contact.target),contact.targetRef)?.kind==='pin'&&ref(part,contact.sourceRef)?.kind==='hole';
@@ -131,7 +254,7 @@ export function generateIQGuide(input,{references={},nameFor=p=>p.label||p.sku,i
   function search(built,recent){
    if(built.size===core.size)return [];
    const key=members.map(p=>built.has(p.id)?'1':'0').join('');if(failed.has(key)||++searches>10000)return null;
-   const candidates=members.filter(p=>!built.has(p.id)&&!waiting(p,built)&&options(p,built).length).sort((a,b)=>priority(a,recent)-priority(b,recent)||area(a)-area(b)||builtLinks(b,built).length-builtLinks(a,built).length||compare(a,b));
+   const candidates=members.filter(p=>!built.has(p.id)&&!waiting(p,built)&&options(p,built).length).sort((a,b)=>region(a)-region(b)||priority(a,recent)-priority(b,recent)||area(a)-area(b)||builtLinks(b,built).length-builtLinks(a,built).length||compare(a,b));
    for(const p of candidates)for(const route of options(p,built)){
     const parent=primary(p,built,route).target,axis=route.axis;
     const cohort=p.kind==='pin'?candidates.filter(other=>other.kind==='pin'&&other.sku===p.sku&&options(other,built).some(r=>r.axis.every((v,i)=>Math.abs(v-axis[i])<.001)&&primary(other,built,r).target===parent)):[p];
@@ -145,7 +268,7 @@ export function generateIQGuide(input,{references={},nameFor=p=>p.label||p.sku,i
    }
    failed.add(key);return null;
   }
-  planned=search(new Set([root.id]),new Set([root.id]));
+  planned=search(new Set(included),new Set(included));
   pathSearch={rootId:root.id,states:searches,budget:10000,budgetExceeded:searches>10000};
   // No sequence of single rigid insertions exists (braced triangles, a part
   // sandwiched between two others, CAD overlaps). Keep every checked route,
@@ -164,7 +287,7 @@ export function generateIQGuide(input,{references={},nameFor=p=>p.label||p.sku,i
   const nameOf=id=>nameFor(byId.get(id));
   const merge=(a,b,joint,insertion,title,note)=>{
    const added=[...a.added,...b.added],ids=new Set(added.map(p=>p.id));
-   return {...b,title,note,added,joint,insertion,grouped:true,requires:[...new Set([...a.requires,...b.requires])].filter(id=>!ids.has(id))};
+   return {...b,title,note,added,joint,insertion,grouped:true,region:Math.max(a.region??0,b.region??0)>=90?90:Math.min(a.region??0,b.region??0),requires:[...new Set([...a.requires,...b.requires])].filter(id=>!ids.has(id))};
   };
   const pinsInto=(step,partId)=>step.added.every(p=>kind(p.id)==='pin'&&links.get(partId).some(c=>c.target===p.id));
   for(let i=0;i+1<list.length;){
@@ -185,7 +308,9 @@ export function generateIQGuide(input,{references={},nameFor=p=>p.label||p.sku,i
     // connectors/beams (up to 4), or mixed pins (up to 3 kinds, 12 pieces).
     else{
      const support=id=>kind(id)==='pin'?byId.get(id)?.mate?.target||id:id,members=[...a.added,...b.added],skus=new Set(members.map(p=>p.sku));
-     const sameSide=!a.insertion||!b.insertion||a.insertion.axis.every((v,k)=>Math.abs(v-b.insertion.axis[k])<.001);
+     // Without a CAD sweep, the socket face of the joint gives the insertion side.
+     const side=step=>step.insertion?.axis||(()=>{const t=byId.get(step.joint.target),r=ref(t,step.joint.targetRef);return r?worldReference(t,r).normal.toArray():null;})();
+     const sa=side(a),sb=side(b),sameSide=!!sa&&!!sb&&sa.every((v,k)=>Math.abs(v-sb[k])<.001);
      const pins=members.every(p=>kind(p.id)==='pin')&&skus.size<=3&&members.length<=12;
      const twins=skus.size===1&&members.length<=4&&members.every(p=>kind(p.id)==='body'||small.has(kind(p.id)));
      if(sameSide&&support(a.joint.target)===support(b.joint.target)&&(pins||twins)){
@@ -200,7 +325,7 @@ export function generateIQGuide(input,{references={},nameFor=p=>p.label||p.sku,i
   return list;
  }
  function bestEffortPlan(clear,options){
-  const plan=[],built=new Set([root.id]),routesOf=p=>pathAudit.get(p.id)||[];
+  const plan=[],built=new Set(included),routesOf=p=>pathAudit.get(p.id)||[];
   const blockSets=new Map(members.map(p=>[p.id,routesOf(p).map(r=>new Set(r.blockedBy))]));
   const sameAxis=(a,b)=>a.every((v,i)=>Math.abs(v-b[i])<.001);
   let guard=0;
@@ -210,7 +335,7 @@ export function generateIQGuide(input,{references={},nameFor=p=>p.label||p.sku,i
    const kills=p=>remaining.filter(o=>o!==p&&alive.get(o.id).length&&alive.get(o.id).every(set=>set.has(p.id))).map(o=>o.id);
    const recent=new Set(plan.at(-1)?.ids||[root.id]);
    const candidates=remaining.filter(p=>!waiting(p,built)&&options(p,built).length).map(p=>({p,kills:kills(p)}))
-    .sort((a,b)=>a.kills.length-b.kills.length||priority(a.p,recent)-priority(b.p,recent)||area(a.p)-area(b.p)||compare(a.p,b.p));
+    .sort((a,b)=>a.kills.length-b.kills.length||region(a.p)-region(b.p)||priority(a.p,recent)-priority(b.p,recent)||area(a.p)-area(b.p)||compare(a.p,b.p));
    if(candidates.length){
     const best=candidates[0],route=options(best.p,built)[0];
     let batch=[best.p],routes=new Map([[best.p.id,route]]),mode=null;
@@ -248,13 +373,14 @@ export function generateIQGuide(input,{references={},nameFor=p=>p.label||p.sku,i
  }
  function append(added,joint,requires,title,note){
   for(const p of added){included.add(p.id);emitted.add(p.id);}
-  steps.push({title,note,type:'assembly',requires:[...new Set(requires)].filter(id=>!added.some(p=>p.id===id)),added:added.map(p=>({id:p.id,sku:p.sku,name:nameFor(p)})),joint,
-   overviewDirection:[1,.8,1],parts:parts.filter(p=>emitted.has(p.id)).sort(compare).map(p=>structuredClone(p))});
+  steps.push({title,note,type:'assembly',requires:[...new Set(requires)].filter(id=>!added.some(p=>p.id===id)),added:added.map(entry),joint,
+   // A step carrying the Brain/electronics belongs to the late module region.
+   region:added.some(p=>lateKind(p))?90:Math.min(...added.filter(p=>p.id!==root.id||added.length===1).map(p=>regions.get(p.id)??0)),overviewDirection:[1,.8,1],parts:parts.filter(p=>emitted.has(p.id)).sort(compare).map(p=>structuredClone(p))});
  }
  while(emitted.size<core.size){
   const recent=prioritizeMountedElectronics?new Set(steps.at(-1)?.added.map(p=>p.id)):null;
   const rank=p=>recent?priority(p,recent):priorities.get(p.id);
-  const available=members.filter(p=>!included.has(p.id)&&builtLinks(p).some(c=>mountable(p,c,included))&&!waiting(p)).sort((a,b)=>rank(a)-rank(b)||area(a)-area(b)||builtLinks(b).length-builtLinks(a).length||compare(a,b));
+  const available=members.filter(p=>!included.has(p.id)&&builtLinks(p).some(c=>mountable(p,c,included))&&!waiting(p)).sort((a,b)=>region(a)-region(b)||rank(a)-rank(b)||area(a)-area(b)||builtLinks(b).length-builtLinks(a).length||compare(a,b));
   if(!available.length&&!planned?.length){if(core.size===1){append([root],null,[],`Đặt ${nameFor(root)} theo hình`,'Đặt chi tiết trên mặt phẳng theo hướng trong hình.');break;}return {ready:false,steps:[],blockers:[`Không tìm được bước lắp ${platformName} có chi tiết đỡ hợp lệ. Kiểm tra các khớp và thứ tự cụm trên trục.`],notes};}
   const action=planned?.shift(),part=action?byId.get(action.ids[0]):available[0],route=action?.routes.get(part.id),edge=primary(part,included,route)||route?.contacts.find(c=>included.has(c.target))||builtLinks(part)[0],parent=byId.get(edge.target),targetRef=ref(parent,edge.targetRef);
   let batch=[part];
@@ -272,7 +398,8 @@ export function generateIQGuide(input,{references={},nameFor=p=>p.label||p.sku,i
    requires.push(...(p.kind==='shaft'?[c.target]:builtLinks(p).map(c=>c.target)),...stackedOnShaft(p,c));
    p.mate={target:c.target,sourceRef:c.sourceRef,targetRef:c.targetRef,depth:c.depth,twist:0,flip:false};}
   const first=emitted.size===0;if(first)batch.unshift(root);
-  const support=parent.kind==='pin'?byId.get(parent.mate?.target)||parent:parent;
+  // A prebuilt pin (from an earlier phase) has no snapshot mate; name the body it sits in.
+  const support=parent.kind==='pin'?byId.get(parent.mate?.target)||links.get(parent.id).map(c=>byId.get(c.target)).find(p=>p&&p.kind!=='pin'&&included.has(p.id))||parent:parent;
   const count=batch.filter(p=>p.kind==='pin').length;
   const title=part.kind==='motor'&&parent.kind==='shaft'?`Lắp ${nameFor(part)} vào cụm trục và chốt gá`:count?`Lắp ${count>1?count+' ':''}${nameFor(part)} vào ${nameFor(support)}`:`Lắp ${nameFor(part)} vào ${nameFor(support)}`;
   let note=part.kind==='pin'?`Cắm ${count} chốt vào các lỗ được đánh dấu trên ${nameFor(parent)}, theo cùng một hướng. Lắp từng chốt vào chi tiết đỡ trước khi ghép mảnh tiếp theo.`:

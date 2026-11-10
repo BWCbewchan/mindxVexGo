@@ -30,7 +30,8 @@ async function auditGuide(parts,objects,references,names){
  // Only a failed or best-effort plan is worth another starting body; a clean
  // checked plan from the default root is kept as is.
  const conflicts=g=>g.ready?(g.pathSearch?.bestEffort?g.pathCheck?.conflicts??1:0):Infinity;
- if(guide.pathSearch&&!guide.pathSearch.budgetExceeded&&conflicts(guide)>0){
+ // A modular (twin sides / Brain module) plan follows the VEX manual order; keep it.
+ if(!guide.modules&&guide.pathSearch&&!guide.pathSearch.budgetExceeded&&conflicts(guide)>0){
   const candidates=parts.filter(p=>p.kind==='body'&&p.id!==guide.pathSearch.rootId)
    .sort((a,b)=>links.get(b.id).length-links.get(a.id).length||a.sku.localeCompare(b.sku)).slice(0,3);
   for(const root of candidates){

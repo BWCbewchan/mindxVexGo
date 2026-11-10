@@ -43,7 +43,7 @@ assert.equal(selfBlocked(id('238d'),id('4cac')),false,'Aligned sprocket slides a
 assert.equal(paths.get(id('238d')).filter(r=>r.contacts.some(c=>c.target===id('4cac'))).length,2,'Both shaft ends are considered');
 
 // 4. A complete, honest guide: best-effort order with named conflicts, the
-// chain after both sprockets and the unmounted battery last.
+// chain after both sprockets and the battery inside the Brain module.
 const guide=generateStudentGuide(parts,{references:refs,inferConnections:true,insertionPaths:paths,nameFor:p=>p.label});
 assert.equal(guide.ready,true,JSON.stringify(guide.blockers));
 assert.equal(guide.reviewRequired,true,'Not exported as a verified sequence');
@@ -53,8 +53,19 @@ assert.ok(conflicts.length<=10,`Only a few flagged insertions (${conflicts.lengt
 const at=pid=>guide.steps.findIndex(s=>s.added.some(p=>p.id===pid)),chain=guide.steps.findIndex(s=>s.type==='chain-drive');
 assert.ok(chain>at(id('238d'))&&chain>at(id('d6c5')),'Chain is wrapped after both sprockets');
 assert.ok(at(id('4cac'))<at(id('dd68')),'Motor shaft before the motor');
+// Rules A1/A9: start from the frame lying on the table; the Brain module late.
+assert.ok(guide.steps[0].added.some(p=>p.sku==='228-2500-030'),'Start from a 2x20 base beam, not the motor plate');
+const brain=parts.find(p=>/Robot Brain/.test(p.label));
+assert.ok(at(brain.id)>=guide.steps.length*.75,'Brain module is mounted in the last quarter');
+assert.ok(at(id('667d'))<at(id('2770')),'Lower motor plate before the top fan plate');
 const edited=editGuide(guide,{},paths,refs);
-assert.equal(edited.steps.at(-1).added[0].id,id('69e0'),'Loose battery check stays at the end after reordering');
+// The battery sits against the Brain: it goes into the Brain module (VEX BaseBot step 15).
+const batteryStep=edited.steps.find(s=>s.added.some(p=>p.id===id('69e0')));
+assert.ok(batteryStep.phase===2&&batteryStep.added.some(p=>p.id===brain.id),'Battery is installed with the Brain on the table');
+assert.ok(!edited.steps.some(s=>s.type==='electronics'),'No loose "check position" page remains');
+// 1:1 rulers: pins and shafts carry their physical length.
+const pinEntry=guide.steps.flatMap(s=>s.added).find(p=>p.sku==='228-2500-060');
+assert.ok(Math.abs(pinEntry.lengthMM-10.9)<.2,`1x1 pin printed at 1:1 (${pinEntry.lengthMM} mm)`);
 assert.equal(new Set(edited.steps.flatMap(s=>s.added.map(p=>p.id))).size,parts.length,'Every part appears exactly once');
 // VEX IQ manual style: pins travel with their part, shaft stacks and twin
 // connectors share a step; grouped steps stay valid after reordering.
@@ -62,4 +73,17 @@ const grouped=guide.steps.filter(s=>s.grouped);
 assert.ok(guide.steps.length<=60&&grouped.length>=8,`Grouped steps (${grouped.length}) shorten the guide to ${guide.steps.length}`);
 assert.ok(grouped.some(s=>/bằng 2 chốt/.test(s.title)&&s.added.some(p=>p.id===id('aa3c'))),'Touch LED goes on together with its two pins');
 assert.equal(edited.steps.filter(s=>s.grouped&&s.insertionBlocked).length,0,'Grouped steps keep a clear insertion');
-console.log(`PASS: named spare parts, keyed hub roll repair, no self-blocking sockets, ${guide.steps.length} steps (${grouped.length} grouped VEX-style) with ${conflicts.length} flagged conflicts, chain after sprockets, battery last.`);
+assert.ok(edited.steps.findIndex(s=>s.added.some(p=>p.id===brain.id))>=edited.steps.length*.75,'Reordering keeps the Brain module late');
+assert.ok(edited.steps[0].added.some(p=>p.sku==='228-2500-030'),'Reordering keeps the base beam first');
+// Rules A2-A4: both side frames are built together ("2X"), the Brain module is
+// prepared on the table as one contiguous block and mounted at the end.
+assert.equal(guide.modules?.twinSides,'side');
+const twinSteps=edited.steps.filter(s=>s.mirrored);
+assert.ok(twinSteps.length>=4&&edited.steps.slice(0,twinSteps.length).every(s=>s.mirrored),'Twin-side steps open the guide');
+assert.ok(twinSteps.every(s=>s.added.length%2===0&&/làm 2 bên/.test(s.title)),'Each twin step adds a part and its twin');
+assert.ok(twinSteps.some(s=>s.added.filter(p=>p.sku==='228-2500-030').length===2),'Both 2x20 base beams start together');
+const moduleSteps=edited.steps.map((s,i)=>[s,i]).filter(([s])=>s.phase===2);
+assert.ok(moduleSteps.length>=2&&moduleSteps.every(([,i],k)=>i===moduleSteps[0][1]+k),'Brain module steps are contiguous');
+assert.ok(moduleSteps.at(-1)[0].attachModule&&/đặt cả module Brain lên khung/.test(moduleSteps.at(-1)[0].note));
+assert.equal(edited.steps.filter(s=>s.pathConflict&&s.added.some(p=>p.id===brain.id||guide.modules.brainModule.includes(p.id))).length,0,'No forced insertions around the Brain any more');
+console.log(`PASS: named spare parts, keyed hub roll repair, no self-blocking sockets, ${guide.steps.length} steps (${grouped.length} grouped VEX-style) with ${conflicts.length} flagged conflicts, chain after sprockets, battery inside the Brain module, 1:1 pin rulers.`);

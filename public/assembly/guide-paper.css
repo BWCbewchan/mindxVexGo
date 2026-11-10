@@ -71,3 +71,32 @@
 .guide-paper .guide-preparation-box .guide-needed-name{grid-column:1 / -1;grid-row:2;text-align:center;font-size:9pt;font-weight:600;line-height:1.25;overflow-wrap:anywhere;color:#26323c}
 
 .guide-paper .guide-preparation-box .guide-needed-part img,#print-guide .guide-paper .guide-preparation-box .guide-needed-part img{filter:none;mix-blend-mode:normal}
+
+/* VEX IQ manual cues */
+.guide-paper .guide-step-badges{position:absolute;top:0;left:0;z-index:3;display:flex;align-items:center;gap:3mm;pointer-events:none}
+.guide-paper .guide-step-number{display:grid;place-items:center;width:15mm;height:15mm;color:#fff;background:#0b7bc1;font:800 15pt/1 Arial,Helvetica,sans-serif;clip-path:polygon(50% 0,61% 12%,75% 6%,78% 21%,94% 25%,88% 39%,100% 50%,88% 61%,94% 75%,78% 79%,75% 94%,61% 88%,50% 100%,39% 88%,25% 94%,22% 79%,6% 75%,12% 61%,0 50%,12% 39%,6% 25%,22% 21%,25% 6%,39% 12%)}
+.guide-paper .guide-step-multiplier{color:#0b7bc1;font:800 24pt/1 Arial,Helvetica,sans-serif;letter-spacing:.5pt}
+.guide-paper .guide-step-module{padding:1.2mm 3mm;border:.5mm solid #0b7bc1;border-radius:2mm;background:#eaf5fc;color:#0b5f96;font:700 10pt/1.2 Arial,Helvetica,sans-serif}
+.guide-paper .guide-step-together{border-color:#c46a00;background:#fff4e5;color:#8a4b00}
+.guide-paper.guide-on-table .guide-step-content{outline:.6mm dashed #7fbfe6;outline-offset:1.5mm;border-radius:2mm}
+
+.guide-paper .guide-needed-part .guide-ruler{display:flex;align-items:center;gap:1mm;grid-column:1/-1;margin-top:.5mm}
+.guide-paper .guide-ruler-bar{display:block;height:2.4mm;border:.25mm solid #1b2a33;border-radius:.6mm;background:repeating-linear-gradient(90deg,#9fb3bf 0 .3mm,transparent .3mm 12.7mm),#e8eef1;box-sizing:border-box}
+.guide-paper .guide-ruler small{font:700 7pt/1 Arial,Helvetica,sans-serif;color:#1b2a33}
+
+/* Two steps per page (VEX layout) */
+.guide-paper .guide-pair-grid{flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:7mm;margin-top:2mm}
+.guide-paper .guide-pair-panel{position:relative;display:flex;flex-direction:column;min-height:0;min-width:0;padding:0 2mm}
+.guide-paper .guide-pair-panel+.guide-pair-panel{border-left:.3mm solid #e4e8eb;padding-left:6mm}
+.guide-paper .guide-pair-panel .guide-preparation-box{align-self:flex-end;max-width:100%;margin-bottom:2mm}
+.guide-paper .guide-pair-panel .guide-needed{display:flex;flex-wrap:wrap;align-items:center;gap:2mm}
+.guide-paper .guide-pair-panel .guide-needed h3{font-size:9pt;margin:0;width:100%}
+.guide-paper .guide-pair-panel .guide-step-content{grid-template-columns:minmax(0,1fr);flex:1;margin-top:0}
+.guide-paper .guide-pair-panel .guide-step-side{grid-column:1!important;border:0!important;padding:0!important}
+.guide-paper .guide-pair-panel .guide-main-figure{position:absolute;right:0;bottom:0;width:38%;height:40%;grid-column:auto!important;grid-row:auto!important;min-width:0;z-index:2;background:#fff;border:.3mm solid #c9d3d9;border-radius:2mm;padding:1mm;box-sizing:border-box}
+.guide-paper .guide-pair-panel .guide-main-figure .guide-image-viewport{flex:1;min-height:0;width:100%}
+.guide-paper .guide-pair-panel .guide-main-figure figcaption{font-size:7pt}
+.guide-paper .guide-pair-panel .guide-step-content:not(:has(.guide-detail-figure)) .guide-main-figure{position:static;width:auto;height:auto;border:0;grid-column:1}
+.guide-paper .guide-pair-panel .guide-step-instruction{font-size:10.5pt;margin-top:2mm;padding:2mm 3mm}
+.guide-paper .guide-pair-panel .guide-detail-figure figcaption{display:none}
+.guide-paper .guide-pair-panel.guide-on-table .guide-step-content{outline:.6mm dashed #7fbfe6;outline-offset:1.5mm;border-radius:2mm}

@@ -50,7 +50,7 @@ import {loadPool} from './load-pool.js';
 let renderLoop=null;
 import {generateStudentGuide} from './guide-sequence.js?v=guide-drive-100';
 import {installPDFPreview} from './guide-pdf-preview.js?v=assembly-perf-102';
-import {prepPaper,stepPaper,finishedPaper,readyPaperImages} from './guide-paper.js?v=assembly-perf-102';
+import {prepPaper,stepPaper,stepPairPaper,pairableStep,finishedPaper,readyPaperImages} from './guide-paper.js?v=assembly-perf-102';
 import {guidePage} from './guide-page-settings.js';
 import {createGuideRenderer} from './guide-renderer.js?v=assembly-perf-102';
 import {repairAssemblyLinks} from './repair-links.js?v=repair-depth-38';
@@ -175,7 +175,7 @@ pdfPreview=installPDFPreview({platform:PLATFORM,guide:()=>studentGuide,project:(
  const result=reorderInlineGuide(from,to);
  if(result?.ok===false)throw Error(result.error);
  return result;
-},saveExplodeForAll,save(key,value){const prefs=copy(project.guidePreferences||{});prefs.steps||={};Object.defineProperty(prefs.steps,key,{value:{...prefs.steps[key],page:guidePage(value)},writable:true,enumerable:true,configurable:true});return changeGuidePreferences(prefs,{allowPreview:true,cameraOnly:true});},undo,undoDepth:()=>history.length,export:async()=>{if(!await exportStudentGuide())throw Error($('status').textContent);},focus:()=>{guideWorkbench.resume();renderLoop?.invalidate();scheduleProjectThumbnail();$('guide-export').focus();}});
+},saveExplodeForAll,save(key,value){const prefs=copy(project.guidePreferences||{});prefs.steps||={};Object.defineProperty(prefs.steps,key,{value:{...prefs.steps[key],page:guidePage(value)},writable:true,enumerable:true,configurable:true});return changeGuidePreferences(prefs,{allowPreview:true,cameraOnly:true});},undo,undoDepth:()=>history.length,layout:()=>project.guidePreferences?.layout==='single'?'single':'vex',setLayout(value){const prefs=copy(project.guidePreferences||{});if(value==='single')prefs.layout='single';else delete prefs.layout;return changeGuidePreferences(prefs,{allowPreview:true,cameraOnly:true});},export:async()=>{if(!await exportStudentGuide())throw Error($('status').textContent);},focus:()=>{guideWorkbench.resume();renderLoop?.invalidate();scheduleProjectThumbnail();$('guide-export').focus();}});
 function saveExplodeForAll(mm){
  const preferences=copy(project.guidePreferences||{});
  preferences.steps||={};
@@ -755,6 +755,7 @@ async function exportStudentGuide({zip=false}={}){
   scene.background.set('#ffffff');grid.visible=false;
   controls.detach();box.visible=false;
   container.append(prepPaper(project,catalog,PLATFORM));
+  const rendered=[];
   for(let i=0;i<studentGuide.steps.length;i++){
    const step=studentGuide.steps[i],stepObjects=new Map();
    // A cumulative step is a subset of the checked final poses. Removing pieces
@@ -767,7 +768,14 @@ async function exportStudentGuide({zip=false}={}){
    }
    status(`Đang xuất bước ${i+1} / ${studentGuide.steps.length}…`);await new Promise(requestAnimationFrame);
    controls.detach();box.visible=false;const shots=printRenderer.render(stepObjects,step,jointReferences,{contacts:guideContacts(),markers2D:true});
-   container.append(stepPaper(step,i,studentGuide.steps.length,shots,PLATFORM,project.kit?.kitId));
+   rendered.push({step,index:i,shots});
+  }
+  // VEX layout: two small consecutive steps share a page unless the author chose one step per page.
+  const pairing=project.guidePreferences?.layout!=='single';
+  for(let k=0;k<rendered.length;k++){
+   const a=rendered[k],b=rendered[k+1];
+   if(pairing&&b&&pairableStep(a.step)&&pairableStep(b.step)){container.append(stepPairPaper([a,b],studentGuide.steps.length,PLATFORM,project.kit?.kitId));k++;}
+   else container.append(stepPaper(a.step,a.index,studentGuide.steps.length,a.shots,PLATFORM,project.kit?.kitId));
   }
   await show(fullParts);setBusy(true);for(const obj of objects.values())obj.traverse(mesh=>{if(mesh.userData.cable)mesh.visible=false;});container.append(finishedPaper(project,printRenderer.completed(objects)));
   await readyPaperImages(container);if(zip){const bytes=await packageGuide(container,project,studentGuide,catalog);downloadFile(bytes,'application/zip','build-guide.zip');status('Đã xuất ZIP: ảnh từng bước, HTML offline và mô hình JSON.'+overlapNote);}else{window.print();status('Student guide is ready. Choose Save as PDF in the print dialog.'+overlapNote);}return true;
