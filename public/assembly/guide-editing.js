@@ -31,10 +31,10 @@ function clearInsertion(step,built,byId,paths,obstacles=null,allowGhost=false){
    if(item.id===joint.part)continue;
    const mate=byId.get(item.id)?.mate;
    if(!mate||added.has(mate.target)||!fixed.has(mate.target))continue;
-   // Pin batches share one axis. A simultaneous pair (two parts that lock each
-   // other) may each follow its own clear approach.
+   // Pin batches share one axis. A simultaneous pair, or a grouped VEX-style
+   // step (pins + part, a shaft stack), may follow each member's clear approach.
    const own=(paths.get(item.id)||[]).filter(option=>clear(option)&&option.contacts.some(c=>sameContact(c,mate)));
-   others.push(own.find(option=>sameAxis(route.axis,option.axis))||(step.pathConflict==='together'?own[0]:undefined));
+   others.push(own.find(option=>sameAxis(route.axis,option.axis))||(step.pathConflict==='together'||step.grouped?own[0]:undefined));
   }
   if(others.some(option=>!option))continue;
   const sweep=[route,...others];

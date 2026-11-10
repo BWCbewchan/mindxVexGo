@@ -56,4 +56,10 @@ assert.ok(at(id('4cac'))<at(id('dd68')),'Motor shaft before the motor');
 const edited=editGuide(guide,{},paths,refs);
 assert.equal(edited.steps.at(-1).added[0].id,id('69e0'),'Loose battery check stays at the end after reordering');
 assert.equal(new Set(edited.steps.flatMap(s=>s.added.map(p=>p.id))).size,parts.length,'Every part appears exactly once');
-console.log(`PASS: named spare parts, keyed hub roll repair, no self-blocking sockets, ${guide.steps.length} steps with ${conflicts.length} flagged conflicts, chain after sprockets, battery last.`);
+// VEX IQ manual style: pins travel with their part, shaft stacks and twin
+// connectors share a step; grouped steps stay valid after reordering.
+const grouped=guide.steps.filter(s=>s.grouped);
+assert.ok(guide.steps.length<=60&&grouped.length>=8,`Grouped steps (${grouped.length}) shorten the guide to ${guide.steps.length}`);
+assert.ok(grouped.some(s=>/bằng 2 chốt/.test(s.title)&&s.added.some(p=>p.id===id('aa3c'))),'Touch LED goes on together with its two pins');
+assert.equal(edited.steps.filter(s=>s.grouped&&s.insertionBlocked).length,0,'Grouped steps keep a clear insertion');
+console.log(`PASS: named spare parts, keyed hub roll repair, no self-blocking sockets, ${guide.steps.length} steps (${grouped.length} grouped VEX-style) with ${conflicts.length} flagged conflicts, chain after sprockets, battery last.`);

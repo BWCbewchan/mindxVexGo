@@ -154,6 +154,51 @@ export function generateIQGuide(input,{references={},nameFor=p=>p.label||p.sku,i
   if(!planned){planned=bestEffortPlan(clear,options);if(planned)pathSearch.bestEffort=true;}
   if(!planned)return {ready:false,steps:[],blockers:['Chưa tìm được đường lắp từng chi tiết mà không xuyên khung. Cần chuẩn bị cụm riêng trước khi đóng khung; không xuất thứ tự lắp chưa được kiểm tra.'],notes,pathSearch};
  }
+ // Official VEX IQ instructions show one coherent action per step, not one
+ // piece per page: pins travel with the part that uses them, a whole shaft
+ // stack goes on together, and repeated small parts on one base share a step.
+ // Only adjacent, already-valid steps are merged, so the checked order holds.
+ function consolidateSteps(list){
+  const kind=id=>byId.get(id)?.kind,small=new Set(['pin','retainer']);
+  const mergeable=step=>step&&step.type==='assembly'&&!step.pathConflict&&step.joint&&!step.added.some(p=>['shaft','motor'].includes(kind(p.id)));
+  const nameOf=id=>nameFor(byId.get(id));
+  const merge=(a,b,joint,insertion,title,note)=>{
+   const added=[...a.added,...b.added],ids=new Set(added.map(p=>p.id));
+   return {...b,title,note,added,joint,insertion,grouped:true,requires:[...new Set([...a.requires,...b.requires])].filter(id=>!ids.has(id))};
+  };
+  const pinsInto=(step,partId)=>step.added.every(p=>kind(p.id)==='pin'&&links.get(partId).some(c=>c.target===p.id));
+  for(let i=0;i+1<list.length;){
+   const a=list[i],b=list[i+1];let next=null;
+   if(mergeable(a)&&mergeable(b)){
+    const main=b.joint.part,count=a.added.length;
+    // 1. Pins, then the part that is pushed onto exactly those pins.
+    if(a.added.every(p=>kind(p.id)==='pin')&&b.added.length===1&&kind(main)!=='pin'&&pinsInto(a,main)&&(a.joint.target===b.joint.target||a.added.some(p=>p.id===b.joint.target)))
+     next=merge(a,b,b.joint,b.insertion,`Lắp ${nameOf(main)} vào ${nameOf(a.joint.target)} bằng ${count} chốt`,
+      `Cắm ${count} chốt vào các lỗ được đánh dấu trên ${nameOf(a.joint.target)}, rồi ấn ${nameOf(main)} lên các chốt theo hướng mũi tên cho đến khi khớp.`);
+    // 2. Everything that slides onto one shaft, inner to outer.
+    else if(kind(a.joint.target)==='shaft'&&a.joint.target===b.joint.target&&a.added.length+b.added.length<=6){
+     const names=[...new Set([...a.added,...b.added].map(p=>p.name))];
+     next=merge(a,b,a.joint,a.insertion,`Luồn ${names.join(', ')} vào ${nameOf(a.joint.target)}`,
+      `Luồn lần lượt từng chi tiết vào ${nameOf(a.joint.target)} theo thứ tự trong hình (trong ra ngoài). Giữ đúng khoảng cách; vòng chặn lắp sau cùng.`);
+    }
+    // 3. Small parts on the same base from the same side: identical
+    // connectors/beams (up to 4), or mixed pins (up to 3 kinds, 12 pieces).
+    else{
+     const support=id=>kind(id)==='pin'?byId.get(id)?.mate?.target||id:id,members=[...a.added,...b.added],skus=new Set(members.map(p=>p.sku));
+     const sameSide=!a.insertion||!b.insertion||a.insertion.axis.every((v,k)=>Math.abs(v-b.insertion.axis[k])<.001);
+     const pins=members.every(p=>kind(p.id)==='pin')&&skus.size<=3&&members.length<=12;
+     const twins=skus.size===1&&members.length<=4&&members.every(p=>kind(p.id)==='body'||small.has(kind(p.id)));
+     if(sameSide&&support(a.joint.target)===support(b.joint.target)&&(pins||twins)){
+      const base=nameOf(support(a.joint.target)),label=skus.size===1?`${members.length} ${b.added[0].name}`:`${members.length} chốt`;
+      next=merge(a,b,a.joint,a.insertion,`Lắp ${label} vào ${base}`,`Lắp ${label} vào các vị trí được đánh dấu trên ${base}, cùng một hướng theo mũi tên.`);
+     }
+    }
+   }
+   if(next){list.splice(i,2,next);continue;}
+   i++;
+  }
+  return list;
+ }
  function bestEffortPlan(clear,options){
   const plan=[],built=new Set([root.id]),routesOf=p=>pathAudit.get(p.id)||[];
   const blockSets=new Map(members.map(p=>[p.id,routesOf(p).map(r=>new Set(r.blockedBy))]));
@@ -255,6 +300,7 @@ export function generateIQGuide(input,{references={},nameFor=p=>p.label||p.sku,i
    }
   }
  }
+ consolidateSteps(steps);
  if(pathAudit){const owners=new Map(steps.flatMap((s,i)=>s.added.map(p=>[p.id,i])));for(const [i,s] of steps.entries())for(const id of s.insertion?.blockedBy||[]){const after=owners.get(id);if(after>i)steps[after].requires=[...new Set([...steps[after].requires,...s.added.map(p=>p.id)])];}}
  if(loose.length){notes.push('Electronics without modeled mounting joints are shown separately at the end.');append(loose,null,[],`Kiểm tra vị trí ${loose.map(nameFor).join(', ')}`,'CAD chưa xác định khớp gá; cần kiểm tra cách cố định thiết bị trước khi lắp thực tế.');steps.at(-1).type='electronics';}
  const conflicts=steps.filter(step=>step.pathConflict).length;
