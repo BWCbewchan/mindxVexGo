@@ -1,0 +1,382 @@
+[
+  {
+    "id": "WRO-2026-Elementary",
+    "title": "2026 WRO (Elementary)",
+    "year": 2026,
+    "family": "WRO",
+    "url": "worlds/missions/WRO/WRO-2026-Elementary.json",
+    "image": "textures/maps/WRO/WRO-2026-Elementary.jpg",
+    "objects": 16,
+    "mode": "objects"
+  },
+  {
+    "id": "WRO-2026-Junior",
+    "title": "2026 WRO (Junior)",
+    "year": 2026,
+    "family": "WRO",
+    "url": "worlds/missions/WRO/WRO-2026-Junior.json",
+    "image": "textures/maps/WRO/WRO-2026-Junior.png",
+    "objects": 29,
+    "mode": "objects"
+  },
+  {
+    "id": "WRO-2026-Senior",
+    "title": "2026 WRO (Senior)",
+    "year": 2026,
+    "family": "WRO",
+    "url": "worlds/missions/WRO/WRO-2026-Senior.json",
+    "image": "textures/maps/WRO/WRO-2026-Senior.png",
+    "objects": 100,
+    "mode": "objects"
+  },
+  {
+    "id": "FLL2025",
+    "title": "2025 FLL (Unearthed)",
+    "year": 2025,
+    "family": "FLL",
+    "url": "worlds/missions/FLL/FLL2025.json",
+    "image": "textures/maps/FLL/FLL2025.jpg",
+    "objects": 0,
+    "mode": "mat"
+  },
+  {
+    "id": "WRO-2025-Sport",
+    "title": "2025 WRO (Sport)",
+    "year": 2025,
+    "family": "WRO",
+    "url": "worlds/missions/WRO/WRO-2025-Sport.json",
+    "image": "textures/maps/WRO/WRO-2025-Sport.png",
+    "objects": 13,
+    "mode": "objects"
+  },
+  {
+    "id": "WRO-2025-Future-Engineer-Simple",
+    "title": "2025 WRO (Future Engineer Simple)",
+    "year": 2025,
+    "family": "WRO",
+    "url": "worlds/missions/WRO/WRO-2025-Future-Engineer-Simple.json",
+    "image": "textures/maps/WRO/WRO-2025-Future-Engineer.jpg",
+    "objects": 8,
+    "mode": "objects"
+  },
+  {
+    "id": "WRO-2025-Future-Engineer-Open",
+    "title": "2025 WRO (Future Engineer Open)",
+    "year": 2025,
+    "family": "WRO",
+    "url": "worlds/missions/WRO/WRO-2025-Future-Engineer-Open.json",
+    "image": "textures/maps/WRO/WRO-2025-Future-Engineer.jpg",
+    "objects": 16,
+    "mode": "objects"
+  },
+  {
+    "id": "WRO-2025-Future-Engineer-Obstacle",
+    "title": "2025 WRO (Future Engineer Obstacle)",
+    "year": 2025,
+    "family": "WRO",
+    "url": "worlds/missions/WRO/WRO-2025-Future-Engineer-Obstacle.json",
+    "image": "textures/maps/WRO/WRO-2025-Future-Engineer.jpg",
+    "objects": 19,
+    "mode": "objects"
+  },
+  {
+    "id": "WRO-2025-Elementary",
+    "title": "2025 WRO (Elementary)",
+    "year": 2025,
+    "family": "WRO",
+    "url": "worlds/missions/WRO/WRO-2025-Elementary.json",
+    "image": "textures/maps/WRO/WRO-2025-Elementary.png",
+    "objects": 0,
+    "mode": "mat"
+  },
+  {
+    "id": "WRO-2025-Junior",
+    "title": "2025 WRO (Junior)",
+    "year": 2025,
+    "family": "WRO",
+    "url": "worlds/missions/WRO/WRO-2025-Junior.json",
+    "image": "textures/maps/WRO/WRO-2025-Junior.jpg",
+    "objects": 0,
+    "mode": "mat"
+  },
+  {
+    "id": "WRO-2025-Senior",
+    "title": "2025 WRO (Senior)",
+    "year": 2025,
+    "family": "WRO",
+    "url": "worlds/missions/WRO/WRO-2025-Senior.json",
+    "image": "textures/maps/WRO/WRO-2025-Senior.png",
+    "objects": 0,
+    "mode": "mat"
+  },
+  {
+    "id": "FLL2024",
+    "title": "2024 FLL (Submerged)",
+    "year": 2024,
+    "family": "FLL",
+    "url": "worlds/missions/FLL/FLL2024.json",
+    "image": "textures/maps/FLL/FLL2024.jpg",
+    "objects": 15,
+    "mode": "objects"
+  },
+  {
+    "id": "WRO-2024-Elementary",
+    "title": "2024 WRO (Elementary)",
+    "year": 2024,
+    "family": "WRO",
+    "url": "worlds/missions/WRO/WRO-2024-Elementary.json",
+    "image": "textures/maps/WRO/WRO-2024-Elementary.png",
+    "objects": 0,
+    "mode": "mat"
+  },
+  {
+    "id": "WRO-2024-Junior",
+    "title": "2024 WRO (Junior)",
+    "year": 2024,
+    "family": "WRO",
+    "url": "worlds/missions/WRO/WRO-2024-Junior.json",
+    "image": "textures/maps/WRO/WRO-2024-Junior.png",
+    "objects": 18,
+    "mode": "objects"
+  },
+  {
+    "id": "WRO-2024-Senior",
+    "title": "2024 WRO (Senior)",
+    "year": 2024,
+    "family": "WRO",
+    "url": "worlds/missions/WRO/WRO-2024-Senior.json",
+    "image": "textures/maps/WRO/WRO-2024-Senior.png",
+    "objects": 0,
+    "mode": "mat"
+  },
+  {
+    "id": "FLL2023",
+    "title": "2023 FLL (Masterpiece)",
+    "year": 2023,
+    "family": "FLL",
+    "url": "worlds/missions/FLL/FLL2023.json",
+    "image": "textures/maps/FLL/FLL2023.jpg",
+    "objects": 38,
+    "mode": "objects"
+  },
+  {
+    "id": "WRO-2023-Elementary",
+    "title": "2023 WRO (Elementary)",
+    "year": 2023,
+    "family": "WRO",
+    "url": "worlds/missions/WRO/WRO-2023-Elementary.json",
+    "image": "textures/maps/WRO/WRO-2023-Elementary.png",
+    "objects": 17,
+    "mode": "objects"
+  },
+  {
+    "id": "WRO-2023-Junior",
+    "title": "2023 WRO (Junior)",
+    "year": 2023,
+    "family": "WRO",
+    "url": "worlds/missions/WRO/WRO-2023-Junior.json",
+    "image": "textures/maps/WRO/WRO-2023-Junior.png",
+    "objects": 17,
+    "mode": "objects"
+  },
+  {
+    "id": "WRO-2023-Senior",
+    "title": "2023 WRO (Senior) No Models",
+    "year": 2023,
+    "family": "WRO",
+    "url": "worlds/missions/WRO/WRO-2023-Senior.json",
+    "image": "textures/maps/WRO/WRO-2023-Senior.png",
+    "objects": 0,
+    "mode": "mat"
+  },
+  {
+    "id": "FLL2022",
+    "title": "2022 FLL (Superpowered)",
+    "year": 2022,
+    "family": "FLL",
+    "url": "worlds/missions/FLL/FLL2022.json",
+    "image": "textures/maps/FLL/FLL2022.jpg",
+    "objects": 44,
+    "mode": "objects"
+  },
+  {
+    "id": "WRO-2022-Regular-Elementary-1",
+    "title": "2022 WRO (Elementary)",
+    "year": 2022,
+    "family": "WRO",
+    "url": "worlds/missions/WRO/WRO-2022-Regular-Elementary-1.json",
+    "image": "textures/maps/WRO/WRO-2022-Regular-Elementary.png",
+    "objects": 24,
+    "mode": "objects"
+  },
+  {
+    "id": "WRO-2022-Regular-Elementary-2",
+    "title": "2022 WRO (Elementary) Randomization 2",
+    "year": 2022,
+    "family": "WRO",
+    "url": "worlds/missions/WRO/WRO-2022-Regular-Elementary-2.json",
+    "image": "textures/maps/WRO/WRO-2022-Regular-Elementary.png",
+    "objects": 24,
+    "mode": "objects"
+  },
+  {
+    "id": "WRO-2022-Regular-Junior",
+    "title": "2022 WRO (Junior)",
+    "year": 2022,
+    "family": "WRO",
+    "url": "worlds/missions/WRO/WRO-2022-Regular-Junior.json",
+    "image": "textures/maps/WRO/WRO-2022-Regular-Junior.png",
+    "objects": 27,
+    "mode": "objects"
+  },
+  {
+    "id": "WRO-2022-Regular-Senior",
+    "title": "2022 WRO (Senior)",
+    "year": 2022,
+    "family": "WRO",
+    "url": "worlds/missions/WRO/WRO-2022-Regular-Senior.json",
+    "image": "textures/maps/WRO/WRO-2022-Regular-Senior.png",
+    "objects": 35,
+    "mode": "objects"
+  },
+  {
+    "id": "FLL2021",
+    "title": "2021 FLL (Cargo Connect)",
+    "year": 2021,
+    "family": "FLL",
+    "url": "worlds/missions/FLL/FLL2021.json",
+    "image": "textures/maps/FLL/FLL2021.jpg",
+    "objects": 34,
+    "mode": "objects"
+  },
+  {
+    "id": "WRO-2021-Regular-Elementary",
+    "title": "2021 WRO (Elementary)",
+    "year": 2021,
+    "family": "WRO",
+    "url": "worlds/missions/WRO/WRO-2021-Regular-Elementary.json",
+    "image": "textures/maps/WRO/WRO-2021-Regular-Elementary.jpg",
+    "objects": 15,
+    "mode": "objects"
+  },
+  {
+    "id": "WRO-2021-Regular-Junior",
+    "title": "2021 WRO (Junior)",
+    "year": 2021,
+    "family": "WRO",
+    "url": "worlds/missions/WRO/WRO-2021-Regular-Junior.json",
+    "image": "textures/maps/WRO/WRO-2021-Regular-Junior.jpg",
+    "objects": 18,
+    "mode": "objects"
+  },
+  {
+    "id": "WRO-2021-Regular-Senior",
+    "title": "2021 WRO (Senior)",
+    "year": 2021,
+    "family": "WRO",
+    "url": "worlds/missions/WRO/WRO-2021-Regular-Senior.json",
+    "image": "textures/maps/WRO/WRO-2021-Regular-Senior.jpg",
+    "objects": 0,
+    "mode": "mat"
+  },
+  {
+    "id": "FLL2020v2",
+    "title": "2020 FLL (RePLAY v2)",
+    "year": 2020,
+    "family": "FLL",
+    "url": "worlds/missions/FLL/FLL2020v2.json",
+    "image": "textures/maps/FLL/FLL2020.jpg",
+    "objects": 55,
+    "mode": "objects"
+  },
+  {
+    "id": "FLL2020",
+    "title": "2020 FLL (RePLAY)",
+    "year": 2020,
+    "family": "FLL",
+    "url": "worlds/missions/FLL/FLL2020.json",
+    "image": "textures/maps/FLL/FLL2020.jpg",
+    "objects": 19,
+    "mode": "objects"
+  },
+  {
+    "id": "WRO-2020-Regular-Elementary",
+    "title": "2020 WRO (Elementary)",
+    "year": 2020,
+    "family": "WRO",
+    "url": "worlds/missions/WRO/WRO-2020-Regular-Elementary.json",
+    "image": "textures/maps/WRO/WRO-2020-Regular-Elementary.jpg",
+    "objects": 11,
+    "mode": "objects"
+  },
+  {
+    "id": "WRO-2020-Regular-Junior",
+    "title": "2020 WRO (Junior)",
+    "year": 2020,
+    "family": "WRO",
+    "url": "worlds/missions/WRO/WRO-2020-Regular-Junior.json",
+    "image": "textures/maps/WRO/WRO-2020-Regular-Junior.jpg",
+    "objects": 0,
+    "mode": "mat"
+  },
+  {
+    "id": "FLL2019",
+    "title": "2019 FLL (City Shaper)",
+    "year": 2019,
+    "family": "FLL",
+    "url": "worlds/missions/FLL/FLL2019.json",
+    "image": "textures/maps/FLL/FLL2019.jpg",
+    "objects": 0,
+    "mode": "mat"
+  },
+  {
+    "id": "WRO-2019-Regular-Elementary",
+    "title": "2019 WRO (Elementary)",
+    "year": 2019,
+    "family": "WRO",
+    "url": "worlds/missions/WRO/WRO-2019-Regular-Elementary.json",
+    "image": "textures/maps/WRO/WRO-2019-Regular-Elementary.jpg",
+    "objects": 10,
+    "mode": "objects"
+  },
+  {
+    "id": "WRO-2019-Regular-Junior",
+    "title": "2019 WRO (Junior)",
+    "year": 2019,
+    "family": "WRO",
+    "url": "worlds/missions/WRO/WRO-2019-Regular-Junior.json",
+    "image": "textures/maps/WRO/WRO-2019-Regular-Junior.jpg",
+    "objects": 18,
+    "mode": "objects"
+  },
+  {
+    "id": "FLL2018",
+    "title": "2018 FLL (Into Orbit)",
+    "year": 2018,
+    "family": "FLL",
+    "url": "worlds/missions/FLL/FLL2018.json",
+    "image": "textures/maps/FLL/FLL2018.jpg",
+    "objects": 0,
+    "mode": "mat"
+  },
+  {
+    "id": "WRO-2018-Regular-Elementary",
+    "title": "2018 WRO (Elementary)",
+    "year": 2018,
+    "family": "WRO",
+    "url": "worlds/missions/WRO/WRO-2018-Regular-Elementary.json",
+    "image": "textures/maps/WRO/WRO-2018-Regular-Elementary.png",
+    "objects": 11,
+    "mode": "objects"
+  },
+  {
+    "id": "WRO-2018-Regular-Junior",
+    "title": "2018 WRO (Junior)",
+    "year": 2018,
+    "family": "WRO",
+    "url": "worlds/missions/WRO/WRO-2018-Regular-Junior.json",
+    "image": "textures/maps/WRO/WRO-2018-Regular-Junior.png",
+    "objects": 27,
+    "mode": "objects"
+  }
+]

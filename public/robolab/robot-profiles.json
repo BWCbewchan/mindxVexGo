@@ -1,0 +1,655 @@
+{
+ "_note": "mindX robots for Gears competition fields. Ports follow component order: wheels A/B, then actuators C, D, E; sensors 1, 2, 3...",
+ "base": {
+  "bodyHeight": 4,
+  "bodyWidth": 14,
+  "bodyLength": 16,
+  "wheels": true,
+  "wheelDiameter": 5.6,
+  "wheelWidth": 0.8,
+  "wheelToBodyOffset": 0.2,
+  "bodyEdgeToWheelCenterY": 1,
+  "bodyEdgeToWheelCenterZ": 2,
+  "bodyMass": 1000,
+  "wheelMass": 200,
+  "casterMass": 0,
+  "caster": true,
+  "wheelFriction": 10,
+  "bodyFriction": 0,
+  "casterFriction": 0,
+  "color": "#C5F56A",
+  "imageType": "all",
+  "imageURL": ""
+ },
+ "profiles": {
+  "mindx-fll": {
+   "title": "mindX FLL Base",
+   "purpose": "Robot FLL: 2 cảm biến màu bắt vạch, gyro giữ hướng, 2 tay gắn phụ kiện trước/sau để làm nhiệm vụ.",
+   "components": [
+    {
+     "type": "ColorSensor",
+     "position": [
+      -3,
+      -1,
+      9
+     ],
+     "rotation": [
+      1.5708,
+      0,
+      0
+     ],
+     "options": null,
+     "label": "màu trái"
+    },
+    {
+     "type": "ColorSensor",
+     "position": [
+      3,
+      -1,
+      9
+     ],
+     "rotation": [
+      1.5708,
+      0,
+      0
+     ],
+     "options": null,
+     "label": "màu phải"
+    },
+    {
+     "type": "GyroSensor",
+     "position": [
+      0,
+      2.5,
+      2
+     ],
+     "options": null,
+     "label": "gyro"
+    },
+    {
+     "type": "UltrasonicSensor",
+     "position": [
+      0,
+      2.5,
+      8
+     ],
+     "rotation": [
+      0,
+      0,
+      0
+     ],
+     "options": null,
+     "label": "siêu âm trước"
+    },
+    {
+     "type": "ArmActuator",
+     "position": [
+      0,
+      3,
+      5
+     ],
+     "rotation": [
+      0,
+      0,
+      0
+     ],
+     "options": null,
+     "label": "tay phụ kiện trước"
+    },
+    {
+     "type": "ArmActuator",
+     "position": [
+      0,
+      3,
+      -5
+     ],
+     "rotation": [
+      0,
+      3.1416,
+      0
+     ],
+     "options": null,
+     "label": "tay phụ kiện sau"
+    }
+   ]
+  },
+  "mindx-wro-elementary": {
+   "title": "mindX WRO Elementary",
+   "purpose": "Robot WRO Elementary: bám vạch bằng 2 cảm biến màu, tay trước có nam châm để gom và đặt vật.",
+   "components": [
+    {
+     "type": "ColorSensor",
+     "position": [
+      -2,
+      -1,
+      9
+     ],
+     "rotation": [
+      1.5708,
+      0,
+      0
+     ],
+     "options": null,
+     "label": "màu trái"
+    },
+    {
+     "type": "ColorSensor",
+     "position": [
+      2,
+      -1,
+      9
+     ],
+     "rotation": [
+      1.5708,
+      0,
+      0
+     ],
+     "options": null,
+     "label": "màu phải"
+    },
+    {
+     "type": "GyroSensor",
+     "position": [
+      0,
+      2.5,
+      2
+     ],
+     "options": null,
+     "label": "gyro"
+    },
+    {
+     "type": "ArmActuator",
+     "position": [
+      0,
+      3,
+      4
+     ],
+     "rotation": [
+      0,
+      0,
+      0
+     ],
+     "options": null,
+     "components": [
+      {
+       "type": "MagnetActuator",
+       "position": [
+        0,
+        -1.75,
+        8
+       ],
+       "rotation": [
+        0,
+        0,
+        0
+       ],
+       "options": null,
+       "label": "nam châm ở tay"
+      }
+     ],
+     "label": "tay nâng"
+    }
+   ]
+  },
+  "mindx-wro-junior": {
+   "title": "mindX WRO Junior",
+   "purpose": "Robot WRO Junior: như Elementary, thêm cảm biến màu ở tay để nhận màu vật và siêu âm đo khoảng cách.",
+   "components": [
+    {
+     "type": "ColorSensor",
+     "position": [
+      -2,
+      -1,
+      9
+     ],
+     "rotation": [
+      1.5708,
+      0,
+      0
+     ],
+     "options": null,
+     "label": "màu trái"
+    },
+    {
+     "type": "ColorSensor",
+     "position": [
+      2,
+      -1,
+      9
+     ],
+     "rotation": [
+      1.5708,
+      0,
+      0
+     ],
+     "options": null,
+     "label": "màu phải"
+    },
+    {
+     "type": "UltrasonicSensor",
+     "position": [
+      0,
+      2.5,
+      8
+     ],
+     "rotation": [
+      0,
+      0,
+      0
+     ],
+     "options": null,
+     "label": "siêu âm trước"
+    },
+    {
+     "type": "GyroSensor",
+     "position": [
+      -4,
+      2.5,
+      2
+     ],
+     "options": null,
+     "label": "gyro"
+    },
+    {
+     "type": "ArmActuator",
+     "position": [
+      0,
+      3,
+      4
+     ],
+     "rotation": [
+      0,
+      0,
+      0
+     ],
+     "options": null,
+     "components": [
+      {
+       "type": "MagnetActuator",
+       "position": [
+        0,
+        -1.75,
+        8
+       ],
+       "rotation": [
+        0,
+        0,
+        0
+       ],
+       "options": null,
+       "label": "nam châm ở tay"
+      },
+      {
+       "type": "ColorSensor",
+       "position": [
+        0,
+        -1.25,
+        10
+       ],
+       "rotation": [
+        1.5708,
+        0,
+        0
+       ],
+       "options": null,
+       "label": "màu nhận vật (ở tay)"
+      }
+     ],
+     "label": "tay nâng"
+    }
+   ]
+  },
+  "mindx-wro-senior": {
+   "title": "mindX WRO Senior",
+   "purpose": "Robot WRO Senior: tay 2 khớp có nam châm để xếp vật nhiều tầng, cảm biến màu ở tay và laser 2 bên để canh tường.",
+   "components": [
+    {
+     "type": "ColorSensor",
+     "position": [
+      -2,
+      -1,
+      9
+     ],
+     "rotation": [
+      1.5708,
+      0,
+      0
+     ],
+     "options": null,
+     "label": "màu trái"
+    },
+    {
+     "type": "ColorSensor",
+     "position": [
+      2,
+      -1,
+      9
+     ],
+     "rotation": [
+      1.5708,
+      0,
+      0
+     ],
+     "options": null,
+     "label": "màu phải"
+    },
+    {
+     "type": "UltrasonicSensor",
+     "position": [
+      0,
+      2.5,
+      8
+     ],
+     "rotation": [
+      0,
+      0,
+      0
+     ],
+     "options": null,
+     "label": "siêu âm trước"
+    },
+    {
+     "type": "LaserRangeSensor",
+     "position": [
+      -6,
+      3.5,
+      -4
+     ],
+     "rotation": [
+      0,
+      -1.5708,
+      0
+     ],
+     "options": null,
+     "label": "laser trái"
+    },
+    {
+     "type": "LaserRangeSensor",
+     "position": [
+      6,
+      3.5,
+      -4
+     ],
+     "rotation": [
+      0,
+      1.5708,
+      0
+     ],
+     "options": null,
+     "label": "laser phải"
+    },
+    {
+     "type": "GyroSensor",
+     "position": [
+      0,
+      2.5,
+      -2
+     ],
+     "options": null,
+     "label": "gyro"
+    },
+    {
+     "type": "ArmActuator",
+     "position": [
+      0,
+      3,
+      4
+     ],
+     "rotation": [
+      0,
+      0,
+      0
+     ],
+     "options": null,
+     "components": [
+      {
+       "type": "ArmActuator",
+       "position": [
+        0,
+        0,
+        8
+       ],
+       "rotation": [
+        0,
+        0,
+        0
+       ],
+       "options": {
+        "minAngle": -160,
+        "maxAngle": 160,
+        "mass": 50
+       },
+       "components": [
+        {
+         "type": "MagnetActuator",
+         "position": [
+          0,
+          -1.75,
+          8
+         ],
+         "rotation": [
+          0,
+          0,
+          0
+         ],
+         "options": null,
+         "label": "nam châm"
+        },
+        {
+         "type": "ColorSensor",
+         "position": [
+          0,
+          -1.25,
+          10
+         ],
+         "rotation": [
+          1.5708,
+          0,
+          0
+         ],
+         "options": null,
+         "label": "màu nhận vật (ở tay)"
+        }
+       ],
+       "label": "khớp cổ tay"
+      }
+     ],
+     "label": "khớp vai"
+    }
+   ]
+  },
+  "mindx-wro-fe": {
+   "title": "mindX Future Engineers",
+   "purpose": "Robot Future Engineers: laser trước/trái/phải để đi giữa tường, camera nhận cột đỏ/xanh, cảm biến màu đếm vạch cam/xanh ở góc.",
+   "components": [
+    {
+     "type": "LaserRangeSensor",
+     "position": [
+      0,
+      3.5,
+      8
+     ],
+     "rotation": [
+      0,
+      0,
+      0
+     ],
+     "options": null,
+     "label": "laser trước"
+    },
+    {
+     "type": "LaserRangeSensor",
+     "position": [
+      -6,
+      3.5,
+      4
+     ],
+     "rotation": [
+      0,
+      -1.5708,
+      0
+     ],
+     "options": null,
+     "label": "laser trái"
+    },
+    {
+     "type": "LaserRangeSensor",
+     "position": [
+      6,
+      3.5,
+      4
+     ],
+     "rotation": [
+      0,
+      1.5708,
+      0
+     ],
+     "options": null,
+     "label": "laser phải"
+    },
+    {
+     "type": "CameraSensor",
+     "position": [
+      0,
+      5,
+      6
+     ],
+     "rotation": [
+      0,
+      0,
+      0
+     ],
+     "options": null,
+     "label": "camera trước"
+    },
+    {
+     "type": "ColorSensor",
+     "position": [
+      0,
+      -1,
+      9
+     ],
+     "rotation": [
+      1.5708,
+      0,
+      0
+     ],
+     "options": null,
+     "label": "màu dưới (đếm vạch góc)"
+    },
+    {
+     "type": "GyroSensor",
+     "position": [
+      0,
+      2.5,
+      0
+     ],
+     "options": null,
+     "label": "gyro"
+    }
+   ]
+  },
+  "mindx-wro-sport": {
+   "title": "mindX WRO Sport",
+   "purpose": "Robot WRO Sport: camera và laser tìm bóng/vật, tay trước dạng cổng để giữ và đẩy.",
+   "components": [
+    {
+     "type": "LaserRangeSensor",
+     "position": [
+      0,
+      3.5,
+      8
+     ],
+     "rotation": [
+      0,
+      0,
+      0
+     ],
+     "options": null,
+     "label": "laser trước"
+    },
+    {
+     "type": "CameraSensor",
+     "position": [
+      0,
+      5,
+      6
+     ],
+     "rotation": [
+      0,
+      0,
+      0
+     ],
+     "options": null,
+     "label": "camera trước"
+    },
+    {
+     "type": "ColorSensor",
+     "position": [
+      0,
+      -1,
+      9
+     ],
+     "rotation": [
+      1.5708,
+      0,
+      0
+     ],
+     "options": null,
+     "label": "màu dưới"
+    },
+    {
+     "type": "GyroSensor",
+     "position": [
+      0,
+      2.5,
+      0
+     ],
+     "options": null,
+     "label": "gyro"
+    },
+    {
+     "type": "ArmActuator",
+     "position": [
+      0,
+      3,
+      5
+     ],
+     "rotation": [
+      0,
+      0,
+      0
+     ],
+     "options": null,
+     "label": "tay cổng trước"
+    }
+   ]
+  }
+ },
+ "rules": [
+  {
+   "match": "^FLL",
+   "profile": "mindx-fll"
+  },
+  {
+   "match": "Future-Engineer",
+   "profile": "mindx-wro-fe"
+  },
+  {
+   "match": "Sport",
+   "profile": "mindx-wro-sport"
+  },
+  {
+   "match": "Senior",
+   "profile": "mindx-wro-senior"
+  },
+  {
+   "match": "Junior",
+   "profile": "mindx-wro-junior"
+  },
+  {
+   "match": "Elementary",
+   "profile": "mindx-wro-elementary"
+  }
+ ]
+}
