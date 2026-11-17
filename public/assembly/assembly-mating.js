@@ -83,7 +83,7 @@ function sameSideOccupancy(context,moving,references){
  if(context.references===references)context.dragOccupancy={key,occupied};
  return occupied;
 }
-export function nearestAssemblyMate(parts,references,movingIds,{distance=8,excludedMates=[],context,preferred=null}={}){
+export function nearestAssemblyMate(parts,references,movingIds,{distance=8,excludedMates=[],context,preferred=null,acceptCandidate=null}={}){
  context||=assemblyMatingContext(parts,references);
  const moving=new Set(movingIds),byId=new Map(parts.map(part=>[part.id,part]));
  for(const part of parts){
@@ -140,7 +140,7 @@ export function nearestAssemblyMate(parts,references,movingIds,{distance=8,exclu
   candidates.push({sourceId:a.part.id,targetId:b.part.id,sourceRef:a.ref,targetRef:b.ref,depth:chosen,gap,score,rankScore});
  }
  candidates.sort((a,b)=>a.rankScore-b.rankScore);
- let best=null;
+ const ranked=[];
  const supportCache=new Map();
  for(const candidate of candidates.slice(0,12)){
   const source=byId.get(candidate.sourceId),target=byId.get(candidate.targetId);
@@ -149,11 +149,14 @@ export function nearestAssemblyMate(parts,references,movingIds,{distance=8,exclu
   const key=[...delta.toArray().map(v=>Math.round(v*sign*1e6)),...translation.toArray().map(v=>Math.round(v*1e4))].join('|');
   let support=supportCache.get(key);
   if(support===undefined){support=crossContacts(transformedRows(world,source,pose,moving),moving).length;supportCache.set(key,support);}
-  if(!best||support>best.support||support===best.support&&candidate.rankScore<best.rankScore)best={...candidate,support};
+  ranked.push({...candidate,support});
  }
- if(!best)return null;
- const result=previewAssemblyConnection(parts,references,{...best,movingIds,context,world});
- return {...result,gap:best.gap,score:best.score};
+ ranked.sort((a,b)=>b.support-a.support||a.rankScore-b.rankScore);
+ for(const best of ranked){
+  const result=previewAssemblyConnection(parts,references,{...best,movingIds,context,world});
+  if(!acceptCandidate||acceptCandidate(result))return {...result,gap:best.gap,score:best.score};
+ }
+ return null;
 }
 
 // Moving a selected group releases only its boundary; internal mates stay intact.

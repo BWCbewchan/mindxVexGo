@@ -6,7 +6,11 @@ export function installAutomaticGuideRepair({key,blocked,run,onError=()=>{},dela
   timer=null;if(disposed||running)return;
   if(blocked()){timer=setTimeout(tick,delay);return;}
   const before=key();if(attempted.has(before))return;remember(before);running=true;
-  try{await run();}catch(error){onError(error);}finally{remember(key());running=false;}
+  let current=true;
+  try{current=await run()!==false;}catch(error){onError(error);}finally{
+   if(current)remember(key());running=false;
+   if(!current&&!disposed){attempted.delete(before);timer=setTimeout(tick,delay);}
+  }
  }
  return {schedule(){if(disposed||running)return;clearTimeout(timer);timer=null;if(!attempted.has(key()))timer=setTimeout(tick,delay);},active:()=>running,dispose(){disposed=true;clearTimeout(timer);}};
 }

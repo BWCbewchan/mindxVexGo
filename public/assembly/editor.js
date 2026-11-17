@@ -1,3 +1,4 @@
+import {createSnapFitValidator} from './snap-fit.js?v=physical-snap-112';
 import {IQ_POWER_PACK_NAME,IQ_POWER_PACK_BRAIN,IQ_POWER_PACK_BATTERY,iqBatteryPose} from './iq-power-pack.js';
 import {requestProjectCheckpoint} from './lifecycle-checkpoint.js';
 import {installChainPicker} from './chain-picker.js';
@@ -7,10 +8,10 @@ import {partSource,partModelUrl} from './part-source.js';
 import {totalKitCount,legoPartKit} from './kit-policy.js';
 import {installPartsLibrary} from './parts-library.js';
 import {croppedPartThumbnail} from './part-thumbnail.js';
-import {assemblyMatingContext,movingAssemblyIds} from './assembly-mating.js?v=drag-smooth-111';
+import {assemblyMatingContext,movingAssemblyIds} from './assembly-mating.js?v=physical-snap-112';
 import {installChainBuilder,buildChain,isChainLink} from './chain-builder.js';
 import {installConnectionSuggestions} from './connection-suggestions.js';
-import {installAutomaticGuideRepair} from './automatic-guide-repair.js';
+import {installAutomaticGuideRepair} from './automatic-guide-repair.js?v=physical-snap-112';
 import {installGuideWorkbench} from './guide-workbench.js?v=drag-smooth-111';
 import {SNAP_PRESETS,snapPreset,snapPosition} from './snap-settings.js';
 import {guideCamera} from './guide-camera.js';
@@ -56,13 +57,13 @@ import {prepPaper,stepPaper,stepPairPaper,pairableStep,finishedPaper,readyPaperI
 import {guidePage} from './guide-page-settings.js';
 import {createGuideRenderer} from './guide-renderer.js?v=group-perf-109';
 import {repairAssemblyLinks} from './repair-links.js?v=repair-depth-38';
-import {collisionClient} from './collision-client.js?v=asset-startup-102';
+import {collisionClient} from './collision-client.js?v=physical-snap-112';
 const fitChecker=collisionClient(()=>jointReferences);
 import {stagingPosition} from './staging-position.js';
 import {withElectronics as withRequiredElectronics,missingElectronics} from './electronics.js';
-import {installDirectTools} from './direct-tools.js?v=drag-smooth-111';
-import {installQuickAttach} from './quick-attach.js?v=motor-targets-106';
-import {linkedPoses,normalizeMatedJoints} from './mating.js?v=fit-tolerance-36';
+import {installDirectTools} from './direct-tools.js?v=physical-snap-112';
+import {installQuickAttach} from './quick-attach.js?v=physical-snap-112';
+import {linkedPoses,normalizeMatedJoints} from './mating.js?v=physical-snap-112';
 import {constrainJoints} from './joint-constraints.js?v=compatibility-27';
 import {platformConnectorsUrl} from './platform-registry.js?v=assembly-perf-102';
 import {readAssemblyCatalog} from './project-catalog.js?v=assembly-perf-102';
@@ -70,7 +71,7 @@ const [jointReferences,initialCatalog]=await Promise.all([
  fetch(platformConnectorsUrl(PLATFORM.id)).then(response=>{if(!response.ok)throw Error('Không tải được dữ liệu khớp CAD.');return response.json();}).then(data=>data.parts),
  readAssemblyCatalog(PLATFORM.id),
 ]);
-import {installConnectTool} from './connect-tool.js?v=compatibility-27';
+import {installConnectTool} from './connect-tool.js?v=physical-snap-112';
 import * as THREE from 'three';
 import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
 import {TransformControls} from 'three/addons/controls/TransformControls.js';
@@ -86,6 +87,7 @@ let connectTool=null,quickAttach=null,directTools=null,connectionSuggestions=nul
 let selectedGroupId=null,kitSettings=null;
 let kitCatalogLoader=null;
 let catalog=[],project={version:1,platform:PLATFORM.id,title:'My '+PLATFORM.name+' build',parts:[],groups:[],steps:[]},studentGuide={ready:false,steps:[],blockers:[],notes:[]},selected=null,preview=false,busy=false,history=[],future=[],objects=new Map(),cache=new Map(),dragStart=null,highlights=[],guideReturnPose=null;
+const snapFit=createSnapFitValidator(objects,()=>jointReferences);
 const scene=new THREE.Scene(),viewportBatches=createViewportBatches(scene);scene.background=new THREE.Color('#ffffff');
 const connectedWires=installWiring3D(scene,()=>objects,message=>status(message));
 const camera=new THREE.PerspectiveCamera(40,1,.001,100);camera.position.set(.45,.32,.45);
@@ -225,30 +227,24 @@ async function guardTransform({autoAttach=true}={}){
  if(!busy&&!preview&&jointBefore){
   const corrected=constrainJoints(project.parts,jointBefore.parts,jointReferences,{autoAttach:autoAttach&&$('magnet').checked&&selectedIds.size<=1});
   if(!corrected.ok){project.parts=copy(jointBefore.parts);history.pop();await show();warnings();status('Move rejected: '+corrected.reason);return false;}
-  for(const part of project.parts){const obj=objects.get(part.id);if(obj)transform(obj,part);}
+  for(const part of project.parts){const obj=objects.get(part.id);if(obj&&!sameScenePose(obj,part))transform(obj,part);}
   if(corrected.corrections.length)refreshSelection();
  }
  const before=history.at(-1);if(!protectInput.checked||busy||preview||!before||before.parts.some(p=>!project.parts.some(n=>n.id===p.id)))return true;
  const prior=new Map(before.parts.map(p=>[p.id,p]));
  const changed=project.parts.filter(p=>!prior.has(p.id)||JSON.stringify([p.position,p.rotation])!==JSON.stringify([prior.get(p.id).position,prior.get(p.id).rotation]));if(!changed.length)return true;
- setBusy(true);
- try{
- const stamp=JSON.stringify(project.parts);const current=await inspectFit();if(stamp!==JSON.stringify(project.parts))return true;if(!current.issues.some(i=>i.kind==='penetration'))return true;
- for(const p of changed)if(prior.has(p.id))transform(objects.get(p.id),prior.get(p.id));
- const priorCheck=inspectFit(before.parts);
- for(const p of changed)transform(objects.get(p.id),p);
- const oldKeys=new Set((await priorCheck).issues.filter(i=>i.kind==='penetration').map(i=>i.key));
- const newIssues=current.issues.filter(i=>i.kind==='penetration'&&!oldKeys.has(i.key));
- if(!newIssues.length)return true;
+ const ids=changed.map(p=>p.id),current=snapFit.check(project.parts,ids,{limit:80});
+ if(current.ok)return true;
+ const oldKeys=new Set(snapFit.check(before.parts,ids,{limit:80}).issues.map(i=>i.key));
+ const newIssues=current.issues.filter(i=>!oldKeys.has(i.key));if(!newIssues.length)return true;
  const labels=newIssues.map(i=>[i.a,i.b].map(id=>project.parts.find(p=>p.id===id)?.label).join(' / '));
  const added=changed.some(p=>!prior.has(p.id));
  if(added){project.parts=copy(before.parts);await show();}else{for(const p of project.parts)Object.assign(p,copy(prior.get(p.id)));for(const p of changed)transform(objects.get(p.id),p);}
- history.pop();setBusy(false);refreshSelection();warnings();
+ history.pop();refreshSelection();warnings();
  status('Move rejected: detected body penetration in '+labels.join('; ')+'. Previous position restored.');return false;
- }finally{setBusy(false);renderLists();}
 }
 let pendingProjectSaves=0;
-async function save(check=true,options={}){pendingProjectSaves++;try{try{if(check&&!await guardTransform(options))return false;}catch(error){status('Fit check failed. Edit not saved: '+error.message);return false;}try{project.connections=assemblyAssistant?.data().connections||[];renderStudentGuide();project.steps=[];project.platform=PLATFORM.id;if(PROJECT_ID){saveProject(PLATFORM.id,PROJECT_ID,project);window.parent.postMessage({type:'assembly-project-saved',title:project.title,projectId:PROJECT_ID,platform:PLATFORM.id},location.origin);if(!options.skipThumbnail)scheduleProjectThumbnail();}else localStorage.setItem(key,JSON.stringify(project));status(`Draft saved locally · ${project.parts.length} parts · ${document.body.classList.contains('guide-active')&&studentGuide.ready?`${studentGuide.steps.length} guide steps generated`:'changes saved'}`);if(!options.skipAutoRepair)automaticGuideRepair?.schedule();return true;}catch{status('Browser storage is full. Save project to a file.');return false;}}finally{pendingProjectSaves--;}}
+async function save(check=true,options={}){pendingProjectSaves++;try{try{if(check&&!await guardTransform(options))return false;}catch(error){status('Fit check failed. Edit not saved: '+error.message);return false;}try{project.connections=assemblyAssistant?.data().connections||[];renderStudentGuide();project.steps=[];project.platform=PLATFORM.id;if(PROJECT_ID){saveProject(PLATFORM.id,PROJECT_ID,project);window.parent.postMessage({type:'assembly-project-saved',title:project.title,projectId:PROJECT_ID,platform:PLATFORM.id},location.origin);if(!options.skipThumbnail)scheduleProjectThumbnail();}else localStorage.setItem(key,JSON.stringify(project));status(`Draft saved locally · ${project.parts.length} parts · ${document.body.classList.contains('guide-active')&&studentGuide.ready?`${studentGuide.steps.length} guide steps generated`:'changes saved'}`);if(!options.skipAutoRepair)automaticGuideRepair?.schedule();return true;}catch{status('Browser storage is full. Save project to a file.');return false;}}finally{pendingProjectSaves--;$('undo').disabled=busy||!history.length;$('redo').disabled=busy||!future.length;}}
 let thumbnailTimer=null;function scheduleProjectThumbnail(){if(renderer.isDataRenderer)return;clearTimeout(thumbnailTimer);if(!PROJECT_ID||!project.parts.length)return;thumbnailTimer=setTimeout(()=>{if(busy||preview||controls.dragging||exportingGuide||pdfPreview?.active())return;try{const canvas=document.createElement('canvas');canvas.width=400;canvas.height=240;canvas.getContext('2d').drawImage(renderer.domElement,0,0,400,240);saveProject(PLATFORM.id,PROJECT_ID,project,{thumbnail:canvas.toDataURL('image/jpeg',.7)});}catch{}},1500);}
 function withElectronics(parts,item,entries){if(PLATFORM.id==='lego'&&!item.legoKitId)item.legoKitId=legoPartKit(entries.find(p=>p.id===item.sku),project.kit);if(!project.kit?.enforce)return withRequiredElectronics(parts,item,entries);const stock=new Map(kitReport([],entries,project.kit).flatMap(row=>row.skus.map(sku=>[sku,row.available])));return withRequiredElectronics(parts,item,entries,undefined,sku=>(stock.get(sku)||0)>0);}
 function assertAdditions(additions){assertKitChange(project.parts,[...project.parts,...additions],catalog,project.kit);}
@@ -317,16 +313,18 @@ async function show(parts=project.parts){
 }
 function refreshSelection(){const ids=new Set(selectedIds),groupId=selectedGroupId;select(selected,false,false);selectedIds=ids;const members=groupMembers(project,groupId);selectedGroupId=project.groups.some(group=>group.id===groupId)&&members.length===ids.size&&members.every(part=>ids.has(part.id))?groupId:null;renderLists();}
 function select(id,additive=false,render=true){selectedGroupId=null;if(quickAttach?.active())quickAttach.close();if(connectTool?.active())connectTool.cancel();if(additive&&id){if(selectedIds.has(id))selectedIds.delete(id);else selectedIds.add(id);if(!selectedIds.has(id))id=[...selectedIds].at(-1)||null;}else selectedIds=new Set(id?[id]:[]);selected=id;controls.detach();box.visible=false;const part=project.parts.find(p=>p.id===id),obj=objects.get(id);$('selection').textContent=part?`${partName(part)}${groupFor(part)?` · ${groupFor(part).name}`:''}${locked(part)?' · Locked':''}`:'Select a part in the scene.';$('transforms').replaceChildren();if(part&&obj&&!preview&&!locked(part)){controls.attach(obj);box.setFromObject(obj);box.visible=true;for(const kind of ['position','rotation'])for(let axis=0;axis<3;axis++){const label=document.createElement('label');label.textContent=(kind==='position'?'mm ':'° ')+['X','Y','Z'][axis];const input=document.createElement('input');input.type='number';input.step=kind==='position'?'1':'15';input.value=part[kind][axis].toFixed(2);let committed=input.value;const commit=()=>{if(input.value===committed)return;committed=input.value;const v=Number(input.value);if(!Number.isFinite(v)||Math.abs(v)>10000){input.value=part[kind][axis];return;}const before=copy(project.parts);checkpoint();part[kind][axis]=v;transform(obj,part);moveJoined(before,part.id);box.update();save();warnings();};input.onchange=commit;input.onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();commit();}};label.append(input);$('transforms').append(label);}}if(render)renderLists();}
+let warningRunning=false;
 function warnings(){
  clearTimeout(collisionTimer);$('warnings').textContent='Đang kiểm tra hình học…';
  const check=async()=>{
-  if(busy||controls.dragging||directTools?.active()){collisionTimer=setTimeout(check,140);return;}
+  if(busy||controls.dragging||directTools?.active()||warningRunning){collisionTimer=setTimeout(check,140);return;}
+  warningRunning=true;
   try{const stamp=JSON.stringify(project.parts),result=await inspectFit();if(stamp!==JSON.stringify(project.parts))return;collisionReport=result;issuePanel.replaceChildren(node('h3','Kiểm tra lắp ráp'));
    const expected=result.issues.filter(i=>i.kind==='joint'),remaining=result.issues.filter(i=>i.kind!=='joint');
    for(const issue of remaining){const button=node('button');button.className='fit-issue '+issue.kind;const names=[issue.a,issue.b].map(id=>instanceName(project.parts.find(p=>p.id===id)));button.textContent=(issue.kind==='penetration'?'Cấn thân: ':'Tiếp xúc cần xem: ')+names.join(' / ');button.onclick=()=>{select(issue.a);select(issue.b,true);status('Kiểm tra cặp đang chọn; đổi góc nhìn để thấy vùng tiếp xúc.');};issuePanel.append(button);}
    if(expected.length){const details=node('details');details.append(node('summary',`${expected.length} tiếp xúc tại khớp lắp`),node('p','Tiếp xúc chốt/lỗ có thể là bình thường. Xem từng khớp và độ sâu ở phần Khớp lắp & giữ trục.'));issuePanel.append(details);}
    const hard=result.issues.filter(i=>i.kind==='penetration').length;$('warnings').textContent=`${hard} lỗi cấn thân phát hiện · ${expected.length} tiếp xúc tại khớp${result.truncated?' · danh sách rút gọn':''}. Kiểm tra CAD có lấy mẫu, cần thử độ chắc bằng bộ thật.`;assemblyAssistant?.render();
-  }catch(error){$('warnings').textContent='Chưa kiểm tra được: '+error.message;}
+  }catch(error){$('warnings').textContent='Chưa kiểm tra được: '+error.message;}finally{warningRunning=false;}
  };
  collisionTimer=setTimeout(check,120);
 }
@@ -512,16 +510,14 @@ for(const child of [...guidePanel.children])if(child!==guideSection)child.hidden
 function guideRepairKey(){return JSON.stringify(project.parts.map(p=>[p.id,p.sku,p.position,p.rotation,p.mate,p.snapBlocked,locked(p)]));}
 async function repairGuideAutomatically(){
  if(project.parts.length<2)return;
- const result=repairAssemblyLinks(project.parts,jointReferences,{isLocked:locked,respectReleased:true});if(!result.recovered&&!result.removed)return;
- const original=copy(project),savedPose=pose(),selection={active:selected,ids:[...selectedIds],groupId:selectedGroupId};setBusy(true);
- try{
-  const baseline=await inspectFit(),oldKeys=new Set(baseline.issues.filter(i=>i.kind==='penetration').map(i=>i.key));project.parts=result.parts;
-  if(result.moved){await show();setBusy(true);}const check=await inspectFit();
-  if(check.issues.some(i=>i.kind==='penetration'&&!oldKeys.has(i.key))){project=original;if(result.moved){await show();setBusy(true);}return;}
-  if(!history.length)history.push(original);repairReportParts=JSON.stringify(project.parts);await save(false,{skipAutoRepair:true});
- }catch(error){project=original;await show();status('Chưa thể tự sửa liên kết: '+error.message);}
- finally{applyPose(savedPose);select(project.parts.some(p=>p.id===selection.active)?selection.active:null);selectedIds=new Set(selection.ids.filter(id=>project.parts.some(p=>p.id===id)));selectedGroupId=selection.groupId;setBusy(false);renderLists();warnings();}
+ const stamp=guideRepairKey(),result=await fitChecker.recoverLinks(project.parts,project.parts.filter(locked).map(p=>p.id));
+ if(stamp!==guideRepairKey()||busy||controls.dragging||directTools?.active())return false;
+ if(!result.recovered&&!result.removed)return;
+ if(!history.length)history.push(copy(project));
+ project.parts=result.parts;repairReportParts=JSON.stringify(project.parts);
+ refreshSelection();await save(false,{skipAutoRepair:true,skipThumbnail:true});
 }
+
 automaticGuideRepair=installAutomaticGuideRepair({key:guideRepairKey,blocked:()=>busy||preview||exportingGuide||!!pdfPreview?.active()||controls.dragging||!!directTools?.active()||!!quickAttach?.active()||pendingProjectSaves>0,run:repairGuideAutomatically,onError:error=>status('Chưa thể tự sửa liên kết: '+error.message)});
 function renderLists(){
  refreshInstanceNames();syncSceneBackground();if(chainPickButton){chainPickButton.hidden=!sprocketTeeth(project.parts.find(p=>p.id===selected));chainPickButton.disabled=busy||preview;}
@@ -709,7 +705,7 @@ controls.addEventListener('dragging-changed',async e=>{
   if(dragStart.blocked){dragStart=null;refreshSelection();return;}
   flushGizmoMove();
   if(dragStart.moved&&controls.mode==='translate')directTools?.finishTransform();
-  dragStart=null;await save();refreshSelection();warnings();
+  dragStart=null;await save(true,{autoAttach:false});refreshSelection();warnings();
  }
 });
 controls.addEventListener('objectChange',()=>{
@@ -823,7 +819,7 @@ connectionSuggestions=installConnectionSuggestions({parts:()=>project.parts,refe
 installDrivePreview({project:()=>project,references:jointReferences,objects,selected:()=>selected,connections:()=>assemblyAssistant.data().connections,blocked:()=>busy||!!pdfPreview?.active()||preview||controls.dragging||!!directTools?.active(),closePreviews:()=>{quickAttach?.close();connectTool?.cancel();},resetInspection:()=>assemblyAssistant.reset(),setBusy,detach:()=>{controls.detach();box.visible=false;},check:inspectFit,transform,refresh:refreshSelection});
 setBusy(true);
 let startupError=null;
-try{catalog=initialCatalog;kitCatalogLoader=createKitCatalogLoader({platform:PLATFORM.id,catalog,references:jointReferences});$('count').textContent=catalog.length;renderCatalog();connectTool=await installConnectTool({references:jointReferences,scene,camera,canvas:renderer.domElement,objects,controls,box,project:()=>project,selected:()=>selected,selection:()=>selectedIds,isLocked:id=>locked(project.parts.find(p=>p.id===id)),reveal:()=>{if(document.body.classList.contains('hide-panel'))$('panel-toggle').click();$('inspector-tab-0')?.click();},busy:()=>busy||!!chainPicker?.active(),preview:()=>preview,transform,select,checkpoint,save,warnings,status});quickAttach=await installQuickAttach({references:jointReferences,selection:()=>selectedIds,isLocked:id=>locked(project.parts.find(p=>p.id===id)),captureSelection:()=>({active:selected,ids:[...selectedIds],groupId:selectedGroupId}),restoreSelection(snapshot){const ids=snapshot.ids.filter(id=>project.parts.some(p=>p.id===id));select(ids.includes(snapshot.active)?snapshot.active:ids.at(-1)||null);selectedIds=new Set(ids);selectedGroupId=project.groups.some(g=>g.id===snapshot.groupId)?snapshot.groupId:null;renderLists();},scene,camera,orbit,canvas:renderer.domElement,objects,controls,box,catalog,project:()=>project,selected:()=>selected,busy:()=>busy||!!chainPicker?.active(),preview:()=>preview,connectActive:()=>connectTool.active()||!!directTools?.active(),fit,model,transform,select,checkpoint,show,save,warnings,status,withElectronics,assertAdditions,pose,applyPose,connectExisting:(id,ref)=>connectTool.begin({sourceId:id,sourceRef:ref})});directTools=await installDirectTools({references:jointReferences,invalidate:()=>renderLoop?.invalidate(),snapPosition:snapForDrag,scene,camera,canvas:renderer.domElement,objects,controls,orbit,box,project:()=>project,selected:()=>selected,selection:()=>selectedIds,busy:()=>busy||!!chainPicker?.active(),preview:()=>preview,quickActive:()=>quickAttach.active(),connectActive:()=>connectTool.active(),transform,select,selectGroup:selectGroupMember,checkpoint:()=>{const redo=copy(future);checkpoint();return redo;},discardCheckpoint:redo=>{history.pop();future=redo||[];},refreshSelection,moveOthers:moveJoined,openPinAt:(id,point)=>quickAttach.openPinAt(id,point),closePreviews:()=>{quickAttach.close();connectTool.cancel();},isLocked:id=>locked(project.parts.find(part=>part.id===id)),assertAdditions,save,warnings,status});let draft=localStorage.getItem(key);if(!PROJECT_ID){const legacy=localStorage.getItem('mindx-vexgo-assembly-v1');if(legacy){try{if(JSON.parse(legacy).platform==='vexiq'){if(!localStorage.getItem('mindx-vexiq-assembly-v1'))localStorage.setItem('mindx-vexiq-assembly-v1',legacy);if(PLATFORM.id==='vexiq'&&!draft)draft=legacy;if(PLATFORM.id==='vexgo'&&key==='mindx-vexgo-assembly-v1')draft=null;}}catch{}}}if(draft){const data=JSON.parse(draft);await kitCatalogLoader.ensure(data.kit,data.parts);project=validate(data);}else if(PROJECT_ID)throw Error('Không tìm thấy dự án trên trình duyệt này. Mở từ màn hình dự án.');$('title').value=project.title;renderCatalog();await show();save();warnings();}catch(error){startupError=error;status('Không mở được editor: '+error.message);}
+try{catalog=initialCatalog;kitCatalogLoader=createKitCatalogLoader({platform:PLATFORM.id,catalog,references:jointReferences});$('count').textContent=catalog.length;renderCatalog();connectTool=await installConnectTool({checkSnap:(parts,ids)=>snapFit.check(parts,ids),references:jointReferences,scene,camera,canvas:renderer.domElement,objects,controls,box,project:()=>project,selected:()=>selected,selection:()=>selectedIds,isLocked:id=>locked(project.parts.find(p=>p.id===id)),reveal:()=>{if(document.body.classList.contains('hide-panel'))$('panel-toggle').click();$('inspector-tab-0')?.click();},busy:()=>busy||!!chainPicker?.active(),preview:()=>preview,transform,select,checkpoint,save,warnings,status});quickAttach=await installQuickAttach({checkSnap:(parts,ids,options)=>snapFit.check(parts,ids,options),references:jointReferences,selection:()=>selectedIds,isLocked:id=>locked(project.parts.find(p=>p.id===id)),captureSelection:()=>({active:selected,ids:[...selectedIds],groupId:selectedGroupId}),restoreSelection(snapshot){const ids=snapshot.ids.filter(id=>project.parts.some(p=>p.id===id));select(ids.includes(snapshot.active)?snapshot.active:ids.at(-1)||null);selectedIds=new Set(ids);selectedGroupId=project.groups.some(g=>g.id===snapshot.groupId)?snapshot.groupId:null;renderLists();},scene,camera,orbit,canvas:renderer.domElement,objects,controls,box,catalog,project:()=>project,selected:()=>selected,busy:()=>busy||!!chainPicker?.active(),preview:()=>preview,connectActive:()=>connectTool.active()||!!directTools?.active(),fit,model,transform,select,checkpoint,show,save,warnings,status,withElectronics,assertAdditions,pose,applyPose,connectExisting:(id,ref)=>connectTool.begin({sourceId:id,sourceRef:ref})});directTools=await installDirectTools({checkSnap:(parts,ids)=>snapFit.check(parts,ids),references:jointReferences,invalidate:()=>renderLoop?.invalidate(),snapPosition:snapForDrag,scene,camera,canvas:renderer.domElement,objects,controls,orbit,box,project:()=>project,selected:()=>selected,selection:()=>selectedIds,busy:()=>busy||!!chainPicker?.active(),preview:()=>preview,quickActive:()=>quickAttach.active(),connectActive:()=>connectTool.active(),transform,select,selectGroup:selectGroupMember,checkpoint:()=>{const redo=copy(future);checkpoint();return redo;},discardCheckpoint:redo=>{history.pop();future=redo||[];},refreshSelection,moveOthers:moveJoined,openPinAt:(id,point)=>quickAttach.openPinAt(id,point),closePreviews:()=>{quickAttach.close();connectTool.cancel();},isLocked:id=>locked(project.parts.find(part=>part.id===id)),assertAdditions,save,warnings,status});let draft=localStorage.getItem(key);if(!PROJECT_ID){const legacy=localStorage.getItem('mindx-vexgo-assembly-v1');if(legacy){try{if(JSON.parse(legacy).platform==='vexiq'){if(!localStorage.getItem('mindx-vexiq-assembly-v1'))localStorage.setItem('mindx-vexiq-assembly-v1',legacy);if(PLATFORM.id==='vexiq'&&!draft)draft=legacy;if(PLATFORM.id==='vexgo'&&key==='mindx-vexgo-assembly-v1')draft=null;}}catch{}}}if(draft){const data=JSON.parse(draft);await kitCatalogLoader.ensure(data.kit,data.parts);project=validate(data);}else if(PROJECT_ID)throw Error('Không tìm thấy dự án trên trình duyệt này. Mở từ màn hình dự án.');$('title').value=project.title;renderCatalog();await show();save();warnings();}catch(error){startupError=error;status('Không mở được editor: '+error.message);}
 if(startupError){setBusy(true);throw startupError;}
 kitSettings=installKitSettings({project:()=>project,catalog:()=>catalog,busy:()=>busy||!!chainPicker?.active(),preview:()=>preview,gesture:()=>controls.dragging||!!directTools?.active(),closePreviews:()=>{quickAttach?.close();connectTool?.cancel();},status,
  async prepareKit(kit){await kitCatalogLoader.ensure(kit,project.parts);},

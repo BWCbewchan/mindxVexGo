@@ -18,3 +18,7 @@ assert.equal(repairAssemblyLinks(input,refs,{respectReleased:true}).recovered,1)
 pin.snapBlocked=[{target:beam.id,sourceRef:a.id,targetRef:b.id}];assert.equal(repairAssemblyLinks(input,refs,{respectReleased:true}).recovered,0,'User-released components stay released');
 assert.equal(repairAssemblyLinks(input,refs).recovered,1,'Explicit repair remains available');assert.equal(repairAssemblyLinks(input,refs,{isLocked:()=>true}).recovered,0);
 console.log('PASS: automatic repair debounce, gesture deferral, stable-state deduplication, Undo, disposal, immutable recovery and respect for released/locked components.');
+let revision='a',release,attempts=0;
+const concurrent=installAutomaticGuideRepair({key:()=>revision,blocked:()=>false,delay:5,run:async()=>{attempts++;if(attempts===1){await new Promise(resolve=>release=resolve);return false;}}});
+concurrent.schedule();await until(()=>attempts===1);revision='b';release();await until(()=>attempts===2&&!concurrent.active());concurrent.dispose();
+console.log('PASS: stale asynchronous repair retries the latest model instead of marking it repaired.');

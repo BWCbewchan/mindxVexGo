@@ -121,7 +121,7 @@ export function seatedPinMatches(moving,parts,references,tolerance=1){
 }
 const radiusCache=new WeakMap();
 function refRadius(rows){let r=radiusCache.get(rows);if(r===undefined){r=0;for(const ref of rows)r=Math.max(r,Math.hypot(...ref.point));radiusCache.set(rows,r);}return r;}
-export function nearestMate(moving,parts,references,{distance=SNAP_DISTANCE_MM,excluded=[],excludedMates=[],preferred=null}={}){
+export function nearestMate(moving,parts,references,{distance=SNAP_DISTANCE_MM,excluded=[],excludedMates=[],preferred=null,acceptCandidate=null}={}){
  const getRefs=refsBySku(references),candidates=getRefs(moving.sku);
  if(!candidates.length)return null;
  const fromRows=referenceRows(moving,candidates),holes=candidates.filter(ref=>ref.kind==='hole'&&!ref.profile);
@@ -172,7 +172,9 @@ export function nearestMate(moving,parts,references,{distance=SNAP_DISTANCE_MM,e
    const matches=canSeatPins?indexedPinMatches({...moving,...pose},holes,findPins??=pinIndex(moving.id,parts,getRefs,1),1):[];
    const support=matches.length;
    if(best&&(support<best.support||support===best.support&&rankScore>=best.rankScore))continue;
-   best={target,sourceRef,targetRef,gap,score,rankScore,depth,pose,support,matches};
+   const next={target,sourceRef,targetRef,gap,score,rankScore,depth,pose,support,matches};
+   if(acceptCandidate&&!acceptCandidate(next))continue;
+   best=next;
   }
  }
  return best;

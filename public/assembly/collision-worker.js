@@ -1,5 +1,5 @@
 import * as THREE from './vendor/three.module.js';
-import {analyzeCollisions} from './collision.js?v=iq-power-pack-89';
+import {analyzeCollisions} from './collision.js?v=physical-snap-112';
 import {PLATFORM_ID} from './platform.js';
 
 async function auditGuide(parts,objects,references,names){
@@ -45,8 +45,13 @@ async function auditGuide(parts,objects,references,names){
 const geometries=new Map();
 const references={};
 self.onmessage=async e=>{
- const {id,parts,groups,geometryData,referenceData={},guideNames}=e.data;
+ const {id,parts,groups,geometryData,referenceData={},guideNames,kind,lockedIds=[]}=e.data;
  try{
+  Object.assign(references,referenceData);
+  if(kind==='recover'){
+   const {recoverSeatedAssemblyLinks}=await import('./repair-links.js?v=physical-snap-112'),locked=new Set(lockedIds);
+   const report=recoverSeatedAssemblyLinks(parts,references,{isLocked:p=>locked.has(p.id)});self.postMessage({id,report});return;
+  }
   for(const g of geometryData){const geometry=new THREE.BufferGeometry();geometry.setAttribute('position',new THREE.BufferAttribute(g.position,3));if(g.index)geometry.setIndex(new THREE.BufferAttribute(g.index,1));geometries.set(g.id,geometry);}
   const objects=new Map();
   for(const record of groups){const group=new THREE.Group();for(const item of record.meshes){const mesh=new THREE.Mesh(geometries.get(item.geometry));mesh.matrixAutoUpdate=false;mesh.matrix.fromArray(item.matrix);group.add(mesh);}objects.set(record.id,group);}

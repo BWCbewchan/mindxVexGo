@@ -1,6 +1,39 @@
 import * as THREE from 'three';
 import {nearestMate,worldReference} from './mating.js?v=fit-tolerance-36';
 import {compatibleReferences,insertionLimit} from './connector-policy.js';
+import {seatedConnections,jointMetrics} from './assembly-review.js';
+
+// Background recovery records joints already seated in CAD. It never searches
+// for a new pose, moves a component, or needs a blocking full-model fit audit.
+export function recoverSeatedAssemblyLinks(input,references,{isLocked=()=>false}={}){
+ const parts=structuredClone(input),byId=new Map(parts.map(p=>[p.id,p])),parent=new Map(parts.map(p=>[p.id,p.id])),links=new Map(parts.map(p=>[p.id,[]]));
+ const root=id=>{while(parent.get(id)!==id)id=parent.get(id);return id;};
+ const union=(a,b)=>parent.set(root(a),root(b));
+ const edge=(a,b)=>{links.get(a).push(b);links.get(b).push(a);};
+ let recovered=0,removed=0;
+ for(const p of parts){
+  const m=p.mate;if(!m)continue;
+  const target=byId.get(m.target),a=references[p.sku]?.find(r=>r.id===m.sourceRef),b=references[target?.sku]?.find(r=>r.id===m.targetRef);
+  if(!target||!a||!b||root(p.id)===root(target.id)||!jointMetrics(p,target,a,b).valid){if(!isLocked(p)){delete p.mate;removed++;}continue;}
+  union(p.id,target.id);edge(p.id,target.id);
+ }
+ const reroot=id=>{
+  const records=new Map(parts.filter(p=>p.mate).map(p=>[p.id,{...p.mate}])),seen=new Set([id]),queue=[id];delete byId.get(id).mate;
+  for(const current of queue)for(const next of links.get(current)){
+   if(seen.has(next))continue;seen.add(next);queue.push(next);
+   const own=records.get(next),other=records.get(current);
+   byId.get(next).mate=own?.target===current?own:{...other,target:current,sourceRef:other.targetRef,targetRef:other.sourceRef,twist:-(other.twist||0)};
+  }
+ };
+ for(const contact of seatedConnections(parts,references)){
+  const a=root(contact.part),b=root(contact.target);if(a===b)continue;
+  if(parts.some(p=>(root(p.id)===a||root(p.id)===b)&&isLocked(p)))continue;
+  if(parts.some(p=>(p.snapBlocked||[]).some(block=>byId.has(block.target)&&((root(p.id)===a&&root(block.target)===b)||(root(p.id)===b&&root(block.target)===a)))))continue;
+  reroot(contact.part);byId.get(contact.part).mate={target:contact.target,sourceRef:contact.sourceRef,targetRef:contact.targetRef,depth:contact.depth,twist:0,flip:false};
+  union(contact.part,contact.target);edge(contact.part,contact.target);recovered++;
+ }
+ return {parts,recovered,removed,moved:0};
+}
 
 // Repair connection metadata first; only nudge already aligned components by <=2 mm.
 export function repairAssemblyLinks(input,references,{isLocked=()=>false,maxDistance=2,respectReleased=false}={}){

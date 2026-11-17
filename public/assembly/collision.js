@@ -3,6 +3,8 @@ import {seatedIQPowerPack} from './iq-power-pack.js';
 import * as THREE from './vendor/three.module.js';
 import {MeshBVH} from './vendor/mesh-bvh.js';
 import {compatibleReferences,insertionLimit} from './connector-policy.js?v=motor-pair-29';
+import {attachmentReferences,worldReference} from './mating.js';
+import {seatedConnections} from './assembly-review.js';
 
 const trees=new WeakMap(), tolerance=.00015;
 const combined=new WeakMap();
@@ -118,9 +120,53 @@ export function seatedConnectorContact(a,b,references={},lateralTolerance=.15){
  }
  return false;
 }
+const trimmed=new WeakMap();
+// Elastic insertion tips may touch a bore. That never grants permission for
+// the connector's carrier body (or another beam in its group) to overlap.
+function withoutSeatedTips(mesh,part,other,references,lateralTolerance){
+ const inverse=mesh.matrixWorld.clone().invert(),scale=inverse.getMaxScaleOnAxis(),zones=[];
+ for(const ref of attachmentReferences(references[part.sku]||[])){
+  if(ref.kind!=='pin'||ref.profile)continue;
+  const pin=worldReference(part,ref);
+  const seated=(references[other.sku]||[]).some(hole=>{
+   if(!compatibleReferences(ref,hole,part.sku,other.sku))return false;
+   const h=worldReference(other,hole),d=h.point.clone().sub(pin.point),depth=-d.dot(pin.normal);
+   return pin.normal.dot(h.normal)<-.999&&depth>.1&&depth<=insertionLimit(ref,hole)+.15&&d.addScaledVector(pin.normal,depth).length()<=lateralTolerance;
+  });
+  if(seated)zones.push({tip:pin.point.multiplyScalar(.001).applyMatrix4(inverse),normal:pin.normal.transformDirection(inverse),radius:(ref.radius+.16)*.001*scale,depth:(ref.depth+.2)*.001*scale});
+ }
+ if(!zones.length)return mesh;
+ const key=JSON.stringify(zones.map(z=>[...z.tip.toArray(),...z.normal.toArray(),z.radius,z.depth].map(v=>Math.round(v*1e7))));
+ let variants=trimmed.get(mesh.geometry);if(!variants){variants=new Map();trimmed.set(mesh.geometry,variants);}
+ let geometry=variants.get(key);
+ if(!geometry){
+  const source=mesh.geometry,index=source.index,attr=source.attributes.position,count=index?index.count:attr.count,kept=[],p=new THREE.Vector3(),delta=new THREE.Vector3();
+  const within=(i,z)=>{p.fromBufferAttribute(attr,i);delta.copy(p).sub(z.tip);const depth=-delta.dot(z.normal);return depth>=-.0002*scale&&depth<=z.depth&&delta.addScaledVector(z.normal,depth).lengthSq()<=z.radius*z.radius;};
+  for(let i=0;i+2<count;i+=3){const ids=[0,1,2].map(n=>index?index.getX(i+n):i+n);if(!zones.some(z=>ids.every(id=>within(id,z))))kept.push(...ids);}
+  if(kept.length===count)geometry=source;
+  else{geometry=source.clone();geometry.setIndex(kept);}
+  if(variants.size>=24){const oldest=variants.keys().next().value,old=variants.get(oldest);if(old!==mesh.geometry)old.dispose();variants.delete(oldest);}
+  variants.set(key,geometry);
+ }
+ if(geometry===mesh.geometry)return mesh;
+ const result=new THREE.Mesh(geometry,mesh.material);result.matrixAutoUpdate=false;result.matrixWorld.copy(mesh.matrixWorld);return result;
+}
+export function partContact(a,b,ma,mb,references={},lateralTolerance=.15){
+ if(seatedIQPowerPack(a,b))return null;
+ const contact=meshContact(ma,mb);if(!contact)return null;
+ if(chainSprocketContact(a,b))return 'joint';
+ if(!seatedConnectorContact(a,b,references,lateralTolerance))return contact;
+ if(contact==='penetration'){
+  const first=withoutSeatedTips(ma,a,b,references,lateralTolerance),second=withoutSeatedTips(mb,b,a,references,lateralTolerance);
+  if(meshContact(first,second)==='penetration')return 'penetration';
+ }
+ return 'joint';
+}
 export function analyzeCollisions(parts,objects,{limit=80,references={}}={}){
  const groups=new Map(),issues=[];let omitted=false;
- const tolerantParts=new Set(parts.filter(part=>!connector.test(part.sku)&&parts.filter(pin=>pin.id!==part.id&&seatedConnectorContact(part,pin,references,1)).length>=2).map(part=>part.id));
+ const contacts=seatedConnections(parts,references,1),neighbors=new Map(parts.map(p=>[p.id,new Set()]));
+ for(const c of contacts){neighbors.get(c.part)?.add(c.target);neighbors.get(c.target)?.add(c.part);}
+ const tolerantParts=new Set(parts.filter(p=>!connector.test(p.sku)&&neighbors.get(p.id).size>=2).map(p=>p.id));
  for(const p of parts){const obj=objects.get(p.id);if(obj)groups.set(p.id,meshes(obj));}
  for(let i=0;i<parts.length;i++)for(let j=i+1;j<parts.length;j++){
   const a=parts[i],b=parts[j];let result=null;
@@ -128,13 +174,12 @@ export function analyzeCollisions(parts,objects,{limit=80,references={}}={}){
   // pose has clear surfaces. Other poses and all surrounding parts still collide normally.
   if(seatedIQPowerPack(a,b))continue;
   for(const ma of groups.get(a.id)||[])for(const mb of groups.get(b.id)||[]){
-   const contact=meshContact(ma,mb);if(contact==='penetration')result=contact;else if(contact&&!result)result=contact;
+   const contact=partContact(a,b,ma,mb,references,tolerantParts.has(a.id)||tolerantParts.has(b.id)?1:.15);if(contact==='penetration')result=contact;else if(contact&&result!=='penetration')result=contact;
   }
   if(!result)continue;
   // Only a recorded compatible mate is an intentional connector contact. Merely
   // containing a connector SKU must not hide an unrelated body collision.
-  const linked=a.mate?.target===b.id||b.mate?.target===a.id;
-  const joint=chainSprocketContact(a,b)||(linked&&(connector.test(a.sku)||connector.test(b.sku)))||seatedConnectorContact(a,b,references,tolerantParts.has(a.id)||tolerantParts.has(b.id)?1:.15);
+  const joint=result==='joint';
   // Dense chains have many valid hinge contacts. Keep scanning so these
   // cannot exhaust the report before a later body penetration is checked.
   if(joint&&issues.length>=limit){omitted=true;continue;}
