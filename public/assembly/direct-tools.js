@@ -1,20 +1,25 @@
-import {assemblyMatingContext,movingAssemblyIds,nearestAssemblyMate,releaseAssemblyBoundary} from './assembly-mating.js';
+import {assemblyMatingContext,movingAssemblyIds,nearestAssemblyMate,releaseAssemblyBoundary,occupiedAssemblyReferences} from './assembly-mating.js?v=drag-smooth-111';
+import {attachmentTargets,focusedAttachmentTargets} from './attachment-targets.js?v=focused-targets-110';
 import {assetUrl} from './platform.js';
 import {cachedVisibleBounds,VisibleBoxHelper} from './visible-bounds.js';
 import {compatibleReferences} from './connector-policy.js?v=compatibility-27';
+import {markerWorldSize,screenPoint as projectMarker} from './attachment-indicator.js?v=attach-points-103';
 import * as THREE from 'three';
-import {nearestMate,worldReference,matingPose,linkedPoses,insideSnapReleaseZone,SNAP_DISTANCE_MM} from './mating.js?v=fit-tolerance-36';
+import {nearestMate,worldReference,matingPose,linkedPoses,insideSnapReleaseZone,SNAP_DISTANCE_MM} from './mating.js?v=drag-smooth-111';
 export async function installDirectTools(api){
  const refs=api.references||(await(await fetch(assetUrl('connectors.json?v=compatibility-27'), {cache:'no-store'})).json()).parts,$=id=>document.getElementById(id);
- let drag=null,pendingMove=null,candidate=null,ghost=null,marker=null,transformIds=null,transformContext=null,lastPreview=0;
- const selectionBoxes=new Map(),ghostParts=new Map();
+ let drag=null,pendingMove=null,candidate=null,ghost=null,transformIds=null,transformContext=null,lastPreview=0;
+ const selectionBoxes=new Map(),ghostParts=new Map(),targetPoints=[];
+ const targetGeometry=new THREE.SphereGeometry(.0018,12,8);
+ let fixedTargets=null;
+ function clearTargetPoints(){for(const point of targetPoints){api.scene.remove(point);point.material.dispose();}targetPoints.length=0;}
  const pointerRay=new THREE.Raycaster(),pointer=new THREE.Vector2(),dragPoint=new THREE.Vector3(),screenPoint=new THREE.Vector3();
  const bar=document.createElement('div');bar.className='part-actions';bar.hidden=true;bar.setAttribute('role','toolbar');bar.setAttribute('aria-label','Selected part actions');
  for(const [id,label,tip] of [['turn','↻ 90°','Rotate selected part 90 degrees'],['flip','⇅','Reverse selected connector end'],['copy','⧉','Duplicate selected part'],['detach','Unlink','Detach selected part'],['remove','×','Remove selected part']]){const b=document.createElement('button');b.textContent=label;b.title=tip;b.setAttribute('aria-label',tip);b.dataset.action=id;b.onclick=()=>action(id);bar.append(b);}
  api.canvas.parentNode.append(bar);
  const handle=document.createElement('button');handle.className='depth-handle';handle.textContent='↕ Depth';handle.setAttribute('aria-label','Drag insertion depth');handle.hidden=true;api.canvas.parentNode.append(handle);
  const hint=document.createElement('div');hint.className='assembly-gesture-hint';hint.textContent='Alt + drag to duplicate · Drop near a compatible hole or pin to snap';api.canvas.parentNode.append(hint);
- function clearPreview(){if(ghost){api.scene.remove(ghost);ghost.traverse(o=>{if(o.isMesh)for(const m of Array.isArray(o.material)?o.material:[o.material])m.dispose();});ghost=null;ghostParts.clear();}if(marker){api.scene.remove(marker);marker.geometry.dispose();marker.material.dispose();marker=null;}candidate=null;}
+ function clearPreview(){if(ghost){api.scene.remove(ghost);ghost.traverse(o=>{if(o.isMesh)for(const m of Array.isArray(o.material)?o.material:[o.material])m.dispose();});ghost=null;ghostParts.clear();}clearTargetPoints();candidate=null;}
  function blockForMate(mate){return {target:mate.target,sourceRef:mate.sourceRef,targetRef:mate.targetRef};}
  function blockReversedForMate(child){return {target:child.id,sourceRef:child.mate.targetRef,targetRef:child.mate.sourceRef};}
  function appendSnapBlock(part,block){const blocks=Array.isArray(part.snapBlocked)?part.snapBlocked:[];blocks.push(block);const unique=new Map(blocks.map(item=>[`${item.target}:${item.sourceRef}:${item.targetRef}`,item]));part.snapBlocked=[...unique.values()];}
@@ -46,8 +51,8 @@ export async function installDirectTools(api){
   const ids=drag?.movingIds||transformIds;
   if(ids?.length>1){
    const context=drag?(drag.context??=assemblyMatingContext(drag.before.parts,refs)):transformContext;
-   candidate=nearestAssemblyMate(api.project().parts,refs,ids,{distance:SNAP_DISTANCE_MM,context});
-  }else candidate=nearestMate(part,api.project().parts,refs,{distance:SNAP_DISTANCE_MM,excluded:$('move-joined').checked?[...linkedPoses(api.project().parts,part.id,part).keys()]:[],excludedMates:activeSnapBlocks(part)});
+   candidate=nearestAssemblyMate(api.project().parts,refs,ids,{distance:SNAP_DISTANCE_MM,context,preferred:candidate});
+  }else candidate=nearestMate(part,api.project().parts,refs,{distance:SNAP_DISTANCE_MM,preferred:candidate,excluded:$('move-joined').checked?[...linkedPoses(api.project().parts,part.id,part).keys()]:[],excludedMates:activeSnapBlocks(part)});
   if(!candidate){clearPreview();return;}
   if(!ghost){ghost=new THREE.Group();api.scene.add(ghost);}
   for(const copy of ghostParts.values())copy.visible=false;
@@ -61,13 +66,28 @@ export async function installDirectTools(api){
    }
    copy.visible=api.objects.get(row.id)?.visible!==false;api.transform(copy,row);
   }
-  if(!marker){marker=new THREE.Mesh(new THREE.SphereGeometry(.0018,16,12),new THREE.MeshBasicMaterial({color:0x23ca7b,depthTest:false}));marker.renderOrder=30;api.scene.add(marker);}
-  {const seat=worldReference(candidate.target,candidate.targetRef);if(candidate.targetRef.kind==='pin'&&Number.isFinite(candidate.depth))seat.point.addScaledVector(seat.normal,-candidate.depth);marker.position.copy(seat.point).multiplyScalar(.001);}
+  const movingIds=new Set(ids||[part.id]);
+  if(!fixedTargets){const stationary=api.project().parts.filter(row=>!movingIds.has(row.id));fixedTargets=occupiedAssemblyReferences(assemblyMatingContext(stationary,refs));}
+  const fullCandidate={...candidate,parts:candidate.parts||api.project().parts.map(row=>row.id===part.id?{...row,...candidate.pose}:row)};
+  const targets=focusedAttachmentTargets(attachmentTargets(fullCandidate,api.project().parts.filter(row=>movingIds.has(row.id)),refs,fixedTargets,{includeSource:true}),{
+   project:point=>projectMarker(point,api.camera,api.canvas.clientWidth,api.canvas.clientHeight)
+  });
+  for(let i=0;i<targets.length;i++){
+   const target=targets[i];let point=targetPoints[i];
+   if(!point){point=new THREE.Mesh(targetGeometry,new THREE.MeshBasicMaterial({depthTest:false,depthWrite:false,transparent:true}));api.scene.add(point);targetPoints.push(point);}
+   point.position.copy(target.point);point.visible=true;
+   point.material.color.setHex(target.primary?0x16a968:target.matched?0x23ca7b:0x85e6b6);
+   point.material.opacity=target.matched?1:.45;point.renderOrder=target.matched?32:30;
+   point.userData.attachmentTarget=target;
+   point.scale.setScalar(markerWorldSize(point.position,api.camera,api.canvas.clientHeight,target.primary?14:target.matched?11:9)/.0036);
+  }
+  for(let i=targets.length;i<targetPoints.length;i++)targetPoints[i].visible=false;
   api.status(`Thả để ghép ${ids?.length>1?ids.length+' chi tiết thành cụm':'chi tiết'} · ${candidate.support||1} điểm khớp · đích ${candidate.target.label||candidate.target.sku}${candidate.targetRef.profile&&candidate.targetRef.kind==='pin'?` · cách đầu trục ${candidate.depth.toFixed(1)} mm (kéo dọc trục để đổi vị trí)`:''}.`);
  }
 
  function startSurface(e){
   if(drag||e.button!==0||api.busy()||api.preview()||api.connectActive()||api.quickActive()||e.ctrlKey||e.metaKey||e.shiftKey||hitsTransformHandle(e))return;
+  fixedTargets=null;
   const hit=rayAt(e).intersectObjects([...api.objects.values()].filter(obj=>obj.visible),true).find(h=>h.object.isMesh);if(!hit)return;
   let root=hit.object;while(root&&!root.userData.instance)root=root.parent;
   const id=root?.userData.instance;if(!id||api.isLocked?.(id))return;
@@ -218,9 +238,9 @@ export async function installDirectTools(api){
   }
  }
  return {
-  previewTransform(ids,context){if(!transformIds&&ids.length>1)transformContext=context||assemblyMatingContext(api.project().parts,refs);transformIds=ids;previewMate(api.project().parts.find(part=>part.id===api.selected()),false);},
-  finishTransform(){previewMate(api.project().parts.find(part=>part.id===api.selected()),false,true);applyCandidate();clearPreview();transformIds=null;transformContext=null;},
+  previewTransform(ids,context){if(!transformIds)fixedTargets=null;if(!transformIds&&ids.length>1)transformContext=context||assemblyMatingContext(api.project().parts,refs);transformIds=ids;previewMate(api.project().parts.find(part=>part.id===api.selected()),false);},
+  finishTransform(){previewMate(api.project().parts.find(part=>part.id===api.selected()),false,true);applyCandidate();clearPreview();transformIds=null;transformContext=null;fixedTargets=null;},
   releasePart:detachTouched,releaseGroup:ids=>releaseAssemblyBoundary(api.project().parts,refs,ids),
-  active:()=>!!drag,flushMove,update,
+  active:()=>!!drag||!!transformIds,flushMove,update,
  };
 }

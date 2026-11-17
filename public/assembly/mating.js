@@ -121,7 +121,7 @@ export function seatedPinMatches(moving,parts,references,tolerance=1){
 }
 const radiusCache=new WeakMap();
 function refRadius(rows){let r=radiusCache.get(rows);if(r===undefined){r=0;for(const ref of rows)r=Math.max(r,Math.hypot(...ref.point));radiusCache.set(rows,r);}return r;}
-export function nearestMate(moving,parts,references,{distance=SNAP_DISTANCE_MM,excluded=[],excludedMates=[]}={}){
+export function nearestMate(moving,parts,references,{distance=SNAP_DISTANCE_MM,excluded=[],excludedMates=[],preferred=null}={}){
  const getRefs=refsBySku(references),candidates=getRefs(moving.sku);
  if(!candidates.length)return null;
  const fromRows=referenceRows(moving,candidates),holes=candidates.filter(ref=>ref.kind==='hole'&&!ref.profile);
@@ -165,13 +165,14 @@ export function nearestMate(moving,parts,references,{distance=SNAP_DISTANCE_MM,e
    }
    if(gap>distance)continue;
    const score=gap+(1+from.normal.dot(to.normal))*distance*.35;
+   const rankScore=score-(preferred?.target?.id===target.id&&preferred.sourceRef?.id===sourceRef.id&&preferred.targetRef?.id===targetRef.id?1.25:0);
    const canSeatPins=sourceRef.kind==='hole'&&!sourceRef.profile;
-   if(best&&!canSeatPins&&(best.support>0||score>=best.score))continue;
+   if(best&&!canSeatPins&&(best.support>0||rankScore>=best.rankScore))continue;
    const pose=matingPose(moving,sourceRef,target,targetRef,{depth,references});
    const matches=canSeatPins?indexedPinMatches({...moving,...pose},holes,findPins??=pinIndex(moving.id,parts,getRefs,1),1):[];
    const support=matches.length;
-   if(best&&(support<best.support||support===best.support&&score>=best.score))continue;
-   best={target,sourceRef,targetRef,gap,score,depth,pose,support,matches};
+   if(best&&(support<best.support||support===best.support&&rankScore>=best.rankScore))continue;
+   best={target,sourceRef,targetRef,gap,score,rankScore,depth,pose,support,matches};
   }
  }
  return best;

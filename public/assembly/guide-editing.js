@@ -175,6 +175,11 @@ function unresolvedSteps(steps,byId,paths){
 
 // Rebuild snapshots from actions. Never reorder previously captured cumulative images.
 function prepareGuideOrder(guide,order,paths,references){
+ if(guide.orderMode==='groups'){
+  paths=null;
+  const keys=new Set(guide.steps.map(stepKey));
+  if(order.some(key=>!keys.has(key)))order=[];
+ }
  const full=structuredClone(guide.steps.at(-1).parts),byId=new Map(full.map(p=>[p.id,p]));
  let steps=guide.steps.map(({parts,...step})=>structuredClone(step));
  const position=new Map(order.map((id,i)=>[id,i]));

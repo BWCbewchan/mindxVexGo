@@ -3,6 +3,7 @@ import * as THREE from 'three';
 import {attachmentReferences,referenceRows,matingPose,insideSnapReleaseZone} from './mating.js';
 import {compatibleReferences,insertionLimit,recommendedInsertionDepth} from './connector-policy.js';
 import {seatedConnections,jointMetrics} from './assembly-review.js';
+import {connectorNeighborhood} from './connector-neighborhood.js';
 
 const clone=value=>structuredClone(value),cache=new WeakMap();
 const quaternion=part=>new THREE.Quaternion().setFromEuler(new THREE.Euler(...part.rotation.map(THREE.MathUtils.degToRad)));
@@ -82,7 +83,7 @@ function sameSideOccupancy(context,moving,references){
  if(context.references===references)context.dragOccupancy={key,occupied};
  return occupied;
 }
-export function nearestAssemblyMate(parts,references,movingIds,{distance=8,excludedMates=[],context}={}){
+export function nearestAssemblyMate(parts,references,movingIds,{distance=8,excludedMates=[],context,preferred=null}={}){
  context||=assemblyMatingContext(parts,references);
  const moving=new Set(movingIds),byId=new Map(parts.map(part=>[part.id,part]));
  for(const part of parts){
@@ -93,8 +94,18 @@ export function nearestAssemblyMate(parts,references,movingIds,{distance=8,exclu
   });
   if(!part.snapBlocked.length)delete part.snapBlocked;
  }
- const occupied=sameSideOccupancy(context,moving,references),world=worldRows(parts,references);
- const from=[],targets={hole:[],pin:[]},keyed=new Map(),candidates=[];
+ const occupied=sameSideOccupancy(context,moving,references);
+ const stationary=parts.filter(part=>!moving.has(part.id));
+ const staticStamp=JSON.stringify(stationary.map(p=>[p.id,p.sku,p.position,p.rotation]));
+ const movingKey=JSON.stringify([...moving].sort());
+ let search=context.dragSearch;
+ if(!search||search.references!==references||search.staticStamp!==staticStamp||search.movingKey!==movingKey){
+  const rows=worldRows(stationary,references),free=rows.filter(row=>!occupied.has(row.part.id+'|'+row.ref.id));
+  search={references,staticStamp,movingKey,rows,index:{hole:connectorNeighborhood(free.filter(row=>row.ref.kind==='hole')),pin:connectorNeighborhood(free.filter(row=>row.ref.kind==='pin'))}};
+  context.dragSearch=search;
+ }
+ const movingRows=worldRows(parts.filter(part=>moving.has(part.id)),references),world=[...movingRows,...search.rows];
+ const from=[],keyed=new Map(),candidates=[];
  for(const row of world){
   const {part,ref}=row;
   if(ref.profile==='square-drive'||ref.profile==='lego-cross'){
@@ -103,10 +114,9 @@ export function nearestAssemblyMate(parts,references,movingIds,{distance=8,exclu
   }
   if(occupied.has(part.id+'|'+ref.id))continue;
   if(moving.has(part.id))from.push(row);
-  else targets[ref.kind].push(row);
  }
  const seat=new THREE.Vector3();
- for(const a of from)for(const b of targets[a.ref.kind==='pin'?'hole':'pin']){
+ for(const a of from)for(const b of search.index[a.ref.kind==='pin'?'hole':'pin'].near(a.point,distance+(a.ref.kind==='pin'?(a.ref.maxDepth??a.ref.depth??Infinity):search.index.pin.maxPinSpan))){
   const pin=a.ref.kind==='pin'?a.ref:b.ref,span=pin.maxDepth??pin.depth??Math.max(a.ref.depth||0,b.ref.depth||0),reach=distance+span;
   const distanceSquared=a.point.distanceToSquared(b.point);
   if(distanceSquared>reach*reach||!compatibleReferences(a.ref,b.ref,a.part.sku,b.part.sku))continue;
@@ -126,9 +136,10 @@ export function nearestAssemblyMate(parts,references,movingIds,{distance=8,exclu
   }
   if(gap>distance)continue;
   const score=gap+(1+a.normal.dot(b.normal))*distance*.35;
-  candidates.push({sourceId:a.part.id,targetId:b.part.id,sourceRef:a.ref,targetRef:b.ref,depth:chosen,gap,score});
+  const rankScore=score-(preferred?.source?.id===a.part.id&&preferred.target?.id===b.part.id&&preferred.sourceRef?.id===a.ref.id&&preferred.targetRef?.id===b.ref.id?1.25:0);
+  candidates.push({sourceId:a.part.id,targetId:b.part.id,sourceRef:a.ref,targetRef:b.ref,depth:chosen,gap,score,rankScore});
  }
- candidates.sort((a,b)=>a.score-b.score);
+ candidates.sort((a,b)=>a.rankScore-b.rankScore);
  let best=null;
  const supportCache=new Map();
  for(const candidate of candidates.slice(0,12)){
@@ -138,7 +149,7 @@ export function nearestAssemblyMate(parts,references,movingIds,{distance=8,exclu
   const key=[...delta.toArray().map(v=>Math.round(v*sign*1e6)),...translation.toArray().map(v=>Math.round(v*1e4))].join('|');
   let support=supportCache.get(key);
   if(support===undefined){support=crossContacts(transformedRows(world,source,pose,moving),moving).length;supportCache.set(key,support);}
-  if(!best||support>best.support||support===best.support&&candidate.score<best.score)best={...candidate,support};
+  if(!best||support>best.support||support===best.support&&candidate.rankScore<best.rankScore)best={...candidate,support};
  }
  if(!best)return null;
  const result=previewAssemblyConnection(parts,references,{...best,movingIds,context,world});

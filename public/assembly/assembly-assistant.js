@@ -25,6 +25,9 @@ export function installAssemblyAssistant(api){
  function data(){const current=JSON.stringify(api.project().parts);if(current!==stamp){stamp=current;connections=seatedConnections(api.project().parts,api.references);mechanics=reviewMechanics(api.project().parts,api.references,connections);}return {connections,mechanics};}
  let renderedConnections=null,renderedSelection=null,inventoryStamp='';
  function render(){
+  // Layers/Guide selection does not require rebuilding the hidden Properties
+  // panel or serializing all CAD poses. Keep transparency responsive separately.
+  if(panel.closest('[hidden]')){if(transparent)applyTransparency();renderInventory();return;}
   const project=api.project(),{connections,mechanics}=data(),selection=api.selected();
   if(connections!==renderedConnections||selection!==renderedSelection){
   renderedConnections=connections;renderedSelection=selection;panel.replaceChildren(make('h3','Khớp lắp & giữ trục'));const selected=project.parts.find(p=>p.id===selection);
@@ -48,6 +51,7 @@ export function installAssemblyAssistant(api){
   if(!rows.length)body.append(make('p','Chưa dùng linh kiện.'));const source=make('a','Nguồn linh kiện VEX');source.href=PLATFORM.id==='vexgo'?KIT_SOURCE:'https://www.vexrobotics.com/iq/1st-gen';source.target='_blank';source.rel='noopener';body.append(source,make('small','Dấu ? = chưa xác minh số lượng bộ kit / biến thể CAD.'));
  }
  inventory.addEventListener('toggle',renderInventory);
+ document.addEventListener('assembly-inspector-change',render);
  return {render,data,visible:id=>!isolated||isolatedIds.has(id),reset:()=>{transparent=isolated=false;clearMaterials();xray.setAttribute('aria-pressed','false');isolate.setAttribute('aria-pressed','false');},frame,
   fitProjection(){if(!orthographic)return;const bounds=new THREE.Box3();for(const obj of api.objects.values())if(obj.visible)bounds.union(api.bounds(obj));if(bounds.isEmpty())return;orthoSpan=Math.max(.02,bounds.getSize(new THREE.Vector3()).length()*1.15/Math.min(1,api.camera.aspect||1));api.camera.zoom=1;projection();},
   projectionState:()=>({orthographic,orthoSpan,zoom:api.camera.zoom}),restoreProjection(value){if(!value)return;orthographic=!!value.orthographic;orthoSpan=value.orthoSpan||.25;api.camera.zoom=value.zoom||1;api.camera.isPerspectiveCamera=!orthographic;api.camera.isOrthographicCamera=orthographic;api.camera.updateProjectionMatrix=orthographic?projection:perspectiveProjection;api.camera.updateProjectionMatrix();ortho.setAttribute('aria-pressed',String(orthographic));}

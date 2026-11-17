@@ -6,7 +6,8 @@ function syncSelection(root,api,project,selection){
  const selected=project.parts.filter(part=>selection.has(part.id));
  const disabled=api.disabled(),editable=selected.length>0&&!selected.some(api.locked),groupId=api.selectedGroup?.();
  const buttons=root.querySelectorAll('.layers-tools button');
- const states=[!editable||selection.size<2,!editable||!selected.some(part=>part.groupId),!editable,!editable,!editable||(!groupId&&selection.size!==1)];
+ const group=project.groups.find(group=>group.id===groupId),siblings=project.groups.filter(row=>(row.parentId||null)===(group?.parentId||null)),index=siblings.indexOf(group);
+ const states=[!editable||selection.size<2,!editable||!selected.some(part=>part.groupId),!editable,!editable,!editable||(!groupId&&selection.size!==1),!editable||index<=0,!editable||index<0||index>=siblings.length-1];
  buttons.forEach((button,i)=>{button.disabled=disabled||states[i];});
  const changedIds=new Set([...tree.selection,...selection]);
  for(const id of changedIds){
@@ -33,19 +34,42 @@ export function renderLayers(api){
  const make=(tag,cls)=>{const el=document.createElement(tag);el.className=cls;return el;},icon=name=>{const el=make('i','');el.dataset.lucide=name;return el;};
  function button(name,label,action){const b=make('button','layer-icon');b.title=label;b.setAttribute('aria-label',label);b.append(icon(name));b.onclick=action;b.disabled=api.disabled();return b;}
  function commit(fn){if(api.disabled())return;api.checkpoint();fn();api.clean();api.refresh();api.save(false);}
+ function followLayersOrder(){
+  if(project.guidePreferences?.mode!=='connections'&&project.guidePreferences?.order){project.guidePreferences={...project.guidePreferences};delete project.guidePreferences.order;}
+ }
  const selectedParts=project.parts.filter(part=>selection.has(part.id)),editable=selectedParts.length>0&&!selectedParts.some(api.locked);
  const toolbar=make('div','layers-tools'),groupButton=button('folder-plus','Group selection · Ctrl+G',()=>api.group()),ungroupButton=button('folder-minus','Ungroup selection · Ctrl+Shift+G',()=>api.ungroup()),duplicateButton=button('copy','Duplicate · Ctrl+J',()=>document.getElementById('duplicate').click()),deleteButton=button('trash-2','Delete selection',()=>document.getElementById('delete').click());
  groupButton.disabled||=!editable||selection.size<2;ungroupButton.disabled||=!editable||!selectedParts.some(part=>part.groupId);duplicateButton.disabled||=!editable;deleteButton.disabled||=!editable;toolbar.append(groupButton,ungroupButton,duplicateButton,deleteButton);
  const renameButton=button('pencil','Rename selected layer',()=>{const current=api.selection(),item=project.groups.find(group=>group.id===api.selectedGroup?.())||(current.size===1?project.parts.find(part=>current.has(part.id)):null);if(!item)return;const row=tree.rows.get(item.id)||tree.groupRows.get(item.id);if(row)rename(row.querySelector('.layer-name'),item);});renameButton.disabled||=!editable||(!api.selectedGroup?.()&&selection.size!==1);toolbar.append(renameButton);root.append(toolbar);
+ function moveGroup(direction){
+  const group=project.groups.find(row=>row.id===api.selectedGroup?.());if(!group)return;
+  const siblings=project.groups.filter(row=>(row.parentId||null)===(group.parentId||null)),index=siblings.indexOf(group),other=siblings[index+direction];
+  if(!other||api.locked(group))return;
+  commit(()=>{const a=project.groups.indexOf(group),b=project.groups.indexOf(other);[project.groups[a],project.groups[b]]=[project.groups[b],project.groups[a]];followLayersOrder();});
+ }
+ const up=button('arrow-up','Đưa group lên · cập nhật thứ tự Guide',()=>moveGroup(-1)),down=button('arrow-down','Đưa group xuống · cập nhật thứ tự Guide',()=>moveGroup(1));
+ const selectedGroup=project.groups.find(row=>row.id===api.selectedGroup?.()),siblings=project.groups.filter(row=>(row.parentId||null)===(selectedGroup?.parentId||null)),index=siblings.indexOf(selectedGroup);
+ up.disabled||=!editable||index<=0;down.disabled||=!editable||index<0||index>=siblings.length-1;toolbar.append(up,down);
  const search=make('input','layer-search');search.type='search';search.placeholder='Tìm trong mô hình…';search.setAttribute('aria-label','Tìm Layers');search.value=filter;root.append(search);search.oninput=()=>{filter=search.value;api.refresh();root.querySelector('.layer-search').focus();};
- const help=make('p','layers-help');help.textContent='Ctrl: chọn nhiều · Shift: chọn dải · Kéo vào thư mục để nhóm';root.append(help);
+ const help=make('p','layers-help');help.textContent='Ctrl: chọn nhiều · Shift: chọn dải · Kéo mép group để đổi thứ tự, kéo giữa để lồng nhóm';root.append(help);
  const visibleParts=project.parts.filter(p=>(api.name(p)+' '+p.sku+' '+groupAncestors(project,p).map(g=>g.name).join(' ')).toLowerCase().includes(filter.toLowerCase()));const visibleIds=new Set(visibleParts.map(p=>p.id)),rendered=[];
  function rename(label,item){if(api.disabled()||api.locked(item))return;const input=make('input','layer-rename');input.value=item.name||item.label||api.name(item);input.maxLength=120;label.replaceWith(input);input.focus();input.select();let done=false;const finish=accept=>{if(done)return;done=true;if(accept&&input.value.trim())commit(()=>{if(item.sku)item.label=input.value.trim();else item.name=input.value.trim();});else api.refresh();};input.onblur=()=>finish(true);input.onkeydown=e=>{e.stopPropagation();if(e.key==='Enter')finish(true);if(e.key==='Escape')finish(false);};}
  function drag(row,payload){row.draggable=!api.disabled();row.ondragstart=e=>{e.dataTransfer.setData('application/x-vex-layers',JSON.stringify(payload()));e.dataTransfer.effectAllowed='move';};}
  function drop(row,groupId,beforeId){row.ondragover=e=>{e.preventDefault();row.classList.add('drop-target');};row.ondragleave=()=>row.classList.remove('drop-target');row.ondrop=e=>{
   e.preventDefault();e.stopPropagation();let payload;try{payload=JSON.parse(e.dataTransfer.getData('application/x-vex-layers'));}catch{return;}
   if(layerLocked(project,project.groups.find(g=>g.id===groupId)))return;
-  if(payload.group){const group=project.groups.find(g=>g.id===payload.group);if(!group||layerLocked(project,group))return;const proposed=project.groups.map(g=>g===group?{...g,parentId:groupId}:g);if(!validGroupTree(proposed))return;commit(()=>{if(groupId)group.parentId=groupId;else delete group.parentId;});return;}
+  if(payload.group){
+   const group=project.groups.find(g=>g.id===payload.group);if(!group||layerLocked(project,group))return;
+   const target=project.groups.find(g=>g.id===row.dataset.groupId),rect=row.getBoundingClientRect(),offset=e.clientY-rect.top;
+   const reorder=target&&rect.height>0&&(offset<rect.height*.3||offset>rect.height*.7);
+   const parentId=reorder?target.parentId:groupId;
+   const proposed=project.groups.map(g=>g===group?{...g,parentId}:g);if(!validGroupTree(proposed))return;
+   commit(()=>{
+    if(parentId)group.parentId=parentId;else delete group.parentId;
+    if(reorder&&target!==group){project.groups=project.groups.filter(g=>g!==group);const index=project.groups.indexOf(target);project.groups.splice(index+(offset>rect.height*.7?1:0),0,group);}
+    followLayersOrder();
+   });return;
+  }
   const ids=Array.isArray(payload)?payload:payload.parts;if(!Array.isArray(ids))return;const moving=project.parts.filter(p=>ids.includes(p.id));if(!moving.length||moving.some(api.locked))return;commit(()=>{for(const p of moving){if(groupId)p.groupId=groupId;else delete p.groupId;}const rest=project.parts.filter(p=>!ids.includes(p.id)),index=beforeId?rest.findIndex(p=>p.id===beforeId):rest.length;rest.splice(index<0?rest.length:index,0,...moving);project.parts=rest;});
  };}
  function partRow(part,depth){rendered.push(part.id);const row=make('div','part-layer-row ps-layer');row.style.paddingLeft=depth*14+'px';row.dataset.partId=part.id;row.classList.toggle('is-selected',selection.has(part.id));drag(row,()=>{const current=api.selection();return {parts:current.has(part.id)?[...current]:[part.id]};});if(api.locked(part))row.draggable=false;

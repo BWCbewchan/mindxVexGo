@@ -3,6 +3,7 @@ import * as THREE from 'three';
 import {worldReference} from './mating.js?v=compatibility-27';
 import {seatedConnections} from './assembly-review.js';
 import {guideCamera} from './guide-camera.js';
+import {createViewportBatches} from './viewport-batches.js?v=group-perf-109';
 
 // Dedicated print renderer: no editor camera, UI dimensions, grid or selection helpers.
 export function createGuideRenderer(){
@@ -12,11 +13,12 @@ export function createGuideRenderer(){
  scene.add(new THREE.HemisphereLight(0xffffff,0xc8cdd1,1.4));
  for(const p of [[2,3,2],[-2,2,2],[-2,2,-2],[2,2,-2]]){const light=new THREE.DirectionalLight(0xffffff,.65);light.position.set(...p);scene.add(light);}
  const group=new THREE.Group();scene.add(group);
+ const batches=createViewportBatches(scene);let drawObjects=new Map();
  const directions=[[1,.8,1],[-1,.8,1],[1,.8,-1],[-1,.8,-1],[1,.3,1],[-1,.3,1],[1,-.5,1],[-1,-.5,-1]].map(p=>new THREE.Vector3(...p).normalize());
  const owned=[],edgeCache=new Map(),camera=new THREE.OrthographicCamera(-1,1,1,-1,.00001,10),corner=new THREE.Vector3();let lastCamera=null,liveState=null;
  function clear(){group.clear();for(const r of owned.splice(0))r.dispose();}
  function bodyMeshes(roots){const meshes=[];for(const root of roots)root.traverseVisible(obj=>{if(obj.isMesh&&!obj.userData.guideAnnotation)meshes.push(obj);});return meshes;}
- function build(objects,addedIds,referenceId,contextEdges=true){
+ function build(objects,addedIds,referenceId,contextEdges=true,newOutline=true){
   clear();
   const copies=new Map(),oldEdges=new THREE.LineBasicMaterial({color:0x687078,transparent:true,opacity:.28}),newEdges=new THREE.LineBasicMaterial({color:0xed1c24,transparent:true,opacity:.85});
   owned.push(oldEdges,newEdges);
@@ -25,14 +27,14 @@ export function createGuideRenderer(){
    const copy=obj.clone(true),isNew=addedIds?.has(id);
    copy.visible=true;
    copy.traverseVisible(mesh=>{
-    if(!mesh.isMesh||!isNew&&!contextEdges)return;
+    if(!mesh.isMesh||!(isNew?newOutline:contextEdges))return;
     if(!edgeCache.has(mesh.geometry))edgeCache.set(mesh.geometry,new THREE.EdgesGeometry(mesh.geometry,35));
     const edge=new THREE.LineSegments(edgeCache.get(mesh.geometry),isNew?newEdges:oldEdges);
     edge.userData.guideNewEdge=isNew;mesh.add(edge);
    });
    group.add(copy);copies.set(id,copy);
   }
-  return copies;
+  drawObjects=copies;return copies;
  }
  function cameraFor(bounds,direction,width,height,up,zoom=1){
   const center=bounds.getCenter(new THREE.Vector3()),size=bounds.getSize(new THREE.Vector3());
@@ -80,14 +82,21 @@ export function createGuideRenderer(){
   return best;
  }
 
- function capture(bounds,direction,width,height,up,zoom,encode=true){if(renderer.domElement.width!==width||renderer.domElement.height!==height)renderer.setSize(width,height,false);const camera=cameraFor(bounds,direction,width,height,up,zoom);lastCamera=camera;renderer.render(scene,camera);return encode?renderer.domElement.toDataURL('image/png'):null;}
+ function capture(bounds,direction,width,height,up,zoom,encode=true){if(renderer.domElement.width!==width||renderer.domElement.height!==height)renderer.setSize(width,height,false);const camera=cameraFor(bounds,direction,width,height,up,zoom);lastCamera=camera;batches.draw(renderer,camera,drawObjects);return encode?renderer.domElement.toDataURL('image/png'):null;}
  return {
   completed(objects,options={}){build(objects,null,null,options.contextEdges);const bounds=visibleBounds(group);return capture(bounds,directions[0],options.width||2200,options.height||1200);},
   render(objects,step,references,options={}){
    const frameOnly=options.frameOnly||(options.live?options.liveFrame:null);
    const drawDetail=frameOnly!=='assembled'&&options.detail!==false;
    const joint=step.joint,reference=step.guideSupport,addedSet=new Set(step.added.map(p=>p.id));
-   const copies=build(objects,addedSet,reference?.id,options.contextEdges),bounds=visibleBounds(group);
+   // A detail-only group page never draws the cumulative assembly. Avoid
+   // cloning prior groups and building edge geometry that the page hides.
+   const groupDetail=step.type==='group'&&frameOnly==='detail';
+   const shown=groupDetail?new Map([...objects].filter(([id])=>addedSet.has(id))):objects;
+   const newOutline=frameOnly==='detail'?step.page?.frames?.detail?.redOutline===true:
+    frameOnly==='assembled'?step.page?.frames?.assembled?.redOutline!==false:
+    step.page?.frames?.assembled?.redOutline!==false||step.page?.frames?.detail?.redOutline===true;
+   const copies=build(shown,addedSet,reference?.id,options.contextEdges,newOutline),bounds=visibleBounds(group);
    const part=step.parts.find(p=>p.id===joint?.part),target=step.parts.find(p=>p.id===joint?.target)||reference;
    const motorDrive=part?.kind==='motor'&&joint?.sourceRef==='motor-output'&&target?.kind==='shaft';
    const ref=references[target?.sku]?.find(r=>r.id===joint?.targetRef);
@@ -134,6 +143,7 @@ export function createGuideRenderer(){
     const present=new Map(step.parts.map(row=>[row.id,row]));
     for(const contact of options.contacts??seatedConnections(step.parts,references)){
      if(!present.has(contact.part)||!present.has(contact.target)||!addedSet.has(contact.part)&&!addedSet.has(contact.target))continue;
+     if(step.type==='group'&&(!addedSet.has(contact.part)||!addedSet.has(contact.target)))continue;
      const row=present.get(contact.part),hole=references[row.sku]?.find(r=>r.id===contact.sourceRef);
      if(hole)markHole(worldReference(row,hole).point.multiplyScalar(.001));
     }
@@ -150,6 +160,12 @@ export function createGuideRenderer(){
    const assembledFrame={width,height,markers:[],camera:framing};let detailFrame=null;
    const captureDetail=(focus,fallback,width,height)=>{width=Math.round(width*(options.detailScale??1));height=Math.round(height*(options.detailScale??1));outline('detail');const image=capture(focus,detailCustom?new THREE.Vector3(...detailCustom.direction):fallback,width,height,detailCustom?.up,detailCustom?.zoom,!options.live);if(options.live&&options.liveFrame==='detail')liveState={bounds:focus.clone()};detailFrame={width,height,markers:markers(),camera:{direction:lastCamera.position.clone().sub(focus.getCenter(new THREE.Vector3())).normalize().toArray(),up:new THREE.Vector3(0,1,0).applyQuaternion(lastCamera.quaternion).toArray(),zoom:detailCustom?.zoom??1}};return image;};
    if(!drawDetail)return {assembled,detail:null,framing,assembledFrame,canvas:options.live?renderer.domElement:undefined};
+   if(step.type==='group'){
+    for(const [id,obj] of copies)obj.visible=addedSet.has(id);
+    const focus=visibleBounds(group);
+    const detail=captureDetail(focus,custom?new THREE.Vector3(...custom.direction):directions[0],900,650);
+    return {assembled,detail,framing,assembledFrame,detailFrame};
+   }
    let detail=null;
    if(step.type==='chain-drive'){
     const closing=step.parts.find(p=>p.id===step.added.at(-1)?.id),closingObject=copies.get(closing?.id),chainIds=new Set(step.added.map(p=>p.id)),focus=new THREE.Box3();
@@ -216,6 +232,6 @@ export function createGuideRenderer(){
   get renderCanvas(){return renderer.domElement;},
   drawView(value,width,height){if(!liveState)throw Error('Prepare the live scene first.');const config=guideCamera(value);if(!config)throw Error('Invalid live camera');capture(liveState.bounds,new THREE.Vector3(...config.direction),width,height,config.up,config.zoom,false);return {direction:[...config.direction],up:new THREE.Vector3(0,1,0).applyQuaternion(lastCamera.quaternion).toArray(),zoom:config.zoom??1};},
   thumbnail(width=140,height=105){const out=document.createElement('canvas');out.width=width;out.height=height;out.getContext('2d').drawImage(renderer.domElement,0,0,width,height);return out.toDataURL('image/png');},
-  dispose(){liveState=null;clear();for(const geometry of edgeCache.values())geometry.dispose();edgeCache.clear();renderer.dispose();renderer.forceContextLoss();},
+  dispose(){liveState=null;batches.dispose();drawObjects.clear();clear();for(const geometry of edgeCache.values())geometry.dispose();edgeCache.clear();renderer.dispose();renderer.forceContextLoss();},
  };
 }

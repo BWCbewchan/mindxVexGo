@@ -12,7 +12,10 @@ export function installGuideWorkbench(api){
  const suspended=()=>document.hidden||!!api.suspended?.(),frame=step=>step?.page?.frames?.detail||{};
  function geometryKey(step){
   let pose=poseKeys.get(step.parts);
-  if(!pose){pose=JSON.stringify(step.parts.map(p=>[p.id,p.sku,p.position,p.rotation,p.ldrawColorHex,p.legoKitId]));poseKeys.set(step.parts,pose);}
+  if(!pose){
+   const added=step.type==='group'?new Set(step.added.map(p=>p.id)):null;
+   pose=JSON.stringify(step.parts.filter(p=>!added||added.has(p.id)).map(p=>[p.id,p.sku,p.position,p.rotation,p.ldrawColorHex,p.legoKitId]));poseKeys.set(step.parts,pose);
+  }
   const detail=frame(step);
   return pose+'|'+JSON.stringify([step.added.map(p=>p.id),step.joint,step.insertion,step.insertionBlocked,step.reviewRequired,!!step.closingNote,step.guideSupport,detail.explodeMM,detail.redOutline,detail.redOutlineOpacity,appearance]);
  }
@@ -24,7 +27,8 @@ export function installGuideWorkbench(api){
  }
  function deactivate(save=true){
   ++epoch;if(raf)cancelAnimationFrame(raf);raf=0;clearTimeout(wheelTimer);wheelTimer=0;
-  if(save){snapshot();if(active?.img.getAttribute('src'))active.img.hidden=false;}
+  if(save)snapshot();
+  if(active?.img.getAttribute('src'))active.img.hidden=false;
   session?.canvas.remove();session=null;activation=null;active=null;camera=null;drag=null;
  }
  function schedule(){
@@ -34,7 +38,7 @@ export function installGuideWorkbench(api){
  async function renderNext(){
   backgroundTimer=0;if(disposed||!visible||blocked||activation||drag||wheelTimer||suspended())return;
   let job;
-  for(const candidate of queue.values())if(candidate.row.inView&&(!job||candidate.row.index<job.row.index))job=candidate;
+  for(const candidate of queue.values())if(candidate.row.inView&&(!job||Math.abs(candidate.row.index-currentIndex)<Math.abs(job.row.index-currentIndex)))job=candidate;
   if(!job)return;
   queue.delete(job.key);backgroundBusy=true;
   const current=()=>!disposed&&job.row.imageKey===job.key&&rows.get(job.row.key)===job.row;
@@ -136,5 +140,13 @@ export function installGuideWorkbench(api){
  }
  const visibility=new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;if(visible)schedule();else{clearTimeout(backgroundTimer);snapshot();}},{rootMargin:'0px'});visibility.observe(root);
  const resize=new ResizeObserver(scheduleFrame);resize.observe(root);const onVisibility=()=>{if(!suspended()){schedule();scheduleFrame();}};document.addEventListener('visibilitychange',onVisibility);
- return {element:root,update,currentIndex:()=>Math.min(currentIndex,Math.max(0,(guide?.steps.length||1)-1)),open(){if(document.getElementById('panel-toggle')?.getAttribute('aria-expanded')==='false')document.getElementById('panel-toggle').click();document.getElementById('inspector-tab-2')?.click();schedule();},resume(){schedule();scheduleFrame();},dispose(){disposed=true;deactivate();clearTimeout(backgroundTimer);visibility.disconnect();cardVisibility.disconnect();resize.disconnect();document.removeEventListener('visibilitychange',onVisibility);queue.clear();cache.clear();root.remove();}};
+ return {
+  element:root,update,
+  releaseLive(){finishWheel();deactivate(false);},
+  clear(){deactivate(false);clearTimeout(backgroundTimer);queue.clear();cache.clear();for(const row of rows.values())cardVisibility.unobserve(row.article);rows.clear();root.replaceChildren();guide=null;},
+  currentIndex:()=>Math.min(currentIndex,Math.max(0,(guide?.steps.length||1)-1)),
+  open(){if(document.getElementById('panel-toggle')?.getAttribute('aria-expanded')==='false')document.getElementById('panel-toggle').click();document.getElementById('inspector-tab-2')?.click();schedule();},
+  resume(redraw=true){schedule();if(redraw)scheduleFrame();},
+  dispose(){disposed=true;deactivate(false);clearTimeout(backgroundTimer);visibility.disconnect();cardVisibility.disconnect();resize.disconnect();document.removeEventListener('visibilitychange',onVisibility);queue.clear();cache.clear();root.remove();}
+ };
 }

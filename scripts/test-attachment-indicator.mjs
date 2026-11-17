@@ -1,0 +1,20 @@
+import assert from 'node:assert/strict';
+import * as THREE from 'three';
+import {markerWorldSize,nearestScreenMarker,screenPoint} from '../public/assembly/attachment-indicator.js';
+
+const camera=new THREE.PerspectiveCamera(40,1,.01,100);
+camera.position.set(0,0,1);camera.lookAt(0,0,0);camera.updateMatrixWorld(true);
+const origin=new THREE.Vector3(),initial=markerWorldSize(origin,camera,800,12);
+camera.position.z=2;camera.updateMatrixWorld(true);
+assert.ok(Math.abs(markerWorldSize(origin,camera,800,12)-initial*2)<1e-8);
+const near={visible:true,position:origin},far={visible:true,position:new THREE.Vector3(0,0,-1)};
+assert.equal(nearestScreenMarker([far,near],camera,800,800,403,400),near);
+assert.equal(nearestScreenMarker([near],camera,800,800,430,400),null);
+assert.equal(nearestScreenMarker([{...near,visible:false}],camera,800,800,400,400),null);
+assert.equal(screenPoint(new THREE.Vector3(0,0,3),camera,800,800),null);
+const ortho=new THREE.OrthographicCamera(-1,1,1,-1,.01,100);
+ortho.position.z=2;ortho.lookAt(0,0,0);ortho.updateMatrixWorld(true);
+assert.equal(markerWorldSize(origin,ortho,800,12),.03);
+ortho.zoom=2;ortho.updateProjectionMatrix();
+assert.equal(markerWorldSize(origin,ortho,800,12),.015);
+console.log('PASS: attachment points retain screen size with both cameras, prefer the closest overlapping point, and ignore hidden/offscreen targets.');
