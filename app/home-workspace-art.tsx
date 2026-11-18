@@ -1,6 +1,7 @@
 export default function WorkspaceArt({kind}:{kind:string}){
  if(kind==='assembly')return <div className="hub-card-art landing-art-assembly" aria-hidden="true"><img src="/assembly/parts/228-2500-001/preview.png" alt=""/><img src="/assembly/parts/269-6690-000/preview.png" alt=""/><img src="/assembly/parts/228-2500-2260/preview.png" alt=""/><span>CAD / VEX GO + IQ</span></div>;
  if(kind==='simulation')return <div className="hub-card-art landing-art-vr" aria-hidden="true"><img src="/robotics-vr-preview.png" alt=""/><span>YOUR ROBOT. YOUR CODE.</span></div>;
+ if(kind==='robolab')return <div className="hub-card-art landing-art-robolab" aria-hidden="true"><img src="/robolab/gears/textures/maps/WRO/WRO-2026-Junior.png" alt=""/><span>FLL · WRO · 38 SA BÀN</span></div>;
  if(kind==='library')return <div className="hub-card-art landing-art-library" aria-hidden="true"><div><span>GO / 01</span><img src="/assembly/parts/269-6685-000/preview.png" alt=""/></div><div><span>IQ / 02</span><img src="/assembly/iq/parts/228-2560/preview.png" alt=""/></div><b>↗</b></div>;
 
  if(kind==='studio')return <div className="hub-card-art hub-art-studio" aria-hidden="true"><img className="hub-art-code" src="/quiz/blocks/order.png" alt=""/><img className="hub-art-motor" src="/quiz/devices/motor.svg" alt=""/><span className="hub-art-connected"><i/> READY TO BUILD</span></div>;
