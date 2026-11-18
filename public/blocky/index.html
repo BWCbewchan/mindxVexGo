@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="./icons/robot-192.png" />
+    <link rel="apple-touch-icon" href="./icons/robot-192.png" />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <meta name="theme-color" content="#2563eb" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>RoboCode</title>
+    <script type="module" crossorigin src="/blocky/assets/index-KuKXezxj.js"></script>
+    <link rel="modulepreload" crossorigin href="/blocky/assets/rolldown-runtime-hePW80VL.js">
+    <link rel="stylesheet" crossorigin href="/blocky/assets/index-Cej7dlm8.css">
+  </head>
+  <body>
+    <div id="root">
+      <section class="app-loading" id="boot-shell" aria-label="Khởi động RoboCode" aria-busy="true">
+        <div class="app-loading-content">
+          <div class="app-loading-mascot" aria-hidden="true"><span class="app-loading-orbit"></span><span class="app-loading-orbit-dot"></span><img class="app-loading-logo" src="./icons/robot-192.png" width="112" height="112" alt="" /></div>
+          <span class="app-loading-eyebrow">KHÔNG GIAN SÁNG TẠO</span><h1>Robo<span>Code</span></h1>
+          <p class="app-loading-lead">Từ những khối lệnh nhỏ, mở ra những ý tưởng lớn.</p>
+          <div class="app-loading-progress"><div class="app-loading-status"><p id="boot-status" role="status">Đang khởi động RoboCode…</p><strong aria-hidden="true">0<small>%</small></strong></div><div class="app-loading-track" role="progressbar" aria-label="Tiến trình khởi động" aria-valuemin="0" aria-valuemax="4" aria-valuenow="0" aria-valuetext="0/4 bước đã hoàn tất"><span style="width:0%"></span></div><p class="app-loading-count">0/4 bước đã hoàn tất</p></div>
+          <ol class="app-loading-steps" aria-label="Các bước khởi động"><li data-state="active" aria-current="step"><span class="app-loading-step-icon" aria-hidden="true">1</span><span>Khởi động ứng dụng</span><span class="app-loading-step-pulse" aria-hidden="true"></span></li><li data-state="waiting"><span class="app-loading-step-icon" aria-hidden="true">2</span><span>Tải không gian học tập</span></li><li data-state="waiting"><span class="app-loading-step-icon" aria-hidden="true">3</span><span>Chuẩn bị giao diện</span></li><li data-state="waiting"><span class="app-loading-step-icon" aria-hidden="true">4</span><span>Sẵn sàng khám phá</span></li></ol>
+          <div class="app-loading-help"><p id="boot-help">Chuẩn bị một chút, cùng khám phá thật nhiều.</p><button id="boot-retry" type="button" hidden>Thử lại</button><noscript>Vui lòng bật JavaScript để sử dụng RoboCode.</noscript></div>
+          <footer class="app-loading-caption">Một dự án phi lợi nhuận của <strong>Quang Thường</strong>, đồng hành cùng học sinh khám phá lập trình và robot.</footer>
+        </div>
+      </section>
+    </div>
+    <script>
+      (function () {
+        var shell = document.getElementById('boot-shell');
+        var status = document.getElementById('boot-status');
+        var help = document.getElementById('boot-help');
+        var retry = document.getElementById('boot-retry');
+        var timer = setTimeout(function () {
+          if (!shell.classList.contains('has-error')) help.textContent = 'Lần mở đầu có thể cần thêm thời gian để tải tài nguyên. Bạn chờ thêm một chút nhé.';
+        }, 12000);
+        function failed(event) {
+          if (!(event.target instanceof HTMLScriptElement) && !(event instanceof ErrorEvent)) return;
+          shell.classList.add('has-error'); shell.setAttribute('aria-busy', 'false');
+          status.textContent = 'Mình thử lại nhé?'; status.setAttribute('role', 'alert');
+          help.textContent = 'Chưa thể mở ứng dụng. Bạn hãy kiểm tra kết nối rồi thử lại.'; retry.hidden = false;
+        }
+        function reload() { window.location.reload(); }
+        retry.addEventListener('click', reload);
+        window.addEventListener('error', failed, true);
+        var observer = new MutationObserver(function () {
+          if (shell.isConnected) return;
+          clearTimeout(timer); observer.disconnect(); window.removeEventListener('error', failed, true); retry.removeEventListener('click', reload);
+        });
+        observer.observe(document.getElementById('root'), { childList: true });
+      })();
+    </script>
+  </body>
+</html>

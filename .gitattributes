@@ -1,0 +1,2 @@
+# Vendored build output (rebuilt by scripts/import-robot-blocky.mjs); skip whitespace checks.
+public/blocky/** -whitespace

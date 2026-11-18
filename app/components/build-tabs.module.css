@@ -1,0 +1,9 @@
+.head{display:flex;flex-direction:column;gap:18px;width:100%;color:#102B2B;font-family:var(--font-app),Arial,sans-serif}
+.title h1{margin:0;font-size:clamp(30px,3.4vw,40px);line-height:1.1;letter-spacing:-.02em;font-weight:800;color:#102B2B}
+.title p{margin:6px 0 0;font-size:15px;line-height:1.5;color:#3E524E}
+.tabs{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:-1px}
+.tabs a{display:inline-flex;align-items:center;min-height:46px;padding:0 16px;border-bottom:3px solid transparent;color:#102B2B;font-size:15px;font-weight:500;text-decoration:none}
+.tabs a:hover{background:#EEF1E6}
+.tabs a.on{border-bottom-color:#102B2B;font-weight:700}
+.tabs a:focus-visible{outline:3px solid #1F6B5E;outline-offset:2px}
+.head[data-tone=plain]{border-bottom:1px solid #D5DCCF;margin-bottom:24px}

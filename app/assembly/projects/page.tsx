@@ -4,7 +4,7 @@ import iqParts from '../../../public/assembly/iq/parts.json';
 import legoParts from '../../../public/assembly/lego/parts.json';
 import {partPreviewSrc} from '../../../public/assembly/part-preview';
 
-export const metadata={title:'Assembly Studio · Dự án của bạn · mindX'};
+export const metadata={title:'Lắp ráp · Dự án của tôi · mindX'};
 const catalogs={
  vexgo:{count:goParts.length,preview:partPreviewSrc('vexgo','269-6690-000')},
  vexiq:{count:iqParts.length,preview:partPreviewSrc('vexiq','228-2560')},
