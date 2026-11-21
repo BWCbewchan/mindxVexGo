@@ -14,7 +14,8 @@ export function generateGroupGuide(project,{nameFor=part=>part.label||part.sku,r
   buckets.get(key).parts.push(part);
  }
  const rootOrder=new Map(groups.filter(group=>!group.parentId).map((group,i)=>['group:'+group.id,i]));
- const ordered=[...buckets].sort(([a],[b])=>(rootOrder.get(a)??groups.length)-(rootOrder.get(b)??groups.length));
+ const priority=unit=>(unit.group||unit.parts[0]).layerPriority??Infinity;
+ const ordered=[...buckets].sort(([a,left],[b,right])=>priority(left)-priority(right)||(rootOrder.get(a)??groups.length)-(rootOrder.get(b)??groups.length));
  const options={nameFor,references,inferConnections:true,prioritizeMountedElectronics:true};
  if(!ordered.some(([,bucket])=>bucket.group))return generateStudentGuide(parts,options);
  const steps=[],notes=[],entry=p=>({id:p.id,sku:p.sku,name:nameFor(p)});
@@ -42,7 +43,7 @@ export function generateGroupGuide(project,{nameFor=part=>part.label||part.sku,r
  }
  function prepare(unit){
   if(!unit.group)return;
-  const children=groups.filter(g=>g.parentId===unit.group.id).map(group=>{
+  const children=groups.filter(g=>g.parentId===unit.group.id).sort((a,b)=>(a.layerPriority??Infinity)-(b.layerPriority??Infinity)).map(group=>{
    const members=unit.parts.filter(p=>groupAncestors(project,p).some(ancestor=>ancestor.id===group.id));
    return {group,parts:members,ids:new Set(members.map(p=>p.id))};
   }).filter(child=>child.parts.length).flatMap(connectedUnits);
@@ -53,7 +54,7 @@ export function generateGroupGuide(project,{nameFor=part=>part.label||part.sku,r
    for(const child of children){const failure=prepare(child);if(failure)return failure;}
    const rank=new Map((plan?.steps||[]).flatMap(s=>s.added).map((p,i)=>[p.id,i]));
    const direct=unit.parts.filter(p=>p.groupId===unit.group.id).sort((a,b)=>(rank.get(a.id)??Infinity)-(rank.get(b.id)??Infinity));
-   return assemble([...children,...direct.map(p=>({parts:[p],ids:new Set([p.id])}))],unit.group);
+   return assemble([...children,...direct.map(p=>({parts:[p],ids:new Set([p.id])}))].sort((a,b)=>priority(a)-priority(b)),unit.group);
   }
   if(plan&&!plan.ready){
    const first=rows.find(row=>!row.mate)||rows[0];

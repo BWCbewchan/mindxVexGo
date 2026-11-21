@@ -105,3 +105,5 @@ dialog:has(#wiring-title){width:min(680px,92vw);max-width:680px;max-height:85vh;
 .guide-droplet-part>span{font-size:11pt;font-weight:600;line-height:1.15;color:#26323c}
 .guide-droplet-part>small{font-size:8pt;color:#75818b;line-height:1.1}
 }
+
+.ps-layer[data-drop="before"]{box-shadow:inset 0 2px #72baff}.ps-layer[data-drop="after"]{box-shadow:inset 0 -2px #72baff}.ps-layer[data-drop="inside"],.layers-ungroup-drop[data-drop]{outline:2px solid #72baff;outline-offset:-2px}
