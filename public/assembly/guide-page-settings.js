@@ -11,7 +11,7 @@ export function guidePage(value){
   if(input.redOutline!==undefined){if(typeof input.redOutline!=='boolean')return fail();row.redOutline=input.redOutline;}
   if(input.explodeMM!==undefined){if(!number(input.explodeMM,0,120))return fail();row.explodeMM=input.explodeMM;}
   if(input.camera!==undefined){const camera=guideCamera(input.camera);if(!camera)return fail();row.camera=camera;}
-  if(input.markers!==undefined){if(!Array.isArray(input.markers)||input.markers.length>64)return fail();row.markers=input.markers.map(p=>{if(!object(p)||!number(p.x,0,1)||!number(p.y,0,1)||!number(p.r??.012,.003,.04))return fail();return {x:p.x,y:p.y,r:p.r??.012};});}
+  if(input.markers!==undefined){if(!Array.isArray(input.markers)||input.markers.length>64)return fail();row.markers=input.markers.map(p=>{if(!object(p)||!number(p.x,0,1)||!number(p.y,0,1)||!number(p.r??.012,.003,.04))return fail();return {x:p.x,y:p.y,r:p.r??.012,...(typeof p.anchor==='string'?{anchor:p.anchor}:{})};});}
   out.frames[name]=row;
  }return out;
 }

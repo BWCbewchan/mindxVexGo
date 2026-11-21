@@ -1,0 +1,1036 @@
+{
+ "title": "VEX GO Super Code Base (on Code Base 2.0 chassis)",
+ "note": "Super Code Base for RoboCode. Chassis = recipes/code-base-2.json steps, with the front changed to the original Code Base layout: two blue wheels outside the plates (on short red shafts here) instead of the centre wheel. Built with the chassis frame (+Z = green-beam end); the orange T, Eye and motor wheels are at -Z, which is the Super Code Base front, so the bake turns the model 180 degrees.",
+ "steps": [
+  {
+   "name": "Rev6 step 1",
+   "az": 200,
+   "el": 25,
+   "parts": [
+    {
+     "id": "plate-L",
+     "sku": "228-2500-043",
+     "at": [
+      57,
+      50,
+      0
+     ],
+     "axes": "+y-z-x"
+    },
+    {
+     "id": "pin-A1",
+     "sku": "228-2500-2260"
+    },
+    {
+     "id": "pin-A2",
+     "sku": "228-2500-2260"
+    },
+    {
+     "id": "ystand-L",
+     "sku": "228-2500-2295"
+    }
+   ],
+   "attach": [
+    {
+     "part": "pin-A1",
+     "ref": "p-y",
+     "to": "plate-L",
+     "toRef": "h1.7-y"
+    },
+    {
+     "part": "pin-A2",
+     "ref": "p-y",
+     "to": "plate-L",
+     "toRef": "h3.7-y"
+    },
+    {
+     "part": "ystand-L",
+     "ref": "h1.1+z",
+     "to": "pin-A1",
+     "toRef": "p+y",
+     "align": {
+      "ref": "h1.3+z",
+      "to": "pin-A2",
+      "toRef": "p+y"
+     }
+    }
+   ],
+   "note": "Code Base Rev6 step 1: a yellow connector stands at the front end of the plate, inside, on two red pins through its lower holes, stud face on the plate; its edge pins point up for the front beam (step 20)."
+  },
+  {
+   "name": "Step 2",
+   "image": "C:/Users/admin/AppData/Local/Temp/claude/4da3a426a38213fc/662e6d41-dfcf-400c-999e-77fb9860022e/scratchpad/cb/06-Step-3.png",
+   "az": 250,
+   "el": 25,
+   "parts": [
+    {
+     "id": "yellow-L",
+     "sku": "228-2500-2295"
+    }
+   ],
+   "attach": [
+    {
+     "part": "yellow-L",
+     "ref": "p1+y",
+     "to": "plate-L",
+     "toRef": "h7.3-y",
+     "align": {
+      "ref": "p3+y",
+      "to": "plate-L",
+      "toRef": "h5.3-y"
+     }
+    }
+   ]
+  },
+  {
+   "name": "Step 3-4",
+   "image": "C:/Users/admin/AppData/Local/Temp/claude/4da3a426a38213fc/662e6d41-dfcf-400c-999e-77fb9860022e/scratchpad/cb/10-Step-5.png",
+   "az": 250,
+   "el": 25,
+   "note": "Instructions put 4 pins in the motor first; here they go into the plate first so the motor can be attached onto them.",
+   "parts": [
+    {
+     "id": "pin-ML1",
+     "sku": "228-2500-2260"
+    },
+    {
+     "id": "pin-ML2",
+     "sku": "228-2500-2260"
+    },
+    {
+     "id": "pin-ML3",
+     "sku": "228-2500-2260"
+    },
+    {
+     "id": "pin-ML4",
+     "sku": "228-2500-2260"
+    },
+    {
+     "id": "motor-L",
+     "sku": "269-6690-000"
+    },
+    {
+     "id": "shaft-L",
+     "sku": "228-2500-2234"
+    }
+   ],
+   "attach": [
+    {
+     "part": "pin-ML1",
+     "ref": "p-y",
+     "to": "plate-L",
+     "toRef": "h9.5-y"
+    },
+    {
+     "part": "pin-ML2",
+     "ref": "p-y",
+     "to": "plate-L",
+     "toRef": "h9.7-y"
+    },
+    {
+     "part": "pin-ML3",
+     "ref": "p-y",
+     "to": "plate-L",
+     "toRef": "h13.5-y"
+    },
+    {
+     "part": "pin-ML4",
+     "ref": "p-y",
+     "to": "plate-L",
+     "toRef": "h13.7-y"
+    },
+    {
+     "part": "motor-L",
+     "ref": "h8.7-z",
+     "to": "pin-ML4",
+     "toRef": "p+y",
+     "align": {
+      "ref": "h3.3-z",
+      "to": "pin-ML1",
+      "toRef": "p+y"
+     }
+    },
+    {
+     "part": "shaft-L",
+     "ref": "p+y",
+     "to": "motor-L",
+     "toRef": "h7.5-z"
+    }
+   ],
+   "check": [
+    {
+     "part": "motor-L",
+     "ref": "h3.7-z",
+     "to": "pin-ML2",
+     "toRef": "p+y"
+    },
+    {
+     "part": "motor-L",
+     "ref": "h8.3-z",
+     "to": "pin-ML3",
+     "toRef": "p+y"
+    }
+   ]
+  },
+  {
+   "name": "Step 5",
+   "image": "C:/Users/admin/AppData/Local/Temp/claude/4da3a426a38213fc/662e6d41-dfcf-400c-999e-77fb9860022e/scratchpad/cb/12-Step-6.png",
+   "az": 250,
+   "el": 25,
+   "parts": [
+    {
+     "id": "pin-J1",
+     "sku": "228-2500-2260"
+    },
+    {
+     "id": "pin-J2",
+     "sku": "228-2500-2260"
+    }
+   ],
+   "attach": [
+    {
+     "part": "pin-J1",
+     "ref": "p-y",
+     "to": "motor-L",
+     "toRef": "h3.3+z#2"
+    },
+    {
+     "part": "pin-J2",
+     "ref": "p-y",
+     "to": "motor-L",
+     "toRef": "h3.7+z#2"
+    }
+   ]
+  },
+  {
+   "name": "Step 6-8",
+   "image": "C:/Users/admin/AppData/Local/Temp/claude/4da3a426a38213fc/662e6d41-dfcf-400c-999e-77fb9860022e/scratchpad/cb/18-Step-9.png",
+   "az": 250,
+   "el": 35,
+   "note": "Rear cross beam: blue connectors stand on its ends; each holds 2 pins into a side plate's top row.",
+   "parts": [
+    {
+     "id": "pin-BL1",
+     "sku": "228-2500-2260"
+    },
+    {
+     "id": "pin-BL2",
+     "sku": "228-2500-2260"
+    },
+    {
+     "id": "blue-L",
+     "sku": "228-2500-2296"
+    },
+    {
+     "id": "beam-rear",
+     "sku": "228-2500-023"
+    },
+    {
+     "id": "blue-R",
+     "sku": "228-2500-2296"
+    },
+    {
+     "id": "pin-BR1",
+     "sku": "228-2500-2260"
+    },
+    {
+     "id": "pin-BR2",
+     "sku": "228-2500-2260"
+    }
+   ],
+   "attach": [
+    {
+     "part": "pin-BL1",
+     "ref": "p-y",
+     "to": "plate-L",
+     "toRef": "h11.1-y"
+    },
+    {
+     "part": "pin-BL2",
+     "ref": "p-y",
+     "to": "plate-L",
+     "toRef": "h13.1-y"
+    },
+    {
+     "part": "blue-L",
+     "ref": "h3.1-z",
+     "to": "pin-BL1",
+     "toRef": "p+y",
+     "align": {
+      "ref": "h3.3-z",
+      "to": "pin-BL2",
+      "toRef": "p+y"
+     },
+     "depth": 0,
+     "slide": -0.8
+    },
+    {
+     "part": "beam-rear",
+     "ref": "h1.1+y",
+     "to": "blue-L",
+     "toRef": "p1+y",
+     "align": {
+      "ref": "h1.3+y",
+      "to": "blue-L",
+      "toRef": "p3+y"
+     }
+    },
+    {
+     "part": "blue-R",
+     "ref": "p1+y",
+     "to": "beam-rear",
+     "toRef": "h15.3+y",
+     "align": {
+      "ref": "p3+y",
+      "to": "beam-rear",
+      "toRef": "h15.1+y"
+     }
+    },
+    {
+     "part": "pin-BR1",
+     "ref": "p-y",
+     "to": "blue-R",
+     "toRef": "h3.1-z"
+    },
+    {
+     "part": "pin-BR2",
+     "ref": "p-y",
+     "to": "blue-R",
+     "toRef": "h3.3-z"
+    }
+   ]
+  },
+  {
+   "name": "Step 13-17",
+   "image": "C:/Users/admin/AppData/Local/Temp/claude/4da3a426a38213fc/662e6d41-dfcf-400c-999e-77fb9860022e/scratchpad/cb/36-Step-18.png",
+   "az": 200,
+   "el": 30,
+   "note": "Right half, built onto the left motor's two joining pins, then the right plate onto the right motor's pins (mirror of the left: column c becomes 16-c).",
+   "parts": [
+    {
+     "id": "motor-R",
+     "sku": "269-6690-000"
+    },
+    {
+     "id": "pin-MR1",
+     "sku": "228-2500-2260"
+    },
+    {
+     "id": "pin-MR2",
+     "sku": "228-2500-2260"
+    },
+    {
+     "id": "pin-MR3",
+     "sku": "228-2500-2260"
+    },
+    {
+     "id": "pin-MR4",
+     "sku": "228-2500-2260"
+    },
+    {
+     "id": "plate-R",
+     "sku": "228-2500-043"
+    },
+    {
+     "id": "shaft-R",
+     "sku": "228-2500-2234"
+    }
+   ],
+   "attach": [
+    {
+     "part": "motor-R",
+     "ref": "h3.7+z#2",
+     "to": "pin-J1",
+     "toRef": "p+y",
+     "align": {
+      "ref": "h3.3+z#2",
+      "to": "pin-J2",
+      "toRef": "p+y"
+     }
+    },
+    {
+     "part": "pin-MR1",
+     "ref": "p-y",
+     "to": "motor-R",
+     "toRef": "h3.3-z"
+    },
+    {
+     "part": "pin-MR2",
+     "ref": "p-y",
+     "to": "motor-R",
+     "toRef": "h3.7-z"
+    },
+    {
+     "part": "pin-MR3",
+     "ref": "p-y",
+     "to": "motor-R",
+     "toRef": "h8.3-z"
+    },
+    {
+     "part": "pin-MR4",
+     "ref": "p-y",
+     "to": "motor-R",
+     "toRef": "h8.7-z"
+    },
+    {
+     "part": "plate-R",
+     "ref": "h3.5-y",
+     "to": "pin-MR4",
+     "toRef": "p+y",
+     "align": {
+      "ref": "h7.7-y",
+      "to": "pin-MR1",
+      "toRef": "p+y"
+     }
+    },
+    {
+     "part": "shaft-R",
+     "ref": "p+y",
+     "to": "motor-R",
+     "toRef": "h7.5-z"
+    }
+   ],
+   "check": [
+    {
+     "part": "plate-R",
+     "ref": "h7.5-y",
+     "to": "pin-MR2",
+     "toRef": "p+y"
+    },
+    {
+     "part": "plate-R",
+     "ref": "h3.7-y",
+     "to": "pin-MR3",
+     "toRef": "p+y"
+    },
+    {
+     "part": "plate-R",
+     "ref": "h3.1-y",
+     "to": "pin-BR1",
+     "toRef": "p+y"
+    },
+    {
+     "part": "plate-R",
+     "ref": "h5.1-y",
+     "to": "pin-BR2",
+     "toRef": "p+y"
+    }
+   ]
+  },
+  {
+   "name": "Rev6 step 10-11",
+   "image": "C:/Users/admin/AppData/Local/Temp/claude/4da3a426a38213fc/662e6d41-dfcf-400c-999e-77fb9860022e/scratchpad/cb/24-Step-12.png",
+   "az": 110,
+   "el": 25,
+   "parts": [
+    {
+     "id": "pin-B1",
+     "sku": "228-2500-2260"
+    },
+    {
+     "id": "pin-B2",
+     "sku": "228-2500-2260"
+    },
+    {
+     "id": "ystand-R",
+     "sku": "228-2500-2295"
+    },
+    {
+     "id": "yellow-R",
+     "sku": "228-2500-2295"
+    }
+   ],
+   "attach": [
+    {
+     "part": "pin-B1",
+     "ref": "p-y",
+     "to": "plate-R",
+     "toRef": "h15.7-y"
+    },
+    {
+     "part": "pin-B2",
+     "ref": "p-y",
+     "to": "plate-R",
+     "toRef": "h13.7-y"
+    },
+    {
+     "part": "ystand-R",
+     "ref": "h1.3+z",
+     "to": "pin-B1",
+     "toRef": "p+y",
+     "align": {
+      "ref": "h1.1+z",
+      "to": "pin-B2",
+      "toRef": "p+y"
+     }
+    },
+    {
+     "part": "yellow-R",
+     "ref": "p1+y",
+     "to": "plate-R",
+     "toRef": "h11.3-y",
+     "align": {
+      "ref": "p3+y",
+      "to": "plate-R",
+      "toRef": "h9.3-y"
+     }
+    }
+   ]
+  },
+  {
+   "name": "Step 16 blue wheels on pins",
+   "parts": [
+    {
+     "id": "pin-FL",
+     "sku": "228-2500-2260"
+    },
+    {
+     "id": "pin-FR",
+     "sku": "228-2500-2260"
+    },
+    {
+     "id": "wheel-FL",
+     "sku": "228-2500-1384"
+    },
+    {
+     "id": "wheel-FR",
+     "sku": "228-2500-1384"
+    }
+   ],
+   "attach": [
+    {
+     "part": "pin-FL",
+     "ref": "p-y",
+     "to": "plate-L",
+     "toRef": "h2.6+y"
+    },
+    {
+     "part": "pin-FR",
+     "ref": "p-y",
+     "to": "plate-R",
+     "toRef": "h14.6+y"
+    },
+    {
+     "part": "wheel-FL",
+     "ref": "h3.3-y",
+     "to": "pin-FL",
+     "toRef": "p+y"
+    },
+    {
+     "part": "wheel-FR",
+     "ref": "h3.3-y",
+     "to": "pin-FR",
+     "toRef": "p+y"
+    }
+   ],
+   "note": "Official Code Base Rev6 step 16: each blue wheel spins on one red pin pushed into the plate (no shaft); boss side toward the plate."
+  },
+  {
+   "name": "Rev6 step 15-17 gray wheels",
+   "image": "C:/Users/admin/AppData/Local/Temp/claude/4da3a426a38213fc/662e6d41-dfcf-400c-999e-77fb9860022e/scratchpad/cb/42-Step-21.png",
+   "az": 40,
+   "el": 20,
+   "parts": [
+    {
+     "id": "wheel-L",
+     "sku": "228-2500-1383"
+    },
+    {
+     "id": "wheel-R",
+     "sku": "228-2500-1383"
+    },
+    {
+     "id": "collar-L",
+     "sku": "228-2500-143"
+    },
+    {
+     "id": "collar-R",
+     "sku": "228-2500-143"
+    }
+   ],
+   "attach": [
+    {
+     "part": "wheel-L",
+     "ref": "h3.3+y",
+     "to": "shaft-L",
+     "toRef": "p-y",
+     "depth": 0,
+     "slide": -1.5
+    },
+    {
+     "part": "wheel-R",
+     "ref": "h3.3+y",
+     "to": "shaft-R",
+     "toRef": "p-y",
+     "depth": 0,
+     "slide": -1.5
+    },
+    {
+     "part": "collar-L",
+     "ref": "h+z",
+     "to": "wheel-L",
+     "toRef": "h3.3-y",
+     "faceTo": true
+    },
+    {
+     "part": "collar-R",
+     "ref": "h+z",
+     "to": "wheel-R",
+     "toRef": "h3.3-y",
+     "faceTo": true
+    }
+   ],
+   "note": "Rev6 step 15/17: gray wheel on the motor shaft, held by a shaft collar inside its cup."
+  },
+  {
+   "name": "Rev6 step 19-20 front beam",
+   "note": "Second dark gray large beam lies across the front end on the standing yellow connectors edge pins (end columns 1 and 15).",
+   "parts": [
+    {
+     "id": "beam-front",
+     "sku": "228-2500-023"
+    }
+   ],
+   "attach": [
+    {
+     "part": "beam-front",
+     "ref": "h1.1-y",
+     "to": "ystand-L",
+     "toRef": "p1+y",
+     "align": {
+      "ref": "h15.1-y",
+      "to": "ystand-R",
+      "toRef": "p3+y"
+     }
+    }
+   ],
+   "check": [
+    {
+     "part": "beam-front",
+     "ref": "h1.3-y",
+     "to": "ystand-L",
+     "toRef": "p3+y"
+    },
+    {
+     "part": "beam-front",
+     "ref": "h15.3-y",
+     "to": "ystand-R",
+     "toRef": "p1+y"
+    }
+   ]
+  },
+  {
+   "name": "Step 22",
+   "image": "C:/Users/admin/AppData/Local/Temp/claude/4da3a426a38213fc/662e6d41-dfcf-400c-999e-77fb9860022e/scratchpad/cb/46-Step-23.png",
+   "az": 30,
+   "el": 40,
+   "note": "Super Code Base: the battery sits on the yellow connectors only; the rear cross beam stays free for the orange T.",
+   "parts": [
+    {
+     "id": "pin-T1",
+     "sku": "228-2500-2260"
+    },
+    {
+     "id": "pin-T2",
+     "sku": "228-2500-2260"
+    },
+    {
+     "id": "pin-T3",
+     "sku": "228-2500-2260"
+    },
+    {
+     "id": "pin-T4",
+     "sku": "228-2500-2260"
+    },
+    {
+     "id": "battery",
+     "sku": "269-6686-000"
+    }
+   ],
+   "attach": [
+    {
+     "part": "pin-T1",
+     "ref": "p-y",
+     "to": "yellow-L",
+     "toRef": "h1.1+z"
+    },
+    {
+     "part": "pin-T2",
+     "ref": "p-y",
+     "to": "yellow-L",
+     "toRef": "h1.3+z"
+    },
+    {
+     "part": "pin-T3",
+     "ref": "p-y",
+     "to": "yellow-R",
+     "toRef": "h1.1+z"
+    },
+    {
+     "part": "pin-T4",
+     "ref": "p-y",
+     "to": "yellow-R",
+     "toRef": "h1.3+z"
+    },
+    {
+     "part": "battery",
+     "ref": "h2.1-z",
+     "to": "pin-T1",
+     "toRef": "p+y",
+     "align": {
+      "ref": "h1.1-z",
+      "to": "pin-T4",
+      "toRef": "p+y"
+     }
+    }
+   ],
+   "check": [
+    {
+     "part": "battery",
+     "ref": "h2.2-z",
+     "to": "pin-T2",
+     "toRef": "p+y"
+    },
+    {
+     "part": "battery",
+     "ref": "h1.2-z",
+     "to": "pin-T3",
+     "toRef": "p+y"
+    }
+   ]
+  },
+  {
+   "name": "Step 23",
+   "image": "C:/Users/admin/AppData/Local/Temp/claude/4da3a426a38213fc/662e6d41-dfcf-400c-999e-77fb9860022e/scratchpad/cb/48-Step-24.png",
+   "az": 30,
+   "el": 40,
+   "parts": [
+    {
+     "id": "pin-U1",
+     "sku": "228-2500-2260"
+    },
+    {
+     "id": "pin-U2",
+     "sku": "228-2500-2260"
+    },
+    {
+     "id": "pin-U3",
+     "sku": "228-2500-2260"
+    },
+    {
+     "id": "pin-U4",
+     "sku": "228-2500-2260"
+    },
+    {
+     "id": "brain",
+     "sku": "269-6685-000"
+    }
+   ],
+   "attach": [
+    {
+     "part": "pin-U1",
+     "ref": "p-y",
+     "to": "battery",
+     "toRef": "h1.1+z#2"
+    },
+    {
+     "part": "pin-U2",
+     "ref": "p-y",
+     "to": "battery",
+     "toRef": "h1.4+z#2"
+    },
+    {
+     "part": "pin-U3",
+     "ref": "p-y",
+     "to": "battery",
+     "toRef": "h2.1+z#2"
+    },
+    {
+     "part": "pin-U4",
+     "ref": "p-y",
+     "to": "battery",
+     "toRef": "h2.4+z#2"
+    },
+    {
+     "part": "brain",
+     "ref": "h2.4+z#3",
+     "to": "pin-U1",
+     "toRef": "p+y",
+     "align": {
+      "ref": "h2.1+z#3",
+      "to": "pin-U2",
+      "toRef": "p+y"
+     }
+    }
+   ],
+   "check": [
+    {
+     "part": "brain",
+     "ref": "h1.4+z#3",
+     "to": "pin-U3",
+     "toRef": "p+y"
+    },
+    {
+     "part": "brain",
+     "ref": "h1.1+z#3",
+     "to": "pin-U4",
+     "toRef": "p+y"
+    }
+   ]
+  },
+  {
+   "name": "Super 10-12 orange beam",
+   "parts": [
+    {
+     "id": "dpin-1",
+     "sku": "228-2500-2260"
+    },
+    {
+     "id": "dpin-2",
+     "sku": "228-2500-2260"
+    },
+    {
+     "id": "gpin-1",
+     "sku": "228-2500-2261"
+    },
+    {
+     "id": "gpin-2",
+     "sku": "228-2500-2261"
+    },
+    {
+     "id": "orange",
+     "sku": "228-2500-005"
+    }
+   ],
+   "attach": [
+    {
+     "part": "dpin-1",
+     "ref": "p-y",
+     "to": "beam-rear",
+     "toRef": "h11.3+y"
+    },
+    {
+     "part": "dpin-2",
+     "ref": "p-y",
+     "to": "beam-rear",
+     "toRef": "h5.3+y"
+    },
+    {
+     "part": "orange",
+     "ref": "h2-y",
+     "to": "dpin-1",
+     "toRef": "p+y",
+     "align": {
+      "ref": "h6-y",
+      "to": "dpin-2",
+      "toRef": "p+y"
+     }
+    },
+    {
+     "part": "gpin-1",
+     "ref": "p+y2",
+     "to": "orange",
+     "toRef": "h7-y"
+    },
+    {
+     "part": "gpin-2",
+     "ref": "p+y2",
+     "to": "orange",
+     "toRef": "h1-y"
+    }
+   ],
+   "check": [
+    {
+     "part": "gpin-1",
+     "ref": "p-y",
+     "to": "beam-rear",
+     "toRef": "h3.3+y"
+    },
+    {
+     "part": "gpin-2",
+     "ref": "p-y",
+     "to": "beam-rear",
+     "toRef": "h13.3+y"
+    }
+   ]
+  },
+  {
+   "name": "Super 11-12 angle beams",
+   "parts": [
+    {
+     "id": "opin-2",
+     "sku": "228-2500-2260"
+    },
+    {
+     "id": "opin-3",
+     "sku": "228-2500-2260"
+    },
+    {
+     "id": "angle-L",
+     "sku": "228-2500-150"
+    },
+    {
+     "id": "angle-R",
+     "sku": "228-2500-150"
+    }
+   ],
+   "attach": [
+    {
+     "part": "opin-2",
+     "ref": "p-y",
+     "to": "orange",
+     "toRef": "h3+y"
+    },
+    {
+     "part": "opin-3",
+     "ref": "p-y",
+     "to": "orange",
+     "toRef": "h5+y"
+    },
+    {
+     "part": "angle-L",
+     "ref": "h3+y",
+     "to": "opin-2",
+     "toRef": "p+y",
+     "align": {
+      "ref": "h1+y",
+      "to": "gpin-2",
+      "toRef": "p+y"
+     }
+    },
+    {
+     "part": "angle-R",
+     "ref": "h3-y",
+     "to": "opin-3",
+     "toRef": "p+y",
+     "align": {
+      "ref": "h1-y",
+      "to": "gpin-1",
+      "toRef": "p+y"
+     }
+    }
+   ]
+  },
+  {
+   "name": "Super 13-14 eye and magnet",
+   "parts": [
+    {
+     "id": "epin-1",
+     "sku": "228-2500-2260"
+    },
+    {
+     "id": "epin-2",
+     "sku": "228-2500-2260"
+    },
+    {
+     "id": "eye",
+     "sku": "269-6695-000"
+    },
+    {
+     "id": "mpin-1",
+     "sku": "228-2500-2260"
+    },
+    {
+     "id": "mpin-2",
+     "sku": "228-2500-2260"
+    },
+    {
+     "id": "magnet",
+     "sku": "269-6702-000"
+    }
+   ],
+   "attach": [
+    {
+     "part": "epin-1",
+     "ref": "p-y",
+     "to": "angle-L",
+     "toRef": "h6+y"
+    },
+    {
+     "part": "epin-2",
+     "ref": "p-y",
+     "to": "angle-R",
+     "toRef": "h6-y"
+    },
+    {
+     "part": "eye",
+     "ref": "h1.1+z",
+     "to": "epin-1",
+     "toRef": "p+y",
+     "align": {
+      "ref": "h2.1+z",
+      "to": "epin-2",
+      "toRef": "p+y"
+     }
+    },
+    {
+     "part": "mpin-1",
+     "ref": "p-y",
+     "to": "angle-L",
+     "toRef": "h4+y"
+    },
+    {
+     "part": "mpin-2",
+     "ref": "p-y",
+     "to": "angle-R",
+     "toRef": "h4-y"
+    },
+    {
+     "part": "magnet",
+     "ref": "h1.1+z",
+     "to": "mpin-1",
+     "toRef": "p+y",
+     "align": {
+      "ref": "h2.1+z",
+      "to": "mpin-2",
+      "toRef": "p+y"
+     }
+    }
+   ],
+   "note": "Eye and magnet hang under the fork legs (angle-L +y and angle-R -y face down)."
+  },
+  {
+   "name": "Super 18-19 LED Bumper",
+   "parts": [
+    {
+     "id": "lpin-1",
+     "sku": "228-2500-2260"
+    },
+    {
+     "id": "lpin-2",
+     "sku": "228-2500-2260"
+    },
+    {
+     "id": "led",
+     "sku": "269-6696-000"
+    }
+   ],
+   "attach": [
+    {
+     "part": "lpin-1",
+     "ref": "p-y",
+     "to": "angle-L",
+     "toRef": "h5-y"
+    },
+    {
+     "part": "lpin-2",
+     "ref": "p-y",
+     "to": "angle-R",
+     "toRef": "h4+y"
+    },
+    {
+     "part": "led",
+     "ref": "h2.1+z",
+     "to": "lpin-1",
+     "toRef": "p+y",
+     "align": {
+      "ref": "h3.3+z",
+      "to": "lpin-2",
+      "toRef": "p+y"
+     }
+    }
+   ],
+   "note": "LED Bumper on top of the fork legs, two pins on a diagonal (step 19)."
+  }
+ ]
+}

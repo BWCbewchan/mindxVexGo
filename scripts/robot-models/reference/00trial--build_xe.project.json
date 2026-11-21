@@ -1,0 +1,791 @@
+{
+"version": 1,
+"platform": "vexgo",
+"title": "build_xe",
+"source": "00.trial/build_xe.SLDASM",
+"hideCables": true,
+"parts": [
+{
+"id": "motor-1",
+"sku": "269-6690-000",
+"position": [
+-6.305,
+-12.984,
+13.113
+],
+"rotation": [
+90,
+0,
+0
+],
+"label": "Motor"
+},
+{
+"id": "red-pin-1",
+"sku": "228-2500-2260",
+"position": [
+-12.655,
+18.766,
+6.763
+],
+"rotation": [
+-180,
+0,
+0
+],
+"label": "Red Pin"
+},
+{
+"id": "red-pin-2",
+"sku": "228-2500-2260",
+"position": [
+0.045,
+18.766,
+19.463
+],
+"rotation": [
+180,
+-74.9874,
+0
+],
+"label": "Red Pin"
+},
+{
+"id": "red-pin-3",
+"sku": "228-2500-2260",
+"position": [
+-25.355,
+18.766,
+6.763
+],
+"rotation": [
+180,
+-2.0163,
+0
+],
+"label": "Red Pin"
+},
+{
+"id": "red-pin-4",
+"sku": "228-2500-2260",
+"position": [
+-25.355,
+18.766,
+19.463
+],
+"rotation": [
+0,
+89.4995,
+180
+],
+"label": "Red Pin"
+},
+{
+"id": "red-shaft-1",
+"sku": "228-2500-2234",
+"position": [
+-6.305,
+15.596,
+13.113
+],
+"rotation": [
+-180,
+-28.45,
+0
+],
+"label": "Red Shaft"
+},
+{
+"id": "dark-gray-plate-1",
+"sku": "228-2500-043",
+"position": [
+-19.005,
+21.941,
+38.513
+],
+"rotation": [
+180,
+-90,
+0
+],
+"label": "Dark Gray Plate"
+},
+{
+"id": "gray-wheel-1",
+"sku": "228-2500-1383",
+"position": [
+-6.305,
+27.402,
+13.113
+],
+"rotation": [
+0,
+1.4446,
+0
+],
+"label": "Gray Wheel"
+},
+{
+"id": "shaft-collar-1",
+"sku": "228-2500-143",
+"position": [
+-6.305,
+33.752,
+13.113
+],
+"rotation": [
+90,
+0,
+0
+],
+"label": "Shaft Collar"
+},
+{
+"id": "red-pin-5",
+"sku": "228-2500-2260",
+"position": [
+-25.355,
+-31.07,
+6.763
+],
+"rotation": [
+0,
+89.4995,
+180
+],
+"label": "Red Pin"
+},
+{
+"id": "red-pin-6",
+"sku": "228-2500-2260",
+"position": [
+-25.355,
+-31.07,
+19.463
+],
+"rotation": [
+0,
+89.4995,
+180
+],
+"label": "Red Pin"
+},
+{
+"id": "motor-2",
+"sku": "269-6690-000",
+"position": [
+-6.305,
+-50.934,
+13.113
+],
+"rotation": [
+-90,
+0,
+0
+],
+"label": "Motor"
+},
+{
+"id": "red-pin-7",
+"sku": "228-2500-2260",
+"position": [
+0.045,
+-82.684,
+6.763
+],
+"rotation": [
+0,
+89.4995,
+180
+],
+"label": "Red Pin"
+},
+{
+"id": "red-pin-8",
+"sku": "228-2500-2260",
+"position": [
+-12.655,
+-82.684,
+19.463
+],
+"rotation": [
+0,
+89.4995,
+180
+],
+"label": "Red Pin"
+},
+{
+"id": "red-pin-9",
+"sku": "228-2500-2260",
+"position": [
+-25.355,
+-82.684,
+6.763
+],
+"rotation": [
+0,
+89.4995,
+180
+],
+"label": "Red Pin"
+},
+{
+"id": "red-pin-10",
+"sku": "228-2500-2260",
+"position": [
+-25.355,
+-82.684,
+19.463
+],
+"rotation": [
+0,
+89.4995,
+180
+],
+"label": "Red Pin"
+},
+{
+"id": "red-shaft-2",
+"sku": "228-2500-2234",
+"position": [
+-6.305,
+-79.514,
+13.113
+],
+"rotation": [
+180,
+-77.5266,
+180
+],
+"label": "Red Shaft"
+},
+{
+"id": "dark-gray-plate-2",
+"sku": "228-2500-043",
+"position": [
+-19.005,
+-85.859,
+38.513
+],
+"rotation": [
+180,
+-90,
+0
+],
+"label": "Dark Gray Plate"
+},
+{
+"id": "gray-wheel-2",
+"sku": "228-2500-1383",
+"position": [
+-6.305,
+-91.32,
+13.113
+],
+"rotation": [
+0,
+-33.5247,
+-180
+],
+"label": "Gray Wheel"
+},
+{
+"id": "shaft-collar-2",
+"sku": "228-2500-143",
+"position": [
+-6.305,
+-97.67,
+13.113
+],
+"rotation": [
+90,
+0,
+0
+],
+"label": "Shaft Collar"
+},
+{
+"id": "yellow-connector-1",
+"sku": "228-2500-2295",
+"position": [
+-25.355,
+18.766,
+-5.937
+],
+"rotation": [
+180,
+0,
+180
+],
+"label": "Yellow Connector"
+},
+{
+"id": "yellow-connector-2",
+"sku": "228-2500-2295",
+"position": [
+-12.655,
+-82.684,
+-5.937
+],
+"rotation": [
+180,
+0,
+0
+],
+"label": "Yellow Connector"
+},
+{
+"id": "red-pin-11",
+"sku": "228-2500-2260",
+"position": [
+-12.655,
+12.416,
+-12.287
+],
+"rotation": [
+90,
+-39.741,
+0
+],
+"label": "Red Pin"
+},
+{
+"id": "red-pin-12",
+"sku": "228-2500-2260",
+"position": [
+-25.355,
+-0.284,
+-12.287
+],
+"rotation": [
+90,
+-26.1525,
+0
+],
+"label": "Red Pin"
+},
+{
+"id": "red-pin-13",
+"sku": "228-2500-2260",
+"position": [
+-25.355,
+-63.634,
+-12.287
+],
+"rotation": [
+90,
+76.3262,
+0
+],
+"label": "Red Pin"
+},
+{
+"id": "red-pin-14",
+"sku": "228-2500-2260",
+"position": [
+-12.655,
+-76.334,
+-12.287
+],
+"rotation": [
+90,
+-9.7336,
+0
+],
+"label": "Red Pin"
+},
+{
+"id": "dark-gray-large-beam-1",
+"sku": "228-2500-023",
+"position": [
+-19.005,
+-32.034,
+-15.462
+],
+"rotation": [
+-90,
+-90,
+0
+],
+"label": "Dark Gray Large Beam"
+},
+{
+"id": "yellow-standoff-1",
+"sku": "228-2500-2268",
+"position": [
+-6.305,
+31.466,
+76.613
+],
+"rotation": [
+-180,
+-10.2344,
+180
+],
+"label": "Yellow Standoff"
+},
+{
+"id": "blue-wheel-1",
+"sku": "228-2500-1384",
+"position": [
+-6.305,
+34.641,
+76.613
+],
+"rotation": [
+0,
+-2.4723,
+0
+],
+"label": "Blue Wheel"
+},
+{
+"id": "yellow-standoff-2",
+"sku": "228-2500-2268",
+"position": [
+-6.305,
+-95.384,
+76.613
+],
+"rotation": [
+-180,
+0,
+0
+],
+"label": "Yellow Standoff"
+},
+{
+"id": "blue-wheel-2",
+"sku": "228-2500-1384",
+"position": [
+-6.305,
+-98.559,
+76.613
+],
+"rotation": [
+0,
+-30.6853,
+180
+],
+"label": "Blue Wheel"
+},
+{
+"id": "yellow-connector-3",
+"sku": "228-2500-2295",
+"position": [
+0.045,
+18.766,
+57.563
+],
+"rotation": [
+0,
+-90,
+0
+],
+"label": "Yellow Connector"
+},
+{
+"id": "yellow-connector-4",
+"sku": "228-2500-2295",
+"position": [
+0.045,
+-82.684,
+44.863
+],
+"rotation": [
+180,
+-90,
+0
+],
+"label": "Yellow Connector"
+},
+{
+"id": "red-pin-15",
+"sku": "228-2500-2260",
+"position": [
+-6.305,
+-63.634,
+44.863
+],
+"rotation": [
+-164.1788,
+0,
+90
+],
+"label": "Red Pin"
+},
+{
+"id": "red-pin-16",
+"sku": "228-2500-2260",
+"position": [
+-6.305,
+-63.634,
+57.563
+],
+"rotation": [
+-175.1501,
+0,
+90
+],
+"label": "Red Pin"
+},
+{
+"id": "red-pin-17",
+"sku": "228-2500-2260",
+"position": [
+-6.305,
+-0.284,
+44.863
+],
+"rotation": [
+-153.1143,
+0,
+90
+],
+"label": "Red Pin"
+},
+{
+"id": "red-pin-18",
+"sku": "228-2500-2260",
+"position": [
+-6.305,
+-0.284,
+57.563
+],
+"rotation": [
+-25.0829,
+0,
+90
+],
+"label": "Red Pin"
+},
+{
+"id": "battery-3",
+"sku": "269-6686-000",
+"position": [
+-25.529,
+-31.884,
+51.213
+],
+"rotation": [
+0,
+-90,
+0
+],
+"label": "Battery"
+},
+{
+"id": "red-pin-19",
+"sku": "228-2500-2260",
+"position": [
+-25.653,
+-63.634,
+70.263
+],
+"rotation": [
+146.5631,
+0,
+90
+],
+"label": "Red Pin"
+},
+{
+"id": "red-pin-20",
+"sku": "228-2500-2260",
+"position": [
+-25.653,
+-0.134,
+32.163
+],
+"rotation": [
+131.3666,
+0,
+90
+],
+"label": "Red Pin"
+},
+{
+"id": "brain-4",
+"sku": "269-6685-000",
+"position": [
+-38.353,
+-31.884,
+51.213
+],
+"rotation": [
+-90,
+90,
+0
+],
+"label": "Brain"
+},
+{
+"id": "yellow-connector-5",
+"sku": "228-2500-2295",
+"position": [
+-25.355,
+-82.684,
+82.963
+],
+"rotation": [
+0,
+0,
+-180
+],
+"label": "Yellow Connector"
+},
+{
+"id": "yellow-connector-6",
+"sku": "228-2500-2295",
+"position": [
+-12.655,
+18.766,
+82.963
+],
+"rotation": [
+0,
+0,
+0
+],
+"label": "Yellow Connector"
+},
+{
+"id": "red-pin-21",
+"sku": "228-2500-2260",
+"position": [
+-12.655,
+-76.334,
+89.313
+],
+"rotation": [
+90,
+13.6343,
+0
+],
+"label": "Red Pin"
+},
+{
+"id": "red-pin-22",
+"sku": "228-2500-2260",
+"position": [
+-25.355,
+-63.634,
+89.313
+],
+"rotation": [
+90,
+14.673,
+0
+],
+"label": "Red Pin"
+},
+{
+"id": "red-pin-23",
+"sku": "228-2500-2260",
+"position": [
+-25.355,
+-0.284,
+89.313
+],
+"rotation": [
+90,
+51.5498,
+0
+],
+"label": "Red Pin"
+},
+{
+"id": "red-pin-24",
+"sku": "228-2500-2260",
+"position": [
+-12.655,
+12.416,
+89.313
+],
+"rotation": [
+90,
+-0.3235,
+0
+],
+"label": "Red Pin"
+},
+{
+"id": "dark-gray-large-beam-2",
+"sku": "228-2500-023",
+"position": [
+-19.005,
+-31.884,
+92.488
+],
+"rotation": [
+-90,
+-90,
+0
+],
+"label": "Dark Gray Large Beam"
+},
+{
+"id": "blue-connector-1",
+"sku": "228-2500-2296",
+"position": [
+-12.655,
+-25.534,
+95.663
+],
+"rotation": [
+-90,
+-90,
+0
+],
+"label": "Blue Connector"
+},
+{
+"id": "red-pin-25",
+"sku": "228-2500-2260",
+"position": [
+-19.005,
+-38.234,
+121.063
+],
+"rotation": [
+-139.1492,
+0,
+90
+],
+"label": "Red Pin"
+},
+{
+"id": "red-pin-26",
+"sku": "228-2500-2260",
+"position": [
+-19.005,
+-25.534,
+108.363
+],
+"rotation": [
+-115.8791,
+0,
+90
+],
+"label": "Red Pin"
+},
+{
+"id": "led-bumper-5",
+"sku": "269-6696-000",
+"position": [
+-25.23,
+-31.884,
+114.713
+],
+"rotation": [
+90,
+90,
+0
+],
+"label": "LED Bumper"
+}
+],
+"groups": [],
+"subassemblies": []
+}

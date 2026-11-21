@@ -6,6 +6,12 @@ const nav=[['Lắp ráp','/assembly/projects'],['Lập trình','/simulation'],['
 
 const stats=[['889','chi tiết CAD VEX GO, IQ, LEGO'],['113','thử thách có sa bàn'],['38','sa bàn FLL / WRO'],['496','câu hỏi ôn tập']] as const;
 
+const news=[
+ {id:'robocode',tag:'MỚI · LẬP TRÌNH',title:'RoboCode',text:'Kéo thả khối lệnh, chạy robot trên sân 3D với 17 sân: mê cung, RoboCity, lấy vật bằng nam châm. Có lộ trình, phần thưởng và Xưởng robot; dùng được khi mất mạng.',href:'/blocky',cta:'Mở RoboCode',img:'/landing/robocode.webp',w:1280,h:720,points:['17 sân thử thách','Phần thưởng & lộ trình','Tự thiết kế robot']},
+ {id:'robots',tag:'MỚI · THI ĐẤU',title:'Robot riêng cho từng sa bàn',text:'Mỗi sa bàn FLL và WRO tự nạp robot mindX đúng luật, kèm bảng cổng cảm biến và động cơ. Thêm 21 bài luyện từ dò line đến sumo.',href:'/robolab?view=competitions',cta:'Xem sa bàn FLL / WRO',img:'/landing/wro-junior.webp',w:800,h:387,points:['6 mẫu robot thi đấu','21 bài luyện tập','Đấu trường 4 robot']},
+ {id:'build',tag:'MỚI · LẮP RÁP',title:'Dự án và thư viện chung một nơi',text:'Khu Lắp ráp gộp dự án của bạn với thư viện mẫu đã duyệt, giao diện sáng và gọn hơn.',href:'/assembly/projects',cta:'Vào Lắp ráp',img:'/landing/part-go-brain.webp',w:320,h:320,points:['Dự án của tôi','Thư viện mẫu','VEX GO · IQ · LEGO']},
+] as const;
+
 const zones=[
  {id:'build',no:'01',name:'Lắp ráp',title:'Ý tưởng có hình hài.',text:'Lắp robot từ chi tiết CAD thật, căn chốt và lỗ, giới hạn theo bộ kit, rồi xuất hướng dẫn lắp từng bước.',href:'/assembly/projects',cta:'Bắt đầu lắp ráp',links:[['Dự án của tôi','/assembly/projects'],['Thư viện mẫu','/library']]},
  {id:'code',no:'02',name:'Lập trình',title:'Cho bản lắp chuyển động.',text:'Khối lệnh VEXcode GO trên sân 3D, hoặc nạp thẳng vào VEX GO Brain qua Bluetooth.',href:'/simulation',cta:'Mở robot ảo',links:[['Robot ảo 3D','/simulation'],['RoboCode','/blocky'],['Robot thật','/studio']]},
@@ -31,11 +37,11 @@ const allTools=[
 function Arrow(){return <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg>;}
 
 function ZoneArt({id}:{id:string}){
- if(id==='build')return <div className="lp-art lp-art-build" aria-hidden="true"><img src="/assembly/parts/228-2500-001/preview.png" alt=""/><img src="/assembly/parts/269-6690-000/preview.png" alt=""/><img src="/assembly/iq/parts/228-2560/preview.png" alt=""/></div>;
- if(id==='code')return <div className="lp-art lp-art-code" aria-hidden="true"><img src="/robotics-vr-preview.png" alt=""/></div>;
- if(id==='mission')return <div className="lp-art lp-art-mission" aria-hidden="true"><svg viewBox="0 0 300 160"><defs><pattern id="lp-grid" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20 0H0V20" fill="none" stroke="#d4dcc9"/></pattern></defs><rect width="300" height="160" rx="14" fill="#f4f7ec"/><rect width="300" height="160" rx="14" fill="url(#lp-grid)"/><path d="M40 126H112V46H252" fill="none" stroke="#1f6b5e" strokeWidth="4" strokeDasharray="7 6" strokeLinecap="round"/><rect x="146" y="76" width="26" height="70" rx="5" fill="#3e5c57"/><circle cx="252" cy="46" r="18" fill="#c5f56a" stroke="#6f9a2c" strokeWidth="2"/><image href="/training-robot.png" x="20" y="104" width="42" height="42"/></svg></div>;
- if(id==='compete')return <div className="lp-art lp-art-compete" aria-hidden="true"><img src="/robolab/gears/textures/maps/WRO/WRO-2026-Junior.png" alt=""/></div>;
- return <div className="lp-art lp-art-class" aria-hidden="true"><img src="/classroom/characters/team-concept-v2.png" alt="" loading="lazy"/><span>★ +3 <small>Sáng tạo</small></span></div>;
+ if(id==='build')return <div className="lp-art lp-art-build" aria-hidden="true"><img src="/landing/part-iq-beam.webp" width={320} height={320} alt="" loading="lazy" decoding="async"/><img src="/landing/part-go-brain.webp" width={320} height={320} alt="" loading="lazy" decoding="async"/><img src="/landing/part-iq-brain.webp" width={300} height={225} alt="" loading="lazy" decoding="async"/></div>;
+ if(id==='code')return <div className="lp-art lp-art-code" aria-hidden="true"><img src="/landing/vr-lab.webp" width={1280} height={720} alt="" loading="lazy" decoding="async"/></div>;
+ if(id==='mission')return <div className="lp-art lp-art-mission" aria-hidden="true"><svg viewBox="0 0 300 160"><defs><pattern id="lp-grid" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20 0H0V20" fill="none" stroke="#d4dcc9"/></pattern></defs><rect width="300" height="160" rx="14" fill="#f4f7ec"/><rect width="300" height="160" rx="14" fill="url(#lp-grid)"/><path d="M40 126H112V46H252" fill="none" stroke="#1f6b5e" strokeWidth="4" strokeDasharray="7 6" strokeLinecap="round"/><rect x="146" y="76" width="26" height="70" rx="5" fill="#3e5c57"/><circle cx="252" cy="46" r="18" fill="#c5f56a" stroke="#6f9a2c" strokeWidth="2"/><image href="/landing/training-robot.webp" x="20" y="104" width="42" height="42"/></svg></div>;
+ if(id==='compete')return <div className="lp-art lp-art-compete" aria-hidden="true"><img src="/landing/wro-junior.webp" width={800} height={387} alt="" loading="lazy" decoding="async"/></div>;
+ return <div className="lp-art lp-art-class" aria-hidden="true"><img src="/landing/classroom-team.webp" width={520} height={347} alt="" loading="lazy" decoding="async"/><span>★ +3 <small>Sáng tạo</small></span></div>;
 }
 
 export default function Home(){
@@ -51,6 +57,7 @@ export default function Home(){
 
   <section className="lp-hero lp-container">
    <div className="lp-hero-copy">
+    <a className="lp-badge" href="#moi"><b>Mới</b> RoboCode, robot riêng cho từng sa bàn FLL / WRO <Arrow/></a>
     <p className="lp-eyebrow">VEX GO · VEX IQ · LEGO · FLL · WRO</p>
     <h1>Lắp robot, lập trình, rồi mang đi <em>thi đấu.</em></h1>
     <p className="lp-lead">Một nơi cho cả buổi học robotics: lắp mô hình 3D từ chi tiết CAD thật, chạy code trên robot ảo hoặc robot thật, luyện thử thách và vào sa bàn thi đấu.</p>
@@ -59,15 +66,29 @@ export default function Home(){
    <div className="lp-hero-visual">
     <figure className="lp-window">
      <div className="lp-window-bar" aria-hidden="true"><i/><i/><i/><span>VR Lab · Robot mẫu</span></div>
-     <img src="/robotics-vr-preview.png" alt="Khối lệnh VEXcode GO bên cạnh robot trên sân 3D trong VR Lab"/>
+     <img src="/landing/vr-lab.webp" width={1280} height={720} fetchPriority="high" decoding="async" alt="Khối lệnh VEXcode GO bên cạnh robot trên sân 3D trong VR Lab"/>
     </figure>
-    <div className="lp-float lp-float-part" aria-hidden="true"><img src="/assembly/parts/269-6690-000/preview.png" alt=""/><div><b>Lắp từ CAD thật</b><small>75 chi tiết VEX GO</small></div></div>
-    <div className="lp-float lp-float-field" aria-hidden="true"><img src="/robolab/gears/textures/maps/WRO/WRO-2026-Junior.png" alt=""/><div><b>WRO 2026 Junior</b><small>Robot mindX riêng</small></div></div>
+    <div className="lp-float lp-float-part" aria-hidden="true"><img src="/landing/part-go-brain.webp" width={56} height={56} decoding="async" alt=""/><div><b>Lắp từ CAD thật</b><small>75 chi tiết VEX GO</small></div></div>
+    <div className="lp-float lp-float-field" aria-hidden="true"><img src="/landing/wro-junior.webp" width={56} height={56} decoding="async" alt=""/><div><b>WRO 2026 Junior</b><small>Robot mindX riêng</small></div></div>
    </div>
   </section>
 
   <section className="lp-container" aria-label="Con số">
    <dl className="lp-stats">{stats.map(([n,label])=><div key={label}><dt>{label}</dt><dd>{n}</dd></div>)}</dl>
+  </section>
+
+  <section id="moi" className="lp-container lp-section" aria-labelledby="news-title">
+   <div className="lp-head"><div><p className="lp-eyebrow">VỪA CẬP NHẬT</p><h2 id="news-title">Có gì mới.</h2></div><p>Những tính năng vừa thêm vào mindX Robotics Lab.</p></div>
+   <div className="lp-news">{news.map(n=><article key={n.id} className={`lp-new lp-new-${n.id}`}>
+    <div className="lp-new-art" aria-hidden="true"><img src={n.img} width={n.w} height={n.h} alt="" decoding="async"/></div>
+    <div className="lp-new-body">
+     <span className="lp-new-tag">{n.tag}</span>
+     <h3><Link href={n.href} className="lp-zone-link">{n.title}</Link></h3>
+     <p>{n.text}</p>
+     <ul>{n.points.map(pt=><li key={pt}>{pt}</li>)}</ul>
+     <span className="lp-zone-cta" aria-hidden="true">{n.cta} <Arrow/></span>
+    </div>
+   </article>)}</div>
   </section>
 
   <section id="khu-vuc" className="lp-container lp-section" aria-labelledby="zones-title">

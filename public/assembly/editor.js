@@ -10,9 +10,9 @@ import {installPartsLibrary} from './parts-library.js';
 import {croppedPartThumbnail} from './part-thumbnail.js';
 import {assemblyMatingContext,movingAssemblyIds} from './assembly-mating.js?v=physical-snap-112';
 import {installChainBuilder,buildChain,isChainLink} from './chain-builder.js';
-import {installConnectionSuggestions} from './connection-suggestions.js';
+import {installConnectionSuggestions} from './connection-suggestions.js?v=cad-distance-122';
 import {installAutomaticGuideRepair} from './automatic-guide-repair.js?v=physical-snap-112';
-import {installGuideWorkbench} from './guide-workbench.js?v=drag-smooth-111';
+import {installGuideWorkbench} from './guide-workbench.js?v=focus-issue-119';
 import {SNAP_PRESETS,snapPreset,snapPosition} from './snap-settings.js';
 import {guideCamera} from './guide-camera.js';
 import {installGuidePreviews} from './guide-previews.js';
@@ -32,10 +32,10 @@ import {assertKitChange,kitReport,validateKitProfile} from './kit-policy.js';
 import {installKitSettings} from './kit-settings.js?v=assembly-perf-102';
 import {installSimulationLauncher} from '../simulation/assembly-launcher.js';
 import {installAssemblyAssistant} from './assembly-assistant.js?v=group-perf-109';
-import {seatedConnections,groupAncestors,groupMembers,layerLocked,layerVisible,validGroupTree,groupSelection as groupParts} from './assembly-review.js';
+import {seatedConnections,groupAncestors,groupMembers,layerLocked,layerVisible,validGroupTree,groupSelection as groupParts} from './assembly-review.js?v=nested-selection-115';
 import {copySelection,ungroupSelection as ungroupParts} from './selection-operations.js';
 import {createGuideEditor,stepKey} from './guide-editing.js?v=group-export-107';
-import {generateGroupGuide} from './group-guide.js?v=group-export-107';
+import {generateGroupGuide} from './group-guide.js?v=defer-group-120';
 const editGuide=createGuideEditor();
 import {installDrivePreview} from './drive-preview.js';
 import {renderLayers} from './layers-tree-panel.js?v=group-export-108';
@@ -52,12 +52,12 @@ import {createViewportBatches} from './viewport-batches.js?v=group-perf-109';
 import {loadPool} from './load-pool.js';
 let renderLoop=null;
 import {generateStudentGuide} from './guide-sequence.js?v=guide-drive-100';
-import {installPDFPreview} from './guide-pdf-preview.js?v=drag-smooth-111';
-import {prepPaper,stepPaper,stepPairPaper,pairableStep,finishedPaper,readyPaperImages} from './guide-paper.js?v=group-export-107';
+import {installPDFPreview} from './guide-pdf-preview.js?v=detail-target-126';
+import {prepPaper,stepPaper,stepPairPaper,pairableStep,finishedPaper,readyPaperImages} from './guide-paper.js?v=detail-target-126';
 import {guidePage} from './guide-page-settings.js';
-import {createGuideRenderer} from './guide-renderer.js?v=group-perf-109';
+import {createGuideRenderer} from './guide-renderer.js?v=detail-target-126';
 import {repairAssemblyLinks} from './repair-links.js?v=repair-depth-38';
-import {collisionClient} from './collision-client.js?v=physical-snap-112';
+import {collisionClient} from './collision-client.js?v=auto-center-123';
 const fitChecker=collisionClient(()=>jointReferences);
 import {stagingPosition} from './staging-position.js';
 import {withElectronics as withRequiredElectronics,missingElectronics} from './electronics.js';
@@ -104,7 +104,7 @@ const controls=new TransformControls(camera,renderer.domElement);scene.add(contr
 const nativePointerHover=controls.pointerHover.bind(controls);controls.pointerHover=pointer=>{nativePointerHover(pointer);if(controls.axis===null&&pointer&&controls.object&&!controls.dragging)controls.axis=visibleTransformAxisAt(pointer);};
 const box=new VisibleBoxHelper(new THREE.Object3D(),0x1686ed);box.visible=false;scene.add(box);
 const loader=new GLTFLoader(),ray=new THREE.Raycaster(),mouse=new THREE.Vector2();
-function status(message){$('status').textContent=message;}
+function status(message){const bar=$('status');bar.textContent=message;const issues=studentGuide?.focusIssues;if(issues?.length&&message===studentGuide.blockers.join(' '))bar.replaceChildren(...issues.map(issueButton));}
 function visibleTransformAxisAt(pointer){if(controls.getMode()!=='translate')return null;const rect=renderer.domElement.getBoundingClientRect();if(!rect.width||!rect.height)return null;camera.updateMatrixWorld(true);const px=rect.left+(pointer.x+1)*rect.width/2,py=rect.top+(1-pointer.y)*rect.height/2,root=controls.getHelper();root.updateMatrixWorld(true);let nearest=null;root.traverse(object=>{if(!object.isMesh||!['X','Y','Z'].includes(object.name)||object.tag==='helper')return;for(let parent=object;parent&&parent!==root;parent=parent.parent)if(!parent.visible)return;const materials=Array.isArray(object.material)?object.material:[object.material];if(!materials.some(material=>material?.opacity===undefined||material.opacity>.8))return;const bounds=new THREE.Box3().setFromObject(object);if(bounds.isEmpty())return;let left=Infinity,top=Infinity,right=-Infinity,bottom=-Infinity;for(const x of [bounds.min.x,bounds.max.x])for(const y of [bounds.min.y,bounds.max.y])for(const z of [bounds.min.z,bounds.max.z]){const point=new THREE.Vector3(x,y,z).project(camera);if(point.z<-1||point.z>1)continue;const sx=rect.left+(point.x+1)*rect.width/2,sy=rect.top+(1-point.y)*rect.height/2;left=Math.min(left,sx);right=Math.max(right,sx);top=Math.min(top,sy);bottom=Math.max(bottom,sy);}const dx=Math.max(left-px,0,px-right),dy=Math.max(top-py,0,py-bottom);if(dx>9||dy>9)return;const distance=Math.hypot(dx,dy);if(!nearest||distance<nearest.distance)nearest={axis:object.name,distance};});return nearest?.axis||null;}
 let collisionTimer=null,collisionReport={issues:[],truncated:false};
 const issuePanel=document.createElement('section');issuePanel.className='collision-panel';issuePanel.setAttribute('aria-label','Fit review');$('precision-fields').after(issuePanel,$('warnings'));
@@ -173,7 +173,7 @@ async function prepareGuideObjects(step,kitId=project.kit?.kitId,frame=null){
 }
 async function renderGuideCard(step,options={}){const map=await prepareGuideObjects(step,Object.hasOwn(options,'kitId')?options.kitId||null:project.kit?.kitId,options.frame);if(options.alive&&!options.alive())return null;previewRenderer??=createGuideRenderer();const current=new Map(project.parts.map(p=>[p.id,p])),same=step.parts.every(p=>JSON.stringify([p.position,p.rotation])===JSON.stringify([current.get(p.id)?.position,current.get(p.id)?.rotation]));const contacts=same?guideContacts():seatedConnections(step.parts,jointReferences);if(options.frame==='detail'){const shot=previewRenderer.render(map,step,jointReferences,{width:320,height:240,detailScale:.4,frameOnly:'detail',contacts});return shot.detail||shot.assembled;}return previewRenderer.render(map,step,jointReferences,{width:options.width||1000,height:options.height||680,detail:false,contacts});}
 guidePreviews=installGuidePreviews({enabled:!renderer.isDataRenderer,prepare:prepareGuideObjects,render(map,step){previewRenderer??=createGuideRenderer();return previewRenderer.render(map,step,jointReferences,{width:400,height:300,detail:false,contacts:guideContacts()}).assembled;}});
-guideWorkbench=installGuideWorkbench({platform:PLATFORM.id,enabled:!renderer.isDataRenderer,suspended:()=>!!pdfPreview?.active()||controls.dragging||!!directTools?.active(),appearance:()=>project.kit?.kitId||'',live:()=>project.editorSettings?.liveGuidePreview!==false,setLive(value){checkpoint();project.editorSettings={...project.editorSettings,liveGuidePreview:!!value};save(false);guideUIStamp='';renderStudentGuide();},render:renderGuideCard,prepareLive:async(step,appearance,alive)=>{const map=await prepareGuideObjects(step,appearance||null,'detail');if(!alive())return null;liveGuideRenderer??=createGuideRenderer();const shot=liveGuideRenderer.render(map,{...step,view:'auto',camera:undefined},jointReferences,{width:480,height:360,detail:true,live:true,liveFrame:'detail',contacts:guideContacts()});return {canvas:liveGuideRenderer.renderCanvas,framing:shot.detailFrame?.camera||shot.framing,draw:(camera,w,h)=>liveGuideRenderer.drawView(camera,w,h),thumbnail:()=>liveGuideRenderer.thumbnail()};},sceneCamera:()=>guideCamera({direction:camera.position.clone().sub(orbit.target).normalize().toArray(),up:new THREE.Vector3(0,1,0).applyQuaternion(camera.quaternion).toArray(),zoom:1}),camera(key,value,all){const preferences=copy(project.guidePreferences||{});preferences.steps||={};const keys=all?studentGuide.steps.map(stepKey):[key];if(all&&value)preferences.defaultCamera=value;for(const id of keys){const row={...preferences.steps[id]},page=copy(row.page||{});page.frames||={};page.frames.detail={...page.frames.detail};if(value)page.frames.detail.camera=value;else delete page.frames.detail.camera;row.page=page;Object.defineProperty(preferences.steps,id,{value:row,enumerable:true,writable:true,configurable:true});}return changeGuidePreferences(preferences,{allowPreview:true,cameraOnly:true});},suggest:()=>connectionSuggestions?.open(),reorder:reorderInlineGuide,export:zip=>exportStudentGuide({zip})});$('guide-summary').before(guideWorkbench.element);const guideAdvanced=node('details');guideAdvanced.className='guide-advanced-settings';const guideAdvancedLabel=node('summary','Thứ tự & ghi chú bước');guideAdvanced.append(guideAdvancedLabel);$('guide-steps').before(guideAdvanced);guideAdvanced.append($('guide-steps'));
+guideWorkbench=installGuideWorkbench({platform:PLATFORM.id,enabled:!renderer.isDataRenderer,suspended:()=>!!pdfPreview?.active()||controls.dragging||!!directTools?.active(),appearance:()=>project.kit?.kitId||'',live:()=>project.editorSettings?.liveGuidePreview!==false,setLive(value){checkpoint();project.editorSettings={...project.editorSettings,liveGuidePreview:!!value};save(false);guideUIStamp='';renderStudentGuide();},render:renderGuideCard,prepareLive:async(step,appearance,alive)=>{const map=await prepareGuideObjects(step,appearance||null,'detail');if(!alive())return null;liveGuideRenderer??=createGuideRenderer();const shot=liveGuideRenderer.render(map,{...step,view:'auto',camera:undefined},jointReferences,{width:480,height:360,detail:true,live:true,liveFrame:'detail',contacts:guideContacts()});return {canvas:liveGuideRenderer.renderCanvas,framing:shot.detailFrame?.camera||shot.framing,draw:(camera,w,h)=>liveGuideRenderer.drawView(camera,w,h),thumbnail:()=>liveGuideRenderer.thumbnail()};},sceneCamera:()=>guideCamera({direction:camera.position.clone().sub(orbit.target).normalize().toArray(),up:new THREE.Vector3(0,1,0).applyQuaternion(camera.quaternion).toArray(),zoom:1}),camera(key,value,all){const preferences=copy(project.guidePreferences||{});preferences.steps||={};const keys=all?studentGuide.steps.map(stepKey):[key];if(all&&value)preferences.defaultCamera=value;for(const id of keys){const row={...preferences.steps[id]},page=copy(row.page||{});page.frames||={};page.frames.detail={...page.frames.detail};if(value)page.frames.detail.camera=value;else delete page.frames.detail.camera;row.page=page;Object.defineProperty(preferences.steps,id,{value:row,enumerable:true,writable:true,configurable:true});}return changeGuidePreferences(preferences,{allowPreview:true,cameraOnly:true});},focusIssue:focusGuideIssue,suggest:()=>connectionSuggestions?.open(),reorder:reorderInlineGuide,export:zip=>exportStudentGuide({zip})});$('guide-summary').before(guideWorkbench.element);const guideAdvanced=node('details');guideAdvanced.className='guide-advanced-settings';const guideAdvancedLabel=node('summary','Thứ tự & ghi chú bước');guideAdvanced.append(guideAdvancedLabel);$('guide-steps').before(guideAdvanced);guideAdvanced.append($('guide-steps'));
 let pdfOrbitRenderer=null;
 async function preparePDFOrbit(step,name,alive){const map=await prepareGuideObjects(step,project.kit?.kitId,name);if(!alive())return null;pdfOrbitRenderer??=createGuideRenderer();pdfOrbitRenderer.render(map,step,jointReferences,{live:true,liveFrame:name,detail:name==='detail',width:480,height:360,detailScale:.55,contextEdges:step.parts.length<=32,contacts:guideContacts()});return {canvas:pdfOrbitRenderer.renderCanvas,draw:(camera,w,h)=>pdfOrbitRenderer.drawView(camera,w,h)};}
 async function renderPDFStep(step,{quick=false,thumbnail=false,frame,alive}={}){
@@ -312,7 +312,11 @@ async function show(parts=project.parts){
  finally{setBusy(false);renderLists();renderLoop?.invalidate();}
 }
 function refreshSelection(){const ids=new Set(selectedIds),groupId=selectedGroupId;select(selected,false,false);selectedIds=ids;const members=groupMembers(project,groupId);selectedGroupId=project.groups.some(group=>group.id===groupId)&&members.length===ids.size&&members.every(part=>ids.has(part.id))?groupId:null;renderLists();}
-function select(id,additive=false,render=true){selectedGroupId=null;if(quickAttach?.active())quickAttach.close();if(connectTool?.active())connectTool.cancel();if(additive&&id){if(selectedIds.has(id))selectedIds.delete(id);else selectedIds.add(id);if(!selectedIds.has(id))id=[...selectedIds].at(-1)||null;}else selectedIds=new Set(id?[id]:[]);selected=id;controls.detach();box.visible=false;const part=project.parts.find(p=>p.id===id),obj=objects.get(id);$('selection').textContent=part?`${partName(part)}${groupFor(part)?` · ${groupFor(part).name}`:''}${locked(part)?' · Locked':''}`:'Select a part in the scene.';$('transforms').replaceChildren();if(part&&obj&&!preview&&!locked(part)){controls.attach(obj);box.setFromObject(obj);box.visible=true;for(const kind of ['position','rotation'])for(let axis=0;axis<3;axis++){const label=document.createElement('label');label.textContent=(kind==='position'?'mm ':'° ')+['X','Y','Z'][axis];const input=document.createElement('input');input.type='number';input.step=kind==='position'?'1':'15';input.value=part[kind][axis].toFixed(2);let committed=input.value;const commit=()=>{if(input.value===committed)return;committed=input.value;const v=Number(input.value);if(!Number.isFinite(v)||Math.abs(v)>10000){input.value=part[kind][axis];return;}const before=copy(project.parts);checkpoint();part[kind][axis]=v;transform(obj,part);moveJoined(before,part.id);box.update();save();warnings();};input.onchange=commit;input.onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();commit();}};label.append(input);$('transforms').append(label);}}if(render)renderLists();}
+function select(id,additive=false,render=true){
+ // A folder highlights its descendants. Starting a part selection inside it
+ // should select the clicked member, not subtract it from the entire folder.
+ if(additive&&selectedGroupId&&selectedIds.has(id))additive=false;
+ selectedGroupId=null;if(quickAttach?.active())quickAttach.close();if(connectTool?.active())connectTool.cancel();if(additive&&id){if(selectedIds.has(id))selectedIds.delete(id);else selectedIds.add(id);if(!selectedIds.has(id))id=[...selectedIds].at(-1)||null;}else selectedIds=new Set(id?[id]:[]);selected=id;controls.detach();box.visible=false;const part=project.parts.find(p=>p.id===id),obj=objects.get(id);$('selection').textContent=part?`${partName(part)}${groupFor(part)?` · ${groupFor(part).name}`:''}${locked(part)?' · Locked':''}`:'Select a part in the scene.';$('transforms').replaceChildren();if(part&&obj&&!preview&&!locked(part)){controls.attach(obj);box.setFromObject(obj);box.visible=true;for(const kind of ['position','rotation'])for(let axis=0;axis<3;axis++){const label=document.createElement('label');label.textContent=(kind==='position'?'mm ':'° ')+['X','Y','Z'][axis];const input=document.createElement('input');input.type='number';input.step=kind==='position'?'1':'15';input.value=part[kind][axis].toFixed(2);let committed=input.value;const commit=()=>{if(input.value===committed)return;committed=input.value;const v=Number(input.value);if(!Number.isFinite(v)||Math.abs(v)>10000){input.value=part[kind][axis];return;}const before=copy(project.parts);checkpoint();part[kind][axis]=v;transform(obj,part);moveJoined(before,part.id);box.update();save();warnings();};input.onchange=commit;input.onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();commit();}};label.append(input);$('transforms').append(label);}}if(render)renderLists();}
 let warningRunning=false;
 function warnings(){
  clearTimeout(collisionTimer);$('warnings').textContent='Đang kiểm tra hình học…';
@@ -360,7 +364,7 @@ const guidePaths=()=>guideAuditResult?.stamp===JSON.stringify(project.parts)?gui
 function baseStudentGuide(preferences=project.guidePreferences){
  if(preferences?.mode!=='connections'){
   const stamp=JSON.stringify(['groups',project.parts,project.groups,catalog]);
-  if(stamp!==guideBaseStamp){guideBase=generateGroupGuide(project,{nameFor:partName});guideBaseStamp=stamp;}
+  if(stamp!==guideBaseStamp){guideBase=generateGroupGuide(project,{nameFor:partName,references:jointReferences});guideBaseStamp=stamp;}
   return guideBase;
  }
  const poseStamp=JSON.stringify(project.parts),audited=guideAuditResult?.stamp===poseStamp?guideAuditResult:null,checked=audited?.guide;
@@ -411,7 +415,7 @@ function renderStudentGuide(force=false){
  count.textContent=studentGuide.ready?`${studentGuide.steps.length} bước`:'';
  guidePreviews?.begin();list.replaceChildren();
  if(!studentGuide.ready){summary.textContent=studentGuide.blockers[0]||'Connect the model parts to generate a build sequence.';for(const issue of studentGuide.blockers.slice(1)){const p=node('p',issue);p.className='guide-blocker';list.append(p);}}
- else summary.textContent=studentGuide.orderMode==='groups'?`${studentGuide.steps.length} bước theo group trong Layers. Group con đi cùng group cha; linh kiện rời có bước riêng.`:`${studentGuide.steps.length} steps generated from the saved part connections. Preview a step or export the complete PDF.`;
+ else summary.textContent=studentGuide.orderMode==='groups'?`${studentGuide.steps.length} bước theo group trong Layers. Lắp chi tiết trong từng cụm, sau đó ghép các cụm đã chuẩn bị.`:`${studentGuide.steps.length} steps generated from the saved part connections. Preview a step or export the complete PDF.`;
  for(const note of studentGuide.notes){const warning=node('p',note);warning.className='guide-warning';list.append(warning);}
  for(let i=0;guideAdvanced.open&&i<studentGuide.steps.length;i++){
   const step=studentGuide.steps[i],article=node('article');article.className='student-guide-step';
@@ -421,6 +425,10 @@ function renderStudentGuide(force=false){
  const detachedNames=(studentGuide.detached||[]).slice(0,4).map(ids=>{const p=project.parts.find(part=>part.id===ids[0]);return p?partName(p)+(ids.length>1?` (+${ids.length-1})`:''):null;}).filter(Boolean).join(', ');
  const orderLabel=studentGuide.orderMode==='groups'?'theo group · ':studentGuide.assemblyAxis?`từ trong ra hai phía theo trục ${studentGuide.assemblyAxis} · `:'';
  guideReadiness.className=studentGuide.ready?'guide-ready':'guide-pending';guideReadiness.textContent=busy?'Đang kiểm tra và tạo hướng dẫn…':studentGuide.ready?`${studentGuide.steps.length} bước · ${orderLabel}${studentGuide.reviewRequired?'Preview / PDF nháp · chưa xác nhận đường lắp':'Preview và PDF sẵn sàng'}`:/separate mechanical|separate .*assembl|starting part/i.test(studentGuide.blockers.join(' '))?`Guide vẫn hoạt động: mô hình còn cụm rời${detachedNames?` (${detachedNames})`:''} hoặc thiếu khớp. Ghép cụm, xoá chi tiết thừa hoặc Tự sửa liên kết trước khi xuất PDF.`:studentGuide.blockers[0]||'Thêm và nối các chi tiết để tự tạo bước.';
+ if(!busy&&studentGuide.focusIssues?.length){
+  guideReadiness.replaceChildren(...studentGuide.focusIssues.map(issueButton));
+  summary.replaceChildren(...studentGuide.focusIssues.map(issueButton));
+ }
  guideWorkbench?.update(studentGuide,{busy});workbenchMenu.disabled=busy||!studentGuide.ready;
  zipMenu.disabled=zipButton.disabled=busy||!studentGuide.ready||renderer.isDataRenderer;zipButton.title=renderer.isDataRenderer?'Xuất ảnh cần WebGL; PDF dữ liệu vẫn dùng được.':'';syncSnapSettings();
  $('export').disabled=busy||!studentGuide.ready;if($('guide-export'))$('guide-export').disabled=busy||!studentGuide.ready;
@@ -485,7 +493,7 @@ autoOrder.onclick=async()=>{
  if(changeGuidePreferences(preferences,{cameraOnly:true}))status(preferences.mode==='connections'?'Đã áp dụng thứ tự lắp tự động. Ctrl+Z để hoàn tác.':'Đã áp dụng thứ tự group trong Layers. Ctrl+Z để hoàn tác.');
 };
 document.addEventListener('assembly-inspector-change',()=>{if(document.body.classList.contains('guide-active'))renderStudentGuide();});
-const repairButton=node('button','✦ Tự sửa liên kết');repairButton.id='guide-repair';repairButton.className='primary';repairButton.title='Khôi phục khớp hợp lệ và chỉnh cụm lệch tối đa 2 mm. Ctrl+Z để hoàn tác.';$('guide-summary').before(repairButton);
+const repairButton=node('button','Tự sửa liên kết');repairButton.id='guide-repair';repairButton.className='primary';repairButton.title='Khôi phục khớp hợp lệ và chỉnh cụm lệch tối đa 2 mm. Ctrl+Z để hoàn tác.';$('guide-summary').before(repairButton);
 const repairStatus=node('p');repairStatus.id='guide-repair-status';repairStatus.className='hint';repairStatus.setAttribute('role','status');repairButton.after(repairStatus);
 repairButton.onclick=async()=>{
  if(busy||preview)return;quickAttach?.close();connectTool?.cancel();
@@ -505,7 +513,7 @@ repairButton.onclick=async()=>{
 const guidePanel=$('inspector-content-2'),guideSection=document.querySelector('.student-guide'),legacyGuide=node('div');guidePanel.prepend(guideTools);guideTools.hidden=false;legacyGuide.hidden=true;legacyGuide.id='guide-legacy-controls';
 for(const child of [...guideSection.children])if(child!==guideWorkbench.element)legacyGuide.append(child);guideSection.append(legacyGuide);
 const guidePlanning=node('div');guidePlanning.className='guide-export-tools';guidePlanning.append(guideModeLabel,auditGuide,autoOrder);
-guideSection.prepend(guidePlanning,auditResult);
+guideSection.prepend(repairButton,repairStatus,guidePlanning,auditResult);
 for(const child of [...guidePanel.children])if(child!==guideSection)child.hidden=!child.classList.contains('guide-export-tools');
 function guideRepairKey(){return JSON.stringify(project.parts.map(p=>[p.id,p.sku,p.position,p.rotation,p.mate,p.snapBlocked,locked(p)]));}
 async function repairGuideAutomatically(){
@@ -513,9 +521,16 @@ async function repairGuideAutomatically(){
  const stamp=guideRepairKey(),result=await fitChecker.recoverLinks(project.parts,project.parts.filter(locked).map(p=>p.id));
  if(stamp!==guideRepairKey()||busy||controls.dragging||directTools?.active())return false;
  if(!result.recovered&&!result.removed)return;
- if(!history.length)history.push(copy(project));
+ if(result.moved){
+  const moved=result.parts.filter((part,i)=>part.position.some((v,j)=>v!==project.parts[i].position[j])).map(part=>part.id);
+  const old=new Set(snapFit.check(project.parts,moved,{limit:Infinity}).issues.map(issue=>issue.key));
+  const check=snapFit.check(result.parts,moved,{limit:Infinity});
+  if(check.reason||check.issues.some(issue=>!old.has(issue.key)))return;
+  checkpoint();
+ }else if(!history.length)history.push(copy(project));
  project.parts=result.parts;repairReportParts=JSON.stringify(project.parts);
- refreshSelection();await save(false,{skipAutoRepair:true,skipThumbnail:true});
+ if(result.moved)await show();
+ refreshSelection();await save(false,{skipAutoRepair:true,skipThumbnail:!result.moved});
 }
 
 automaticGuideRepair=installAutomaticGuideRepair({key:guideRepairKey,blocked:()=>busy||preview||exportingGuide||!!pdfPreview?.active()||controls.dragging||!!directTools?.active()||!!quickAttach?.active()||pendingProjectSaves>0,run:repairGuideAutomatically,onError:error=>status('Chưa thể tự sửa liên kết: '+error.message)});
@@ -535,7 +550,23 @@ function renderLists(){
  $('undo').disabled=busy||!history.length;$('redo').disabled=busy||!future.length;
 }
 
-function groupSelection(){if(busy||preview||selectedIds.size<2)return;const parts=project.parts.filter(part=>selectedIds.has(part.id));if(parts.some(locked)){status('Unlock selected layers before grouping.');return;}checkpoint();const group={id:crypto.randomUUID(),name:`Group ${project.groups.length+1}`,visible:true,locked:false};groupParts(project,parts.map(p=>p.id),group);selectedGroupId=group.id;cleanGroups();renderLists();save(false);status(`${parts.length} parts grouped as ${group.name}.`);}
+function layerSnapshot(model) {
+ return {groups:model.groups.map(g=>({id:g.id,name:g.name,visible:g.visible!==false,locked:!!g.locked,collapsed:!!g.collapsed,...(g.parentId?{parentId:g.parentId}:{})})),members:model.parts.map(part=>[part.id,part.groupId||null])};
+}
+function rememberGroupUndo(before) {
+ try { localStorage.setItem(key+':group-undo',JSON.stringify({before,after:layerSnapshot(project)})); } catch {}
+}
+function restoreGroupUndo() {
+ try {
+  const record=JSON.parse(localStorage.getItem(key+':group-undo'));
+  if(!record||JSON.stringify(record.after)!==JSON.stringify(layerSnapshot(project)))return;
+  const restored=copy(project),members=new Map(record.before.members);
+  restored.groups=record.before.groups;
+  for(const part of restored.parts){const id=members.get(part.id);if(id)part.groupId=id;else delete part.groupId;}
+  history.push(restored);
+ } catch {}
+}
+function groupSelection(){if(busy||preview||selectedIds.size<2)return;const parts=project.parts.filter(part=>selectedIds.has(part.id));if(parts.some(locked)){status('Unlock selected layers before grouping.');return;}const before=layerSnapshot(project);checkpoint();const group={id:crypto.randomUUID(),name:`Group ${project.groups.length+1}`,visible:true,locked:false};groupParts(project,parts.map(p=>p.id),group);selectedGroupId=group.id;for(const parent of groupAncestors(project,group))parent.collapsed=false;cleanGroups();rememberGroupUndo(before);renderLists();save(false);status(`${parts.length} parts grouped as ${group.name}.`);}
 function ungroup(groupId){
  if(busy||preview)return;const target=groupId||selectedGroupId,ids=target?groupMembers(project,target).map(part=>part.id):[...selectedIds],parts=project.parts.filter(part=>ids.includes(part.id));
  if(!parts.some(part=>part.groupId))return;if(parts.some(locked)){status('Unlock selected layers before ungrouping.');return;}
@@ -653,7 +684,7 @@ $('delete').onclick=remove;$('duplicate').onclick=async()=>{
  }catch(error){status('Could not duplicate selection: '+error.message);}
  finally{setBusy(false);renderLists();}
 };
-async function undo(redo=false){if(busy)return;const from=redo?future:history,to=redo?history:future;if(!from.length)return;to.push(copy(project));project=from.pop();preview=false;previewStepIndex=-1;$('title').value=project.title;await show();if(guideReturnPose)applyPose(guideReturnPose);guideReturnPose=null;$('guide-return').hidden=true;save(false);warnings();}
+async function undo(redo=false){if(busy)return;const from=redo?future:history,to=redo?history:future;if(!from.length)return;to.push(copy(project));project=from.pop();selectedGroupId=null;preview=false;previewStepIndex=-1;$('title').value=project.title;await show();if(guideReturnPose)applyPose(guideReturnPose);guideReturnPose=null;$('guide-return').hidden=true;save(false);warnings();}
 $('undo').onclick=()=>undo();$('redo').onclick=()=>undo(true);
 function mode(value){controls.setMode(value);$('move').setAttribute('aria-pressed',String(value==='translate'));$('rotate').setAttribute('aria-pressed',String(value==='rotate'));}
 $('move').onclick=()=>mode('translate');$('rotate').onclick=()=>mode('rotate');$('snap').onchange=syncSnapSettings;
@@ -725,7 +756,17 @@ renderer.domElement.addEventListener('pointerdown',e=>{if(e.button!==0||(!e.ctrl
 renderer.domElement.addEventListener('pointermove',e=>{if(!boxGesture||e.pointerId!==boxGesture.pointer)return;e.preventDefault();e.stopImmediatePropagation();const rect=renderer.domElement.getBoundingClientRect();marquee.style.left=`${Math.min(boxGesture.x,e.clientX)-rect.left}px`;marquee.style.top=`${Math.min(boxGesture.y,e.clientY)-rect.top}px`;marquee.style.width=`${Math.abs(e.clientX-boxGesture.x)}px`;marquee.style.height=`${Math.abs(e.clientY-boxGesture.y)}px`;},true);
 renderer.domElement.addEventListener('pointerup',e=>{if(!boxGesture||e.pointerId!==boxGesture.pointer)return;e.preventDefault();e.stopImmediatePropagation();finishBoxSelection(e);},true);renderer.domElement.addEventListener('pointercancel',e=>{if(boxGesture?.pointer===e.pointerId){boxGesture=null;marquee.hidden=true;}},true);
 renderer.domElement.addEventListener('pointerdown',e=>{clickDown=[e.clientX,e.clientY];});renderer.domElement.addEventListener('pointerup',e=>{if(preview||controls.dragging||controls.axis||!clickDown||Math.hypot(e.clientX-clickDown[0],e.clientY-clickDown[1])>4)return;const rect=renderer.domElement.getBoundingClientRect();mouse.set((e.clientX-rect.left)/rect.width*2-1,-(e.clientY-rect.top)/rect.height*2+1);ray.setFromCamera(mouse,camera);const hit=ray.intersectObjects([...objects.values()].filter(obj=>obj.visible),true).find(h=>h.object.isMesh);let obj=hit?.object;while(obj&&!obj.userData.instance)obj=obj.parent;const id=obj?.userData.instance;if((e.ctrlKey||e.metaKey||e.shiftKey)||!selectGroupMember(id))select(id,e.ctrlKey||e.metaKey||e.shiftKey);});
-function fit(extra){const damping=orbit.enableDamping;orbit.enableDamping=false;orbit.update();const bounds=new THREE.Box3();for(const obj of objects.values())bounds.union(visibleBounds(obj));if(extra)bounds.union(visibleBounds(extra));if(bounds.isEmpty()){camera.position.set(.45,.32,.45);orbit.target.set(0,.04,0);}else{const center=bounds.getCenter(new THREE.Vector3()),size=bounds.getSize(new THREE.Vector3()),radius=Math.max(size.length()/2,.0125),vertical=THREE.MathUtils.degToRad(camera.fov/2),horizontal=Math.atan(Math.tan(vertical)*camera.aspect),distance=radius/Math.sin(Math.min(vertical,horizontal))*1.15;orbit.target.copy(center);camera.position.copy(center).add(new THREE.Vector3(1,.7,1).normalize().multiplyScalar(distance));}assemblyAssistant?.fitProjection();orbit.update();orbit.enableDamping=damping;}
+function focusGuideIssue(issue){
+ const ids=issue.ids.filter(id=>objects.has(id));
+ if(!ids.length)return;
+ select(ids[0],false,false);selectedIds=new Set(ids);renderLists();
+ fit(null,ids.map(id=>objects.get(id)));renderLoop?.invalidate();
+}
+function issueButton(issue){
+ const button=node('button',issue.message);button.type='button';button.title='Chọn và phóng tới vị trí cần kiểm tra';
+ button.onclick=()=>focusGuideIssue(issue);return button;
+}
+function fit(extra,focusedObjects=objects.values()){const damping=orbit.enableDamping;orbit.enableDamping=false;orbit.update();const bounds=new THREE.Box3();for(const obj of focusedObjects)bounds.union(visibleBounds(obj));if(extra)bounds.union(visibleBounds(extra));if(bounds.isEmpty()){camera.position.set(.45,.32,.45);orbit.target.set(0,.04,0);}else{const center=bounds.getCenter(new THREE.Vector3()),size=bounds.getSize(new THREE.Vector3()),radius=Math.max(size.length()/2,.0125),vertical=THREE.MathUtils.degToRad(camera.fov/2),horizontal=Math.atan(Math.tan(vertical)*camera.aspect),distance=radius/Math.sin(Math.min(vertical,horizontal))*1.15;orbit.target.copy(center);camera.position.copy(center).add(new THREE.Vector3(1,.7,1).normalize().multiplyScalar(distance));}assemblyAssistant?.fitProjection();orbit.update();orbit.enableDamping=damping;}
 $('fit').onclick=()=>fit();
 function download(data,name,type='application/json'){const url=URL.createObjectURL(new Blob([data],{type})),a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
 $('save').onclick=async()=>{if(busy)return;quickAttach?.close();connectTool?.cancel();if(!await save(false,{skipThumbnail:true}))return;download(JSON.stringify(project,null,2),PLATFORM.name.replaceAll(' ','')+'-assembly.json');};
@@ -808,7 +849,9 @@ async function exportStudentGuide({zip=false}={}){
    else container.append(stepPaper(a.step,a.index,studentGuide.steps.length,a.shots,PLATFORM,project.kit?.kitId));
   }
   await show(fullParts);setBusy(true);for(const obj of objects.values())obj.traverse(mesh=>{if(mesh.userData.cable)mesh.visible=false;});container.append(finishedPaper(project,printRenderer.completed(objects)));
-  await readyPaperImages(container);if(zip){const bytes=await packageGuide(container,project,studentGuide,catalog);downloadFile(bytes,'application/zip','build-guide.zip');status('Đã xuất ZIP: ảnh từng bước, HTML offline và mô hình JSON.'+overlapNote);}else{window.print();status('Student guide is ready. Choose Save as PDF in the print dialog.'+overlapNote);}return true;
+  await readyPaperImages(container);if(zip){const bytes=await packageGuide(container,project,studentGuide,catalog);downloadFile(bytes,'application/zip','build-guide.zip');status('Đã xuất ZIP: ảnh từng bước, HTML offline và mô hình JSON.'+overlapNote);}else{const {guidePDF}=await import('./guide-pdf-download.js');
+   const bytes=await guidePDF(container,project.title,(page,total)=>{const text='Đang tạo PDF '+page+' / '+total;status(text);const button=$('pdf-preview-print');if(button)button.textContent=text;});
+   downloadFile(bytes,'application/pdf',(project.title||'Build guide').replace(/[^\w\p{L} .-]/gu,'_')+'.pdf');status('Đã tạo tệp PDF.'+overlapNote);}return true;
  }catch(error){status('Guide export failed: '+error.message);return false;}
  finally{exportingGuide=false;printRenderer?.dispose();scene.background.copy(savedBackground);grid.visible=savedGridVisible;preview=false;previewStepIndex=-1;await show();applyPose(savedPose);guideReturnPose=null;$('guide-return').hidden=true;warnings();}
 }
@@ -819,7 +862,7 @@ connectionSuggestions=installConnectionSuggestions({parts:()=>project.parts,refe
 installDrivePreview({project:()=>project,references:jointReferences,objects,selected:()=>selected,connections:()=>assemblyAssistant.data().connections,blocked:()=>busy||!!pdfPreview?.active()||preview||controls.dragging||!!directTools?.active(),closePreviews:()=>{quickAttach?.close();connectTool?.cancel();},resetInspection:()=>assemblyAssistant.reset(),setBusy,detach:()=>{controls.detach();box.visible=false;},check:inspectFit,transform,refresh:refreshSelection});
 setBusy(true);
 let startupError=null;
-try{catalog=initialCatalog;kitCatalogLoader=createKitCatalogLoader({platform:PLATFORM.id,catalog,references:jointReferences});$('count').textContent=catalog.length;renderCatalog();connectTool=await installConnectTool({checkSnap:(parts,ids)=>snapFit.check(parts,ids),references:jointReferences,scene,camera,canvas:renderer.domElement,objects,controls,box,project:()=>project,selected:()=>selected,selection:()=>selectedIds,isLocked:id=>locked(project.parts.find(p=>p.id===id)),reveal:()=>{if(document.body.classList.contains('hide-panel'))$('panel-toggle').click();$('inspector-tab-0')?.click();},busy:()=>busy||!!chainPicker?.active(),preview:()=>preview,transform,select,checkpoint,save,warnings,status});quickAttach=await installQuickAttach({checkSnap:(parts,ids,options)=>snapFit.check(parts,ids,options),references:jointReferences,selection:()=>selectedIds,isLocked:id=>locked(project.parts.find(p=>p.id===id)),captureSelection:()=>({active:selected,ids:[...selectedIds],groupId:selectedGroupId}),restoreSelection(snapshot){const ids=snapshot.ids.filter(id=>project.parts.some(p=>p.id===id));select(ids.includes(snapshot.active)?snapshot.active:ids.at(-1)||null);selectedIds=new Set(ids);selectedGroupId=project.groups.some(g=>g.id===snapshot.groupId)?snapshot.groupId:null;renderLists();},scene,camera,orbit,canvas:renderer.domElement,objects,controls,box,catalog,project:()=>project,selected:()=>selected,busy:()=>busy||!!chainPicker?.active(),preview:()=>preview,connectActive:()=>connectTool.active()||!!directTools?.active(),fit,model,transform,select,checkpoint,show,save,warnings,status,withElectronics,assertAdditions,pose,applyPose,connectExisting:(id,ref)=>connectTool.begin({sourceId:id,sourceRef:ref})});directTools=await installDirectTools({checkSnap:(parts,ids)=>snapFit.check(parts,ids),references:jointReferences,invalidate:()=>renderLoop?.invalidate(),snapPosition:snapForDrag,scene,camera,canvas:renderer.domElement,objects,controls,orbit,box,project:()=>project,selected:()=>selected,selection:()=>selectedIds,busy:()=>busy||!!chainPicker?.active(),preview:()=>preview,quickActive:()=>quickAttach.active(),connectActive:()=>connectTool.active(),transform,select,selectGroup:selectGroupMember,checkpoint:()=>{const redo=copy(future);checkpoint();return redo;},discardCheckpoint:redo=>{history.pop();future=redo||[];},refreshSelection,moveOthers:moveJoined,openPinAt:(id,point)=>quickAttach.openPinAt(id,point),closePreviews:()=>{quickAttach.close();connectTool.cancel();},isLocked:id=>locked(project.parts.find(part=>part.id===id)),assertAdditions,save,warnings,status});let draft=localStorage.getItem(key);if(!PROJECT_ID){const legacy=localStorage.getItem('mindx-vexgo-assembly-v1');if(legacy){try{if(JSON.parse(legacy).platform==='vexiq'){if(!localStorage.getItem('mindx-vexiq-assembly-v1'))localStorage.setItem('mindx-vexiq-assembly-v1',legacy);if(PLATFORM.id==='vexiq'&&!draft)draft=legacy;if(PLATFORM.id==='vexgo'&&key==='mindx-vexgo-assembly-v1')draft=null;}}catch{}}}if(draft){const data=JSON.parse(draft);await kitCatalogLoader.ensure(data.kit,data.parts);project=validate(data);}else if(PROJECT_ID)throw Error('Không tìm thấy dự án trên trình duyệt này. Mở từ màn hình dự án.');$('title').value=project.title;renderCatalog();await show();save();warnings();}catch(error){startupError=error;status('Không mở được editor: '+error.message);}
+try{catalog=initialCatalog;kitCatalogLoader=createKitCatalogLoader({platform:PLATFORM.id,catalog,references:jointReferences});$('count').textContent=catalog.length;renderCatalog();connectTool=await installConnectTool({checkSnap:(parts,ids)=>snapFit.check(parts,ids),references:jointReferences,scene,camera,canvas:renderer.domElement,objects,controls,box,project:()=>project,selected:()=>selected,selection:()=>selectedIds,isLocked:id=>locked(project.parts.find(p=>p.id===id)),reveal:()=>{if(document.body.classList.contains('hide-panel'))$('panel-toggle').click();$('inspector-tab-0')?.click();},busy:()=>busy||!!chainPicker?.active(),preview:()=>preview,transform,select,checkpoint,save,warnings,status});quickAttach=await installQuickAttach({checkSnap:(parts,ids,options)=>snapFit.check(parts,ids,options),references:jointReferences,selection:()=>selectedIds,isLocked:id=>locked(project.parts.find(p=>p.id===id)),captureSelection:()=>({active:selected,ids:[...selectedIds],groupId:selectedGroupId}),restoreSelection(snapshot){const ids=snapshot.ids.filter(id=>project.parts.some(p=>p.id===id));select(ids.includes(snapshot.active)?snapshot.active:ids.at(-1)||null);selectedIds=new Set(ids);selectedGroupId=project.groups.some(g=>g.id===snapshot.groupId)?snapshot.groupId:null;renderLists();},scene,camera,orbit,canvas:renderer.domElement,objects,controls,box,catalog,project:()=>project,selected:()=>selected,busy:()=>busy||!!chainPicker?.active(),preview:()=>preview,connectActive:()=>connectTool.active()||!!directTools?.active(),fit,model,transform,select,checkpoint,show,save,warnings,status,withElectronics,assertAdditions,pose,applyPose,connectExisting:(id,ref)=>connectTool.begin({sourceId:id,sourceRef:ref})});directTools=await installDirectTools({checkSnap:(parts,ids)=>snapFit.check(parts,ids),references:jointReferences,invalidate:()=>renderLoop?.invalidate(),snapPosition:snapForDrag,scene,camera,canvas:renderer.domElement,objects,controls,orbit,box,project:()=>project,selected:()=>selected,selection:()=>selectedIds,busy:()=>busy||!!chainPicker?.active(),preview:()=>preview,quickActive:()=>quickAttach.active(),connectActive:()=>connectTool.active(),transform,select,selectGroup:selectGroupMember,checkpoint:()=>{const redo=copy(future);checkpoint();return redo;},discardCheckpoint:redo=>{history.pop();future=redo||[];},refreshSelection,moveOthers:moveJoined,openPinAt:(id,point)=>quickAttach.openPinAt(id,point),closePreviews:()=>{quickAttach.close();connectTool.cancel();},isLocked:id=>locked(project.parts.find(part=>part.id===id)),assertAdditions,save,warnings,status});let draft=localStorage.getItem(key);if(!PROJECT_ID){const legacy=localStorage.getItem('mindx-vexgo-assembly-v1');if(legacy){try{if(JSON.parse(legacy).platform==='vexiq'){if(!localStorage.getItem('mindx-vexiq-assembly-v1'))localStorage.setItem('mindx-vexiq-assembly-v1',legacy);if(PLATFORM.id==='vexiq'&&!draft)draft=legacy;if(PLATFORM.id==='vexgo'&&key==='mindx-vexgo-assembly-v1')draft=null;}}catch{}}}if(draft){const data=JSON.parse(draft);await kitCatalogLoader.ensure(data.kit,data.parts);project=validate(data);restoreGroupUndo();}else if(PROJECT_ID)throw Error('Không tìm thấy dự án trên trình duyệt này. Mở từ màn hình dự án.');$('title').value=project.title;renderCatalog();await show();if(location.hash==='#guide-preview')await save();else save();warnings();}catch(error){startupError=error;status('Không mở được editor: '+error.message);}
 if(startupError){setBusy(true);throw startupError;}
 kitSettings=installKitSettings({project:()=>project,catalog:()=>catalog,busy:()=>busy||!!chainPicker?.active(),preview:()=>preview,gesture:()=>controls.dragging||!!directTools?.active(),closePreviews:()=>{quickAttach?.close();connectTool?.cancel();},status,
  async prepareKit(kit){await kitCatalogLoader.ensure(kit,project.parts);},
@@ -840,3 +883,7 @@ const editorBindings={prepareKit:(kit,parts=project.parts)=>kitCatalogLoader.ens
 };
 installAssemblyAPI(editorBindings);
 installDocumentAPI({...editorBindings,platform:PLATFORM.id,mode:renderer.isDataRenderer?'data':'webgl',replace(next){releaseGuideResources();guideWorkbench?.clear();guideUIStamp='';project=validate(next);selected=null;selectedIds.clear();controls.detach();box.visible=false;$('title').value=project.title;renderCatalog();}});
+
+if (!startupError && location.hash === '#guide-preview' && !renderer.isDataRenderer) {
+  await openPDFPreview();
+}

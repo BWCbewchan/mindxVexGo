@@ -1,0 +1,161 @@
+{
+"version": 1,
+"platform": "vexgo",
+"title": "ten",
+"source": "1. ARM/baisoan_basic/bai1/build/ten.SLDASM",
+"hideCables": true,
+"parts": [
+{
+"id": "large-white-plate-1",
+"sku": "228-2500-042",
+"position": [
+31.25,
+41.593,
+55.372
+],
+"rotation": [
+90,
+0,
+0
+],
+"label": "Large White Plate"
+},
+{
+"id": "red-pin-1",
+"sku": "228-2500-2260",
+"position": [
+31.25,
+54.293,
+58.547
+],
+"rotation": [
+-90,
+82.1216,
+-180
+],
+"label": "Red Pin"
+},
+{
+"id": "red-pin-2",
+"sku": "228-2500-2260",
+"position": [
+24.9,
+47.943,
+58.547
+],
+"rotation": [
+-90,
+82.1216,
+-180
+],
+"label": "Red Pin"
+},
+{
+"id": "red-pin-3",
+"sku": "228-2500-2260",
+"position": [
+37.6,
+60.643,
+58.547
+],
+"rotation": [
+-90,
+82.1216,
+-180
+],
+"label": "Red Pin"
+},
+{
+"id": "red-pin-4",
+"sku": "228-2500-2260",
+"position": [
+37.6,
+47.943,
+58.547
+],
+"rotation": [
+-90,
+82.1216,
+-180
+],
+"label": "Red Pin"
+},
+{
+"id": "red-pin-5",
+"sku": "228-2500-2260",
+"position": [
+37.6,
+22.543,
+58.547
+],
+"rotation": [
+-90,
+82.1216,
+-180
+],
+"label": "Red Pin"
+},
+{
+"id": "red-pin-6",
+"sku": "228-2500-2260",
+"position": [
+37.6,
+35.243,
+58.547
+],
+"rotation": [
+-90,
+82.1216,
+-180
+],
+"label": "Red Pin"
+},
+{
+"id": "red-pin-7",
+"sku": "228-2500-2260",
+"position": [
+24.9,
+22.543,
+58.547
+],
+"rotation": [
+-90,
+82.1216,
+-180
+],
+"label": "Red Pin"
+},
+{
+"id": "red-pin-8",
+"sku": "228-2500-2260",
+"position": [
+50.3,
+22.543,
+58.547
+],
+"rotation": [
+-90,
+82.1216,
+-180
+],
+"label": "Red Pin"
+},
+{
+"id": "pin-tool-1",
+"sku": "228-4035-000",
+"position": [
+-26.097,
+-30.136,
+86.299
+],
+"rotation": [
+-180,
+90,
+0
+],
+"label": "Pin Tool"
+}
+],
+"groups": [],
+"subassemblies": []
+}

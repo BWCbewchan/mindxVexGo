@@ -1,0 +1,1235 @@
+{
+ "version": 1,
+ "platform": "vexgo",
+ "title": "VEX GO Code Base 2.0",
+ "hideCables": true,
+ "parts": [
+  {
+   "id": "plate-L",
+   "sku": "228-2500-043",
+   "label": "Dark Gray Plate",
+   "position": [
+    57,
+    50,
+    0
+   ],
+   "rotation": [
+    90,
+    0,
+    -90
+   ]
+  },
+  {
+   "id": "pin-L1",
+   "sku": "228-2500-2260",
+   "label": "Red Pin",
+   "position": [
+    53.825029999999984,
+    43.650000000000006,
+    44.45
+   ],
+   "rotation": [
+    -1.272221872585407e-14,
+    -1.272221872585407e-14,
+    90.00000000000003
+   ],
+   "mate": {
+    "target": "plate-L",
+    "sourceRef": "1",
+    "targetRef": "3",
+    "depth": 4.7318,
+    "twist": 0,
+    "flip": false
+   }
+  },
+  {
+   "id": "pin-L2",
+   "sku": "228-2500-2260",
+   "label": "Red Pin",
+   "position": [
+    53.82502999999999,
+    30.95000000000001,
+    44.45000000000001
+   ],
+   "rotation": [
+    -1.272221872585407e-14,
+    -1.272221872585407e-14,
+    90.00000000000003
+   ],
+   "mate": {
+    "target": "plate-L",
+    "sourceRef": "1",
+    "targetRef": "4",
+    "depth": 4.7318,
+    "twist": 0,
+    "flip": false
+   }
+  },
+  {
+   "id": "pin-L3",
+   "sku": "228-2500-2260",
+   "label": "Red Pin",
+   "position": [
+    53.82503,
+    43.650000000000006,
+    19.05
+   ],
+   "rotation": [
+    -1.272221872585407e-14,
+    -1.272221872585407e-14,
+    90.00000000000003
+   ],
+   "mate": {
+    "target": "plate-L",
+    "sourceRef": "1",
+    "targetRef": "31",
+    "depth": 4.7318,
+    "twist": 0,
+    "flip": false
+   }
+  },
+  {
+   "id": "pin-L4",
+   "sku": "228-2500-2260",
+   "label": "Red Pin",
+   "position": [
+    53.82503,
+    30.950000000000003,
+    19.050000000000004
+   ],
+   "rotation": [
+    -1.272221872585407e-14,
+    -1.272221872585407e-14,
+    90.00000000000003
+   ],
+   "mate": {
+    "target": "plate-L",
+    "sourceRef": "1",
+    "targetRef": "32",
+    "depth": 4.7318,
+    "twist": 0,
+    "flip": false
+   }
+  },
+  {
+   "id": "green-L",
+   "sku": "228-2500-018",
+   "label": "Green Large Beam",
+   "position": [
+    50.65005999999998,
+    37.300000000000004,
+    31.749999999999993
+   ],
+   "rotation": [
+    90.00000000000006,
+    2.8624992133171654e-14,
+    -90
+   ],
+   "mate": {
+    "target": "pin-L1",
+    "sourceRef": "3",
+    "targetRef": "4",
+    "depth": 4.7318,
+    "twist": 270,
+    "flip": false
+   }
+  },
+  {
+   "id": "pink-L",
+   "sku": "228-2500-2258",
+   "label": "Pink Pin",
+   "position": [
+    60.17499999999999,
+    37.30000000000001,
+    25.400000000000006
+   ],
+   "rotation": [
+    1.272221872585407e-14,
+    -1.272221872585407e-14,
+    -90.00000000000003
+   ],
+   "mate": {
+    "target": "plate-L",
+    "sourceRef": "1",
+    "targetRef": "28",
+    "depth": 4.572,
+    "twist": 0,
+    "flip": false
+   }
+  },
+  {
+   "id": "yellow-L",
+   "sku": "228-2500-2295",
+   "label": "Yellow Connector",
+   "position": [
+    53.824999999999996,
+    56.350000000000016,
+    6.349999999999994
+   ],
+   "rotation": [
+    90.00000000000006,
+    0,
+    -90
+   ],
+   "mate": {
+    "target": "plate-L",
+    "sourceRef": "22",
+    "targetRef": "30",
+    "depth": 2.2,
+    "twist": 270,
+    "flip": false
+   }
+  },
+  {
+   "id": "pin-ML1",
+   "sku": "228-2500-2260",
+   "label": "Red Pin",
+   "position": [
+    53.82503,
+    43.65,
+    -6.349999999999998
+   ],
+   "rotation": [
+    -1.272221872585407e-14,
+    -1.272221872585407e-14,
+    90.00000000000003
+   ],
+   "mate": {
+    "target": "plate-L",
+    "sourceRef": "1",
+    "targetRef": "59",
+    "depth": 4.7318,
+    "twist": 0,
+    "flip": false
+   }
+  },
+  {
+   "id": "pin-ML2",
+   "sku": "228-2500-2260",
+   "label": "Red Pin",
+   "position": [
+    53.82503,
+    30.949999999999996,
+    -6.349999999999994
+   ],
+   "rotation": [
+    -1.272221872585407e-14,
+    -1.272221872585407e-14,
+    90.00000000000003
+   ],
+   "mate": {
+    "target": "plate-L",
+    "sourceRef": "1",
+    "targetRef": "60",
+    "depth": 4.7318,
+    "twist": 0,
+    "flip": false
+   }
+  },
+  {
+   "id": "pin-ML3",
+   "sku": "228-2500-2260",
+   "label": "Red Pin",
+   "position": [
+    53.82503,
+    43.64999999999999,
+    -31.750000000000004
+   ],
+   "rotation": [
+    -1.272221872585407e-14,
+    -1.272221872585407e-14,
+    90.00000000000003
+   ],
+   "mate": {
+    "target": "plate-L",
+    "sourceRef": "1",
+    "targetRef": "87",
+    "depth": 4.7318,
+    "twist": 0,
+    "flip": false
+   }
+  },
+  {
+   "id": "pin-ML4",
+   "sku": "228-2500-2260",
+   "label": "Red Pin",
+   "position": [
+    53.825030000000005,
+    30.949999999999992,
+    -31.749999999999993
+   ],
+   "rotation": [
+    -1.272221872585407e-14,
+    -1.272221872585407e-14,
+    90.00000000000003
+   ],
+   "mate": {
+    "target": "plate-L",
+    "sourceRef": "1",
+    "targetRef": "88",
+    "depth": 4.7318,
+    "twist": 0,
+    "flip": false
+   }
+  },
+  {
+   "id": "motor-L",
+   "sku": "269-6690-000",
+   "label": "Motor",
+   "position": [
+    22.07506,
+    37.299999999999976,
+    -25.399999999999995
+   ],
+   "rotation": [
+    -179.99999999999997,
+    -90,
+    0
+   ],
+   "mate": {
+    "target": "pin-ML4",
+    "sourceRef": "31",
+    "targetRef": "4",
+    "depth": 4.7318,
+    "twist": 180,
+    "flip": false
+   }
+  },
+  {
+   "id": "shaft-L",
+   "sku": "228-2500-2234",
+   "label": "Red Shaft",
+   "position": [
+    50.65506,
+    37.299999999999976,
+    -25.39999999999999
+   ],
+   "rotation": [
+    -89.51756356998528,
+    0,
+    90
+   ],
+   "mate": {
+    "target": "motor-L",
+    "sourceRef": "short-drive-end",
+    "targetRef": "motor-output",
+    "depth": 5.461,
+    "twist": 0,
+    "flip": false
+   }
+  },
+  {
+   "id": "pin-J1",
+   "sku": "228-2500-2260",
+   "label": "Red Pin",
+   "position": [
+    3.0250899999999943,
+    43.64999999999996,
+    -6.349999999999991
+   ],
+   "rotation": [
+    -1.2722218725854075e-14,
+    -1.2722218725854075e-14,
+    90.00000000000003
+   ],
+   "mate": {
+    "target": "motor-L",
+    "sourceRef": "1",
+    "targetRef": "10",
+    "depth": 4.7318,
+    "twist": 0,
+    "flip": false
+   }
+  },
+  {
+   "id": "pin-J2",
+   "sku": "228-2500-2260",
+   "label": "Red Pin",
+   "position": [
+    3.0250899999999943,
+    30.949999999999967,
+    -6.350000000000005
+   ],
+   "rotation": [
+    -1.2722218725854075e-14,
+    -1.2722218725854075e-14,
+    90.00000000000003
+   ],
+   "mate": {
+    "target": "motor-L",
+    "sourceRef": "1",
+    "targetRef": "14",
+    "depth": 4.7318,
+    "twist": 0,
+    "flip": false
+   }
+  },
+  {
+   "id": "pin-BL1",
+   "sku": "228-2500-2260",
+   "label": "Red Pin",
+   "position": [
+    53.82503,
+    69.05,
+    -19.050000000000004
+   ],
+   "rotation": [
+    -1.272221872585407e-14,
+    -1.272221872585407e-14,
+    90.00000000000003
+   ],
+   "mate": {
+    "target": "plate-L",
+    "sourceRef": "1",
+    "targetRef": "71",
+    "depth": 4.7318,
+    "twist": 0,
+    "flip": false
+   }
+  },
+  {
+   "id": "pin-BL2",
+   "sku": "228-2500-2260",
+   "label": "Red Pin",
+   "position": [
+    53.825030000000005,
+    69.05,
+    -31.75
+   ],
+   "rotation": [
+    -1.272221872585407e-14,
+    -1.272221872585407e-14,
+    90.00000000000003
+   ],
+   "mate": {
+    "target": "plate-L",
+    "sourceRef": "1",
+    "targetRef": "85",
+    "depth": 4.7318,
+    "twist": 0,
+    "flip": false
+   }
+  },
+  {
+   "id": "blue-L",
+   "sku": "228-2500-2296",
+   "label": "Blue Connector",
+   "position": [
+    47.47506,
+    56.349999999999994,
+    -19.05
+   ],
+   "rotation": [
+    180,
+    90,
+    0
+   ],
+   "mate": {
+    "target": "pin-BL1",
+    "sourceRef": "14",
+    "targetRef": "4",
+    "depth": 4.7318,
+    "twist": 180,
+    "flip": false
+   }
+  },
+  {
+   "id": "beam-rear",
+   "sku": "228-2500-023",
+   "label": "Dark Gray Large Beam",
+   "position": [
+    3.0250599999999963,
+    53.175,
+    -25.4
+   ],
+   "rotation": [
+    -7.016709298534876e-15,
+    0,
+    0
+   ],
+   "mate": {
+    "target": "blue-L",
+    "sourceRef": "45",
+    "targetRef": "24",
+    "depth": 2.2,
+    "twist": 0,
+    "flip": false
+   }
+  },
+  {
+   "id": "blue-R",
+   "sku": "228-2500-2296",
+   "label": "Blue Connector",
+   "position": [
+    -41.42494000000001,
+    56.349999999999994,
+    -19.05
+   ],
+   "rotation": [
+    180,
+    90,
+    0
+   ],
+   "mate": {
+    "target": "beam-rear",
+    "sourceRef": "24",
+    "targetRef": "3",
+    "depth": 2.2,
+    "twist": 90,
+    "flip": false
+   }
+  },
+  {
+   "id": "pin-BR1",
+   "sku": "228-2500-2260",
+   "label": "Red Pin",
+   "position": [
+    -41.42491000000001,
+    69.05,
+    -31.75
+   ],
+   "rotation": [
+    1.272221872585407e-14,
+    1.272221872585407e-14,
+    90.00000000000003
+   ],
+   "mate": {
+    "target": "blue-R",
+    "sourceRef": "1",
+    "targetRef": "3",
+    "depth": 4.7318,
+    "twist": 0,
+    "flip": false
+   }
+  },
+  {
+   "id": "pin-BR2",
+   "sku": "228-2500-2260",
+   "label": "Red Pin",
+   "position": [
+    -41.424910000000004,
+    69.05,
+    -19.05
+   ],
+   "rotation": [
+    1.272221872585407e-14,
+    1.272221872585407e-14,
+    90.00000000000003
+   ],
+   "mate": {
+    "target": "blue-R",
+    "sourceRef": "1",
+    "targetRef": "13",
+    "depth": 4.7318,
+    "twist": 0,
+    "flip": false
+   }
+  },
+  {
+   "id": "motor-R",
+   "sku": "269-6690-000",
+   "label": "Motor",
+   "position": [
+    -16.024880000000003,
+    37.29999999999995,
+    -25.39999999999999
+   ],
+   "rotation": [
+    -2.544443745170814e-14,
+    90,
+    0
+   ],
+   "mate": {
+    "target": "pin-J1",
+    "sourceRef": "14",
+    "targetRef": "4",
+    "depth": 4.7318,
+    "twist": 0,
+    "flip": false
+   }
+  },
+  {
+   "id": "pin-MR1",
+   "sku": "228-2500-2260",
+   "label": "Red Pin",
+   "position": [
+    -47.77485,
+    30.949999999999957,
+    -6.349999999999991
+   ],
+   "rotation": [
+    -1.272221872585407e-14,
+    -1.272221872585407e-14,
+    90.00000000000003
+   ],
+   "mate": {
+    "target": "motor-R",
+    "sourceRef": "1",
+    "targetRef": "7",
+    "depth": 4.7318,
+    "twist": 0,
+    "flip": false
+   }
+  },
+  {
+   "id": "pin-MR2",
+   "sku": "228-2500-2260",
+   "label": "Red Pin",
+   "position": [
+    -47.77485000000001,
+    43.649999999999956,
+    -6.349999999999998
+   ],
+   "rotation": [
+    -1.272221872585407e-14,
+    -1.272221872585407e-14,
+    90.00000000000003
+   ],
+   "mate": {
+    "target": "motor-R",
+    "sourceRef": "1",
+    "targetRef": "11",
+    "depth": 4.7318,
+    "twist": 0,
+    "flip": false
+   }
+  },
+  {
+   "id": "pin-MR3",
+   "sku": "228-2500-2260",
+   "label": "Red Pin",
+   "position": [
+    -47.77485,
+    30.949999999999946,
+    -31.749999999999993
+   ],
+   "rotation": [
+    -1.272221872585407e-14,
+    -1.272221872585407e-14,
+    90.00000000000003
+   ],
+   "mate": {
+    "target": "motor-R",
+    "sourceRef": "1",
+    "targetRef": "29",
+    "depth": 4.7318,
+    "twist": 0,
+    "flip": false
+   }
+  },
+  {
+   "id": "pin-MR4",
+   "sku": "228-2500-2260",
+   "label": "Red Pin",
+   "position": [
+    -47.77485000000001,
+    43.64999999999994,
+    -31.749999999999993
+   ],
+   "rotation": [
+    -1.272221872585407e-14,
+    -1.272221872585407e-14,
+    90.00000000000003
+   ],
+   "mate": {
+    "target": "motor-R",
+    "sourceRef": "1",
+    "targetRef": "31",
+    "depth": 4.7318,
+    "twist": 0,
+    "flip": false
+   }
+  },
+  {
+   "id": "plate-R",
+   "sku": "228-2500-043",
+   "label": "Dark Gray Plate",
+   "position": [
+    -50.94982000000002,
+    49.99999999999994,
+    0
+   ],
+   "rotation": [
+    89.99999999999999,
+    2.8624992133171654e-14,
+    90.00000000000003
+   ],
+   "mate": {
+    "target": "pin-MR4",
+    "sourceRef": "17",
+    "targetRef": "4",
+    "depth": 4.7318,
+    "twist": 270,
+    "flip": false
+   }
+  },
+  {
+   "id": "shaft-R",
+   "sku": "228-2500-2234",
+   "label": "Red Shaft",
+   "position": [
+    -44.60488,
+    37.29999999999995,
+    -25.4
+   ],
+   "rotation": [
+    89.51756356998528,
+    0,
+    -90
+   ],
+   "mate": {
+    "target": "motor-R",
+    "sourceRef": "short-drive-end",
+    "targetRef": "motor-output",
+    "depth": 5.461,
+    "twist": 0,
+    "flip": false
+   }
+  },
+  {
+   "id": "pin-R1",
+   "sku": "228-2500-2260",
+   "label": "Red Pin",
+   "position": [
+    -47.77485000000004,
+    43.649999999999956,
+    44.45000000000001
+   ],
+   "rotation": [
+    2.862499213317165e-14,
+    -2.8624992133171635e-14,
+    -89.99999999999997
+   ],
+   "mate": {
+    "target": "plate-R",
+    "sourceRef": "1",
+    "targetRef": "101",
+    "depth": 4.7318,
+    "twist": 0,
+    "flip": false
+   }
+  },
+  {
+   "id": "pin-R2",
+   "sku": "228-2500-2260",
+   "label": "Red Pin",
+   "position": [
+    -47.774850000000036,
+    30.949999999999953,
+    44.45000000000002
+   ],
+   "rotation": [
+    2.862499213317165e-14,
+    -2.8624992133171635e-14,
+    -89.99999999999997
+   ],
+   "mate": {
+    "target": "plate-R",
+    "sourceRef": "1",
+    "targetRef": "102",
+    "depth": 4.7318,
+    "twist": 0,
+    "flip": false
+   }
+  },
+  {
+   "id": "pin-R3",
+   "sku": "228-2500-2260",
+   "label": "Red Pin",
+   "position": [
+    -47.77485000000003,
+    43.64999999999995,
+    19.050000000000008
+   ],
+   "rotation": [
+    2.862499213317165e-14,
+    -2.8624992133171635e-14,
+    -89.99999999999997
+   ],
+   "mate": {
+    "target": "plate-R",
+    "sourceRef": "1",
+    "targetRef": "73",
+    "depth": 4.7318,
+    "twist": 0,
+    "flip": false
+   }
+  },
+  {
+   "id": "pin-R4",
+   "sku": "228-2500-2260",
+   "label": "Red Pin",
+   "position": [
+    -47.77485000000002,
+    30.949999999999946,
+    19.05000000000001
+   ],
+   "rotation": [
+    2.862499213317165e-14,
+    -2.8624992133171635e-14,
+    -89.99999999999997
+   ],
+   "mate": {
+    "target": "plate-R",
+    "sourceRef": "1",
+    "targetRef": "74",
+    "depth": 4.7318,
+    "twist": 0,
+    "flip": false
+   }
+  },
+  {
+   "id": "green-R",
+   "sku": "228-2500-018",
+   "label": "Green Large Beam",
+   "position": [
+    -44.59988000000004,
+    37.29999999999996,
+    31.750000000000004
+   ],
+   "rotation": [
+    90.00000000000006,
+    2.8624992133171654e-14,
+    -90
+   ],
+   "mate": {
+    "target": "pin-R1",
+    "sourceRef": "1",
+    "targetRef": "4",
+    "depth": 4.7318,
+    "twist": 90,
+    "flip": false
+   }
+  },
+  {
+   "id": "pink-R",
+   "sku": "228-2500-2258",
+   "label": "Pink Pin",
+   "position": [
+    -54.12482000000003,
+    37.29999999999994,
+    25.4
+   ],
+   "rotation": [
+    -2.8624992133171654e-14,
+    -2.8624992133171667e-14,
+    90.00000000000006
+   ],
+   "mate": {
+    "target": "plate-R",
+    "sourceRef": "1",
+    "targetRef": "84",
+    "depth": 4.572,
+    "twist": 0,
+    "flip": false
+   }
+  },
+  {
+   "id": "yellow-R",
+   "sku": "228-2500-2295",
+   "label": "Yellow Connector",
+   "position": [
+    -47.774820000000034,
+    56.34999999999995,
+    19.050000000000004
+   ],
+   "rotation": [
+    89.99999999999999,
+    2.2263882770244617e-14,
+    90.00000000000006
+   ],
+   "mate": {
+    "target": "plate-R",
+    "sourceRef": "22",
+    "targetRef": "58",
+    "depth": 2.2,
+    "twist": 90,
+    "flip": false
+   }
+  },
+  {
+   "id": "axle-front",
+   "sku": "228-2500-124",
+   "label": "Plain Shaft",
+   "position": [
+    2.9530599999999794,
+    37.299999999999976,
+    38.09999999999998
+   ],
+   "rotation": [
+    -1.2722218725854067e-14,
+    -1.2722218725854073e-14,
+    90.00000000000004
+   ],
+   "mate": {
+    "target": "green-L",
+    "sourceRef": "square-shaft-end-a",
+    "targetRef": "5",
+    "depth": 4.5,
+    "twist": 0,
+    "flip": false
+   }
+  },
+  {
+   "id": "wheel-front",
+   "sku": "228-2500-1384",
+   "label": "Blue Wheel",
+   "position": [
+    5.239059999999981,
+    37.29999999999998,
+    38.09999999999998
+   ],
+   "rotation": [
+    1.2722218725854064e-14,
+    -1.2722218725854058e-14,
+    -89.99999999999997
+   ],
+   "mate": {
+    "target": "axle-front",
+    "sourceRef": "8",
+    "targetRef": "square-shaft-support-a",
+    "depth": 0,
+    "twist": 0,
+    "flip": false
+   }
+  },
+  {
+   "id": "pulley",
+   "sku": "228-2500-165",
+   "label": "Orange Pulley",
+   "position": [
+    5.239059999999981,
+    37.29999999999998,
+    38.09999999999998
+   ],
+   "rotation": [
+    1.2722218725854062e-14,
+    -1.2722218725854058e-14,
+    -89.99999999999997
+   ]
+  },
+  {
+   "id": "collar-1",
+   "sku": "228-2500-143",
+   "label": "Shaft Collar",
+   "position": [
+    14.728059999999978,
+    37.29999999999998,
+    38.09999999999998
+   ],
+   "rotation": [
+    -90.00000000000004,
+    -90,
+    0
+   ],
+   "mate": {
+    "target": "axle-front",
+    "sourceRef": "square-hole-back",
+    "targetRef": "square-shaft-support-a",
+    "depth": 0,
+    "twist": 0,
+    "flip": false
+   }
+  },
+  {
+   "id": "collar-2",
+   "sku": "228-2500-143",
+   "label": "Shaft Collar",
+   "position": [
+    -22.42194000000002,
+    37.299999999999955,
+    38.09999999999997
+   ],
+   "rotation": [
+    -90.00000000000004,
+    -90,
+    0
+   ],
+   "mate": {
+    "target": "axle-front",
+    "sourceRef": "square-hole-front",
+    "targetRef": "square-shaft-support-b",
+    "depth": 0,
+    "twist": 0,
+    "flip": false
+   }
+  },
+  {
+   "id": "wheel-L",
+   "sku": "228-2500-1383",
+   "label": "Gray Wheel",
+   "position": [
+    95.59106,
+    37.299999999999976,
+    -25.39999999999998
+   ],
+   "rotation": [
+    -89.51756356998528,
+    0,
+    90
+   ],
+   "mate": {
+    "target": "shaft-L",
+    "sourceRef": "square-hole-back",
+    "targetRef": "square-long-shaft-end",
+    "depth": 0,
+    "twist": 0,
+    "flip": false
+   }
+  },
+  {
+   "id": "wheel-R",
+   "sku": "228-2500-1383",
+   "label": "Gray Wheel",
+   "position": [
+    -89.54088,
+    37.29999999999995,
+    -25.40000000000001
+   ],
+   "rotation": [
+    89.51756356998528,
+    0,
+    -90
+   ],
+   "mate": {
+    "target": "shaft-R",
+    "sourceRef": "square-hole-back",
+    "targetRef": "square-long-shaft-end",
+    "depth": 0,
+    "twist": 0,
+    "flip": false
+   }
+  },
+  {
+   "id": "pin-T1",
+   "sku": "228-2500-2260",
+   "label": "Red Pin",
+   "position": [
+    34.77499999999999,
+    56.34997000000001,
+    6.349999999999988
+   ],
+   "rotation": [
+    6.361109362927034e-14,
+    0,
+    0
+   ],
+   "mate": {
+    "target": "yellow-L",
+    "sourceRef": "1",
+    "targetRef": "9",
+    "depth": 4.7318,
+    "twist": 0,
+    "flip": false
+   }
+  },
+  {
+   "id": "pin-T2",
+   "sku": "228-2500-2260",
+   "label": "Red Pin",
+   "position": [
+    -28.724820000000015,
+    56.349969999999956,
+    6.350000000000023
+   ],
+   "rotation": [
+    -1.2722218725854067e-14,
+    -2.471787526908089e-30,
+    2.2263882770244617e-14
+   ],
+   "mate": {
+    "target": "yellow-R",
+    "sourceRef": "1",
+    "targetRef": "1",
+    "depth": 4.7318,
+    "twist": 0,
+    "flip": false
+   }
+  },
+  {
+   "id": "pin-T3",
+   "sku": "228-2500-2260",
+   "label": "Red Pin",
+   "position": [
+    34.775059999999996,
+    56.34997,
+    -31.75
+   ],
+   "rotation": [
+    -7.016709298534876e-15,
+    0,
+    0
+   ],
+   "mate": {
+    "target": "beam-rear",
+    "sourceRef": "1",
+    "targetRef": "39",
+    "depth": 4.7318,
+    "twist": 0,
+    "flip": false
+   }
+  },
+  {
+   "id": "pin-T4",
+   "sku": "228-2500-2260",
+   "label": "Red Pin",
+   "position": [
+    -28.724940000000004,
+    56.34997,
+    -31.75
+   ],
+   "rotation": [
+    -7.016709298534876e-15,
+    0,
+    0
+   ],
+   "mate": {
+    "target": "beam-rear",
+    "sourceRef": "1",
+    "targetRef": "9",
+    "depth": 4.7318,
+    "twist": 0,
+    "flip": false
+   }
+  },
+  {
+   "id": "battery",
+   "sku": "269-6686-000",
+   "label": "Battery",
+   "position": [
+    3.0249999999999986,
+    75.57394000000004,
+    -12.700000000000001
+   ],
+   "rotation": [
+    -89.99999999999993,
+    0,
+    89.99999999999999
+   ],
+   "mate": {
+    "target": "pin-T1",
+    "sourceRef": "1",
+    "targetRef": "4",
+    "depth": 4.7318,
+    "twist": 90,
+    "flip": false
+   }
+  },
+  {
+   "id": "pin-U1",
+   "sku": "228-2500-2260",
+   "label": "Red Pin",
+   "position": [
+    34.77499999999999,
+    75.69791000000001,
+    6.350000000000008
+   ],
+   "rotation": [
+    5.724998426634331e-14,
+    0,
+    0
+   ],
+   "mate": {
+    "target": "battery",
+    "sourceRef": "1",
+    "targetRef": "4",
+    "depth": 4.7318,
+    "twist": 0,
+    "flip": false
+   }
+  },
+  {
+   "id": "pin-U2",
+   "sku": "228-2500-2260",
+   "label": "Red Pin",
+   "position": [
+    34.775000000000006,
+    75.69791000000006,
+    -31.74999999999999
+   ],
+   "rotation": [
+    5.724998426634331e-14,
+    0,
+    0
+   ],
+   "mate": {
+    "target": "battery",
+    "sourceRef": "1",
+    "targetRef": "30",
+    "depth": 4.7318,
+    "twist": 0,
+    "flip": false
+   }
+  },
+  {
+   "id": "pin-U3",
+   "sku": "228-2500-2260",
+   "label": "Red Pin",
+   "position": [
+    -28.72500000000001,
+    75.69791000000001,
+    6.34999999999999
+   ],
+   "rotation": [
+    5.724998426634331e-14,
+    0,
+    0
+   ],
+   "mate": {
+    "target": "battery",
+    "sourceRef": "1",
+    "targetRef": "8",
+    "depth": 4.7318,
+    "twist": 0,
+    "flip": false
+   }
+  },
+  {
+   "id": "pin-U4",
+   "sku": "228-2500-2260",
+   "label": "Red Pin",
+   "position": [
+    -28.724999999999994,
+    75.69791000000004,
+    -31.750000000000004
+   ],
+   "rotation": [
+    5.724998426634331e-14,
+    0,
+    0
+   ],
+   "mate": {
+    "target": "battery",
+    "sourceRef": "1",
+    "targetRef": "34",
+    "depth": 4.7318,
+    "twist": 0,
+    "flip": false
+   }
+  },
+  {
+   "id": "brain",
+   "sku": "269-6685-000",
+   "label": "Brain",
+   "position": [
+    3.0249999999999915,
+    88.39788000000003,
+    -12.699999999999978
+   ],
+   "rotation": [
+    -89.99999999999993,
+    0,
+    0
+   ],
+   "mate": {
+    "target": "pin-U1",
+    "sourceRef": "25",
+    "targetRef": "4",
+    "depth": 4.7318,
+    "twist": 0,
+    "flip": false
+   }
+  }
+ ],
+ "groups": []
+}

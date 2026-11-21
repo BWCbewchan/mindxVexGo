@@ -1,0 +1,82 @@
+diff --git a/src/rendering/GoSuperCodeBaseBody.ts b/src/rendering/GoSuperCodeBaseBody.ts
+new file mode 100644
+index 0000000..49ccf01
+--- /dev/null
++++ b/src/rendering/GoSuperCodeBaseBody.ts
+@@ -0,0 +1,55 @@
++import * as THREE from 'three'
++import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js'
++
++// mindX: the two-motor robot drawn as a VEX GO Super Code Base, built pin by pin from the VEX GO part
++// models and baked by scripts/bake-go-robot.mjs in the mindX app. The GLB is in real size, metres,
++// front +Z, with the four wheels as their own nodes. The rover's wheels sit at x = ±0.47 m, so the model
++// is scaled to that track, centred between its wheels and lifted until the wheels touch the ground.
++// Collision, sensors and drive are unchanged.
++const ROVER_HALF_TRACK = .47
++const FILE = '../robot-models/vex-go-super-code-base.glb'
++const PREF = 'robocode.robotBody'
++
++let source: Promise<THREE.Object3D | null> | undefined
++const load = () => source ??= new GLTFLoader().loadAsync(new URL(FILE, document.baseURI).href).then(gltf => gltf.scene, () => null)
++
++/** 'go' (default) shows the VEX GO Super Code Base; 'rover' keeps RoboCode's original body. */
++export function robotBodyStyle(): 'go' | 'rover' {
++  try { return globalThis.localStorage?.getItem(PREF) === 'rover' ? 'rover' : 'go' } catch { return 'go' }
++}
++
++/**
++ * Swap the rover's own meshes for the GO model once it has loaded. `roverParts` are the rover body nodes
++ * (sensor and device visuals added later stay). `wheels` is updated in place, so the simulator spins the
++ * GO wheels. If the model cannot load, the rover stays as it is.
++ */
++export function dressAsGoSuperCodeBase(group: THREE.Group, wheels: THREE.Mesh[], roverParts: readonly THREE.Object3D[]) {
++  // Only in a real browser page: tests and workers build robots with stand-in DOMs.
++  if (typeof document === 'undefined' || typeof URL !== 'function' || typeof fetch !== 'function' || !document.baseURI || robotBodyStyle() === 'rover') return
++  let pending: Promise<THREE.Object3D | null>
++  try { pending = load() } catch { return }
++  void pending.then(scene => {
++    if (!scene) return
++    const body = scene.clone(true)
++    body.name = 'GO_Super_Code_Base'
++    body.traverse(node => { if (node instanceof THREE.Mesh) { node.castShadow = true; node.receiveShadow = true } })
++    const goWheels: THREE.Mesh[] = []
++    body.traverse(node => { if (node instanceof THREE.Mesh && node.name.startsWith('part-wheel-')) goWheels.push(node) })
++    if (goWheels.length !== 4) return
++    // Fit from the wheels themselves, so a re-baked model needs no new numbers here.
++    body.updateMatrixWorld(true)
++    const boxes = goWheels.map(wheel => new THREE.Box3().setFromObject(wheel))
++    const mid = boxes.reduce((sum, box) => sum.add(box.getCenter(new THREE.Vector3())), new THREE.Vector3()).divideScalar(4)
++    const halfTrack = boxes.reduce((sum, box) => sum + Math.abs(box.getCenter(new THREE.Vector3()).x - mid.x), 0) / 4
++    const ground = boxes.reduce((sum, box) => sum + box.min.y, 0) / 4
++    if (!(halfTrack > 0)) return
++    const scale = ROVER_HALF_TRACK / halfTrack
++    body.scale.setScalar(scale)
++    body.position.set(-mid.x * scale, -ground * scale, -mid.z * scale)
++    // Hidden, not removed: the robot's own disposal still releases the rover meshes.
++    for (const part of roverParts) part.visible = false
++    group.add(body)
++    // Wheel positions must be in the robot frame for left/right spin; the container is unrotated, so the sign holds.
++    wheels.splice(0, wheels.length, ...goWheels)
++  })
++}
+diff --git a/src/simulation/RobotModel.ts b/src/simulation/RobotModel.ts
+index cbf02a6..6af2592 100644
+--- a/src/simulation/RobotModel.ts
++++ b/src/simulation/RobotModel.ts
+@@ -9,6 +9,7 @@ import { createAppearanceController, type RobotAppearance, type AppearanceMotion
+ import { robotMechanics } from './RobotMechanics'
+ import {createSingleMotorBody} from '../rendering/SingleMotorBody'
+ import { createRobotReflection } from '../rendering/RobotMaterials'
++import { dressAsGoSuperCodeBase } from '../rendering/GoSuperCodeBaseBody'
+ 
+ export type RobotModel = Readonly<{
+   group: THREE.Group
+@@ -32,6 +33,8 @@ export function createRobotModel(definition: RobotDefinition = DEFAULT_ROBOT, sh
+     const reflection = sharedReflection ?? (profile.id === 'single-motor' ? undefined : resources.own(createRobotReflection()))
+     const { group, wheels } = profile.id === 'single-motor' ? createSingleMotorBody() : createRoverBody(reflection)
+     resources.graph(group); group.name = 'Robot'
++    // mindX: two-motor robots are drawn as a VEX GO Super Code Base once its model loads.
++    if (profile.id !== 'single-motor') dressAsGoSuperCodeBase(group, wheels, [...group.children])
+ 
+     const visuals = createSensorVisuals(definition, reflection)
+     group.add(resources.graph(visuals.root))

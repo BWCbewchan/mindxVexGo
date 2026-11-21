@@ -1,0 +1,1662 @@
+{
+ "version": 1,
+ "platform": "vexgo",
+ "title": "VEX GO Super Code Base (on the teacher's Code Base CAD)",
+ "hideCables": true,
+ "parts": [
+  {
+   "id": "motor-L",
+   "sku": "269-6690-000",
+   "position": [
+    18.975,
+    37.3,
+    0
+   ],
+   "rotation": [
+    90,
+    -90,
+    0
+   ],
+   "label": "Motor"
+  },
+  {
+   "id": "pin-c1",
+   "sku": "228-2500-2260",
+   "position": [
+    50.725,
+    43.65,
+    -6.35
+   ],
+   "rotation": [
+    -180,
+    0,
+    90
+   ],
+   "label": "Red Pin"
+  },
+  {
+   "id": "pin-c2",
+   "sku": "228-2500-2260",
+   "position": [
+    50.725,
+    30.95,
+    6.35
+   ],
+   "rotation": [
+    -105.0126,
+    0,
+    90
+   ],
+   "label": "Red Pin"
+  },
+  {
+   "id": "pin-c3",
+   "sku": "228-2500-2260",
+   "position": [
+    50.725,
+    56.35,
+    -6.35
+   ],
+   "rotation": [
+    -177.9837,
+    0,
+    90
+   ],
+   "label": "Red Pin"
+  },
+  {
+   "id": "pin-c4",
+   "sku": "228-2500-2260",
+   "position": [
+    50.725,
+    56.35,
+    6.35
+   ],
+   "rotation": [
+    89.4995,
+    0,
+    90
+   ],
+   "label": "Red Pin"
+  },
+  {
+   "id": "shaft-L",
+   "sku": "228-2500-2234",
+   "position": [
+    47.555,
+    37.3,
+    0
+   ],
+   "rotation": [
+    -151.55,
+    0,
+    90
+   ],
+   "label": "Red Shaft"
+  },
+  {
+   "id": "plate-L",
+   "sku": "228-2500-043",
+   "position": [
+    53.9,
+    50,
+    25.4
+   ],
+   "rotation": [
+    -90,
+    0,
+    90
+   ],
+   "label": "Dark Gray Plate"
+  },
+  {
+   "id": "wheel-L",
+   "sku": "228-2500-1383",
+   "position": [
+    92.491,
+    37.30000000000001,
+    6.786238238021269e-15
+   ],
+   "rotation": [
+    -151.55,
+    0,
+    89.99999999999999
+   ],
+   "label": "Gray Wheel",
+   "mate": {
+    "target": "shaft-L",
+    "sourceRef": "square-hole-back",
+    "targetRef": "square-long-shaft-end",
+    "depth": 0,
+    "twist": 0,
+    "flip": false
+   }
+  },
+  {
+   "id": "collar-L",
+   "sku": "228-2500-143",
+   "position": [
+    98.841,
+    37.30000000000001,
+    8.56259507742152e-15
+   ],
+   "rotation": [
+    118.45000000000002,
+    -90,
+    0
+   ],
+   "label": "Shaft Collar"
+  },
+  {
+   "id": "pin-c5",
+   "sku": "228-2500-2260",
+   "position": [
+    0.889,
+    56.35,
+    -6.35
+   ],
+   "rotation": [
+    89.4995,
+    0,
+    90
+   ],
+   "label": "Red Pin"
+  },
+  {
+   "id": "pin-c6",
+   "sku": "228-2500-2260",
+   "position": [
+    0.889,
+    56.35,
+    6.35
+   ],
+   "rotation": [
+    89.4995,
+    0,
+    90
+   ],
+   "label": "Red Pin"
+  },
+  {
+   "id": "motor-R",
+   "sku": "269-6690-000",
+   "position": [
+    -18.975,
+    37.3,
+    0
+   ],
+   "rotation": [
+    -90,
+    90,
+    0
+   ],
+   "label": "Motor"
+  },
+  {
+   "id": "pin-c7",
+   "sku": "228-2500-2260",
+   "position": [
+    -50.725,
+    30.95,
+    -6.35
+   ],
+   "rotation": [
+    89.4995,
+    0,
+    90
+   ],
+   "label": "Red Pin"
+  },
+  {
+   "id": "pin-c8",
+   "sku": "228-2500-2260",
+   "position": [
+    -50.725,
+    43.65,
+    6.35
+   ],
+   "rotation": [
+    89.4995,
+    0,
+    90
+   ],
+   "label": "Red Pin"
+  },
+  {
+   "id": "pin-c9",
+   "sku": "228-2500-2260",
+   "position": [
+    -50.725,
+    56.35,
+    -6.35
+   ],
+   "rotation": [
+    89.4995,
+    0,
+    90
+   ],
+   "label": "Red Pin"
+  },
+  {
+   "id": "pin-c10",
+   "sku": "228-2500-2260",
+   "position": [
+    -50.725,
+    56.35,
+    6.35
+   ],
+   "rotation": [
+    89.4995,
+    0,
+    90
+   ],
+   "label": "Red Pin"
+  },
+  {
+   "id": "shaft-R",
+   "sku": "228-2500-2234",
+   "position": [
+    -47.555,
+    37.3,
+    0
+   ],
+   "rotation": [
+    -102.4734,
+    0,
+    -90
+   ],
+   "label": "Red Shaft"
+  },
+  {
+   "id": "plate-R",
+   "sku": "228-2500-043",
+   "position": [
+    -53.9,
+    50,
+    25.4
+   ],
+   "rotation": [
+    -90,
+    0,
+    90
+   ],
+   "label": "Dark Gray Plate"
+  },
+  {
+   "id": "wheel-R",
+   "sku": "228-2500-1383",
+   "position": [
+    -92.491,
+    37.3,
+    5.578870698741412e-15
+   ],
+   "rotation": [
+    -102.47340000000001,
+    1.2722218725854067e-14,
+    -90
+   ],
+   "label": "Gray Wheel",
+   "mate": {
+    "target": "shaft-R",
+    "sourceRef": "square-hole-back",
+    "targetRef": "square-long-shaft-end",
+    "depth": 0,
+    "twist": 0,
+    "flip": false
+   }
+  },
+  {
+   "id": "collar-R",
+   "sku": "228-2500-143",
+   "position": [
+    -98.841,
+    37.3,
+    6.1825544683813405e-15
+   ],
+   "rotation": [
+    167.52659999999997,
+    90,
+    0
+   ],
+   "label": "Shaft Collar"
+  },
+  {
+   "id": "standoff-FL",
+   "sku": "228-2500-2268",
+   "position": [
+    63.425,
+    37.3,
+    63.5
+   ],
+   "rotation": [
+    -169.7656,
+    0,
+    -90
+   ],
+   "label": "Yellow Standoff"
+  },
+  {
+   "id": "wheel-FL",
+   "sku": "228-2500-1384",
+   "position": [
+    66.6,
+    37.3,
+    63.5
+   ],
+   "rotation": [
+    -2.4723,
+    0,
+    -90
+   ],
+   "label": "Blue Wheel"
+  },
+  {
+   "id": "standoff-FR",
+   "sku": "228-2500-2268",
+   "position": [
+    -63.425,
+    37.3,
+    63.5
+   ],
+   "rotation": [
+    -180,
+    0,
+    90
+   ],
+   "label": "Yellow Standoff"
+  },
+  {
+   "id": "wheel-FR",
+   "sku": "228-2500-1384",
+   "position": [
+    -66.6,
+    37.3,
+    63.5
+   ],
+   "rotation": [
+    -30.6853,
+    0,
+    90
+   ],
+   "label": "Blue Wheel"
+  },
+  {
+   "id": "ymid-L",
+   "sku": "228-2500-2295",
+   "position": [
+    50.725,
+    30.95,
+    44.45
+   ],
+   "rotation": [
+    -90,
+    0,
+    -90
+   ],
+   "label": "Yellow Connector"
+  },
+  {
+   "id": "ymid-R",
+   "sku": "228-2500-2295",
+   "position": [
+    -50.725,
+    30.95,
+    31.75
+   ],
+   "rotation": [
+    -90,
+    0,
+    90
+   ],
+   "label": "Yellow Connector"
+  },
+  {
+   "id": "pin-c11",
+   "sku": "228-2500-2260",
+   "position": [
+    -31.675,
+    37.3,
+    31.75
+   ],
+   "rotation": [
+    -180,
+    15.8212,
+    180
+   ],
+   "label": "Red Pin"
+  },
+  {
+   "id": "pin-c12",
+   "sku": "228-2500-2260",
+   "position": [
+    -31.675,
+    37.3,
+    44.45
+   ],
+   "rotation": [
+    -180,
+    4.8499,
+    180
+   ],
+   "label": "Red Pin"
+  },
+  {
+   "id": "pin-c13",
+   "sku": "228-2500-2260",
+   "position": [
+    31.675,
+    37.3,
+    31.75
+   ],
+   "rotation": [
+    -180,
+    26.8857,
+    180
+   ],
+   "label": "Red Pin"
+  },
+  {
+   "id": "pin-c14",
+   "sku": "228-2500-2260",
+   "position": [
+    31.675,
+    37.3,
+    44.45
+   ],
+   "rotation": [
+    0,
+    25.0829,
+    0
+   ],
+   "label": "Red Pin"
+  },
+  {
+   "id": "battery",
+   "sku": "269-6686-000",
+   "position": [
+    0.075,
+    56.524,
+    38.1
+   ],
+   "rotation": [
+    -90,
+    0,
+    -90
+   ],
+   "label": "Battery"
+  },
+  {
+   "id": "pin-c15",
+   "sku": "228-2500-2260",
+   "position": [
+    -31.675,
+    56.648,
+    57.15
+   ],
+   "rotation": [
+    180,
+    -33.4369,
+    180
+   ],
+   "label": "Red Pin"
+  },
+  {
+   "id": "pin-c16",
+   "sku": "228-2500-2260",
+   "position": [
+    31.825,
+    56.648,
+    19.05
+   ],
+   "rotation": [
+    180,
+    -48.6334,
+    180
+   ],
+   "label": "Red Pin"
+  },
+  {
+   "id": "brain",
+   "sku": "269-6685-000",
+   "position": [
+    0.075,
+    69.348,
+    38.1
+   ],
+   "rotation": [
+    90,
+    0,
+    -180
+   ],
+   "label": "Brain"
+  },
+  {
+   "id": "pin-A1",
+   "sku": "228-2500-2260",
+   "label": "Red Pin",
+   "position": [
+    50.725030000000004,
+    56.35000000000001,
+    -19.050000000000004
+   ],
+   "rotation": [
+    -1.272221872585407e-14,
+    -1.272221872585407e-14,
+    90.00000000000003
+   ],
+   "mate": {
+    "target": "plate-L",
+    "sourceRef": "1",
+    "targetRef": "105",
+    "depth": 4.7318,
+    "twist": 0,
+    "flip": false
+   }
+  },
+  {
+   "id": "pin-A2",
+   "sku": "228-2500-2260",
+   "label": "Red Pin",
+   "position": [
+    50.725030000000004,
+    69.05000000000001,
+    -19.049999999999997
+   ],
+   "rotation": [
+    -1.272221872585407e-14,
+    -1.272221872585407e-14,
+    90.00000000000003
+   ],
+   "mate": {
+    "target": "plate-L",
+    "sourceRef": "1",
+    "targetRef": "106",
+    "depth": 4.7318,
+    "twist": 0,
+    "flip": false
+   }
+  },
+  {
+   "id": "ystand-L",
+   "sku": "228-2500-2295",
+   "label": "Yellow Connector",
+   "position": [
+    44.37506,
+    75.4,
+    -31.750000000000014
+   ],
+   "rotation": [
+    -2.544443745170814e-14,
+    90,
+    0
+   ],
+   "mate": {
+    "target": "pin-A1",
+    "sourceRef": "2",
+    "targetRef": "4",
+    "depth": 4.7318,
+    "twist": 0,
+    "flip": false
+   }
+  },
+  {
+   "id": "pin-B1",
+   "sku": "228-2500-2260",
+   "label": "Red Pin",
+   "position": [
+    -50.72502999999999,
+    56.35000000000001,
+    -19.050000000000004
+   ],
+   "rotation": [
+    1.272221872585407e-14,
+    -1.272221872585407e-14,
+    -90.00000000000003
+   ],
+   "mate": {
+    "target": "plate-R",
+    "sourceRef": "1",
+    "targetRef": "101",
+    "depth": 4.7318,
+    "twist": 0,
+    "flip": false
+   }
+  },
+  {
+   "id": "pin-B2",
+   "sku": "228-2500-2260",
+   "label": "Red Pin",
+   "position": [
+    -50.72502999999999,
+    69.05000000000001,
+    -19.049999999999997
+   ],
+   "rotation": [
+    1.272221872585407e-14,
+    -1.272221872585407e-14,
+    -90.00000000000003
+   ],
+   "mate": {
+    "target": "plate-R",
+    "sourceRef": "1",
+    "targetRef": "102",
+    "depth": 4.7318,
+    "twist": 0,
+    "flip": false
+   }
+  },
+  {
+   "id": "ystand-R",
+   "sku": "228-2500-2295",
+   "label": "Yellow Connector",
+   "position": [
+    -44.375059999999976,
+    75.4,
+    -19.05000000000001
+   ],
+   "rotation": [
+    -2.544443745170814e-14,
+    -90,
+    0
+   ],
+   "mate": {
+    "target": "pin-B1",
+    "sourceRef": "10",
+    "targetRef": "4",
+    "depth": 4.7318,
+    "twist": 0,
+    "flip": false
+   }
+  },
+  {
+   "id": "beam-rear",
+   "sku": "228-2500-023",
+   "label": "Dark Gray Large Beam",
+   "position": [
+    -0.07494000000000511,
+    78.575,
+    -25.40000000000002
+   ],
+   "rotation": [
+    179.99999999999997,
+    7.016709298534876e-15,
+    -180
+   ],
+   "mate": {
+    "target": "ystand-L",
+    "sourceRef": "1",
+    "targetRef": "22",
+    "depth": 2.2,
+    "twist": 180,
+    "flip": false
+   }
+  },
+  {
+   "id": "pin-F1",
+   "sku": "228-2500-2260",
+   "label": "Red Pin",
+   "position": [
+    50.72502999999999,
+    30.949999999999992,
+    69.85
+   ],
+   "rotation": [
+    -1.272221872585407e-14,
+    -1.272221872585407e-14,
+    90.00000000000003
+   ],
+   "mate": {
+    "target": "plate-L",
+    "sourceRef": "1",
+    "targetRef": "5",
+    "depth": 4.7318,
+    "twist": 0,
+    "flip": false
+   }
+  },
+  {
+   "id": "pin-F2",
+   "sku": "228-2500-2260",
+   "label": "Red Pin",
+   "position": [
+    50.72502999999999,
+    43.64999999999999,
+    69.85
+   ],
+   "rotation": [
+    -1.272221872585407e-14,
+    -1.272221872585407e-14,
+    90.00000000000003
+   ],
+   "mate": {
+    "target": "plate-L",
+    "sourceRef": "1",
+    "targetRef": "6",
+    "depth": 4.7318,
+    "twist": 0,
+    "flip": false
+   }
+  },
+  {
+   "id": "ystand-FL",
+   "sku": "228-2500-2295",
+   "label": "Yellow Connector",
+   "position": [
+    44.375059999999976,
+    49.999999999999986,
+    69.84999999999998
+   ],
+   "rotation": [
+    -2.544443745170814e-14,
+    90,
+    0
+   ],
+   "mate": {
+    "target": "pin-F1",
+    "sourceRef": "10",
+    "targetRef": "4",
+    "depth": 4.7318,
+    "twist": 0,
+    "flip": false
+   }
+  },
+  {
+   "id": "pin-F3",
+   "sku": "228-2500-2260",
+   "label": "Red Pin",
+   "position": [
+    -50.725030000000004,
+    30.949999999999992,
+    69.85
+   ],
+   "rotation": [
+    1.272221872585407e-14,
+    -1.272221872585407e-14,
+    -90.00000000000003
+   ],
+   "mate": {
+    "target": "plate-R",
+    "sourceRef": "1",
+    "targetRef": "1",
+    "depth": 4.7318,
+    "twist": 0,
+    "flip": false
+   }
+  },
+  {
+   "id": "pin-F4",
+   "sku": "228-2500-2260",
+   "label": "Red Pin",
+   "position": [
+    -50.725030000000004,
+    43.64999999999999,
+    69.85
+   ],
+   "rotation": [
+    1.272221872585407e-14,
+    -1.272221872585407e-14,
+    -90.00000000000003
+   ],
+   "mate": {
+    "target": "plate-R",
+    "sourceRef": "1",
+    "targetRef": "2",
+    "depth": 4.7318,
+    "twist": 0,
+    "flip": false
+   }
+  },
+  {
+   "id": "ystand-FR",
+   "sku": "228-2500-2295",
+   "label": "Yellow Connector",
+   "position": [
+    -44.37506,
+    50,
+    82.54999999999998
+   ],
+   "rotation": [
+    -2.544443745170814e-14,
+    -90,
+    0
+   ],
+   "mate": {
+    "target": "pin-F3",
+    "sourceRef": "2",
+    "targetRef": "4",
+    "depth": 4.7318,
+    "twist": 0,
+    "flip": false
+   }
+  },
+  {
+   "id": "beam-front",
+   "sku": "228-2500-023",
+   "label": "Dark Gray Large Beam",
+   "position": [
+    -0.07494000000002643,
+    53.17499999999998,
+    76.19999999999997
+   ],
+   "rotation": [
+    179.99999999999997,
+    7.016709298534876e-15,
+    -180
+   ],
+   "mate": {
+    "target": "ystand-FL",
+    "sourceRef": "2",
+    "targetRef": "36",
+    "depth": 2.2,
+    "twist": 180,
+    "flip": false
+   }
+  },
+  {
+   "id": "so-L1",
+   "sku": "228-2500-2268",
+   "label": "Yellow Standoff",
+   "position": [
+    63.425000000000004,
+    37.30000000000001,
+    -12.700000000000008
+   ],
+   "rotation": [
+    1.272221872585407e-14,
+    -1.272221872585407e-14,
+    -90.00000000000003
+   ],
+   "mate": {
+    "target": "plate-L",
+    "sourceRef": "1",
+    "targetRef": "93",
+    "depth": 2.2,
+    "twist": 0,
+    "flip": false
+   }
+  },
+  {
+   "id": "so-L2",
+   "sku": "228-2500-2268",
+   "label": "Yellow Standoff",
+   "position": [
+    63.425000000000004,
+    50.00000000000001,
+    -12.700000000000001
+   ],
+   "rotation": [
+    1.272221872585407e-14,
+    -1.272221872585407e-14,
+    -90.00000000000003
+   ],
+   "mate": {
+    "target": "plate-L",
+    "sourceRef": "1",
+    "targetRef": "94",
+    "depth": 2.2,
+    "twist": 0,
+    "flip": false
+   }
+  },
+  {
+   "id": "yconn-L",
+   "sku": "228-2500-2295",
+   "label": "Yellow Connector",
+   "position": [
+    69.775,
+    30.950000000000003,
+    -25.400000000000002
+   ],
+   "rotation": [
+    179.99999999999997,
+    -90,
+    0
+   ],
+   "mate": {
+    "target": "so-L1",
+    "sourceRef": "4",
+    "targetRef": "4",
+    "depth": 2.2,
+    "twist": 180,
+    "flip": false
+   }
+  },
+  {
+   "id": "yangle-L",
+   "sku": "228-2500-148",
+   "label": "Yellow Angle Beam",
+   "position": [
+    69.775,
+    27.774999999999984,
+    -38.0999968291376
+   ],
+   "rotation": [
+    179.99999999999991,
+    -45.000000000000014,
+    -3.2461146750243024e-14
+   ],
+   "mate": {
+    "target": "yconn-L",
+    "sourceRef": "1",
+    "targetRef": "22",
+    "depth": 2.2,
+    "twist": 135,
+    "flip": false
+   }
+  },
+  {
+   "id": "so-R1",
+   "sku": "228-2500-2268",
+   "label": "Yellow Standoff",
+   "position": [
+    -63.42499999999999,
+    37.30000000000001,
+    -12.700000000000012
+   ],
+   "rotation": [
+    -1.272221872585407e-14,
+    -1.272221872585407e-14,
+    90.00000000000003
+   ],
+   "mate": {
+    "target": "plate-R",
+    "sourceRef": "1",
+    "targetRef": "96",
+    "depth": 2.2,
+    "twist": 0,
+    "flip": false
+   }
+  },
+  {
+   "id": "so-R2",
+   "sku": "228-2500-2268",
+   "label": "Yellow Standoff",
+   "position": [
+    -63.42499999999999,
+    50.00000000000001,
+    -12.700000000000005
+   ],
+   "rotation": [
+    -1.272221872585407e-14,
+    -1.272221872585407e-14,
+    90.00000000000003
+   ],
+   "mate": {
+    "target": "plate-R",
+    "sourceRef": "1",
+    "targetRef": "97",
+    "depth": 2.2,
+    "twist": 0,
+    "flip": false
+   }
+  },
+  {
+   "id": "yconn-R",
+   "sku": "228-2500-2295",
+   "label": "Yellow Connector",
+   "position": [
+    -69.77499999999999,
+    30.95000000000001,
+    -12.70000000000001
+   ],
+   "rotation": [
+    180,
+    90,
+    0
+   ],
+   "mate": {
+    "target": "so-R1",
+    "sourceRef": "12",
+    "targetRef": "4",
+    "depth": 2.2,
+    "twist": 180,
+    "flip": false
+   }
+  },
+  {
+   "id": "yangle-R",
+   "sku": "228-2500-148",
+   "label": "Yellow Angle Beam",
+   "position": [
+    -69.77499999999999,
+    27.775000000000006,
+    -38.0999968291376
+   ],
+   "rotation": [
+    180,
+    44.99999999999999,
+    -180
+   ],
+   "mate": {
+    "target": "yconn-R",
+    "sourceRef": "2",
+    "targetRef": "36",
+    "depth": 2.2,
+    "twist": 225,
+    "flip": false
+   }
+  },
+  {
+   "id": "os-A",
+   "sku": "228-2500-2271",
+   "label": "Orange Standoff",
+   "position": [
+    12.625059999999973,
+    49.999999999999986,
+    76.19999999999997
+   ],
+   "rotation": [
+    -3.246114675024301e-14,
+    1.9876719732168804e-30,
+    -7.016709298534876e-15
+   ],
+   "mate": {
+    "target": "beam-front",
+    "sourceRef": "4",
+    "targetRef": "17",
+    "depth": 2.2,
+    "twist": 0,
+    "flip": false
+   }
+  },
+  {
+   "id": "os-B",
+   "sku": "228-2500-2271",
+   "label": "Orange Standoff",
+   "position": [
+    -12.774940000000026,
+    49.999999999999986,
+    76.19999999999997
+   ],
+   "rotation": [
+    -3.246114675024301e-14,
+    1.9876719732168804e-30,
+    -7.016709298534876e-15
+   ],
+   "mate": {
+    "target": "beam-front",
+    "sourceRef": "4",
+    "targetRef": "29",
+    "depth": 2.2,
+    "twist": 0,
+    "flip": false
+   }
+  },
+  {
+   "id": "pink-A",
+   "sku": "228-2500-006",
+   "label": "Pink Beam",
+   "position": [
+    12.625059999999962,
+    21.42499999999997,
+    38.09999999999999
+   ],
+   "rotation": [
+    179.99999999999997,
+    90,
+    0
+   ],
+   "mate": {
+    "target": "os-A",
+    "sourceRef": "13",
+    "targetRef": "1",
+    "depth": 2.2,
+    "twist": 270,
+    "flip": false
+   }
+  },
+  {
+   "id": "rp-1",
+   "sku": "228-2500-2260",
+   "label": "Red Pin",
+   "position": [
+    12.625059999999966,
+    24.599969999999978,
+    50.79999999999998
+   ],
+   "rotation": [
+    -3.246114675024301e-14,
+    0,
+    0
+   ],
+   "mate": {
+    "target": "pink-A",
+    "sourceRef": "1",
+    "targetRef": "9",
+    "depth": 4.7318,
+    "twist": 0,
+    "flip": false
+   }
+  },
+  {
+   "id": "rp-2",
+   "sku": "228-2500-2260",
+   "label": "Red Pin",
+   "position": [
+    12.62505999999997,
+    24.599969999999985,
+    63.499999999999986
+   ],
+   "rotation": [
+    -3.246114675024301e-14,
+    0,
+    0
+   ],
+   "mate": {
+    "target": "pink-A",
+    "sourceRef": "1",
+    "targetRef": "11",
+    "depth": 4.7318,
+    "twist": 0,
+    "flip": false
+   }
+  },
+  {
+   "id": "green-F",
+   "sku": "228-2500-018",
+   "label": "Green Large Beam",
+   "position": [
+    -0.07494000000003354,
+    27.77493999999998,
+    57.149999999999984
+   ],
+   "rotation": [
+    0,
+    0,
+    -180
+   ],
+   "mate": {
+    "target": "rp-1",
+    "sourceRef": "3",
+    "targetRef": "4",
+    "depth": 4.7318,
+    "twist": 0,
+    "flip": false
+   }
+  },
+  {
+   "id": "rp-3",
+   "sku": "228-2500-2260",
+   "label": "Red Pin",
+   "position": [
+    -12.774940000000033,
+    24.599969999999978,
+    50.79999999999998
+   ],
+   "rotation": [
+    0,
+    0,
+    -180
+   ],
+   "mate": {
+    "target": "green-F",
+    "sourceRef": "1",
+    "targetRef": "15",
+    "depth": 4.7318,
+    "twist": 0,
+    "flip": false
+   }
+  },
+  {
+   "id": "rp-4",
+   "sku": "228-2500-2260",
+   "label": "Red Pin",
+   "position": [
+    -12.774940000000033,
+    24.599969999999978,
+    63.499999999999986
+   ],
+   "rotation": [
+    0,
+    0,
+    -180
+   ],
+   "mate": {
+    "target": "green-F",
+    "sourceRef": "1",
+    "targetRef": "16",
+    "depth": 4.7318,
+    "twist": 0,
+    "flip": false
+   }
+  },
+  {
+   "id": "pink-B",
+   "sku": "228-2500-006",
+   "label": "Pink Beam",
+   "position": [
+    -12.774940000000036,
+    21.424999999999976,
+    38.09999999999998
+   ],
+   "rotation": [
+    180,
+    90,
+    0
+   ],
+   "mate": {
+    "target": "rp-3",
+    "sourceRef": "9",
+    "targetRef": "4",
+    "depth": 4.7318,
+    "twist": 270,
+    "flip": false
+   }
+  },
+  {
+   "id": "dpin-1",
+   "sku": "228-2500-2260",
+   "label": "Red Pin",
+   "position": [
+    -19.124940000000006,
+    81.74996999999999,
+    -31.750000000000025
+   ],
+   "rotation": [
+    -3.246114675024301e-14,
+    1.9876719732168804e-30,
+    -7.016709298534876e-15
+   ],
+   "mate": {
+    "target": "beam-rear",
+    "sourceRef": "1",
+    "targetRef": "34",
+    "depth": 4.7318,
+    "twist": 0,
+    "flip": false
+   }
+  },
+  {
+   "id": "dpin-2",
+   "sku": "228-2500-2260",
+   "label": "Red Pin",
+   "position": [
+    18.975059999999996,
+    81.74996999999999,
+    -31.750000000000018
+   ],
+   "rotation": [
+    -3.246114675024301e-14,
+    1.9876719732168804e-30,
+    -7.016709298534876e-15
+   ],
+   "mate": {
+    "target": "beam-rear",
+    "sourceRef": "1",
+    "targetRef": "16",
+    "depth": 4.7318,
+    "twist": 0,
+    "flip": false
+   }
+  },
+  {
+   "id": "gpin-1",
+   "sku": "228-2500-2261",
+   "label": "Green Pin",
+   "position": [
+    31.675059999999995,
+    88.09993999999999,
+    -31.75000000000003
+   ],
+   "rotation": [
+    -3.246114675024301e-14,
+    1.9876719732168804e-30,
+    -7.016709298534876e-15
+   ],
+   "mate": {
+    "target": "orange",
+    "sourceRef": "4",
+    "targetRef": "13",
+    "depth": 4.572,
+    "twist": 0,
+    "flip": false
+   }
+  },
+  {
+   "id": "gpin-2",
+   "sku": "228-2500-2261",
+   "label": "Green Pin",
+   "position": [
+    -31.824940000000005,
+    88.09993999999999,
+    -31.75000000000003
+   ],
+   "rotation": [
+    -3.246114675024301e-14,
+    1.9876719732168804e-30,
+    -7.016709298534876e-15
+   ],
+   "mate": {
+    "target": "orange",
+    "sourceRef": "4",
+    "targetRef": "1",
+    "depth": 4.572,
+    "twist": 0,
+    "flip": false
+   }
+  },
+  {
+   "id": "orange",
+   "sku": "228-2500-005",
+   "label": "Orange Beam",
+   "position": [
+    -0.07494000000000511,
+    84.92493999999999,
+    -31.750000000000025
+   ],
+   "rotation": [
+    -3.246114675024301e-14,
+    1.9876719732168804e-30,
+    -7.016709298534876e-15
+   ],
+   "mate": {
+    "target": "dpin-1",
+    "sourceRef": "3",
+    "targetRef": "4",
+    "depth": 4.7318,
+    "twist": 0,
+    "flip": false
+   }
+  },
+  {
+   "id": "opin-2",
+   "sku": "228-2500-2260",
+   "label": "Red Pin",
+   "position": [
+    -6.424940000000005,
+    88.09991,
+    -31.750000000000025
+   ],
+   "rotation": [
+    -3.246114675024301e-14,
+    1.9876719732168804e-30,
+    -7.016709298534876e-15
+   ],
+   "mate": {
+    "target": "orange",
+    "sourceRef": "1",
+    "targetRef": "6",
+    "depth": 4.7318,
+    "twist": 0,
+    "flip": false
+   }
+  },
+  {
+   "id": "opin-3",
+   "sku": "228-2500-2260",
+   "label": "Red Pin",
+   "position": [
+    6.2750599999999945,
+    88.09991,
+    -31.750000000000025
+   ],
+   "rotation": [
+    -3.246114675024301e-14,
+    1.9876719732168804e-30,
+    -7.016709298534876e-15
+   ],
+   "mate": {
+    "target": "orange",
+    "sourceRef": "1",
+    "targetRef": "10",
+    "depth": 4.7318,
+    "twist": 0,
+    "flip": false
+   }
+  },
+  {
+   "id": "angle-L",
+   "sku": "228-2500-150",
+   "label": "Orange Angle Beam",
+   "position": [
+    -6.424940000000004,
+    91.27488,
+    -31.75000000000003
+   ],
+   "rotation": [
+    179.99999999999994,
+    7.016709298534868e-15,
+    1.4033418597069755e-14
+   ],
+   "mate": {
+    "target": "opin-2",
+    "sourceRef": "10",
+    "targetRef": "4",
+    "depth": 4.7318,
+    "twist": 180,
+    "flip": false
+   }
+  },
+  {
+   "id": "angle-R",
+   "sku": "228-2500-150",
+   "label": "Orange Angle Beam",
+   "position": [
+    6.2750599999999945,
+    91.27488,
+    -31.750000000000025
+   ],
+   "rotation": [
+    179.99999999999997,
+    7.016709298534875e-15,
+    -180
+   ],
+   "mate": {
+    "target": "opin-3",
+    "sourceRef": "5",
+    "targetRef": "4",
+    "depth": 4.7318,
+    "twist": 180,
+    "flip": false
+   }
+  },
+  {
+   "id": "epin-1",
+   "sku": "228-2500-2260",
+   "label": "Red Pin",
+   "position": [
+    -6.4249399999999985,
+    88.09990999999997,
+    -69.85000000000002
+   ],
+   "rotation": [
+    0,
+    0,
+    -180
+   ],
+   "mate": {
+    "target": "angle-L",
+    "sourceRef": "1",
+    "targetRef": "13",
+    "depth": 4.7318,
+    "twist": 0,
+    "flip": false
+   }
+  },
+  {
+   "id": "epin-2",
+   "sku": "228-2500-2260",
+   "label": "Red Pin",
+   "position": [
+    6.27506,
+    88.09991,
+    -69.85000000000002
+   ],
+   "rotation": [
+    0,
+    0,
+    -180
+   ],
+   "mate": {
+    "target": "angle-R",
+    "sourceRef": "1",
+    "targetRef": "8",
+    "depth": 4.7318,
+    "twist": 0,
+    "flip": false
+   }
+  },
+  {
+   "id": "eye",
+   "sku": "269-6695-000",
+   "label": "Eye Sensor",
+   "position": [
+    -0.07493999999999801,
+    87.97493999999996,
+    -76.20000000000002
+   ],
+   "rotation": [
+    -90.00000000000003,
+    -7.0167092985348775e-15,
+    -7.0167092985348775e-15
+   ],
+   "mate": {
+    "target": "epin-1",
+    "sourceRef": "2",
+    "targetRef": "4",
+    "depth": 4.7318,
+    "twist": 0,
+    "flip": false
+   }
+  },
+  {
+   "id": "mpin-1",
+   "sku": "228-2500-2260",
+   "label": "Red Pin",
+   "position": [
+    -6.424940000000002,
+    88.09991,
+    -44.45000000000003
+   ],
+   "rotation": [
+    0,
+    0,
+    -180
+   ],
+   "mate": {
+    "target": "angle-L",
+    "sourceRef": "1",
+    "targetRef": "11",
+    "depth": 4.7318,
+    "twist": 0,
+    "flip": false
+   }
+  },
+  {
+   "id": "mpin-2",
+   "sku": "228-2500-2260",
+   "label": "Red Pin",
+   "position": [
+    6.275059999999996,
+    88.09991,
+    -44.450000000000024
+   ],
+   "rotation": [
+    0,
+    0,
+    -180
+   ],
+   "mate": {
+    "target": "angle-R",
+    "sourceRef": "1",
+    "targetRef": "6",
+    "depth": 4.7318,
+    "twist": 0,
+    "flip": false
+   }
+  },
+  {
+   "id": "magnet",
+   "sku": "269-6702-000",
+   "label": "Electromagnet",
+   "position": [
+    -0.07494000000000156,
+    84.92493999999999,
+    -50.80000000000003
+   ],
+   "rotation": [
+    -90.00000000000003,
+    -7.0167092985348775e-15,
+    -7.0167092985348775e-15
+   ],
+   "mate": {
+    "target": "mpin-1",
+    "sourceRef": "2",
+    "targetRef": "4",
+    "depth": 4.7318,
+    "twist": 0,
+    "flip": false
+   }
+  },
+  {
+   "id": "lpin-1",
+   "sku": "228-2500-2260",
+   "label": "Red Pin",
+   "position": [
+    -6.424939999999999,
+    94.44984999999997,
+    -57.150000000000034
+   ],
+   "rotation": [
+    -5.790558420195115e-14,
+    7.091388834567703e-30,
+    -1.4033418597069755e-14
+   ],
+   "mate": {
+    "target": "angle-L",
+    "sourceRef": "1",
+    "targetRef": "7",
+    "depth": 4.7318,
+    "twist": 0,
+    "flip": false
+   }
+  },
+  {
+   "id": "lpin-2",
+   "sku": "228-2500-2260",
+   "label": "Red Pin",
+   "position": [
+    6.275059999999996,
+    94.44984999999997,
+    -44.450000000000024
+   ],
+   "rotation": [
+    -3.246114675024301e-14,
+    1.9876719732168804e-30,
+    -7.016709298534876e-15
+   ],
+   "mate": {
+    "target": "angle-R",
+    "sourceRef": "1",
+    "targetRef": "11",
+    "depth": 4.7318,
+    "twist": 0,
+    "flip": false
+   }
+  },
+  {
+   "id": "led",
+   "sku": "269-6696-000",
+   "label": "LED Bumper",
+   "position": [
+    -0.07493999999999978,
+    100.67481999999998,
+    -50.80000000000004
+   ],
+   "rotation": [
+    89.99999999999993,
+    -1.4033418597069755e-14,
+    1.4033418597069741e-14
+   ],
+   "mate": {
+    "target": "lpin-1",
+    "sourceRef": "2",
+    "targetRef": "4",
+    "depth": 4.7318,
+    "twist": 0,
+    "flip": false
+   }
+  }
+ ],
+ "groups": []
+}

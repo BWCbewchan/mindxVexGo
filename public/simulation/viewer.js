@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
 import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 import {visibleBounds} from '../assembly/visible-bounds.js';
+import {electronicsHousing,isElectronicsCable} from '../assembly/electronics-housing.js';
 import {applyIQAppearance} from '../assembly/iq/color-profile.js';
 import {optimizeStaticModel} from '../assembly/render-model.js';
 import {createRenderScheduler} from '../assembly/render-scheduler.js';
@@ -43,8 +44,8 @@ async function cad(part,platform,refs,entry){
  if(!cache.has(key))cache.set(key,loader.loadAsync(root+'parts/'+encodeURIComponent(part.sku)+'/model.glb').then(g=>{
   g.scene.traverse(mesh=>{if(!mesh.isMesh)return;for(const material of Array.isArray(mesh.material)?mesh.material:[mesh.material]){if(material.isMeshStandardMaterial){material.metalness=0;material.roughness=.85;}}});
   if(platform==='vexgo'&&part.sku.startsWith('269-')&&part.sku!=='269-6685-000'){
-   const bodyBounds=new THREE.Box3();for(const ref of refs[part.sku]||[])bodyBounds.expandByPoint(new THREE.Vector3().fromArray(ref.point).multiplyScalar(.001));bodyBounds.expandByScalar(.008);if(part.sku==='269-6695-000')bodyBounds.set(new THREE.Vector3(-.013,-.013,-.0195),new THREE.Vector3(.013,.013,.001));g.scene.updateMatrixWorld(true);
-   g.scene.traverse(mesh=>{if(!mesh.isMesh)return;const bounds=new THREE.Box3().setFromObject(mesh),size=bounds.getSize(new THREE.Vector3()),dims=[size.x,size.y,size.z].sort((a,b)=>a-b);mesh.userData.cable=(part.sku==='269-6686-000'&&bounds.max.y>.039)||(dims[2]>.08&&dims[1]<.012)||(!bodyBounds.isEmpty()&&!bodyBounds.intersectsBox(bounds));if(mesh.userData.cable)mesh.visible=false;});
+   const bodyBounds=electronicsHousing(THREE,part.sku,refs);g.scene.updateMatrixWorld(true);
+   g.scene.traverse(mesh=>{if(!mesh.isMesh)return;mesh.userData.cable=isElectronicsCable(THREE,part.sku,refs,new THREE.Box3().setFromObject(mesh),bodyBounds);if(mesh.userData.cable)mesh.visible=false;});
   }
   if(platform==='vexiq')applyIQAppearance(g.scene,entry);let hasCable=false;g.scene.traverse(mesh=>{if(mesh.userData.cable)hasCable=true;});return hasCable?g.scene:optimizeStaticModel(g.scene);
  }));return (await cache.get(key)).clone(true);

@@ -7,7 +7,19 @@ export function createQuickTargetMarker(api){
  const halo=new THREE.Group(),ring=new THREE.Mesh(new THREE.RingGeometry(.0022,.0035,48),new THREE.MeshBasicMaterial({color:0xb04bff,side:THREE.DoubleSide,depthTest:false,depthWrite:false,transparent:true,opacity:.95})),fill=new THREE.Mesh(new THREE.CircleGeometry(.0022,48),new THREE.MeshBasicMaterial({color:0xb04bff,side:THREE.DoubleSide,depthTest:false,depthWrite:false,transparent:true,opacity:.35}));
  ring.renderOrder=51;fill.renderOrder=50;halo.add(fill,ring);halo.visible=false;api.scene.add(halo);
  let target=null;
- function clear(){target=null;halo.visible=false;marker.hidden=true;delete marker.dataset.partId;delete marker.dataset.refId;}
+ const secondary=[];
+ function clearSecondary(){for(const dot of secondary)api.scene.remove(dot);secondary.length=0;}
+ function showContacts(part,refs){
+  clearSecondary();
+  for(const ref of refs){
+   if(ref.id===target?.ref.id)continue;
+   const socket=worldReference(part,ref),dot=halo.clone();
+   dot.position.copy(socket.point.multiplyScalar(.001)).addScaledVector(socket.normal,.00015);
+   dot.quaternion.setFromUnitVectors(new THREE.Vector3(0,0,1),socket.normal);
+   dot.visible=true;api.scene.add(dot);secondary.push(dot);
+  }
+ }
+ function clear(){clearSecondary();target=null;halo.visible=false;marker.hidden=true;delete marker.dataset.partId;delete marker.dataset.refId;}
  function update(){
   if(!target)return;
   const part=api.project().parts.find(part=>part.id===target.id);
@@ -18,8 +30,8 @@ export function createQuickTargetMarker(api){
   marker.hidden=!halo.visible||projected.z>1||projected.z< -1||Math.abs(projected.x)>1.05||Math.abs(projected.y)>1.05;
   marker.style.left=(rect.left-parent.left+(projected.x+1)*rect.width/2)+'px';marker.style.top=(rect.top-parent.top+(1-projected.y)*rect.height/2)+'px';
  }
- function show(part,ref){target={id:part.id,ref};marker.dataset.partId=part.id;marker.dataset.refId=ref.id;label.textContent=ref.kind==='hole'?'Lỗ đang lắp':'Chốt đang lắp';marker.setAttribute('aria-label',ref.kind==='hole'?'Selected hole for pin insertion':'Selected pin for attachment');update();}
- return {show,clear,update};
+ function show(part,ref){clearSecondary();target={id:part.id,ref};marker.dataset.partId=part.id;marker.dataset.refId=ref.id;label.textContent=ref.kind==='hole'?'Lỗ đang lắp':'Chốt đang lắp';marker.setAttribute('aria-label',ref.kind==='hole'?'Selected hole for pin insertion':'Selected pin for attachment');update();}
+ return {show,clear,update,showContacts,clearSecondary};
 }
 
 // Partition overlapping hit boxes at the halfway line between their centres.

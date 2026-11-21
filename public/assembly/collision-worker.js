@@ -49,8 +49,14 @@ self.onmessage=async e=>{
  try{
   Object.assign(references,referenceData);
   if(kind==='recover'){
-   const {recoverSeatedAssemblyLinks}=await import('./repair-links.js?v=physical-snap-112'),locked=new Set(lockedIds);
-   const report=recoverSeatedAssemblyLinks(parts,references,{isLocked:p=>locked.has(p.id)});self.postMessage({id,report});return;
+   const {recoverSeatedAssemblyLinks,repairAssemblyLinks}=await import('./repair-links.js?v=auto-center-123'),locked=new Set(lockedIds);
+   const isLocked=p=>locked.has(p.id);
+   const report=recoverSeatedAssemblyLinks(parts,references,{isLocked});
+   if(report.parts.filter(p=>p.mate).length<parts.length-1){
+    const aligned=repairAssemblyLinks(report.parts,references,{isLocked,maxDistance:2,respectReleased:true,alignCenters:true});
+    report.parts=aligned.parts;report.recovered+=aligned.recovered;report.removed+=aligned.removed;report.moved=aligned.moved;
+   }
+   self.postMessage({id,report});return;
   }
   for(const g of geometryData){const geometry=new THREE.BufferGeometry();geometry.setAttribute('position',new THREE.BufferAttribute(g.position,3));if(g.index)geometry.setIndex(new THREE.BufferAttribute(g.index,1));geometries.set(g.id,geometry);}
   const objects=new Map();

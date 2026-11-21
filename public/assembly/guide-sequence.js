@@ -164,6 +164,17 @@ export function generateStudentGuide(parts, {
   if (parts.length>1 && parts.some(part => motor(part) || collar(part))) {
     const candidates = parts.filter(part => coreIds.has(part.id) && !collar(part));
     const start = candidates.sort((a,b) => Number(motor(b))-Number(motor(a)) || adjacency.get(b.id).length-adjacency.get(a.id).length || a.id.localeCompare(b.id))[0];
+    // Pins seated in the starting motor must be installed before its cover plate.
+    const mountingPins=new Map();
+    if(motor(start)){
+     const physical=parts.filter(p=>(references[p.sku]||[]).every(r=>Array.isArray(r.point)&&Array.isArray(r.normal)));
+     if(physical.includes(start))for(const match of seatedPinMatches(start,physical,references)){
+      const pin=byId.get(match.target);
+      if(!pin||!['228-2500-2258','228-2500-2260','228-2500-2261','228-2500-328'].includes(pin.sku)||adjacency.get(start.id).includes(pin.id))continue;
+      adjacency.get(start.id).push(pin.id);
+      mountingPins.set(pin.id,{target:start.id,sourceRef:match.targetRef,targetRef:match.sourceRef,depth:match.depth});
+     }
+    }
     children.clear();for(const part of parts)children.set(part.id,[]);
     const visited = new Set([start.id]), queue=[start];delete start.mate;
     while(queue.length){
@@ -173,8 +184,9 @@ export function generateStudentGuide(parts, {
         const child=byId.get(id);
         // The parent's mate may already have been re-rooted: keep original joint records.
         const record=edges.find(([a,b])=>(a===parent.id&&b===id)||(a===id&&b===parent.id));
-        const saved=originalMates.get(record[1]);
-        child.mate=record[0]===parent.id?{...saved}:{...saved,target:parent.id,sourceRef:saved.targetRef,targetRef:saved.sourceRef};
+        const mounting=parent===start&&mountingPins.get(id);
+        const saved=record&&originalMates.get(record[1]);
+        child.mate=mounting|| (record[0]===parent.id?{...saved}:{...saved,target:parent.id,sourceRef:saved.targetRef,targetRef:saved.sourceRef});
         const sourceRef=references[child.sku].find(ref=>ref.id===child.mate.sourceRef),targetRef=references[parent.sku].find(ref=>ref.id===child.mate.targetRef);
         children.get(parent.id).push({part:child,sourceRef,targetRef});visited.add(id);queue.push(child);
       }

@@ -1,0 +1,208 @@
+[
+ {
+  "step": "Step 1",
+  "added": [
+   "plate-L (Dark Gray Plate)",
+   "pin-L1 (Red Pin)",
+   "pin-L2 (Red Pin)",
+   "pin-L3 (Red Pin)",
+   "pin-L4 (Red Pin)",
+   "green-L (Green Large Beam)",
+   "pink-L (Pink Pin)"
+  ],
+  "errors": [],
+  "warnings": [
+   "green-L: twist 270°, align gap 0 mm"
+  ]
+ },
+ {
+  "step": "Step 2",
+  "added": [
+   "yellow-L (Yellow Connector)"
+  ],
+  "errors": [],
+  "warnings": [
+   "yellow-L: twist 270°, align gap 0 mm"
+  ]
+ },
+ {
+  "step": "Step 3-4",
+  "added": [
+   "pin-ML1 (Red Pin)",
+   "pin-ML2 (Red Pin)",
+   "pin-ML3 (Red Pin)",
+   "pin-ML4 (Red Pin)",
+   "motor-L (Motor)",
+   "shaft-L (Red Shaft)"
+  ],
+  "errors": [],
+  "warnings": [
+   "motor-L: twist 180°, align gap 0 mm"
+  ]
+ },
+ {
+  "step": "Step 5",
+  "added": [
+   "pin-J1 (Red Pin)",
+   "pin-J2 (Red Pin)"
+  ],
+  "errors": [],
+  "warnings": [
+   "motor-L (Motor) x pin-J1 (Red Pin): Detected mesh penetration",
+   "motor-L (Motor) x pin-J2 (Red Pin): Detected mesh penetration"
+  ]
+ },
+ {
+  "step": "Step 6-8",
+  "added": [
+   "pin-BL1 (Red Pin)",
+   "pin-BL2 (Red Pin)",
+   "blue-L (Blue Connector)",
+   "beam-rear (Dark Gray Large Beam)",
+   "blue-R (Blue Connector)",
+   "pin-BR1 (Red Pin)",
+   "pin-BR2 (Red Pin)"
+  ],
+  "errors": [],
+  "warnings": [
+   "blue-L: twist 180°, align gap 0 mm",
+   "beam-rear: twist 0°, align gap 0 mm",
+   "blue-R: twist 90°, align gap 0 mm",
+   "motor-L (Motor) x pin-J1 (Red Pin): Detected mesh penetration",
+   "motor-L (Motor) x pin-J2 (Red Pin): Detected mesh penetration"
+  ]
+ },
+ {
+  "step": "Step 13-17",
+  "added": [
+   "motor-R (Motor)",
+   "pin-MR1 (Red Pin)",
+   "pin-MR2 (Red Pin)",
+   "pin-MR3 (Red Pin)",
+   "pin-MR4 (Red Pin)",
+   "plate-R (Dark Gray Plate)",
+   "shaft-R (Red Shaft)"
+  ],
+  "errors": [],
+  "warnings": [
+   "motor-R: twist 0°, align gap 0 mm",
+   "plate-R: twist 270°, align gap 0 mm",
+   "motor-L (Motor) x pin-J1 (Red Pin): Detected mesh penetration",
+   "motor-L (Motor) x pin-J2 (Red Pin): Detected mesh penetration",
+   "pin-J1 (Red Pin) x motor-R (Motor): Detected mesh penetration",
+   "pin-J2 (Red Pin) x motor-R (Motor): Detected mesh penetration"
+  ]
+ },
+ {
+  "step": "Step 9-12",
+  "added": [
+   "pin-R1 (Red Pin)",
+   "pin-R2 (Red Pin)",
+   "pin-R3 (Red Pin)",
+   "pin-R4 (Red Pin)",
+   "green-R (Green Large Beam)",
+   "pink-R (Pink Pin)",
+   "yellow-R (Yellow Connector)"
+  ],
+  "errors": [],
+  "warnings": [
+   "green-R: twist 90°, align gap 0 mm",
+   "yellow-R: twist 90°, align gap 0 mm",
+   "motor-L (Motor) x pin-J1 (Red Pin): Detected mesh penetration",
+   "motor-L (Motor) x pin-J2 (Red Pin): Detected mesh penetration",
+   "pin-J1 (Red Pin) x motor-R (Motor): Detected mesh penetration",
+   "pin-J2 (Red Pin) x motor-R (Motor): Detected mesh penetration"
+  ]
+ },
+ {
+  "step": "Step 15-18",
+  "added": [
+   "axle-front (Plain Shaft)",
+   "wheel-front (Blue Wheel)",
+   "pulley (Orange Pulley)",
+   "collar-1 (Shaft Collar)",
+   "collar-2 (Shaft Collar)"
+  ],
+  "errors": [],
+  "warnings": [
+   "motor-L (Motor) x pin-J1 (Red Pin): Detected mesh penetration",
+   "motor-L (Motor) x pin-J2 (Red Pin): Detected mesh penetration",
+   "pin-J1 (Red Pin) x motor-R (Motor): Detected mesh penetration",
+   "pin-J2 (Red Pin) x motor-R (Motor): Detected mesh penetration",
+   "axle-front (Plain Shaft) x collar-1 (Shaft Collar): Detected mesh penetration",
+   "axle-front (Plain Shaft) x collar-2 (Shaft Collar): Detected mesh penetration",
+   "wheel-front (Blue Wheel) x pulley (Orange Pulley): Detected mesh penetration"
+  ]
+ },
+ {
+  "step": "Step 19-20",
+  "added": [
+   "wheel-L (Gray Wheel)",
+   "wheel-R (Gray Wheel)"
+  ],
+  "errors": [],
+  "warnings": [
+   "motor-L (Motor) x pin-J1 (Red Pin): Detected mesh penetration",
+   "motor-L (Motor) x pin-J2 (Red Pin): Detected mesh penetration",
+   "pin-J1 (Red Pin) x motor-R (Motor): Detected mesh penetration",
+   "pin-J2 (Red Pin) x motor-R (Motor): Detected mesh penetration",
+   "axle-front (Plain Shaft) x collar-1 (Shaft Collar): Detected mesh penetration",
+   "axle-front (Plain Shaft) x collar-2 (Shaft Collar): Detected mesh penetration",
+   "wheel-front (Blue Wheel) x pulley (Orange Pulley): Detected mesh penetration"
+  ]
+ },
+ {
+  "step": "Step 22",
+  "added": [
+   "pin-T1 (Red Pin)",
+   "pin-T2 (Red Pin)",
+   "pin-T3 (Red Pin)",
+   "pin-T4 (Red Pin)",
+   "battery (Battery)"
+  ],
+  "errors": [],
+  "warnings": [
+   "battery: twist 90°, align gap 0 mm",
+   "motor-L (Motor) x pin-J1 (Red Pin): Detected mesh penetration",
+   "motor-L (Motor) x pin-J2 (Red Pin): Detected mesh penetration",
+   "pin-J1 (Red Pin) x motor-R (Motor): Detected mesh penetration",
+   "pin-J2 (Red Pin) x motor-R (Motor): Detected mesh penetration",
+   "axle-front (Plain Shaft) x collar-1 (Shaft Collar): Detected mesh penetration",
+   "axle-front (Plain Shaft) x collar-2 (Shaft Collar): Detected mesh penetration",
+   "wheel-front (Blue Wheel) x pulley (Orange Pulley): Detected mesh penetration",
+   "pin-T1 (Red Pin) x battery (Battery): Detected mesh penetration",
+   "pin-T2 (Red Pin) x battery (Battery): Detected mesh penetration",
+   "pin-T3 (Red Pin) x battery (Battery): Detected mesh penetration",
+   "pin-T4 (Red Pin) x battery (Battery): Detected mesh penetration"
+  ]
+ },
+ {
+  "step": "Step 23",
+  "added": [
+   "pin-U1 (Red Pin)",
+   "pin-U2 (Red Pin)",
+   "pin-U3 (Red Pin)",
+   "pin-U4 (Red Pin)",
+   "brain (Brain)"
+  ],
+  "errors": [],
+  "warnings": [
+   "brain: twist 0°, align gap 0 mm",
+   "motor-L (Motor) x pin-J1 (Red Pin): Detected mesh penetration",
+   "motor-L (Motor) x pin-J2 (Red Pin): Detected mesh penetration",
+   "pin-J1 (Red Pin) x motor-R (Motor): Detected mesh penetration",
+   "pin-J2 (Red Pin) x motor-R (Motor): Detected mesh penetration",
+   "axle-front (Plain Shaft) x collar-1 (Shaft Collar): Detected mesh penetration",
+   "axle-front (Plain Shaft) x collar-2 (Shaft Collar): Detected mesh penetration",
+   "wheel-front (Blue Wheel) x pulley (Orange Pulley): Detected mesh penetration",
+   "pin-T1 (Red Pin) x battery (Battery): Detected mesh penetration",
+   "pin-T2 (Red Pin) x battery (Battery): Detected mesh penetration",
+   "pin-T3 (Red Pin) x battery (Battery): Detected mesh penetration",
+   "pin-T4 (Red Pin) x battery (Battery): Detected mesh penetration",
+   "battery (Battery) x pin-U1 (Red Pin): Detected mesh penetration",
+   "battery (Battery) x pin-U2 (Red Pin): Detected mesh penetration",
+   "battery (Battery) x pin-U3 (Red Pin): Detected mesh penetration",
+   "battery (Battery) x pin-U4 (Red Pin): Detected mesh penetration"
+  ]
+ }
+]

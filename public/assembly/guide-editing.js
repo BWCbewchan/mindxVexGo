@@ -1,4 +1,4 @@
-export const stepKey=step=>step.added.map(p=>p.id).sort().join('|');
+export const stepKey=step=>(step.groupPhase==='join'?'join:':'')+step.added.map(p=>p.id).sort().join('|');
 import {guidePage} from './guide-page-settings.js';
 import {guideCamera} from './guide-camera.js';
 import {isGuideElectronic} from './guide-priority.js';
@@ -175,6 +175,26 @@ function unresolvedSteps(steps,byId,paths){
 
 // Rebuild snapshots from actions. Never reorder previously captured cumulative images.
 function prepareGuideOrder(guide,order,paths,references){
+ if(guide.groupPhases){
+  // Each preparation has its own local frame; the join pages carry assembly frames.
+  if(!order.length)return {...guide,editError:null};
+  const rank=new Map(order.map((key,i)=>[key,i]));
+  const keys=new Set(guide.steps.map(stepKey));
+  if(order.some(key=>!keys.has(key)))return {...guide,editError:null};
+  const steps=[];
+  for(let i=0;i<guide.steps.length;){
+   const first=guide.steps[i];
+   if(first.groupPhase!=='prepare'){steps.push(first);i++;continue;}
+   let end=i+1;
+   while(end<guide.steps.length&&guide.steps[end].groupPhase==='prepare'&&guide.steps[end].groupId===first.groupId)end++;
+   const batch=guide.steps.slice(i,end);
+   const sorted=[...batch].sort((a,b)=>(rank.get(stepKey(a))??Infinity)-(rank.get(stepKey(b))??Infinity));
+   if(sorted.every((step,n)=>step===batch[n]))steps.push(...batch);
+   else steps.push(...prepareGuideOrder({steps:batch},sorted.map(stepKey),paths,references).steps);
+   i=end;
+  }
+  return {...guide,steps,editError:null};
+ }
  if(guide.orderMode==='groups'){
   paths=null;
   const keys=new Set(guide.steps.map(stepKey));

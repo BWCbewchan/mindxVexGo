@@ -1,0 +1,705 @@
+diff --git a/src/App.tsx b/src/App.tsx
+index d5874ab..f28b3c6 100644
+--- a/src/App.tsx
++++ b/src/App.tsx
+@@ -29,6 +29,7 @@ import { AppDisplayControls } from './AppDisplayControls'
+ import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+ import * as Blockly from 'blockly'
+ import { createStudioWorkspace } from './blockly/createStudioWorkspace'
++import { setVexKit, vexKit } from './blockly/workspaceRobot'
+ import { SimulatorScene, type SimulatorHandle } from './SimulatorScene'
+ import { registerRobotBlocks, setRobotDefinition } from './blockly/robotBlocks'
+ import { compileWorkspace } from './runtime/BlocklyCompiler'
+@@ -88,6 +89,7 @@ function App() {
+   const workspaceRef = useRef<Blockly.WorkspaceSvg | null>(null)
+   const { current: execution, update: updateExecution } = useExecutionIndicator(workspaceRef)
+   const [blockCount, setBlockCount] = useState(0)
++  const [kit, setKit] = useState(vexKit)
+   const simulatorRef = useRef<SimulatorHandle>(null)
+   const [sandboxLighting, setSandboxLighting] = useState(100)
+   const controlSandbox = useCallback((command: SandboxControl) => {
+@@ -411,7 +413,7 @@ function App() {
+   const controls = <div className="command-controls"><button className="run-button" type="button" onClick={runProgram} disabled={!!runBlockedReason(runAvailability)}>▶ Run</button><button type="button" onClick={() => programApplication.stop()} disabled={!isRunning}>■ Stop</button><button type="button" onClick={() => programApplication.reset()} disabled={designing}>↺ Reset</button></div>
+   return <main data-mobile-tab={mobileTab} className={`app-shell studio-shell ${designing ? 'is-designing' : ''} layout-${layout} ${blocksPanelOpen ? 'blocks-open' : ''} ${simulatorOpen ? 'simulator-open' : ''}`}>
+     <header className="studio-header"><StudentProfile name={studentName} onNameChange={setStudentName} roomId={queryRoomId} roomName={roomName} roomCode={/^\d{6}$/.test(queryParams.get('code') ?? '') ? queryParams.get('code')! : undefined} connected={hubConnected} progress={game.snapshot?.progress} catalog={gameServices.catalog} challenges={CHALLENGE_MAPS.filter(map => map.rules.completion === 'checkpoints' || map.rules.completion === 'objectives' || map.practice)} workshopDisabled={isRunning || designing || game.busy || !!game.pending} onWorkshop={() => setWorkshopOpen(true)} /><div className="studio-actions"><AppDisplayControls /><button className="studio-map-library-button" aria-label="Sân chơi & nhiệm vụ" title="Sân chơi & nhiệm vụ" aria-haspopup="dialog" aria-expanded={playgroundOpen} onClick={() => setPlaygroundOpen(true)}>▦<span> Sân chơi</span></button><div className="tablet-history"><button aria-label="Hoàn tác chương trình" disabled={isRunning || designing} onClick={() => workspaceRef.current?.undo(false)}>↶</button><button aria-label="Làm lại chương trình" disabled={isRunning || designing} onClick={() => workspaceRef.current?.undo(true)}>↷</button></div><details className="robot-menu"><summary>Robot ▾</summary><div><label className="robot-template-picker"><span>Mẫu robot</span><select aria-label="Chọn mẫu robot" value="" disabled={mapId !== 'sandbox' || !!robotChangeBlockedReason(configurationAvailability, 'template')} onChange={event => { const id = event.target.value; if (!id) return; studioConfiguration.selectTemplate(id); event.currentTarget.closest('details')?.removeAttribute('open') }}><option value="" disabled>Chọn mẫu robot…</option>{ROBOT_TEMPLATES.map(item => <option key={item.id} value={item.id}>{item.label}</option>)}</select><small>Chọn để áp dụng ngay</small></label><button type="button" disabled={isRunning || designing || game.busy || !!game.pending} onClick={() => setWorkshopOpen(true)}>Xưởng Robot</button><button type="button" disabled={mapId !== 'sandbox' || isRunning || designing} onClick={event => { event.currentTarget.closest('details')?.removeAttribute('open'); programApplication.reset(); setDesigning(true) }}>Thiết kế Robot</button></div></details><button type="button" disabled={designing} aria-pressed={simulatorOpen} onClick={() => setSimulatorOpen(!simulatorOpen)}>▣ Simulator</button>{controls}</div></header>
+-    <div className="studio-subbar"><strong>{layout === 'single' && mobileTab === 'simulator' ? '▣ Simulator' : '⌘ Code'}</strong><span className="code-block-count">{blockCount} khối lệnh</span><span className="code-context">Robot · {definition.modules.length} cảm biến · {definition.motors?.length ?? (definition.drive === 'single-motor' ? 1 : 2)} động cơ</span><div className="studio-history"><button onClick={() => workspaceRef.current?.undo(false)} disabled={isRunning || designing} aria-label="Undo chương trình">↶ Undo</button><button onClick={() => workspaceRef.current?.undo(true)} disabled={isRunning || designing} aria-label="Redo chương trình">↷ Redo</button></div></div>
++    <div className="studio-subbar"><strong>{layout === 'single' && mobileTab === 'simulator' ? '▣ Simulator' : '⌘ Code'}</strong><span className="code-block-count">{blockCount} khối lệnh</span><label className="code-kit">Bộ lệnh <select aria-label="Bộ lệnh VEXcode" value={kit} disabled={isRunning || designing} onChange={event => { const next = event.target.value === 'iq' ? 'iq' : 'go'; setVexKit(next); setKit(next); synchronizeRobotWorkspace(workspaceRef.current, definition) }}><option value="go">VEX GO</option><option value="iq">VEX IQ</option></select></label><span className="code-context">Robot · {definition.modules.length} cảm biến · {definition.motors?.length ?? (definition.drive === 'single-motor' ? 1 : 2)} động cơ</span><div className="studio-history"><button onClick={() => workspaceRef.current?.undo(false)} disabled={isRunning || designing} aria-label="Undo chương trình">↶ Undo</button><button onClick={() => workspaceRef.current?.undo(true)} disabled={isRunning || designing} aria-label="Redo chương trình">↷ Redo</button></div></div>
+     {!designing && <ExecutionStatus execution={execution} onLocate={() => {
+       const id = execution.blockId
+       if (!id) return
+diff --git a/src/CodeStudio.css b/src/CodeStudio.css
+index cc8157c..810bf44 100644
+--- a/src/CodeStudio.css
++++ b/src/CodeStudio.css
+@@ -305,3 +305,7 @@
+ .practice-lesson-steps .practice-step-branches>li{display:block;padding:0;border:0;border-radius:0;background:none}
+ .practice-step-branches strong{font-size:11px;line-height:1.5}
+ .practice-step-branches span{display:block;margin-top:2px;font-size:11px;line-height:1.5;color:#526780}
++
++.code-kit{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:#334155;margin-left:8px}
++.code-kit select{min-height:32px;border:1px solid #cbd5e1;border-radius:8px;padding:0 8px;font:inherit;background:#fff;color:#0f172a}
++.code-kit select:focus-visible{outline:2px solid #2563eb;outline-offset:2px}
+diff --git a/src/assembly/validateProgramSensors.ts b/src/assembly/validateProgramSensors.ts
+index 4b0184b..4b131d2 100644
+--- a/src/assembly/validateProgramSensors.ts
++++ b/src/assembly/validateProgramSensors.ts
+@@ -24,7 +24,13 @@ export function validateProgramSensors(instructions: readonly Instruction[], def
+       case 'distance': requireSensor('distance', expression.sensorId ?? 'distance-front'); return
+       case 'eyeBrightness': requireSensor('eye', expression.sensorId ?? 'eye-front'); return
+       case 'number':
+-      case 'variable': return
++      case 'variable':
++      case 'timer': return
++      case 'heading':
++      case 'rotation': requireTurn(); return
++      case 'random': visitNumber(expression.from); visitNumber(expression.to); return
++      case 'mathFunction': visitNumber(expression.value); return
++      case 'remainder': visitNumber(expression.left); visitNumber(expression.right); return
+       case 'arithmetic': visitNumber(expression.left); visitNumber(expression.right); return
+       default: return unreachable(expression)
+     }
+@@ -47,7 +53,8 @@ export function validateProgramSensors(instructions: readonly Instruction[], def
+       case 'comparison': visitNumber(expression.left); visitNumber(expression.right); return
+       case 'logic': visitBoolean(expression.left); visitBoolean(expression.right); return
+       case 'not': visitBoolean(expression.value); return
+-      case 'boolean': return
++      case 'boolean':
++      case 'driveDone': return
+       case 'magnetHolding':
+         if (!resolveElectromagnets(definition).some(magnet => !expression.deviceId || magnet.id === expression.deviceId)) throw new Error('Nam châm điện đã tháo hoặc ID đã thay đổi. Chọn lại nam châm trong khối lệnh trước Run.')
+         return
+@@ -76,6 +83,13 @@ export function validateProgramSensors(instructions: readonly Instruction[], def
+       case 'changeVariable': visitNumber(instruction.value); break
+       case 'repeat': visitNumber(instruction.times); break
+       case 'jumpIfFalse': visitBoolean(instruction.condition); break
++      case 'turnToHeading': case 'setHeading': requireTurn(); visitNumber(instruction.degrees); break
++      case 'print':
++        if (!definition.screens?.some(screen => screen.id === instruction.screenId)) throw new Error('Màn hình đã tháo. Lắp lại màn hình trong Thiết kế Robot.')
++        if (instruction.value) visitNumber(instruction.value)
++        break
++      case 'resetTimer':
++      case 'stopProject':
+       case 'yield':
+       case 'startDrive':
+       case 'stopDrive':
+diff --git a/src/blockly/deviceBlockCatalog.ts b/src/blockly/deviceBlockCatalog.ts
+index ea828e7..691ec84 100644
+--- a/src/blockly/deviceBlockCatalog.ts
++++ b/src/blockly/deviceBlockCatalog.ts
+@@ -3,6 +3,7 @@ import type { RobotDefinition } from '../simulation/RobotDefinition'
+ import { programmableMotors } from '../../shared/robot-definition.mjs'
+ import { canTurn, hasDevice, matchesDevice } from '../simulation/DeviceCapabilities'
+ import { DEVICE_REQUIREMENTS, type DeviceRequirement } from '../simulation/DeviceCapabilities'
++import { VEX_DRIVE_BLOCKS, VEX_TURN_BLOCKS } from './workspaceRobot'
+ 
+ /** Blockly adapter metadata; domain capability rules do not depend on block IDs. */
+ export const DEVICE_BLOCKS = {
+@@ -39,6 +40,16 @@ export const BLOCK_REQUIREMENTS: Readonly<Record<string, BlockRequirement>> = {
+   ...Object.fromEntries(SCREEN_BLOCK_TYPES.map(type => [type, { kind: 'screen' }])),
+   ...Object.fromEntries(MAGNET_BLOCK_TYPES.map(type => [type, { kind: 'magnet' }])),
+   ...Object.fromEntries(Object.entries(DEVICE_BLOCKS).map(([type, device]) => [type, { kind: 'sensor', device }])),
++  ...Object.fromEntries(VEX_DRIVE_BLOCKS.map(type => [type, { kind: 'drive' }])),
++  ...Object.fromEntries([...VEX_TURN_BLOCKS, 'vex_drive_heading'].map(type => [type, { kind: 'turn' }])),
++  vex_print: { kind: 'screen' }, vex_clear_screen: { kind: 'screen' }, vex_energize_magnet: { kind: 'magnet' },
++  vex_distance: { kind: 'sensor', device: DEVICE_REQUIREMENTS.distance }, vex_distance_found: { kind: 'sensor', device: DEVICE_REQUIREMENTS.distance },
++  vex_bumper_pressed: { kind: 'sensor', device: DEVICE_REQUIREMENTS.bumper },
++  vex_iq_gyro_calibrate: { kind: 'turn' }, vex_iq_gyro_heading: { kind: 'turn' }, vex_iq_gyro_rotation: { kind: 'turn' },
++  vex_iq_optical_found: { kind: 'sensor', device: DEVICE_REQUIREMENTS.eye }, vex_iq_optical_color: { kind: 'sensor', device: DEVICE_REQUIREMENTS.eye }, vex_iq_optical_brightness: { kind: 'sensor', device: DEVICE_REQUIREMENTS.eye },
++  vex_iq_distance_found: { kind: 'sensor', device: DEVICE_REQUIREMENTS.distance }, vex_iq_distance_object: { kind: 'sensor', device: DEVICE_REQUIREMENTS.distance },
++  vex_iq_touchled_pressed: { kind: 'sensor', device: DEVICE_REQUIREMENTS.ledBumper }, vex_iq_touchled_set: { kind: 'sensor', device: DEVICE_REQUIREMENTS.ledBumper },
++  vex_eye_found: { kind: 'sensor', device: DEVICE_REQUIREMENTS.eye }, vex_eye_detects: { kind: 'sensor', device: DEVICE_REQUIREMENTS.eye }, vex_eye_brightness: { kind: 'sensor', device: DEVICE_REQUIREMENTS.eye },
+ } as Record<string, BlockRequirement>
+ 
+ /** Toolbox and existing cards consult the same hardware rules; labels do not define capabilities. */
+diff --git a/src/blockly/robotBlocks.ts b/src/blockly/robotBlocks.ts
+index 9e52ac6..17d1c90 100644
+--- a/src/blockly/robotBlocks.ts
++++ b/src/blockly/robotBlocks.ts
+@@ -1,4 +1,6 @@
+ import { registerMyBlocks } from './MyBlocks'
++import { registerVexBlocks } from './vexBlocks'
++import { rememberWorkspaceRobot } from './workspaceRobot'
+ import { MotorTargetDropdown } from './MotorTargetDropdown'
+ import { driveLimits } from '../simulation/DriveLimits'
+ import { programmableMotors, SCREEN_ICONS } from '../../shared/robot-definition.mjs'
+@@ -11,6 +13,7 @@ import { DEVICE_BLOCKS, LED_BLOCK_TYPES, MOTOR_BLOCK_TYPES, DRIVE_BLOCK_TYPES, T
+ const workspaceDefinitions = new WeakMap<Blockly.Workspace, RobotDefinition>()
+ export function setRobotDefinition(workspace: Blockly.Workspace, definition: RobotDefinition) {
+   workspaceDefinitions.set(workspace, definition)
++  rememberWorkspaceRobot(workspace, definition)
+   setRobotModules(workspace, definition.modules)
+   for (const block of workspace.getAllBlocks(false)) refreshDriveVelocityLabel(block, definition)
+ }
+@@ -55,6 +58,7 @@ import { resolveElectromagnets } from '../../shared/robot-devices.mjs'
+ 
+ export function registerRobotBlocks() {
+   registerMyBlocks()
++  registerVexBlocks()
+   Blockly.Blocks.robot_magnet_set = {
+     init(this: Blockly.Block) {
+       const block = this
+diff --git a/src/blockly/robotToolbox.ts b/src/blockly/robotToolbox.ts
+index 6fb4546..bdf43cc 100644
+--- a/src/blockly/robotToolbox.ts
++++ b/src/blockly/robotToolbox.ts
+@@ -3,46 +3,76 @@ import type * as Blockly from 'blockly'
+ import { scratchPalette } from './scratchPalette'
+ import type { RobotDefinition } from '../simulation/RobotDefinition'
+ import { DEVICE_REQUIREMENTS, hasDevice, canTurn } from '../simulation/DeviceCapabilities'
+-import { sensorBlockTypes, LED_BLOCK_TYPES, MOTOR_BLOCK_TYPES, SCREEN_BLOCK_TYPES, MAGNET_BLOCK_TYPES, blockUnavailableReason } from './deviceBlockCatalog'
++import { MOTOR_BLOCK_TYPES, blockUnavailableReason } from './deviceBlockCatalog'
+ import { resolveElectromagnets } from '../../shared/robot-devices.mjs'
++import { vexKit } from './workspaceRobot'
+ 
+-const numberShadow = (value: number) => ({ shadow: { type: 'math_number', fields: { NUM: value } } })
++// VEXcode GO / IQ command set (same wording as mindX VR Lab). Original robot_* blocks stay
++// registered so saved projects and demos still open and run.
++const num = (value: number) => ({ shadow: { type: 'math_number', fields: { NUM: value } } })
++const text = (value: string) => ({ shadow: { type: 'vex_text', fields: { TEXT: value } } })
++const block = (type: string, inputs?: Record<string, unknown>) => (inputs ? { kind: 'block', type, inputs } : { kind: 'block', type }) as Blockly.utils.toolbox.ToolboxItemInfo
++type Category = { kind: 'category'; id: string; name: string; colour: string; contents?: Blockly.utils.toolbox.ToolboxItemInfo[]; custom?: string }
++const category = (id: string, name: string, colour: string, contents: Blockly.utils.toolbox.ToolboxItemInfo[]): Category => ({ kind: 'category', id, name, colour, contents })
+ 
+-type RobotCategory = { kind: string; id?: string; name: string; colour?: string; categorystyle?: string; contents?: Blockly.utils.toolbox.ToolboxItemInfo[]; custom?: string }
+-const toolbox: { kind: string; contents: RobotCategory[] } = { kind: 'categoryToolbox', contents: [
+-  { kind: 'category', id: 'start', name: 'Bắt đầu', colour: scratchPalette.event.colourPrimary, contents: [{ kind: 'block', type: 'robot_when_started' }, { kind: 'block', type: 'robot_wait' }] },
+-  { kind: 'category', id: 'motion', name: 'Di chuyển', colour: scratchPalette.motion.colourPrimary, contents: ['robot_drive', 'robot_turn', 'robot_drive_continuous', 'robot_turn_continuous', 'robot_stop_drive', 'robot_set_drive_velocity', 'robot_set_turn_velocity'].map(type => ({ kind: 'block', type })) },
+-  { kind: 'category', id: 'sensors', name: 'Cảm biến', colour: scratchPalette.sensing.colourPrimary, contents: sensorBlockTypes(false).map(type => ({ kind: 'block', type })) },
+-  { kind: 'category', id: 'led', name: 'LED Bumper', colour: scratchPalette.ledBumper.colourPrimary, contents: LED_BLOCK_TYPES.map(type => ({ kind: 'block', type })) },
+-  { kind: 'category', name: 'Điều kiện', categorystyle: 'logic_category', contents: [{ kind: 'block', type: 'robot_wait_until' }, { kind: 'block', type: 'controls_if' }] },
+-  { kind: 'category', name: 'Vòng lặp', categorystyle: 'loop_category', contents: [{ kind: 'block', type: 'controls_repeat_ext', inputs: { TIMES: numberShadow(10) } }, { kind: 'block', type: 'robot_forever' }] },
+-  { kind: 'category', name: 'Biến số', categorystyle: 'variable_category', custom: 'VARIABLE' },
+-  { kind: 'category', id: 'myblocks', name: 'My Blocks', colour: scratchPalette.more.colourPrimary, custom: MY_BLOCKS_CATEGORY },
+-  { kind: 'category', name: 'Toán tử', categorystyle: 'math_category', contents: [
+-    { kind: 'block', type: 'math_number', fields: { NUM: 0 } },
+-    { kind: 'block', type: 'math_arithmetic', inputs: { A: numberShadow(1), B: numberShadow(1) } },
+-    { kind: 'block', type: 'logic_compare', inputs: { A: numberShadow(0), B: numberShadow(0) } },
+-    ...['logic_operation', 'logic_negate', 'logic_boolean'].map(type => ({ kind: 'block', type })),
+-  ] },
+-] } satisfies Blockly.utils.toolbox.ToolboxDefinition
++const DRIVETRAIN = [
++  block('vex_drive'),
++  block('vex_drive_for', { DISTANCE: num(200) }),
++  block('vex_turn'),
++  block('vex_turn_for', { DEGREES: num(90) }),
++  block('vex_turn_to_heading', { HEADING: num(90) }),
++  block('vex_stop_driving'),
++  block('vex_set_drive_velocity', { PERCENT: num(50) }),
++  block('vex_set_turn_velocity', { PERCENT: num(50) }),
++  block('vex_set_drive_heading', { HEADING: num(0) }),
++]
++const CONTROL = [
++  block('vex_wait', { SECONDS: num(1) }),
++  block('vex_wait_until'),
++  block('vex_repeat', { TIMES: num(10) }),
++  block('vex_forever'),
++  block('vex_repeat_until'),
++  block('vex_while'),
++  { kind: 'block', type: 'controls_if' } as Blockly.utils.toolbox.ToolboxItemInfo,
++  { kind: 'block', type: 'controls_if', extraState: { hasElse: true } } as Blockly.utils.toolbox.ToolboxItemInfo,
++  block('vex_stop_project'),
++]
++const OPERATORS = [
++  block('math_arithmetic', { A: num(0), B: num(0) }),
++  block('vex_random', { FROM: num(1), TO: num(10) }),
++  block('logic_compare', { A: num(0), B: num(50) }),
++  block('logic_operation'), block('logic_negate'), block('logic_boolean'),
++  block('vex_round', { NUM: num(0) }),
++  block('vex_remainder', { A: num(0), B: num(0) }),
++  block('vex_math_function', { NUM: num(0) }),
++]
+ 
+ export function toolboxForRobot(definition: RobotDefinition, includeMyBlocks = true): Blockly.utils.toolbox.ToolboxDefinition {
+-  const singleMotor = !canTurn(definition)
+-  const contents = toolbox.contents.filter(category => (includeMyBlocks || !category.custom) && (category.id !== 'led' || hasDevice(definition, DEVICE_REQUIREMENTS.ledBumper))).flatMap<(typeof toolbox.contents)[number]>(category => {
+-    if (category.kind !== 'category') return [category]
+-    if (category.id === 'motion') {
+-      const groups: (typeof toolbox.contents)[number][] = []
+-      if (!blockUnavailableReason('robot_drive', definition)) groups.push(category)
+-      if (!blockUnavailableReason('robot_spin_motor', definition)) groups.push({ kind: 'category', id: singleMotor ? 'motion' : 'motors', name: 'Chuyển động', colour: scratchPalette.motion.colourPrimary, contents: MOTOR_BLOCK_TYPES.map(type => ({ kind: 'block', type })) })
+-      return groups
+-    }
+-    if (category.id === 'sensors') {
+-      const types = sensorBlockTypes(singleMotor).filter(type => !blockUnavailableReason(type, definition))
+-      return types.length ? [{ ...category, contents: types.map(type => ({ kind: 'block', type })) }] : []
+-    }
+-    return [category]
+-  })
+-  if (definition.screens?.length) contents.push({kind:'category',id:'screen',name:'Màn hình',colour:scratchPalette.looks.colourPrimary,contents:SCREEN_BLOCK_TYPES.map(type=>({kind:'block',type}))})
+-  if (resolveElectromagnets(definition).length) contents.push({kind:'category',id:'magnet',name:'Nam châm điện',colour:scratchPalette.magnet.colourPrimary,contents:MAGNET_BLOCK_TYPES.map(type=>({kind:'block',type}))})
+-  return { kind: 'categoryToolbox', contents }
++  const iq = vexKit() === 'iq'
++  const turns = canTurn(definition)
++  const has = (requirement: (typeof DEVICE_REQUIREMENTS)[keyof typeof DEVICE_REQUIREMENTS]) => hasDevice(definition, requirement)
++  const magnets = resolveElectromagnets(definition).length > 0
++  const contents: Category[] = []
++  contents.push(category('start', 'Events', scratchPalette.event.colourPrimary, [block('robot_when_started')]))
++  if (turns) contents.push(category('motion', 'Drivetrain', scratchPalette.motion.colourPrimary, DRIVETRAIN))
++  if (!blockUnavailableReason('robot_spin_motor', definition)) contents.push(category(turns ? 'motors' : 'motion', 'Motion', scratchPalette.motion.colourSecondary, MOTOR_BLOCK_TYPES.map(type => block(type))))
++  // VEX GO has the Electromagnet; VEX IQ has none.
++  if (!iq && magnets) contents.push(category('magnet', 'Magnet', scratchPalette.magnet.colourPrimary, [block('vex_energize_magnet')]))
++  const looks: Blockly.utils.toolbox.ToolboxItemInfo[] = []
++  if (definition.screens?.length) looks.push(block('vex_print', { TEXT: text('VEXcode') }), block('vex_clear_screen'), block('robot_screen_icon'))
++  if (has(DEVICE_REQUIREMENTS.ledBumper)) looks.push(block(iq ? 'vex_iq_touchled_set' : 'robot_set_led_bumper'))
++  if (looks.length) contents.push(category('screen', 'Looks', scratchPalette.looks.colourPrimary, looks))
++  const sensing = [block('vex_reset_timer'), block('vex_timer')]
++  if (turns) sensing.push(...(iq ? [block('vex_iq_gyro_calibrate'), block('vex_iq_gyro_heading'), block('vex_iq_gyro_rotation')] : [block('vex_drive_heading')]), block('vex_drive_is_done'))
++  if (has(DEVICE_REQUIREMENTS.bumper)) sensing.push(block('vex_bumper_pressed'))
++  if (has(DEVICE_REQUIREMENTS.ledBumper)) sensing.push(block(iq ? 'vex_iq_touchled_pressed' : 'robot_led_bumper_pressed'))
++  if (has(DEVICE_REQUIREMENTS.eye)) sensing.push(...(iq ? ['vex_iq_optical_found', 'vex_iq_optical_color', 'vex_iq_optical_brightness'] : ['vex_eye_found', 'vex_eye_detects', 'vex_eye_brightness']).map(type => block(type)))
++  if (has(DEVICE_REQUIREMENTS.distance)) sensing.push(...(iq ? ['vex_iq_distance_found', 'vex_iq_distance_object'] : ['vex_distance_found', 'vex_distance']).map(type => block(type)))
++  if (!iq && magnets) sensing.push(block('robot_magnet_is_holding'))
++  contents.push(category('sensors', 'Sensing', scratchPalette.sensing.colourPrimary, sensing))
++  contents.push(category('control', 'Control', scratchPalette.control.colourPrimary, CONTROL))
++  contents.push(category('operators', 'Operators', scratchPalette.operators.colourPrimary, OPERATORS))
++  contents.push({ kind: 'category', id: 'variables', name: 'Variables', colour: scratchPalette.data.colourPrimary, custom: 'VARIABLE' })
++  if (includeMyBlocks) contents.push({ kind: 'category', id: 'myblocks', name: 'My Blocks', colour: scratchPalette.more.colourPrimary, custom: MY_BLOCKS_CATEGORY })
++  return { kind: 'categoryToolbox', contents } as Blockly.utils.toolbox.ToolboxDefinition
+ }
+diff --git a/src/blockly/vexBlocks.ts b/src/blockly/vexBlocks.ts
+new file mode 100644
+index 0000000..4660322
+--- /dev/null
++++ b/src/blockly/vexBlocks.ts
+@@ -0,0 +1,91 @@
++import * as Blockly from 'blockly'
++import { VEX_DRIVE_BLOCKS, VEX_TURN_BLOCKS } from './workspaceRobot'
++
++/**
++ * VEXcode-style command set (VEXcode GO / IQ wording, as used by mindX VR Lab).
++ * Numbers are value inputs so variables and reporters can be dropped in, like VEXcode.
++ * Compiled by BlocklyCompiler to the same Instruction IR as the original RoboCode blocks.
++ */
++export const VEX_DRIVETRAIN_BLOCKS = [...VEX_DRIVE_BLOCKS, ...VEX_TURN_BLOCKS] as const
++export const VEX_CONTROL_BLOCKS = ['vex_wait', 'vex_wait_until', 'vex_repeat', 'vex_forever', 'vex_repeat_until', 'vex_while', 'vex_stop_project'] as const
++export const VEX_SENSING_BLOCKS = ['vex_reset_timer', 'vex_timer', 'vex_drive_heading', 'vex_drive_is_done'] as const
++export const VEX_DEVICE_SENSING_BLOCKS = ['vex_distance', 'vex_distance_found', 'vex_bumper_pressed', 'vex_eye_found', 'vex_eye_detects', 'vex_eye_brightness'] as const
++export const VEX_OPERATOR_BLOCKS = ['vex_random', 'vex_round', 'vex_remainder', 'vex_math_function'] as const
++export const VEX_LOOKS_BLOCKS = ['vex_print', 'vex_clear_screen'] as const
++export const VEX_MAGNET_BLOCKS = ['vex_energize_magnet'] as const
++/** VEX IQ device wording (Gyro/Inertial, Optical, Distance, Touch LED) mapped onto the simulated devices. */
++export const VEX_IQ_BLOCKS = ['vex_iq_gyro_calibrate', 'vex_iq_gyro_heading', 'vex_iq_gyro_rotation', 'vex_iq_optical_found', 'vex_iq_optical_color', 'vex_iq_optical_brightness', 'vex_iq_distance_found', 'vex_iq_distance_object', 'vex_iq_touchled_pressed', 'vex_iq_touchled_set'] as const
++
++const num = (name: string) => ({ type: 'input_value', name, check: 'Number' })
++const stack = { previousStatement: null, nextStatement: null }
++
++export function registerVexBlocks() {
++  if (Blockly.Blocks.vex_drive) return
++  Blockly.defineBlocksWithJsonArray([
++    // Drivetrain
++    { type: 'vex_drive', message0: 'drive %1', args0: [{ type: 'field_dropdown', name: 'DIRECTION', options: [['forward', 'FORWARD'], ['reverse', 'REVERSE']] }], ...stack, tooltip: 'Xe chạy liên tục tiến/lùi rồi chuyển sang lệnh kế tiếp. Dùng stop driving để dừng.' },
++    { type: 'vex_drive_for', message0: 'drive %1 for %2 %3 ▶', args0: [{ type: 'field_dropdown', name: 'DIRECTION', options: [['forward', 'FORWARD'], ['reverse', 'REVERSE']] }, num('DISTANCE'), { type: 'field_dropdown', name: 'UNIT', options: [['mm', 'MM'], ['inches', 'INCHES']] }], inputsInline: true, ...stack, tooltip: 'Đi một quãng đường rồi mới chạy lệnh kế tiếp.' },
++    { type: 'vex_turn', message0: 'turn %1', args0: [{ type: 'field_dropdown', name: 'DIRECTION', options: [['right', 'RIGHT'], ['left', 'LEFT']] }], ...stack, tooltip: 'Xe quay tại chỗ liên tục rồi chuyển sang lệnh kế tiếp.' },
++    { type: 'vex_turn_for', message0: 'turn %1 for %2 degrees ▶', args0: [{ type: 'field_dropdown', name: 'DIRECTION', options: [['right', 'RIGHT'], ['left', 'LEFT']] }, num('DEGREES')], inputsInline: true, ...stack, tooltip: 'Quay một góc rồi mới chạy lệnh kế tiếp.' },
++    { type: 'vex_turn_to_heading', message0: 'turn to heading %1 degrees ▶', args0: [num('HEADING')], inputsInline: true, ...stack, tooltip: 'Quay tới hướng tuyệt đối (0° là hướng lúc bắt đầu, tăng theo chiều kim đồng hồ), chọn đường quay ngắn nhất.' },
++    { type: 'vex_stop_driving', message0: 'stop driving', ...stack, tooltip: 'Dừng xe. Chương trình tiếp tục với lệnh kế tiếp.' },
++    { type: 'vex_set_drive_velocity', message0: 'set drive velocity to %1 %', args0: [num('PERCENT')], inputsInline: true, ...stack, tooltip: 'Tốc độ đi 0–100%. Mỗi lần Run bắt đầu ở 50%.' },
++    { type: 'vex_set_turn_velocity', message0: 'set turn velocity to %1 %', args0: [num('PERCENT')], inputsInline: true, ...stack, tooltip: 'Tốc độ quay 0–100%. Mỗi lần Run bắt đầu ở 50%.' },
++    { type: 'vex_set_drive_heading', message0: 'set drive heading to %1 degrees', args0: [num('HEADING')], inputsInline: true, ...stack, tooltip: 'Đặt hướng hiện tại của xe thành giá trị này (không làm xe quay).' },
++    // Looks
++    { type: 'vex_print', message0: 'print %1 on Brain', args0: [{ type: 'input_value', name: 'TEXT' }], inputsInline: true, ...stack, tooltip: 'Hiện chữ hoặc số lên màn hình đầu tiên của robot.' },
++    { type: 'vex_clear_screen', message0: 'clear all rows on Brain', ...stack, tooltip: 'Xóa màn hình của robot.' },
++    { type: 'vex_text', message0: '%1', args0: [{ type: 'field_input', name: 'TEXT', text: 'VEXcode' }], output: 'String', tooltip: 'Chữ' },
++    // Magnet (VEX GO)
++    { type: 'vex_energize_magnet', message0: 'energize magnet to %1', args0: [{ type: 'field_dropdown', name: 'MODE', options: [['boost', 'BOOST'], ['drop', 'DROP']] }], ...stack, tooltip: 'boost: hút và giữ vật kim loại; drop: thả vật.' },
++    // Control
++    { type: 'vex_wait', message0: 'wait %1 seconds', args0: [num('SECONDS')], inputsInline: true, ...stack },
++    { type: 'vex_wait_until', message0: 'wait until %1', args0: [{ type: 'input_value', name: 'CONDITION', check: 'Boolean' }], inputsInline: true, ...stack },
++    { type: 'vex_repeat', message0: 'repeat %1', args0: [num('TIMES')], message1: '%1', args1: [{ type: 'input_statement', name: 'DO' }], inputsInline: true, ...stack },
++    { type: 'vex_forever', message0: 'forever', message1: '%1', args1: [{ type: 'input_statement', name: 'DO' }], previousStatement: null, tooltip: 'Lặp mãi cho đến khi bấm Stop.' },
++    { type: 'vex_repeat_until', message0: 'repeat until %1', args0: [{ type: 'input_value', name: 'CONDITION', check: 'Boolean' }], message1: '%1', args1: [{ type: 'input_statement', name: 'DO' }], inputsInline: true, ...stack },
++    { type: 'vex_while', message0: 'while %1', args0: [{ type: 'input_value', name: 'CONDITION', check: 'Boolean' }], message1: '%1', args1: [{ type: 'input_statement', name: 'DO' }], inputsInline: true, ...stack },
++    { type: 'vex_stop_project', message0: 'stop project', previousStatement: null, tooltip: 'Dừng toàn bộ chương trình.' },
++    // Sensing (always available)
++    { type: 'vex_reset_timer', message0: 'reset timer', ...stack },
++    { type: 'vex_timer', message0: 'timer in seconds', output: 'Number' },
++    { type: 'vex_drive_heading', message0: 'drive heading in degrees', output: 'Number', tooltip: 'Hướng của xe 0–359,9°, tăng theo chiều kim đồng hồ.' },
++    { type: 'vex_drive_is_done', message0: 'drive is done?', output: 'Boolean', tooltip: 'Đúng khi xe không còn chạy liên tục.' },
++    // Sensing (needs devices)
++    { type: 'vex_distance', message0: 'distance in mm', output: 'Number', tooltip: 'Khoảng cách tới vật phía trước; 2000 mm khi không thấy vật.' },
++    { type: 'vex_distance_found', message0: 'distance found an object?', output: 'Boolean' },
++    { type: 'vex_bumper_pressed', message0: 'bumper %1 pressed?', args0: [{ type: 'field_dropdown', name: 'SIDE', options: [['either', 'ANY'], ['left', 'LEFT'], ['right', 'RIGHT']] }], output: 'Boolean' },
++    { type: 'vex_eye_found', message0: 'eye found an object?', output: 'Boolean' },
++    { type: 'vex_eye_detects', message0: 'eye detects %1 ?', args0: [{ type: 'field_dropdown', name: 'COLOR', options: [['red', 'red'], ['green', 'green'], ['blue', 'blue'], ['yellow', 'yellow'], ['black', 'black'], ['white', 'white']] }], output: 'Boolean' },
++    { type: 'vex_eye_brightness', message0: 'eye brightness in %', output: 'Number' },
++    // VEX IQ devices
++    { type: 'vex_iq_gyro_calibrate', message0: 'calibrate Gyro', ...stack, tooltip: 'Đặt hướng Gyro về 0° tại vị trí hiện tại.' },
++    { type: 'vex_iq_gyro_heading', message0: 'Gyro heading in degrees', output: 'Number', tooltip: '0–359,9°, tăng theo chiều kim đồng hồ.' },
++    { type: 'vex_iq_gyro_rotation', message0: 'Gyro rotation in degrees', output: 'Number', tooltip: 'Tổng góc đã quay, không quay vòng về 0 (quay phải là số dương).' },
++    { type: 'vex_iq_optical_found', message0: 'Optical found an object?', output: 'Boolean' },
++    { type: 'vex_iq_optical_color', message0: 'Optical detects %1 ?', args0: [{ type: 'field_dropdown', name: 'COLOR', options: [['red', 'red'], ['green', 'green'], ['blue', 'blue'], ['yellow', 'yellow'], ['black', 'black'], ['white', 'white']] }], output: 'Boolean' },
++    { type: 'vex_iq_optical_brightness', message0: 'Optical brightness in %', output: 'Number' },
++    { type: 'vex_iq_distance_found', message0: 'Distance found an object?', output: 'Boolean' },
++    { type: 'vex_iq_distance_object', message0: 'Distance object distance in mm', output: 'Number' },
++    { type: 'vex_iq_touchled_pressed', message0: 'TouchLED pressed?', output: 'Boolean' },
++    { type: 'vex_iq_touchled_set', message0: 'set TouchLED color to %1', args0: [{ type: 'field_dropdown', name: 'COLOR', options: [['green', 'GREEN'], ['red', 'RED'], ['none', 'OFF']] }], ...stack, tooltip: 'Bản mô phỏng có màu xanh lá, đỏ và tắt.' },
++    // Operators
++    { type: 'vex_random', message0: 'pick random %1 to %2', args0: [num('FROM'), num('TO')], inputsInline: true, output: 'Number' },
++    { type: 'vex_round', message0: 'round %1', args0: [num('NUM')], inputsInline: true, output: 'Number' },
++    { type: 'vex_remainder', message0: 'remainder of %1 / %2', args0: [num('A'), num('B')], inputsInline: true, output: 'Number' },
++    { type: 'vex_math_function', message0: '%1 of %2', args0: [{ type: 'field_dropdown', name: 'OP', options: [['abs', 'ABS'], ['floor', 'FLOOR'], ['ceiling', 'CEILING'], ['sqrt', 'SQRT'], ['sin', 'SIN'], ['cos', 'COS'], ['tan', 'TAN']] }, num('NUM')], inputsInline: true, output: 'Number' },
++  ])
++  const styles: [string, readonly string[]][] = [
++    ['motion', VEX_DRIVETRAIN_BLOCKS],
++    ['looks', [...VEX_LOOKS_BLOCKS, 'vex_text']],
++    ['magnet', VEX_MAGNET_BLOCKS],
++    ['control', VEX_CONTROL_BLOCKS],
++    ['sensing', [...VEX_SENSING_BLOCKS, ...VEX_DEVICE_SENSING_BLOCKS, ...VEX_IQ_BLOCKS]],
++    ['operators', VEX_OPERATOR_BLOCKS],
++  ]
++  for (const [style, types] of styles) for (const type of types) {
++    const definition = Blockly.Blocks[type]
++    const init = definition.init
++    definition.init = function (this: Blockly.Block) { init.call(this); this.setStyle(style) }
++  }
++}
+diff --git a/src/blockly/workspaceRobot.ts b/src/blockly/workspaceRobot.ts
+new file mode 100644
+index 0000000..83d3b82
+--- /dev/null
++++ b/src/blockly/workspaceRobot.ts
+@@ -0,0 +1,18 @@
++import type { RobotDefinition } from '../simulation/RobotDefinition'
++
++// Blockly-free record of the robot each workspace programs, so the compiler can resolve
++// default devices for VEXcode blocks without importing Blockly at runtime.
++const robots = new WeakMap<object, RobotDefinition>()
++export function rememberWorkspaceRobot(workspace: object, definition: RobotDefinition) { robots.set(workspace, definition) }
++export function workspaceRobot(workspace: object): RobotDefinition | undefined { return robots.get(workspace) }
++
++export type VexKit = 'go' | 'iq'
++const KIT_KEY = 'robocode.vexKit'
++let kit: VexKit = (() => { try { return globalThis.localStorage?.getItem(KIT_KEY) === 'iq' ? 'iq' : 'go' } catch { return 'go' } })()
++/** Which VEXcode command set the toolbox shows: VEX GO or VEX IQ wording. Saved per browser. */
++export function vexKit(): VexKit { return kit }
++export function setVexKit(next: VexKit) { kit = next; try { globalThis.localStorage?.setItem(KIT_KEY, next) } catch { /* storage blocked: keep for this session */ } }
++
++/** VEXcode block types grouped by the drivetrain capability they need. */
++export const VEX_DRIVE_BLOCKS = ['vex_drive', 'vex_drive_for', 'vex_stop_driving', 'vex_set_drive_velocity'] as const
++export const VEX_TURN_BLOCKS = ['vex_turn', 'vex_turn_for', 'vex_turn_to_heading', 'vex_set_turn_velocity', 'vex_set_drive_heading'] as const
+diff --git a/src/runtime/BlocklyCompiler.ts b/src/runtime/BlocklyCompiler.ts
+index 415341e..b815e42 100644
+--- a/src/runtime/BlocklyCompiler.ts
++++ b/src/runtime/BlocklyCompiler.ts
+@@ -4,6 +4,9 @@ import type * as Blockly from 'blockly'
+ import type { BooleanExpression, Instruction, NumberExpression } from './Instruction'
+ import type { SensorColor } from '../simulation/Sensors'
+ import { SINGLE_MOTOR_WHEEL_CIRCUMFERENCE_MM } from '../simulation/SingleMotorGeometry'
++import { workspaceRobot as robotDefinitionForWorkspace } from '../blockly/workspaceRobot'
++import { DEVICE_REQUIREMENTS, matchesDevice, type DeviceRequirement } from '../simulation/DeviceCapabilities'
++import { resolveElectromagnets } from '../../shared/robot-devices.mjs'
+ 
+ const numberFromField = (block: Blockly.Block, fieldName: string) => {
+   const value = Number(block.getFieldValue(fieldName))
+@@ -12,6 +15,11 @@ const numberFromField = (block: Blockly.Block, fieldName: string) => {
+ 
+ type CompileContext = { definitions: Map<string, Blockly.Block>; calls: string[]; expandedBlocks: number }
+ 
++/** First module on the robot that satisfies a device requirement (VEXcode blocks have no port menu). */
++function firstModuleId(block: Blockly.Block, requirement: DeviceRequirement): string | undefined {
++  return robotDefinitionForWorkspace(block.workspace)?.modules.find(module => matchesDevice(module, requirement))?.id
++}
++
+ /** Compiles Blockly's structured statement tree to a compact, jump-based program. */
+ export function compileWorkspace(workspace: Blockly.Workspace): Instruction[] {
+   // Reconcile synchronously too: Blockly create/change events may still be queued when Run is clicked.
+@@ -94,6 +102,62 @@ function compileBlock(block: Blockly.Block, instructions: Instruction[], context
+     case 'math_change': instructions.push({ kind: 'changeVariable', blockId: block.id, variableId: String(block.getFieldValue('VAR')), value: valueFromInput(block, 'DELTA') }); return
+     case 'controls_repeat_ext': compileRepeat(block, instructions, context); return
+     case 'controls_if': compileIf(block, instructions, context); return
++    case 'vex_drive': instructions.push({ kind: 'startDrive', blockId: block.id, direction: block.getFieldValue('DIRECTION') === 'REVERSE' ? -1 : 1 }); return
++    case 'vex_drive_for': instructions.push({ kind: 'drive', blockId: block.id, distanceMillimeters: signedValue(block, 'DISTANCE', 'DIRECTION', 'REVERSE', block.getFieldValue('UNIT') === 'INCHES' ? 25.4 : 1) }); return
++    case 'vex_turn': instructions.push({ kind: 'startTurn', blockId: block.id, direction: block.getFieldValue('DIRECTION') === 'LEFT' ? 1 : -1 }); return
++    case 'vex_turn_for': instructions.push({ kind: 'turn', blockId: block.id, degrees: signedValue(block, 'DEGREES', 'DIRECTION', 'RIGHT') }); return
++    case 'vex_turn_to_heading': instructions.push({ kind: 'turnToHeading', blockId: block.id, degrees: valueFromInput(block, 'HEADING') }); return
++    case 'vex_stop_driving': instructions.push({ kind: 'stopDrive', blockId: block.id }); return
++    case 'vex_set_drive_velocity': instructions.push({ kind: 'setDriveVelocity', blockId: block.id, percent: valueFromInput(block, 'PERCENT') }); return
++    case 'vex_set_turn_velocity': instructions.push({ kind: 'setTurnVelocity', blockId: block.id, percent: valueFromInput(block, 'PERCENT') }); return
++    case 'vex_set_drive_heading': instructions.push({ kind: 'setHeading', blockId: block.id, degrees: valueFromInput(block, 'HEADING') }); return
++    case 'vex_reset_timer': instructions.push({ kind: 'resetTimer', blockId: block.id }); return
++    case 'vex_iq_gyro_calibrate': instructions.push({ kind: 'setHeading', blockId: block.id, degrees: { kind: 'number', value: 0 } }); return
++    case 'vex_iq_touchled_set': {
++      const sensor = firstModuleId(block, DEVICE_REQUIREMENTS.ledBumper)
++      if (!sensor) throw new Error('Robot chưa lắp Touch LED (LED Bumper). Lắp trong Thiết kế Robot.')
++      instructions.push({ kind: 'setLedBumper', blockId: block.id, sensorId: sensor, color: block.getFieldValue('COLOR') as 'RED' | 'GREEN' | 'OFF' }); return
++    }
++    case 'vex_stop_project': instructions.push({ kind: 'stopProject', blockId: block.id }); return
++    case 'vex_wait': instructions.push({ kind: 'wait', blockId: block.id, durationSeconds: valueFromInput(block, 'SECONDS') }); return
++    case 'vex_wait_until': {
++      const start = instructions.length
++      instructions.push({ kind: 'jumpIfFalse', blockId: block.id, condition: booleanFromInput(block, 'CONDITION'), target: start + 2 })
++      instructions.push({ kind: 'jump', blockId: block.id, target: start + 4 })
++      instructions.push({ kind: 'yield', blockId: block.id })
++      instructions.push({ kind: 'jump', blockId: block.id, target: start })
++      return
++    }
++    case 'vex_repeat': compileRepeat(block, instructions, context); return
++    case 'vex_repeat_until': case 'vex_while': {
++      const start = instructions.length, until = block.type === 'vex_repeat_until'
++      const test: Extract<Instruction, { kind: 'jumpIfFalse' }> = { kind: 'jumpIfFalse', blockId: block.id, condition: booleanFromInput(block, 'CONDITION'), target: -1 }
++      instructions.push(test)
++      const exit: Extract<Instruction, { kind: 'jump' }> = { kind: 'jump', blockId: block.id, target: -1 }
++      if (until) { instructions.push(exit); test.target = instructions.length }
++      compileChain(block.getInputTargetBlock('DO'), instructions, context)
++      instructions.push({ kind: 'yield', blockId: block.id })
++      instructions.push({ kind: 'jump', blockId: block.id, target: start })
++      if (until) exit.target = instructions.length
++      else test.target = instructions.length
++      return
++    }
++    case 'vex_print': case 'vex_clear_screen': {
++      const screenId = robotDefinitionForWorkspace(block.workspace)?.screens?.[0]?.id
++      if (!screenId) throw new Error('Robot chưa lắp màn hình nên chưa dùng được lệnh print. Lắp màn hình trong Thiết kế Robot.')
++      if (block.type === 'vex_clear_screen') { instructions.push({ kind: 'screen', blockId: block.id, screenId, content: { mode: 'blank' } }); return }
++      const target = block.getInputTargetBlock('TEXT')
++      if (!target || target.type === 'vex_text' || target.type === 'text') instructions.push({ kind: 'print', blockId: block.id, screenId, text: String(target?.getFieldValue('TEXT') ?? '') })
++      else instructions.push({ kind: 'print', blockId: block.id, screenId, value: numberExpression(target) })
++      return
++    }
++    case 'vex_energize_magnet': {
++      const definition = robotDefinitionForWorkspace(block.workspace)
++      const magnet = definition ? resolveElectromagnets(definition)[0] : undefined
++      if (!magnet) throw new Error('Robot chưa lắp nam châm điện. Lắp nam châm trong Thiết kế Robot.')
++      instructions.push({ kind: 'magnet', blockId: block.id, deviceId: magnet.id, enabled: block.getFieldValue('MODE') === 'BOOST' }); return
++    }
++    case 'vex_forever':
+     case 'robot_forever': {
+       const loopStart = instructions.length
+       compileChain(block.getInputTargetBlock('DO'), instructions, context)
+@@ -143,6 +207,17 @@ function numberExpression(block: Blockly.Block | null): NumberExpression {
+     case 'robot_eye_brightness': return { kind: 'eyeBrightness', sensorId: sensorId(block) }
+     case 'robot_distance': return { kind: 'distance', sensorId: sensorId(block) }
+     case 'math_number': return { kind: 'number', value: numberFromField(block, 'NUM') }
++    case 'vex_timer': return { kind: 'timer' }
++    case 'vex_drive_heading': case 'vex_iq_gyro_heading': return { kind: 'heading' }
++    case 'vex_iq_gyro_rotation': return { kind: 'rotation' }
++    case 'vex_iq_optical_brightness': return { kind: 'eyeBrightness', sensorId: firstModuleId(block, DEVICE_REQUIREMENTS.eye) }
++    case 'vex_iq_distance_object': return { kind: 'distance', sensorId: firstModuleId(block, DEVICE_REQUIREMENTS.distance) }
++    case 'vex_random': return { kind: 'random', from: valueFromInput(block, 'FROM'), to: valueFromInput(block, 'TO') }
++    case 'vex_round': return { kind: 'mathFunction', operator: 'ROUND', value: valueFromInput(block, 'NUM') }
++    case 'vex_math_function': return { kind: 'mathFunction', operator: block.getFieldValue('OP') as Extract<NumberExpression, { kind: 'mathFunction' }>['operator'], value: valueFromInput(block, 'NUM') }
++    case 'vex_remainder': return { kind: 'remainder', left: valueFromInput(block, 'A'), right: valueFromInput(block, 'B') }
++    case 'vex_distance': return { kind: 'distance', sensorId: firstModuleId(block, DEVICE_REQUIREMENTS.distance) }
++    case 'vex_eye_brightness': return { kind: 'eyeBrightness', sensorId: firstModuleId(block, DEVICE_REQUIREMENTS.eye) }
+     case 'variables_get': return { kind: 'variable', variableId: String(block.getFieldValue('VAR')) }
+     case 'math_arithmetic': return { kind: 'arithmetic', operator: block.getFieldValue('OP') as Extract<NumberExpression, { kind: 'arithmetic' }>['operator'], left: valueFromInput(block, 'A'), right: valueFromInput(block, 'B') }
+     default: return { kind: 'number', value: 0 }
+@@ -160,6 +235,15 @@ function booleanExpression(block: Blockly.Block | null): BooleanExpression {
+     case 'robot_eye_detected': return { kind: 'sensor', sensor: 'eyeDetected', sensorId: sensorId(block) }
+     case 'robot_eye_color': return { kind: 'eyeColor', color: block.getFieldValue('COLOR') as SensorColor, sensorId: sensorId(block) }
+     case 'logic_boolean': return { kind: 'boolean', value: block.getFieldValue('BOOL') === 'TRUE' }
++    case 'vex_drive_is_done': return { kind: 'driveDone' }
++    case 'vex_iq_optical_found': return { kind: 'sensor', sensor: 'eyeDetected', sensorId: firstModuleId(block, DEVICE_REQUIREMENTS.eye) }
++    case 'vex_iq_optical_color': return { kind: 'eyeColor', color: block.getFieldValue('COLOR') as SensorColor, sensorId: firstModuleId(block, DEVICE_REQUIREMENTS.eye) }
++    case 'vex_iq_distance_found': return { kind: 'sensor', sensor: 'inRange', sensorId: firstModuleId(block, DEVICE_REQUIREMENTS.distance) }
++    case 'vex_iq_touchled_pressed': return { kind: 'sensor', sensor: 'bumperAny', sensorId: firstModuleId(block, DEVICE_REQUIREMENTS.ledBumper), requiresLed: true }
++    case 'vex_distance_found': return { kind: 'sensor', sensor: 'inRange', sensorId: firstModuleId(block, DEVICE_REQUIREMENTS.distance) }
++    case 'vex_bumper_pressed': return { kind: 'sensor', sensor: block.getFieldValue('SIDE') === 'LEFT' ? 'bumperLeft' : block.getFieldValue('SIDE') === 'RIGHT' ? 'bumperRight' : 'bumperAny' }
++    case 'vex_eye_found': return { kind: 'sensor', sensor: 'eyeDetected', sensorId: firstModuleId(block, DEVICE_REQUIREMENTS.eye) }
++    case 'vex_eye_detects': return { kind: 'eyeColor', color: block.getFieldValue('COLOR') as SensorColor, sensorId: firstModuleId(block, DEVICE_REQUIREMENTS.eye) }
+     case 'logic_compare': return { kind: 'comparison', operator: block.getFieldValue('OP') as Extract<BooleanExpression, { kind: 'comparison' }>['operator'], left: valueFromInput(block, 'A'), right: valueFromInput(block, 'B') }
+     case 'logic_operation': return { kind: 'logic', operator: block.getFieldValue('OP') as 'AND' | 'OR', left: booleanFromInput(block, 'A'), right: booleanFromInput(block, 'B') }
+     case 'logic_negate': return { kind: 'not', value: booleanFromInput(block, 'BOOL') }
+diff --git a/src/runtime/Instruction.ts b/src/runtime/Instruction.ts
+index 14d8dff..d9a33bd 100644
+--- a/src/runtime/Instruction.ts
++++ b/src/runtime/Instruction.ts
+@@ -5,6 +5,12 @@ export type NumberExpression =
+   | { kind: 'distance'; sensorId?: string }
+   | { kind: 'eyeBrightness'; sensorId?: string }
+   | { kind: 'number'; value: number }
++  | { kind: 'timer' }
++  | { kind: 'heading' }
++  | { kind: 'rotation' }
++  | { kind: 'random'; from: NumberExpression; to: NumberExpression }
++  | { kind: 'mathFunction'; operator: 'ROUND' | 'ABS' | 'FLOOR' | 'CEILING' | 'SQRT' | 'SIN' | 'COS' | 'TAN'; value: NumberExpression }
++  | { kind: 'remainder'; left: NumberExpression; right: NumberExpression }
+   | { kind: 'variable'; variableId: string }
+   | { kind: 'arithmetic'; operator: 'ADD' | 'MINUS' | 'MULTIPLY' | 'DIVIDE' | 'POWER'; left: NumberExpression; right: NumberExpression }
+ 
+@@ -13,6 +19,7 @@ export type BooleanExpression =
+   | { kind: 'sensor'; sensor: 'inRange' | 'bumperLeft' | 'bumperRight' | 'bumperAny' | 'eyeDetected'; sensorId?: string; requiresLed?: boolean }
+   | { kind: 'eyeColor'; color: SensorColor; sensorId?: string }
+   | { kind: 'boolean'; value: boolean }
++  | { kind: 'driveDone' }
+   | { kind: 'comparison'; operator: 'EQ' | 'NEQ' | 'LT' | 'LTE' | 'GT' | 'GTE'; left: NumberExpression; right: NumberExpression }
+   | { kind: 'logic'; operator: 'AND' | 'OR'; left: BooleanExpression; right: BooleanExpression }
+   | { kind: 'not'; value: BooleanExpression }
+@@ -23,6 +30,11 @@ export type Instruction =
+   | { kind: 'motor'; blockId: string; motorId: string; action: MotorAction; value: NumberExpression }
+   | { kind: 'setLedBumper'; blockId:string; sensorId:string; color:'RED'|'GREEN'|'OFF' }
+   | { kind: 'yield'; blockId: string }
++  | { kind: 'resetTimer'; blockId: string }
++  | { kind: 'setHeading'; blockId: string; degrees: NumberExpression }
++  | { kind: 'turnToHeading'; blockId: string; degrees: NumberExpression }
++  | { kind: 'stopProject'; blockId: string }
++  | { kind: 'print'; blockId: string; screenId: string; text?: string; value?: NumberExpression }
+   | { kind: 'startDrive' | 'startTurn'; blockId: string; direction: 1 | -1 }
+   | { kind: 'stopDrive'; blockId: string }
+   | { kind: 'drive'; blockId: string; distanceMillimeters: NumberExpression }
+diff --git a/src/runtime/RuntimeExecutor.ts b/src/runtime/RuntimeExecutor.ts
+index 36d8c7e..b360448 100644
+--- a/src/runtime/RuntimeExecutor.ts
++++ b/src/runtime/RuntimeExecutor.ts
+@@ -51,7 +51,7 @@ export class RuntimeExecutor {
+     this.motors?.stopAll(); this.motors?.resetVelocities(); this.awaitingMotorId = undefined
+     this.robot.resetProgramVelocities(); this.robot.clearCollision()
+     this.activeBlockId = undefined; this.runId += 1; this.awaitingMotion = false; this.programFinished = false; this.state = 'running'
+-    const sensors = this.readSensors()
++    const sensors = this.snapshot()
+     this.revision = sensors.revision
+     this.send({ type: 'run', runId: this.runId, instructions, sensors })
+   }
+@@ -67,7 +67,7 @@ export class RuntimeExecutor {
+   update(deltaSeconds: number) {
+     if (this.disposed || !this.isRunning) return
+     if (!Number.isFinite(deltaSeconds) || deltaSeconds < 0) return
+-    const sensors = this.readSensors()
++    const sensors = this.snapshot()
+     if (sensors.revision !== this.revision) { this.fail('Robot configuration changed during execution. Run the program again.'); return }
+     if (this.programFinished) {
+       if (!this.robot.isMovingContinuously && !this.motors?.isMoving) { this.state = 'complete'; this.onChange('complete') }
+@@ -101,7 +101,7 @@ export class RuntimeExecutor {
+       try {
+         if (!this.motors?.executeMagnet) throw new Error('Nam châm điện không được hỗ trợ.')
+         this.motors.executeMagnet(event.deviceId, event.enabled)
+-        this.send({ type: 'actionComplete', runId: this.runId, sensors: this.readSensors() })
++        this.send({ type: 'actionComplete', runId: this.runId, sensors: this.snapshot() })
+       } catch (cause) { this.fail(cause instanceof Error ? cause.message : String(cause)) }
+       return
+     }
+@@ -127,7 +127,7 @@ export class RuntimeExecutor {
+           motorControl.execute(event.motorId, event.action, event.value)
+           if (motorControl.isExecuting(event.motorId)) this.awaitingMotorId = event.motorId
+         }
+-        if (!this.awaitingMotion && !this.awaitingMotorId) this.send({ type: 'actionComplete', runId: this.runId, sensors: this.readSensors() })
++        if (!this.awaitingMotion && !this.awaitingMotorId) this.send({ type: 'actionComplete', runId: this.runId, sensors: this.snapshot() })
+       } catch (cause) { this.fail(cause instanceof Error ? cause.message : String(cause)) }
+       return
+     }
+@@ -146,9 +146,10 @@ export class RuntimeExecutor {
+     else if (event.action === 'setTurnVelocity') this.robot.setTurnVelocity(event.value)
+     else if (event.action === 'startDrive' || event.action === 'startTurn') this.robot.startContinuous(event.action === 'startDrive' ? 'drive' : 'turn', event.value < 0 ? -1 : 1)
+     else if (event.action === 'stopDrive') this.robot.cancelProgram()
+-    if (!this.awaitingMotion) this.send({ type: 'actionComplete', runId: this.runId, sensors: this.readSensors() })
++    if (!this.awaitingMotion) this.send({ type: 'actionComplete', runId: this.runId, sensors: this.snapshot() })
+   }
+ 
++  private snapshot(): SensorSnapshot { return { ...this.readSensors(), driving: this.robot.isMovingContinuously || this.robot.isExecutingProgram } }
+   private send(command: WorkerCommand) {
+     if (this.disposed) return false
+     try { this.worker.postMessage(command); return true }
+diff --git a/src/runtime/RuntimeWorker.ts b/src/runtime/RuntimeWorker.ts
+index de08371..f200ec3 100644
+--- a/src/runtime/RuntimeWorker.ts
++++ b/src/runtime/RuntimeWorker.ts
+@@ -7,11 +7,13 @@ const MAX_PROGRAM_STEPS = 10_000
+ let runId = 0, instructions: Instruction[] = [], index = 0, steps = 0, waitingSeconds = 0, waitingForAction = false
+ let state: RuntimeState = 'idle'
+ let waitingForTick = false, lastTick = 0, resumeAfterTick = 0
++let elapsedSeconds = 0, timerStart = 0, headingOffset = 0, rotation = 0, lastRawHeading: number | undefined
+ const variables = new Map<string, number>()
+ const repeats = new Map<string, { remaining: number }>()
+ let sensors: SensorSnapshot
+ let revision: number | undefined
+-function acceptSnapshot(next: SensorSnapshot) { if (next.revision !== revision) { fail('Robot configuration changed during execution. Run the program again.'); return }; if (!sensors || next.tick >= sensors.tick) sensors = next }
++function trackRotation(next: SensorSnapshot) { if (next.headingDegrees === undefined) return; if (lastRawHeading !== undefined) rotation += ((next.headingDegrees - lastRawHeading + 540) % 360) - 180; lastRawHeading = next.headingDegrees }
++function acceptSnapshot(next: SensorSnapshot) { if (next.revision !== revision) { fail('Robot configuration changed during execution. Run the program again.'); return }; if (!sensors || next.tick >= sensors.tick) { trackRotation(next); sensors = next } }
+ 
+ self.onmessage = ({ data }: MessageEvent<WorkerCommand>) => {
+   switch (data.type) {
+@@ -24,12 +26,13 @@ self.onmessage = ({ data }: MessageEvent<WorkerCommand>) => {
+ function start(nextRunId: number, nextInstructions: Instruction[]) {
+   runId = nextRunId; instructions = nextInstructions; index = 0; steps = 0; waitingSeconds = 0; waitingForAction = false
+   waitingForTick = false; lastTick = sensors.tick
+-  variables.clear(); repeats.clear()
++  variables.clear(); repeats.clear(); elapsedSeconds = 0; timerStart = 0; headingOffset = 0; rotation = 0; lastRawHeading = sensors.headingDegrees
+   if (!instructions.length) { emit({ type: 'state', runId, state: 'complete' }); return }
+   state = 'running'; emit({ type: 'state', runId, state }); pump()
+ }
+ function stop() { if (state === 'running') { state = 'stopped'; instructions = []; waitingSeconds = 0; waitingForAction = false; emit({ type: 'state', runId, state }) } }
+ function tick(deltaSeconds: number) {
++  if (state === 'running') elapsedSeconds += Math.max(0, deltaSeconds)
+   if (state !== 'running' || waitingForAction) return
+   if (waitingForTick) { if (lastTick <= resumeAfterTick) return; waitingForTick = false; pump(); return }
+   if (waitingSeconds > 0) { waitingSeconds = Math.max(0, waitingSeconds - Math.max(0, deltaSeconds)); if (waitingSeconds === 0) pump() }
+@@ -47,6 +50,11 @@ function executeInstructions() {
+       case 'motor': index += 1; waitingForAction = true; emit({ type: 'motor', runId, motorId: instruction.motorId, action: instruction.action, value: number(instruction.value) }); return
+       case 'setLedBumper': emit({type:'led',runId,sensorId:instruction.sensorId,color:instruction.color});index+=1;break
+       case 'yield': index += 1; waitingForTick = true; resumeAfterTick = sensors.tick; return
++      case 'resetTimer': timerStart = elapsedSeconds; index += 1; break
++      case 'setHeading': headingOffset = normalizeHeading(number(instruction.degrees) - (sensors.headingDegrees ?? 0)); index += 1; break
++      case 'turnToHeading': { const delta = ((normalizeHeading(number(instruction.degrees)) - heading() + 540) % 360) - 180; action('turn', -delta); return }
++      case 'print': { index += 1; waitingForAction = true; const text = instruction.value ? formatNumber(number(instruction.value)) : (instruction.text ?? ''); emit({ type: 'screen', runId, screenId: instruction.screenId, content: { mode: 'text', text: text.slice(0, 128) } }); return }
++      case 'stopProject': emit({ type: 'action', runId, action: 'stopDrive', value: 0 }); state = 'complete'; emit({ type: 'state', runId, state, activeBlockId: instruction.blockId }); return
+       case 'startDrive': action('startDrive', instruction.direction); return
+       case 'startTurn': action('startTurn', instruction.direction); return
+       case 'stopDrive': action('stopDrive', 0); return
+@@ -66,7 +74,11 @@ function executeInstructions() {
+ }
+ function action(actionName: WorkerAction, value: number) { index += 1; waitingForAction = true; emit({ type: 'action', runId, action: actionName, value }) }
+ function reading(id: string, kind: ModuleReading['kind']) { const value = sensors.readings?.[id]; if (!value || value.kind !== kind) throw new Error(`Missing ${kind} sensor: ${id}`); return value }
+-function number(expression: NumberExpression): number { if (expression.kind === 'eyeBrightness') return expression.sensorId && sensors.readings ? reading(expression.sensorId, 'eye').brightnessPercent ?? 100 : sensors.eyeBrightnessPercent ?? 100; if (expression.kind === 'distance') return expression.sensorId && sensors.readings ? reading(expression.sensorId, 'distance').distanceMm ?? reading(expression.sensorId, 'distance').rangeMm : sensors.distanceMm ?? SENSOR_RANGE_MM; if (expression.kind === 'number') return expression.value; if (expression.kind === 'variable') return variables.get(expression.variableId) ?? 0; const left = number(expression.left), right = number(expression.right); const value = expression.operator === 'ADD' ? left + right : expression.operator === 'MINUS' ? left - right : expression.operator === 'MULTIPLY' ? left * right : expression.operator === 'DIVIDE' ? left / right : left ** right; return Number.isFinite(value) ? value : 0 }
++function normalizeHeading(value: number) { return ((value % 360) + 360) % 360 }
++function heading() { return normalizeHeading((sensors.headingDegrees ?? 0) + headingOffset) }
++function formatNumber(value: number) { return Number.isInteger(value) ? String(value) : String(Number(value.toFixed(2))) }
++function mathFunction(operator: Extract<NumberExpression, { kind: 'mathFunction' }>['operator'], value: number) { switch (operator) { case 'ROUND': return Math.round(value); case 'ABS': return Math.abs(value); case 'FLOOR': return Math.floor(value); case 'CEILING': return Math.ceil(value); case 'SQRT': return Math.sqrt(value); case 'SIN': return Math.sin(value * Math.PI / 180); case 'COS': return Math.cos(value * Math.PI / 180); case 'TAN': return Math.tan(value * Math.PI / 180) } }
++function number(expression: NumberExpression): number { if (expression.kind === 'timer') return Math.round((elapsedSeconds - timerStart) * 1000) / 1000; if (expression.kind === 'heading') return Math.round(heading() * 10) / 10; if (expression.kind === 'rotation') return Math.round(rotation * 10) / 10; if (expression.kind === 'random') { const a = Math.ceil(Math.min(number(expression.from), number(expression.to))), b = Math.floor(Math.max(number(expression.from), number(expression.to))); return b < a ? a : a + Math.floor(Math.random() * (b - a + 1)) } if (expression.kind === 'mathFunction') { const value = mathFunction(expression.operator, number(expression.value)); return Number.isFinite(value) ? value : 0 } if (expression.kind === 'remainder') { const right = number(expression.right); if (right === 0) return 0; const left = number(expression.left); return ((left % right) + right) % right } if (expression.kind === 'eyeBrightness') return expression.sensorId && sensors.readings ? reading(expression.sensorId, 'eye').brightnessPercent ?? 100 : sensors.eyeBrightnessPercent ?? 100; if (expression.kind === 'distance') return expression.sensorId && sensors.readings ? reading(expression.sensorId, 'distance').distanceMm ?? reading(expression.sensorId, 'distance').rangeMm : sensors.distanceMm ?? SENSOR_RANGE_MM; if (expression.kind === 'number') return expression.value; if (expression.kind === 'variable') return variables.get(expression.variableId) ?? 0; const left = number(expression.left), right = number(expression.right); const value = expression.operator === 'ADD' ? left + right : expression.operator === 'MINUS' ? left - right : expression.operator === 'MULTIPLY' ? left * right : expression.operator === 'DIVIDE' ? left / right : left ** right; return Number.isFinite(value) ? value : 0 }
+ function boolean(expression: BooleanExpression): boolean {
+   if (expression.kind === 'magnetHolding') return sensors.magnetHolding ?? false
+   if (expression.kind === 'eyeColor') { const value = expression.sensorId && sensors.readings ? reading(expression.sensorId, 'eye') : null; return value ? value.detected && value.color === expression.color : sensors.eyeDetected && sensors.eyeColor === expression.color }
+@@ -81,6 +93,7 @@ function boolean(expression: BooleanExpression): boolean {
+     }
+   }
+   if (expression.kind === 'boolean') return expression.value
++  if (expression.kind === 'driveDone') return !sensors.driving
+   if (expression.kind === 'not') return !boolean(expression.value)
+   if (expression.kind === 'logic') return expression.operator === 'AND' ? boolean(expression.left) && boolean(expression.right) : boolean(expression.left) || boolean(expression.right)
+   const left = number(expression.left), right = number(expression.right)
+diff --git a/src/simulation/Sensors.ts b/src/simulation/Sensors.ts
+index 8b253b4..a0d5b75 100644
+--- a/src/simulation/Sensors.ts
++++ b/src/simulation/Sensors.ts
+@@ -26,7 +26,7 @@ export type WorldObject = Readonly<{
+ }>
+ 
+ export type ModuleReading = { kind: ModuleKind; rangeMm: number; distanceMm: number | null; detected: boolean; color: SensorColor | null; pressed: boolean; blockedByRobot: boolean; brightnessPercent?: number }
+-export type SensorSnapshot = Readonly<{ tick: number; revision?: number; readings?: Record<string, ModuleReading>; distanceMm: number | null; bumperLeft: boolean; bumperRight: boolean; eyeDetected: boolean; eyeColor: SensorColor | null; eyeBrightnessPercent?: number; magnetHolding?: boolean }>
++export type SensorSnapshot = Readonly<{ tick: number; revision?: number; headingDegrees?: number; driving?: boolean; readings?: Record<string, ModuleReading>; distanceMm: number | null; bumperLeft: boolean; bumperRight: boolean; eyeDetected: boolean; eyeColor: SensorColor | null; eyeBrightnessPercent?: number; magnetHolding?: boolean }>
+ export const SENSOR_RANGE_MM = 2000
+ export const ROBOT_RADIUS = 0.65
+ export const SENSOR_OFFSET = 0.65
+@@ -82,7 +82,7 @@ function rayDistance(x: number, z: number, dx: number, dz: number, object: World
+ }
+ 
+ export function sampleSensors(pose: RobotPose, objects: readonly WorldObject[], tick: number, definition?: RobotDefinition, illuminationPercent = 100, actuatorAngles: Readonly<Record<string, number>> = {}): SensorSnapshot {
+-  if (definition) return sampleModules(pose, objects, tick, definition, illuminationPercent, actuatorAngles)
++  if (definition) return { ...sampleModules(pose, objects, tick, definition, illuminationPercent, actuatorAngles), headingDegrees: vexHeading(pose) }
+   const dx = Math.sin(pose.heading), dz = Math.cos(pose.heading)
+   let nearest = Infinity, hit: WorldObject | undefined
+   let bumperLeft = false, bumperRight = false
+@@ -97,8 +97,10 @@ export function sampleSensors(pose: RobotPose, objects: readonly WorldObject[],
+       if (side >= -0.02) bumperRight = true
+     }
+   }
+-  return { tick, distanceMm: hit ? nearest * 1000 : null, bumperLeft, bumperRight, eyeDetected: !!hit, eyeColor: hit?.color ?? null }
++  return { tick, headingDegrees: vexHeading(pose), distanceMm: hit ? nearest * 1000 : null, bumperLeft, bumperRight, eyeDetected: !!hit, eyeColor: hit?.color ?? null }
+ }
++/** VEXcode heading: 0 at start, increasing clockwise, in [0, 360). Pose heading grows counter-clockwise. */
++export function vexHeading(pose: RobotPose) { const degrees = -pose.heading * 180 / Math.PI; return ((degrees % 360) + 360) % 360 }
+ 
+ type Box = { id: string; center: Point3; size: readonly number[]; yaw: number; pitch: number; roll: number }
+ export function robotBoxes(definition: RobotDefinition, actuatorAngles: Readonly<Record<string, number>> = {}): Box[] {
+diff --git a/tests/m4.test.mjs b/tests/m4.test.mjs
+index f33d8dd..5fe2eff 100644
+--- a/tests/m4.test.mjs
++++ b/tests/m4.test.mjs
+@@ -628,7 +628,7 @@ test('robot workspace projection preserves blocks and sensor IDs while refreshin
+     synchronizeRobotWorkspace(first, { version: 1, revision: 3, drive: 'single-motor', modules: [] })
+     assert.equal(a.getFieldValue('SENSOR'), 'eye-a')
+     assert.ok(a.getField('SENSOR').getOptions(false).some(option => option[0] === 'Đã tháo: eye-a'))
+-    assert.equal(projections.at(-1).contents.find(category => category.id === 'motion').name, 'Chuyển động')
++    assert.equal(projections.at(-1).contents.find(category => category.id === 'motion').name, 'Motion')
+     synchronizeRobotWorkspace(null, { version: 1, revision: 3, modules: [] })
+   } finally { first.dispose(); second.dispose() }
+ })

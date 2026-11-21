@@ -4,6 +4,7 @@
   "axes": "Y up",
   "policy": "Analytic STEP circular references plus curated square-drive sockets and shafts mapped from original VEX GO CAD. Square shafts drive square holes and spin freely in round holes. Check physical fit.",
   "parts": {
+    "228-2500-524": [{"point": [-6.35, -44.45, -2.286], "normal": [0, 0, -1], "radius": 2.1, "depth": 4.572, "kind": "hole", "id": "1"}, {"point": [-6.35, -44.45, 2.286], "normal": [0, 0, 1], "radius": 2.1, "depth": 4.572, "kind": "hole", "id": "2"}, {"point": [-6.35, 44.45, -2.286], "normal": [0, 0, -1], "radius": 2.1, "depth": 4.572, "kind": "hole", "id": "3"}, {"point": [-6.35, 44.45, 2.286], "normal": [0, 0, 1], "radius": 2.1, "depth": 4.572, "kind": "hole", "id": "4"}, {"point": [6.35, -44.45, -2.286], "normal": [0, 0, -1], "radius": 2.1, "depth": 4.572, "kind": "hole", "id": "5"}, {"point": [6.35, -44.45, 2.286], "normal": [0, 0, 1], "radius": 2.1, "depth": 4.572, "kind": "hole", "id": "6"}, {"point": [6.35, 44.45, -2.286], "normal": [0, 0, -1], "radius": 2.1, "depth": 4.572, "kind": "hole", "id": "7"}, {"point": [6.35, 44.45, 2.286], "normal": [0, 0, 1], "radius": 2.1, "depth": 4.572, "kind": "hole", "id": "8"}],
     "269-6685-000": [
       {
         "point": [

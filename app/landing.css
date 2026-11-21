@@ -22,7 +22,7 @@
 .lp-btn-line:hover{border-color:var(--ink)}
 
 /* Header */
-.lp-nav{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.92);backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid var(--line)}
+.lp-nav{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid var(--line)}
 .lp-nav-row{display:flex;align-items:center;gap:24px;min-height:72px}
 .lp-brand{display:flex;align-items:center;gap:12px;flex:none}
 .lp-brand .mindx-official-logo{width:118px;height:37px}
@@ -70,6 +70,31 @@
 .lp-head h2{margin:0;font-size:clamp(30px,3.4vw,44px);line-height:1.1;letter-spacing:-.025em;font-weight:700}
 .lp-head>p{margin:0;font-size:16px;color:var(--muted);max-width:420px}
 
+/* What's new */
+.lp-badge{align-self:flex-start;display:inline-flex;align-items:center;gap:10px;min-height:40px;padding:4px 14px 4px 4px;border-radius:999px;background:var(--surface);border:1px solid var(--line);font-size:14px;font-weight:600;color:var(--ink)!important}
+.lp-badge b{background:var(--ink);color:var(--lime);font-size:12px;letter-spacing:.06em;padding:5px 10px;border-radius:999px}
+.lp-badge:hover{border-color:var(--ink)}
+.lp-news{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.lp-new{position:relative;display:flex;flex-direction:column;border:1px solid var(--line);border-radius:24px;background:var(--surface);overflow:hidden;transition:transform .2s,box-shadow .2s}
+.lp-new:hover{transform:translateY(-3px);box-shadow:0 24px 50px -30px rgba(16,43,43,.45)}
+.lp-new-robocode{grid-row:span 2;border-color:#B3E35A}
+.lp-new-art{background:var(--soft);overflow:hidden}
+.lp-new-art img{display:block;width:100%;height:100%;object-fit:cover}
+.lp-new-robocode .lp-new-art{aspect-ratio:16/9}
+.lp-new-robots .lp-new-art,.lp-new-build .lp-new-art{height:140px}
+.lp-new-build .lp-new-art{display:flex;justify-content:center;background:radial-gradient(circle at 50% 120%,#2A4A48,#173534)}
+.lp-new-build .lp-new-art img{width:auto;height:100%;object-fit:contain;mix-blend-mode:screen}
+.lp-new-body{display:flex;flex-direction:column;gap:10px;padding:20px 22px 22px;flex:1}
+.lp-new-tag{align-self:flex-start;font-size:12px;font-weight:700;letter-spacing:.1em;padding:4px 10px;border-radius:999px;background:var(--lime);color:var(--ink)}
+.lp-new h3{margin:0;font-size:24px;line-height:1.2;letter-spacing:-.02em}
+.lp-new-robocode h3{font-size:30px}
+.lp-new p{margin:0;font-size:15px;line-height:1.6;color:var(--ink2)}
+.lp-new ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.lp-new li{font-size:13.5px;font-weight:600;padding:6px 10px;border-radius:10px;background:var(--soft)}
+.lp-new .lp-zone-cta{margin-top:auto;color:var(--teal)}
+.lp-new .lp-zone-link::after{border-radius:24px}
+@media (max-width:900px){.lp-news{grid-template-columns:1fr}.lp-new-robocode{grid-row:auto}.lp-new-robocode h3{font-size:24px}}
+
 /* Zones */
 .lp-zones{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:16px}
 .lp-zone{position:relative;display:flex;flex-direction:column;gap:12px;padding:22px;border-radius:24px;border:1px solid var(--line);background:var(--surface);transition:transform .2s,box-shadow .2s}
@@ -98,8 +123,8 @@
 /* Zone art */
 .lp-art{position:relative;height:190px;border-radius:16px;overflow:hidden}
 .lp-zone-mission .lp-art,.lp-zone-compete .lp-art,.lp-zone-class .lp-art{height:160px}
-.lp-art-build{display:flex;align-items:center;justify-content:center;gap:4%;background:radial-gradient(circle at 50% 120%,#2A4A48,#173534)}
-.lp-art-build img{width:28%;max-height:84%;object-fit:contain;mix-blend-mode:screen;filter:brightness(1.05)}
+.lp-art-build{display:flex;align-items:center;justify-content:center;gap:4%;background:#F3F5EE}
+.lp-art-build img{width:28%;height:auto;max-height:84%;object-fit:contain}
 .lp-art-build img:nth-child(2){width:34%;transform:translateY(-6%)}
 .lp-art-code{background:#fff;border:1px solid #B3E35A}
 .lp-art-code img{width:100%;height:100%;object-fit:cover;object-position:left top}

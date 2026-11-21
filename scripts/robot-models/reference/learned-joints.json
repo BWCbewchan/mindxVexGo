@@ -1,0 +1,1836 @@
+{
+ "models": [
+  {
+   "model": "00trial--assem2.project.json",
+   "platform": "vexgo",
+   "parts": 67,
+   "pins": 604,
+   "seated": 408
+  },
+  {
+   "model": "00trial--build_xe.project.json",
+   "platform": "vexgo",
+   "parts": 52,
+   "pins": 528,
+   "seated": 344
+  },
+  {
+   "model": "00trial--flag.project.json",
+   "platform": "vexgo",
+   "parts": 15,
+   "pins": 76,
+   "seated": 64
+  },
+  {
+   "model": "1-arm--baisoan_basic--bai1--build--ten.project.json",
+   "platform": "vexgo",
+   "parts": 10,
+   "pins": 42,
+   "seated": 32
+  },
+  {
+   "model": "2-semi--build--b1--body.project.json",
+   "platform": "vexiq",
+   "parts": 59,
+   "pins": 772,
+   "seated": 486
+  },
+  {
+   "model": "2-semi--build--b1--head.project.json",
+   "platform": "vexiq",
+   "parts": 9,
+   "pins": 88,
+   "seated": 80
+  },
+  {
+   "model": "2-semi--build--b1--left_a.project.json",
+   "platform": "vexiq",
+   "parts": 5,
+   "pins": 54,
+   "seated": 30
+  },
+  {
+   "model": "2-semi--build--b1--left_arm.project.json",
+   "platform": "vexiq",
+   "parts": 5,
+   "pins": 44,
+   "seated": 32
+  },
+  {
+   "model": "2-semi--build--b1--left_leg.project.json",
+   "platform": "vexiq",
+   "parts": 11,
+   "pins": 224,
+   "seated": 91
+  },
+  {
+   "model": "2-semi--build--b1--right_a.project.json",
+   "platform": "vexiq",
+   "parts": 5,
+   "pins": 54,
+   "seated": 30
+  },
+  {
+   "model": "2-semi--build--b1--right_arm.project.json",
+   "platform": "vexiq",
+   "parts": 5,
+   "pins": 44,
+   "seated": 32
+  },
+  {
+   "model": "2-semi--build--b1--right_leg.project.json",
+   "platform": "vexiq",
+   "parts": 12,
+   "pins": 224,
+   "seated": 95
+  },
+  {
+   "model": "2-semi--build--b2--base.project.json",
+   "platform": "vexiq",
+   "parts": 7,
+   "pins": 56,
+   "seated": 26
+  },
+  {
+   "model": "2-semi--build--b2--base_f.project.json",
+   "platform": "vexiq",
+   "parts": 18,
+   "pins": 138,
+   "seated": 82
+  },
+  {
+   "model": "2-semi--build--b2--body.project.json",
+   "platform": "vexiq",
+   "parts": 63,
+   "pins": 532,
+   "seated": 383
+  },
+  {
+   "model": "2-semi--build--b2--canhquat.project.json",
+   "platform": "vexiq",
+   "parts": 22,
+   "pins": 168,
+   "seated": 148
+  },
+  {
+   "model": "2-semi--build--b2--final.project.json",
+   "platform": "vexiq",
+   "parts": 84,
+   "pins": 682,
+   "seated": 477
+  },
+  {
+   "model": "2-semi--build--b2--left.project.json",
+   "platform": "vexiq",
+   "parts": 7,
+   "pins": 64,
+   "seated": 44
+  },
+  {
+   "model": "2-semi--build--b2--right.project.json",
+   "platform": "vexiq",
+   "parts": 7,
+   "pins": 64,
+   "seated": 44
+  },
+  {
+   "model": "4-others--rl_sorter--final.project.json",
+   "platform": "vexiq",
+   "parts": 225,
+   "pins": 1982,
+   "seated": 1488
+  },
+  {
+   "model": "4-others--rl_sorter--s1_1.project.json",
+   "platform": "vexiq",
+   "parts": 4,
+   "pins": 36,
+   "seated": 28
+  },
+  {
+   "model": "4-others--rl_sorter--s1_20.project.json",
+   "platform": "vexiq",
+   "parts": 28,
+   "pins": 230,
+   "seated": 142
+  },
+  {
+   "model": "4-others--rl_sorter--s1_7.project.json",
+   "platform": "vexiq",
+   "parts": 125,
+   "pins": 1002,
+   "seated": 809
+  },
+  {
+   "model": "4-others--rl_sorter--s1_8.project.json",
+   "platform": "vexiq",
+   "parts": 6,
+   "pins": 52,
+   "seated": 27
+  },
+  {
+   "model": "4-others--rl_sorter--s3_1.project.json",
+   "platform": "vexiq",
+   "parts": 12,
+   "pins": 84,
+   "seated": 79
+  },
+  {
+   "model": "4-others--rl_sorter--s4_17.project.json",
+   "platform": "vexiq",
+   "parts": 37,
+   "pins": 302,
+   "seated": 208
+  },
+  {
+   "model": "4-others--rl_sorter--s4_17_left.project.json",
+   "platform": "vexiq",
+   "parts": 6,
+   "pins": 49,
+   "seated": 37
+  },
+  {
+   "model": "4-others--rl_sorter--s4_17_right.project.json",
+   "platform": "vexiq",
+   "parts": 6,
+   "pins": 49,
+   "seated": 37
+  },
+  {
+   "model": "4-others--rl_sorter--s6.project.json",
+   "platform": "vexiq",
+   "parts": 51,
+   "pins": 448,
+   "seated": 271
+  },
+  {
+   "model": "4-others--rl_sorter--s6_17.project.json",
+   "platform": "vexiq",
+   "parts": 9,
+   "pins": 100,
+   "seated": 56
+  },
+  {
+   "model": "4-others--rl_sorter--s6_18.project.json",
+   "platform": "vexiq",
+   "parts": 9,
+   "pins": 104,
+   "seated": 60
+  },
+  {
+   "model": "4-others--rl_sorter--s_1_67.project.json",
+   "platform": "vexiq",
+   "parts": 27,
+   "pins": 216,
+   "seated": 208
+  },
+  {
+   "model": "4-others--rl_sorter--s_7_1.project.json",
+   "platform": "vexiq",
+   "parts": 16,
+   "pins": 160,
+   "seated": 104
+  },
+  {
+   "model": "4-others--rl_sorter--s_7_2.project.json",
+   "platform": "vexiq",
+   "parts": 5,
+   "pins": 80,
+   "seated": 44
+  }
+ ],
+ "joints": [
+  {
+   "joint": "228-2500-060 > 228-2500-019",
+   "count": 267,
+   "models": 6,
+   "insertionMedian": 0,
+   "insertionMin": -6.58,
+   "insertionMax": 0.27
+  },
+  {
+   "joint": "228-2500-060 > 228-2500-040",
+   "count": 207,
+   "models": 6,
+   "insertionMedian": 0,
+   "insertionMin": -1.8,
+   "insertionMax": 0.02
+  },
+  {
+   "joint": "228-2500-060 > 228-2560",
+   "count": 201,
+   "models": 11,
+   "insertionMedian": 0,
+   "insertionMin": -6.33,
+   "insertionMax": 0.02
+  },
+  {
+   "joint": "228-2500-060 > 228-2500-021",
+   "count": 192,
+   "models": 4,
+   "insertionMedian": 0,
+   "insertionMin": -6.33,
+   "insertionMax": 0.04
+  },
+  {
+   "joint": "228-2500-060 > 228-2500-128",
+   "count": 186,
+   "models": 7,
+   "insertionMedian": 0,
+   "insertionMin": 0,
+   "insertionMax": 0.02
+  },
+  {
+   "joint": "228-2500-060 > 228-2500-023",
+   "count": 171,
+   "models": 7,
+   "insertionMedian": 0,
+   "insertionMin": -6.33,
+   "insertionMax": 0.25
+  },
+  {
+   "joint": "228-2500-228 > 228-2500-040",
+   "count": 152,
+   "models": 5,
+   "insertionMedian": -5.06,
+   "insertionMin": -7.24,
+   "insertionMax": -1.78
+  },
+  {
+   "joint": "228-2500-128 > 228-2500-019",
+   "count": 104,
+   "models": 4,
+   "insertionMedian": -3.06,
+   "insertionMin": -6.35,
+   "insertionMax": -1.78
+  },
+  {
+   "joint": "228-2500-019 > 228-2500-128",
+   "count": 104,
+   "models": 4,
+   "insertionMedian": -3.06,
+   "insertionMin": -6.35,
+   "insertionMax": -1.78
+  },
+  {
+   "joint": "228-2500-060 > 228-2500-025",
+   "count": 102,
+   "models": 3,
+   "insertionMedian": 0,
+   "insertionMin": -6.33,
+   "insertionMax": 0.02
+  },
+  {
+   "joint": "228-2500-1253 > 228-2500-025",
+   "count": 96,
+   "models": 3,
+   "insertionMedian": 0,
+   "insertionMin": -0.89,
+   "insertionMax": 0.02
+  },
+  {
+   "joint": "228-2500-1253 > 228-2500-026",
+   "count": 96,
+   "models": 3,
+   "insertionMedian": 0,
+   "insertionMin": -0.89,
+   "insertionMax": 0.02
+  },
+  {
+   "joint": "228-2560 > 228-2500-043",
+   "count": 96,
+   "models": 4,
+   "insertionMedian": -5.06,
+   "insertionMin": -6.35,
+   "insertionMax": -1.78
+  },
+  {
+   "joint": "228-2500-128 > 228-2500-135",
+   "count": 96,
+   "models": 4,
+   "insertionMedian": 0,
+   "insertionMin": -0.89,
+   "insertionMax": 0.02
+  },
+  {
+   "joint": "228-2500-128 > 228-2500-043",
+   "count": 96,
+   "models": 3,
+   "insertionMedian": 0,
+   "insertionMin": -0.89,
+   "insertionMax": 0.02
+  },
+  {
+   "joint": "228-2500-134 > 228-2500-019",
+   "count": 88,
+   "models": 3,
+   "insertionMedian": -0.89,
+   "insertionMin": -6.6,
+   "insertionMax": 0.02
+  },
+  {
+   "joint": "228-2500-2295 > 228-2500-023 -y",
+   "count": 80,
+   "models": 2,
+   "insertionMedian": -3.06,
+   "insertionMin": -6.35,
+   "insertionMax": -1.78
+  },
+  {
+   "joint": "228-2500-2295 > 228-2500-023 +y",
+   "count": 80,
+   "models": 2,
+   "insertionMedian": -3.06,
+   "insertionMin": -6.35,
+   "insertionMax": -1.78
+  },
+  {
+   "joint": "228-2500-1253 > 228-2560",
+   "count": 80,
+   "models": 3,
+   "insertionMedian": -3.06,
+   "insertionMin": -6.35,
+   "insertionMax": -0.89
+  },
+  {
+   "joint": "228-2500-060 > 228-2500-151",
+   "count": 72,
+   "models": 4,
+   "insertionMedian": 0,
+   "insertionMin": 0,
+   "insertionMax": 0.02
+  },
+  {
+   "joint": "228-2560 > 228-2500-021",
+   "count": 72,
+   "models": 3,
+   "insertionMedian": -5.09,
+   "insertionMin": -6.37,
+   "insertionMax": -1.8
+  },
+  {
+   "joint": "228-2500-239 > 228-2500-128",
+   "count": 72,
+   "models": 5,
+   "insertionMedian": 0,
+   "insertionMin": -1.89,
+   "insertionMax": 0.02
+  },
+  {
+   "joint": "228-2500-060 > 228-2500-005",
+   "count": 66,
+   "models": 7,
+   "insertionMedian": 0,
+   "insertionMin": 0,
+   "insertionMax": 0.02
+  },
+  {
+   "joint": "228-2500-277 > 228-2500-028",
+   "count": 64,
+   "models": 2,
+   "insertionMedian": 0,
+   "insertionMin": -1.79,
+   "insertionMax": 0.92
+  },
+  {
+   "joint": "228-2500-135 > 228-2500-028",
+   "count": 64,
+   "models": 2,
+   "insertionMedian": 0,
+   "insertionMin": -0.89,
+   "insertionMax": 0.02
+  },
+  {
+   "joint": "228-2500-128 > 228-2500-147",
+   "count": 64,
+   "models": 5,
+   "insertionMedian": 0,
+   "insertionMin": -0.89,
+   "insertionMax": 0.02
+  },
+  {
+   "joint": "228-2500-060 > 228-2500-043",
+   "count": 61,
+   "models": 4,
+   "insertionMedian": 0,
+   "insertionMin": -0.02,
+   "insertionMax": 0.02
+  },
+  {
+   "joint": "228-2560 > 228-2500-019",
+   "count": 60,
+   "models": 3,
+   "insertionMedian": -4.81,
+   "insertionMin": -6.1,
+   "insertionMax": -4.81
+  },
+  {
+   "joint": "228-2500-1383 > 228-2500-043 -y",
+   "count": 56,
+   "models": 2,
+   "insertionMedian": -2.18,
+   "insertionMin": -5.46,
+   "insertionMax": -0.89
+  },
+  {
+   "joint": "228-2500-064 > 228-2500-040",
+   "count": 54,
+   "models": 3,
+   "insertionMedian": 0,
+   "insertionMin": 0,
+   "insertionMax": 0.02
+  },
+  {
+   "joint": "228-2500-060 > 228-2500-017",
+   "count": 54,
+   "models": 3,
+   "insertionMedian": 0,
+   "insertionMin": 0,
+   "insertionMax": 0.02
+  },
+  {
+   "joint": "228-2500-060 > 228-2500-009",
+   "count": 51,
+   "models": 6,
+   "insertionMedian": 0,
+   "insertionMin": 0,
+   "insertionMax": 0.02
+  },
+  {
+   "joint": "228-2500-060 > 228-2500-026",
+   "count": 48,
+   "models": 4,
+   "insertionMedian": 0,
+   "insertionMin": 0,
+   "insertionMax": 0.02
+  },
+  {
+   "joint": "228-2500-134 > 228-2500-007",
+   "count": 48,
+   "models": 4,
+   "insertionMedian": 0,
+   "insertionMin": -6.08,
+   "insertionMax": 0.02
+  },
+  {
+   "joint": "228-2500-131 > 228-2500-151",
+   "count": 48,
+   "models": 4,
+   "insertionMedian": -3.06,
+   "insertionMin": -6.35,
+   "insertionMax": -1.78
+  },
+  {
+   "joint": "228-2500-128 > 228-2500-014",
+   "count": 48,
+   "models": 3,
+   "insertionMedian": -3.06,
+   "insertionMin": -6.35,
+   "insertionMax": -1.78
+  },
+  {
+   "joint": "228-2500-128 > 228-2500-011",
+   "count": 48,
+   "models": 3,
+   "insertionMedian": -3.06,
+   "insertionMin": -6.35,
+   "insertionMax": -1.78
+  },
+  {
+   "joint": "228-2500-060 > 228-2500-147",
+   "count": 48,
+   "models": 5,
+   "insertionMedian": 0,
+   "insertionMin": 0,
+   "insertionMax": 0.02
+  },
+  {
+   "joint": "228-2500-060 > 228-2500-246",
+   "count": 48,
+   "models": 5,
+   "insertionMedian": 0,
+   "insertionMin": 0,
+   "insertionMax": 0.02
+  },
+  {
+   "joint": "228-2500-134 > 228-2500-023",
+   "count": 48,
+   "models": 3,
+   "insertionMedian": 0,
+   "insertionMin": -0.89,
+   "insertionMax": 0.02
+  },
+  {
+   "joint": "228-2500-132 > 228-2500-023",
+   "count": 48,
+   "models": 3,
+   "insertionMedian": 0,
+   "insertionMin": -0.89,
+   "insertionMax": 0.02
+  },
+  {
+   "joint": "228-2500-023 > 228-2500-019",
+   "count": 48,
+   "models": 3,
+   "insertionMedian": -3.06,
+   "insertionMin": -6.35,
+   "insertionMax": -1.53
+  },
+  {
+   "joint": "228-2500-060 > 228-2500-126",
+   "count": 42,
+   "models": 3,
+   "insertionMedian": 0,
+   "insertionMin": -6.33,
+   "insertionMax": 0.02
+  },
+  {
+   "joint": "228-2500-060 > 228-2500-134",
+   "count": 42,
+   "models": 4,
+   "insertionMedian": 0,
+   "insertionMin": 0,
+   "insertionMax": 0.02
+  },
+  {
+   "joint": "269-6690-000 > 228-2500-043 +y",
+   "count": 40,
+   "models": 2,
+   "insertionMedian": -5.06,
+   "insertionMin": -6.35,
+   "insertionMax": -1.78
+  },
+  {
+   "joint": "269-6690-000 > 228-2500-043 -y",
+   "count": 40,
+   "models": 2,
+   "insertionMedian": -5.06,
+   "insertionMin": -6.35,
+   "insertionMax": -1.78
+  },
+  {
+   "joint": "228-2500-134 > 228-7082",
+   "count": 40,
+   "models": 2,
+   "insertionMedian": -3.06,
+   "insertionMin": -6.35,
+   "insertionMax": -1.78
+  },
+  {
+   "joint": "228-2500-134 > 228-7106",
+   "count": 40,
+   "models": 2,
+   "insertionMedian": -3.06,
+   "insertionMin": -6.35,
+   "insertionMax": -1.78
+  },
+  {
+   "joint": "228-2500-131 > 228-2500-007",
+   "count": 40,
+   "models": 3,
+   "insertionMedian": 0,
+   "insertionMin": -0.89,
+   "insertionMax": 0.02
+  },
+  {
+   "joint": "228-2500-137 > 228-7106",
+   "count": 40,
+   "models": 2,
+   "insertionMedian": -3.06,
+   "insertionMin": -6.35,
+   "insertionMax": -1.78
+  },
+  {
+   "joint": "228-2500-060 > 228-2500-228",
+   "count": 38,
+   "models": 5,
+   "insertionMedian": 0.02,
+   "insertionMin": -0.87,
+   "insertionMax": 0.89
+  },
+  {
+   "joint": "228-2500-060 > 228-2500-003",
+   "count": 36,
+   "models": 2,
+   "insertionMedian": 0,
+   "insertionMin": 0,
+   "insertionMax": 0.02
+  },
+  {
+   "joint": "228-2500-060 > 228-2500-131",
+   "count": 36,
+   "models": 4,
+   "insertionMedian": 0,
+   "insertionMin": 0,
+   "insertionMax": 0.02
+  },
+  {
+   "joint": "228-2500-060 > 228-2500-149",
+   "count": 36,
+   "models": 4,
+   "insertionMedian": 0,
+   "insertionMin": 0,
+   "insertionMax": 0.02
+  },
+  {
+   "joint": "228-2500-060 > 228-2500-014",
+   "count": 36,
+   "models": 3,
+   "insertionMedian": 0,
+   "insertionMin": 0,
+   "insertionMax": 0.02
+  },
+  {
+   "joint": "228-2500-060 > 228-2500-011",
+   "count": 36,
+   "models": 3,
+   "insertionMedian": 0,
+   "insertionMin": 0,
+   "insertionMax": 0.02
+  },
+  {
+   "joint": "228-2500-065 > 228-2500-021",
+   "count": 36,
+   "models": 3,
+   "insertionMedian": 0,
+   "insertionMin": 0,
+   "insertionMax": 0.02
+  },
+  {
+   "joint": "228-2500-064 > 228-2500-023",
+   "count": 33,
+   "models": 5,
+   "insertionMedian": 0,
+   "insertionMin": 0,
+   "insertionMax": 0.02
+  },
+  {
+   "joint": "228-2500-023 > 228-2500-2295 +z",
+   "count": 32,
+   "models": 2,
+   "insertionMedian": -3.06,
+   "insertionMin": -6.35,
+   "insertionMax": -1.78
+  },
+  {
+   "joint": "228-2500-2295 > 269-6686-000 -z",
+   "count": 32,
+   "models": 2,
+   "insertionMedian": -3.06,
+   "insertionMin": -6.35,
+   "insertionMax": -1.78
+  },
+  {
+   "joint": "228-2500-2296 > 269-6696-000 +z",
+   "count": 32,
+   "models": 2,
+   "insertionMedian": -3.06,
+   "insertionMin": -6.35,
+   "insertionMax": -1.78
+  },
+  {
+   "joint": "228-2500-2260 > 228-2500-042 +y",
+   "count": 32,
+   "models": 3,
+   "insertionMedian": -0.16,
+   "insertionMin": -6.51,
+   "insertionMax": 0
+  },
+  {
+   "joint": "228-2500-126 > 228-2500-005",
+   "count": 32,
+   "models": 3,
+   "insertionMedian": -3.06,
+   "insertionMin": -6.35,
+   "insertionMax": -1.78
+  },
+  {
+   "joint": "228-2560 > 228-2500-1253",
+   "count": 32,
+   "models": 3,
+   "insertionMedian": -5.06,
+   "insertionMin": -6.35,
+   "insertionMax": -5.06
+  },
+  {
+   "joint": "228-2500-131 > 228-2500-009",
+   "count": 32,
+   "models": 3,
+   "insertionMedian": 0,
+   "insertionMin": -0.89,
+   "insertionMax": 0.02
+  },
+  {
+   "joint": "228-2500-150 > 228-2500-009",
+   "count": 32,
+   "models": 3,
+   "insertionMedian": -3.06,
+   "insertionMin": -6.35,
+   "insertionMax": -1.78
+  },
+  {
+   "joint": "228-2500-127 > 228-2500-043",
+   "count": 32,
+   "models": 2,
+   "insertionMedian": 0,
+   "insertionMin": -0.89,
+   "insertionMax": 0.13
+  },
+  {
+   "joint": "228-2500-131 > 228-2500-043",
+   "count": 32,
+   "models": 2,
+   "insertionMedian": 0,
+   "insertionMin": -0.89,
+   "insertionMax": 0.02
+  },
+  {
+   "joint": "228-2500-021 > 228-2500-128",
+   "count": 32,
+   "models": 1,
+   "insertionMedian": -3.06,
+   "insertionMin": -6.35,
+   "insertionMax": -1.78
+  },
+  {
+   "joint": "228-2500-2295 > 228-7082",
+   "count": 32,
+   "models": 2,
+   "insertionMedian": -3.06,
+   "insertionMin": -6.35,
+   "insertionMax": -1.78
+  },
+  {
+   "joint": "228-2500-128 > 228-2500-021",
+   "count": 32,
+   "models": 1,
+   "insertionMedian": -3.06,
+   "insertionMin": -6.35,
+   "insertionMax": -1.78
+  },
+  {
+   "joint": "228-2500-228 > 228-2500-025",
+   "count": 32,
+   "models": 2,
+   "insertionMedian": -2.18,
+   "insertionMin": -5.46,
+   "insertionMax": -0.89
+  },
+  {
+   "joint": "228-2500-246 > 228-2500-147",
+   "count": 32,
+   "models": 5,
+   "insertionMedian": -3.06,
+   "insertionMin": -6.35,
+   "insertionMax": -1.78
+  },
+  {
+   "joint": "228-2500-147 > 228-2500-246",
+   "count": 32,
+   "models": 5,
+   "insertionMedian": -3.06,
+   "insertionMin": -6.35,
+   "insertionMax": -1.78
+  },
+  {
+   "joint": "228-2500-064 > 228-2500-026",
+   "count": 30,
+   "models": 3,
+   "insertionMedian": 0,
+   "insertionMin": 0,
+   "insertionMax": 0.02
+  },
+  {
+   "joint": "228-2500-060 > 228-2500-007",
+   "count": 30,
+   "models": 3,
+   "insertionMedian": 0,
+   "insertionMin": 0,
+   "insertionMax": 0.02
+  },
+  {
+   "joint": "228-2500-2260 > 269-6690-000 -z",
+   "count": 24,
+   "models": 2,
+   "insertionMedian": 0,
+   "insertionMin": -1.12,
+   "insertionMax": 0.65
+  },
+  {
+   "joint": "228-2500-2260 > 269-6690-000 +z",
+   "count": 24,
+   "models": 2,
+   "insertionMedian": -0.16,
+   "insertionMin": -0.81,
+   "insertionMax": 0.96
+  },
+  {
+   "joint": "228-2500-2295 > 228-2500-043 +y",
+   "count": 24,
+   "models": 2,
+   "insertionMedian": 2.2,
+   "insertionMin": 0,
+   "insertionMax": 2.2
+  },
+  {
+   "joint": "228-2500-2295 > 228-2500-043 -y",
+   "count": 24,
+   "models": 2,
+   "insertionMedian": 2.2,
+   "insertionMin": 0,
+   "insertionMax": 2.2
+  },
+  {
+   "joint": "228-2500-2260 > 228-2500-2295 +z",
+   "count": 24,
+   "models": 2,
+   "insertionMedian": 0,
+   "insertionMin": 0,
+   "insertionMax": 0
+  },
+  {
+   "joint": "228-2500-2260 > 228-2500-2295 -z",
+   "count": 24,
+   "models": 2,
+   "insertionMedian": -0.16,
+   "insertionMin": -0.16,
+   "insertionMax": -0.16
+  },
+  {
+   "joint": "228-2500-060 > 228-2500-1253",
+   "count": 24,
+   "models": 3,
+   "insertionMedian": 0,
+   "insertionMin": 0,
+   "insertionMax": 0.02
+  },
+  {
+   "joint": "228-2500-060 > 228-7106",
+   "count": 24,
+   "models": 4,
+   "insertionMedian": 0,
+   "insertionMin": 0,
+   "insertionMax": 4.55
+  },
+  {
+   "joint": "228-2500-060 > 228-7082",
+   "count": 24,
+   "models": 4,
+   "insertionMedian": 0,
+   "insertionMin": 0,
+   "insertionMax": 4.55
+  },
+  {
+   "joint": "228-2500-060 > 228-2500-150",
+   "count": 24,
+   "models": 3,
+   "insertionMedian": 0,
+   "insertionMin": 0,
+   "insertionMax": 0.02
+  },
+  {
+   "joint": "228-2500-072 > 228-2500-043",
+   "count": 24,
+   "models": 2,
+   "insertionMedian": 0.02,
+   "insertionMin": 0,
+   "insertionMax": 0.02
+  },
+  {
+   "joint": "228-2500-149 > 228-2500-151",
+   "count": 24,
+   "models": 4,
+   "insertionMedian": -3.06,
+   "insertionMin": -6.35,
+   "insertionMax": -1.78
+  },
+  {
+   "joint": "228-2500-151 > 228-2500-131",
+   "count": 24,
+   "models": 4,
+   "insertionMedian": -3.06,
+   "insertionMin": -6.35,
+   "insertionMax": -1.78
+  },
+  {
+   "joint": "228-2500-151 > 228-2500-149",
+   "count": 24,
+   "models": 4,
+   "insertionMedian": -3.06,
+   "insertionMin": -6.35,
+   "insertionMax": -1.78
+  },
+  {
+   "joint": "228-2500-154 > 228-2500-040",
+   "count": 24,
+   "models": 3,
+   "insertionMedian": -1.78,
+   "insertionMin": -3.06,
+   "insertionMax": -1.78
+  },
+  {
+   "joint": "228-2500-009 > 228-2500-040",
+   "count": 24,
+   "models": 3,
+   "insertionMedian": -1.78,
+   "insertionMin": -3.06,
+   "insertionMax": -1.78
+  },
+  {
+   "joint": "228-2500-060 > 228-2500-2295",
+   "count": 24,
+   "models": 2,
+   "insertionMedian": 0,
+   "insertionMin": 0,
+   "insertionMax": 0.02
+  },
+  {
+   "joint": "228-2500-061 > 228-2500-157",
+   "count": 24,
+   "models": 2,
+   "insertionMedian": 0,
+   "insertionMin": -6.33,
+   "insertionMax": 0
+  },
+  {
+   "joint": "228-2500-128 > 228-2500-023",
+   "count": 24,
+   "models": 1,
+   "insertionMedian": 0,
+   "insertionMin": -0.89,
+   "insertionMax": 0.02
+  },
+  {
+   "joint": "228-2500-128 > 228-2500-030",
+   "count": 24,
+   "models": 1,
+   "insertionMedian": -1.78,
+   "insertionMin": -6.35,
+   "insertionMax": 0.79
+  },
+  {
+   "joint": "228-2500-134 > 228-2500-040",
+   "count": 24,
+   "models": 3,
+   "insertionMedian": 0,
+   "insertionMin": -0.89,
+   "insertionMax": 0.02
+  },
+  {
+   "joint": "228-2500-019 > 228-2560",
+   "count": 24,
+   "models": 3,
+   "insertionMedian": -2.81,
+   "insertionMin": -6.1,
+   "insertionMax": -1.53
+  },
+  {
+   "joint": "228-2500-023 > 228-2500-021",
+   "count": 24,
+   "models": 3,
+   "insertionMedian": -3.06,
+   "insertionMin": -6.35,
+   "insertionMax": -1.78
+  },
+  {
+   "joint": "228-2500-2260 > 228-2500-023 +y",
+   "count": 18,
+   "models": 2,
+   "insertionMedian": 0,
+   "insertionMin": -0.16,
+   "insertionMax": 0
+  },
+  {
+   "joint": "228-2500-2260 > 228-2500-023 -y",
+   "count": 18,
+   "models": 2,
+   "insertionMedian": -0.16,
+   "insertionMin": -0.16,
+   "insertionMax": 0
+  },
+  {
+   "joint": "228-2500-060 > 228-6480",
+   "count": 18,
+   "models": 2,
+   "insertionMedian": 0,
+   "insertionMin": 0,
+   "insertionMax": 4.55
+  },
+  {
+   "joint": "228-2500-060 > 228-2500-154",
+   "count": 18,
+   "models": 3,
+   "insertionMedian": 0,
+   "insertionMin": 0,
+   "insertionMax": 0.02
+  },
+  {
+   "joint": "228-2500-2234 > 228-2560",
+   "count": 18,
+   "models": 3,
+   "insertionMedian": 0.09,
+   "insertionMin": -0.89,
+   "insertionMax": 6.35
+  },
+  {
+   "joint": "228-2500-2238 > 228-2560",
+   "count": 17,
+   "models": 5,
+   "insertionMedian": 0.13,
+   "insertionMin": -0.68,
+   "insertionMax": 5.59
+  },
+  {
+   "joint": "228-2500-2260 > 228-2500-043 -y",
+   "count": 16,
+   "models": 2,
+   "insertionMedian": 0,
+   "insertionMin": -0.16,
+   "insertionMax": 0
+  },
+  {
+   "joint": "228-2500-2260 > 228-2500-043 +y",
+   "count": 16,
+   "models": 2,
+   "insertionMedian": 0,
+   "insertionMin": -0.16,
+   "insertionMax": 0
+  },
+  {
+   "joint": "228-2500-2260 > 228-2500-042 -y",
+   "count": 16,
+   "models": 3,
+   "insertionMedian": -0.16,
+   "insertionMin": -0.16,
+   "insertionMax": 0
+  },
+  {
+   "joint": "228-2500-042 > 228-2500-013 -y",
+   "count": 16,
+   "models": 2,
+   "insertionMedian": -3.06,
+   "insertionMin": -6.35,
+   "insertionMax": -1.78
+  },
+  {
+   "joint": "228-2500-032 > 228-2500-042 -y",
+   "count": 16,
+   "models": 2,
+   "insertionMedian": -3.06,
+   "insertionMin": -6.35,
+   "insertionMax": -1.78
+  },
+  {
+   "joint": "228-2500-001 > 228-2500-032 +y",
+   "count": 16,
+   "models": 2,
+   "insertionMedian": -3.06,
+   "insertionMin": -6.35,
+   "insertionMax": -1.78
+  },
+  {
+   "joint": "228-2500-005 > 228-2500-126",
+   "count": 16,
+   "models": 3,
+   "insertionMedian": -3.06,
+   "insertionMin": -6.35,
+   "insertionMax": -1.78
+  },
+  {
+   "joint": "228-2500-126 > 228-2500-023",
+   "count": 16,
+   "models": 1,
+   "insertionMedian": 0,
+   "insertionMin": -0.89,
+   "insertionMax": 0.02
+  },
+  {
+   "joint": "228-2500-1253 > 228-2500-011",
+   "count": 16,
+   "models": 1,
+   "insertionMedian": 0,
+   "insertionMin": -0.89,
+   "insertionMax": 0.02
+  },
+  {
+   "joint": "228-2500-009 > 228-2500-150",
+   "count": 16,
+   "models": 3,
+   "insertionMedian": -3.06,
+   "insertionMin": -6.35,
+   "insertionMax": -1.78
+  },
+  {
+   "joint": "228-2500-127 > 228-2500-003",
+   "count": 16,
+   "models": 2,
+   "insertionMedian": 0,
+   "insertionMin": -0.89,
+   "insertionMax": 0.02
+  },
+  {
+   "joint": "228-2500-127 > 228-2500-005",
+   "count": 16,
+   "models": 2,
+   "insertionMedian": 0,
+   "insertionMin": -0.89,
+   "insertionMax": 0.02
+  },
+  {
+   "joint": "228-2500-003 > 228-2500-003",
+   "count": 16,
+   "models": 2,
+   "insertionMedian": -3.06,
+   "insertionMin": -6.35,
+   "insertionMax": -1.78
+  },
+  {
+   "joint": "228-2560 > 228-2500-028",
+   "count": 16,
+   "models": 2,
+   "insertionMedian": -5.06,
+   "insertionMin": -6.35,
+   "insertionMax": -5.06
+  },
+  {
+   "joint": "228-2500-154 > 228-2500-154",
+   "count": 16,
+   "models": 2,
+   "insertionMedian": -1.53,
+   "insertionMin": -2.81,
+   "insertionMax": -1.53
+  },
+  {
+   "joint": "228-2500-154 > 228-2500-143",
+   "count": 16,
+   "models": 2,
+   "insertionMedian": -0.76,
+   "insertionMin": -2.05,
+   "insertionMax": -0.76
+  },
+  {
+   "joint": "228-2500-2295 > 228-2500-005",
+   "count": 16,
+   "models": 2,
+   "insertionMedian": -3.06,
+   "insertionMin": -6.35,
+   "insertionMax": -1.78
+  },
+  {
+   "joint": "228-2500-157 > 228-2500-2295",
+   "count": 16,
+   "models": 2,
+   "insertionMedian": -3.29,
+   "insertionMin": -6.57,
+   "insertionMax": -2
+  },
+  {
+   "joint": "228-2500-137 > 228-2500-134",
+   "count": 16,
+   "models": 2,
+   "insertionMedian": 0,
+   "insertionMin": -0.89,
+   "insertionMax": 0.02
+  },
+  {
+   "joint": "228-2500-127 > 228-2500-014",
+   "count": 16,
+   "models": 1,
+   "insertionMedian": 0,
+   "insertionMin": -0.89,
+   "insertionMax": 0.02
+  },
+  {
+   "joint": "228-2500-228 > 228-2500-043",
+   "count": 16,
+   "models": 2,
+   "insertionMedian": -0.89,
+   "insertionMin": -2.17,
+   "insertionMax": -0.89
+  },
+  {
+   "joint": "228-2500-131 > 228-2500-017",
+   "count": 16,
+   "models": 2,
+   "insertionMedian": 0,
+   "insertionMin": -0.89,
+   "insertionMax": 0.02
+  },
+  {
+   "joint": "228-2500-132 > 228-2500-134",
+   "count": 16,
+   "models": 2,
+   "insertionMedian": -3.36,
+   "insertionMin": -6.65,
+   "insertionMax": -1.48
+  },
+  {
+   "joint": "228-2500-007 > 228-2500-141",
+   "count": 16,
+   "models": 2,
+   "insertionMedian": -3.98,
+   "insertionMin": -7.26,
+   "insertionMax": -1.73
+  },
+  {
+   "joint": "228-2500-134 > 228-6480",
+   "count": 16,
+   "models": 1,
+   "insertionMedian": -2.66,
+   "insertionMin": -5.95,
+   "insertionMax": -1.38
+  },
+  {
+   "joint": "228-2500-134 > 228-2500-014",
+   "count": 16,
+   "models": 1,
+   "insertionMedian": 0,
+   "insertionMin": -0.89,
+   "insertionMax": 0.02
+  },
+  {
+   "joint": "228-2500-2260 > 269-6686-000 -z",
+   "count": 12,
+   "models": 2,
+   "insertionMedian": 0,
+   "insertionMin": -1.95,
+   "insertionMax": 0
+  },
+  {
+   "joint": "228-2500-2260 > 269-6686-000 +z",
+   "count": 12,
+   "models": 2,
+   "insertionMedian": -1.95,
+   "insertionMin": -1.95,
+   "insertionMax": 0
+  },
+  {
+   "joint": "228-2500-2260 > 228-2500-013 -y",
+   "count": 12,
+   "models": 2,
+   "insertionMedian": 0,
+   "insertionMin": -6.51,
+   "insertionMax": 0
+  },
+  {
+   "joint": "228-2500-2260 > 228-2500-032 +y",
+   "count": 12,
+   "models": 2,
+   "insertionMedian": 0,
+   "insertionMin": -0.16,
+   "insertionMax": 0
+  },
+  {
+   "joint": "228-2500-2260 > 228-2500-032 -y",
+   "count": 12,
+   "models": 2,
+   "insertionMedian": -0.16,
+   "insertionMin": -0.16,
+   "insertionMax": 0
+  },
+  {
+   "joint": "228-2500-2236 > 228-2560",
+   "count": 12,
+   "models": 5,
+   "insertionMedian": 5.59,
+   "insertionMin": 0.13,
+   "insertionMax": 5.59
+  },
+  {
+   "joint": "228-2500-011 > 228-2500-128",
+   "count": 12,
+   "models": 3,
+   "insertionMedian": -3.06,
+   "insertionMin": -6.35,
+   "insertionMax": -1.78
+  },
+  {
+   "joint": "228-2500-060 > 228-2500-148",
+   "count": 12,
+   "models": 2,
+   "insertionMedian": 0,
+   "insertionMin": 0,
+   "insertionMax": 0.02
+  },
+  {
+   "joint": "228-2500-060 > 228-2500-137",
+   "count": 12,
+   "models": 2,
+   "insertionMedian": 0,
+   "insertionMin": 0,
+   "insertionMax": 0.02
+  },
+  {
+   "joint": "228-2500-040 > 228-2500-017",
+   "count": 12,
+   "models": 3,
+   "insertionMedian": -3.06,
+   "insertionMin": -6.35,
+   "insertionMax": -1.78
+  },
+  {
+   "joint": "228-2500-086 > 228-2500-141",
+   "count": 12,
+   "models": 2,
+   "insertionMedian": 0,
+   "insertionMin": -0.91,
+   "insertionMax": 0.94
+  },
+  {
+   "joint": "228-2500-086 > 228-2500-007",
+   "count": 12,
+   "models": 2,
+   "insertionMedian": 0,
+   "insertionMin": -0.8,
+   "insertionMax": 0.05
+  },
+  {
+   "joint": "228-2500-067 > 228-2500-007",
+   "count": 12,
+   "models": 2,
+   "insertionMedian": 0.02,
+   "insertionMin": -0.53,
+   "insertionMax": 0.55
+  },
+  {
+   "joint": "228-2500-060 > 228-2500-030",
+   "count": 12,
+   "models": 1,
+   "insertionMedian": 0,
+   "insertionMin": 0,
+   "insertionMax": 0.02
+  },
+  {
+   "joint": "228-2500-134 > 228-2500-132",
+   "count": 10,
+   "models": 2,
+   "insertionMedian": -2.76,
+   "insertionMin": -6.05,
+   "insertionMax": -1.48
+  },
+  {
+   "joint": "228-2500-064 > 228-2500-025",
+   "count": 9,
+   "models": 3,
+   "insertionMedian": 0,
+   "insertionMin": 0,
+   "insertionMax": 0.02
+  },
+  {
+   "joint": "228-2500-2268 > 228-2500-1384 -y",
+   "count": 8,
+   "models": 2,
+   "insertionMedian": 2.2,
+   "insertionMin": 0,
+   "insertionMax": 2.2
+  },
+  {
+   "joint": "269-6685-000 > 269-6686-000 +z",
+   "count": 8,
+   "models": 2,
+   "insertionMedian": -1.78,
+   "insertionMin": -3.06,
+   "insertionMax": -1.78
+  },
+  {
+   "joint": "228-2500-2296 > 228-2500-023 -y",
+   "count": 8,
+   "models": 2,
+   "insertionMedian": 2.2,
+   "insertionMin": 0,
+   "insertionMax": 2.2
+  },
+  {
+   "joint": "228-2500-2260 > 228-2500-013 +y",
+   "count": 8,
+   "models": 2,
+   "insertionMedian": -0.16,
+   "insertionMin": -0.16,
+   "insertionMax": -0.16
+  },
+  {
+   "joint": "228-2500-2260 > 228-2500-001 +y",
+   "count": 8,
+   "models": 2,
+   "insertionMedian": -0.16,
+   "insertionMin": -0.16,
+   "insertionMax": -0.16
+  },
+  {
+   "joint": "228-2500-2260 > 228-2500-001 -y",
+   "count": 8,
+   "models": 2,
+   "insertionMedian": 0,
+   "insertionMin": 0,
+   "insertionMax": 0
+  },
+  {
+   "joint": "228-2500-126 > 228-2500-007",
+   "count": 8,
+   "models": 1,
+   "insertionMedian": 0,
+   "insertionMin": -0.89,
+   "insertionMax": 0.02
+  },
+  {
+   "joint": "228-2500-126 > 228-2500-150",
+   "count": 8,
+   "models": 1,
+   "insertionMedian": 0,
+   "insertionMin": -0.89,
+   "insertionMax": 0.02
+  },
+  {
+   "joint": "228-2500-126 > 228-6480",
+   "count": 8,
+   "models": 1,
+   "insertionMedian": -3.06,
+   "insertionMin": -6.35,
+   "insertionMax": -1.78
+  },
+  {
+   "joint": "228-2500-026 > 228-6480",
+   "count": 8,
+   "models": 1,
+   "insertionMedian": -3.06,
+   "insertionMin": -6.35,
+   "insertionMax": -1.78
+  },
+  {
+   "joint": "228-2500-026 > 228-2500-005",
+   "count": 8,
+   "models": 1,
+   "insertionMedian": -3.06,
+   "insertionMin": -6.35,
+   "insertionMax": -1.78
+  },
+  {
+   "joint": "228-2500-005 > 228-2500-148",
+   "count": 8,
+   "models": 2,
+   "insertionMedian": -3.06,
+   "insertionMin": -6.35,
+   "insertionMax": -1.78
+  },
+  {
+   "joint": "228-2500-148 > 228-2500-005",
+   "count": 8,
+   "models": 2,
+   "insertionMedian": -3.06,
+   "insertionMin": -6.35,
+   "insertionMax": -1.78
+  },
+  {
+   "joint": "228-2500-2295 > 228-2500-148",
+   "count": 8,
+   "models": 2,
+   "insertionMedian": 2.2,
+   "insertionMin": 0,
+   "insertionMax": 2.2
+  },
+  {
+   "joint": "228-2500-2295 > 228-2500-157",
+   "count": 8,
+   "models": 2,
+   "insertionMedian": -2,
+   "insertionMin": -3.29,
+   "insertionMax": -2
+  },
+  {
+   "joint": "228-2500-2295 > 228-2500-2295",
+   "count": 8,
+   "models": 2,
+   "insertionMedian": 2.2,
+   "insertionMin": 0,
+   "insertionMax": 2.2
+  },
+  {
+   "joint": "228-2500-061 > 228-2500-2295",
+   "count": 8,
+   "models": 2,
+   "insertionMedian": 0.24,
+   "insertionMin": -0.22,
+   "insertionMax": 0.24
+  },
+  {
+   "joint": "228-2500-134 > 228-2500-028",
+   "count": 8,
+   "models": 1,
+   "insertionMedian": 0,
+   "insertionMin": -0.89,
+   "insertionMax": 0.02
+  },
+  {
+   "joint": "228-2500-134 > 228-2500-137",
+   "count": 8,
+   "models": 2,
+   "insertionMedian": -2.17,
+   "insertionMin": -5.46,
+   "insertionMax": -0.89
+  },
+  {
+   "joint": "228-2500-127 > 228-2500-023",
+   "count": 8,
+   "models": 1,
+   "insertionMedian": 0,
+   "insertionMin": -0.89,
+   "insertionMax": 0.02
+  },
+  {
+   "joint": "228-2500-127 > 228-2500-030",
+   "count": 8,
+   "models": 1,
+   "insertionMedian": -0.76,
+   "insertionMin": -1.65,
+   "insertionMax": 0.79
+  },
+  {
+   "joint": "228-2500-134 > 228-2500-143",
+   "count": 8,
+   "models": 3,
+   "insertionMedian": -1.29,
+   "insertionMin": -7.36,
+   "insertionMax": 0
+  },
+  {
+   "joint": "228-2500-1253 > 228-2500-143",
+   "count": 6,
+   "models": 2,
+   "insertionMedian": -5.86,
+   "insertionMin": -7.86,
+   "insertionMax": -4.57
+  },
+  {
+   "joint": "228-2500-2223 > 228-2500-149",
+   "count": 6,
+   "models": 2,
+   "insertionMedian": 0,
+   "insertionMin": -0.8,
+   "insertionMax": 0
+  },
+  {
+   "joint": "228-2500-2223 > 228-2500-233",
+   "count": 6,
+   "models": 2,
+   "insertionMedian": -3.77,
+   "insertionMin": -4.57,
+   "insertionMax": -3.77
+  },
+  {
+   "joint": "228-2500-2234 > 228-2500-021",
+   "count": 6,
+   "models": 3,
+   "insertionMedian": 0.91,
+   "insertionMin": 0.91,
+   "insertionMax": 0.91
+  },
+  {
+   "joint": "228-2500-2223 > 228-2500-134",
+   "count": 6,
+   "models": 2,
+   "insertionMedian": 0,
+   "insertionMin": -0.8,
+   "insertionMax": 0
+  },
+  {
+   "joint": "228-2500-2223 > 228-2500-007",
+   "count": 6,
+   "models": 2,
+   "insertionMedian": 0,
+   "insertionMin": -0.8,
+   "insertionMax": 0
+  },
+  {
+   "joint": "228-2500-2234 > 269-6690-000 -z",
+   "count": 4,
+   "models": 2,
+   "insertionMedian": 5.46,
+   "insertionMin": 5.46,
+   "insertionMax": 5.46
+  },
+  {
+   "joint": "228-2500-2234 > 228-2500-1383 +y",
+   "count": 4,
+   "models": 2,
+   "insertionMedian": -0.13,
+   "insertionMin": -0.13,
+   "insertionMax": -0.13
+  },
+  {
+   "joint": "228-2500-2268 > 228-2500-043 -y",
+   "count": 4,
+   "models": 2,
+   "insertionMedian": 2.2,
+   "insertionMin": 0,
+   "insertionMax": 2.2
+  },
+  {
+   "joint": "228-2500-2268 > 228-2500-043 +y",
+   "count": 4,
+   "models": 2,
+   "insertionMedian": 2.2,
+   "insertionMin": 0,
+   "insertionMax": 2.2
+  },
+  {
+   "joint": "228-2500-2260 > 269-6685-000 +z",
+   "count": 4,
+   "models": 2,
+   "insertionMedian": 0,
+   "insertionMin": 0,
+   "insertionMax": 0
+  },
+  {
+   "joint": "228-2500-2260 > 269-6685-000 -z",
+   "count": 4,
+   "models": 2,
+   "insertionMedian": -0.16,
+   "insertionMin": -0.16,
+   "insertionMax": -0.16
+  },
+  {
+   "joint": "228-2500-2260 > 228-2500-2296 -z",
+   "count": 4,
+   "models": 2,
+   "insertionMedian": -0.16,
+   "insertionMin": -0.16,
+   "insertionMax": -0.16
+  },
+  {
+   "joint": "228-2500-2260 > 228-2500-2296 +z",
+   "count": 4,
+   "models": 2,
+   "insertionMedian": 0,
+   "insertionMin": 0,
+   "insertionMax": 0
+  },
+  {
+   "joint": "228-2500-2260 > 269-6696-000 +z",
+   "count": 4,
+   "models": 2,
+   "insertionMedian": 0,
+   "insertionMin": 0,
+   "insertionMax": 0
+  },
+  {
+   "joint": "228-2500-2260 > 269-6696-000 -z",
+   "count": 4,
+   "models": 2,
+   "insertionMedian": -0.4,
+   "insertionMin": -0.4,
+   "insertionMax": -0.4
+  },
+  {
+   "joint": "228-2500-2236 > 228-2500-1253",
+   "count": 4,
+   "models": 3,
+   "insertionMedian": -0.21,
+   "insertionMin": -0.21,
+   "insertionMax": -0.21
+  },
+  {
+   "joint": "228-2500-2238 > 228-2500-028",
+   "count": 4,
+   "models": 2,
+   "insertionMedian": 0.81,
+   "insertionMin": 0,
+   "insertionMax": 0.81
+  },
+  {
+   "joint": "228-2500-2295 > 228-2500-028",
+   "count": 4,
+   "models": 1,
+   "insertionMedian": 2.2,
+   "insertionMin": 0,
+   "insertionMax": 2.2
+  },
+  {
+   "joint": "228-2500-131 > 228-2500-141",
+   "count": 4,
+   "models": 2,
+   "insertionMedian": -0.89,
+   "insertionMin": -2.18,
+   "insertionMax": -0.89
+  },
+  {
+   "joint": "228-2500-131 > 228-2500-154",
+   "count": 4,
+   "models": 2,
+   "insertionMedian": -1.5,
+   "insertionMin": -2.79,
+   "insertionMax": -1.5
+  },
+  {
+   "joint": "228-2500-154 > 228-2500-131",
+   "count": 4,
+   "models": 2,
+   "insertionMedian": -1.5,
+   "insertionMin": -2.79,
+   "insertionMax": -1.5
+  },
+  {
+   "joint": "228-2500-154 > 228-2500-141",
+   "count": 4,
+   "models": 2,
+   "insertionMedian": -1.53,
+   "insertionMin": -2.81,
+   "insertionMax": -1.53
+  },
+  {
+   "joint": "228-2500-2223 > 228-2500-143",
+   "count": 4,
+   "models": 2,
+   "insertionMedian": -6.35,
+   "insertionMin": -6.9,
+   "insertionMax": -6.35
+  },
+  {
+   "joint": "228-2500-2238 > 228-2500-019",
+   "count": 3,
+   "models": 3,
+   "insertionMedian": 0.04,
+   "insertionMin": 0.04,
+   "insertionMax": 0.04
+  },
+  {
+   "joint": "228-2500-2236 > 228-2500-143",
+   "count": 2,
+   "models": 2,
+   "insertionMedian": -1.95,
+   "insertionMin": -1.95,
+   "insertionMax": -1.95
+  },
+  {
+   "joint": "228-2500-2236 > 228-2500-043",
+   "count": 2,
+   "models": 2,
+   "insertionMedian": -0.21,
+   "insertionMin": -0.21,
+   "insertionMax": -0.21
+  },
+  {
+   "joint": "228-2500-2236 > 228-2500-040",
+   "count": 2,
+   "models": 2,
+   "insertionMedian": -7.11,
+   "insertionMin": -7.11,
+   "insertionMax": -7.11
+  },
+  {
+   "joint": "228-2500-2238 > 228-2500-043",
+   "count": 2,
+   "models": 2,
+   "insertionMedian": -0.21,
+   "insertionMin": -0.21,
+   "insertionMax": -0.21
+  },
+  {
+   "joint": "228-2500-2238 > 228-2500-141",
+   "count": 2,
+   "models": 2,
+   "insertionMedian": -7.11,
+   "insertionMin": -7.11,
+   "insertionMax": -7.11
+  }
+ ]
+}

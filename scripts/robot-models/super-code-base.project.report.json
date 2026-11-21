@@ -1,0 +1,250 @@
+[
+ {
+  "step": "Base: re-seat gray wheels",
+  "added": [],
+  "errors": [],
+  "warnings": [
+   "motor-L (Motor) x shaft-L (Red Shaft): Detected mesh penetration",
+   "motor-L (Motor) x pin-c5 (Red Pin): Detected mesh penetration",
+   "motor-L (Motor) x pin-c6 (Red Pin): Detected mesh penetration",
+   "pin-c5 (Red Pin) x motor-R (Motor): Detected mesh penetration",
+   "pin-c6 (Red Pin) x motor-R (Motor): Detected mesh penetration",
+   "pin-c11 (Red Pin) x battery (Battery): Detected mesh penetration",
+   "pin-c12 (Red Pin) x battery (Battery): Detected mesh penetration",
+   "pin-c13 (Red Pin) x battery (Battery): Detected mesh penetration",
+   "pin-c14 (Red Pin) x battery (Battery): Detected mesh penetration",
+   "battery (Battery) x pin-c15 (Red Pin): Detected mesh penetration",
+   "battery (Battery) x pin-c16 (Red Pin): Detected mesh penetration"
+  ]
+ },
+ {
+  "step": "T end: flat beam on standing connectors",
+  "added": [
+   "pin-A1 (Red Pin)",
+   "pin-A2 (Red Pin)",
+   "ystand-L (Yellow Connector)",
+   "pin-B1 (Red Pin)",
+   "pin-B2 (Red Pin)",
+   "ystand-R (Yellow Connector)",
+   "beam-rear (Dark Gray Large Beam)"
+  ],
+  "errors": [],
+  "warnings": [
+   "ystand-L: twist 0°, align gap 0 mm",
+   "ystand-R: twist 0°, align gap 0 mm",
+   "beam-rear: twist 180°, align gap 0.15 mm",
+   "motor-L (Motor) x shaft-L (Red Shaft): Detected mesh penetration",
+   "motor-L (Motor) x pin-c5 (Red Pin): Detected mesh penetration",
+   "motor-L (Motor) x pin-c6 (Red Pin): Detected mesh penetration",
+   "pin-c5 (Red Pin) x motor-R (Motor): Detected mesh penetration",
+   "pin-c6 (Red Pin) x motor-R (Motor): Detected mesh penetration",
+   "pin-c11 (Red Pin) x battery (Battery): Detected mesh penetration",
+   "pin-c12 (Red Pin) x battery (Battery): Detected mesh penetration",
+   "pin-c13 (Red Pin) x battery (Battery): Detected mesh penetration",
+   "pin-c14 (Red Pin) x battery (Battery): Detected mesh penetration",
+   "battery (Battery) x pin-c15 (Red Pin): Detected mesh penetration",
+   "battery (Battery) x pin-c16 (Red Pin): Detected mesh penetration"
+  ]
+ },
+ {
+  "step": "Front end: flat beam on standing connectors",
+  "added": [
+   "pin-F1 (Red Pin)",
+   "pin-F2 (Red Pin)",
+   "ystand-FL (Yellow Connector)",
+   "pin-F3 (Red Pin)",
+   "pin-F4 (Red Pin)",
+   "ystand-FR (Yellow Connector)",
+   "beam-front (Dark Gray Large Beam)"
+  ],
+  "errors": [],
+  "warnings": [
+   "ystand-FL: twist 0°, align gap 0 mm",
+   "ystand-FR: twist 0°, align gap 0 mm",
+   "beam-front: twist 180°, align gap 0.15 mm",
+   "motor-L (Motor) x shaft-L (Red Shaft): Detected mesh penetration",
+   "motor-L (Motor) x pin-c5 (Red Pin): Detected mesh penetration",
+   "motor-L (Motor) x pin-c6 (Red Pin): Detected mesh penetration",
+   "pin-c5 (Red Pin) x motor-R (Motor): Detected mesh penetration",
+   "pin-c6 (Red Pin) x motor-R (Motor): Detected mesh penetration",
+   "pin-c11 (Red Pin) x battery (Battery): Detected mesh penetration",
+   "pin-c12 (Red Pin) x battery (Battery): Detected mesh penetration",
+   "pin-c13 (Red Pin) x battery (Battery): Detected mesh penetration",
+   "pin-c14 (Red Pin) x battery (Battery): Detected mesh penetration",
+   "battery (Battery) x pin-c15 (Red Pin): Detected mesh penetration",
+   "battery (Battery) x pin-c16 (Red Pin): Detected mesh penetration"
+  ]
+ },
+ {
+  "step": "Super 1-6 yellow legs",
+  "added": [
+   "so-L1 (Yellow Standoff)",
+   "so-L2 (Yellow Standoff)",
+   "yconn-L (Yellow Connector)",
+   "yangle-L (Yellow Angle Beam)",
+   "so-R1 (Yellow Standoff)",
+   "so-R2 (Yellow Standoff)",
+   "yconn-R (Yellow Connector)",
+   "yangle-R (Yellow Angle Beam)"
+  ],
+  "errors": [],
+  "warnings": [
+   "yconn-L: twist 180°, align gap 0 mm",
+   "yangle-L: twist 135°, align gap 0 mm",
+   "yconn-R: twist 180°, align gap 0 mm",
+   "yangle-R: twist 225°, align gap 0 mm",
+   "motor-L (Motor) x shaft-L (Red Shaft): Detected mesh penetration",
+   "motor-L (Motor) x pin-c5 (Red Pin): Detected mesh penetration",
+   "motor-L (Motor) x pin-c6 (Red Pin): Detected mesh penetration",
+   "pin-c5 (Red Pin) x motor-R (Motor): Detected mesh penetration",
+   "pin-c6 (Red Pin) x motor-R (Motor): Detected mesh penetration",
+   "pin-c11 (Red Pin) x battery (Battery): Detected mesh penetration",
+   "pin-c12 (Red Pin) x battery (Battery): Detected mesh penetration",
+   "pin-c13 (Red Pin) x battery (Battery): Detected mesh penetration",
+   "pin-c14 (Red Pin) x battery (Battery): Detected mesh penetration",
+   "battery (Battery) x pin-c15 (Red Pin): Detected mesh penetration",
+   "battery (Battery) x pin-c16 (Red Pin): Detected mesh penetration"
+  ]
+ },
+ {
+  "step": "Super 7-10 pink frame",
+  "added": [
+   "os-A (Orange Standoff)",
+   "os-B (Orange Standoff)",
+   "pink-A (Pink Beam)",
+   "rp-1 (Red Pin)",
+   "rp-2 (Red Pin)",
+   "green-F (Green Large Beam)",
+   "rp-3 (Red Pin)",
+   "rp-4 (Red Pin)",
+   "pink-B (Pink Beam)"
+  ],
+  "errors": [],
+  "warnings": [
+   "green-F: twist 0°, align gap 0 mm",
+   "pink-B: twist 270°, align gap 0 mm",
+   "motor-L (Motor) x shaft-L (Red Shaft): Detected mesh penetration",
+   "motor-L (Motor) x pin-c5 (Red Pin): Detected mesh penetration",
+   "motor-L (Motor) x pin-c6 (Red Pin): Detected mesh penetration",
+   "pin-c5 (Red Pin) x motor-R (Motor): Detected mesh penetration",
+   "pin-c6 (Red Pin) x motor-R (Motor): Detected mesh penetration",
+   "pin-c11 (Red Pin) x battery (Battery): Detected mesh penetration",
+   "pin-c12 (Red Pin) x battery (Battery): Detected mesh penetration",
+   "pin-c13 (Red Pin) x battery (Battery): Detected mesh penetration",
+   "pin-c14 (Red Pin) x battery (Battery): Detected mesh penetration",
+   "battery (Battery) x pin-c15 (Red Pin): Detected mesh penetration",
+   "battery (Battery) x pin-c16 (Red Pin): Detected mesh penetration"
+  ]
+ },
+ {
+  "step": "Super 10-12 orange beam",
+  "added": [
+   "dpin-1 (Red Pin)",
+   "dpin-2 (Red Pin)",
+   "gpin-1 (Green Pin)",
+   "gpin-2 (Green Pin)",
+   "orange (Orange Beam)"
+  ],
+  "errors": [],
+  "warnings": [
+   "orange: twist 0°, align gap 0 mm",
+   "motor-L (Motor) x shaft-L (Red Shaft): Detected mesh penetration",
+   "motor-L (Motor) x pin-c5 (Red Pin): Detected mesh penetration",
+   "motor-L (Motor) x pin-c6 (Red Pin): Detected mesh penetration",
+   "pin-c5 (Red Pin) x motor-R (Motor): Detected mesh penetration",
+   "pin-c6 (Red Pin) x motor-R (Motor): Detected mesh penetration",
+   "pin-c11 (Red Pin) x battery (Battery): Detected mesh penetration",
+   "pin-c12 (Red Pin) x battery (Battery): Detected mesh penetration",
+   "pin-c13 (Red Pin) x battery (Battery): Detected mesh penetration",
+   "pin-c14 (Red Pin) x battery (Battery): Detected mesh penetration",
+   "battery (Battery) x pin-c15 (Red Pin): Detected mesh penetration",
+   "battery (Battery) x pin-c16 (Red Pin): Detected mesh penetration"
+  ]
+ },
+ {
+  "step": "Super 11-12 angle beams",
+  "added": [
+   "opin-2 (Red Pin)",
+   "opin-3 (Red Pin)",
+   "angle-L (Orange Angle Beam)",
+   "angle-R (Orange Angle Beam)"
+  ],
+  "errors": [],
+  "warnings": [
+   "angle-L: twist 180°, align gap 0 mm",
+   "angle-R: twist 180°, align gap 0 mm",
+   "motor-L (Motor) x shaft-L (Red Shaft): Detected mesh penetration",
+   "motor-L (Motor) x pin-c5 (Red Pin): Detected mesh penetration",
+   "motor-L (Motor) x pin-c6 (Red Pin): Detected mesh penetration",
+   "pin-c5 (Red Pin) x motor-R (Motor): Detected mesh penetration",
+   "pin-c6 (Red Pin) x motor-R (Motor): Detected mesh penetration",
+   "pin-c11 (Red Pin) x battery (Battery): Detected mesh penetration",
+   "pin-c12 (Red Pin) x battery (Battery): Detected mesh penetration",
+   "pin-c13 (Red Pin) x battery (Battery): Detected mesh penetration",
+   "pin-c14 (Red Pin) x battery (Battery): Detected mesh penetration",
+   "battery (Battery) x pin-c15 (Red Pin): Detected mesh penetration",
+   "battery (Battery) x pin-c16 (Red Pin): Detected mesh penetration"
+  ]
+ },
+ {
+  "step": "Super 13-14 eye and magnet",
+  "added": [
+   "epin-1 (Red Pin)",
+   "epin-2 (Red Pin)",
+   "eye (Eye Sensor)",
+   "mpin-1 (Red Pin)",
+   "mpin-2 (Red Pin)",
+   "magnet (Electromagnet)"
+  ],
+  "errors": [],
+  "warnings": [
+   "eye: twist 0°, align gap 0 mm",
+   "magnet: twist 0°, align gap 0 mm",
+   "motor-L (Motor) x shaft-L (Red Shaft): Detected mesh penetration",
+   "motor-L (Motor) x pin-c5 (Red Pin): Detected mesh penetration",
+   "motor-L (Motor) x pin-c6 (Red Pin): Detected mesh penetration",
+   "pin-c5 (Red Pin) x motor-R (Motor): Detected mesh penetration",
+   "pin-c6 (Red Pin) x motor-R (Motor): Detected mesh penetration",
+   "pin-c11 (Red Pin) x battery (Battery): Detected mesh penetration",
+   "pin-c12 (Red Pin) x battery (Battery): Detected mesh penetration",
+   "pin-c13 (Red Pin) x battery (Battery): Detected mesh penetration",
+   "pin-c14 (Red Pin) x battery (Battery): Detected mesh penetration",
+   "battery (Battery) x pin-c15 (Red Pin): Detected mesh penetration",
+   "battery (Battery) x pin-c16 (Red Pin): Detected mesh penetration",
+   "epin-1 (Red Pin) x eye (Eye Sensor): Detected mesh penetration",
+   "epin-2 (Red Pin) x eye (Eye Sensor): Detected mesh penetration",
+   "mpin-1 (Red Pin) x magnet (Electromagnet): Detected mesh penetration",
+   "mpin-2 (Red Pin) x magnet (Electromagnet): Detected mesh penetration"
+  ]
+ },
+ {
+  "step": "Super 18-19 LED Bumper",
+  "added": [
+   "lpin-1 (Red Pin)",
+   "lpin-2 (Red Pin)",
+   "led (LED Bumper)"
+  ],
+  "errors": [],
+  "warnings": [
+   "led: twist 0°, align gap 0 mm",
+   "motor-L (Motor) x shaft-L (Red Shaft): Detected mesh penetration",
+   "motor-L (Motor) x pin-c5 (Red Pin): Detected mesh penetration",
+   "motor-L (Motor) x pin-c6 (Red Pin): Detected mesh penetration",
+   "pin-c5 (Red Pin) x motor-R (Motor): Detected mesh penetration",
+   "pin-c6 (Red Pin) x motor-R (Motor): Detected mesh penetration",
+   "pin-c11 (Red Pin) x battery (Battery): Detected mesh penetration",
+   "pin-c12 (Red Pin) x battery (Battery): Detected mesh penetration",
+   "pin-c13 (Red Pin) x battery (Battery): Detected mesh penetration",
+   "pin-c14 (Red Pin) x battery (Battery): Detected mesh penetration",
+   "battery (Battery) x pin-c15 (Red Pin): Detected mesh penetration",
+   "battery (Battery) x pin-c16 (Red Pin): Detected mesh penetration",
+   "epin-1 (Red Pin) x eye (Eye Sensor): Detected mesh penetration",
+   "epin-2 (Red Pin) x eye (Eye Sensor): Detected mesh penetration",
+   "mpin-1 (Red Pin) x magnet (Electromagnet): Detected mesh penetration",
+   "mpin-2 (Red Pin) x magnet (Electromagnet): Detected mesh penetration",
+   "mpin-2 (Red Pin) x lpin-2 (Red Pin): Detected mesh penetration",
+   "lpin-1 (Red Pin) x led (LED Bumper): Detected mesh penetration",
+   "lpin-2 (Red Pin) x led (LED Bumper): Detected mesh penetration"
+  ]
+ }
+]

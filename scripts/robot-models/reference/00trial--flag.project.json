@@ -1,0 +1,236 @@
+{
+"version": 1,
+"platform": "vexgo",
+"title": "flag",
+"source": "00.trial/flag.SLDASM",
+"hideCables": true,
+"parts": [
+{
+"id": "gray-beam-1",
+"sku": "228-2500-013",
+"position": [
+0.185,
+-2.288,
+1.457
+],
+"rotation": [
+-180,
+0,
+0
+],
+"label": "Gray Beam"
+},
+{
+"id": "red-pin-1",
+"sku": "228-2500-2260",
+"position": [
+-69.665,
+0.887,
+1.457
+],
+"rotation": [
+-180,
+0,
+0
+],
+"label": "Red Pin"
+},
+{
+"id": "red-pin-2",
+"sku": "228-2500-2260",
+"position": [
+-31.565,
+0.887,
+1.457
+],
+"rotation": [
+-180,
+0,
+0
+],
+"label": "Red Pin"
+},
+{
+"id": "large-white-plate-1",
+"sku": "228-2500-042",
+"position": [
+-50.615,
+4.062,
+-30.293
+],
+"rotation": [
+-180,
+-90,
+0
+],
+"label": "Large White Plate"
+},
+{
+"id": "red-pin-3",
+"sku": "228-2500-2260",
+"position": [
+-63.315,
+7.237,
+-17.593
+],
+"rotation": [
+-180,
+0,
+0
+],
+"label": "Red Pin"
+},
+{
+"id": "red-pin-4",
+"sku": "228-2500-2260",
+"position": [
+-37.915,
+7.237,
+-55.693
+],
+"rotation": [
+-180,
+0,
+0
+],
+"label": "Red Pin"
+},
+{
+"id": "black-plate-1",
+"sku": "228-2500-032",
+"position": [
+-50.615,
+10.412,
+-36.643
+],
+"rotation": [
+0,
+90,
+0
+],
+"label": "Black Plate"
+},
+{
+"id": "red-pin-5",
+"sku": "228-2500-2260",
+"position": [
+-56.965,
+13.587,
+-49.343
+],
+"rotation": [
+-180,
+0,
+0
+],
+"label": "Red Pin"
+},
+{
+"id": "red-pin-6",
+"sku": "228-2500-2260",
+"position": [
+-44.265,
+13.587,
+-49.343
+],
+"rotation": [
+-180,
+0,
+0
+],
+"label": "Red Pin"
+},
+{
+"id": "red-pin-7",
+"sku": "228-2500-2260",
+"position": [
+-44.265,
+13.587,
+-23.943
+],
+"rotation": [
+-180,
+2.4866,
+0
+],
+"label": "Red Pin"
+},
+{
+"id": "red-pin-8",
+"sku": "228-2500-2260",
+"position": [
+-56.965,
+13.587,
+-23.943
+],
+"rotation": [
+-180,
+55.0405,
+0
+],
+"label": "Red Pin"
+},
+{
+"id": "red-beam-1",
+"sku": "228-2500-001",
+"position": [
+-50.615,
+16.762,
+-23.943
+],
+"rotation": [
+-180,
+0,
+-180
+],
+"label": "Red Beam"
+},
+{
+"id": "red-beam-2",
+"sku": "228-2500-001",
+"position": [
+-50.615,
+16.762,
+-49.343
+],
+"rotation": [
+-180,
+0,
+180
+],
+"label": "Red Beam"
+},
+{
+"id": "red-pin-9",
+"sku": "228-2500-2260",
+"position": [
+70.035,
+0.887,
+1.457
+],
+"rotation": [
+-180,
+2.4866,
+0
+],
+"label": "Red Pin"
+},
+{
+"id": "red-pin-10",
+"sku": "228-2500-2260",
+"position": [
+82.735,
+0.887,
+1.457
+],
+"rotation": [
+-180,
+2.4866,
+0
+],
+"label": "Red Pin"
+}
+],
+"groups": [],
+"subassemblies": []
+}

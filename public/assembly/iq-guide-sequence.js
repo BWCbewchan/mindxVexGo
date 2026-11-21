@@ -79,7 +79,12 @@ export function generateIQGuide(input,{references={},nameFor=p=>p.label||p.sku,i
  // part set with the same CAD routes, then the phases are concatenated.
  const options=arguments[1]||{};
  if(!options.phase&&!rootId&&!prebuilt){
-  const modular=modularPlan();
+  const modular=modularPlan(!options.noHalves);
+  // Building the halves first must not trap a frame part between them (the
+  // student would have to take a half apart). Keep the plan that needs fewer
+  // such steps; ties keep the VEX-style 2X halves.
+  const forced=g=>g?.ready?g.steps.filter(s=>s.pathConflict==='forced').length:Infinity;
+  if(modular?.modules?.twinSides&&forced(modular)){const alt=generateIQGuide(parts,{...options,noHalves:true});if(forced(alt)<forced(modular)&&!globalThis.__keepHalves)return alt;}
   if(modular)return modular;
  }
  // Only snapshots are re-rooted. The document and all authored CAD poses stay intact.
@@ -88,7 +93,7 @@ export function generateIQGuide(input,{references={},nameFor=p=>p.label||p.sku,i
  // Step part entries; pins and shafts carry their true length for the 1:1
  // ruler that VEX manuals print next to them.
  function entry(p){const row={id:p.id,sku:p.sku,name:nameFor(p)};if(p.kind==='pin'||p.kind==='shaft'){const length=span(p)[0];if(length>0&&length<230)row.lengthMM=Math.round(length*10)/10;}return row;}
- function modularPlan(){
+ function modularPlan(useHalves=true){
   const sizeOf=p=>span(p)[0];
   // E3: Brain module = Brain + parts held only by it (its pins, the small
   // connectors on those pins) — the mounting brackets stay in the module.
@@ -112,7 +117,7 @@ export function generateIQGuide(input,{references={},nameFor=p=>p.label||p.sku,i
   // side of the mid plane (mirror image or translated copy alike).
   const transforms=[0,2].map(axis=>{const values=rest.map(p=>p.position[axis]),mid=(Math.min(...values)+Math.max(...values))/2;return {kind:'side',axis,mid,onPlane:p=>Math.abs(p.position[axis]-mid)<1,side:p=>p.position[axis]<mid-1};});
   let halves=null;
-  for(const t of transforms){
+  for(const t of useHalves?transforms:[]){
    const partner=new Map(),taken=new Set();
    const others=[0,1,2].filter(i=>i!==t.axis);
    for(const p of [...rest].sort(compare)){
@@ -381,7 +386,52 @@ export function generateIQGuide(input,{references={},nameFor=p=>p.label||p.sku,i
    plan.push({ids:[forced.p.id],routes:new Map([[forced.p.id,forced.r]]),mode:forced.hits.length?'forced':null,hits:forced.hits});
    built.add(forced.p.id);
   }
-  return built.size===core.size?plan:null;
+  return built.size===core.size?relocateForced(plan,clear,options):null;
+ }
+ // A "forced" insertion means the student would have to take an installed part
+ // off, add this one and put it back. Move such a part to the latest earlier
+ // point where its own route is clean and it blocks nothing planned after it:
+ // that is exactly the order a builder would use.
+ function relocateForced(plan,clear,options){
+  const prefix=i=>{const set=new Set(included);for(let j=0;j<i;j++)for(const id of plan[j].ids)set.add(id);return set;};
+  for(let pass=0;pass<plan.length;pass++){
+   const k=plan.findIndex(a=>a.mode==='forced'&&a.ids.length===1&&!a.tried);
+   if(k<0)break;
+   const action=plan[k],part=byId.get(action.ids[0]);action.tried=true;let moved=false;
+   for(let i=k-1;i>=0;i--){
+    const before=prefix(i);if(waiting(part,before))continue;
+    const route=options(part,before).find(r=>plan.slice(i,k).every(a=>a.ids.every(id=>a.mode==='forced'||!a.routes.get(id)?.blockedBy.includes(part.id))));
+    if(!route)continue;
+    plan.splice(k,1);plan.splice(i,0,{ids:[part.id],routes:new Map([[part.id,route]]),mode:null,relocated:true});
+    moved=true;break;
+   }
+   if(!moved)attachOnTable(plan,k,prefix);
+  }
+  // Parts placed afterwards may now be clean too (their blocker moved earlier).
+  for(let i=0;i<plan.length;i++){const a=plan[i];if(a.mode!=='forced'||a.ids.length!==1)continue;const before=prefix(i),route=options(byId.get(a.ids[0]),before)[0];if(route){a.routes=new Map([[a.ids[0],route]]);a.mode=null;delete a.hits;}}
+  return plan;
+ }
+ // Sub-assembly on the table (VEX manuals do this constantly): a part that
+ // has no clean way in on its own is fitted to its support first, off the
+ // model, and the pair goes in together along the support's own route. That is
+ // sound when the part alone could travel that same route, ignoring only the
+ // support it rides on and parts installed later.
+ function attachOnTable(plan,k,prefix){
+  const action=plan[k],part=byId.get(action.ids[0]),own=new Set(links.get(part.id).map(c=>c.target));
+  const same=(a,b)=>a.every((v,i)=>Math.abs(v-b[i])<.02);
+  for(let j=k-1;j>=0;j--){
+   const host=plan[j];if(host.mode==='forced'||host.mode==='threaded')continue;
+   const support=host.ids.find(id=>own.has(id)&&byId.get(id).kind!=='pin');if(!support)continue;
+   const axis=host.routes.get(support)?.axis;if(!axis)continue;
+   const before=prefix(j),batch=new Set(host.ids);
+   const route=(pathAudit.get(part.id)||[]).find(r=>same(r.axis,axis)&&r.blockedBy.every(id=>batch.has(id)||!before.has(id)));
+   if(!route)continue;
+   // Everything installed after the pair must still have its own way in.
+   if(plan.slice(j+1,k).some(a=>a.ids.some(id=>a.mode!=='forced'&&a.routes.get(id)?.blockedBy.includes(part.id))))continue;
+   plan.splice(k,1);host.ids.push(part.id);host.routes.set(part.id,route);host.table=[...(host.table||[]),part.id];
+   return true;
+  }
+  return false;
  }
  function append(added,joint,requires,title,note){
   for(const p of added){included.add(p.id);emitted.add(p.id);}
@@ -432,6 +482,11 @@ export function generateIQGuide(input,{references={},nameFor=p=>p.label||p.sku,i
     step.title=`Lắp đồng thời ${names.join(' và ')}`;
     step.note=`Hai chi tiết này khoá lẫn nhau: lắp riêng từng chiếc thì chiếc sau không còn đường vào. Đưa cả hai vào cùng lúc, canh các chốt rồi ấn đều cho đến khi khớp như hình.`;
     step.pathConflict='together';
+   }else if(action.table?.length){
+    const host=nameFor(part),riders=action.table.map(id=>nameFor(byId.get(id)));
+    step.title=`Gắn ${riders.join(', ')} vào ${host} trên bàn, rồi lắp cả cụm`;
+    step.note=`Lắp ${riders.join(', ')} vào ${host} khi ${host} còn ở ngoài mô hình. Sau đó đưa cả cụm vào theo mũi tên: nếu lắp ${riders.join(', ')} sau thì không còn đường vào.`;
+    step.subAssembly={host:part.id,parts:[...action.table]};
    }else if(action.mode==='forced'){
     const names=[...new Set(action.hits.map(id=>nameFor(byId.get(id))))].slice(0,3);
     step.pathConflict='forced';step.insertion.blockedBy=[...action.hits];

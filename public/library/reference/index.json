@@ -1,0 +1,696 @@
+{
+ "generated": "scripts/build-reference-library.mjs",
+ "models": [
+  {
+   "slug": "go-competition-base",
+   "title": "GO Competition Base",
+   "platform": "vexgo",
+   "kind": "robot",
+   "course": "go-competition",
+   "courseName": "VEX GO thi đấu",
+   "note": "Khung xe thi đấu VEX GO với hai motor. Mở bản sao để xem bốn cụm lắp và tạo hướng dẫn từng bước.",
+   "parts": 58,
+   "electronics": 5,
+   "source": "Assembly",
+   "picture": "/library/reference/go-competition-base.jpg",
+   "children": [],
+   "parents": [],
+   "subassemblyCount": 0,
+   "listed": true
+  },
+  {
+   "slug": "00trial--assem2",
+   "children": [
+    "00trial--build_xe",
+    "00trial--flag"
+   ],
+   "title": "Xe Code Base cắm cờ",
+   "platform": "vexgo",
+   "kind": "robot",
+   "course": "go-trial",
+   "courseName": "Xe VEX GO",
+   "note": "Xe Code Base mang cột cờ dựng trên thân.",
+   "parts": 67,
+   "electronics": 5,
+   "source": "00.trial/Assem2.SLDASM",
+   "picture": "/library/reference/00trial--assem2.jpg",
+   "parents": [],
+   "subassemblyCount": 2,
+   "listed": true
+  },
+  {
+   "slug": "00trial--build_xe",
+   "children": [],
+   "title": "Xe Code Base có LED Bumper",
+   "platform": "vexgo",
+   "kind": "robot",
+   "course": "go-trial",
+   "courseName": "Xe VEX GO",
+   "note": "Xe 2 động cơ hoàn chỉnh: Brain, pin, 2 bánh xám, 2 bánh xanh và LED Bumper.",
+   "parts": 52,
+   "electronics": 5,
+   "source": "00.trial/build_xe.SLDASM",
+   "picture": "/library/reference/00trial--build_xe.jpg",
+   "parents": [
+    "00trial--assem2"
+   ],
+   "subassemblyCount": 0,
+   "listed": true
+  },
+  {
+   "slug": "2-semi--build--b1--body",
+   "children": [
+    "2-semi--build--b1--head",
+    "2-semi--build--b1--left_a",
+    "2-semi--build--b1--left_arm",
+    "2-semi--build--b1--left_leg",
+    "2-semi--build--b1--right_a",
+    "2-semi--build--b1--right_arm",
+    "2-semi--build--b1--right_leg"
+   ],
+   "title": "Người máy SEMI",
+   "platform": "vexiq",
+   "kind": "robot",
+   "course": "semi",
+   "courseName": "Khoá SEMI",
+   "note": "Người máy hoàn chỉnh: thân với Brain, động cơ, cảm biến, ghép với đầu, 2 tay và 2 chân.",
+   "parts": 59,
+   "electronics": 5,
+   "source": "2. SEMI/build/b1/body.SLDASM",
+   "picture": "/library/reference/2-semi--build--b1--body.jpg",
+   "parents": [],
+   "subassemblyCount": 7,
+   "listed": true
+  },
+  {
+   "slug": "2-semi--build--b2--final",
+   "children": [
+    "2-semi--build--b2--base_f",
+    "2-semi--build--b2--body"
+   ],
+   "title": "Robot cánh quạt SEMI",
+   "platform": "vexiq",
+   "kind": "robot",
+   "course": "semi",
+   "courseName": "Khoá SEMI",
+   "note": "Robot hoàn chỉnh: khung, Brain, động cơ, bánh răng 48 răng và cánh quạt.",
+   "parts": 84,
+   "electronics": 2,
+   "source": "2. SEMI/build/b2/final.SLDASM",
+   "picture": "/library/reference/2-semi--build--b2--final.jpg",
+   "parents": [],
+   "subassemblyCount": 6,
+   "listed": true
+  },
+  {
+   "slug": "4-others--rl_sorter--final",
+   "children": [
+    "4-others--rl_sorter--s1_7",
+    "4-others--rl_sorter--s6",
+    "4-others--rl_sorter--s_7_1",
+    "4-others--rl_sorter--s_7_2"
+   ],
+   "title": "Máy phân loại RL Sorter",
+   "platform": "vexiq",
+   "kind": "robot",
+   "course": "sorter",
+   "courseName": "Máy phân loại",
+   "note": "Máy phân loại hoàn chỉnh 225 chi tiết: băng xích, cảm biến màu, Touch LED và Brain.",
+   "parts": 225,
+   "electronics": 8,
+   "source": "4. Others/RL_Sorter/final.SLDASM",
+   "picture": "/library/reference/4-others--rl_sorter--final.jpg",
+   "parents": [],
+   "subassemblyCount": 13,
+   "listed": true
+  },
+  {
+   "slug": "1-arm--baisoan_basic--bai1--build--ten",
+   "children": [],
+   "title": "Tập gắn pin vào tấm (ARM bài 1)",
+   "platform": "vexgo",
+   "kind": "small",
+   "course": "arm",
+   "courseName": "Khoá ARM",
+   "note": "Tấm xám, 8 pin đỏ và kìm tháo pin: bài làm quen đầu khoá ARM.",
+   "parts": 10,
+   "electronics": 0,
+   "source": "1. ARM/baisoan_basic/bai1/build/ten.SLDASM",
+   "picture": "/library/reference/1-arm--baisoan_basic--bai1--build--ten.jpg",
+   "parents": [],
+   "subassemblyCount": 0,
+   "listed": true
+  },
+  {
+   "slug": "00trial--flag",
+   "children": [],
+   "title": "Cột cờ",
+   "platform": "vexgo",
+   "kind": "small",
+   "course": "go-trial",
+   "courseName": "Xe VEX GO",
+   "note": "Mô hình nhỏ để tập gắn pin và thanh.",
+   "parts": 15,
+   "electronics": 0,
+   "source": "00.trial/flag.SLDASM",
+   "picture": "/library/reference/00trial--flag.jpg",
+   "parents": [
+    "00trial--assem2"
+   ],
+   "subassemblyCount": 0,
+   "listed": false
+  },
+  {
+   "slug": "2-semi--build--b1--right_leg",
+   "children": [],
+   "title": "Người máy SEMI: chân phải",
+   "platform": "vexiq",
+   "kind": "part",
+   "course": "semi",
+   "courseName": "Khoá SEMI",
+   "note": "",
+   "parts": 12,
+   "electronics": 1,
+   "source": "2. SEMI/build/b1/right_leg.SLDASM",
+   "picture": "/library/reference/2-semi--build--b1--right_leg.jpg",
+   "parents": [
+    "2-semi--build--b1--body"
+   ],
+   "subassemblyCount": 0,
+   "listed": false
+  },
+  {
+   "slug": "2-semi--build--b1--left_leg",
+   "children": [],
+   "title": "Người máy SEMI: chân trái",
+   "platform": "vexiq",
+   "kind": "part",
+   "course": "semi",
+   "courseName": "Khoá SEMI",
+   "note": "",
+   "parts": 11,
+   "electronics": 1,
+   "source": "2. SEMI/build/b1/left_leg.SLDASM",
+   "picture": "/library/reference/2-semi--build--b1--left_leg.jpg",
+   "parents": [
+    "2-semi--build--b1--body"
+   ],
+   "subassemblyCount": 0,
+   "listed": false
+  },
+  {
+   "slug": "2-semi--build--b1--head",
+   "children": [],
+   "title": "Người máy SEMI: đầu",
+   "platform": "vexiq",
+   "kind": "part",
+   "course": "semi",
+   "courseName": "Khoá SEMI",
+   "note": "",
+   "parts": 9,
+   "electronics": 2,
+   "source": "2. SEMI/build/b1/head.SLDASM",
+   "picture": "/library/reference/2-semi--build--b1--head.jpg",
+   "parents": [
+    "2-semi--build--b1--body"
+   ],
+   "subassemblyCount": 0,
+   "listed": false
+  },
+  {
+   "slug": "2-semi--build--b1--right_a",
+   "children": [],
+   "title": "Người máy SEMI: khớp tay phải",
+   "platform": "vexiq",
+   "kind": "part",
+   "course": "semi",
+   "courseName": "Khoá SEMI",
+   "note": "",
+   "parts": 5,
+   "electronics": 0,
+   "source": "2. SEMI/build/b1/right_a.SLDASM",
+   "picture": "/library/reference/2-semi--build--b1--right_a.jpg",
+   "parents": [
+    "2-semi--build--b1--body"
+   ],
+   "subassemblyCount": 0,
+   "listed": false
+  },
+  {
+   "slug": "2-semi--build--b1--left_a",
+   "children": [],
+   "title": "Người máy SEMI: khớp tay trái",
+   "platform": "vexiq",
+   "kind": "part",
+   "course": "semi",
+   "courseName": "Khoá SEMI",
+   "note": "",
+   "parts": 5,
+   "electronics": 0,
+   "source": "2. SEMI/build/b1/left_a.SLDASM",
+   "picture": "/library/reference/2-semi--build--b1--left_a.jpg",
+   "parents": [
+    "2-semi--build--b1--body"
+   ],
+   "subassemblyCount": 0,
+   "listed": false
+  },
+  {
+   "slug": "2-semi--build--b1--right_arm",
+   "children": [],
+   "title": "Người máy SEMI: tay phải",
+   "platform": "vexiq",
+   "kind": "part",
+   "course": "semi",
+   "courseName": "Khoá SEMI",
+   "note": "",
+   "parts": 5,
+   "electronics": 0,
+   "source": "2. SEMI/build/b1/right_arm.SLDASM",
+   "picture": "/library/reference/2-semi--build--b1--right_arm.jpg",
+   "parents": [
+    "2-semi--build--b1--body"
+   ],
+   "subassemblyCount": 0,
+   "listed": false
+  },
+  {
+   "slug": "2-semi--build--b1--left_arm",
+   "children": [],
+   "title": "Người máy SEMI: tay trái",
+   "platform": "vexiq",
+   "kind": "part",
+   "course": "semi",
+   "courseName": "Khoá SEMI",
+   "note": "",
+   "parts": 5,
+   "electronics": 0,
+   "source": "2. SEMI/build/b1/left_arm.SLDASM",
+   "picture": "/library/reference/2-semi--build--b1--left_arm.jpg",
+   "parents": [
+    "2-semi--build--b1--body"
+   ],
+   "subassemblyCount": 0,
+   "listed": false
+  },
+  {
+   "slug": "2-semi--build--b2--canhquat",
+   "children": [],
+   "title": "Robot cánh quạt SEMI: cánh quạt",
+   "platform": "vexiq",
+   "kind": "part",
+   "course": "semi",
+   "courseName": "Khoá SEMI",
+   "note": "",
+   "parts": 22,
+   "electronics": 0,
+   "source": "2. SEMI/build/b2/canhquat.SLDASM",
+   "picture": "/library/reference/2-semi--build--b2--canhquat.jpg",
+   "parents": [
+    "2-semi--build--b2--body"
+   ],
+   "subassemblyCount": 0,
+   "listed": false
+  },
+  {
+   "slug": "2-semi--build--b2--right",
+   "children": [],
+   "title": "Robot cánh quạt SEMI: cụm phải",
+   "platform": "vexiq",
+   "kind": "part",
+   "course": "semi",
+   "courseName": "Khoá SEMI",
+   "note": "",
+   "parts": 7,
+   "electronics": 0,
+   "source": "2. SEMI/build/b2/right.SLDASM",
+   "picture": "/library/reference/2-semi--build--b2--right.jpg",
+   "parents": [
+    "2-semi--build--b2--body"
+   ],
+   "subassemblyCount": 0,
+   "listed": false
+  },
+  {
+   "slug": "2-semi--build--b2--left",
+   "children": [],
+   "title": "Robot cánh quạt SEMI: cụm trái",
+   "platform": "vexiq",
+   "kind": "part",
+   "course": "semi",
+   "courseName": "Khoá SEMI",
+   "note": "",
+   "parts": 7,
+   "electronics": 0,
+   "source": "2. SEMI/build/b2/left.SLDASM",
+   "picture": "/library/reference/2-semi--build--b2--left.jpg",
+   "parents": [
+    "2-semi--build--b2--body"
+   ],
+   "subassemblyCount": 0,
+   "listed": false
+  },
+  {
+   "slug": "2-semi--build--b2--base",
+   "children": [],
+   "title": "Robot cánh quạt SEMI: đế",
+   "platform": "vexiq",
+   "kind": "part",
+   "course": "semi",
+   "courseName": "Khoá SEMI",
+   "note": "",
+   "parts": 7,
+   "electronics": 0,
+   "source": "2. SEMI/build/b2/base.SLDASM",
+   "picture": "/library/reference/2-semi--build--b2--base.jpg",
+   "parents": [
+    "2-semi--build--b2--base_f"
+   ],
+   "subassemblyCount": 0,
+   "listed": false
+  },
+  {
+   "slug": "2-semi--build--b2--base_f",
+   "children": [
+    "2-semi--build--b2--base"
+   ],
+   "title": "Robot cánh quạt SEMI: đế hoàn chỉnh",
+   "platform": "vexiq",
+   "kind": "part",
+   "course": "semi",
+   "courseName": "Khoá SEMI",
+   "note": "",
+   "parts": 18,
+   "electronics": 0,
+   "source": "2. SEMI/build/b2/base_f.SLDASM",
+   "picture": "/library/reference/2-semi--build--b2--base_f.jpg",
+   "parents": [
+    "2-semi--build--b2--final"
+   ],
+   "subassemblyCount": 1,
+   "listed": false
+  },
+  {
+   "slug": "2-semi--build--b2--body",
+   "children": [
+    "2-semi--build--b2--canhquat",
+    "2-semi--build--b2--left",
+    "2-semi--build--b2--right"
+   ],
+   "title": "Robot cánh quạt SEMI: thân",
+   "platform": "vexiq",
+   "kind": "part",
+   "course": "semi",
+   "courseName": "Khoá SEMI",
+   "note": "",
+   "parts": 63,
+   "electronics": 1,
+   "source": "2. SEMI/build/b2/body.SLDASM",
+   "picture": "/library/reference/2-semi--build--b2--body.jpg",
+   "parents": [
+    "2-semi--build--b2--final"
+   ],
+   "subassemblyCount": 3,
+   "listed": false
+  },
+  {
+   "slug": "4-others--rl_sorter--s1_1",
+   "children": [],
+   "title": "Máy phân loại: cụm 1.1",
+   "platform": "vexiq",
+   "kind": "part",
+   "course": "sorter",
+   "courseName": "Máy phân loại",
+   "note": "",
+   "parts": 4,
+   "electronics": 0,
+   "source": "4. Others/RL_Sorter/s1_1.SLDASM",
+   "picture": "/library/reference/4-others--rl_sorter--s1_1.jpg",
+   "parents": [
+    "4-others--rl_sorter--s1_7",
+    "4-others--rl_sorter--s_1_67"
+   ],
+   "subassemblyCount": 0,
+   "listed": false
+  },
+  {
+   "slug": "4-others--rl_sorter--s1_20",
+   "children": [],
+   "title": "Máy phân loại: cụm 1.20",
+   "platform": "vexiq",
+   "kind": "part",
+   "course": "sorter",
+   "courseName": "Máy phân loại",
+   "note": "",
+   "parts": 28,
+   "electronics": 0,
+   "source": "4. Others/RL_Sorter/s1_20.SLDASM",
+   "picture": "/library/reference/4-others--rl_sorter--s1_20.jpg",
+   "parents": [
+    "4-others--rl_sorter--s1_7"
+   ],
+   "subassemblyCount": 0,
+   "listed": false
+  },
+  {
+   "slug": "4-others--rl_sorter--s1_7",
+   "children": [
+    "4-others--rl_sorter--s1_1",
+    "4-others--rl_sorter--s1_20",
+    "4-others--rl_sorter--s1_8",
+    "4-others--rl_sorter--s3_1",
+    "4-others--rl_sorter--s4_17"
+   ],
+   "title": "Máy phân loại: cụm 1.7",
+   "platform": "vexiq",
+   "kind": "part",
+   "course": "sorter",
+   "courseName": "Máy phân loại",
+   "note": "",
+   "parts": 125,
+   "electronics": 3,
+   "source": "4. Others/RL_Sorter/s1_7.SLDASM",
+   "picture": "/library/reference/4-others--rl_sorter--s1_7.jpg",
+   "parents": [
+    "4-others--rl_sorter--final"
+   ],
+   "subassemblyCount": 7,
+   "listed": false
+  },
+  {
+   "slug": "4-others--rl_sorter--s1_8",
+   "children": [],
+   "title": "Máy phân loại: cụm 1.8",
+   "platform": "vexiq",
+   "kind": "part",
+   "course": "sorter",
+   "courseName": "Máy phân loại",
+   "note": "",
+   "parts": 6,
+   "electronics": 1,
+   "source": "4. Others/RL_Sorter/s1_8.SLDASM",
+   "picture": "/library/reference/4-others--rl_sorter--s1_8.jpg",
+   "parents": [
+    "4-others--rl_sorter--s1_7"
+   ],
+   "subassemblyCount": 0,
+   "listed": false
+  },
+  {
+   "slug": "4-others--rl_sorter--s3_1",
+   "children": [],
+   "title": "Máy phân loại: cụm 3.1",
+   "platform": "vexiq",
+   "kind": "part",
+   "course": "sorter",
+   "courseName": "Máy phân loại",
+   "note": "",
+   "parts": 12,
+   "electronics": 1,
+   "source": "4. Others/RL_Sorter/s3_1.SLDASM",
+   "picture": "/library/reference/4-others--rl_sorter--s3_1.jpg",
+   "parents": [
+    "4-others--rl_sorter--s1_7"
+   ],
+   "subassemblyCount": 0,
+   "listed": false
+  },
+  {
+   "slug": "4-others--rl_sorter--s4_17",
+   "children": [
+    "4-others--rl_sorter--s4_17_left",
+    "4-others--rl_sorter--s4_17_right"
+   ],
+   "title": "Máy phân loại: cụm 4.17",
+   "platform": "vexiq",
+   "kind": "part",
+   "course": "sorter",
+   "courseName": "Máy phân loại",
+   "note": "",
+   "parts": 37,
+   "electronics": 1,
+   "source": "4. Others/RL_Sorter/s4_17.SLDASM",
+   "picture": "/library/reference/4-others--rl_sorter--s4_17.jpg",
+   "parents": [
+    "4-others--rl_sorter--s1_7"
+   ],
+   "subassemblyCount": 2,
+   "listed": false
+  },
+  {
+   "slug": "4-others--rl_sorter--s4_17_left",
+   "children": [],
+   "title": "Máy phân loại: cụm 4.17.left",
+   "platform": "vexiq",
+   "kind": "part",
+   "course": "sorter",
+   "courseName": "Máy phân loại",
+   "note": "",
+   "parts": 6,
+   "electronics": 0,
+   "source": "4. Others/RL_Sorter/s4_17_left.SLDASM",
+   "picture": "/library/reference/4-others--rl_sorter--s4_17_left.jpg",
+   "parents": [
+    "4-others--rl_sorter--s4_17"
+   ],
+   "subassemblyCount": 0,
+   "listed": false
+  },
+  {
+   "slug": "4-others--rl_sorter--s4_17_right",
+   "children": [],
+   "title": "Máy phân loại: cụm 4.17.right",
+   "platform": "vexiq",
+   "kind": "part",
+   "course": "sorter",
+   "courseName": "Máy phân loại",
+   "note": "",
+   "parts": 6,
+   "electronics": 0,
+   "source": "4. Others/RL_Sorter/s4_17_right.SLDASM",
+   "picture": "/library/reference/4-others--rl_sorter--s4_17_right.jpg",
+   "parents": [
+    "4-others--rl_sorter--s4_17"
+   ],
+   "subassemblyCount": 0,
+   "listed": false
+  },
+  {
+   "slug": "4-others--rl_sorter--s6",
+   "children": [
+    "4-others--rl_sorter--s6_17",
+    "4-others--rl_sorter--s6_18"
+   ],
+   "title": "Máy phân loại: cụm 6",
+   "platform": "vexiq",
+   "kind": "part",
+   "course": "sorter",
+   "courseName": "Máy phân loại",
+   "note": "",
+   "parts": 51,
+   "electronics": 1,
+   "source": "4. Others/RL_Sorter/s6.SLDASM",
+   "picture": "/library/reference/4-others--rl_sorter--s6.jpg",
+   "parents": [
+    "4-others--rl_sorter--final"
+   ],
+   "subassemblyCount": 2,
+   "listed": false
+  },
+  {
+   "slug": "4-others--rl_sorter--s6_17",
+   "children": [],
+   "title": "Máy phân loại: cụm 6.17",
+   "platform": "vexiq",
+   "kind": "part",
+   "course": "sorter",
+   "courseName": "Máy phân loại",
+   "note": "",
+   "parts": 9,
+   "electronics": 0,
+   "source": "4. Others/RL_Sorter/s6_17.SLDASM",
+   "picture": "/library/reference/4-others--rl_sorter--s6_17.jpg",
+   "parents": [
+    "4-others--rl_sorter--s6"
+   ],
+   "subassemblyCount": 0,
+   "listed": false
+  },
+  {
+   "slug": "4-others--rl_sorter--s6_18",
+   "children": [],
+   "title": "Máy phân loại: cụm 6.18",
+   "platform": "vexiq",
+   "kind": "part",
+   "course": "sorter",
+   "courseName": "Máy phân loại",
+   "note": "",
+   "parts": 9,
+   "electronics": 0,
+   "source": "4. Others/RL_Sorter/s6_18.SLDASM",
+   "picture": "/library/reference/4-others--rl_sorter--s6_18.jpg",
+   "parents": [
+    "4-others--rl_sorter--s6"
+   ],
+   "subassemblyCount": 0,
+   "listed": false
+  },
+  {
+   "slug": "4-others--rl_sorter--s_7_1",
+   "children": [],
+   "title": "Máy phân loại: cụm 7.1",
+   "platform": "vexiq",
+   "kind": "part",
+   "course": "sorter",
+   "courseName": "Máy phân loại",
+   "note": "",
+   "parts": 16,
+   "electronics": 2,
+   "source": "4. Others/RL_Sorter/s_7_1.SLDASM",
+   "picture": "/library/reference/4-others--rl_sorter--s_7_1.jpg",
+   "parents": [
+    "4-others--rl_sorter--final"
+   ],
+   "subassemblyCount": 0,
+   "listed": false
+  },
+  {
+   "slug": "4-others--rl_sorter--s_7_2",
+   "children": [],
+   "title": "Máy phân loại: cụm 7.2",
+   "platform": "vexiq",
+   "kind": "part",
+   "course": "sorter",
+   "courseName": "Máy phân loại",
+   "note": "",
+   "parts": 5,
+   "electronics": 1,
+   "source": "4. Others/RL_Sorter/s_7_2.SLDASM",
+   "picture": "/library/reference/4-others--rl_sorter--s_7_2.jpg",
+   "parents": [
+    "4-others--rl_sorter--final"
+   ],
+   "subassemblyCount": 0,
+   "listed": false
+  },
+  {
+   "slug": "4-others--rl_sorter--s_1_67",
+   "children": [
+    "4-others--rl_sorter--s1_1"
+   ],
+   "title": "Máy phân loại: cụm thử nghiệm 1.67",
+   "platform": "vexiq",
+   "kind": "part",
+   "course": "sorter",
+   "courseName": "Máy phân loại",
+   "note": "Cụm lắp riêng của giáo viên, không nằm trong máy phân loại hoàn chỉnh.",
+   "parts": 27,
+   "electronics": 0,
+   "source": "4. Others/RL_Sorter/s_1_67.SLDASM",
+   "picture": "/library/reference/4-others--rl_sorter--s_1_67.jpg",
+   "parents": [],
+   "subassemblyCount": 1,
+   "listed": true
+  }
+ ]
+}

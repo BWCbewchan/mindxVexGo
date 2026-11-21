@@ -60,7 +60,12 @@ export function validGroupTree(groups){
  return groups.every(g=>{const seen=new Set([g.id]);let id=g.parentId;while(id){if(seen.has(id)||!map.has(id))return false;seen.add(id);id=map.get(id).parentId;}return true;});
 }
 export function groupSelection(project,ids,group){
- const selected=new Set(ids),complete=project.groups.filter(g=>{const members=groupMembers(project,g.id);return members.length&&members.every(p=>selected.has(p.id));});
+ const selected=new Set(ids);
+ const paths=project.parts.filter(part=>selected.has(part.id)).map(part=>groupAncestors(project,part));
+ const parent=paths[0]?.find(candidate=>paths.every(path=>path.some(row=>row.id===candidate.id)));
+ if(parent)group.parentId=parent.id;
+ const enclosing=new Set(parent?[parent.id,...groupAncestors(project,parent).map(row=>row.id)]:[]);
+ const complete=project.groups.filter(g=>{if(enclosing.has(g.id))return false;const members=groupMembers(project,g.id);return members.length&&members.every(p=>selected.has(p.id));});
  const completeIds=new Set(complete.map(g=>g.id)),roots=complete.filter(g=>!groupAncestors(project,g).some(a=>completeIds.has(a.id)));
  const covered=new Set(roots.flatMap(g=>groupMembers(project,g.id).map(p=>p.id)));
  project.groups.push(group);for(const g of roots)g.parentId=group.id;for(const p of project.parts)if(selected.has(p.id)&&!covered.has(p.id))p.groupId=group.id;

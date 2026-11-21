@@ -1,0 +1,735 @@
+{
+ "title": "VEX GO Super Code Base (on the teacher's Code Base CAD)",
+ "base": "../code-base-cad.base.json",
+ "steps": [
+  {
+   "name": "Base: re-seat gray wheels",
+   "note": "The teacher CAD presses the gray wheels about 1 mm into the plates; seat them on the motor shafts with mates instead.",
+   "attach": [
+    {
+     "part": "wheel-L",
+     "ref": "h3.3+y",
+     "to": "shaft-L",
+     "toRef": "p-y",
+     "depth": 0,
+     "slide": -1.5
+    },
+    {
+     "part": "wheel-R",
+     "ref": "h3.3+y",
+     "to": "shaft-R",
+     "toRef": "p-y",
+     "depth": 0,
+     "slide": -1.5
+    },
+    {
+     "part": "collar-L",
+     "ref": "h+z",
+     "to": "wheel-L",
+     "toRef": "h3.3-y",
+     "faceTo": true
+    },
+    {
+     "part": "collar-R",
+     "ref": "h+z",
+     "to": "wheel-R",
+     "toRef": "h3.3-y",
+     "faceTo": true
+    }
+   ]
+  },
+  {
+   "name": "T end: flat beam on standing connectors",
+   "note": "The teacher CAD stands this end beam up as a wall; the Super Code Base pins its orange T onto the top of a flat beam. The teacher motors are mounted upright, so Rev6's blue-connector cross beam does not fit beside them: a yellow connector stands on each plate inner face at the end column (plate holes h15.5/h15.7, stud face on the plate, edge pins up) and the dark-gray beam lies flat on the four edge pins above the motors.",
+   "parts": [
+    {
+     "id": "pin-A1",
+     "sku": "228-2500-2260"
+    },
+    {
+     "id": "pin-A2",
+     "sku": "228-2500-2260"
+    },
+    {
+     "id": "ystand-L",
+     "sku": "228-2500-2295"
+    },
+    {
+     "id": "pin-B1",
+     "sku": "228-2500-2260"
+    },
+    {
+     "id": "pin-B2",
+     "sku": "228-2500-2260"
+    },
+    {
+     "id": "ystand-R",
+     "sku": "228-2500-2295"
+    },
+    {
+     "id": "beam-rear",
+     "sku": "228-2500-023"
+    }
+   ],
+   "attach": [
+    {
+     "part": "pin-A1",
+     "ref": "p-y",
+     "to": "plate-L",
+     "toRef": "h15.5+y"
+    },
+    {
+     "part": "pin-A2",
+     "ref": "p-y",
+     "to": "plate-L",
+     "toRef": "h15.7+y"
+    },
+    {
+     "part": "ystand-L",
+     "ref": "h1.1+z",
+     "to": "pin-A1",
+     "toRef": "p+y",
+     "align": {
+      "ref": "h3.1+z",
+      "to": "pin-A2",
+      "toRef": "p+y"
+     }
+    },
+    {
+     "part": "pin-B1",
+     "ref": "p-y",
+     "to": "plate-R",
+     "toRef": "h15.5-y"
+    },
+    {
+     "part": "pin-B2",
+     "ref": "p-y",
+     "to": "plate-R",
+     "toRef": "h15.7-y"
+    },
+    {
+     "part": "ystand-R",
+     "ref": "h1.3+z",
+     "to": "pin-B1",
+     "toRef": "p+y",
+     "align": {
+      "ref": "h3.3+z",
+      "to": "pin-B2",
+      "toRef": "p+y"
+     }
+    },
+    {
+     "part": "beam-rear",
+     "ref": "h1.1-y",
+     "to": "ystand-L",
+     "toRef": "p1+y",
+     "align": {
+      "ref": "h15.1-y",
+      "to": "ystand-R",
+      "toRef": "p3+y"
+     }
+    }
+   ],
+   "check": [
+    {
+     "part": "beam-rear",
+     "ref": "h1.3-y",
+     "to": "ystand-L",
+     "toRef": "p3+y"
+    },
+    {
+     "part": "beam-rear",
+     "ref": "h15.3-y",
+     "to": "ystand-R",
+     "toRef": "p1+y"
+    }
+   ]
+  },
+  {
+   "name": "Front end: flat beam on standing connectors",
+   "parts": [
+    {
+     "id": "pin-F1",
+     "sku": "228-2500-2260"
+    },
+    {
+     "id": "pin-F2",
+     "sku": "228-2500-2260"
+    },
+    {
+     "id": "ystand-FL",
+     "sku": "228-2500-2295"
+    },
+    {
+     "id": "pin-F3",
+     "sku": "228-2500-2260"
+    },
+    {
+     "id": "pin-F4",
+     "sku": "228-2500-2260"
+    },
+    {
+     "id": "ystand-FR",
+     "sku": "228-2500-2295"
+    },
+    {
+     "id": "beam-front",
+     "sku": "228-2500-023"
+    }
+   ],
+   "attach": [
+    {
+     "part": "pin-F1",
+     "ref": "p-y",
+     "to": "plate-L",
+     "toRef": "h1.1+y"
+    },
+    {
+     "part": "pin-F2",
+     "ref": "p-y",
+     "to": "plate-L",
+     "toRef": "h1.3+y"
+    },
+    {
+     "part": "ystand-FL",
+     "ref": "h1.3+z",
+     "to": "pin-F1",
+     "toRef": "p+y",
+     "align": {
+      "ref": "h3.3+z",
+      "to": "pin-F2",
+      "toRef": "p+y"
+     }
+    },
+    {
+     "part": "pin-F3",
+     "ref": "p-y",
+     "to": "plate-R",
+     "toRef": "h1.1-y"
+    },
+    {
+     "part": "pin-F4",
+     "ref": "p-y",
+     "to": "plate-R",
+     "toRef": "h1.3-y"
+    },
+    {
+     "part": "ystand-FR",
+     "ref": "h1.1+z",
+     "to": "pin-F3",
+     "toRef": "p+y",
+     "align": {
+      "ref": "h3.1+z",
+      "to": "pin-F4",
+      "toRef": "p+y"
+     }
+    },
+    {
+     "part": "beam-front",
+     "ref": "h1.3-y",
+     "to": "ystand-FL",
+     "toRef": "p3+y",
+     "align": {
+      "ref": "h15.3-y",
+      "to": "ystand-FR",
+      "toRef": "p1+y"
+     }
+    }
+   ],
+   "check": [
+    {
+     "part": "beam-front",
+     "ref": "h1.1-y",
+     "to": "ystand-FL",
+     "toRef": "p1+y"
+    },
+    {
+     "part": "beam-front",
+     "ref": "h15.1-y",
+     "to": "ystand-FR",
+     "toRef": "p3+y"
+    }
+   ],
+   "note": "Super Code Base PDF step 10 hangs the pink frame under the robot from a flat beam at the blue-wheel end (Code Base Rev6 beam 2). The teacher CAD stands that beam up as a wall, so it is rebuilt flat: a yellow connector stands on each plate inner face at the front column on the lowest rows (plate holes h1.1/h1.3, edge pins up) and the dark-gray beam lies on the four edge pins just in front of the battery."
+  },
+  {
+   "name": "Super 1-6 yellow legs",
+   "note": "Super Code Base PDF steps 1-6: a yellow connector stands on a yellow angle beam (edge pins down into its first two holes) and stands off the plate outer face at the T end on two yellow standoffs; the feet point outward and back. The angle beam is chiral, so the right leg uses the other connector column, the other beam face and swapped edge pins.",
+   "parts": [
+    {
+     "id": "so-L1",
+     "sku": "228-2500-2268"
+    },
+    {
+     "id": "so-L2",
+     "sku": "228-2500-2268"
+    },
+    {
+     "id": "yconn-L",
+     "sku": "228-2500-2295"
+    },
+    {
+     "id": "yangle-L",
+     "sku": "228-2500-148"
+    },
+    {
+     "id": "so-R1",
+     "sku": "228-2500-2268"
+    },
+    {
+     "id": "so-R2",
+     "sku": "228-2500-2268"
+    },
+    {
+     "id": "yconn-R",
+     "sku": "228-2500-2295"
+    },
+    {
+     "id": "yangle-R",
+     "sku": "228-2500-148"
+    }
+   ],
+   "attach": [
+    {
+     "part": "so-L1",
+     "ref": "p-y",
+     "to": "plate-L",
+     "toRef": "h14.2-y"
+    },
+    {
+     "part": "so-L2",
+     "ref": "p-y",
+     "to": "plate-L",
+     "toRef": "h14.4-y"
+    },
+    {
+     "part": "yconn-L",
+     "ref": "h3.1+z",
+     "to": "so-L1",
+     "toRef": "p+y",
+     "align": {
+      "ref": "h1.1+z",
+      "to": "so-L2",
+      "toRef": "p+y"
+     }
+    },
+    {
+     "part": "yangle-L",
+     "ref": "h1-y",
+     "to": "yconn-L",
+     "toRef": "p1+y",
+     "align": {
+      "ref": "h2-y",
+      "to": "yconn-L",
+      "toRef": "p3+y"
+     }
+    },
+    {
+     "part": "so-R1",
+     "ref": "p-y",
+     "to": "plate-R",
+     "toRef": "h14.2+y"
+    },
+    {
+     "part": "so-R2",
+     "ref": "p-y",
+     "to": "plate-R",
+     "toRef": "h14.4+y"
+    },
+    {
+     "part": "yconn-R",
+     "ref": "h3.3+z",
+     "to": "so-R1",
+     "toRef": "p+y",
+     "align": {
+      "ref": "h1.3+z",
+      "to": "so-R2",
+      "toRef": "p+y"
+     }
+    },
+    {
+     "part": "yangle-R",
+     "ref": "h1+y",
+     "to": "yconn-R",
+     "toRef": "p3+y",
+     "align": {
+      "ref": "h2+y",
+      "to": "yconn-R",
+      "toRef": "p1+y"
+     }
+    }
+   ]
+  },
+  {
+   "name": "Super 7-10 pink frame",
+   "note": "Super Code Base PDF steps 7-10: two pink beams, each with 2 red pins (holes 5, 6) and an orange standoff (hole 7), joined by the green large beam; the standoffs go into the underside of the front beam (h6.2/h10.2) and the frame runs back under the motors toward the T end.",
+   "parts": [
+    {
+     "id": "os-A",
+     "sku": "228-2500-2271"
+    },
+    {
+     "id": "os-B",
+     "sku": "228-2500-2271"
+    },
+    {
+     "id": "pink-A",
+     "sku": "228-2500-006"
+    },
+    {
+     "id": "rp-1",
+     "sku": "228-2500-2260"
+    },
+    {
+     "id": "rp-2",
+     "sku": "228-2500-2260"
+    },
+    {
+     "id": "green-F",
+     "sku": "228-2500-018"
+    },
+    {
+     "id": "rp-3",
+     "sku": "228-2500-2260"
+    },
+    {
+     "id": "rp-4",
+     "sku": "228-2500-2260"
+    },
+    {
+     "id": "pink-B",
+     "sku": "228-2500-006"
+    }
+   ],
+   "attach": [
+    {
+     "part": "os-A",
+     "ref": "p+y",
+     "to": "beam-front",
+     "toRef": "h6.2-y"
+    },
+    {
+     "part": "os-B",
+     "ref": "p+y",
+     "to": "beam-front",
+     "toRef": "h10.2-y"
+    },
+    {
+     "part": "pink-A",
+     "ref": "h7-y",
+     "to": "os-A",
+     "toRef": "p-y",
+     "twist": 270
+    },
+    {
+     "part": "rp-1",
+     "ref": "p-y",
+     "to": "pink-A",
+     "toRef": "h5-y"
+    },
+    {
+     "part": "rp-2",
+     "ref": "p-y",
+     "to": "pink-A",
+     "toRef": "h6-y"
+    },
+    {
+     "part": "green-F",
+     "ref": "h1.1+y",
+     "to": "rp-1",
+     "toRef": "p+y",
+     "align": {
+      "ref": "h1.3+y",
+      "to": "rp-2",
+      "toRef": "p+y"
+     }
+    },
+    {
+     "part": "rp-3",
+     "ref": "p-y",
+     "to": "green-F",
+     "toRef": "h5.1+y"
+    },
+    {
+     "part": "rp-4",
+     "ref": "p-y",
+     "to": "green-F",
+     "toRef": "h5.3+y"
+    },
+    {
+     "part": "pink-B",
+     "ref": "h5-y",
+     "to": "rp-3",
+     "toRef": "p+y",
+     "align": {
+      "ref": "h6-y",
+      "to": "rp-4",
+      "toRef": "p+y"
+     }
+    }
+   ],
+   "check": [
+    {
+     "part": "pink-B",
+     "ref": "h7-y",
+     "to": "os-B",
+     "toRef": "p-y"
+    }
+   ]
+  },
+  {
+   "name": "Super 10-12 orange beam",
+   "parts": [
+    {
+     "id": "dpin-1",
+     "sku": "228-2500-2260"
+    },
+    {
+     "id": "dpin-2",
+     "sku": "228-2500-2260"
+    },
+    {
+     "id": "gpin-1",
+     "sku": "228-2500-2261"
+    },
+    {
+     "id": "gpin-2",
+     "sku": "228-2500-2261"
+    },
+    {
+     "id": "orange",
+     "sku": "228-2500-005"
+    }
+   ],
+   "attach": [
+    {
+     "part": "dpin-1",
+     "ref": "p-y",
+     "to": "beam-rear",
+     "toRef": "h11.3+y"
+    },
+    {
+     "part": "dpin-2",
+     "ref": "p-y",
+     "to": "beam-rear",
+     "toRef": "h5.3+y"
+    },
+    {
+     "part": "orange",
+     "ref": "h2-y",
+     "to": "dpin-1",
+     "toRef": "p+y",
+     "align": {
+      "ref": "h6-y",
+      "to": "dpin-2",
+      "toRef": "p+y"
+     }
+    },
+    {
+     "part": "gpin-1",
+     "ref": "p+y2",
+     "to": "orange",
+     "toRef": "h7-y"
+    },
+    {
+     "part": "gpin-2",
+     "ref": "p+y2",
+     "to": "orange",
+     "toRef": "h1-y"
+    }
+   ],
+   "check": [
+    {
+     "part": "gpin-1",
+     "ref": "p-y",
+     "to": "beam-rear",
+     "toRef": "h3.3+y"
+    },
+    {
+     "part": "gpin-2",
+     "ref": "p-y",
+     "to": "beam-rear",
+     "toRef": "h13.3+y"
+    }
+   ]
+  },
+  {
+   "name": "Super 11-12 angle beams",
+   "parts": [
+    {
+     "id": "opin-2",
+     "sku": "228-2500-2260"
+    },
+    {
+     "id": "opin-3",
+     "sku": "228-2500-2260"
+    },
+    {
+     "id": "angle-L",
+     "sku": "228-2500-150"
+    },
+    {
+     "id": "angle-R",
+     "sku": "228-2500-150"
+    }
+   ],
+   "attach": [
+    {
+     "part": "opin-2",
+     "ref": "p-y",
+     "to": "orange",
+     "toRef": "h3+y"
+    },
+    {
+     "part": "opin-3",
+     "ref": "p-y",
+     "to": "orange",
+     "toRef": "h5+y"
+    },
+    {
+     "part": "angle-L",
+     "ref": "h3+y",
+     "to": "opin-2",
+     "toRef": "p+y",
+     "align": {
+      "ref": "h1+y",
+      "to": "gpin-2",
+      "toRef": "p+y"
+     }
+    },
+    {
+     "part": "angle-R",
+     "ref": "h3-y",
+     "to": "opin-3",
+     "toRef": "p+y",
+     "align": {
+      "ref": "h1-y",
+      "to": "gpin-1",
+      "toRef": "p+y"
+     }
+    }
+   ]
+  },
+  {
+   "name": "Super 13-14 eye and magnet",
+   "parts": [
+    {
+     "id": "epin-1",
+     "sku": "228-2500-2260"
+    },
+    {
+     "id": "epin-2",
+     "sku": "228-2500-2260"
+    },
+    {
+     "id": "eye",
+     "sku": "269-6695-000"
+    },
+    {
+     "id": "mpin-1",
+     "sku": "228-2500-2260"
+    },
+    {
+     "id": "mpin-2",
+     "sku": "228-2500-2260"
+    },
+    {
+     "id": "magnet",
+     "sku": "269-6702-000"
+    }
+   ],
+   "attach": [
+    {
+     "part": "epin-1",
+     "ref": "p-y",
+     "to": "angle-L",
+     "toRef": "h6+y"
+    },
+    {
+     "part": "epin-2",
+     "ref": "p-y",
+     "to": "angle-R",
+     "toRef": "h6-y"
+    },
+    {
+     "part": "eye",
+     "ref": "h1.1+z",
+     "to": "epin-1",
+     "toRef": "p+y",
+     "align": {
+      "ref": "h2.1+z",
+      "to": "epin-2",
+      "toRef": "p+y"
+     }
+    },
+    {
+     "part": "mpin-1",
+     "ref": "p-y",
+     "to": "angle-L",
+     "toRef": "h4+y"
+    },
+    {
+     "part": "mpin-2",
+     "ref": "p-y",
+     "to": "angle-R",
+     "toRef": "h4-y"
+    },
+    {
+     "part": "magnet",
+     "ref": "h1.1+z",
+     "to": "mpin-1",
+     "toRef": "p+y",
+     "align": {
+      "ref": "h2.1+z",
+      "to": "mpin-2",
+      "toRef": "p+y"
+     }
+    }
+   ],
+   "note": "Eye and magnet hang under the fork legs (angle-L +y and angle-R -y face down)."
+  },
+  {
+   "name": "Super 18-19 LED Bumper",
+   "parts": [
+    {
+     "id": "lpin-1",
+     "sku": "228-2500-2260"
+    },
+    {
+     "id": "lpin-2",
+     "sku": "228-2500-2260"
+    },
+    {
+     "id": "led",
+     "sku": "269-6696-000"
+    }
+   ],
+   "attach": [
+    {
+     "part": "lpin-1",
+     "ref": "p-y",
+     "to": "angle-L",
+     "toRef": "h5-y"
+    },
+    {
+     "part": "lpin-2",
+     "ref": "p-y",
+     "to": "angle-R",
+     "toRef": "h4+y"
+    },
+    {
+     "part": "led",
+     "ref": "h2.1+z",
+     "to": "lpin-1",
+     "toRef": "p+y",
+     "align": {
+      "ref": "h3.3+z",
+      "to": "lpin-2",
+      "toRef": "p+y"
+     }
+    }
+   ],
+   "note": "LED Bumper on top of the fork legs, two pins on a diagonal (step 19)."
+  }
+ ]
+}

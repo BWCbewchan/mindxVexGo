@@ -1,4 +1,4 @@
-import * as THREE from 'three';
+import * as THREE from './vendor/three.module.js';
 import {nearestMate,worldReference} from './mating.js?v=fit-tolerance-36';
 import {compatibleReferences,insertionLimit} from './connector-policy.js';
 import {seatedConnections,jointMetrics} from './assembly-review.js';
@@ -36,7 +36,7 @@ export function recoverSeatedAssemblyLinks(input,references,{isLocked=()=>false}
 }
 
 // Repair connection metadata first; only nudge already aligned components by <=2 mm.
-export function repairAssemblyLinks(input,references,{isLocked=()=>false,maxDistance=2,respectReleased=false}={}){
+export function repairAssemblyLinks(input,references,{isLocked=()=>false,maxDistance=2,respectReleased=false,alignCenters=false}={}){
  const parts=structuredClone(input),byId=new Map(parts.map(p=>[p.id,p]));
  let removed=0,recovered=0,moved=0;
  const graph=()=>{const g=new Map(parts.map(p=>[p.id,[]]));for(const p of parts)if(byId.has(p.mate?.target)){g.get(p.id).push(p.mate.target);g.get(p.mate.target).push(p.id);}return g;};
@@ -77,9 +77,13 @@ export function repairAssemblyLinks(input,references,{isLocked=()=>false,maxDist
    // Recover already seated, tolerance-valid joints without forcing every pin
    // back to its nominal depth and moving the whole chassis into another body.
    const delta=seated?new THREE.Vector3():b.point.clone().addScaledVector(b.normal,-match.depth).sub(a.point);
-   if(seated)match.depth=Math.max(0,actualDepth);
+   if(alignCenters&&actualDepth>=.1&&actualDepth<=insertionLimit(match.sourceRef,match.targetRef)){
+    match.depth=actualDepth;
+    delta.copy(offset).addScaledVector(b.normal,actualDepth).negate();
+   }else if(seated&&alignCenters)continue;
+   else if(seated)match.depth=Math.max(0,actualDepth);
    if(delta.length()>maxDistance)continue;
-   if(!best||delta.length()<best.delta.length())best={part:p,match,members,delta};
+   if(!best||delta.length()<best.delta.length()-1e-8||Math.abs(delta.length()-best.delta.length())<1e-8&&members.size<best.members.size)best={part:p,match,members,delta};
   }
   if(!best)break;
   const {part,match,members,delta}=best,links=graph(),records=new Map(parts.filter(p=>p.mate).map(p=>[p.id,{...p.mate}]));

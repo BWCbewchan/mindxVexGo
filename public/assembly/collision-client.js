@@ -5,7 +5,7 @@ export function collisionClient(getReferences){
  let worker,sequence=0;
  function startWorker(){
   if(worker)return worker;
-  const address=new URL('./collision-worker.js?v=physical-snap-112',import.meta.url);
+  const address=new URL('./collision-worker.js?v=auto-center-123',import.meta.url);
   address.searchParams.set('platform',PLATFORM.id);
   worker=new Worker(address,{type:'module'});
   worker.onmessage=({data})=>{const entry=pending.get(data.id);if(!entry)return;pending.delete(data.id);data.error?entry.reject(Error(data.error)):entry.resolve(data.report);};
